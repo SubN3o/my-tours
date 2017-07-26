@@ -15,12 +15,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 /**
  * Flat controller.
  *
  * @Route("admin/flat")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class FlatController extends Controller
 {

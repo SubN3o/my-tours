@@ -5,12 +5,15 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\TypeBien;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Typebien controller.
  *
  * @Route("admin/typebien")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class TypeBienController extends Controller
 {

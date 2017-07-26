@@ -15,11 +15,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Residence controller.
  *
  * @Route("/admin/residence")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class ResidenceController extends Controller
 {
