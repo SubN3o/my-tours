@@ -12,7 +12,6 @@ namespace MyOrleansBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MyOrleansBundle\Entity\TypeLogement;
-use MyOrleansBundle\Entity\TypeMedia;
 
 class LoadTypeLogementData implements FixtureInterface
 {

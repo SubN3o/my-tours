@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,7 +24,7 @@ class FlatType extends AbstractType
     {
         $builder
             ->add('reference', TextType::class)
-            ->add('prix', NumberType::class)
+            ->add('prix', IntegerType::class)
             ->add('surface', NumberType::class)
             ->add('surfaceSejour', NumberType::class)
             ->add('expositionSejour', ChoiceType::class, [
@@ -39,7 +40,8 @@ class FlatType extends AbstractType
                 'expanded' => false,
                 'multiple' => false
           ])
-            ->add('nbPiece', NumberType::class)
+            ->add('nbPiece', IntegerType::class)
+            ->add('nbChambre', IntegerType::class)
             ->add('description', TextareaType::class)
             ->add('prestationComplementaire', TextareaType::class, [
                 'required' => false

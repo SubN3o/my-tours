@@ -80,7 +80,7 @@ class Flat
      * @var int
      * @Assert\Type(
      *     type="integer",
-     *     message="Le nombre de pièce saisi n'est pas correcte."
+     *     message="Le nombre de piece saisi n'est pas correcte."
      * )
      * @ORM\Column(name="nb_piece", type="integer", nullable=true)
      */
@@ -88,7 +88,7 @@ class Flat
 
     /**
      * @var int
-     *  @Assert\Type(
+      * @Assert\Type(
      *     type="integer",
      *     message="Le nombre de chambre saisi n'est pas correcte."
      * )

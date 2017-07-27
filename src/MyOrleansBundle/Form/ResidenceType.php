@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +29,7 @@ class ResidenceType extends AbstractType
         $builder
             ->add('nom', TextType::class)
             ->add('adresse', TextType::class)
-            ->add('codePostal', NumberType::class)
+            ->add('codePostal', IntegerType::class)
             ->add('ville', EntityType::class, [
                 'class' => Ville::class,
                 'choice_label' => 'nom'

@@ -49,7 +49,8 @@ class Residence
 
     /**
      * @var int
-     * @Assert\NotBlank()@Assert\Type(
+     * @Assert\NotBlank()
+     * @Assert\Type(
      *     type="integer",
      *     message="La saisie n'est pas correcte."
      * )
