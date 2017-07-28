@@ -32,19 +32,19 @@ class FileArticle
     private $article;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * Assert\NotBlank
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * Assert\NotBlank()
      *
      */
     public $name;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(maxSize="6000000k")
      */
     private $file;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     public $path;
 

@@ -69,10 +69,10 @@ class ArticleController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $file = $form['fichierAssocie']->getData();
-
             $em->persist($article);
             $em->flush();
+
+            if ($file = $form['fichierAssocie']->getData()){
 
             $fileArticle = new FileArticle();
             $fileArticle->setFile($file);
@@ -86,7 +86,7 @@ class ArticleController extends Controller
 
 
             $this->addFlash('success', 'Votre article a bien été ajoutée');
-
+            }
             return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }
 

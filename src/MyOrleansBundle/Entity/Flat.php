@@ -41,6 +41,10 @@ class Flat
      *     type="integer",
      *     message="Le prix saisi n'est pas correcte."
      * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "Le prix ne peut pas être inférieur à 0€",
+     * )
      * @ORM\Column(name="prix", type="integer", nullable=true)
      */
     private $prix;
@@ -51,12 +55,24 @@ class Flat
      *     type="float",
      *     message="La surface saisie n'est pas correcte."
      * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
      * @ORM\Column(name="surface", type="float", nullable=true)
      */
     private $surface;
 
     /**
      * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
      *
      * @ORM\Column(name="surface_sejour", type="float", nullable=true)
      */
@@ -71,7 +87,10 @@ class Flat
 
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *    type="string",
+     *    message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="stationnement", type="text", nullable=true)
      */
     private $stationnement;
@@ -81,6 +100,10 @@ class Flat
      * @Assert\Type(
      *     type="integer",
      *     message="Le nombre de piece saisi n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "Le nombre de piece ne peut pas être inférieur à 0",
      * )
      * @ORM\Column(name="nb_piece", type="integer", nullable=true)
      */
@@ -92,6 +115,10 @@ class Flat
      *     type="integer",
      *     message="Le nombre de chambre saisi n'est pas correcte."
      * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "Le nombre de chambre ne peut pas être inférieur à 0",
+     * )
      * @ORM\Column(name="nb_chambre", type="integer", nullable=true)
      */
     private $nbChambre;
@@ -99,9 +126,9 @@ class Flat
     /**
      * @var string
      * @Assert\NotBlank()
-     *  @Assert\Type(
-     *     type="string",
-     *     message="La saisie n'est pas correcte."
+     * @Assert\Type(
+     *    type="string",
+     *    message="La saisie n'est pas correcte."
      * )
      * @ORM\Column(name="description", type="text")
      */
@@ -109,7 +136,10 @@ class Flat
 
     /**
      * @var string
-     *
+     * @Assert\Type(
+     *    type="string",
+     *    message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="prestation_complementaire", type="text", nullable=true)
      */
     private $prestationComplementaire;
