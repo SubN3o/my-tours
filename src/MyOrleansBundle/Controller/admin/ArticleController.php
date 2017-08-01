@@ -121,15 +121,15 @@ class ArticleController extends Controller
     public function editAction(Request $request, Article $article, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($article);
-        if (!empty($article->getMedias())) {
-            $media = new Media();
-            $article->getMedias()->add($media);
-        }
-
-        if(!empty($article->getTags())) {
-            $tag = new Tag();
-            $article->getTags()->add($tag);
-        }
+//        if (!empty($article->getMedias())) {
+//            $media = new Media();
+//            $article->getMedias()->add($media);
+//        }
+//
+//        if(!empty($article->getTags())) {
+//            $tag = new Tag();
+//            $article->getTags()->add($tag);
+//        }
 
         $editForm = $this->createForm(ArticleType::class, $article);
         $editForm->handleRequest($request);
