@@ -51,13 +51,9 @@
                             <div class="row">
                                 <div class="col s6">
                                     {% for tag in article.tags %}
-                                        {% if tag.id != null %}
-                                            {# {{ form_label(form.tags, 'Tags: ') }}#}
-                                        {% else %}
                                             <h3>Ajoutez des tags pour vos articles</h3>
                                             <p>Mettez les premières lettres de vos tags en majuscule</p>
                                             {{ form_row(form.tags) }}
-                                        {% endif %}
                                     {% endfor %}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-tag"><i

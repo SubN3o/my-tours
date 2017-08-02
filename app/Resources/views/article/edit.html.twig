@@ -46,13 +46,13 @@
                                 <div class="col s6">
                                     <h4>Les tags actuellement reliés à votre article</h4>
                                     {% for tag in article.tags %}
-                                        {% if tag.id != null %}
                                             <div class="chip">
                                                 {{ tag.nom }}
+                                                {% if article.tags|length >= 2 %}
                                                 <a href="{{ path('article_tag_delete', {"id" : article.id, "tag_id" : tag.id}) }}"><i
                                                             class="close material-icons">close</i></a>
+                                                {% endif %}
                                             </div>
-                                        {% endif %}
                                     {% endfor %}
                                     <h4>Modifier vos tags actuels ou ajoutez</h4>
                                     <p>Mettez les premières lettres de vos tags en majuscule</p>
@@ -65,15 +65,15 @@
                                 <div class="col s6">
                                     <h4>Les medias actuellement reliés à votre article</h4>
                                     {% for media in article.medias %}
-                                        {% if media.id != null %}
                                             <p class="imgUploader"><img class="responsive-img"
                                                                         src="{{ asset('uploads/'~media.lien) }}"/>
-                                                <a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a>
+                                                {% if article.medias|length >= 2%}
+                                                    <a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a>
+                                                {% endif %}
                                             </p>
-                                        {% endif %}
                                     {% endfor %}
-                                        <h4>Veuillez charger une nouvelle image.</h4>
-                                        <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
+                                            <h4>Veuillez charger une nouvelle image.</h4>
+                                            <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
                                                 type du media.</p>
                                     {% for media in article.medias %}
                                         {{ form_row(edit_form.medias) }}
