@@ -23,8 +23,8 @@
                                         <th>Surface Sejour</th>
                                         <th>Exposition Sejour</th>
                                         <th>Stationnement</th>
-                                        <th>Nb de Piece</th>
-                                        <th>Nb de Chambre</th>
+                                        {#<th>Nb de Piece</th>#}
+                                        {#<th>Nb de Chambre</th>#}
                                         <th>Description</th>
                                         <th>Prestation Complementaire</th>
                                         <th>Statut</th>
@@ -43,9 +43,7 @@
                                             <td>{{ flat.surface }}</td>
                                             <td>{{ flat.surfaceSejour }}</td>
                                             <td>{{ flat.expositionSejour }}</td>
-                                            <td>{{ flat.stationnement }}</td>
-                                            <td>{{ flat.nbPiece }}</td>
-                                            <td>{{ flat.nbChambre }}</td>
+                                            <td>{{ flat.stationnement }}</td>#}
                                             <td>{{ flat.description }}</td>
                                             <td>{{ flat.prestationComplementaire }}</td>
                                             {% if flat.statut %}

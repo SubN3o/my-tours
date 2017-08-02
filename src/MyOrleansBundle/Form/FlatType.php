@@ -42,12 +42,6 @@ class FlatType extends AbstractType
                 'expanded' => false,
                 'multiple' => false
           ])
-            ->add('nbPiece', IntegerType::class,
-                 array('attr' => array('min' => '0'))
-                 )
-            ->add('nbChambre', IntegerType::class,
-                 array('attr' => array('min' => '0'))
-                 )
             ->add('description', TextareaType::class)
             ->add('prestationComplementaire', TextareaType::class, [
                 'required' => false

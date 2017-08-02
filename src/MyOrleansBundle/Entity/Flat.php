@@ -96,34 +96,6 @@ class Flat
     private $stationnement;
 
     /**
-     * @var int
-     * @Assert\Type(
-     *     type="integer",
-     *     message="Le nombre de piece saisi n'est pas correcte."
-     * )
-     * @Assert\Range(
-     *      min = 0,
-     *      minMessage = "Le nombre de piece ne peut pas être inférieur à 0",
-     * )
-     * @ORM\Column(name="nb_piece", type="integer", nullable=true)
-     */
-    private $nbPiece;
-
-    /**
-     * @var int
-      * @Assert\Type(
-     *     type="integer",
-     *     message="Le nombre de chambre saisi n'est pas correcte."
-     * )
-     * @Assert\Range(
-     *      min = 0,
-     *      minMessage = "Le nombre de chambre ne peut pas être inférieur à 0",
-     * )
-     * @ORM\Column(name="nb_chambre", type="integer", nullable=true)
-     */
-    private $nbChambre;
-
-    /**
      * @var string
      * @Assert\NotBlank()
      * @Assert\Type(
@@ -260,48 +232,6 @@ class Flat
     {
         return $this->surface;
     }
-
-    /**
-     * Set nbPiece
-     *
-     * @param integer $nbPiece
-     *
-     * @return Flat
-     */
-    public function setNbPiece($nbPiece)
-    {
-        $this->nbPiece = $nbPiece;
-
-        return $this;
-    }
-
-    /**
-     * Get nbPiece
-     *
-     * @return int
-     */
-    public function getNbPiece()
-    {
-        return $this->nbPiece;
-    }
-
-    /**
-     * @return int
-     */
-    public function getNbChambre()
-    {
-        return $this->nbChambre;
-    }
-
-    /**
-     * @param int $nbChambre
-     */
-    public function setNbChambre($nbChambre)
-    {
-        $this->nbChambre = $nbChambre;
-    }
-
-
 
     /**
      * Set description
