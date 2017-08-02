@@ -15,89 +15,111 @@
                             {{ form_start(edit_form) }}
                             <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(edit_form.nom, "Nom de la résidence:") }}
+                                    {{ form_label(edit_form.nom, "Nom de la résidence :") }}
                                     {{ form_widget(edit_form.nom) }}
                                 </div>
-                                <div class="col s6">  {{ form_label(edit_form.favoris, 'Favoris: ') }}
+                                <div class="col s6">  {{ form_label(edit_form.favoris, 'Favoris :') }}
                                     {{ form_widget(edit_form.favoris) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(edit_form.adresse, 'Adresse: ') }}
+                                    {{ form_label(edit_form.adresse, 'Adresse :') }}
                                     {{ form_widget(edit_form.adresse) }}
                                 </div>
                                 <div class="col s6 padding-top">
-                                    {{ form_label(edit_form.quartier, 'Quartier: ') }}
+                                    {{ form_label(edit_form.quartier, 'Quartier :') }}
                                     {{ form_widget(edit_form.quartier) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(edit_form.ville, 'Ville: ') }}
+                                    {{ form_label(edit_form.ville, 'Ville :') }}
                                     {{ form_widget(edit_form.ville) }}
                                 </div>
                                 <div class="col s6">
-                                    {{ form_label(edit_form.codePostal, 'Code Postal: ') }}
+                                    {{ form_label(edit_form.codePostal, 'Code Postal :') }}
                                     {{ form_widget(edit_form.codePostal) }}
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col s12">
-                                    {{ form_label(edit_form.description, 'Description: ') }}
+                                    {{ form_label(edit_form.description, 'Description :') }}
                                     {{ form_widget(edit_form.description) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    {{ form_label(edit_form.offre, 'Offre du moment: ') }}
+                                    {{ form_label(edit_form.offre, 'Offre du moment :') }}
                                     {{ form_widget(edit_form.offre) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(edit_form.dateLivraison, 'Date de livraison: ') }}
+                                    {{ form_label(edit_form.dateLivraison, 'Date de livraison :') }}
                                     {{ form_widget(edit_form.dateLivraison) }}
                                 </div>
                                 <div class="col s6">
-                                    {{ form_label(edit_form.nbTotalLogements, 'Nombre total de logements: ') }}
+                                    {{ form_label(edit_form.nbTotalLogements, 'Nombre total de logements :') }}
                                     {{ form_widget(edit_form.nbTotalLogements) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s3">
-                                    {{ form_label(edit_form.noteTransports, 'Note transport: ') }}
+                                    {{ form_label(edit_form.noteTransports, 'Note transport :') }}
                                     {{ form_widget(edit_form.noteTransports) }}
                                 </div>
                                 <div class="col s3">
-                                    {{ form_label(edit_form.noteServices, 'Note service: ') }}
+                                    {{ form_label(edit_form.noteServices, 'Note service :') }}
                                     {{ form_widget(edit_form.noteServices) }}
                                 </div>
                                 <div class="col s3">
-                                    {{ form_label(edit_form.noteEsthetisme, 'Note esthétisme: ') }}
+                                    {{ form_label(edit_form.noteEsthetisme, 'Note esthétisme :') }}
                                     {{ form_widget(edit_form.noteEsthetisme) }}
                                 </div>
 
                                 <div class="col s3">
-                                    {{ form_label(edit_form.noteCommerces, 'Note commerce: ') }}
+                                    {{ form_label(edit_form.noteCommerces, 'Note commerce :') }}
                                     {{ form_widget(edit_form.noteCommerces) }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s12 padding-top">
-                                    {{ form_label(edit_form.affichagePrix, 'Affichage du Prix: ') }}
-                                    {{ form_widget(edit_form.affichagePrix) }}
+                                <div class="col s12">
+                                    {{ form_label(edit_form.accroche, 'Accroche :') }}
+                                    {{ form_widget(edit_form.accroche) }}
+                                    {{ form_errors(edit_form.accroche) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.accroche2, 'Accroche 2 :') }}
+                                    {{ form_widget(edit_form.accroche2) }}
+                                    {{ form_errors(edit_form.accroche2) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6 padding-top">
-                                    {{ form_label(edit_form.eligibilitePinel, 'Eligibilité Loi Pinel: ') }}
-                                    {{ form_widget(edit_form.eligibilitePinel) }}
+                                    {{ form_label(edit_form.normeThermique, 'Norme Thermique :') }}
+                                    {{ form_widget(edit_form.normeThermique) }}
+                                    {{ form_errors(edit_form.normeThermique) }}
                                 </div>
-                                <div class="col s6">
-                                    {{ form_label(edit_form.accroche, 'Accroche: ') }}
-                                    {{ form_widget(edit_form.accroche) }}
+                                <div class="col s6 padding-top">
+                                    {{ form_label(edit_form.zone, 'Zone :') }}
+                                    {{ form_widget(edit_form.zone) }}
+                                    {{ form_errors(edit_form.zone) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6 padding-top">
+                                    {{ form_label(edit_form.eligibilitePinel, 'Eligibilité Loi Pinel :') }}
+                                    {{ form_widget(edit_form.eligibilitePinel) }}
+                                    {{ form_errors(edit_form.eligibilitePinel) }}
+                                </div>
+                                <div class="col s6 padding-top">
+                                    {{ form_label(edit_form.affichagePrix, 'Affichage du Prix :') }}
+                                    {{ form_widget(edit_form.affichagePrix) }}
+                                    {{ form_errors(edit_form.affichagePrix) }}
                                 </div>
                             </div>
                             <div class="row">

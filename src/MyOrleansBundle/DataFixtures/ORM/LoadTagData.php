@@ -12,7 +12,6 @@ namespace MyOrleansBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MyOrleansBundle\Entity\Tag;
-use MyOrleansBundle\Entity\TypeArticle;
 
 class LoadTagData implements FixtureInterface
 {

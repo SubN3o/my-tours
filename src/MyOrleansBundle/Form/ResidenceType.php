@@ -3,9 +3,11 @@
 namespace MyOrleansBundle\Form;
 
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\NormeThermique;
 use MyOrleansBundle\Entity\Quartier;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Entity\Ville;
+use MyOrleansBundle\Entity\Zone;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -38,6 +40,14 @@ class ResidenceType extends AbstractType
                 'class' => Quartier::class,
                 'choice_label' => 'nom'
             ])
+            ->add('normeThermique', EntityType::class, [
+                'class' => NormeThermique::class,
+                'choice_label' => 'nom'
+            ])
+            ->add('zone', EntityType::class, [
+                'class' => Zone::class,
+                'choice_label' => 'nom'
+            ])
             ->add('dateLivraison', TextType::class, ['required' => false])
             ->add('description', TextareaType::class, ['required' => false])
             ->add('nbTotalLogements', NumberType::class, ['required' => false])
@@ -68,6 +78,7 @@ class ResidenceType extends AbstractType
                 ]
             ])
             ->add('accroche', TextareaType::class)
+            ->add('accroche2', TextareaType::class)
             ->add('medias', CollectionType::class,
                 [
                     'entry_type' => MediaType::class,

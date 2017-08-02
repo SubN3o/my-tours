@@ -64,6 +64,16 @@ class Residence
     private $ville;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Zone", inversedBy="residences", cascade={"persist"}, fetch="EAGER")
+     */
+    private $zone;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="NormeThermique", inversedBy="residences", cascade={"persist"}, fetch="EAGER")
+     */
+    private $normeThermique;
+
+        /**
      * @ORM\ManyToOne(targetEntity="Quartier", inversedBy="residences", cascade={"persist"}, fetch="EAGER")
      */
     private $quartier;
@@ -175,6 +185,16 @@ class Residence
      * @ORM\Column(name="accroche", type="string", nullable=true)
      */
     private $accroche;
+
+    /**
+     * @var string
+     *  @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="accroche2", type="string", nullable=true)
+     */
+    private $accroche2;
 
     /**
      * @var bool
@@ -552,6 +572,21 @@ class Residence
         $this->accroche = $accroche;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAccroche2()
+    {
+        return $this->accroche2;
+    }
+
+    /**
+     * @param mixed $accroche2
+     */
+    public function setAccroche2($accroche2)
+    {
+        $this->accroche2 = $accroche2;
+    }
 
     public function addMedia(Media $media)
     {
@@ -807,5 +842,41 @@ class Residence
     public function getOffre()
     {
         return $this->offre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    /**
+     * @param mixed $zone
+     * @return Residence
+     */
+    public function setZone($zone)
+    {
+        $this->zone = $zone;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNormeThermique()
+    {
+        return $this->normeThermique;
+    }
+
+    /**
+     * @param mixed $normeThermique
+     * @return Residence
+     */
+    public function setNormeThermique($normeThermique)
+    {
+        $this->normeThermique = $normeThermique;
+        return $this;
     }
 }
