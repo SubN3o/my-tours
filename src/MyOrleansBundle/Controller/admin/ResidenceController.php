@@ -132,10 +132,10 @@ class ResidenceController extends Controller
     public function editAction(Request $request, Residence $residence, Geoloc $geoloc)
     {
         $deleteForm = $this->createDeleteForm($residence);
-        if ($residence->getMedias()->isEmpty()) {
-            $media = new Media();
-            $residence->getMedias()->add($media);
-        }
+//        if ($residence->getMedias()->isEmpty()) {
+//            $media = new Media();
+//            $residence->getMedias()->add($media);
+//        }
         $editForm = $this->createForm(ResidenceType::class, $residence);
         $editForm->handleRequest($request);
 

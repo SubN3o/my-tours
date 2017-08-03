@@ -13,10 +13,9 @@
                         <div class="card-content table-responsive">
                             <table class="table">
                                 <thead class="text">
-                                <th>Id</th>
                                 <th>Nom</th>
                                 <th>Adresse</th>
-                                <th>Codepostal</th>
+                                <th>Code postal</th>
                                 <th>Ville</th>
                                 <th>Quartier</th>
                                 <th>Latitude</th>
@@ -24,6 +23,7 @@
                                 <th>Datelivraison</th>
                                 <th>Favoris</th>
                                 <th>Accroche</th>
+                                <th>Accroche 2</th>
                                 <th>Offre</th>
                                 <th>Aperçu</th>
                                 <th>Éditer</th>
@@ -34,7 +34,6 @@
                                 {% for residence in residences %}
 
                                     <tr>
-                                        <td><a href="{{ path('admin_residence_show', { 'id': residence.id }) }}">{{ residence.id }}</a></td>
                                         <td>{{ residence.nom }}</td>
                                         <td>{{ residence.adresse }}</td>
                                         <td>{{ residence.codePostal }}</td>
@@ -53,6 +52,7 @@
                                         <td>{{ residence.dateLivraison }}</td>
                                         <td>{{ residence.favoris }}</td>
                                         <td>{{ residence.accroche }}</td>
+                                        <td>{{ residence.accroche2 }}</td>
                                         <td>{{ residence.offre }}</td>
                                         <td>
                                             <a href="{{ path('admin_residence_show', { 'id': residence.id }) }}"><i
