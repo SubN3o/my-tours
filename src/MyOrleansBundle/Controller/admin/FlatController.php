@@ -136,10 +136,10 @@ class FlatController extends Controller
     public function editAction(Request $request, Flat $flat)
     {
         $deleteForm = $this->createDeleteForm($flat);
-        if ($flat->getMedias()->isEmpty()) {
-            $media = new Media();
-            $flat->getMedias()->add($media);
-        }
+//        if ($flat->getMedias()->isEmpty()) {
+//            $media = new Media();
+//            $flat->getMedias()->add($media);
+//        }
         $editForm = $this->createForm('MyOrleansBundle\Form\FlatType', $flat);
         $editForm->handleRequest($request);
 

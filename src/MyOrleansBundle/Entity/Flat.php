@@ -26,12 +26,11 @@ class Flat
 
     /**
      * @var string
-     * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",
      *     message="La référence saisie n'est pas correcte."
      * )
-     * @ORM\Column(name="reference", type="string", length=45)
+     * @ORM\Column(name="reference", type="string", length=45, nullable=true)
      */
     private $reference;
 
@@ -45,7 +44,7 @@ class Flat
      *      min = 0,
      *      minMessage = "Le prix ne peut pas être inférieur à 0€",
      * )
-     * @ORM\Column(name="prix", type="integer", nullable=true)
+     * @ORM\Column(name="prix", type="integer", nullable=false)
      */
     private $prix;
 
@@ -59,7 +58,7 @@ class Flat
      *      min = 0,
      *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
      * )
-     * @ORM\Column(name="surface", type="float", nullable=true)
+     * @ORM\Column(name="surface", type="float", nullable=false)
      */
     private $surface;
 
@@ -96,27 +95,6 @@ class Flat
     private $stationnement;
 
     /**
-     * @var string
-     * @Assert\NotBlank()
-     * @Assert\Type(
-     *    type="string",
-     *    message="La saisie n'est pas correcte."
-     * )
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
-
-    /**
-     * @var string
-     * @Assert\Type(
-     *    type="string",
-     *    message="La saisie n'est pas correcte."
-     * )
-     * @ORM\Column(name="prestation_complementaire", type="text", nullable=true)
-     */
-    private $prestationComplementaire;
-
-    /**
      * @var bool
      *
      * @ORM\Column(name="statut", type="boolean", length=10, nullable=true)
@@ -150,6 +128,315 @@ class Flat
      */
     private $categoriePrestas;
 
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_balcon", type="float", nullable=true)
+     */
+    private $surfaceBalcon;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_terrasse", type="float", nullable=true)
+     */
+    private $surfaceTerrasse;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_jardin", type="float", nullable=true)
+     */
+    private $surfaceJardin;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_terrain", type="float", nullable=true)
+     */
+    private $surfaceTerrain;
+
+    /**
+     * @var string
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="date_livraison", type="string", nullable=true)
+     */
+    private $dateLivraison;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="menuiserie", type="text", nullable=true)
+     */
+    private $menuiserie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chauffage", type="text", nullable=true)
+     */
+    private $chauffage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="$solSejour", type="text", nullable=true)
+     */
+    private $solSejour;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="solSdb", type="text", nullable=true)
+     */
+    private $solSdb;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="solChambre", type="text", nullable=true)
+     */
+    private $solChambre;
+
+    /**
+     * @return float
+     */
+    public function getSurfaceBalcon()
+    {
+        return $this->surfaceBalcon;
+    }
+
+    /**
+     * @param float $surfaceBalcon
+     * @return Flat
+     */
+    public function setSurfaceBalcon($surfaceBalcon)
+    {
+        $this->surfaceBalcon = $surfaceBalcon;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceTerrasse()
+    {
+        return $this->surfaceTerrasse;
+    }
+
+    /**
+     * @param float $surfaceTerrasse
+     * @return Flat
+     */
+    public function setSurfaceTerrasse($surfaceTerrasse)
+    {
+        $this->surfaceTerrasse = $surfaceTerrasse;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceJardin()
+    {
+        return $this->surfaceJardin;
+    }
+
+    /**
+     * @param float $surfaceJardin
+     * @return Flat
+     */
+    public function setSurfaceJardin($surfaceJardin)
+    {
+        $this->surfaceJardin = $surfaceJardin;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceTerrain()
+    {
+        return $this->surfaceTerrain;
+    }
+
+    /**
+     * @param float $surfaceTerrain
+     * @return Flat
+     */
+    public function setSurfaceTerrain($surfaceTerrain)
+    {
+        $this->surfaceTerrain = $surfaceTerrain;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateLivraison()
+    {
+        return $this->dateLivraison;
+    }
+
+    /**
+     * @param string $dateLivraison
+     * @return Flat
+     */
+    public function setDateLivraison($dateLivraison)
+    {
+        $this->dateLivraison = $dateLivraison;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMenuiserie()
+    {
+        return $this->menuiserie;
+    }
+
+    /**
+     * @param string $menuiserie
+     * @return Flat
+     */
+    public function setMenuiserie($menuiserie)
+    {
+        $this->menuiserie = $menuiserie;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChauffage()
+    {
+        return $this->chauffage;
+    }
+
+    /**
+     * @param string $chauffage
+     * @return Flat
+     */
+    public function setChauffage($chauffage)
+    {
+        $this->chauffage = $chauffage;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSolSejour()
+    {
+        return $this->solSejour;
+    }
+
+    /**
+     * @param string $solSejour
+     * @return Flat
+     */
+    public function setSolSejour($solSejour)
+    {
+        $this->solSejour = $solSejour;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSolSdb()
+    {
+        return $this->solSdb;
+    }
+
+    /**
+     * @param string $solSdb
+     * @return Flat
+     */
+    public function setSolSdb($solSdb)
+    {
+        $this->solSdb = $solSdb;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSolChambre()
+    {
+        return $this->solChambre;
+    }
+
+    /**
+     * @param string $solChambre
+     * @return Flat
+     */
+    public function setSolChambre($solChambre)
+    {
+        $this->solChambre = $solChambre;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRevetementMur()
+    {
+        return $this->revetementMur;
+    }
+
+    /**
+     * @param string $revetementMur
+     * @return Flat
+     */
+    public function setRevetementMur($revetementMur)
+    {
+        $this->revetementMur = $revetementMur;
+        return $this;
+    }
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="revetementMur", type="text", nullable=true)
+     */
+    private $revetementMur;
 
     /**
      * Get id
@@ -233,53 +520,53 @@ class Flat
         return $this->surface;
     }
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Flat
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set prestationComplementaire
-     *
-     * @param string $prestationComplementaire
-     *
-     * @return Flat
-     */
-    public function setPrestationComplementaire($prestationComplementaire)
-    {
-        $this->prestationComplementaire = $prestationComplementaire;
-
-        return $this;
-    }
-
-    /**
-     * Get prestationComplementaire
-     *
-     * @return string
-     */
-    public function getPrestationComplementaire()
-    {
-        return $this->prestationComplementaire;
-    }
+//    /**
+//     * Set description
+//     *
+//     * @param string $description
+//     *
+//     * @return Flat
+//     */
+//    public function setDescription($description)
+//    {
+//        $this->description = $description;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get description
+//     *
+//     * @return string
+//     */
+//    public function getDescription()
+//    {
+//        return $this->description;
+//    }
+//
+//    /**
+//     * Set prestationComplementaire
+//     *
+//     * @param string $prestationComplementaire
+//     *
+//     * @return Flat
+//     */
+//    public function setPrestationComplementaire($prestationComplementaire)
+//    {
+//        $this->prestationComplementaire = $prestationComplementaire;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get prestationComplementaire
+//     *
+//     * @return string
+//     */
+//    public function getPrestationComplementaire()
+//    {
+//        return $this->prestationComplementaire;
+//    }
 
     /**
      * @return bool

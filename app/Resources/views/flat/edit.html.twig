@@ -15,77 +15,117 @@
                             {{ form_start(edit_form) }}
                             <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(edit_form.reference, "Référence du bien:") }}
+                                    {{ form_label(edit_form.reference, "Référence du bien :") }}
                                     {{ form_widget(edit_form.reference) }}
+                                    {{ form_errors(edit_form.reference) }}
                                 </div>
                                 <div class="col s6">
-                                    {{ form_label(edit_form.prix, 'Prix: ') }}
+                                    {{ form_label(edit_form.prix, 'Prix :') }}
                                     {{ form_widget(edit_form.prix) }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s6">
-                                    {{ form_label(edit_form.surface, 'Surface: ') }}
-                                    {{ form_widget(edit_form.surface) }}
+                                <div class="col s4">
+                                    {{ form_label(edit_form.typeBien, 'Type du bien :') }}
+                                    {{ form_widget(edit_form.typeBien) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.typeLogement, 'Type du Logement :') }}
+                                    {{ form_widget(edit_form.typeLogement) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.statut, 'Statut du bien :') }}
+                                    {{ form_widget(edit_form.statut) }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s6">
-                                    {{ form_label(edit_form.surfaceSejour, 'Surface séjour: ') }}
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surface, 'Surface Habitable :') }}
+                                    {{ form_widget(edit_form.surface) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surfaceSejour, 'Surface séjour :') }}
                                     {{ form_widget(edit_form.surfaceSejour) }}
                                 </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surfaceBalcon, 'Surface Balcon :') }}
+                                    {{ form_widget(edit_form.surfaceBalcon) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surfaceTerrasse, 'Surface Terrasse :') }}
+                                    {{ form_widget(edit_form.surfaceTerrasse) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surfaceJardin, 'Surface Jardin :') }}
+                                    {{ form_widget(edit_form.surfaceJardin) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surfaceTerrain, 'Surface Terrain :') }}
+                                    {{ form_widget(edit_form.surfaceTerrain) }}
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s6">
                                     {{ form_label(edit_form.expositionSejour, 'Exposition du séjour: ') }}
                                     {{ form_widget(edit_form.expositionSejour) }}
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12">
+                                <div class="col s6">
                                     {{ form_label(edit_form.stationnement, 'Stationnement: ') }}
                                     {{ form_widget(edit_form.stationnement) }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s12">
-                                    {{ form_label(edit_form.description, 'Description: ') }}
-                                    {{ form_widget(edit_form.description) }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12">
-                                    {{ form_label(edit_form.prestationComplementaire, 'Lister les prestations complémentaires: ') }}
-                                    {{ form_widget(edit_form.prestationComplementaire) }}
+                                <div class="col s6">
+                                    {{ form_label(edit_form.dateLivraison, 'Date de livraison :') }}
+                                    {{ form_widget(edit_form.dateLivraison) }}
+                                    {{ form_errors(edit_form.dateLivraison) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s4">
-                                    {{ form_label(edit_form.statut, 'Statut du bien: ') }}
-                                    {{ form_widget(edit_form.statut) }}
+                                    {{ form_label(edit_form.solSejour, 'Revêtements Sol Séjour :') }}
+                                    {{ form_widget(edit_form.solSejour) }}
                                 </div>
                                 <div class="col s4">
-                                    {{ form_label(edit_form.typeLogement, 'Type du Logement: ') }}
-                                    {{ form_widget(edit_form.typeLogement) }}
+                                    {{ form_label(edit_form.solSdb, 'Revêtements Sol Salle de bains :') }}
+                                    {{ form_widget(edit_form.solSdb) }}
                                 </div>
                                 <div class="col s4">
-                                    {{ form_label(edit_form.typeBien, 'Type du bien: ') }}
-                                    {{ form_widget(edit_form.typeBien) }}
+                                    {{ form_label(edit_form.solChambre, 'Revêtements Sol Chambre :') }}
+                                    {{ form_widget(edit_form.solChambre) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(edit_form.revetementMur, 'Revêtements Muraux :') }}
+                                    {{ form_widget(edit_form.revetementMur) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.menuiserie, 'Menuiserie :') }}
+                                    {{ form_widget(edit_form.menuiserie) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.chauffage, 'Chauffage :') }}
+                                    {{ form_widget(edit_form.chauffage) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">
                                     {% for media in flat.medias %}
-                                        {% if media.id != null %}
                                             <p class="imgUploader"><img class="responsive-img"
                                                                         src="{{ asset('uploads/'~media.lien) }}"/>
+                                                {% if flat.medias|length >= 2 %}
                                                 <a href="{{ path('flat_media_delete', {"id" : flat.id, "media_id" : media.id}) }}">Supprimer</a>
+                                                {% endif %}
                                             </p>
-                                        {% else %}
+                                        {% endfor %}
                                             <h3>Veuillez charger une nouvelle image.</h3>
                                             <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
-                                                type du
-                                                media.</p>
-                                            {{ form_widget(edit_form.medias) }}
-                                        {% endif %}
+                                                type du media.</p>
+                                    {% for media in flat.medias %}
+                                        {{ form_widget(edit_form.medias) }}
                                     {% endfor %}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i

@@ -9,33 +9,53 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">Bien ref.:{{ flat.reference }} </h4>
+                            <h4 class="title">Bien ref. : {{ flat.reference }} </h4>
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <th>Id</th>
-                                    <td>{{ flat.id }}</td>
-                                </tr>
-                                <tr>
                                     <th>Reference</th>
                                     <td>{{ flat.reference }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Statut</th>
+                                    <td>{% if flat.statut %}Disponible{% else %}Vendu{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Type de Logement</th>
+                                    <td>{{ flat.typeLogement.nom }}</td>
+                                </tr>
+                                <tr>
                                     <th>Prix</th>
-                                    <td>{{ flat.prix }}</td>
+                                    <td>{{ flat.prix }}{% if flat.prix != null %} €{% endif %}</td>
                                 </tr>
                                 <tr>
-                                    <th>Surface</th>
-                                    <td>{{ flat.surface }}</td>
+                                    <th>Surface Habitable</th>
+                                    <td>{{ flat.surface }}{% if flat.surface != null %} m²{% endif %}</td>
                                 </tr>
                                 <tr>
-                                    <th>Surfacesejour</th>
-                                    <td>{{ flat.surfaceSejour }}</td>
+                                    <th>Surface Séjour</th>
+                                    <td>{{ flat.surfaceSejour }}{% if flat.surfaceSejour != null %} m²{% endif %}</td>
                                 </tr>
                                 <tr>
-                                    <th>Expositionsejour</th>
+                                    <th>Surface Balcon</th>
+                                    <td>{{ flat.surfaceBalcon }}{% if flat.surfaceBalcon != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Terrasse</th>
+                                    <td>{{ flat.surfaceTerrasse }}{% if flat.surfaceTerrasse != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Jardin</th>
+                                    <td>{{ flat.surfaceJardin }}{% if flat.surfaceJardin != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Terrain</th>
+                                    <td>{{ flat.surfaceTerrain }}{% if flat.surfaceTerrain != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Exposition Séjour</th>
                                     <td>{{ flat.expositionSejour }}</td>
                                 </tr>
                                 <tr>
@@ -43,20 +63,43 @@
                                     <td>{{ flat.stationnement }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Description</th>
-                                    <td>{{ flat.description }}</td>
+                                    <th>Date de Livraison</th>
+                                    <td>{{ flat.dateLivraison }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Prestationcomplementaire</th>
-                                    <td>{{ flat.prestationComplementaire }}</td>
+                                    <th>Menuiserie</th>
+                                    <td>{{ flat.menuiserie }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Statut</th>
-                                    <td>{{ flat.statut }}</td>
+                                    <th>Revêtement Sol Séjour</th>
+                                    <td>{{ flat.solSejour }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Revêtement Sol Salle de Bains</th>
+                                    <td>{{ flat.solSdb }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Revêtement Sol Chambre</th>
+                                    <td>{{ flat.solChambre }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Revêtement Muraux</th>
+                                    <td>{{ flat.revetementMur }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Chauffage</th>
+                                    <td>{{ flat.chauffage }}</td>
                                 </tr>
                                 </tbody>
                             </table>
                             <hr>
+                            <div class="row">
+                                {% for media in flat.medias %}
+                                <div class="col s4">
+                                    <img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}"/>
+                                </div>
+                                {% endfor %}
+                            </div>
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_flat_index', {'id': flat.residence.id }) }}"><i

@@ -16,17 +16,13 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        {#<th>Id</th>#}
                                         <th>Reference</th>
                                         <th>Prix</th>
                                         <th>Surface</th>
                                         <th>Surface Sejour</th>
                                         <th>Exposition Sejour</th>
                                         <th>Stationnement</th>
-                                        {#<th>Nb de Piece</th>#}
-                                        {#<th>Nb de Chambre</th>#}
-                                        <th>Description</th>
-                                        <th>Prestation Complementaire</th>
                                         <th>Statut</th>
                                         <th>Aperçu</th>
                                         <th>Éditer</th>
@@ -35,17 +31,15 @@
 
                                     {% for flat in flats %}
                                         <tr>
-                                            <td>
-                                                <a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a>
-                                            </td>
+                                            {#<td>#}
+                                                {#<a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a>#}
+                                            {#</td>#}
                                             <td>{{ flat.reference }}</td>
-                                            <td>{{ flat.prix }}</td>
-                                            <td>{{ flat.surface }}</td>
-                                            <td>{{ flat.surfaceSejour }}</td>
+                                            <td>{{ flat.prix }}{% if flat.prix != null %} €{% endif %}</td>
+                                            <td>{{ flat.surface }}{% if flat.surface != null %} m²{% endif %}</td>
+                                            <td>{{ flat.surfaceSejour }}{% if flat.surfaceSejour != null %} m²{% endif %}</td>
                                             <td>{{ flat.expositionSejour }}</td>
-                                            <td>{{ flat.stationnement }}</td>#}
-                                            <td>{{ flat.description }}</td>
-                                            <td>{{ flat.prestationComplementaire }}</td>
+                                            <td>{{ flat.stationnement }}</td>
                                             {% if flat.statut %}
                                             <td>Disponible</td>
                                             {% else %}

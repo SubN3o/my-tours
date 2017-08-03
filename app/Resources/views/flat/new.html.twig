@@ -15,64 +15,103 @@
                             {{ form_start(form) }}
                             <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(form.reference, "Référence du bien:") }}
+                                    {{ form_label(form.reference, "Référence du bien :") }}
                                     {{ form_widget(form.reference) }}
                                     {{ form_errors(form.reference) }}
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(form.prix, 'Prix: ') }}
+                                    {{ form_label(form.prix, 'Prix :') }}
                                     {{ form_widget(form.prix) }}
                                 </div>
-                                <div class="col s6">
-                                    {{ form_label(form.surface, 'Surface: ') }}
-                                    {{ form_widget(form.surface) }}
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(form.typeBien, 'Type du bien :') }}
+                                    {{ form_widget(form.typeBien) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.typeLogement, 'Type du Logement :') }}
+                                    {{ form_widget(form.typeLogement) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.statut, 'Statut du bien :') }}
+                                    {{ form_widget(form.statut) }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s6">
-                                    {{ form_label(form.surfaceSejour, 'Surface séjour: ') }}
+                                <div class="col s4">
+                                    {{ form_label(form.surface, 'Surface Habitable :') }}
+                                    {{ form_widget(form.surface) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.surfaceSejour, 'Surface séjour :') }}
                                     {{ form_widget(form.surfaceSejour) }}
                                 </div>
+                                <div class="col s4">
+                                    {{ form_label(form.surfaceBalcon, 'Surface Balcon :') }}
+                                    {{ form_widget(form.surfaceBalcon) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(form.surfaceTerrasse, 'Surface Terrasse :') }}
+                                    {{ form_widget(form.surfaceTerrasse) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.surfaceJardin, 'Surface Jardin :') }}
+                                    {{ form_widget(form.surfaceJardin) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.surfaceTerrain, 'Surface Terrain :') }}
+                                    {{ form_widget(form.surfaceTerrain) }}
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s6">
                                     {{ form_label(form.expositionSejour, 'Exposition du séjour: ') }}
                                     {{ form_widget(form.expositionSejour) }}
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12">
+                                <div class="col s6">
                                     {{ form_label(form.stationnement, 'Stationnement: ') }}
                                     {{ form_widget(form.stationnement) }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s12">
-                                    {{ form_label(form.description, 'Description: ') }}
-                                    {{ form_widget(form.description) }}
-                                    {{ form_errors(form.description) }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12">
-                                    {{ form_label(form.prestationComplementaire, 'Lister les prestations complémentaires: ') }}
-                                    {{ form_widget(form.prestationComplementaire) }}
+                                <div class="col s6">
+                                    {{ form_label(form.dateLivraison, 'Date de livraison :') }}
+                                    {{ form_widget(form.dateLivraison) }}
+                                    {{ form_errors(form.dateLivraison) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s4">
-                                    {{ form_label(form.statut, 'Statut du bien: ') }}
-                                    {{ form_widget(form.statut) }}
+                                    {{ form_label(form.solSejour, 'Revêtements Sol Séjour :') }}
+                                    {{ form_widget(form.solSejour) }}
                                 </div>
                                 <div class="col s4">
-                                    {{ form_label(form.typeLogement, 'Type du Logement: ') }}
-                                    {{ form_widget(form.typeLogement) }}
+                                    {{ form_label(form.solSdb, 'Revêtements Sol Salle de bains :') }}
+                                    {{ form_widget(form.solSdb) }}
                                 </div>
                                 <div class="col s4">
-                                    {{ form_label(form.typeBien, 'Type du bien: ') }}
-                                    {{ form_widget(form.typeBien) }}
+                                    {{ form_label(form.solChambre, 'Revêtements Sol Chambre :') }}
+                                    {{ form_widget(form.solChambre) }}
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(form.revetementMur, 'Revêtements Muraux :') }}
+                                    {{ form_widget(form.revetementMur) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.menuiserie, 'Menuiserie :') }}
+                                    {{ form_widget(form.menuiserie) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.chauffage, 'Chauffage :') }}
+                                    {{ form_widget(form.chauffage) }}
+                                </div>
+                            </div>
+
                             {% for media in flat.medias %}
                                 {% if media.id != null %}
                                     <p class="imgUploader"><img class="responsive-img"

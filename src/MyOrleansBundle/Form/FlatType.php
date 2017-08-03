@@ -23,15 +23,20 @@ class FlatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('reference', TextType::class)
+            ->add('reference', TextType::class, ['required' => false])
             ->add('prix', IntegerType::class,
                  array('attr' => array('min' => '0'))
                  )
             ->add('surface', NumberType::class)
-            ->add('surfaceSejour', NumberType::class)
+            ->add('surfaceSejour', NumberType::class, ['required' => false])
+            ->add('surfaceBalcon', NumberType::class, ['required' => false])
+            ->add('surfaceTerrasse', NumberType::class, ['required' => false])
+            ->add('surfaceJardin', NumberType::class, ['required' => false])
+            ->add('surfaceTerrain', NumberType::class, ['required' => false])
             ->add('expositionSejour', ChoiceType::class, [
                 'choices' =>[
-                     'Nord' => 'Nord',
+                    'Choisir...' => null,
+                    'Nord' => 'Nord',
                     'Nord Est' => 'Nord Est',
                     'Nord Ouest' => 'Nord Ouest',
                     'Sud' => 'Sud',
@@ -42,11 +47,84 @@ class FlatType extends AbstractType
                 'expanded' => false,
                 'multiple' => false
           ])
-            ->add('description', TextareaType::class)
-            ->add('prestationComplementaire', TextareaType::class, [
-                'required' => false
+            ->add('dateLivraison', TextType::class, ['required' => false])
+            ->add('stationnement', ChoiceType::class, [
+                'choices' =>[
+                    'Choisir...' => null,
+                    'Sans' => 'Sans',
+                    '1 parking extérieur' => '1 parking extérieur',
+                    '1 parking en sous sol' => '1 parking en sous sol',
+                    '1 box' => '1 box',
+                    '1 garage' => '1 garage',
+                    '1 parking couvert' => '1 parking couvert',
+                    '2 garages' => '2 garages',
+                    '2 parkings extérieurs' => '2 parkings extérieurs',
+                    '2 parkings en sous sol' => '2 parkings en sous sol',
+                    '1 parking double en sous sol' => '1 parking double en sous sol',
+                    '1 parking extérieur et 1 parking en sous sol' => '1 parking extérieur et 1 parking en sous sol',
+                    '1 box et 1 parking couvert' => '1 box et 1 parking couvert',
+                    '1 parking' => '1 parking',
+                    '2 parkings' => '2 parkings',
+                    '3 parkings' => '3 parkings'],
+                'expanded' => false,
+                'multiple' => false
             ])
-            ->add('stationnement', TextareaType::class)
+            ->add('menuiserie', ChoiceType::class, [
+                'choices' =>[
+                    'Choisir...' => null,
+                    'PVC' => 'PVC',
+                    'Aluminium' => 'Aluminium',
+                    'Bois' => 'Bois'],
+                'expanded' => false,
+                'multiple' => false
+            ])
+            ->add('chauffage', ChoiceType::class, [
+                'choices' =>[
+                    'Choisir...' => null,
+                    'Chaudière Gaz individuel' => 'Chaudière Gaz individuel',
+                    'Chaudière Gaz collectif' => 'Chaudière Gaz collectif',
+                    'Electrique individuel' => 'Electrique individuel',
+                    'Electrique Gaz' => 'Electrique Gaz',
+                    'Pompe à chaleur' => 'Pompe à chaleur',
+                    'Chauffage Urbain' => 'Chauffage Urbain'],
+                'expanded' => false,
+                'multiple' => false
+            ])
+            ->add('solSejour', ChoiceType::class, [
+                'choices' =>[
+                    'Choisir...' => null,
+                    'Parquet' => 'Parquet',
+                    'Vinylique' => 'Vinylique',
+                    'Carrelage' => 'Carrelage'],
+                'expanded' => false,
+                'multiple' => false
+            ])
+            ->add('solSdb', ChoiceType::class, [
+                'choices' =>[
+                    'Choisir...' => null,
+                    'Parquet' => 'Parquet',
+                    'Vinylique' => 'Vinylique',
+                    'Carrelage' => 'Carrelage'],
+                'expanded' => false,
+                'multiple' => false
+            ])
+            ->add('solChambre', ChoiceType::class, [
+                'choices' =>[
+                    'Choisir...' => null,
+                    'Parquet' => 'Parquet',
+                    'Vinylique' => 'Vinylique',
+                    'Carrelage' => 'Carrelage'],
+                'expanded' => false,
+                'multiple' => false
+            ])
+            ->add('revetementMur', ChoiceType::class, [
+                'choices' =>[
+                    'Choisir...' => null,
+                    'Peinture' => 'Peinture',
+                    'Papier peint' => 'Papier peint'],
+                'expanded' => false,
+                'multiple' => false
+            ])
             ->add('statut', ChoiceType::class, [
                 'choices' => [
                     'Disponible' => true,
