@@ -1,3 +1,7 @@
+.areaDescription{
+    height: 100px;
+}
+
 .sidebar .nav li.active a {
     background-color: #8BC34A;
 }

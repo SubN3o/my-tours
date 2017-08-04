@@ -1,4 +1,4 @@
-# MyOrleans Version 1.0 au 20/07/2017
+# MyOrleans Version 3.0 au 20/07/2017
 
 
 
@@ -43,15 +43,15 @@ le mot de passe (password)
 
 Pour une mise en production du site via le terminal du serveur :
 * se mettre dans le dossier choisit
-* git clone https://github.com/WildCodeSchool/orleans-0217-myorleans
+* git clone https://github.com/WildCodeSchool/orleans-0217-myorleans pour la version 3.0
 * composer install
 * rentrer les informations de la base de données et du mail
-* donner les autorisations au dossier app/cache et app/logs : chmod -R 777 app/cache app/logs
+* donner les autorisations au dossier var/cache et var/logs : chmod -R 777 var/cache var/logs
 * créer un dossier "uploads" dans la dossier web
 * renseigner la GoogleApiKey:  AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU
 * renseigner le mail_agence: agence@my-orleans.fr
 * renseigner la googlemap_static_map_key: AIzaSyDNHzX2Zxp7CP_hD9spH-cOHI-ZqwS3aoI
-* renseigner le mailer_user: agence@my-orleans.com
+* renseigner le mailer_user: agence@my-orleans.fr
 
 ## Superviseurs <a id ="superviseurs"></a>
 John Devos, Sylvain BLONDEAU et Nicolas VINCENT

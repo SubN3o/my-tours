@@ -80,7 +80,7 @@
                             <div class="row">
                                 <div class="col s12">
                                     {{ form_label(edit_form.description, 'Description :') }}
-                                    {{ form_widget(edit_form.description) }}
+                                    {{ form_widget(edit_form.description, { 'attr': {'class':'areaDescription'}}) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -125,16 +125,17 @@
                                 <div class="col s12">
                                     {{ form_label(edit_form.medias, 'Media: ') }}
                                     {% for media in residence.medias %}
-                                            <p class="imgUploader"><img class="responsive-img"
-                                                                        src="{{ asset('uploads/'~media.lien) }}"/>
-                                        {% if residence.medias|length >= 2 %}
-                                                <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
-                                        {% endif %}
+                                        {% if media.id != null %}
+                                            <p class="imgUploader"><img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}"/>
+                                                {% if asset('uploads/'~media.lien) !=  asset('uploads/default.jpg') %}
+                                                    <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
+                                                {% endif %}
                                             </p>
+                                        {% endif %}
                                         {% endfor %}
-                                            <h3>Veuillez charger une nouvelle image.</h3>
-                                            <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
-                                                type du media.</p>
+                                            <h3>Ajouter une nouvelle image.</h3>
+                                            {#<p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le#}
+                                                {#type du media.</p>#}
                                     {% for media in residence.medias %}
                                         {{ form_widget(edit_form.medias) }}
                                     {% endfor %}

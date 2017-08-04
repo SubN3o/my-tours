@@ -35,27 +35,28 @@ class ResidenceType extends AbstractType
             ->add('ville', EntityType::class, [
                 'class' => Ville::class,
                 'choice_label' => 'nom',
-                'placeholder' => 'Choisir...'
+                'placeholder' => 'Choisir...',
             ])
             ->add('quartier',  EntityType::class, [
                 'class' => Quartier::class,
                 'choice_label' => 'nom',
-                'placeholder' => 'Choisir...'
+                'placeholder' => 'Choisir...',
             ])
             ->add('normeThermique', EntityType::class, [
                 'class' => NormeThermique::class,
                 'choice_label' => 'nom',
-                'placeholder' => 'Choisir...'
+                'placeholder' => 'Choisir...',
+                'required' => false
             ])
             ->add('zone', EntityType::class, [
                 'class' => Zone::class,
                 'choice_label' => 'nom',
-                'placeholder' => 'Choisir...'
+                'placeholder' => 'Choisir...',
+                'required' => false
             ])
             ->add('dateLivraison', TextType::class, ['required' => false])
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'attr' => array('style' => 'height:100px')
             ])
             ->add('nbTotalLogements', NumberType::class, ['required' => false])
             ->add('noteTransports', NumberType::class, ['required' => false])
