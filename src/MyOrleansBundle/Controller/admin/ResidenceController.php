@@ -84,11 +84,13 @@ class ResidenceController extends Controller
 
             // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
             $media = $residence->getMedias()->first();
-            if (is_null($media->getLien())) {
+            if (is_null($media->getMediaName())) {
                 /* @var $media Media */
                 $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
                 $media->setTypeMedia($typeMediaImgCover);
-                $media->setLien('default.jpg');
+                $media->setMediaName('default.jpg');
+                $date = new \DateTimeImmutable();
+                $media->setUpdatedAt($date);
             }
 
             $em->persist($residence);
@@ -141,11 +143,24 @@ class ResidenceController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
+            $em = $this->getDoctrine()->getManager();
+
             try {
                 // on maj les coord gps dans tous les cas
                 $geoloc->updateCoord($residence, $this->getParameter('GoogleApiKey'));
             } catch (\RuntimeException $e) {
                 $this->addFlash('danger', $e->getMessage() . ' Les coordonnées GPS ne seront pas mises à jour.');
+            }
+
+            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            $media = $residence->getMedias()->first();
+            if (is_null($media->getMediaName())) {
+                /* @var $media Media */
+                $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+                $media->setTypeMedia($typeMediaImgCover);
+                $media->setMediaName('default.jpg');
+                $date = new \DateTimeImmutable();
+                $media->setUpdatedAt($date);
             }
 
             $this->getDoctrine()->getManager()->flush();
@@ -194,7 +209,7 @@ class ResidenceController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $path = $media->getLien();
+        $path = $media->getMediaName();
         unlink($this->getParameter('upload_directory') . '/' . $path);
         $residence->removeMedia($media);
         $em->remove($media);

@@ -26,9 +26,8 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lien', FileType::class, [
-                'data_class' => null,
-                'required'=> false
+            ->add('mediaFile', FileType::class,[
+                'required' => false
             ])
             ->add('typemedia', EntityType::class, [
                 'class' => TypeMedia::class,

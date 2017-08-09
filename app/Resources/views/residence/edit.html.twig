@@ -126,8 +126,8 @@
                                     {{ form_label(edit_form.medias, 'Media: ') }}
                                     {% for media in residence.medias %}
                                         {% if media.id != null %}
-                                            <p class="imgUploader"><img class="responsive-img" src="{{ asset('uploads/'~media.lien) }}"/>
-                                                {% if asset('uploads/'~media.lien) !=  asset('uploads/default.jpg') %}
+                                            <p class="imgUploader"><img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                                {% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}
                                                     <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
                                                 {% endif %}
                                             </p>

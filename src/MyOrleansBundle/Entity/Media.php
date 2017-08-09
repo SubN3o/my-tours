@@ -7,11 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping\JoinTable;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Media
  *
  * @ORM\Table(name="media")
  * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\MediaRepository")
+ * @Vich\Uploadable
  */
 class Media
 {
@@ -85,6 +88,37 @@ class Media
      */
     private $typeMedia;
 
+    /**
+     * @Vich\UploadableField(mapping="media", fileNameProperty="mediaName")
+     *
+     * @var File
+     */
+    private $mediaFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $mediaName;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @param \DateTime $updatedAt
+     * @return Media
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+    
     /**
      * Get id
      *
@@ -396,6 +430,46 @@ class Media
         $this->categorie_presta = $categorie_presta;
     }
 
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $media
+     *
+     * @return Media
+     */
+    public function setMediaFile(File $media = null)
+    {
+        $this->mediaFile = $media;
 
+        if ($media)
+            $this->updatedAt = new \DateTimeImmutable();
 
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getMediaFile()
+    {
+        return $this->mediaFile;
+    }
+
+    /**
+     * @param string $mediaName
+     *
+     * @return Media
+     */
+    public function setMediaName($mediaName)
+    {
+        $this->mediaName = $mediaName;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMediaName()
+    {
+        return $this->mediaName;
+    }
 }
