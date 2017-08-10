@@ -29,18 +29,27 @@ class ResidenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('adresse', TextType::class)
-            ->add('codePostal', IntegerType::class)
+            ->add('nom', TextType::class, [
+                'required' => true,
+            ])
+            ->add('adresse', TextType::class, [
+                'required' => true,
+            ])
+            ->add('codePostal', IntegerType::class, [
+                'required' => true,
+            ])
             ->add('ville', EntityType::class, [
                 'class' => Ville::class,
                 'choice_label' => 'nom',
                 'placeholder' => 'Choisir...',
+                'required' => false
+
             ])
             ->add('quartier',  EntityType::class, [
                 'class' => Quartier::class,
                 'choice_label' => 'nom',
                 'placeholder' => 'Choisir...',
+                'required' => false
             ])
             ->add('normeThermique', EntityType::class, [
                 'class' => NormeThermique::class,
@@ -54,38 +63,55 @@ class ResidenceType extends AbstractType
                 'placeholder' => 'Choisir...',
                 'required' => false
             ])
-            ->add('dateLivraison', TextType::class, ['required' => false])
+            ->add('dateLivraison', TextType::class, [
+                'required' => false
+            ])
             ->add('description', TextareaType::class, [
                 'required' => false,
             ])
-            ->add('nbTotalLogements', NumberType::class, ['required' => false])
-            ->add('noteTransports', NumberType::class, ['required' => false])
-            ->add('noteCommerces', NumberType::class, ['required' => false])
-            ->add('noteServices', NumberType::class, ['required' => false])
-            ->add('noteEsthetisme', NumberType::class, ['required' => false])
-            ->add('offre', TextType::class)
+            ->add('nbTotalLogements', NumberType::class, [
+                'required' => false])
+            ->add('noteTransports', NumberType::class, [
+                'required' => false
+            ])
+            ->add('noteCommerces', NumberType::class, [
+                'required' => false
+            ])
+            ->add('noteServices', NumberType::class, [
+                'required' => false
+            ])
+            ->add('noteEsthetisme', NumberType::class, [
+                'required' => false
+            ])
+            ->add('offre', TextType::class, [
+                'required' => false
+            ])
             ->add('favoris', ChoiceType::class, [
                 'choices' => [
                     'Définir en résidence favorite' => null,
                     'Oui' => true,
-                    'Non' => false
-                ]
+                    'Non' => false],
+                'required' => false
             ])
             ->add('affichagePrix',ChoiceType::class, [
                 'choices' => [
                     'Oui' => true,
-                    'Non' => false
-                ]
+                    'Non' => false]
             ])
             ->add('eligibilitePinel',ChoiceType::class, [
                 'choices' => [
                     'Choisir...' => null,
                     'Oui' => true,
-                    'Non' => false
-                ]
+                    'Non' => false],
+                'required' => false
+
             ])
-            ->add('accroche', TextareaType::class)
-            ->add('accroche2', TextareaType::class)
+            ->add('accroche', TextareaType::class, [
+                'required' => false
+            ])
+            ->add('accroche2', TextareaType::class, [
+                'required' => false
+            ])
             ->add('medias', CollectionType::class,
                 [
                     'entry_type' => MediaType::class,

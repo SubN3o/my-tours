@@ -137,16 +137,17 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    {{ form_label(form.medias, 'Media: ') }}
-                                    {% for media in residence.medias %}
-                                        {% if media.id != null %}
-                                            <p class="imgUploader"><img class="responsive-img"
-                                                                        src="{{ asset('uploads/'~media.lien) }}"/>
-                                                <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
-                                            </p>
-                                        {% endif %}
-                                    {% endfor %}
-                                        <h3>Ajouter une nouvelle image.</h3>
+                                    {#{{ form_label(form.medias, 'Media: ') }}#}
+                                    {#{% for media in residence.medias %}#}
+                                        {#{% if media.id != null %}#}
+                                            {#{{ loop.index0 }}#}
+                                            {#<p class="imgUploader"><img class="responsive-img"#}
+                                                                        {#src="{{ asset('uploads/'~media.lien) }}"/>#}
+                                                {#<a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>#}
+                                            {#</p>#}
+                                        {#{% endif %}#}
+                                    {#{% endfor %}#}
+                                    <h3>Ajouter une nouvelle image.</h3>
                                     {% for media in residence.medias %}
                                         {{ form_widget(form.medias) }}
                                     {% endfor %}
@@ -159,16 +160,15 @@
                                    value="Créer"/>
                             {{ form_widget(form._token) }}
                             </form>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_residence_index') }}"><i
+                                                class="material-icons">keyboard_return</i>Retour
+                                        à la liste des résidences</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_residence_index') }}"><i
-                                        class="material-icons">keyboard_return</i>Retour
-                                à la liste des résidences</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -183,6 +183,7 @@
         var mediaCount = '{{ form.medias|length }}';
 
         jQuery(document).ready(function () {
+
             jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
                 e.preventDefault();
                 var mediaList = jQuery('#{{ form.medias.vars.id }}');
@@ -190,13 +191,15 @@
                 var newWidget = mediaList.attr('data-prototype');
 
                 newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                newWidget = newWidget.replace(/__name__/g, mediaCount);
+                newWidget = newWidget.replace(/__name__label__/g, mediaCount);
                 mediaCount++;
                 // create a new list element and add it to the list
                 var newLi = jQuery('<li></li>').html(newWidget);
                 newLi.appendTo(mediaList);
+                $('select').material_select();
 
             });
         })
     </script>
+
 {% endblock %}

@@ -123,17 +123,18 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    {{ form_label(edit_form.medias, 'Media: ') }}
+                                    {#{{ form_label(edit_form.medias, 'Media: ') }}#}
                                     {% for media in residence.medias %}
                                         {% if media.id != null %}
+                                            {{ loop.index0 }}
                                             <p class="imgUploader"><img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
                                                 {% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}
                                                     <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
                                                 {% endif %}
                                             </p>
                                         {% endif %}
-                                        {% endfor %}
-                                            <h3>Ajouter une nouvelle image.</h3>
+                                    {% endfor %}
+                                        <h3>Ajouter une nouvelle image.</h3>
                                     {% for media in residence.medias %}
                                         {{ form_widget(edit_form.medias) }}
                                     {% endfor %}
@@ -166,7 +167,6 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 
@@ -183,8 +183,9 @@
                     var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
 
                     var newWidget = mediaList.attr('data-prototype');
+
                     newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                    newWidget = newWidget.replace(/__name__/g, mediaCount);
+                    newWidget = newWidget.replace(/__name__label__/g, mediaCount);
                     mediaCount++;
                     // create a new list element and add it to the list
                     var newLi = jQuery('<li></li>').html(newWidget);
