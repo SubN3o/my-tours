@@ -118,7 +118,7 @@ class Media
         $this->updatedAt = $updatedAt;
         return $this;
     }
-    
+
     /**
      * Get id
      *

@@ -144,14 +144,11 @@
                                                                         src="{{ asset('uploads/'~media.lien) }}"/>
                                                 <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
                                             </p>
-                                        {% else %}
-                                            <h3>Veuillez charger une nouvelle image.</h3>
-                                            <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
-                                                type
-                                                du
-                                                media.</p>
-                                            {{ form_widget(form.medias) }}
                                         {% endif %}
+                                    {% endfor %}
+                                        <h3>Ajouter une nouvelle image.</h3>
+                                    {% for media in residence.medias %}
+                                        {{ form_widget(form.medias) }}
                                     {% endfor %}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
