@@ -22,6 +22,7 @@ class LoadTypeMediaData implements FixtureInterface
         $typeMedia3 = new TypeMedia();
         $typeMedia4 = new TypeMedia();
         $typeMedia5 = new TypeMedia();
+        $typeMedia6 = new TypeMedia();
 
         $typeMedia1->setId(TypeMedia::IMAGE_COVER);
         $typeMedia1->setNom('image-cover');
@@ -35,14 +36,19 @@ class LoadTypeMediaData implements FixtureInterface
         $typeMedia4->setId(TypeMedia::VIDEO);
         $typeMedia4->setNom('video');
 
-        $typeMedia5->setId(TypeMedia::ICONE);
-        $typeMedia5->setNom('icone');
+        $typeMedia5->setId(TypeMedia::PLAN);
+        $typeMedia5->setNom('plan');
+
+        $typeMedia6->setId(TypeMedia::ICONE);
+        $typeMedia6->setNom('icone');
 
         $manager->persist($typeMedia1);
         $manager->persist($typeMedia2);
         $manager->persist($typeMedia3);
         $manager->persist($typeMedia4);
         $manager->persist($typeMedia5);
+        $manager->persist($typeMedia5);
+        $manager->persist($typeMedia6);
 
         $manager->flush();
 

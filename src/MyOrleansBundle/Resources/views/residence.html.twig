@@ -390,6 +390,46 @@
                                         </table>
                                     </div>
                                 </li>
+                                <li>
+                                    <div class="collapsible-header">{{ typeLogement[4].nom }}</div>
+                                    <div class="collapsible-body">
+                                        <table class="stripped">
+                                            <thead>
+                                            <tr>
+                                                <th>Référence</th>
+                                                <th>Type</th>
+                                                <th>Surface</th>
+                                                <th>Prix</th>
+                                                <th>Fiche</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            {% for flat in flats %}
+                                                {% if flat.typeLogement.nom == typeLogement[4].nom %}
+                                                    <tr>
+                                                        <td>{{ flat.reference }}</td>
+                                                        <td>{{ flat.typeLogement.nom }}</td>
+                                                        <td>{{ flat.surface }} m<sup>2</sup></td>
+                                                        <td>{{ flat.prix }} €</td>
+                                                        {% if flat.statut %}
+                                                            <td>
+                                                                <a href="{{ path('appartement', { 'id': flat.id }) }}"
+                                                                   class="waves-effect waves-light btn btn-residence">Voir</a>
+                                                            </td>
+                                                        {% else %}
+                                                            <td>
+                                                                <a class="waves-effect waves-light btn btn-vendu">
+                                                                    <strong>Vendu</strong></a>
+                                                            </td>
+                                                        {% endif %}
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>

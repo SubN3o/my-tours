@@ -39,7 +39,7 @@
         <div class="col m12 l6">
             <div data-aos="fade-right">
                 {% if media['image'] is defined and  media['image'] != null %}
-                    <img src="{{ asset('uploads/'~media['image'].lien) }}" class="photo-apt" alt="photo-appart"/>
+                    <img src="{{ asset('uploads/'~media['image'].mediaName) }}" class="photo-apt" alt="photo-appart"/>
                 {% else %}
                     <img src="{{ asset('img/Pas-dimage.jpg') }}" class="photo-apt" alt="photo-appart"/>
                 {% endif %}
@@ -63,7 +63,7 @@
         <h3>Plans</h3>
         <div class="col s12">
             {% if media['plan'] is defined and  media['plan'] != null %}
-                <img src="{{ asset('uploads/'~media['plan'].lien) | imagine_filter('thumb_plan_appartement') }}" class="plan responsive-img" alt="plans"/>
+                <img src="{{ asset('uploads/'~media['plan'].mediaName) | imagine_filter('thumb_plan_appartement') }}" class="plan responsive-img" alt="plans"/>
             {% else %}
                 <img src="{{ asset('img/Pas-dimage.jpg') | imagine_filter('thumb_plan_appartement') }}" class="plan responsive-img" alt="plans"/>
             {% endif %}
@@ -134,9 +134,9 @@
                         <div class="col s1 icon-prestation">
                             <img class="icon-apt" src="{{ asset('uploads/room.png') }}" alt="nombre de pièces">
                         </div>
-                        <div class="col s11 prestation">
-                            <p>Nombre de Pièces : {{ flat.nbpiece }}</p>
-                        </div>
+                        {#<div class="col s11 prestation">#}
+                            {#<p>Nombre de Pièces : {{ flat.nbpiece }}</p>#}
+                        {#</div>#}
                     </div>
                 </div>
             </div>

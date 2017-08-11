@@ -30,7 +30,7 @@ class TypeMediaController extends Controller
         $typeMedia = $em->getRepository('MyOrleansBundle:TypeMedia')->findAll();
 
         return $this->render('typemedia/index.html.twig', array(
-            'typeMedia' => $typeMedia,
+            'typeMedias' => $typeMedia,
         ));
     }
 

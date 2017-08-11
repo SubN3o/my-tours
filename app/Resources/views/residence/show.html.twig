@@ -97,6 +97,13 @@
                                 </tbody>
                             </table>
                             <hr>
+                            <div class="row">
+                                {% for media in residence.medias %}
+                                    <div class="col s4">
+                                        <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                    </div>
+                                {% endfor %}
+                            </div>
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_residence_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des résidences</a>

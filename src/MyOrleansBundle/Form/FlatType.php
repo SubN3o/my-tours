@@ -23,16 +23,31 @@ class FlatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('reference', TextType::class, ['required' => false])
-            ->add('prix', IntegerType::class,
-                 array('attr' => array('min' => '0'))
-                 )
-            ->add('surface', NumberType::class)
-            ->add('surfaceSejour', NumberType::class, ['required' => false])
-            ->add('surfaceBalcon', NumberType::class, ['required' => false])
-            ->add('surfaceTerrasse', NumberType::class, ['required' => false])
-            ->add('surfaceJardin', NumberType::class, ['required' => false])
-            ->add('surfaceTerrain', NumberType::class, ['required' => false])
+            ->add('reference', TextType::class, [
+                'required' => false
+            ])
+            ->add('prix', IntegerType::class, [
+                'attr' => ['min' => '0'],
+                'required' => true
+            ])
+            ->add('surface', NumberType::class, [
+                'required' => true
+            ])
+            ->add('surfaceSejour', NumberType::class, [
+                'required' => false
+            ])
+            ->add('surfaceBalcon', NumberType::class, [
+                'required' => false
+            ])
+            ->add('surfaceTerrasse', NumberType::class, [
+                'required' => false
+            ])
+            ->add('surfaceJardin', NumberType::class, [
+                'required' => false
+            ])
+            ->add('surfaceTerrain', NumberType::class, [
+                'required' => false
+            ])
             ->add('expositionSejour', ChoiceType::class, [
                 'choices' =>[
                     'Choisir...' => null,
@@ -45,9 +60,12 @@ class FlatType extends AbstractType
                     'Est' => 'Est',
                     'Ouest' => 'Ouest'],
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'required' =>false
           ])
-            ->add('dateLivraison', TextType::class, ['required' => false])
+            ->add('dateLivraison', TextType::class, [
+                'required' => false
+            ])
             ->add('stationnement', ChoiceType::class, [
                 'choices' =>[
                     'Choisir...' => null,
@@ -67,7 +85,8 @@ class FlatType extends AbstractType
                     '2 parkings' => '2 parkings',
                     '3 parkings' => '3 parkings'],
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'required' => false
             ])
             ->add('menuiserie', ChoiceType::class, [
                 'choices' =>[
@@ -76,7 +95,8 @@ class FlatType extends AbstractType
                     'Aluminium' => 'Aluminium',
                     'Bois' => 'Bois'],
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'required' => false
             ])
             ->add('chauffage', ChoiceType::class, [
                 'choices' =>[
@@ -88,7 +108,8 @@ class FlatType extends AbstractType
                     'Pompe à chaleur' => 'Pompe à chaleur',
                     'Chauffage Urbain' => 'Chauffage Urbain'],
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'required' => false
             ])
             ->add('solSejour', ChoiceType::class, [
                 'choices' =>[
@@ -97,7 +118,8 @@ class FlatType extends AbstractType
                     'Vinylique' => 'Vinylique',
                     'Carrelage' => 'Carrelage'],
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'required' => false
             ])
             ->add('solSdb', ChoiceType::class, [
                 'choices' =>[
@@ -106,7 +128,8 @@ class FlatType extends AbstractType
                     'Vinylique' => 'Vinylique',
                     'Carrelage' => 'Carrelage'],
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'required' => false
             ])
             ->add('solChambre', ChoiceType::class, [
                 'choices' =>[
@@ -115,7 +138,8 @@ class FlatType extends AbstractType
                     'Vinylique' => 'Vinylique',
                     'Carrelage' => 'Carrelage'],
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'required' => false
             ])
             ->add('revetementMur', ChoiceType::class, [
                 'choices' =>[
@@ -123,29 +147,32 @@ class FlatType extends AbstractType
                     'Peinture' => 'Peinture',
                     'Papier peint' => 'Papier peint'],
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'required' => false
             ])
             ->add('statut', ChoiceType::class, [
                 'choices' => [
                     'Disponible' => true,
-                    'Vendu' => false
+                    'Vendu' => false,
+//                    'required' => false
                 ]
             ])
             ->add('typeLogement', EntityType::class, [
                 'class' => TypeLogement::class,
-                'choice_label' => 'nom'
+                'choice_label' => 'nom',
+                'required' => true
             ])
             ->add('typeBien', EntityType::class, [
                 'class' => TypeBien::class,
-                'choice_label' => 'nom'
+                'choice_label' => 'nom',
+                'required' => true
             ])
-            ->add('medias', CollectionType::class,
-                [
-                    'entry_type' => MediaType::class,
-                    'allow_add' => true,
-                    'prototype' => true,
-                    'by_reference' => false
-                ]);
+            ->add('medias', CollectionType::class, [
+                'entry_type' => MediaType::class,
+                'allow_add' => true,
+                'prototype' => true,
+                'by_reference' => false
+            ]);
     }
 
     /**
