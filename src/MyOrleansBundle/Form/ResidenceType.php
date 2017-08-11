@@ -41,8 +41,8 @@ class ResidenceType extends AbstractType
             ->add('ville', EntityType::class, [
                 'class' => Ville::class,
                 'choice_label' => 'nom',
-                'placeholder' => 'Choisir...',
-                'required' => false
+//                'placeholder' => 'Choisir...',
+                'required' => true
 
             ])
             ->add('quartier',  EntityType::class, [

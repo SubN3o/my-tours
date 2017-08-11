@@ -97,6 +97,7 @@
                                 {% for media in flat.medias %}
                                 <div class="col s4">
                                     <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                    <p>{{ media.typeMedia.nom }}</p>
                                 </div>
                                 {% endfor %}
                             </div>
