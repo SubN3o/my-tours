@@ -30,6 +30,11 @@
                                     {{ form_label(edit_form.typeArticle, 'Type de l\'article: ') }}
                                     {{ form_widget(edit_form.typeArticle) }}
                                     {{ form_errors(edit_form.typeArticle) }}
+                                    <div class="padding-top">
+                                        {{ form_label(edit_form.fichierAssocie, 'Charger un fichier associé à cet article: ') }}
+                                        {{ form_widget(edit_form.fichierAssocie) }}
+                                        {{ form_errors(edit_form.fichierAssocie) }}
+                                    </div>
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(edit_form.date, 'Date: ') }}
@@ -46,37 +51,39 @@
                                 <div class="col s6">
                                     <h4>Les tags actuellement reliés à votre article</h4>
                                     {% for tag in article.tags %}
-                                            <div class="chip">
-                                                {{ tag.nom }}
-                                                {% if article.tags|length >= 2 %}
-                                                <a href="{{ path('article_tag_delete', {"id" : article.id, "tag_id" : tag.id}) }}"><i
-                                                            class="close material-icons">close</i></a>
-                                                {% endif %}
-                                            </div>
+                                        <div class="chip">
+                                            {{ tag.nom }}
+                                            {% if article.tags|length >= 2 %}
+                                            <a href="{{ path('article_tag_delete', {"id" : article.id, "tag_id" : tag.id}) }}"><i
+                                            class="close material-icons">close</i></a>
+                                            {% endif %}
+                                        </div>
                                     {% endfor %}
                                     <h4>Modifier vos tags actuels ou ajoutez</h4>
                                     <p>Mettez les premières lettres de vos tags en majuscule</p>
                                     {% for tag in article.tags %}
-                                         {{ form_row(edit_form.tags) }}
+                                        {{ form_row(edit_form.tags) }}
                                     {% endfor %}
-                                    <a class="btn-floating btn-large waves-effect waves-light teal lighten-4" id="add-another-tag"><i
+                                    <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
+                                       id="add-another-tag"><i
                                                 class="material-icons">add</i></a>
                                 </div>
                                 <div class="col s6">
                                     <h4>Les medias actuellement reliés à votre article</h4>
                                     {% for media in article.medias %}
+                                        {% if media.id != null %}
+                                            {{ loop.index0 }}
                                             <p class="imgUploader"><img class="responsive-img"
-                                                                        src="{{ asset('uploads/'~media.lien) }}"/>
-                                                {% if article.medias|length >= 2%}
-                                                    <a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a>
+                                                                        src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                                {% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}
+                                                <a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a>
                                                 {% endif %}
                                             </p>
+                                        {% endif %}
                                     {% endfor %}
-                                            <h4>Veuillez charger une nouvelle image.</h4>
-                                            <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le
-                                                type du media.</p>
+                                    <h4>Veuillez charger une nouvelle image.</h4>
                                     {% for media in article.medias %}
-                                        {{ form_row(edit_form.medias) }}
+                                        {{ form_widget(edit_form.medias) }}
                                     {% endfor %}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
@@ -125,7 +132,7 @@
 
                 var newWidget = mediaList.attr('data-prototype');
                 newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                newWidget = newWidget.replace(/__name__/g, mediaCount);
+                newWidget = newWidget.replace(/__name__label__/g, mediaCount);
                 mediaCount++;
                 // create a new list element and add it to the list
                 var newLi = jQuery('<li></li>').html(newWidget);
@@ -143,7 +150,7 @@
 
                 var newWidget = tagList.attr('data-prototype');
                 newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                newWidget = newWidget.replace(/__name__/g, tagCount);
+                newWidget = newWidget.replace(/__name__label__/g, tagCount);
                 tagCount++;
                 // create a new list element and add it to the list
                 var newLi = jQuery('<li></li>').html(newWidget);

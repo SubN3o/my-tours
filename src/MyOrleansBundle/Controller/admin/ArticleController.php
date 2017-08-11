@@ -6,6 +6,7 @@ use MyOrleansBundle\Entity\Article;
 use MyOrleansBundle\Entity\FileArticle;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Tag;
+use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\ArticleType;
 use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -69,23 +70,36 @@ class ArticleController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            // Si l'administrateur n'upload pas de photo pour l'article, une photo est chargée par défaut
+            $medias = $article->getMedias();
+            foreach ($medias as $media) {
+                if (is_null($media->getMediaName())) {
+                    /* @var $media Media */
+//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+//                    $media->setTypeMedia($typeMediaImgCover);
+                    $media->setMediaName('default.jpg');
+                    $date = new \DateTimeImmutable();
+                    $media->setUpdatedAt($date);
+                }
+            }
+
             $em->persist($article);
             $em->flush();
 
-            if ($file = $form['fichierAssocie']->getData()){
+            if ($file = $form['fichierAssocie']->getData()) {
 
-            $fileArticle = new FileArticle();
-            $fileArticle->setFile($file);
-            $fileArticle->setArticle($article);
-            $fileArticle->setName($file);
-            $fileArticle->setPath($fileArticle->getWebPath().$fileArticle->getName());
-            $fileArticle->upload();
+                $fileArticle = new FileArticle();
+                $fileArticle->setFile($file);
+                $fileArticle->setArticle($article);
+                $fileArticle->setName($file);
+                $fileArticle->setPath($fileArticle->getWebPath() . $fileArticle->getName());
+                $fileArticle->upload();
 
-            $em->persist($fileArticle);
-            $em->flush();
+                $em->persist($fileArticle);
+                $em->flush();
 
 
-            $this->addFlash('success', 'Votre article a bien été ajoutée');
+                $this->addFlash('success', 'Votre article a bien été ajoutée');
             }
             return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }
@@ -121,20 +135,35 @@ class ArticleController extends Controller
     public function editAction(Request $request, Article $article, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($article);
-//        if (!empty($article->getMedias())) {
-//            $media = new Media();
-//            $article->getMedias()->add($media);
-//        }
-//
-//        if(!empty($article->getTags())) {
-//            $tag = new Tag();
-//            $article->getTags()->add($tag);
-//        }
+        if (!empty($article->getMedias()->isEmpty())) {
+            $media = new Media();
+            $article->getMedias()->add($media);
+        }
+
+        if (!empty($article->getTags()->isEmpty())) {
+            $tag = new Tag();
+            $article->getTags()->add($tag);
+        }
 
         $editForm = $this->createForm(ArticleType::class, $article);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            // Si l'administrateur n'upload pas de photo pour l'article, une photo est chargée par défaut
+            $medias = $article->getMedias();
+            foreach ($medias as $media) {
+                if (is_null($media->getMediaName())) {
+                    /* @var $media Media */
+                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+                    $media->setTypeMedia($typeMediaImgCover);
+                    $media->setMediaName('default.jpg');
+                    $date = new \DateTimeImmutable();
+                    $media->setUpdatedAt($date);
+                }
+            }
 
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Votre résidence a bien été mis à jour');
@@ -183,7 +212,7 @@ class ArticleController extends Controller
         //$articles = $media->getArticles();
         $em = $this->getDoctrine()->getManager();
 
-        $path = $media->getLien();
+        $path = $media->getmediaName();
         unlink($this->getParameter('upload_directory') . '/' . $path);
         $article->removeMedia($media);
         $em->remove($media);

@@ -154,7 +154,7 @@
                             <div class="card-image">
                                 {% if article.medias is not empty %}
                                     {% for media in article.medias if media.typeMedia.nom == 'image-cover' %}
-                                        <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
+                                        <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_article_site') }}">
                                     {% endfor %}
                                 {% endif %}
                             </div>

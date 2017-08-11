@@ -39,6 +39,7 @@ class ArticleType extends AbstractType
                 'entry_type' => TagType::class,
                 'allow_add' => true,
                 'prototype' => true,
+                'required' => true
             ])
             ->add('typeArticle', EntityType::class, [
                 'class' => TypeArticle::class,

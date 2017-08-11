@@ -16,7 +16,7 @@
 
     <div class="row no-margin-bottom">
         {% for media in article.medias if media.typeMedia.nom == 'image-header' %}
-        <img class="img-article" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_header_article_blog') }}" alt="illustration article"/>
+        <img class="img-article" src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_header_article_blog') }}" alt="illustration article"/>
         {% endfor %}
     </div>
 
@@ -77,7 +77,7 @@
                         <div class="blockArticle center">
                             <div class="imgArticle">
                                 {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
-                                <img class="responsive-img" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_blog') }}" alt="">
+                                <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_article_blog') }}" alt="">
                                 {% endfor %}
                             </div>
                             <div class="titreArticle">

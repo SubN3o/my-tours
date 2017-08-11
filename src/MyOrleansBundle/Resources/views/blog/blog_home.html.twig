@@ -39,7 +39,7 @@
             <div class="blockArticle center">
                 <div class="imgArticle">
                     {% for media in article.medias if media.typeMedia.nom == 'image-cover' %}
-                        <img src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_blog') }}" alt="photo illustration">
+                        <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_article_blog') }}" alt="photo illustration">
                     {% endfor %}
                 </div>
                 <div class="titreArticle">
