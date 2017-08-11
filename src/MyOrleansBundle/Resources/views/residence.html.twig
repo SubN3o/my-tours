@@ -33,7 +33,7 @@
                         </video>
                     </div>
                 {% elseif media['image-cover'] is defined and  media['image-cover'] != null and  video is not defined %}
-                    <img src="{{ asset('uploads/'~media['image-cover'].lien) | imagine_filter('thumb_photo_residence') }}" alt="photo_residence"/>
+                    <img src="{{ asset('uploads/'~media['image-cover'].mediaName) | imagine_filter('thumb_photo_residence') }}" alt="photo_residence"/>
                 {% endif %}
             </div>
         </div>
