@@ -86,21 +86,20 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
 
-            if ($file = $form['fichierAssocie']->getData()) {
+//            if ($file = $form['fichierAssocie']->getData()) {
+//
+//                $fileArticle = new FileArticle();
+//                $fileArticle->setFile($file);
+//                $fileArticle->setArticle($article);
+//                $fileArticle->setName($file);
+//                $fileArticle->setPath($fileArticle->getWebPath() . $fileArticle->getName());
+//                $fileArticle->upload();
+//
+//                $em->persist($fileArticle);
+//                $em->flush();
+//            }
 
-                $fileArticle = new FileArticle();
-                $fileArticle->setFile($file);
-                $fileArticle->setArticle($article);
-                $fileArticle->setName($file);
-                $fileArticle->setPath($fileArticle->getWebPath() . $fileArticle->getName());
-                $fileArticle->upload();
-
-                $em->persist($fileArticle);
-                $em->flush();
-
-
-                $this->addFlash('success', 'Votre article a bien été ajoutée');
-            }
+            $this->addFlash('success', 'Votre article a bien été ajoutée');
             return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }
 
@@ -166,6 +165,7 @@ class ArticleController extends Controller
             }
 
             $this->getDoctrine()->getManager()->flush();
+
             $this->addFlash('success', 'Votre résidence a bien été mis à jour');
             return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
         }

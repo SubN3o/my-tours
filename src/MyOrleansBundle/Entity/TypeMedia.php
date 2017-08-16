@@ -17,7 +17,8 @@ class TypeMedia
     const IMAGE_HEADER = 3;
     const VIDEO = 4;
     const PLAN = 5;
-    const ICONE = 6;
+    const PDF = 6;
+    const ICONE = 7;
 
     /**
      * @var int

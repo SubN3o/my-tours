@@ -30,11 +30,12 @@
                                     {{ form_label(edit_form.typeArticle, 'Type de l\'article: ') }}
                                     {{ form_widget(edit_form.typeArticle) }}
                                     {{ form_errors(edit_form.typeArticle) }}
-                                    <div class="padding-top">
-                                        {{ form_label(edit_form.fichierAssocie, 'Charger un fichier associé à cet article: ') }}
-                                        {{ form_widget(edit_form.fichierAssocie) }}
-                                        {{ form_errors(edit_form.fichierAssocie) }}
-                                    </div>
+                                    {#<div class="padding-top">#}
+                                    {#{{ form_label(edit_form.fichierAssocie, 'Charger un fichier associé à cet article: ') }}#}
+                                    {#{{ form_widget(edit_form.fichierAssocie) }}#}
+                                    {#{{ form_errors(edit_form.fichierAssocie) }}#}
+                                    {#{% dump(article) %}#}
+                                    {#</div>#}
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(edit_form.date, 'Date: ') }}
@@ -54,8 +55,8 @@
                                         <div class="chip">
                                             {{ tag.nom }}
                                             {% if article.tags|length >= 2 %}
-                                            <a href="{{ path('article_tag_delete', {"id" : article.id, "tag_id" : tag.id}) }}"><i
-                                            class="close material-icons">close</i></a>
+                                                <a href="{{ path('article_tag_delete', {"id" : article.id, "tag_id" : tag.id}) }}"><i
+                                                            class="close material-icons">close</i></a>
                                             {% endif %}
                                         </div>
                                     {% endfor %}
@@ -73,11 +74,16 @@
                                     {% for media in article.medias %}
                                         {% if media.id != null %}
                                             {{ loop.index0 }}
-                                            <p class="imgUploader"><img class="responsive-img"
-                                                                        src="{{ asset('uploads/'~media.mediaName) }}"/>
-                                                {% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}
+                                            {% if asset('uploads/'~media.mediaName) ends with '.pdf' %}
+                                                <p class="imgUploader"><img class="responsive-img"
+                                                                            src="{{ asset('uploads/pdf.jpg') }}"/>
+                                            {% else %}
+                                                <p class="imgUploader"><img class="responsive-img"
+                                                                            src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                            {% endif %}
+                                            {% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}
                                                 <a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a>
-                                                {% endif %}
+                                            {% endif %}
                                             </p>
                                         {% endif %}
                                     {% endfor %}
