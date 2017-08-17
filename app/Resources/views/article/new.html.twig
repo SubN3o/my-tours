@@ -26,15 +26,18 @@
                             </div>
                             <div class="row">
                                 <div class="col s6">
+                                    {{ form_label(edit_form.date, 'Date: ') }}
+                                    <div class="row">
+                                        <div class="col s3">{{ form_widget(form.date.day) }}</div>
+                                        <div class="col s3">{{ form_widget(form.date.month) }}</div>
+                                        <div class="col s3">{{ form_widget(form.date.year) }}</div>
+                                    </div>
+                                    {{ form_errors(edit_form.date) }}
+                                </div>
+                                <div class="col s6">
                                     {{ form_label(form.typeArticle, 'Type de l\'article: ') }}
                                     {{ form_widget(form.typeArticle) }}
                                     {{ form_errors(form.typeArticle) }}
-                                    {#<div class="padding-top">#}
-                                        {#{{ form_label(form.fichierAssocie, 'Charger un fichier associé à cet article: ') }}#}
-                                        {#{{ form_widget(form.fichierAssocie) }}#}
-                                        {#{{ form_errors(form.fichierAssocie) }}#}
-                                    {#</div>#}
-
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(form.date, 'Date: ') }}

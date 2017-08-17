@@ -13,20 +13,46 @@
                             {{ form_start(edit_form) }}
                             {{ form_label(edit_form.nom, "Nom de l'évènement:") }}
                             {{ form_widget(edit_form.nom) }}
-                            {{ form_label(edit_form.ville, 'Lieu/Ville: ') }}
-                            {{ form_widget(edit_form.ville) }}
+                            {{ form_label(edit_form.adresse, 'Adresse: ') }}
+                            {{ form_widget(edit_form.adresse) }}
                             {{ form_label(edit_form.codePostal, 'Code Postal: ') }}
                             {{ form_widget(edit_form.codePostal) }}
-                            {{ form_label(edit_form.dateDebut, 'Date de début: ') }}
-                            {{ form_widget(edit_form.dateDebut) }}
-                            {{ form_label(edit_form.heureDebut, 'Heure de début: ') }}
-                            {{ form_widget(edit_form.heureDebut) }}
-                            {{ form_label(edit_form.dateFin, 'Date de fin: ') }}
-                            {{ form_widget(edit_form.dateFin) }}
-                            {{ form_label(edit_form.heureFin, 'Heure de fin: ') }}
-                            {{ form_widget(edit_form.heureFin) }}
+                            {{ form_label(edit_form.ville, 'Ville: ') }}
+                            {{ form_widget(edit_form.ville) }}
+                            <div class="col s6">
+                                {{ form_label(edit_form.dateDebut, 'Date de début: ') }}
+                                <div class="row">
+                                    <div class="col s3">{{ form_widget(edit_form.dateDebut.day) }}</div>
+                                    <div class="col s3">{{ form_widget(edit_form.dateDebut.month) }}</div>
+                                    <div class="col s3">{{ form_widget(edit_form.dateDebut.year) }}</div>
+                                </div>
+                                {{ form_errors(edit_form.dateDebut) }}
+                            </div>
+                            <div class="col s6">
+                                {{ form_label(edit_form.heureDebut, 'Heure de début: ') }}
+                                <div class="row">
+                                    <div class="col s2">{{ form_widget(edit_form.heureDebut.hour) }}</div>
+                                    <div class="col s2">{{ form_widget(edit_form.heureDebut.minute) }}</div>
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                {{ form_label(form.dateFin, 'Date de fin: ') }}
+                                <div class="row">
+                                    <div class="col s3">{{ form_widget(edit_form.dateFin.day) }}</div>
+                                    <div class="col s3">{{ form_widget(edit_form.dateFin.month) }}</div>
+                                    <div class="col s3">{{ form_widget(edit_form.dateFin.year) }}</div>
+                                </div>
+                                {{ form_errors(edit_form.dateFin) }}
+                            </div>
+                            <div class="col s6">
+                                {{ form_label(edit_form.heureDebut, 'Heure de fin: ') }}
+                                <div class="row">
+                                    <div class="col s2">{{ form_widget(edit_form.heureFin.hour) }}</div>
+                                    <div class="col s2">{{ form_widget(edit_form.heureFin.minute) }}</div>
+                                </div>
+                            </div>
                             {{ form_label(edit_form.description, 'Description: ') }}
-                            {{ form_widget(edit_form.description) }}
+                            {{ form_widget(edit_form.description, { 'attr': {'class':'areaDescription'}}) }}
 
 
                             {% for media in evenement.medias %}

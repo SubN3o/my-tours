@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\EvenementType;
 use MyOrleansBundle\Form\MediaType;
 use MyOrleansBundle\Service\FileUploader;
@@ -64,6 +65,19 @@ class EvenementController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            $medias = $evenement->getMedias();
+            foreach ($medias as $media){
+                if (is_null($media->getMediaName())) {
+                    /* @var $media Media */
+//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+//                    $media->setTypeMedia($typeMediaImgCover);
+                    $media->setMediaName('default.jpg');
+                    $date = new \DateTimeImmutable();
+                    $media->setUpdatedAt($date);
+                }
+            }
+
             $em->persist($evenement);
             $em->flush();
 
@@ -106,6 +120,22 @@ class EvenementController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            $medias = $evenement->getMedias();
+            foreach ($medias as $media){
+                if (is_null($media->getMediaName())) {
+                    /* @var $media Media */
+                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+                    $media->setTypeMedia($typeMediaImgCover);
+                    $media->setMediaName('default.jpg');
+                    $date = new \DateTimeImmutable();
+                    $media->setUpdatedAt($date);
+                }
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'Votre événement a bien été mis à jour');
