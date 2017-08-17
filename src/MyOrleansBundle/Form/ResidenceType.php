@@ -5,6 +5,7 @@ namespace MyOrleansBundle\Form;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\NormeThermique;
 use MyOrleansBundle\Entity\Quartier;
+use MyOrleansBundle\Entity\Trimestre;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Entity\Zone;
@@ -63,7 +64,10 @@ class ResidenceType extends AbstractType
                 'placeholder' => 'Choisir...',
                 'required' => false
             ])
-            ->add('dateLivraison', TextType::class, [
+            ->add('dateLivraison', EntityType::class, [
+                'class' => Trimestre::class,
+                'choice_label' => 'nom',
+                'placeholder' => 'Choisir...',
                 'required' => false
             ])
             ->add('description', TextareaType::class, [

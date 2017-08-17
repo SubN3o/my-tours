@@ -9,29 +9,29 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">Ville : {{ ville.nom }}</h4>
+                            <h4 class="title">Trimestre : {{ trimestre.nom }}</h4>
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
                                 <tbody>
                                 <tr>
                                     <th>Id</th>
-                                    <td>{{ ville.id }}</td>
+                                    <td>{{ trimestre.id }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nom</th>
-                                    <td>{{ ville.nom }}</td>
+                                    <td>{{ trimestre.nom }}</td>
                                 </tr>
                                 </tbody>
                             </table>
                             <hr>
                             <ul>
                                 <li>
-                                    <a href="{{ path('admin_ville_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des villes</a>
+                                    <a href="{{ path('admin_trimestre_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des trimestres</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('admin_ville_edit', { 'id': ville.id }) }}"><i
-                                                class="material-icons">build</i>Éditer cette ville</a>
+                                    <a href="{{ path('admin_trimestre_edit', { 'id': trimestre.id }) }}"><i
+                                                class="material-icons">build</i>Éditer cette trimestre</a>
                                 </li>
 
                                 <li>
