@@ -59,24 +59,24 @@ class EvenementController extends Controller
         $evenement = new Evenement();
         $media = new Media();
         $evenement->getMedias()->add($media);
-        $form = $this->createForm('MyOrleansBundle\Form\EvenementType', $evenement);
+        $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
-            $medias = $evenement->getMedias();
-            foreach ($medias as $media){
-                if (is_null($media->getMediaName())) {
-                    /* @var $media Media */
-//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-//                    $media->setTypeMedia($typeMediaImgCover);
-                    $media->setMediaName('default.jpg');
-                    $date = new \DateTimeImmutable();
-                    $media->setUpdatedAt($date);
-                }
-            }
+//            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+//            $medias = $evenement->getMedias();
+//            foreach ($medias as $media){
+//                if (is_null($media->getMediaName())) {
+//                    /* @var $media Media */
+////                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+////                    $media->setTypeMedia($typeMediaImgCover);
+//                    $media->setMediaName('default.jpg');
+//                    $date = new \DateTimeImmutable();
+//                    $media->setUpdatedAt($date);
+//                }
+//            }
 
             $em->persist($evenement);
             $em->flush();
@@ -116,25 +116,29 @@ class EvenementController extends Controller
     public function editAction(Request $request, Evenement $evenement, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($evenement);
+        if ($evenement->getMedias()->isEmpty()){
+            $media = new Media();
+            $evenement->getMedias()->add($media);
+        }
         $editForm = $this->createForm(EvenementType::class, $evenement);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
-
-            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
-            $medias = $evenement->getMedias();
-            foreach ($medias as $media){
-                if (is_null($media->getMediaName())) {
-                    /* @var $media Media */
-                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-                    $media->setTypeMedia($typeMediaImgCover);
-                    $media->setMediaName('default.jpg');
-                    $date = new \DateTimeImmutable();
-                    $media->setUpdatedAt($date);
-                }
-            }
+//            $em = $this->getDoctrine()->getManager();
+//
+//            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+//            $medias = $evenement->getMedias();
+//            foreach ($medias as $media){
+//                if (is_null($media->getMediaName())) {
+//                    /* @var $media Media */
+//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+//                    $media->setTypeMedia($typeMediaImgCover);
+//                    $media->setMediaName('default.jpg');
+//                    $date = new \DateTimeImmutable();
+//                    $media->setUpdatedAt($date);
+//                }
+//            }
 
             $this->getDoctrine()->getManager()->flush();
 
