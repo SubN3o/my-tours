@@ -61,9 +61,9 @@
                                     {% endfor %}
                                     <h4>Modifier vos tags actuels ou ajoutez</h4>
                                     <p>Mettez les premières lettres de vos tags en majuscule</p>
-                                    {% for tag in article.tags %}
+                                    {#{% for tag in article.tags %}#}
                                         {{ form_row(edit_form.tags) }}
-                                    {% endfor %}
+                                    {#{% endfor %}#}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-tag"><i
                                                 class="material-icons">add</i></a>
@@ -92,10 +92,11 @@
                                         {% endif %}
                                     {% endfor %}
                                     <h4>Veuillez charger un nouveau média.</h4>
-                                    <p>Associez le bon type de média avec le nouveau média (ex: "pdf" avec un fichier .pdf)</p>
-                                    {% for media in article.medias %}
+                                    <p>Utilisez le type de média "pdf" pour un fichier .pdf dans une fiche conseil.</p>
+                                    <p>Utilisez le type de média "image-cover" pour afficher une image en couverture de l'article.</p>
+                                    {#{% for media in article.medias %}#}
                                         {{ form_widget(edit_form.medias) }}
-                                    {% endfor %}
+                                    {#{% endfor %}#}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
                                                 class="material-icons">file_upload</i></a>

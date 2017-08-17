@@ -61,9 +61,11 @@
                                 </div>
                                 <div class="col s6">
                                     <h3>Veuillez charger une nouvelle image.</h3>
-                                    {% for media in article.medias %}
+                                    <p>Utilisez le type de média "pdf" pour un fichier .pdf dans une fiche conseil</p>
+                                    <p>Utilisez le type de média "image-cover" pour afficher une image en couverture de l'article</p>
+                                    {#{% for media in article.medias %}#}
                                         {{ form_widget(form.medias) }}
-                                    {% endfor %}
+                                    {#{% endfor %}#}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
                                                 class="material-icons">file_upload</i></a>

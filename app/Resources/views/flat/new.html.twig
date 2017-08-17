@@ -114,9 +114,11 @@
                             <div class="row">
                                 <div class="col s12">
                                     <h3>Veuillez charger une nouvelle image.</h3>
-                                    {% for media in flat.medias %}
+                                    <p>Utilisez le type de média "image" pour illustrer un appartement.</p>
+                                    <p>Utilisez le type de média "plan" pour associer un plan à un appartement.</p>
+                                    {#{% for media in flat.medias %}#}
                                         {{ form_widget(form.medias) }}
-                                    {% endfor %}
+                                    {#{% endfor %}#}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
                                                 class="material-icons">file_upload</i></a>

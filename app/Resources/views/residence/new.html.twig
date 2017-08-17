@@ -148,9 +148,10 @@
                                         {#{% endif %}#}
                                     {#{% endfor %}#}
                                     <h3>Ajouter une nouvelle image.</h3>
-                                    {% for media in residence.medias %}
+                                    <p>Utilisez le type de média "image-cover" pour afficher une image en couverture de l'article et illustrer la résidence.</p>
+                                    {#{% for media in residence.medias %}#}
                                         {{ form_widget(form.medias) }}
-                                    {% endfor %}
+                                    {#{% endfor %}#}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
                                                 class="material-icons">file_upload</i></a>
