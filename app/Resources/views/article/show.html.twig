@@ -27,29 +27,56 @@
                                     <td>{{ article.texte }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Tag</th>
+                                    <td>
+                                        {% for tag in article.tags %}
+                                            <div class="chip">
+                                                {{ tag.nom }}
+                                            </div>
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>Date</th>
                                     <td>{% if article.date %}{{ article.date|date('j-m-Y') }}{% endif %}</td>
                                 </tr>
                                 </tbody>
                             </table>
                             <hr>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('admin_article_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des articles</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('admin_article_edit', { 'id': article.id }) }}"><i
-                                                class="material-icons">build</i>Éditer cet article</a>
-                                </li>
-
-                                <li>
-                                    {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
-                                    {{ form_end(delete_form) }}
-                                </li>
-                            </ul>
-
+                            <div class="row">
+                                {% for media in article.medias %}
+                                    <div class="col s4">
+                                        {% if media.typeMedia.nom == "pdf" %}
+                                            <div class="imgUploader">
+                                                <a href="{{ asset('uploads/'~media.mediaName) }}">
+                                                    <img class="responsive-img" src="{{ asset('uploads/pdf.jpg') }}"/>
+                                                </a>
+                                            </div>
+                                        {% else %}
+                                            <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
+                        <ul>
+                            <li>
+                                <a href="{{ path('admin_article_index') }}"><i
+                                            class="material-icons">keyboard_return</i>Retour à la liste des articles</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_article_edit', { 'id': article.id }) }}"><i
+                                            class="material-icons">build</i>Éditer cet article</a>
+                            </li>
+
+                            <li>
+                                {{ form_start(delete_form) }}
+                                <input type="submit" value="Delete"
+                                       class="waves-effect waves-light btn-large red pull-right">
+                                {{ form_end(delete_form) }}
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
             </div>

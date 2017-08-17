@@ -41,9 +41,9 @@ class ImmoPratiqueController extends Controller
         $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
         $formulaire->handleRequest($request);
 
-        $articlesActu = $em->getRepository(Article::class)->ArticleByType("actu", 2);
-        $articlesConseils = $em->getRepository(Article::class)->ArticleByType("conseils", 2);
-        $articlesDossier = $em->getRepository(Article::class)->ArticleByType("dossier", 2);
+        $articlesActu = $em->getRepository(Article::class)->ArticleByType("Actualités immobilières", 2);
+        $articlesConseils = $em->getRepository(Article::class)->ArticleByType("Fiches conseils", 2);
+        $articlesDossier = $em->getRepository(Article::class)->ArticleByType("Dossier thématiques", 2);
 
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {

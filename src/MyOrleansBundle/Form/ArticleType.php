@@ -30,7 +30,7 @@ class ArticleType extends AbstractType
                     "class" => "materialize ckeditor"
                 ]
             ])
-            ->add('date', DateTimeType::class)
+            ->add('date', DateType::class)
             ->add('residence', EntityType::class, [
                 'class' => Residence::class,
                 'choice_label' => 'nom'

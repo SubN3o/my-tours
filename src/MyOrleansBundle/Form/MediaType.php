@@ -27,11 +27,13 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('mediaFile', FileType::class,[
-                'required' => false
+                'required' => false,
+                'label' => 'Fichier média'
             ])
             ->add('typemedia', EntityType::class, [
                 'class' => TypeMedia::class,
-                'choice_label' => 'nom'
+                'choice_label' => 'nom',
+                'label' => 'Type de média'
             ]);
     }
 

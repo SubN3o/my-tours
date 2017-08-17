@@ -26,21 +26,20 @@
                                 </div>
                             </div>
                             <div class="row">
+
+                                <div class="col s6">
+                                    {{ form_label(edit_form.date, 'Date: ') }}
+                                    <div class="row">
+                                        <div class="col s3">{{ form_widget(edit_form.date.day) }}</div>
+                                        <div class="col s3">{{ form_widget(edit_form.date.month) }}</div>
+                                        <div class="col s3">{{ form_widget(edit_form.date.year) }}</div>
+                                    </div>
+                                    {{ form_errors(edit_form.date) }}
+                                </div>
                                 <div class="col s6">
                                     {{ form_label(edit_form.typeArticle, 'Type de l\'article: ') }}
                                     {{ form_widget(edit_form.typeArticle) }}
                                     {{ form_errors(edit_form.typeArticle) }}
-                                    {#<div class="padding-top">#}
-                                    {#{{ form_label(edit_form.fichierAssocie, 'Charger un fichier associé à cet article: ') }}#}
-                                    {#{{ form_widget(edit_form.fichierAssocie) }}#}
-                                    {#{{ form_errors(edit_form.fichierAssocie) }}#}
-                                    {#{% dump(article) %}#}
-                                    {#</div>#}
-                                </div>
-                                <div class="col s6">
-                                    {{ form_label(edit_form.date, 'Date: ') }}
-                                    {{ form_widget(edit_form.date) }}
-                                    {{ form_errors(edit_form.date) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -74,20 +73,26 @@
                                     {% for media in article.medias %}
                                         {% if media.id != null %}
                                             {{ loop.index0 }}
-                                            {% if asset('uploads/'~media.mediaName) ends with '.pdf' %}
-                                                <p class="imgUploader"><img class="responsive-img"
-                                                                            src="{{ asset('uploads/pdf.jpg') }}"/>
+                                            {% if media.typeMedia.nom == "pdf" %}
+                                                <div class="imgUploader">
+                                                    <a href="{{ asset('uploads/'~media.mediaName) }}">
+                                                        <img class="responsive-img"
+                                                             src="{{ asset('uploads/pdf.jpg') }}"/>
+                                                    </a>
+                                                </div>
                                             {% else %}
-                                                <p class="imgUploader"><img class="responsive-img"
-                                                                            src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                                <div class="imgUploader"><img class="responsive-img"
+                                                                              src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                                </div>
                                             {% endif %}
                                             {% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}
-                                                <a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a>
+                                                <a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a><br>
                                             {% endif %}
-                                            </p>
+
                                         {% endif %}
                                     {% endfor %}
-                                    <h4>Veuillez charger une nouvelle image.</h4>
+                                    <h4>Veuillez charger un nouveau média.</h4>
+                                    <p>Associez le bon type de média avec le nouveau média (ex: "pdf" avec un fichier .pdf)</p>
                                     {% for media in article.medias %}
                                         {{ form_widget(edit_form.medias) }}
                                     {% endfor %}

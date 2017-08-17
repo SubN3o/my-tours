@@ -22,9 +22,9 @@ class LoadTypeArticleData implements FixtureInterface
         $typeArticle3 = new TypeArticle();
 
 
-        $typeArticle1->setNom('actu');
-        $typeArticle2->setNom('conseils');
-        $typeArticle3->setNom('dossier');
+        $typeArticle1->setNom('Fiches conseils');
+        $typeArticle2->setNom('Dossier thématiques');
+        $typeArticle3->setNom('Actualités immobilières');
 
 
         $manager->persist($typeArticle1);

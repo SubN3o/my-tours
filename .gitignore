@@ -14,7 +14,6 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/.idea/
 composer.json
 /app/config/parameters.yml
 /.web-server-pid
@@ -24,3 +23,4 @@ web/uploads/*
 !web/uploads/default.jpg
 web/media/
 !/web/uploads/pdf.jpg
+!/web/uploads/default.jpg
