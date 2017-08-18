@@ -63,7 +63,7 @@ class Media
     private $categorie_presta;
 
     /**
-     * @ORM\OneToOne(targetEntity="Service", inversedBy="media")
+     * @ORM\OneToOne(targetEntity="Service", mappedBy="media")
      */
     private $service;
 

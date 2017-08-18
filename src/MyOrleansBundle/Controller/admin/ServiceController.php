@@ -2,7 +2,9 @@
 
 namespace MyOrleansBundle\Controller\admin;
 
+use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Service;
+use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -49,13 +51,22 @@ class ServiceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            $media = $service->getMedia();
+            if (is_null($media->getMediaName())) {
+                /* @var $media Media */
+                $media->setMediaName('default.jpg');
+                $date = new \DateTimeImmutable();
+                $media->setUpdatedAt($date);
+            }
+
             $em->persist($service);
             $em->flush();
+
             $this->addFlash('success', 'Votre service a bien été ajouté');
             return $this->redirectToRoute('admin_service_index', array('id' => $service->getId()));
         }
-
-
 
         return $this->render('service/new.html.twig', array(
             'service' => $service,
@@ -88,18 +99,29 @@ class ServiceController extends Controller
     public function editAction(Request $request, Service $service, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($service);
-
         $editForm = $this->createForm('MyOrleansBundle\Form\ServiceType', $service);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            $media = $service->getMedia();
+            if (is_null($media->getMediaName())) {
+                /* @var $media Media */
+                $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+                $media->setTypeMedia($typeMediaImgCover);
+                $media->setMediaName('default.jpg');
+                $date = new \DateTimeImmutable();
+                $media->setUpdatedAt($date);
+            }
 
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'Votre service a bien été mis à jour');
             return $this->redirectToRoute('admin_service_index', array('id' => $service->getId()));
         }
-
 
         return $this->render('service/edit.html.twig', array(
             'service' => $service,
@@ -124,10 +146,9 @@ class ServiceController extends Controller
             $em->remove($service);
             $em->flush();
         }
-        $this->addFlash('danger', 'Votre article a bien été supprimé');
+        $this->addFlash('danger', 'Votre service a bien été supprimé');
         return $this->redirectToRoute('admin_service_index');
     }
-
 
     /**
      * Deletes a service media.
@@ -137,14 +158,13 @@ class ServiceController extends Controller
      */
     public function deleteMedia(Service $service)
     {
-        $path = $service->getMedia()->getLien();
+        $path = $service->getMedia()->getMediaName();
         $em = $this->getDoctrine()->getManager();
         $service->setMedia(null);
         $em->flush();
         unlink($this->getParameter('upload_directory') . '/' . $path);
         return $this->redirectToRoute('admin_service_edit', array('id' => $service->getId()));
     }
-
     /**
      * Creates a form to delete a service entity.
      *

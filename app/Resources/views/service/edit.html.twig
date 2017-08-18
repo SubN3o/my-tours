@@ -13,25 +13,41 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_label(edit_form.type, 'Type du service:') }}
-                            {{ form_widget(edit_form.type) }}
-                            {{ form_label(edit_form.description, 'Description du service:') }}
-                            {{ form_widget(edit_form.description) }}
-                            {% if service.media.lien is defined %}
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.type, 'Type de service: ') }}
+                                    {{ form_widget(edit_form.type) }}
+                                    {{ form_errors(edit_form.type) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.description, 'Description du service :') }}
+                                    {{ form_widget(edit_form.description, { 'attr': {'class':'areaDescription'}}) }}
+                                    {{ form_errors(edit_form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {% if service.media.mediaName is defined %}
 
-                                <p class="imgUploader"><img class="responsive-img"
-                                        src="{{ asset('uploads/'~service.media.lien) }}"
-                                        alt="{{ service.type }}"/>
-                                    <a href="{{ path('service_media_delete', {"id" : service.id}) }}">Supprimer</a>
-                                </p>
-                            {% else %}
-                                <h3>Veuillez charger une nouvelle image.</h3>
-                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du media.</p>
-                                {{ form_widget(edit_form.media) }}
-                            {% endif %}
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Edit"/>
+                                        <p class="imgUploader"><img class="responsive-img"
+                                                                    src="{{ asset('uploads/'~service.media.mediaName) }}"
+                                                                    alt="{{ service.type }}"/>
+                                            {% if asset('uploads/'~service.media.mediaName) !=  asset('uploads/default.jpg') %}
+                                                <a href="{{ path('service_media_delete', {"id" : service .id}) }}">Supprimer</a>
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
+                                    <h3>Ajouter une nouvelle image.</h3>
+                                    <p>Utilisez le type de média "image-cover" pour afficher une image en couverture du
+                                        service et de l'illustrer.</p>
+                                    {{ form_widget(edit_form.media) }}
+                                </div>
+                            </div>
+                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Modifier"/>
                             {{ form_widget(edit_form._token) }}
-                            </form>
+                            {{ form_end(edit_form) }}
 
                             <ul>
                                 <li>
@@ -39,7 +55,7 @@
                                 </li>
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
+                                    <input type="submit" value="Supprimer" class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>
                             </ul>
