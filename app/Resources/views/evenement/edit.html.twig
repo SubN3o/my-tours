@@ -82,21 +82,20 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    {% for media in evenement.medias %}
-                                        {% if media.id != null %}
-                                            {{ loop.index0 }}
-                                            <p class="imgUploader"><img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
-                                                {% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}
-                                                    <a href="{{ path('evenement_media_delete', {"id" : evenement.id, "media_id" : media.id}) }}">Supprimer</a>
-                                                {% endif %}
-                                            </p>
-                                        {% endif %}
-                                    {% endfor %}
+                                    {% if evenement.media.mediaName is defined %}
+
+                                        <p class="imgUploader"><img class="responsive-img"
+                                                                    src="{{ asset('uploads/'~evenement.media.mediaName) }}"
+                                                                    alt="{{ evenement.nom }}"/>
+                                            {% if asset('uploads/'~evenement.media.mediaName) !=  asset('uploads/default.jpg') %}
+                                                <a href="{{ path('evenement_media_delete', {"id" : evenement .id}) }}">Supprimer</a>
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
                                     <h3>Ajouter une nouvelle image.</h3>
-                                    {{ form_widget(edit_form.medias) }}
-                                    <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
-                                       id="add-another-media"><i
-                                                class="material-icons">file_upload</i></a>
+                                    <p>Utilisez le type de média "image-cover" pour afficher une image en couverture de
+                                        l'évenement et de l'illustrer.</p>
+                                    {{ form_widget(edit_form.media) }}
                                 </div>
                             </div>
                             <input class="waves-effect waves-light btn-large light-green" type="submit"
@@ -109,6 +108,12 @@
                                                 class="material-icons">keyboard_return</i>Retour à la liste des
                                         événements</a>
                                 </li>
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Supprimer"
+                                           class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -117,28 +122,4 @@
         </div>
     </div>
 
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript">
-        // keep track of how many email fields have been rendered
-        var mediaCount = '{{ edit_form.medias|length }}';
-
-        jQuery(document).ready(function () {
-            jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
-                e.preventDefault();
-                var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
-
-                var newWidget = mediaList.attr('data-prototype');
-                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                newWidget = newWidget.replace(/__name__label__/g, mediaCount);
-                mediaCount++;
-                // create a new list element and add it to the list
-                var newLi = jQuery('<li></li>').html(newWidget);
-                newLi.appendTo(mediaList);
-
-            });
-        })
-    </script>
 {% endblock %}

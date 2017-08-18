@@ -2,11 +2,9 @@
 
 namespace MyOrleansBundle\Controller\admin;
 
-use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\TypeMedia;
-use MyOrleansBundle\Form\EvenementType;
-use MyOrleansBundle\Form\MediaType;
 use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -28,23 +26,14 @@ class EvenementController extends Controller
      * @Route("/", name="admin_evenement_index")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+
         $evenements = $em->getRepository('MyOrleansBundle:Evenement')->findAll();
 
-        /**
-         * @var $pagination "Knp\Component\Pager\Paginator"
-         * */
-        $pagination = $this->get('knp_paginator');
-        $results = $pagination->paginate(
-            $evenements,
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 10)
-        );
-
         return $this->render('evenement/index.html.twig', array(
-            'evenements' => $results,
+            'evenements' => $evenements,
         ));
     }
 
@@ -57,31 +46,25 @@ class EvenementController extends Controller
     public function newAction(Request $request, FileUploader $fileUploader)
     {
         $evenement = new Evenement();
-        $media = new Media();
-        $evenement->getMedias()->add($media);
-        $form = $this->createForm(EvenementType::class, $evenement);
+        $form = $this->createForm('MyOrleansBundle\Form\EvenementType', $evenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-//            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
-//            $medias = $evenement->getMedias();
-//            foreach ($medias as $media){
-//                if (is_null($media->getMediaName())) {
-//                    /* @var $media Media */
-////                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-////                    $media->setTypeMedia($typeMediaImgCover);
-//                    $media->setMediaName('default.jpg');
-//                    $date = new \DateTimeImmutable();
-//                    $media->setUpdatedAt($date);
-//                }
-//            }
+            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            $media = $evenement->getMedia();
+            if (is_null($media->getMediaName())) {
+                /* @var $media Media */
+                $media->setMediaName('default.jpg');
+                $date = new \DateTimeImmutable();
+                $media->setUpdatedAt($date);
+            }
 
             $em->persist($evenement);
             $em->flush();
 
-            $this->addFlash('success', 'Votre événement a bien été ajouté');
+            $this->addFlash('success', 'Votre evenement a bien été ajouté');
             return $this->redirectToRoute('admin_evenement_index', array('id' => $evenement->getId()));
         }
 
@@ -116,40 +99,34 @@ class EvenementController extends Controller
     public function editAction(Request $request, Evenement $evenement, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($evenement);
-        if ($evenement->getMedias()->isEmpty()){
-            $media = new Media();
-            $evenement->getMedias()->add($media);
-        }
-        $editForm = $this->createForm(EvenementType::class, $evenement);
+        $editForm = $this->createForm('MyOrleansBundle\Form\EvenementType', $evenement);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-//            $em = $this->getDoctrine()->getManager();
-//
-//            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
-//            $medias = $evenement->getMedias();
-//            foreach ($medias as $media){
-//                if (is_null($media->getMediaName())) {
-//                    /* @var $media Media */
-//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-//                    $media->setTypeMedia($typeMediaImgCover);
-//                    $media->setMediaName('default.jpg');
-//                    $date = new \DateTimeImmutable();
-//                    $media->setUpdatedAt($date);
-//                }
-//            }
+            $em = $this->getDoctrine()->getManager();
+
+            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            $media = $evenement->getMedia();
+                if (is_null($media->getMediaName())) {
+                    /* @var $media Media */
+                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+                    $media->setTypeMedia($typeMediaImgCover);
+                    $media->setMediaName('default.jpg');
+                    $date = new \DateTimeImmutable();
+                    $media->setUpdatedAt($date);
+                }
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Votre événement a bien été mis à jour');
+            $this->addFlash('success', 'Votre evenement a bien été mis à jour');
             return $this->redirectToRoute('admin_evenement_index', array('id' => $evenement->getId()));
         }
+
         return $this->render('evenement/edit.html.twig', array(
             'evenement' => $evenement,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-
         ));
     }
 
@@ -169,10 +146,9 @@ class EvenementController extends Controller
             $em->remove($evenement);
             $em->flush();
         }
-        $this->addFlash('danger', 'Votre événement a bien été supprimé');
+        $this->addFlash('danger', 'Votre evenement a bien été supprimé');
         return $this->redirectToRoute('admin_evenement_index');
     }
-
 
     /**
      * Deletes a evenement media.
@@ -180,21 +156,15 @@ class EvenementController extends Controller
      * @Route("/{id}/delete_media", name="evenement_media_delete")
      * @Method({"GET", "POST"})
      */
-    public function deleteMedia(Media $media)
+    public function deleteMedia(Evenement $evenement)
     {
-        $evenement = $media->getEvenement();
+        $path = $evenement->getMedia()->getMediaName();
         $em = $this->getDoctrine()->getManager();
-
-        $path = $media->getLien();
-        unlink($this->getParameter('upload_directory') . '/' . $path);
-        $evenement->removeMedia($media);
-        $em->remove($media);
-
+        $evenement->setMedia(null);
         $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
         return $this->redirectToRoute('admin_evenement_edit', array('id' => $evenement->getId()));
     }
-
-
     /**
      * Creates a form to delete a evenement entity.
      *
