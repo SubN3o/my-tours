@@ -13,28 +13,47 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_label(edit_form.nom, 'Nom du pack:') }}
-                            {{ form_widget(edit_form.nom) }}
-                            {{ form_label(edit_form.description, 'Description du pack:') }}
-                            {{ form_widget(edit_form.description) }}
-                            {{ form_label(edit_form.prix, 'Prix du pack:') }}
-                            {{ form_widget(edit_form.prix) }}
-                            {% if pack.media.lien is defined %}
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.nom, 'Nom du pack:') }}
+                                    {{ form_widget(edit_form.nom) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.description, 'Description du pack :') }}
+                                    {{ form_widget(edit_form.description, { 'attr': {'class':'areaDescription'}}) }}
+                                    {{ form_errors(edit_form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.prix, 'Prix du pack:') }}
+                                    {{ form_widget(edit_form.prix) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {% if pack.media.mediaName is defined %}
 
-                                <p class="imgUploader"><img class="responsive-img"
-                                                            src="{{ asset('uploads/'~pack.media.lien) }}"
-                                                            alt="{{ pack.nom }}"/>
-                                    <a href="{{ path('pack_media_delete', {"id" : pack.id}) }}">Supprimer</a>
-                                </p>
-                            {% else %}
-                                <h3>Veuillez charger une nouvelle image.</h3>
-                                <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du media.</p>
-                                {{ form_widget(edit_form.media) }}
-                            {% endif %}
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Modifier"/>
+                                        <p class="imgUploader"><img class="responsive-img"
+                                                                    src="{{ asset('uploads/'~pack.media.mediaName) }}"
+                                                                    alt="{{ pack.nom }}"/>
+                                            {% if asset('uploads/'~pack.media.mediaName) !=  asset('uploads/default.jpg') %}
+                                                <a href="{{ path('pack_media_delete', {"id" : pack .id}) }}">Supprimer</a>
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
+                                    <h3>Ajouter une nouvelle image.</h3>
+                                    <p>Utilisez le type de média "image-cover" pour afficher une image en couverture du
+                                        pack et de l'illustrer.</p>
+                                    {{ form_widget(edit_form.media) }}
+                                </div>
+                            </div>
+                            <input class="waves-effect waves-light btn-large light-green" type="submit"
+                                   value="Modifier"/>
                             {{ form_widget(edit_form._token) }}
-                            </form>
-
+                            {{ form_end(edit_form) }}
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_pack_index') }}"><i
@@ -48,7 +67,6 @@
                                     {{ form_end(delete_form) }}
                                 </li>
                             </ul>
-
                         </div>
                     </div>
                 </div>
