@@ -44,9 +44,9 @@
                         {% for collaborateur in collaborateurs %}
                             <div class="col l4 s12">
                                 <div class="blockStaff">
-                                    {% if collaborateur.media.lien is defined  %}
+                                    {% if collaborateur.media.mediaName is defined  %}
                                     <div class="imgStaff">
-                                        <img src="{{ asset('uploads/'~collaborateur.media.lien ) }}" alt="">
+                                        <img src="{{ asset('uploads/'~collaborateur.media.mediaName ) }}" alt="">
                                     </div>
                                     {% endif %}
                                     <div class="infoStaff">
@@ -89,8 +89,8 @@
                                             <h5>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
                                                 {{ evenement.dateDebut|date('Y') }}</h5>
                                             <p></p>{{ evenement.description }}
-                                            {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
-                                                <img class="responsive-img" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_timeline') }}">
+                                            {% for media in evenement.media if media.typeMedia.nom == "image-cover" %}
+                                                <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline') }}">
                                             {% endfor %}
                                             <a class="waves-effect waves-light btn white" data-toggle="modal" data-id="{{ evenement.id }}"
                                                href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>
@@ -108,8 +108,8 @@
                                         </span>
                                             </time>
                                             <p></p>{{ evenement.description }}
-                                            {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
-                                                <img class="responsive-img" src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_timeline')  }}">
+                                            {% for media in evenement.media if media.typeMedia.nom == "image-cover" %}
+                                                <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline')  }}">
                                             {% endfor %}
                                             <a class="button-collapse waves-effect waves-light btn" data-activates="slide-out">JE M'INSCRIS</a>
                                         </div>
@@ -163,9 +163,9 @@
                     <div class="row center">
                         {% for partenaire in partenaires %}
                             <div class="col s3 l2">
-                                {% if partenaire.media.lien is defined  %}
+                                {% if partenaire.media.mediaName is defined  %}
                                 <a href="{{ partenaire.url }}" target="_blank">
-                                    <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.lien) }}"
+                                    <img class="img-responsive" src="{{ asset('uploads/'~partenaire.media.mediaName) }}"
                                          alt="{{ partenaire.nom }}">
                                 </a>
                                 {% endif %}
