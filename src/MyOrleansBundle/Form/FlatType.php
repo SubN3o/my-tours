@@ -63,7 +63,22 @@ class FlatType extends AbstractType
                 'multiple' => false,
                 'required' =>false
           ])
-            ->add('dateLivraison', TextType::class, [
+            ->add('dateLivraison', ChoiceType::class, [
+                'choices' => [
+                    '1er trimestre 2017' => '1er trimestre 2017',
+                    '2nd trimestre 2017' => '2nd trimestre 2017',
+                    '3e trimestre 2017' => '3e trimestre 2017',
+                    '4e trimestre 2017' => '4e trimestre 2017',
+                    '1er trimestre 2018' => '1er trimestre 2018',
+                    '2nd trimestre 2018' => '2nd trimestre 2018',
+                    '3e trimestre 2018' => '3e trimestre 2018',
+                    '4e trimestre 2018' => '4e trimestre 2018',
+                    '1er trimestre 2019' => '1er trimestre 2019',
+                    '2nd trimestre 2019' => '2nd trimestre 2019',
+                    '3e trimestre 2019' => '3e trimestre 2019',
+                    '4e trimestre 2019' => '4e trimestre 2019',
+                ],
+                'placeholder' => 'Choisir...',
                 'required' => false
             ])
             ->add('stationnement', ChoiceType::class, [

@@ -236,29 +236,6 @@ class Residence
      */
     private $slug;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Trimestre", inversedBy="residences", cascade={"persist"}, fetch="EAGER")
-     */
-    private $trimestre;
-
-    /**
-     * @return mixed
-     */
-    public function getTrimestre()
-    {
-        return $this->trimestre;
-    }
-
-    /**
-     * @param mixed $trimestre
-     * @return Residence
-     */
-    public function setTrimestre($trimestre)
-    {
-        $this->trimestre = $trimestre;
-        return $this;
-    }
-
 
     /**
      * Get id
