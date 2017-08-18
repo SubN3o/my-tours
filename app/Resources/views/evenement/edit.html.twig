@@ -11,42 +11,97 @@
                         </div>
                         <div class="card-content table-responsive">
                             {{ form_start(edit_form) }}
-                            {{ form_label(edit_form.nom, "Nom de l'évènement:") }}
-                            {{ form_widget(edit_form.nom) }}
-                            {{ form_label(edit_form.ville, 'Lieu/Ville: ') }}
-                            {{ form_widget(edit_form.ville) }}
-                            {{ form_label(edit_form.codePostal, 'Code Postal: ') }}
-                            {{ form_widget(edit_form.codePostal) }}
-                            {{ form_label(edit_form.dateDebut, 'Date de début: ') }}
-                            {{ form_widget(edit_form.dateDebut) }}
-                            {{ form_label(edit_form.heureDebut, 'Heure de début: ') }}
-                            {{ form_widget(edit_form.heureDebut) }}
-                            {{ form_label(edit_form.dateFin, 'Date de fin: ') }}
-                            {{ form_widget(edit_form.dateFin) }}
-                            {{ form_label(edit_form.heureFin, 'Heure de fin: ') }}
-                            {{ form_widget(edit_form.heureFin) }}
-                            {{ form_label(edit_form.description, 'Description: ') }}
-                            {{ form_widget(edit_form.description) }}
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.nom, "Nom de l'évènement:") }}
+                                    {{ form_widget(edit_form.nom) }}
+                                    {{ form_errors(edit_form.nom) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.adresse, 'Adresse: ') }}
+                                    {{ form_widget(edit_form.adresse) }}
+                                    {{ form_errors(edit_form.adresse) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.codePostal, 'Code Postal: ') }}
+                                    {{ form_widget(edit_form.codePostal) }}
+                                    {{ form_errors(edit_form.codePostal) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.ville, 'Ville: ') }}
+                                    {{ form_widget(edit_form.ville) }}
+                                    {{ form_errors(edit_form.ville) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.dateDebut, 'Date de début: ') }}
+                                    <div class="row">
+                                        <div class="col s3">{{ form_widget(edit_form.dateDebut.day) }}</div>
+                                        <div class="col s3">{{ form_widget(edit_form.dateDebut.month) }}</div>
+                                        <div class="col s3">{{ form_widget(edit_form.dateDebut.year) }}</div>
+                                    </div>
+                                    {{ form_errors(edit_form.dateDebut) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.heureDebut, 'Heure de début: ') }}
+                                    <div class="row">
+                                        <div class="col s2">{{ form_widget(edit_form.heureDebut.hour) }}</div>
+                                        <div class="col s2">{{ form_widget(edit_form.heureDebut.minute) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.dateFin, 'Date de fin: ') }}
+                                    <div class="row">
+                                        <div class="col s3">{{ form_widget(edit_form.dateFin.day) }}</div>
+                                        <div class="col s3">{{ form_widget(edit_form.dateFin.month) }}</div>
+                                        <div class="col s3">{{ form_widget(edit_form.dateFin.year) }}</div>
+                                    </div>
+                                    {{ form_errors(edit_form.dateFin) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.heureDebut, 'Heure de fin: ') }}
+                                    <div class="row">
+                                        <div class="col s2">{{ form_widget(edit_form.heureFin.hour) }}</div>
+                                        <div class="col s2">{{ form_widget(edit_form.heureFin.minute) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.description, 'Description: ') }}
+                                    {{ form_widget(edit_form.description, { 'attr': {'class':'areaDescription'}}) }}
+                                    {{ form_errors(edit_form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {% if evenement.media.mediaName is defined %}
 
-
-                            {% for media in evenement.medias %}
-                                {% if media.id != null %}
-                                    <p class="imgUploader"><img class="responsive-img"
-                                                                src="{{ asset('uploads/'~media.lien) }}"/>
-                                        <a href="{{ path('evenement_media_delete', {"id" : media.id}) }}">Supprimer</a>
-                                    </p>
-                                {% else %}
-                                    <h3>Veuillez charger une nouvelle image.</h3>
-                                    <p>N'oubliez pas de renseigner la page sur laquelle vous êtes ainsi que le type du
-                                        media.</p>
-                                    {{ form_widget(edit_form.medias) }}
-                                {% endif %}
-                            {% endfor %}
-                            <a href="#" id="add-another-media">Ajouter un média</a>
-                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Modifier"/>
+                                        <p class="imgUploader"><img class="responsive-img"
+                                                                    src="{{ asset('uploads/'~evenement.media.mediaName) }}"
+                                                                    alt="{{ evenement.nom }}"/>
+                                            {% if asset('uploads/'~evenement.media.mediaName) !=  asset('uploads/default.jpg') %}
+                                                <a href="{{ path('evenement_media_delete', {"id" : evenement .id}) }}">Supprimer</a>
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
+                                    <h3>Ajouter une nouvelle image.</h3>
+                                    <p>Utilisez le type de média "image-cover" pour afficher une image en couverture de
+                                        l'évenement et de l'illustrer.</p>
+                                    {{ form_widget(edit_form.media) }}
+                                </div>
+                            </div>
+                            <input class="waves-effect waves-light btn-large light-green" type="submit"
+                                   value="Modifier"/>
                             {{ form_widget(edit_form._token) }}
-                            </form>
-
+                            {{ form_end(edit_form) }}
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_evenement_index') }}"><i
@@ -60,7 +115,6 @@
                                     {{ form_end(delete_form) }}
                                 </li>
                             </ul>
-
                         </div>
                     </div>
                 </div>
@@ -68,28 +122,4 @@
         </div>
     </div>
 
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript">
-        // keep track of how many email fields have been rendered
-        var mediaCount = '{{ edit_form.medias|length }}';
-
-        jQuery(document).ready(function () {
-            jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
-                e.preventDefault();
-                var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
-
-                var newWidget = mediaList.attr('data-prototype');
-                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                newWidget = newWidget.replace(/__name__/g, mediaCount);
-                mediaCount++;
-                // create a new list element and add it to the list
-                var newLi = jQuery('<li></li>').html(newWidget);
-                newLi.appendTo(mediaList);
-
-            });
-        })
-    </script>
 {% endblock %}

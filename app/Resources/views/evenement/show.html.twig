@@ -57,6 +57,14 @@
                                 </tbody>
                             </table>
                             <hr>
+                            <div class="row">
+                                <div class="col s4">
+                                    <img class="responsive-img"
+                                         src="{{ asset('uploads/'~evenement.media.mediaName) }}"
+                                         alt="{{ evenement.nom }}"/>
+                                    <p>{{ evenement.media.typeMedia.nom }}</p>
+                                </div>
+                            </div>
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_evenement_index') }}"><i
