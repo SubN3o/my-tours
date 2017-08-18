@@ -49,6 +49,14 @@
                                 </tbody>
                             </table>
                             <hr>
+                            <div class="row">
+                                <div class="col s4">
+                                    <img class="responsive-img"
+                                         src="{{ asset('uploads/'~collaborateur.media.mediaName) }}"
+                                         alt="{{ collaborateur.nom }}"/>
+                                    <p>{{ collaborateur.media.typeMedia.nom }}</p>
+                                </div>
+                            </div>
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_collaborateur_index') }}"><i class="material-icons">keyboard_return</i>Retour
@@ -61,7 +69,7 @@
 
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete"
+                                    <input type="submit" value="Supprimer"
                                            class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>
