@@ -13,9 +13,27 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(form) }}
-                            {{ form_widget(form) }}
-                            {{ form_errors(form) }}
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(form.nom, 'Nom du partenaire:') }}
+                                    {{ form_widget(form.nom) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(form.url, 'Url du site web:') }}
+                                    {{ form_widget(form.url) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <h3>Ajouter une nouvelle image.</h3>
+                                    <p>Utilisez le type de média "image-cover" pour afficher l'image d'un partenaire.</p>
+                                    {{ form_widget(form.media) }}
+                                </div>
+                            </div>
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Créer"/>
+                            {{ form_widget(form._token) }}
                             {{ form_end(form) }}
 
                             <ul>

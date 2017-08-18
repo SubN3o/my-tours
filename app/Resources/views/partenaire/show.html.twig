@@ -29,6 +29,14 @@
                                 </tbody>
                             </table>
                             <hr>
+                            <div class="row">
+                                <div class="col s4">
+                                    <img class="responsive-img"
+                                         src="{{ asset('uploads/'~partenaire.media.mediaName) }}"
+                                         alt="{{ partenaire.nom }}"/>
+                                    <p>{{ partenaire.media.typeMedia.nom }}</p>
+                                </div>
+                            </div>
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_partenaire_index') }}"><i class="material-icons">keyboard_return</i>Retour à la liste des partenaires</a>
@@ -40,7 +48,7 @@
 
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete" class="waves-effect waves-light btn-large red pull-right">
+                                    <input type="submit" value="Supprimer" class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>
                             </ul>
