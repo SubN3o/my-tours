@@ -5,7 +5,6 @@ namespace MyOrleansBundle\Form;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\NormeThermique;
 use MyOrleansBundle\Entity\Quartier;
-use MyOrleansBundle\Entity\Trimestre;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Entity\Zone;
@@ -64,9 +63,21 @@ class ResidenceType extends AbstractType
                 'placeholder' => 'Choisir...',
                 'required' => false
             ])
-            ->add('dateLivraison', EntityType::class, [
-                'class' => Trimestre::class,
-                'choice_label' => 'nom',
+            ->add('dateLivraison', ChoiceType::class, [
+                'choices' => [
+                    '1er trimestre 2017' => '1er trimestre 2017',
+                    '2nd trimestre 2017' => '2nd trimestre 2017',
+                    '3e trimestre 2017' => '3e trimestre 2017',
+                    '4e trimestre 2017' => '4e trimestre 2017',
+                    '1er trimestre 2018' => '1er trimestre 2018',
+                    '2nd trimestre 2018' => '2nd trimestre 2018',
+                    '3e trimestre 2018' => '3e trimestre 2018',
+                    '4e trimestre 2018' => '4e trimestre 2018',
+                    '1er trimestre 2019' => '1er trimestre 2019',
+                    '2nd trimestre 2019' => '2nd trimestre 2019',
+                    '3e trimestre 2019' => '3e trimestre 2019',
+                    '4e trimestre 2019' => '4e trimestre 2019',
+                ],
                 'placeholder' => 'Choisir...',
                 'required' => false
             ])
