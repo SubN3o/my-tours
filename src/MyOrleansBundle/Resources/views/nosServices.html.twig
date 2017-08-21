@@ -35,12 +35,12 @@
 
                                 {% if service.media.typeMedia.nom == 'image-cover' %}
 
-                                    <img src="{{ asset('uploads/'~service.media.lien) }}" class="img-service responsive-img">
+                                    <img src="{{ asset('uploads/'~service.media.mediaName) }}" class="img-service responsive-img">
 
                                 {% elseif media.typeMedia.nom == 'video' %}
 
                                     <div class="video-container">
-                                        <iframe width="560" height="315" src="{{ service.media.lien }}" frameborder="0"
+                                        <iframe width="560" height="315" src="{{ service.media.mediaName }}" frameborder="0"
                                                 allowfullscreen></iframe>
                                     </div>
                                 {% endif %}
@@ -57,10 +57,10 @@
                         <div data-aos="fade-up-right">
 
                                 {% if service.media.typeMedia.nom == 'image-cover' %}
-                                    <img src="{{ asset('uploads/'~service.media.lien) }}" class="img-service responsive-img">
+                                    <img src="{{ asset('uploads/'~service.media.mediaName) }}" class="img-service responsive-img">
                                 {% elseif service.media.typeMedia.nom == 'video' %}
                                     <div class="video-container">
-                                        <iframe width="560" height="315" src="{{ service.media.lien }}" frameborder="0"
+                                        <iframe width="560" height="315" src="{{ service.media.mediaName }}" frameborder="0"
                                                 allowfullscreen></iframe>
                                     </div>
                                 {% endif %}
@@ -102,7 +102,7 @@
                             <div class="card">
                                 <div class="card-image">
                                     <div data-aos="flip-left">
-                                        <img src="{{ asset('uploads/'~pack.media.lien) }}" class="img-pack">
+                                        <img src="{{ asset('uploads/'~pack.media.mediaName) }}" class="img-pack">
                                         <span class="card-title">{{ pack.nom }}</span>
                                         <a class="btn-floating halfway-fab waves-effect waves-light light-green button-collapse"
                                            data-activates="slide-out" href="#"><i class="material-icons">message</i></a>

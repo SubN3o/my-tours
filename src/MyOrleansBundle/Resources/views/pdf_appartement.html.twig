@@ -38,7 +38,7 @@
 <div class="photoinfo-apt">
     <div class="photo-apt">
         {% if media['image'] is defined and  media['image'] != null %}
-            <img src="{{ asset('uploads/'~media['image'].lien) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+            <img src="{{ asset('uploads/'~media['image'].mediaName) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
         {% else %}
             <img src="{{ asset('img/Pas-dimage.jpg') }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
         {% endif %}
@@ -134,7 +134,7 @@
 
     <h3 class="titre-plan">Plans</h3>
     {% if media['image'] is defined and  media['image'] != null %}
-        <img src="{{ asset('uploads/'~media['plans'].lien) }}" alt="plans"/>
+        <img src="{{ asset('uploads/'~media['plans'].mediaName) }}" alt="plans"/>
     {% else %}
         <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="plans"/>
     {% endif %}
@@ -154,7 +154,7 @@
 
 <div class="photo-residence center">
     {% if residence.media['image'] is defined and  residence.media['image'] != null %}
-        <img src="{{ asset('uploads/'~residence.media['image'].lien) }}" alt="photo_residence"/>
+        <img src="{{ asset('uploads/'~residence.media['image'].mediaName) }}" alt="photo_residence"/>
     {% else %}
         <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="photo_residence"/>
     {% endif %}

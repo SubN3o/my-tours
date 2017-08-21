@@ -267,7 +267,7 @@
                                             <div class="card">
                                                 <div class="card-image">
                                                     {% for media in resTwoFav.medias if media.typeMedia.nom == 'image-cover' %}
-                                                        <img src="{{ asset('uploads/'~media.lien) }}" class="responsive-img"
+                                                        <img src="{{ asset('uploads/'~media.mediaName) }}" class="responsive-img"
                                                              alt="{{ resTwoFav.nom }}">
                                                     {% endfor %}
                                                     <span class="card-title">{{ resTwoFav.nom }}</span>
@@ -330,9 +330,9 @@
                             meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </p>
                         <div class="carousel center-align">
                             {% for collaborateur in collaborateurs %}
-                                {% if collaborateur.media.lien is defined %}
+                                {% if collaborateur.media.mediaName is defined %}
                                     <a class="carousel-item" href="#one!"><img
-                                                src="{{ asset('uploads/'~collaborateur.media.lien) }}">
+                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) }}">
                                         <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
                                             <br><span>{{ collaborateur.fonction }}</span></p>
                                     </a>
@@ -370,7 +370,7 @@
 
                         {% for media in actu[0].medias if media.typeMedia.nom == 'image-cover' %}
                             <img class="activator"
-                                 src="{{ asset('uploads/'~media.lien) | imagine_filter('thumb_article_site') }}">
+                                 src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_article_site') }}">
                         {% endfor %}
                     </div>
                     <div class="card-content">
@@ -397,8 +397,8 @@
                 <h3>L'événement</h3>
                 <div class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
-                        {% for media in event[0].medias if media.typeMedia.nom == 'image-cover' %}
-                            <img class="activator" src="{{ asset('uploads/'~media.lien) }}">
+                        {% for media in event[0].media if media.typeMedia.nom == 'image-cover' %}
+                            <img class="activator" src="{{ asset('uploads/'~media.mediaName) }}">
                         {% endfor %}
                     </div>
                     <div class="card-content">

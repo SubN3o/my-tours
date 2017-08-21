@@ -27,9 +27,9 @@
                     {% set video = true %}
                     <div class="video-residence">
                         <video width="90%" controls>
-                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/mp4">
-                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/ogg">
-                            <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/webm">
+                            <source src="{{ asset('uploads/'~media['video'].mediaName) }}" type="video/mp4">
+                            <source src="{{ asset('uploads/'~media['video'].mediaName) }}" type="video/ogg">
+                            <source src="{{ asset('uploads/'~media['video'].mediaName) }}" type="video/webm">
                         </video>
                     </div>
                 {% elseif media['image-cover'] is defined and  media['image-cover'] != null and  video is not defined %}
@@ -48,13 +48,13 @@
                         {% set video = true %}
                         <div class="video-residence">
                             <video width="90%" controls>
-                                <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/mp4">
-                                <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/ogg">
-                                <source src="{{ asset('uploads/'~media['video'].lien) }}" type="video/webm">
+                                <source src="{{ asset('uploads/'~media['video'].mediaName) }}" type="video/mp4">
+                                <source src="{{ asset('uploads/'~media['video'].mediaName) }}" type="video/ogg">
+                                <source src="{{ asset('uploads/'~media['video'].mediaName) }}" type="video/webm">
                             </video>
                         </div>
                     {% elseif media['image'] is defined and  media['image'] != null and  video is not defined %}
-                        <img src="{{ asset('uploads/'~media['image'].lien) }}" alt="photo_residence"/>
+                        <img src="{{ asset('uploads/'~media['image'].mediaName) }}" alt="photo_residence"/>
                     {% endif %}
                 </div>
             </div>
