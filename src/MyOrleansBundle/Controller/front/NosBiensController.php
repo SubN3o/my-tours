@@ -90,9 +90,9 @@ class NosBiensController extends Controller
 
 
             // Generation du dernier article avec le tag 'Residence Principale'
-            $article = $em->getRepository(Article::class)->articleByTag($tag, 1);
-            $article = $article[0];
-
+            if ($article = $em->getRepository(Article::class)->articleByTag($tag, 1)) {
+                $article = $article[0];
+            }
 
             // Prise en compte des filtres du moteur de recherche
             $data = $simpleSearch->getData();
