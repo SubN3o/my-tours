@@ -26,13 +26,13 @@
                             </div>
                             <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(edit_form.date, 'Date: ') }}
+                                    {{ form_label(form.date, 'Date: ') }}
                                     <div class="row">
                                         <div class="col s3">{{ form_widget(form.date.day) }}</div>
                                         <div class="col s3">{{ form_widget(form.date.month) }}</div>
                                         <div class="col s3">{{ form_widget(form.date.year) }}</div>
                                     </div>
-                                    {{ form_errors(edit_form.date) }}
+                                    {{ form_errors(form.date) }}
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(form.typeArticle, 'Type de l\'article: ') }}
@@ -64,11 +64,9 @@
                                 </div>
                                 <div class="col s6">
                                     <h3>Veuillez charger une nouvelle image.</h3>
-                                    <p>Utilisez le type de média "pdf" pour un fichier .pdf dans une fiche conseil</p>
-                                    <p>Utilisez le type de média "image-cover" pour afficher une image en couverture de l'article</p>
-                                    {#{% for media in article.medias %}#}
+                                    <p>Utilisez le type de média "<b>pdf</b>" pour un fichier .pdf dans une fiche conseil</p>
+                                    <p>Utilisez le type de média "<b>image-cover</b>" pour afficher une image en couverture de l'article</p>
                                         {{ form_widget(form.medias) }}
-                                    {#{% endfor %}#}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
                                                 class="material-icons">file_upload</i></a>

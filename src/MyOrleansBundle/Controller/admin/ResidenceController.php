@@ -87,8 +87,6 @@ class ResidenceController extends Controller
             foreach ($medias as $media){
                 if (is_null($media->getMediaName())) {
                     /* @var $media Media */
-//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-//                    $media->setTypeMedia($typeMediaImgCover);
                     $media->setMediaName('default.jpg');
                     $date = new \DateTimeImmutable();
                     $media->setUpdatedAt($date);

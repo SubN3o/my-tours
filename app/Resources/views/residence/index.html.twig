@@ -12,22 +12,24 @@
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
-                                <thead class="text">
-                                <th>Nom</th>
-                                <th>Adresse</th>
-                                <th>Code postal</th>
-                                <th>Ville</th>
-                                <th>Quartier</th>
-                                <th>Latitude</th>
-                                <th>Longitude</th>
-                                <th>Datelivraison</th>
-                                <th>Favoris</th>
-                                <th>Accroche</th>
-                                <th>Accroche 2</th>
-                                <th>Offre</th>
-                                <th>Aperçu</th>
-                                <th>Éditer</th>
-                                <th>Biens</th>
+                                <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Adresse</th>
+                                    <th>Code postal</th>
+                                    <th>Ville</th>
+                                    <th>Quartier</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                    <th>Datelivraison</th>
+                                    <th>Favoris</th>
+                                    <th>Accroche</th>
+                                    <th>Accroche 2</th>
+                                    <th>Offre</th>
+                                    <th>Aperçu</th>
+                                    <th>Éditer</th>
+                                    <th>Biens</th>
+                                </tr>
                                 </thead>
                                 <tbody>
 
@@ -40,12 +42,12 @@
                                         {% if residence.ville.nom is defined %}
                                             <td>{{ residence.ville.nom }}</td>
                                         {% else %}
-                                            <td>  </td>
+                                            <td></td>
                                         {% endif %}
                                         {% if residence.quartier.nom is defined %}
                                             <td>{{ residence.quartier.nom }}</td>
                                         {% else %}
-                                            <td>  </td>
+                                            <td></td>
                                         {% endif %}
                                         <td>{{ residence.latitude }}</td>
                                         <td>{{ residence.longitude }}</td>
@@ -65,7 +67,8 @@
                                         <td>
                                             <a href="{{ path('admin_flat_index', {'id':residence.id}) }}">
                                                 <i class="material-icons">business</i>
-                                                <span data-badge-caption="" class="new badge">{{ residence.flats|length }}</span>
+                                                <span data-badge-caption=""
+                                                      class="new badge">{{ residence.flats|length }}</span>
                                             </a>
                                         </td>
                                     </tr>

@@ -137,21 +137,9 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    {#{{ form_label(form.medias, 'Media: ') }}#}
-                                    {#{% for media in residence.medias %}#}
-                                        {#{% if media.id != null %}#}
-                                            {#{{ loop.index0 }}#}
-                                            {#<p class="imgUploader"><img class="responsive-img"#}
-                                                                        {#src="{{ asset('uploads/'~media.lien) }}"/>#}
-                                                {#<a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>#}
-                                            {#</p>#}
-                                        {#{% endif %}#}
-                                    {#{% endfor %}#}
                                     <h3>Ajouter une nouvelle image.</h3>
-                                    <p>Utilisez le type de média "image-cover" pour afficher une image en couverture de l'article et illustrer la résidence.</p>
-                                    {#{% for media in residence.medias %}#}
+                                    <p>Utilisez le type de média "<b>image-cover</b>" pour afficher une image en couverture de l'article et illustrer la résidence.</p>
                                         {{ form_widget(form.medias) }}
-                                    {#{% endfor %}#}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
                                                 class="material-icons">file_upload</i></a>
@@ -160,7 +148,7 @@
                             <input class="waves-effect waves-light btn-large light-green" type="submit"
                                    value="Créer"/>
                             {{ form_widget(form._token) }}
-                            </form>
+                            {{ form_end(edit_form) }}
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_residence_index') }}"><i

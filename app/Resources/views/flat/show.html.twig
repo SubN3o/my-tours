@@ -95,10 +95,10 @@
                             <hr>
                             <div class="row">
                                 {% for media in flat.medias %}
-                                <div class="col s4">
-                                    <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
-                                    <p>{{ media.typeMedia.nom }}</p>
-                                </div>
+                                    <div class="col s4">
+                                        <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                        <p>{{ media.typeMedia.nom }}</p>
+                                    </div>
                                 {% endfor %}
                             </div>
                             <ul>
@@ -114,7 +114,7 @@
 
                                 <li>
                                     {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete"
+                                    <input type="submit" value="Supprimer"
                                            class="waves-effect waves-light btn-large red pull-right">
                                     {{ form_end(delete_form) }}
                                 </li>

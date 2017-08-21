@@ -4,8 +4,6 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-
-
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
@@ -16,7 +14,6 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        {#<th>Id</th>#}
                                         <th>Reference</th>
                                         <th>Prix</th>
                                         <th>Surface</th>
@@ -26,14 +23,12 @@
                                         <th>Statut</th>
                                         <th>Aperçu</th>
                                         <th>Éditer</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
 
                                     {% for flat in flats %}
                                         <tr>
-                                            {#<td>#}
-                                                {#<a href="{{ path('admin_flat_show', { 'id': flat.id }) }}">{{ flat.id }}</a>#}
-                                            {#</td>#}
                                             <td>{{ flat.reference }}</td>
                                             <td>{{ flat.prix }}{% if flat.prix != null %} €{% endif %}</td>
                                             <td>{{ flat.surface }}{% if flat.surface != null %} m²{% endif %}</td>

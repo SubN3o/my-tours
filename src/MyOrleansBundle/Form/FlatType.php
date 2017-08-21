@@ -105,13 +105,12 @@ class FlatType extends AbstractType
             ])
             ->add('menuiserie', ChoiceType::class, [
                 'choices' =>[
-                    'Choisir...' => null,
                     'PVC' => 'PVC',
                     'Aluminium' => 'Aluminium',
-                    'Bois' => 'Bois'],
+                    'Bois' => 'Bois',
+                ],
                 'expanded' => false,
                 'multiple' => false,
-                'required' => false
             ])
             ->add('chauffage', ChoiceType::class, [
                 'choices' =>[
@@ -121,55 +120,51 @@ class FlatType extends AbstractType
                     'Electrique individuel' => 'Electrique individuel',
                     'Electrique Gaz' => 'Electrique Gaz',
                     'Pompe à chaleur' => 'Pompe à chaleur',
-                    'Chauffage Urbain' => 'Chauffage Urbain'],
+                    'Chauffage Urbain' => 'Chauffage Urbain',
+                    ],
                 'expanded' => false,
                 'multiple' => false,
                 'required' => false
             ])
             ->add('solSejour', ChoiceType::class, [
                 'choices' =>[
-                    'Choisir...' => null,
                     'Parquet' => 'Parquet',
                     'Vinylique' => 'Vinylique',
-                    'Carrelage' => 'Carrelage'],
+                    'Carrelage' => 'Carrelage',
+                ],
                 'expanded' => false,
                 'multiple' => false,
-                'required' => false
             ])
             ->add('solSdb', ChoiceType::class, [
                 'choices' =>[
-                    'Choisir...' => null,
+                    'Carrelage' => 'Carrelage',
                     'Parquet' => 'Parquet',
                     'Vinylique' => 'Vinylique',
-                    'Carrelage' => 'Carrelage'],
+                ],
                 'expanded' => false,
                 'multiple' => false,
-                'required' => false
             ])
             ->add('solChambre', ChoiceType::class, [
                 'choices' =>[
-                    'Choisir...' => null,
                     'Parquet' => 'Parquet',
                     'Vinylique' => 'Vinylique',
-                    'Carrelage' => 'Carrelage'],
+                    'Carrelage' => 'Carrelage',
+                    ],
                 'expanded' => false,
                 'multiple' => false,
-                'required' => false
             ])
             ->add('revetementMur', ChoiceType::class, [
                 'choices' =>[
-                    'Choisir...' => null,
                     'Peinture' => 'Peinture',
-                    'Papier peint' => 'Papier peint'],
+                    'Papier peint' => 'Papier peint',
+                    ],
                 'expanded' => false,
                 'multiple' => false,
-                'required' => false
             ])
             ->add('statut', ChoiceType::class, [
                 'choices' => [
                     'Disponible' => true,
                     'Vendu' => false,
-//                    'required' => false
                 ]
             ])
             ->add('typeLogement', EntityType::class, [

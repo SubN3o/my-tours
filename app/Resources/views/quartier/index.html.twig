@@ -12,17 +12,21 @@
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
-                                <thead class="text">
-                                <th>Id</th>
-                                <th>Nom</th>
-                                <th>Aperçu</th>
-                                <th>Éditer</th>
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th>Aperçu</th>
+                                    <th>Éditer</th>
+                                </tr>
                                 </thead>
                                 <tbody>
 
                                 {% for quartier in quartiers %}
                                     <tr>
-                                        <td><a href="{{ path('admin_quartier_show', { 'id': quartier.id }) }}">{{ quartier.id }}</a></td>
+                                        <td>
+                                            <a href="{{ path('admin_quartier_show', { 'id': quartier.id }) }}">{{ quartier.id }}</a>
+                                        </td>
                                         <td>{{ quartier.nom }}</td>
                                         <td>
                                             <a href="{{ path('admin_quartier_show', { 'id': quartier.id }) }}"><i

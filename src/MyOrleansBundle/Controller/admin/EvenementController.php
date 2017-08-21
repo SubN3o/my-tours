@@ -52,7 +52,7 @@ class EvenementController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            // Si l'administrateur n'upload pas de photo pour l'evenement, une photo est chargée par défaut
             $media = $evenement->getMedia();
             if (is_null($media->getMediaName())) {
                 /* @var $media Media */
@@ -106,7 +106,7 @@ class EvenementController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            // Si l'administrateur n'upload pas de photo pour la résidence, une photo est chargée par défaut
+            // Si l'administrateur n'upload pas de photo pour l'evenement, une photo est chargée par défaut
             $media = $evenement->getMedia();
                 if (is_null($media->getMediaName())) {
                     /* @var $media Media */

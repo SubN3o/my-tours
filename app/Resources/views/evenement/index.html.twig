@@ -12,19 +12,21 @@
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
-                                <thead class="text">
-                                <th>Id</th>
-                                <th>Nom</th>
-                                <th>Adresse</th>
-                                <th>Codepostal</th>
-                                <th>Ville</th>
-                                <th>Datedebut</th>
-                                <th>Datefin</th>
-                                <th>Heuredebut</th>
-                                <th>Heurefin</th>
-                                <th>Description</th>
-                                <th>Aperçu</th>
-                                <th>Éditer</th>
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th>Adresse</th>
+                                    <th>Codepostal</th>
+                                    <th>Ville</th>
+                                    <th>Datedebut</th>
+                                    <th>Datefin</th>
+                                    <th>Heuredebut</th>
+                                    <th>Heurefin</th>
+                                    <th>Description</th>
+                                    <th>Aperçu</th>
+                                    <th>Éditer</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 {% for evenement in evenements %}
@@ -56,9 +58,9 @@
                                 </tbody>
                             </table>
                             <hr>
-                       {#     <div class="navigation center">
-                                {{ knp_pagination_render(evenements, 'MyOrleansBundle::pagination.html.twig') }}
-                            </div>#}
+                            {#     <div class="navigation center">#}
+                                     {#{{ knp_pagination_render(evenements, 'MyOrleansBundle::pagination.html.twig') }}#}
+                                 {#</div>#}
                             <ul>
                                 <li>
 
