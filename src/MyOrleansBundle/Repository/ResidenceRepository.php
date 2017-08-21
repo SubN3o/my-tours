@@ -101,11 +101,11 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->join('r.flats', 'fla');
         }
 
-        if (!empty($data['nbChambres'])) {
-            $qb->andWhere('flt.nbChambre >= :nbChambres')
-                ->setParameter('nbChambres', $data['nbChambres'])
-                ->join('r.flats', 'flt');
-        }
+//        if (!empty($data['nbChambres'])) {
+//            $qb->andWhere('flt.nbChambre >= :nbChambres')
+//                ->setParameter('nbChambres', $data['nbChambres'])
+//                ->join('r.flats', 'flt');
+//        }
 
         if (!empty($data['budgetMin'])) {
             $qb->andWhere('ft.prix >= :budgetMin')

@@ -168,6 +168,7 @@ class NosBiensController extends Controller
             $suggestionActive = 1;
             $rechercheSansResultat = 0;
             $objectif = "";
+            $article = [];
 
             $data = $completeSearch->getData();
 
@@ -180,9 +181,7 @@ class NosBiensController extends Controller
                 $rechercheSansResultat = 1;
             }
 
-            // Generation du derier article avec le tag 'Investissement'
-            $article = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
-            $article = $article[0];
+
             // Fin contenu associe
 
             // recherche des biens à exclure de la liste des biens à suggerer
@@ -200,15 +199,23 @@ class NosBiensController extends Controller
 
             // Generation des contenus associes en fonction de l'objectif
             if (isset($data['objectif']) && $data['objectif'] == 'Residence Principale') {
+
                 // Generation du dernier article avec le tag 'Residence Principale'
-                $article = $em->getRepository(Article::class)->articleByTag('Residence Principale', 1);
-                $article = $article[0];
+                if ($article = $em->getRepository(Article::class)->articleByTag('Residence Principale', 1)) {
+                    $article = $article[0];
+                }
 
                 $objectif = "Residence Principale";
                 $session->set('parcours', $this->getParameter('parcours_residence'));
             }
 
             if (isset($data['objectif']) && $data['objectif'] == 'investir') {
+
+                // Generation du derier article avec le tag 'Investissement'
+                if ($article = $em->getRepository(Article::class)->articleByTag('Investissement', 1)) {
+                    $article = $article[0];
+                }
+
                 $objectif = "investir";
                 $session->set('parcours', $this->getParameter('parcours_investisseur'));
             }

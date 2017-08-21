@@ -13,22 +13,22 @@
                 </div>
             </div>
         </div>
-        <div class="col l3">
+        <div class="col l2">
             <div class="row no-margin-bottom">
                 <h2 class="titre-recherche">Votre bien</h2>
                 <div class="row no-margin-bottom">
-                    <div class="col s6">
+                    <div class="col s12">
                         {{ form_widget(completeSearch.type) }}
                         {{ form_errors(completeSearch.type) }}
                     </div>
-                    <div class="col s6">
-                        {{ form_widget(completeSearch.nbChambres) }}
-                        {{ form_errors(completeSearch.nbChambres) }}
-                    </div>
+                    {#<div class="col s6">#}
+                        {#{{ form_widget(completeSearch.nbChambres) }}#}
+                        {#{{ form_errors(completeSearch.nbChambres) }}#}
+                    {#</div>#}
                 </div>
             </div>
         </div>
-        <div class="col l3">
+        <div class="col l4">
             <div class="row no-margin-bottom">
                 <h2 class="white-text titre-recherche">Votre bien</h2>
                 <div class="col s3">

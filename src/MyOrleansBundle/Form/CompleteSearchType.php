@@ -51,27 +51,32 @@ class CompleteSearchType extends AbstractType
                     'T1' => 'T1',
                     'T2' => 'T2',
                     'T3' => 'T3',
-                    'T4+' => 'T4+',
+                    'T4' => 'T4',
+                    'T5+' => 'T5+',
                 )
             ])
             ->add('surfaceMin', IntegerType::class, [
                 'required' => false,
-                'attr' => ['placeholder'=>'Surface min'],
+                'attr' => ['placeholder'=>'Surface min',
+                            'min' => '0'
+                            ],
             ])
             ->add('surfaceMax', IntegerType::class, [
                 'required' => false,
-                'attr' => ['placeholder'=>'Surface max'],
+                'attr' => ['placeholder'=>'Surface max',
+                    'min' => '0'
+                    ],
             ])
-            ->add('nbChambres', ChoiceType::class, [
-                'required'=>false,
-                'placeholder'=>'Nb. Chambre(s)',
-                'choices' => array(
-                    '1 chambre' => '1',
-                    '2 chambres' => '2',
-                    '3 chambres' => '3',
-                    '4 chambres et plus' => '4',
-                )
-            ])
+//            ->add('nbChambres', ChoiceType::class, [
+//                'required'=>false,
+//                'placeholder'=>'Nb. Chambre(s)',
+//                'choices' => array(
+//                    '1 chambre' => '1',
+//                    '2 chambres' => '2',
+//                    '3 chambres' => '3',
+//                    '4 chambres et plus' => '4',
+//                )
+//            ])
 
             ->add('objectif', ChoiceType::class, [
                 'required'=>false,
@@ -84,12 +89,16 @@ class CompleteSearchType extends AbstractType
             ->add('budgetMin', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
-                'attr' => ['placeholder'=>'Budget min'],
+                'attr' => ['placeholder'=>'Budget min',
+                    'min' => '0'
+                    ],
             ])
             ->add('budgetMax', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
-                'attr' => ['placeholder'=>'Budget max'],
+                'attr' => ['placeholder'=>'Budget max',
+                    'min' => '0'
+                    ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Rechercher',
