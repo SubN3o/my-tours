@@ -90,6 +90,20 @@ class Media
     /**
      * @Vich\UploadableField(mapping="media", fileNameProperty="mediaName")
      *
+     * @Assert\File(
+     *     maxSize = "2M",
+     *     maxSizeMessage="Fichier supérieur à 2M",
+     *     mimeTypes = {"application/pdf",
+     *     "application/x-pdf",
+     *     "image/jpg",
+     *     "image/jpeg",
+     *     "image/png",
+     *     "video/mp4",
+     *     "video/ogg",
+     *     "video/webm"},
+     *     mimeTypesMessage = "Veuillez télécharger un fichier pdf, x-pdf, jpg, jpeg, png, mp4, ogg ou webm valide"
+     * )
+     *
      * @var File
      */
     private $mediaFile;
