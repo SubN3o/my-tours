@@ -136,6 +136,7 @@
                                         <h3>Ajouter une nouvelle image.</h3>
                                     <p>Utilisez le type de média "<b>image-cover</b>" pour afficher une image en couverture de l'article et illustrer la résidence.</p>
                                         {{ form_widget(edit_form.medias) }}
+                                        {{ form_errors(edit_form.medias) }}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
                                                 class="material-icons">add</i></a>

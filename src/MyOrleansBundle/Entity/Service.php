@@ -54,6 +54,7 @@ class Service
 
     /**
      * @ORM\OneToOne(targetEntity="Media", inversedBy="service", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $media;
 

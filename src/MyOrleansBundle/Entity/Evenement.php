@@ -112,6 +112,7 @@ class Evenement
 
     /**
      * @ORM\OneToOne(targetEntity="Media", inversedBy="evenement", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $media;
 

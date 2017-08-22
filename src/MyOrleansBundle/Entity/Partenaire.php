@@ -52,6 +52,7 @@ class Partenaire
 
     /**
      * @ORM\OneToOne(targetEntity="Media", inversedBy="partenaire", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $media;
 

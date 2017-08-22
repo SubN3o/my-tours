@@ -59,6 +59,7 @@ class Pack
 
     /**
      * @ORM\OneToOne(targetEntity="Media", inversedBy="pack", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $media;
 

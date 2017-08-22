@@ -214,7 +214,7 @@ class Residence
     /**
      * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
      * @JoinTable(name="residence_media")
-     *
+     * @Assert\Valid()
      */
     private $medias;
 

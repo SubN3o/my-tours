@@ -102,10 +102,11 @@ class ResidenceType extends AbstractType
             ])
             ->add('favoris', ChoiceType::class, [
                 'choices' => [
-                    'Définir en résidence favorite' => null,
+//                    'Définir en résidence favorite' => null,
                     'Oui' => true,
                     'Non' => false],
-                'required' => false
+                'required' => false,
+                'placeholder' => 'Définir en résidence favorite'
             ])
             ->add('affichagePrix',ChoiceType::class, [
                 'choices' => [

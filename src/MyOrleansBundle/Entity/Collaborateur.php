@@ -111,6 +111,7 @@ class Collaborateur
     private $email;
     /**
      * @ORM\OneToOne(targetEntity="Media", inversedBy="collaborateur",cascade={"persist"})
+     * @Assert\Valid()
      */
     private $media;
 

@@ -119,6 +119,7 @@ class Flat
     /**
      * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
      * @JoinTable(name="flat_media")
+     * @Assert\Valid()
      */
     private $medias;
 

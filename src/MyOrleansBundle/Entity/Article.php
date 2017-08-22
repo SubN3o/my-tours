@@ -68,6 +68,7 @@ class Article
     /**
      * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
      * @JoinTable(name="article_media")
+     * @Assert\Valid()
      */
     private $medias;
 
