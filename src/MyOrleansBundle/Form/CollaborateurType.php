@@ -26,7 +26,7 @@ class CollaborateurType extends AbstractType
             ->add('prenom', TextType::class)
             ->add('fonction', TextType::class)
             ->add('bio', TextareaType::class)
-            ->add('lienTwiter', UrlType::class, [
+            ->add('lienFacebook', UrlType::class, [
                 'required'=>false])
             ->add('lienLinkedin', UrlType::class, [
                 'required'=>false])

@@ -75,7 +75,7 @@ class Collaborateur
      * )
      * @Assert\Length(
      *      max = 45000,
-     *      maxMessage = "Le prénom saisi est long."
+     *      maxMessage = "La bio saisie est trop longue."
      * )
      * @ORM\Column(name="bio", type="text", nullable=true)
      */
@@ -87,9 +87,9 @@ class Collaborateur
      *     message = "L'URL saisie n'est pas correcte",
      *     protocols = {"http", "https", "ftp"}
      * )
-     * @ORM\Column(name="lien_twiter", type="string", length=45, nullable=true)
+     * @ORM\Column(name="lien_Facebook", type="string", length=45, nullable=true)
      */
-    private $lienTwiter;
+    private $lienFacebook;
     /**
      * @var string
      * @Assert\Url(
@@ -218,26 +218,26 @@ class Collaborateur
     }
 
     /**
-     * Set lienTwiter
+     * Set lienFacebook
      *
-     * @param string $lienTwiter
+     * @param string $lienFacebook
      *
      * @return Collaborateur
      */
-    public function setLienTwiter($lienTwiter)
+    public function setLienFacebook($lienFacebook)
     {
-        $this->lienTwiter = $lienTwiter;
+        $this->lienFacebook = $lienFacebook;
         return $this;
     }
 
     /**
-     * Get lienTwiter
+     * Get lienFacebook
      *
      * @return string
      */
-    public function getLienTwiter()
+    public function getLienFacebook()
     {
-        return $this->lienTwiter;
+        return $this->lienFacebook;
     }
 
     /**

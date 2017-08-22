@@ -92,7 +92,7 @@ class Media
      *
      * @Assert\File(
      *     maxSize = "2M",
-     *     maxSizeMessage="Fichier supérieur à 2M",
+     *     maxSizeMessage="Le fichier est trop volumineux. Sa taille ne doit pas dépasser 2 MB",
      *     mimeTypes = {"application/pdf",
      *     "application/x-pdf",
      *     "image/jpg",
