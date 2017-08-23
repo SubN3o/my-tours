@@ -14,7 +14,6 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Fonction</th>
@@ -29,9 +28,6 @@
                                 <tbody>
                                 {% for collaborateur in collaborateurs %}
                                     <tr>
-                                        <td>
-                                            <a href="{{ path('admin_collaborateur_show', { 'id': collaborateur.id }) }}">{{ collaborateur.id }}</a>
-                                        </td>
                                         <td>{{ collaborateur.nom }}</td>
                                         <td>{{ collaborateur.prenom }}</td>
                                         <td>{{ collaborateur.fonction }}</td>

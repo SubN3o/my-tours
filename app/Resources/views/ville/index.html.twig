@@ -13,7 +13,6 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Nom</th>
                                     <th>Aperçu</th>
                                     <th>Editer</th>
@@ -24,9 +23,6 @@
                                 {% for ville in villes %}
 
                                     <tr>
-                                        <td>
-                                            <a href="{{ path('admin_ville_show', { 'id': ville.id }) }}">{{ ville.id }}</a>
-                                        </td>
                                         <td>{{ ville.nom }}</td>
                                         <td>
                                             <a href="{{ path('admin_ville_show', { 'id': ville.id }) }}"><i

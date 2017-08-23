@@ -13,7 +13,6 @@
                         <div class="card-content table-responsive">
                             <table class="table">
                                 <thead class="text">
-                                <th>Id</th>
                                 <th>Nom</th>
                                 <th>Url</th>
                                 <th>Aperçu</th>
@@ -23,7 +22,6 @@
 
                                 {% for partenaire in partenaires %}
                                     <tr>
-                                        <td><a href="{{ path('admin_partenaire_show', { 'id': partenaire.id }) }}">{{ partenaire.id }}</a></td>
                                         <td>{{ partenaire.nom }}</td>
                                         <td>{{ partenaire.url }}</td>
                                         <td>

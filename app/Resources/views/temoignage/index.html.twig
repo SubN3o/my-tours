@@ -14,7 +14,6 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Theme</th>
                                     <th>Auteur</th>
                                     <th>Date</th>
@@ -26,8 +25,6 @@
                                 <tbody>
                                 {% for temoignage in temoignages %}
                                     <tr>
-                                        <td><a href="{{ path('admin_temoignage_show', { 'id': temoignage.id }) }}">
-                                                {{ temoignage.id }}</a></td>
                                         <td>{{ temoignage.theme }}</td>
                                         <td>{{ temoignage.auteur }}</td>
                                         <td>{% if temoignage.date %}{{ temoignage.date|date('j-m-Y') }}{% endif %}</td>

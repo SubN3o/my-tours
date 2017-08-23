@@ -14,7 +14,6 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Type</th>
                                     <th>Description</th>
                                     <th>Aperçu</th>
@@ -25,9 +24,6 @@
 
                                 {% for service in services %}
                                     <tr>
-                                        <td>
-                                            <a href="{{ path('admin_service_show', { 'id': service.id }) }}">{{ service.id }}</a>
-                                        </td>
                                         <td>{{ service.type }}</td>
                                         <td>{{ service.description }}</td>
                                         <td>

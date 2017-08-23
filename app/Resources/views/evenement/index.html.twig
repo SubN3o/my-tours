@@ -14,7 +14,6 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Nom</th>
                                     <th>Adresse</th>
                                     <th>Codepostal</th>
@@ -31,9 +30,6 @@
                                 <tbody>
                                 {% for evenement in evenements %}
                                     <tr>
-                                        <td>
-                                            <a href="{{ path('admin_evenement_show', { 'id': evenement.id }) }}">{{ evenement.id }}</a>
-                                        </td>
                                         <td>{{ evenement.nom }}</td>
                                         <td>{{ evenement.adresse }}</td>
                                         <td>{{ evenement.codePostal }}</td>

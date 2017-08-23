@@ -14,7 +14,6 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Nom</th>
                                     <th>Description</th>
                                     <th>Prix</th>
@@ -26,7 +25,6 @@
 
                                 {% for pack in packs %}
                                     <tr>
-                                        <td><a href="{{ path('admin_pack_show', { 'id': pack.id }) }}">{{ pack.id }}</a>
                                         </td>
                                         <td>{{ pack.nom }}</td>
                                         <td>{{ pack.description }}</td>

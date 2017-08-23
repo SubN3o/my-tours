@@ -13,7 +13,6 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Email</th>
@@ -29,7 +28,6 @@
                                 <tbody>
                                 {% for client in clients %}
                                     <tr>
-                                        <td><a href="{{ path('admin_client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
                                         <td>{{ client.nom }}</td>
                                         <td>{{ client.prenom }}</td>
                                         <td>{{ client.email }}</td>
