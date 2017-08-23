@@ -26,7 +26,7 @@ class LoadResidenceData extends AbstractFixture implements OrderedFixtureInterfa
         $res->setNom('Dunois');
         $res->setAdresse('1 rue Bannier');
         $res->setCodePostal('45000');
-        $res->setVille($this->getReference('ville1'));
+        $res->setVille($this->getReference('ville11'));
         $res->setAffichagePrix(true);
         $res->setNbTotalLogements(30);
 
@@ -36,7 +36,7 @@ class LoadResidenceData extends AbstractFixture implements OrderedFixtureInterfa
         $res2->setNom('Coté Sud');
         $res2->setAdresse('12, rue Emile Zola');
         $res2->setCodePostal('45000');
-        $res2->setVille($this->getReference('ville1'));
+        $res2->setVille($this->getReference('ville11'));
         $res2->setAffichagePrix(true);
         $res2->setNbTotalLogements(45);
 
@@ -47,7 +47,7 @@ class LoadResidenceData extends AbstractFixture implements OrderedFixtureInterfa
         $res3->setNom('Les Terrasses du Loiret');
         $res3->setAdresse('1 rue du Champ de Mars');
         $res3->setCodePostal('45000');
-        $res3->setVille($this->getReference('ville1'));
+        $res3->setVille($this->getReference('ville11'));
         $res3->setAffichagePrix(true);
         $res3->setNbTotalLogements(50);
 
@@ -58,7 +58,7 @@ class LoadResidenceData extends AbstractFixture implements OrderedFixtureInterfa
         $res4->setNom('Private');
         $res4->setAdresse('1 rue de Montauban');
         $res4->setCodePostal('45000');
-        $res4->setVille($this->getReference('ville1'));
+        $res4->setVille($this->getReference('ville11'));
         $res4->setAffichagePrix(true);
         $res4->setNbTotalLogements(20);
 

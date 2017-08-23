@@ -64,12 +64,22 @@ class Residence
     private $ville;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Zone", inversedBy="residences", cascade={"persist"}, fetch="EAGER")
+     * @var string
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="zone", type="string", nullable=true)
      */
     private $zone;
 
     /**
-     * @ORM\ManyToOne(targetEntity="NormeThermique", inversedBy="residences", cascade={"persist"}, fetch="EAGER")
+     * @var string
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="norme_thermique", type="string", nullable=true)
      */
     private $normeThermique;
 

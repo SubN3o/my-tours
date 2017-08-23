@@ -50,17 +50,19 @@ class ResidenceType extends AbstractType
                 'placeholder' => 'Choisir...',
                 'required' => false
             ])
-            ->add('normeThermique', EntityType::class, [
-                'class' => NormeThermique::class,
-                'choice_label' => 'nom',
-                'placeholder' => 'Choisir...',
-                'required' => false
+            ->add('normeThermique', ChoiceType::class, [
+                'choices' => [
+                    'RT2012' => 'RT2012',
+                    'BBC' => 'BBC',
+                ],
             ])
-            ->add('zone', EntityType::class, [
-                'class' => Zone::class,
-                'choice_label' => 'nom',
-                'placeholder' => 'Choisir...',
-                'required' => false
+            ->add('zone', ChoiceType::class, [
+                'choices' => [
+                    'B1' => 'B1',
+                    'A' => 'A',
+                    'B2' => 'B2',
+                    'C' => 'C',
+                ],
             ])
             ->add('dateLivraison', ChoiceType::class, [
                 'choices' => [
