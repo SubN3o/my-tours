@@ -18,7 +18,11 @@ class PackType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class, [
+                "attr" => [
+                    "class" => "materialize ckeditor"
+                ]
+            ])
             ->add('prix', MoneyType::class, array(
                 'required'  =>
                     false

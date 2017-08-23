@@ -17,7 +17,11 @@ class ServiceType extends AbstractType
     {
         $builder
             ->add('type', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class, [
+                "attr" => [
+                    "class" => "materialize ckeditor"
+                ]
+            ])
             ->add('media', MediaType::class);
     }
     
