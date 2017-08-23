@@ -40,9 +40,10 @@ class LoadVilleData extends AbstractFixture implements OrderedFixtureInterface
         $ville18 = new Ville();
         $ville19 = new Ville();
         $ville20 = new Ville();
+        $ville21 = new Ville();
 
 
-        $ville1->setNom('Boigny-sur-bionne');
+        $ville1->setNom('Boigny-sur-Bionne');
         $ville2->setNom('Bou');
         $ville3->setNom('Chanteau');
         $ville4->setNom('Chécy');
@@ -61,7 +62,8 @@ class LoadVilleData extends AbstractFixture implements OrderedFixtureInterface
         $ville17->setNom('Saint-Jean-de-la-Ruelle');
         $ville18->setNom('Saint-Jean-le-Blanc');
         $ville19->setNom('Saint-Pryvé-Saint-Mesmin');
-        $ville20->setNom('Semoy');
+        $ville20->setNom('Saran');
+        $ville21->setNom('Semoy');
 
 
         $manager->persist($ville1);
@@ -84,6 +86,7 @@ class LoadVilleData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($ville18);
         $manager->persist($ville19);
         $manager->persist($ville20);
+        $manager->persist($ville21);
 
         $this->addReference('ville11', $ville11);
 

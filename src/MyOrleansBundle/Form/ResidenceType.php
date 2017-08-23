@@ -120,8 +120,6 @@ class ResidenceType extends AbstractType
                     'Choisir...' => null,
                     'Oui' => true,
                     'Non' => false],
-                'required' => false
-
             ])
             ->add('accroche', TextareaType::class, [
                 'required' => false

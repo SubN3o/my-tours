@@ -27,7 +27,7 @@
                                     <tr>
                                         </td>
                                         <td>{{ pack.nom }}</td>
-                                        <td>{{ pack.description }}</td>
+                                        <td>{{ pack.description | raw }}</td>
                                         <td>{{ pack.prix }}</td>
                                         <td>
                                             <a href="{{ path('admin_pack_show', { 'id': pack.id }) }}"><i

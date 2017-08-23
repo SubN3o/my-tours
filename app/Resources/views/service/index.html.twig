@@ -25,7 +25,7 @@
                                 {% for service in services %}
                                     <tr>
                                         <td>{{ service.type }}</td>
-                                        <td>{{ service.description }}</td>
+                                        <td>{{ service.description | raw }}</td>
                                         <td>
                                             <a href="{{ path('admin_service_show', { 'id': service.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
