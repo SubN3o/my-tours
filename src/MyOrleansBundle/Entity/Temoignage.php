@@ -3,6 +3,8 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Temoignage
@@ -37,9 +39,9 @@ class Temoignage
     private $auteur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="date", type="string", length=255)
+     * @var \DateTime
+     * @Assert\DateTime()
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
 
@@ -111,7 +113,7 @@ class Temoignage
     /**
      * Set date
      *
-     * @param string $date
+     * @param \DateTime $date
      *
      * @return Temoignage
      */
@@ -125,7 +127,7 @@ class Temoignage
     /**
      * Get date
      *
-     * @return string
+     * @return \DateTime
      */
     public function getDate()
     {

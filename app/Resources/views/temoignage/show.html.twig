@@ -29,7 +29,7 @@
                                 </tr>
                                 <tr>
                                     <th>Date</th>
-                                    <td>{{ temoignage.date }}</td>
+                                    <td>{% if temoignage.date %}{{ temoignage.date|date('j-m-Y') }}{% endif %}</td>
                                 </tr>
                                 <tr>
                                     <th>Message</th>

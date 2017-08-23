@@ -13,7 +13,38 @@
                         <div class="card-content table-responsive">
 
                             {{ form_start(edit_form) }}
-                            {{ form_widget(edit_form) }}
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.theme, 'Theme : ') }}
+                                    {{ form_widget(edit_form.theme) }}
+                                    {{ form_errors(edit_form.theme) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.auteur, 'Auteur : ') }}
+                                    {{ form_widget(edit_form.auteur) }}
+                                    {{ form_errors(edit_form.auteur) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.date, 'Date : ') }}
+                                    <div class="row">
+                                        <div class="col s3">{{ form_widget(edit_form.date.day) }}</div>
+                                        <div class="col s3">{{ form_widget(edit_form.date.month) }}</div>
+                                        <div class="col s3">{{ form_widget(edit_form.date.year) }}</div>
+                                    </div>
+                                    {{ form_errors(edit_form.date) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.message, 'Message : ') }}
+                                    {{ form_widget(edit_form.message, { 'attr': {'class':'areaDescription'}}) }}
+                                    {{ form_errors(edit_form.message) }}
+                                </div>
+                            </div>
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Modifier"/>
                             {{ form_end(edit_form) }}
 

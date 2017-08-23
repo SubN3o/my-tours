@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,7 +17,7 @@ class TemoignageType extends AbstractType
         $builder
             ->add('theme')
             ->add('auteur')
-            ->add('date')
+            ->add('date', DateType::class)
             ->add('message');
     }
     

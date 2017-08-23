@@ -30,7 +30,7 @@
                                                 {{ temoignage.id }}</a></td>
                                         <td>{{ temoignage.theme }}</td>
                                         <td>{{ temoignage.auteur }}</td>
-                                        <td>{{ temoignage.date }}</td>
+                                        <td>{% if temoignage.date %}{{ temoignage.date|date('j-m-Y') }}{% endif %}</td>
                                         <td>{{ temoignage.message }}</td>
                                         <td>
                                             <a href="{{ path('admin_temoignage_show', { 'id': temoignage.id }) }}"><i
