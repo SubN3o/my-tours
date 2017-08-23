@@ -2,6 +2,7 @@
 
 namespace MyOrleansBundle\Controller\admin;
 
+use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Temoignage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -58,6 +59,16 @@ class TemoignageController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // Si l'administrateur n'upload pas de photo pour le temoignage, le champ MediaName est rempli avec un string vide
+            $media = $temoignage->getMedia();
+            if (is_null($media->getMediaName())) {
+                /* @var $media Media */
+                $media->setMediaName('');
+                $date = new \DateTimeImmutable();
+                $media->setUpdatedAt($date);
+            }
+
             $em->persist($temoignage);
             $em->flush();
 
@@ -102,6 +113,19 @@ class TemoignageController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $em = $this->getDoctrine()->getManager();
+
+            // Si l'administrateur n'upload pas de photo pour le temoignage, le champ MediaName est setter avec un string vide
+            $media = $temoignage->getMedia();
+            if (is_null($media->getMediaName())) {
+                /* @var $media Media */
+                $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+                $media->setTypeMedia($typeMediaImgCover);
+                $media->setMediaName('default.jpg');
+                $date = new \DateTimeImmutable();
+                $media->setUpdatedAt($date);
+            }
+
             $this->addFlash('success', 'Votre témoignage a bien été mis à jour');
             return $this->redirectToRoute('admin_temoignage_index', array('id' => $temoignage->getId()));
         }
@@ -134,6 +158,22 @@ class TemoignageController extends Controller
         return $this->redirectToRoute('admin_temoignage_index');
     }
 
+    /**
+     * Deletes a temoignage media.
+     *
+     * @Route("/{id}/delete_media", name="temoignage_media_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Temoignage $temoignage)
+    {
+        $path = $temoignage->getMedia()->getMediaName();
+        $em = $this->getDoctrine()->getManager();
+        $temoignage->setMedia(null);
+        $em->flush();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        return $this->redirectToRoute('admin_temoignage_edit', array('id' => $temoignage->getId()));
+    }
+    
     /**
      * Creates a form to delete a temoignage entity.
      *

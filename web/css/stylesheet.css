@@ -402,6 +402,12 @@ body {
     text-align: right;
 }
 
+.img-temoignage{
+    float: left;
+    width: auto;
+    height: 100px;
+}
+
 .message{
     margin-top: 40px;
     background-color: #b7d64a;

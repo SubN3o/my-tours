@@ -18,7 +18,12 @@ class TemoignageType extends AbstractType
             ->add('theme')
             ->add('auteur')
             ->add('date', DateType::class)
-            ->add('message');
+            ->add('message')
+            ->add('media', MediaType::class,[
+                'required' => false
+                ]
+            );
+        ;
     }
     
     /**

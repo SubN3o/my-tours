@@ -123,6 +123,29 @@ class Media
     private $updatedAt;
 
     /**
+     * @ORM\OneToOne(targetEntity="Temoignage", mappedBy="media")
+     */
+    private $temoignage;
+
+    /**
+     * @return mixed
+     */
+    public function getTemoignage()
+    {
+        return $this->temoignage;
+    }
+
+    /**
+     * @param mixed $temoignage
+     * @return Media
+     */
+    public function setTemoignage($temoignage)
+    {
+        $this->temoignage = $temoignage;
+        return $this;
+    }
+
+    /**
      * @param \DateTime $updatedAt
      * @return Media
      */

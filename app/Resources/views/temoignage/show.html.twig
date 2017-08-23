@@ -34,6 +34,14 @@
                                 </tbody>
                             </table>
                             <hr>
+                            <div class="row">
+                                <div class="col s4">
+                                    <img class="responsive-img"
+                                         src="{{ asset('uploads/'~temoignage.media.mediaName) }}"
+                                         alt="{{ temoignage.auteur }}"/>
+                                    <p>{{ temoignage.media.typeMedia.nom }}</p>
+                                </div>
+                            </div>
                             <ul>
                                 <li>
                                     <a href="{{ path('admin_temoignage_index') }}"><i class="material-icons">keyboard_return</i>Retour

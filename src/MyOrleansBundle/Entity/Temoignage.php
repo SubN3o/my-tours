@@ -52,6 +52,29 @@ class Temoignage
      */
     private $message;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="temoignage", cascade={"persist"})
+     * @Assert\Valid()
+     */
+    private $media;
+
+    /**
+     * @return mixed
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param mixed $media
+     * @return Temoignage
+     */
+    public function setMedia($media)
+    {
+        $this->media = $media;
+        return $this;
+    }
 
     /**
      * Get id
