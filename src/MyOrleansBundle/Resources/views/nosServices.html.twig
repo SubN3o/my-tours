@@ -33,17 +33,18 @@
                     <div class="col s12 m6 l6">
                         <div data-aos="fade-up-left">
 
-                                {% if service.media.typeMedia.nom == 'image-cover' %}
+                            {% if service.media.typeMedia.nom == 'image-cover' %}
 
-                                    <img src="{{ asset('uploads/'~service.media.mediaName) }}" class="img-service responsive-img">
+                                <img src="{{ asset('uploads/'~service.media.mediaName) }}"
+                                     class="img-service responsive-img">
 
-                                {% elseif media.typeMedia.nom == 'video' %}
+                            {% elseif media.typeMedia.nom == 'video' %}
 
-                                    <div class="video-container">
-                                        <iframe width="560" height="315" src="{{ service.media.mediaName }}" frameborder="0"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                {% endif %}
+                                <div class="video-container">
+                                    <iframe width="560" height="315" src="{{ service.media.mediaName }}" frameborder="0"
+                                            allowfullscreen></iframe>
+                                </div>
+                            {% endif %}
 
                         </div>
                     </div>
@@ -56,14 +57,15 @@
 
                         <div data-aos="fade-up-right">
 
-                                {% if service.media.typeMedia.nom == 'image-cover' %}
-                                    <img src="{{ asset('uploads/'~service.media.mediaName) }}" class="img-service responsive-img">
-                                {% elseif service.media.typeMedia.nom == 'video' %}
-                                    <div class="video-container">
-                                        <iframe width="560" height="315" src="{{ service.media.mediaName }}" frameborder="0"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                {% endif %}
+                            {% if service.media.typeMedia.nom == 'image-cover' %}
+                                <img src="{{ asset('uploads/'~service.media.mediaName) }}"
+                                     class="img-service responsive-img">
+                            {% elseif service.media.typeMedia.nom == 'video' %}
+                                <div class="video-container">
+                                    <iframe width="560" height="315" src="{{ service.media.mediaName }}" frameborder="0"
+                                            allowfullscreen></iframe>
+                                </div>
+                            {% endif %}
 
                         </div>
                     </div>
@@ -109,7 +111,8 @@
                                     </div>
                                     <div class="card-content">
                                         <div>
-                                        <a class="waves-effect waves-light btn" href="#modal-{{ pack.id }}">VOIR PLUS</a>
+                                            <a class="waves-effect waves-light btn" href="#modal-{{ pack.id }}">VOIR
+                                                PLUS</a>
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +126,8 @@
                                 <p>{{ pack.description | raw }}</p>
                             </div>
                             <div class="modal-footer">
-                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                                <a href="#!"
+                                   class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
                             </div>
                         </div>
 
@@ -152,9 +156,11 @@
                                 <h3>{{ temoignage.theme }}</h3>
                                 <p>{{ temoignage.message }}</p>
                                 <br/>
-                                <img src="{{ asset('uploads/'~temoignage.media.mediaName) }}" class="img-temoignage">
-                                <p class="temoignage">{{ temoignage.auteur }}</p>
-                                <p class="temoignage">{{ temoignage.date|date("d/m/y") }}</p>
+                                {% if asset('uploads/'~temoignage.media.mediaName) !=  asset('uploads/default.jpg') %}
+                                    <img src="{{ asset('uploads/'~temoignage.media.mediaName) }}"
+                                         class="img-temoignage">
+                                {% endif %}                                <p class="temoignage">{{ temoignage.auteur }}</p>
+                                <p class="temoignage">{{ temoignage.date|date('j-m-Y') }}</p>
 
                             </div>
                         </div>
@@ -167,9 +173,12 @@
                                 <h3>{{ temoignage.theme }}</h3>
                                 <p>{{ temoignage.message }}</p>
                                 <br/>
-                                <img src="{{ asset('uploads/'~temoignage.media.mediaName) }}" class="img-temoignage">
+                                {% if asset('uploads/'~temoignage.media.mediaName) !=  asset('uploads/default.jpg') %}
+                                    <img src="{{ asset('uploads/'~temoignage.media.mediaName) }}"
+                                         class="img-temoignage">
+                                {% endif %}
                                 <p class="temoignage">{{ temoignage.auteur }}</p>
-                                <p class="temoignage">{{ temoignage.date|date("d/m/y") }}</p>
+                                <p class="temoignage">{{ temoignage.date|date('j-m-Y') }}</p>
 
 
                             </div>

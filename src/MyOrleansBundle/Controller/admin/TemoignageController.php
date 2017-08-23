@@ -60,11 +60,11 @@ class TemoignageController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            // Si l'administrateur n'upload pas de photo pour le temoignage, le champ MediaName est rempli avec un string vide
+            // Si l'administrateur n'upload pas de photo pour le temoignage, une photo est chargée par défaut
             $media = $temoignage->getMedia();
             if (is_null($media->getMediaName())) {
                 /* @var $media Media */
-                $media->setMediaName('');
+                $media->setMediaName('default.jpg');
                 $date = new \DateTimeImmutable();
                 $media->setUpdatedAt($date);
             }
@@ -115,7 +115,7 @@ class TemoignageController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            // Si l'administrateur n'upload pas de photo pour le temoignage, le champ MediaName est setter avec un string vide
+            // Si l'administrateur n'upload pas de photo pour le temoignage, une photo est chargée par défaut
             $media = $temoignage->getMedia();
             if (is_null($media->getMediaName())) {
                 /* @var $media Media */
