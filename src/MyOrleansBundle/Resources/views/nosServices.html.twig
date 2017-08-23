@@ -166,10 +166,11 @@
                             <div class="boxi">
                                 <h3>{{ temoignage.theme }}</h3>
                                 <p>{{ temoignage.message }}</p>
-
                                 <br/>
+                                <img src="{{ asset('uploads/'~temoignage.media.mediaName) }}" class="img-temoignage">
                                 <p class="temoignage">{{ temoignage.auteur }}</p>
                                 <p class="temoignage">{{ temoignage.date|date("d/m/y") }}</p>
+
 
                             </div>
                         </di>
