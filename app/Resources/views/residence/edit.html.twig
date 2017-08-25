@@ -17,69 +17,83 @@
                                 <div class="col s6">
                                     {{ form_label(edit_form.nom, "Nom de la résidence :") }}
                                     {{ form_widget(edit_form.nom) }}
+                                    {{ form_errors(edit_form.nom) }}
                                 </div>
                                 <div class="col s6">  {{ form_label(edit_form.favoris, 'Favoris :') }}
                                     {{ form_widget(edit_form.favoris) }}
+                                    {{ form_errors(edit_form.favoris) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
                                     {{ form_label(edit_form.adresse, 'Adresse :') }}
                                     {{ form_widget(edit_form.adresse) }}
+                                    {{ form_errors(edit_form.adresse) }}
                                 </div>
                                 <div class="col s6 padding-top">
                                     {{ form_label(edit_form.quartier, 'Quartier :') }}
                                     {{ form_widget(edit_form.quartier) }}
+                                    {{ form_errors(edit_form.quartier) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
                                     {{ form_label(edit_form.codePostal, 'Code Postal :') }}
                                     {{ form_widget(edit_form.codePostal) }}
+                                    {{ form_errors(edit_form.codePostal) }}
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(edit_form.ville, 'Ville :') }}
                                     {{ form_widget(edit_form.ville) }}
+                                    {{ form_errors(edit_form.ville) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">
                                     {{ form_label(edit_form.offre, 'Offre du moment :') }}
                                     {{ form_widget(edit_form.offre) }}
+                                    {{ form_errors(edit_form.offre) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
                                     {{ form_label(edit_form.dateLivraison, 'Date de livraison :') }}
                                     {{ form_widget(edit_form.dateLivraison) }}
+                                    {{ form_errors(edit_form.dateLivraison) }}
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(edit_form.nbTotalLogements, 'Nombre total de logements :') }}
                                     {{ form_widget(edit_form.nbTotalLogements) }}
+                                    {{ form_errors(edit_form.nbTotalLogements) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s3">
                                     {{ form_label(edit_form.noteTransports, 'Note transport :') }}
                                     {{ form_widget(edit_form.noteTransports) }}
+                                    {{ form_errors(edit_form.noteTransports) }}
                                 </div>
                                 <div class="col s3">
                                     {{ form_label(edit_form.noteCommerces, 'Note commerce :') }}
                                     {{ form_widget(edit_form.noteCommerces) }}
+                                    {{ form_errors(edit_form.noteCommerces) }}
                                 </div>
                                 <div class="col s3">
                                     {{ form_label(edit_form.noteServices, 'Note service :') }}
                                     {{ form_widget(edit_form.noteServices) }}
+                                    {{ form_errors(edit_form.noteServices) }}
                                 </div>
                                 <div class="col s3">
                                     {{ form_label(edit_form.noteEsthetisme, 'Note esthétisme :') }}
                                     {{ form_widget(edit_form.noteEsthetisme) }}
+                                    {{ form_errors(edit_form.noteEsthetisme) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">
                                     {{ form_label(edit_form.description, 'Description :') }}
                                     {{ form_widget(edit_form.description, { 'attr': {'class':'areaDescription'}}) }}
+                                    {{ form_errors(edit_form.description) }}
                                 </div>
                             </div>
                             <div class="row">

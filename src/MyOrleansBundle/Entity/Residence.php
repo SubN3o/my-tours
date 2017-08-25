@@ -148,6 +148,12 @@ class Residence
      *     type="float",
      *     message="La saisie n'est pas correcte. Un nombre est attendu."
      * )
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 10,
+     *      minMessage = "Saisissez une note supérieure ou égale à 1",
+     *      maxMessage = "Saisissez une note inférieure ou égale à 10"
+     * )
      * @ORM\Column(name="note_transports", type="float", nullable=true)
      */
     private $noteTransports;
@@ -157,6 +163,12 @@ class Residence
      *  @Assert\Type(
      *     type="float",
      *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 10,
+     *      minMessage = "Saisissez une note supérieure ou égale à 1",
+     *      maxMessage = "Saisissez une note inférieure ou égale à 10"
      * )
      * @ORM\Column(name="note_commerces", type="float", nullable=true)
      */
@@ -168,6 +180,12 @@ class Residence
      *     type="float",
      *     message="La saisie n'est pas correcte. Un nombre est attendu."
      * )
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 10,
+     *      minMessage = "Saisissez une note supérieure ou égale à 1",
+     *      maxMessage = "Saisissez une note inférieure ou égale à 10"
+     * )
      * @ORM\Column(name="note_services", type="float", nullable=true)
      */
     private $noteServices;
@@ -177,6 +195,12 @@ class Residence
      *  @Assert\Type(
      *     type="float",
      *     message="La saisie n'est pas correcte. Un nombre est attendu."
+     * )
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 10,
+     *      minMessage = "Saisissez une note supérieure ou égale à 1",
+     *      maxMessage = "Saisissez une note inférieure ou égale à 10"
      * )
      * @ORM\Column(name="note_esthetisme", type="float", nullable=true)
      */
