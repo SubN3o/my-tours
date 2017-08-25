@@ -85,8 +85,10 @@ class ResidenceType extends AbstractType
             ->add('description', TextareaType::class, [
                 'required' => false,
             ])
-            ->add('nbTotalLogements', NumberType::class, [
-                'required' => false])
+            ->add('nbTotalLogements', IntegerType::class, [
+                'attr' => ['min' => '0'],
+                'required' => false
+            ])
             ->add('noteTransports', NumberType::class, [
                 'required' => false
             ])

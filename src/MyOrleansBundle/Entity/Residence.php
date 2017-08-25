@@ -134,6 +134,10 @@ class Residence
 
     /**
      * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="nb_total_logements", type="integer", nullable=true)
      */
     private $nbTotalLogements;
