@@ -146,7 +146,7 @@
                 <div class="row">
                     <ul>
                         <li class="design col m3 s6">
-                            <div class="notesite" id="note_0" data-note="{{ residence.noteTransports }}"></div>
+                            <div class="notesite" id="note_0" data-note="{{ residence.noteTransports|number_format(2,'.') }}"></div>
                             <br/>
                             <div class="list-legend">
                                 <div class="row center-align">
@@ -157,7 +157,7 @@
                             </div>
                         </li>
                         <li class="content col m3 s6">
-                            <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces }}"></div>
+                            <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces|number_format(2,'.') }}"></div>
                             <br/>
                             <div class="list-legend">
                                 <div class="row">
@@ -168,7 +168,7 @@
                             </div>
                         </li>
                         <li class="creativity col m3 s6">
-                            <div class="notesite" id="note_1" data-note="{{ residence.noteServices }}"></div>
+                            <div class="notesite" id="note_1" data-note="{{ residence.noteServices|number_format(2,'.') }}"></div>
                             <div class="list-legend">
                                 <div class="row">
                                     <ul>
@@ -178,7 +178,7 @@
                             </div>
                         </li>
                         <li class="usability col m3 s6">
-                            <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme }}"></div>
+                            <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme|number_format(2,'.') }}"></div>
                             <div class="list-legend">
                                 <div class="row">
                                     <ul>
