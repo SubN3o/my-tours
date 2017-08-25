@@ -1,5 +1,5 @@
 .interligne{
-    line-height:10px;
+    line-height:15px;
 }
 
 html, body{
@@ -505,7 +505,6 @@ body {
     margin-top: -10px;
     padding: 10px 10px 25px 10px;
     background-color: white;
-    line-height:20px;
 }
 
 
