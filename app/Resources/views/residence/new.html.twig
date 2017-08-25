@@ -75,6 +75,11 @@
                                     {{ form_errors(form.noteTransports) }}
                                 </div>
                                 <div class="col s3">
+                                    {{ form_label(form.noteCommerces, 'Note commerce :') }}
+                                    {{ form_widget(form.noteCommerces) }}
+                                    {{ form_errors(form.noteCommerces) }}
+                                </div>
+                                <div class="col s3">
                                     {{ form_label(form.noteServices, 'Note service :') }}
                                     {{ form_widget(form.noteServices) }}
                                     {{ form_errors(form.noteServices) }}
@@ -83,11 +88,6 @@
                                     {{ form_label(form.noteEsthetisme, 'Note esthétisme :') }}
                                     {{ form_widget(form.noteEsthetisme) }}
                                     {{ form_errors(form.noteEsthetisme) }}
-                                </div>
-                                <div class="col s3">
-                                    {{ form_label(form.noteCommerces, 'Note commerce :') }}
-                                    {{ form_widget(form.noteCommerces) }}
-                                    {{ form_errors(form.noteCommerces) }}
                                 </div>
                             </div>
                             <div class="row">
