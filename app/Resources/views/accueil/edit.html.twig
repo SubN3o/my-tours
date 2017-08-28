@@ -1,0 +1,55 @@
+{% extends '::layout_admin.html.twig' %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Modifier l'accueil</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+
+                            {{ form_start(edit_form) }}
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.presentation, 'Prestation : ') }}
+                                    {{ form_widget(edit_form.presentation, { 'attr': {'class':'areaDescription'}}) }}
+                                    {{ form_errors(edit_form.presentation) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.mentions, 'Mentions : ') }}
+                                    {{ form_widget(edit_form.mentions) }}
+                                    {{ form_errors(edit_form.mentions) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {% for media in accueil.medias %}
+                                        {% if media.id != null %}
+                                            {{ loop.index0 }}
+                                            <p class="imgUploader"><img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                            </p>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <h3>Ajouter une nouvelle image.</h3>
+                                    <p>Utilisez le type de média "<b>image-cover</b>" pour afficher l'image principale d'accueil</p>
+                                    <p>Utilisez le type de média "<b>image</b>" pour afficher les Honoraires dans le footer.</p>
+                                    {{ form_widget(edit_form.medias) }}
+                                </div>
+                            </div>
+                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Modifier"/>
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

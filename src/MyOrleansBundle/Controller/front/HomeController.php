@@ -2,6 +2,7 @@
 
 namespace MyOrleansBundle\Controller\front;
 
+use MyOrleansBundle\Entity\Accueil;
 use MyOrleansBundle\Entity\Article;
 
 
@@ -43,6 +44,8 @@ class HomeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
+
+        $accueil = $em->getRepository(Accueil::class)->find(1);
 
         $residenceFav = $em->getRepository(Residence::class)->findOneFav();
         $residenceTwoFav = $em->getRepository(Residence::class)->findTwoFav();
@@ -120,7 +123,8 @@ class HomeController extends Controller
             'event' => $event,
             'testimonials' => $testimonials,
             'telephone_number' => $telephoneNumber,
-            'form' => $formulaire->createView()
+            'form' => $formulaire->createView(),
+            'accueil' => $accueil
 
         ]);
     }

@@ -3,6 +3,9 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 /**
  * Accueil
@@ -17,7 +20,6 @@ class Accueil
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -31,9 +33,42 @@ class Accueil
     /**
      * @var string
      *
-     * @ORM\Column(name="mentions", type="string", length=255)
+     * @ORM\Column(name="mentions", type="text")
      */
     private $mentions;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"}, fetch="EAGER")
+     * @ORM\JoinTable(name="accueil_media")
+     * @Assert\Valid()
+     */
+    private $medias;
+
+    /**
+     * @return mixed
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $medias
+     * @return Accueil
+     */
+    public function setMedias($medias)
+    {
+        $this->medias = $medias;
+        return $this;
+    }
 
 
     /**

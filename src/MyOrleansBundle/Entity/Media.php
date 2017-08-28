@@ -128,6 +128,29 @@ class Media
     private $temoignage;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Accueil", cascade={"persist"})
+     */
+    private $accueils;
+
+    /**
+     * @return mixed
+     */
+    public function getAccueils()
+    {
+        return $this->accueils;
+    }
+
+    /**
+     * @param mixed $accueils
+     * @return Media
+     */
+    public function setAccueils($accueils)
+    {
+        $this->accueils = $accueils;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getTemoignage()
