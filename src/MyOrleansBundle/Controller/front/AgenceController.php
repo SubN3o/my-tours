@@ -8,6 +8,7 @@
 
 namespace MyOrleansBundle\Controller\front;
 
+use MyOrleansBundle\Entity\Chiffre;
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Collaborateur;
 use MyOrleansBundle\Entity\Evenement;
@@ -48,6 +49,9 @@ class AgenceController extends Controller
         ];
 
         $em = $this->getDoctrine()->getManager();
+
+        $chiffres = $em->getRepository(Chiffre::class)->findBy([], ['id'=>'ASC'], 3);
+
 
         $telephone_number = $this->getParameter('telephone_number');
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
@@ -97,6 +101,7 @@ class AgenceController extends Controller
                 'collaborateurs' => $collaborateurs,
                 'evenements' => $evenements,
                 'cover' => $cover,
+                'chiffres' => $chiffres,
                 'form' => $formulaire->createView()
 
             ]

@@ -24,16 +24,28 @@
             <div class="row center countRow">
                 <h2 class="fancy"><span>Nos chiffres</span></h2>
                 <div class="col s4">
-                    <span class="count countTitle">5</span>
-                    <p>Experts</p>
+                    {% for chiffre in chiffres %}
+                        {% if loop.index == 1 %}
+                    <span class="count countTitle">{{ chiffre.valeur }}</span>
+                    <p>{{ chiffre.nom }}</p>
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="col s4 countBlock">
-                    <span class="count countTitle">10</span>
-                    <p>Années d'expériencs</p>
+                    {% for chiffre in chiffres %}
+                        {% if loop.index == 2 %}
+                            <span class="count countTitle">{{ chiffre.valeur }}</span>
+                            <p>{{ chiffre.nom }}</p>
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="col s4 ">
-                    <span class="count countTitle">1000</span>
-                    <p>Appartements vendus</p>
+                    {% for chiffre in chiffres %}
+                        {% if loop.index == 3 %}
+                            <span class="count countTitle">{{ chiffre.valeur }}</span>
+                            <p>{{ chiffre.nom }}</p>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
 
