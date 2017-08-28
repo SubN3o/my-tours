@@ -25,14 +25,26 @@ class Accueil
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Le texte saisi est dépasse les 255 charactères."
+     * )
      * @ORM\Column(name="presentation", type="string", length=255)
      */
     private $presentation;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      * @ORM\Column(name="mentions", type="text")
      */
     private $mentions;

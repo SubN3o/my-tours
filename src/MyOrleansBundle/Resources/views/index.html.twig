@@ -331,10 +331,7 @@
             <div class="col s12 center">
                 <div class="row carouselAgence">
                     <div class="col s12 m10 l10 offset-l1">
-                        <p>"Nous sommes passionnés par l’immobilier et par les relations avec nos partenaires et nos
-                            clients.
-                            Dynamiques, réactifs et toujours à l’écoute, nous mettons tout en oeuvre pour apporter les
-                            meilleurs services et solutions, en adéquation avec vos attentes et vos besoins. </p>
+                        <p>"{{ accueil.presentation }}"</p>
                         <div class="carousel center-align">
                             {% for collaborateur in collaborateurs %}
                                 {% if collaborateur.media.mediaName is defined %}
