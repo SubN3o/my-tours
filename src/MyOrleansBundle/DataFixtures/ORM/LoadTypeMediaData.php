@@ -55,6 +55,7 @@ class LoadTypeMediaData implements FixtureInterface
         $manager->persist($typeMedia6);
         $manager->persist($typeMedia7);
 
+
         $manager->flush();
 
     }
