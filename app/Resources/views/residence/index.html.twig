@@ -14,6 +14,7 @@
                             <table class="table">
                                 <thead>
                                 <tr>
+                                    <th>Tri</th>
                                     <th>Nom</th>
                                     <th>Adresse</th>
                                     <th>Code postal</th>
@@ -36,6 +37,7 @@
                                 {% for residence in residences %}
 
                                     <tr>
+                                        <td>{{ residence.tri }}</td>
                                         <td>{{ residence.nom }}</td>
                                         <td>{{ residence.adresse }}</td>
                                         <td>{{ residence.codePostal }}</td>

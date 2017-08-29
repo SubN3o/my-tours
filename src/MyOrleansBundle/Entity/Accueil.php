@@ -54,6 +54,34 @@ class Accueil
     private $medias;
 
     /**
+     * @var string
+     *  @Assert\Url(
+     *     message = "L'URL saisie n'est pas correcte",
+     *     protocols = {"http", "https", "ftp"}
+     * )
+     * @ORM\Column(name="lien_youtube", type="string", nullable=true)
+     */
+    private $lienYoutube;
+
+    /**
+     * @return string
+     */
+    public function getLienYoutube()
+    {
+        return $this->lienYoutube;
+    }
+
+    /**
+     * @param string $lienYoutube
+     * @return Accueil
+     */
+    public function setLienYoutube($lienYoutube)
+    {
+        $this->lienYoutube = $lienYoutube;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getMedias()

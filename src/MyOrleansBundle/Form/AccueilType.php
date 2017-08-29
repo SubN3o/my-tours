@@ -5,6 +5,7 @@ namespace MyOrleansBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -34,7 +35,11 @@ class AccueilType extends AbstractType
                     'allow_add' => true,
                     'prototype' => true,
                     'by_reference' => false
-                ]);
+                ])
+                ->add('lienYoutube', TextType::class, [
+                    'required' => false,
+                ])
+        ;
     }
     
     /**

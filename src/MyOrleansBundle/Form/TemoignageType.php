@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,8 +22,10 @@ class TemoignageType extends AbstractType
             ->add('message')
             ->add('media', MediaType::class,[
                 'required' => false
-                ]
-            );
+                ])
+            ->add('tri', IntegerType::class, [
+                'required' => false
+            ])
         ;
     }
     

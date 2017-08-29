@@ -14,6 +14,7 @@
                             <table class="table">
                                 <thead>
                                 <tr>
+                                    <th>Tri</th>
                                     <th>Nom</th>
                                     <th>Description</th>
                                     <th>Prix</th>
@@ -25,7 +26,7 @@
 
                                 {% for pack in packs %}
                                     <tr>
-                                        </td>
+                                        <td>{{ pack.tri }}</td>
                                         <td>{{ pack.nom }}</td>
                                         <td>{{ pack.description | raw }}</td>
                                         <td>{{ pack.prix }}</td>

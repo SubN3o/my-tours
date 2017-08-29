@@ -13,6 +13,7 @@
                             <table class="table">
                                 <thead>
                                 <tr>
+                                    <th>Tri</th>
                                     <th>Nom</th>
                                     <th>Valeur</th>
                                 </tr>
@@ -22,6 +23,7 @@
                                 {% for chiffre in chiffres %}
 
                                     <tr>
+                                        <td>{{ chiffre.tri }}</td>
                                         <td>{{ chiffre.nom }}</td>
                                         <td>{{ chiffre.valeur }}</td>
                                         <td>

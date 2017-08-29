@@ -14,6 +14,13 @@
 
                             {{ form_start(edit_form) }}
                             <div class="row">
+                                <div class="col s1">
+                                    {{ form_label(edit_form.tri, 'Tri :') }}
+                                    {{ form_widget(edit_form.tri) }}
+                                    {{ form_errors(edit_form.tri) }}
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s6">
                                     {{ form_label(edit_form.nom, "Nom de la résidence :") }}
                                     {{ form_widget(edit_form.nom) }}
@@ -132,6 +139,13 @@
                                     {{ form_label(edit_form.affichagePrix, 'Affichage du Prix :') }}
                                     {{ form_widget(edit_form.affichagePrix) }}
                                     {{ form_errors(edit_form.affichagePrix) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(edit_form.lienYoutube, 'Lien Youtube :') }}
+                                    {{ form_widget(edit_form.lienYoutube) }}
+                                    {{ form_errors(edit_form.lienYoutube) }}
                                 </div>
                             </div>
                             <div class="row">

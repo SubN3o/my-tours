@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -31,7 +32,11 @@ class CollaborateurType extends AbstractType
             ->add('lienLinkedin', UrlType::class, [
                 'required'=>false])
             ->add('email', EmailType::class)
-            ->add('media', MediaType::class);
+            ->add('media', MediaType::class)
+            ->add('tri', IntegerType::class, [
+                'required' => false
+            ])
+        ;
     }
     
     /**

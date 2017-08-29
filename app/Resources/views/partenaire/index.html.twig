@@ -12,16 +12,20 @@
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
-                                <thead class="text">
-                                <th>Nom</th>
-                                <th>Url</th>
-                                <th>Aperçu</th>
-                                <th>Éditer</th>
+                                <thead>
+                                <tr>
+                                    <th>Tri</th>
+                                    <th>Nom</th>
+                                    <th>Url</th>
+                                    <th>Aperçu</th>
+                                    <th>Éditer</th>
+                                </tr>
                                 </thead>
                                 <tbody>
 
                                 {% for partenaire in partenaires %}
                                     <tr>
+                                        <td>{{ partenaire.tri }}</td>
                                         <td>{{ partenaire.nom }}</td>
                                         <td>{{ partenaire.url }}</td>
                                         <td>

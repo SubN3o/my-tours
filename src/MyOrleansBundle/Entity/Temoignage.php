@@ -59,6 +59,34 @@ class Temoignage
     private $media;
 
     /**
+     * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="tri", type="integer", nullable=true)
+     */
+    private $tri;
+
+    /**
+     * @return int
+     */
+    public function getTri()
+    {
+        return $this->tri;
+    }
+
+    /**
+     * @param int $tri
+     * @return Temoignage
+     */
+    public function setTri($tri)
+    {
+        $this->tri = $tri;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getMedia()

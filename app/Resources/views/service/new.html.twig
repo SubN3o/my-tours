@@ -14,6 +14,13 @@
 
                             {{ form_start(form) }}
                             <div class="row">
+                                <div class="col s1">
+                                    {{ form_label(form.tri, 'Tri :') }}
+                                    {{ form_widget(form.tri) }}
+                                    {{ form_errors(form.tri) }}
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s12">
                                     {{ form_label(form.type, 'Type de service: ') }}
                                     {{ form_widget(form.type) }}
@@ -25,6 +32,13 @@
                                     {{ form_label(form.description, 'Description du service :') }}
                                     {{ form_widget(form.description) }}
                                     {{ form_errors(form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    {{ form_label(form.lienYoutube, 'Lien Youtube :') }}
+                                    {{ form_widget(form.lienYoutube) }}
+                                    {{ form_errors(form.lienYoutube) }}
                                 </div>
                             </div>
                             <div class="row">
