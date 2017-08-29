@@ -31,11 +31,7 @@ class Accueil
      *     type="string",
      *     message="La saisie n'est pas correcte."
      * )
-     * @Assert\Length(
-     *      max = 255,
-     *      maxMessage = "Le texte saisi est dépasse les 255 charactères."
-     * )
-     * @ORM\Column(name="presentation", type="string", length=255)
+     * @ORM\Column(name="presentation", type="text")
      */
     private $presentation;
 
