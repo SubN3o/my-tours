@@ -26,14 +26,24 @@ class EvenementController extends Controller
      * @Route("/", name="admin_evenement_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $evenements = $em->getRepository('MyOrleansBundle:Evenement')->findAll();
 
+        /**
+         * @var $pagination "Knp\Component\Pager\Paginator"
+         * */
+        $pagination = $this->get('knp_paginator');
+        $results = $pagination->paginate(
+            $evenements,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 10)
+        );
+
         return $this->render('evenement/index.html.twig', array(
-            'evenements' => $evenements,
+            'evenements' => $results,
         ));
     }
 
