@@ -27,7 +27,7 @@ class ChiffreController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $chiffres = $em->getRepository('MyOrleansBundle:Chiffre')->findAll();
+        $chiffres = $em->getRepository('MyOrleansBundle:Chiffre')->findBy([], ['tri'=>'ASC']);
 
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"

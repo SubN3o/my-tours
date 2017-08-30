@@ -30,7 +30,7 @@ class ServiceController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $services = $em->getRepository('MyOrleansBundle:Service')->findAll();
+        $services = $em->getRepository('MyOrleansBundle:Service')->findBy([], ['tri'=>'ASC']);
 
         return $this->render('service/index.html.twig', array(
             'services' => $services,

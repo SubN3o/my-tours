@@ -28,7 +28,7 @@ class TemoignageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $temoignages = $em->getRepository('MyOrleansBundle:Temoignage')->findAll();
+        $temoignages = $em->getRepository('MyOrleansBundle:Temoignage')->findBy([], ['tri'=>'ASC']);
 
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"

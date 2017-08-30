@@ -50,7 +50,7 @@ class AgenceController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $chiffres = $em->getRepository(Chiffre::class)->findBy([], ['id'=>'ASC'], 3);
+        $chiffres = $em->getRepository(Chiffre::class)->findBy([], ['tri'=>'ASC'], 3);
 
 
         $telephone_number = $this->getParameter('telephone_number');
@@ -60,8 +60,8 @@ class AgenceController extends Controller
 
         $formulaire->handleRequest($request);
 
-        $partenaires = $em->getRepository(Partenaire::class)->findAll();
-        $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
+        $partenaires = $em->getRepository(Partenaire::class)->findBy([], ['tri'=>'ASC']);
+        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC']);
         $evenements = $em->getRepository(Evenement::class)->findAll();
         $cover = $em->getRepository(Media::class)->findAll();
 

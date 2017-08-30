@@ -34,7 +34,7 @@ class ResidenceController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $residences = $em->getRepository('MyOrleansBundle:Residence')->findAll();
+        $residences = $em->getRepository('MyOrleansBundle:Residence')->findBy([], ['tri'=>'ASC']);
 
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"

@@ -29,7 +29,7 @@ class PartenaireController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $partenaires = $em->getRepository('MyOrleansBundle:Partenaire')->findAll();
+        $partenaires = $em->getRepository('MyOrleansBundle:Partenaire')->ffindBy([], ['tri'=>'ASC']);
 
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"

@@ -30,7 +30,7 @@ class PackController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $packs = $em->getRepository('MyOrleansBundle:Pack')->findAll();
+        $packs = $em->getRepository('MyOrleansBundle:Pack')->findBy([], ['tri'=>'ASC']);
 
         return $this->render('pack/index.html.twig', array(
             'packs' => $packs,

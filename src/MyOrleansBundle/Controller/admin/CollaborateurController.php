@@ -32,7 +32,7 @@ class CollaborateurController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $collaborateurs = $em->getRepository('MyOrleansBundle:Collaborateur')->findAll();
+        $collaborateurs = $em->getRepository('MyOrleansBundle:Collaborateur')->findBy([], ['tri'=>'ASC']);
 
         return $this->render('collaborateur/index.html.twig', array(
             'collaborateurs' => $collaborateurs,

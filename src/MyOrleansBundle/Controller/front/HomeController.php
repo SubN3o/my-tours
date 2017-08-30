@@ -43,13 +43,13 @@ class HomeController extends Controller
         }
         $em = $this->getDoctrine()->getManager();
 
-        $collaborateurs = $em->getRepository(Collaborateur::class)->findAll();
+        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC']);
 
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
         $residenceFav = $em->getRepository(Residence::class)->findOneFav();
         $residenceTwoFav = $em->getRepository(Residence::class)->findTwoFav();
-        $residenceAll = $em->getRepository(Residence::class)->findAll();
+        $residenceAll = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
 
         $testimonials = $em->getRepository(Temoignage::class)->findAll();
 
@@ -94,7 +94,7 @@ class HomeController extends Controller
 
 
         // Recuperation de la liste des villes dans lesquelles se trouvent les residences
-        $residences = $em->getRepository(Residence::class)->findAll();
+        $residences = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
         $villes = [];
         foreach ($residences as $residence) {
             $villes[] = $residence->getVille();

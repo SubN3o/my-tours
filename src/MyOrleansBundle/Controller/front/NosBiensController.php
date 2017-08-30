@@ -103,7 +103,7 @@ class NosBiensController extends Controller
 
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
-                $residences = $em -> getRepository(Residence::class)->findAll();
+                $residences = $em -> getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
                 $rechercheSansResultat = 1;
             }
 
@@ -129,7 +129,7 @@ class NosBiensController extends Controller
 
         // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
         if(empty($residences)) {
-            $residences = $em -> getRepository(Residence::class)->findAll();
+            $residences = $em -> getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
         }
 
         return $this->render('MyOrleansBundle::nosbiens.html.twig', [
@@ -177,7 +177,7 @@ class NosBiensController extends Controller
 
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
-                $residences = $em->getRepository(Residence::class)->findAll();
+                $residences = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
                 $rechercheSansResultat = 1;
             }
 
