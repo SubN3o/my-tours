@@ -218,7 +218,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
     public function findAllLimit()
     {
         $qb = $this->createQueryBuilder('r')
-            ->orderBy('r.tri', 'ASC')
+            ->orderBy('r.id','DESC')
             ->setMaxResults(6);
         return $qb->getQuery()->getResult();
 
