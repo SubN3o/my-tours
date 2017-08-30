@@ -42,7 +42,7 @@ class NosServicesController extends Controller
 
 
         $em = $this->getDoctrine()->getManager();
-        $services = $em->getRepository(Service::class)->findBy([], ['tri'=>'ASC'])();
+        $services = $em->getRepository(Service::class)->findBy([], ['tri'=>'ASC']);
         $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->get('sujet')->setData(Client::SUJET_SERVICES);
