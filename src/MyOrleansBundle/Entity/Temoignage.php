@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -11,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="temoignage")
  * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\TemoignageRepository")
+ * @UniqueEntity(fields="tri", message="Ce tri existe déjà.")
  */
 class Temoignage
 {
@@ -64,7 +66,7 @@ class Temoignage
      *     type="integer",
      *     message="La saisie n'est pas correcte."
      * )
-     * @ORM\Column(name="tri", type="integer", nullable=true)
+     * @ORM\Column(name="tri", type="integer", nullable=true, unique=true)
      */
     private $tri;
 

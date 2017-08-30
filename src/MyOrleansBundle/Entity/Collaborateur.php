@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinTable;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -12,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="collaborateur")
  * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\CollaborateurRepository")
+ * @UniqueEntity(fields="tri", message="Ce tri existe déjà.")
  */
 class Collaborateur
 {
@@ -121,7 +123,7 @@ class Collaborateur
      *     type="integer",
      *     message="La saisie n'est pas correcte."
      * )
-     * @ORM\Column(name="tri", type="integer", nullable=true)
+     * @ORM\Column(name="tri", type="integer", nullable=true, unique=true)
      */
     private $tri;
 

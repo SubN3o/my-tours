@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping\JoinTable;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -13,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="residence")
  * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\ResidenceRepository")
+ * @UniqueEntity(fields="tri", message="Ce tri existe déjà.")
  */
 class Residence
 {
@@ -280,8 +282,18 @@ class Residence
      *     type="integer",
      *     message="La saisie n'est pas correcte."
      * )
-     * @ORM\Column(name="tri", type="integer", nullable=true)
+     * @ORM\Column(name="tri", type="integer", nullable=true, unique=true)
      */private $tri;
+
+    /**
+     * @var string
+     *  @Assert\Url(
+     *     message = "L'URL saisie n'est pas correcte",
+     *     protocols = {"http", "https", "ftp"}
+     * )
+     * @ORM\Column(name="lien_youtube", type="string", nullable=true)
+     */
+    private $lienYoutube;
 
     /**
      * @return int
@@ -318,16 +330,6 @@ class Residence
         $this->lienYoutube = $lienYoutube;
         return $this;
     }
-
-    /**
-     * @var string
-     *  @Assert\Url(
-     *     message = "L'URL saisie n'est pas correcte",
-     *     protocols = {"http", "https", "ftp"}
-     * )
-     * @ORM\Column(name="lien_youtube", type="string", nullable=true)
-     */
-    private $lienYoutube;
 
     /**
      * Get id
