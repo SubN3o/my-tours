@@ -253,7 +253,7 @@ class FlatController extends Controller
 
             $em->persist($cloneFlat);
             $em->flush();
-
+            $this->addFlash('success', 'Votre appartement a bien été cloné');
             return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
         }
 
