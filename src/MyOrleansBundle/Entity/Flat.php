@@ -216,7 +216,7 @@ class Flat
     /**
      * @var string
      *
-     * @ORM\Column(name="$solSejour", type="text", nullable=true)
+     * @ORM\Column(name="solSejour", type="text", nullable=true)
      */
     private $solSejour;
 

@@ -49,7 +49,7 @@ class FlatController extends Controller
         );
 
         return $this->render('flat/index.html.twig', array(
-            'flats'     => $results,
+            'flats' => $results,
             'residence' => $residence,
         ));
     }
@@ -77,8 +77,6 @@ class FlatController extends Controller
             foreach ($medias as $media) {
                 if (is_null($media->getMediaName())) {
                     /* @var $media Media */
-//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE);
-//                    $media->setTypeMedia($typeMediaImgCover);
                     $media->setMediaName('default.jpg');
                     $date = new \DateTimeImmutable();
                     $media->setUpdatedAt($date);
@@ -92,9 +90,9 @@ class FlatController extends Controller
         }
 
         return $this->render('flat/new.html.twig', array(
-            'flat'      => $flat,
+            'flat' => $flat,
             'residence' => $residence,
-            'form'      => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -103,14 +101,14 @@ class FlatController extends Controller
      * Finds and displays a flat entity.
      *
      * @Route("/{id}", name="admin_flat_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(Flat $flat)
+    public function showAction(Request $request, Flat $flat)
     {
         $deleteForm = $this->createDeleteForm($flat);
 
         return $this->render('flat/show.html.twig', [
-                'flat'        => $flat,
+                'flat' => $flat,
                 'delete_form' => $deleteForm->createView(),
             ]
         );
@@ -171,8 +169,8 @@ class FlatController extends Controller
         }
 
         return $this->render('flat/edit.html.twig', array(
-            'flat'        => $flat,
-            'edit_form'   => $editForm->createView(),
+            'flat' => $flat,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -218,5 +216,52 @@ class FlatController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('admin_flat_edit', array('id' => $flat->getId()));
+    }
+
+    /**
+     * @Route("/clone/{id}", name="admin_flat_clone")
+     * @Method({"GET", "POST"})
+     */
+    public function cloneFlat(Request $request, Flat $flat)
+    {
+        $residence = $flat->getResidence();
+
+        // Création d'un clone de l'objet Flat
+        $cloneFlat = clone $flat;
+
+        $media = new Media();
+
+        // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
+        if (is_null($media->getMediaName())) {
+            $em = $this->getDoctrine()->getManager();
+            $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE);
+            $media->setTypeMedia($typeMediaImgCover);
+            $media->setMediaName('default.jpg');
+            $date = new \DateTimeImmutable();
+            $media->setUpdatedAt($date);
+        }
+
+        // On set le nouveau media
+        $cloneFlat->setMedias([$media]);
+
+        $form = $this->createForm(FlatType::class, $cloneFlat);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($cloneFlat);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
+        }
+
+        return $this->render('flat/clone.html.twig', [
+                'flat' => $flat,
+                'residence' => $residence,
+                'clone_form' => $form->createView()
+            ]
+        );
     }
 }

@@ -1,0 +1,172 @@
+{% extends '::layout_admin.html.twig' %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title"> Cloner un bien pour la résidence {{ residence.nom }}</h4>
+                        </div>
+
+                        <div class="card-content table-responsive">
+                            {{ form_start(clone_form) }}
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(clone_form.reference, "Référence du bien :") }}
+                                    {{ form_widget(clone_form.reference) }}
+                                    {{ form_errors(clone_form.reference) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(clone_form.prix, 'Prix :') }}
+                                    {{ form_widget(clone_form.prix) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(clone_form.typeBien, 'Type du bien :') }}
+                                    {{ form_widget(clone_form.typeBien) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.typeLogement, 'Type du Logement :') }}
+                                    {{ form_widget(clone_form.typeLogement) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.statut, 'Statut du bien :') }}
+                                    {{ form_widget(clone_form.statut) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(clone_form.surface, 'Surface Habitable :') }}
+                                    {{ form_widget(clone_form.surface) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.surfaceSejour, 'Surface séjour :') }}
+                                    {{ form_widget(clone_form.surfaceSejour) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.surfaceBalcon, 'Surface Balcon :') }}
+                                    {{ form_widget(clone_form.surfaceBalcon) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(clone_form.surfaceTerrasse, 'Surface Terrasse :') }}
+                                    {{ form_widget(clone_form.surfaceTerrasse) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.surfaceJardin, 'Surface Jardin :') }}
+                                    {{ form_widget(clone_form.surfaceJardin) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.surfaceTerrain, 'Surface Terrain :') }}
+                                    {{ form_widget(clone_form.surfaceTerrain) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(clone_form.expositionSejour, 'Exposition du séjour: ') }}
+                                    {{ form_widget(clone_form.expositionSejour) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(clone_form.stationnement, 'Stationnement: ') }}
+                                    {{ form_widget(clone_form.stationnement) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(clone_form.dateLivraison, 'Date de livraison :') }}
+                                    {{ form_widget(clone_form.dateLivraison) }}
+                                    {{ form_errors(clone_form.dateLivraison) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(clone_form.solSejour, 'Revêtements Sol Séjour :') }}
+                                    {{ form_widget(clone_form.solSejour) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.solSdb, 'Revêtements Sol Salle de bains :') }}
+                                    {{ form_widget(clone_form.solSdb) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.solChambre, 'Revêtements Sol Chambre :') }}
+                                    {{ form_widget(clone_form.solChambre) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(clone_form.revetementMur, 'Revêtements Muraux :') }}
+                                    {{ form_widget(clone_form.revetementMur) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.menuiserie, 'Menuiserie :') }}
+                                    {{ form_widget(clone_form.menuiserie) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(clone_form.chauffage, 'Chauffage :') }}
+                                    {{ form_widget(clone_form.chauffage) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <h3>Veuillez charger une nouvelle image.</h3>
+                                    <p>Utilisez le type de média "<b>image</b>" pour illustrer un appartement.</p>
+                                    <p>Utilisez le type de média "<b>plan</b>" pour associer un plan à un appartement.</p>
+                                    {{ form_widget(clone_form.medias) }}
+                                    <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
+                                       id="add-another-media"><i
+                                                class="material-icons">add</i></a>
+                                </div>
+                            </div>
+                            <input class="waves-effect waves-light btn-large light-green" type="submit" value="Cloner"/>
+                            {{ form_widget(clone_form._token) }}
+                            {{ form_end(clone_form) }}
+
+                        </div>
+
+
+                        <ul>
+                            <li>
+                                <a href="{{ path('admin_flat_index', {'id':residence.id}) }}"><i
+                                            class="material-icons">keyboard_return</i>Retour à la liste des
+                                    biens</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        // keep track of how many email fields have been rendered
+        var mediaCount = '{{ clone_form.medias|length }}';
+
+        jQuery(document).ready(function () {
+            jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
+                e.preventDefault();
+                var mediaList = jQuery('#{{ clone_form.medias.vars.id }}');
+
+                var newWidget = mediaList.attr('data-prototype');
+                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
+                newWidget = newWidget.replace(/__name__label__/g, mediaCount);
+                mediaCount++;
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(mediaList);
+                $('select').material_select();
+            });
+        })
+    </script>
+{% endblock %}

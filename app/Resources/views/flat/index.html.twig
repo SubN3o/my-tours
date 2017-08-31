@@ -23,6 +23,7 @@
                                         <th>Statut</th>
                                         <th>Aperçu</th>
                                         <th>Éditer</th>
+                                        <th>Cloner</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -47,6 +48,10 @@
                                             <td>
                                                 <a href="{{ path('admin_flat_edit', { 'id': flat.id }) }}"><i
                                                             class="material-icons">build</i></a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('admin_flat_clone', { 'id': flat.id }) }}"><i
+                                                            class="material-icons">done_all</i></a>
                                             </td>
                                         </tr>
 
