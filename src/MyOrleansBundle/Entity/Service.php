@@ -66,6 +66,10 @@ class Service
      *     type="integer",
      *     message="La saisie n'est pas correcte."
      * )
+     * @Assert\Range(
+     *      min = 1,
+     *      minMessage = "Saisissez une valeur supérieure ou égale à 1",
+     * )
      * @ORM\Column(name="tri", type="integer", nullable=true, unique=true)
      */
     private $tri;
