@@ -235,6 +235,39 @@ class Flat
     private $solChambre;
 
     /**
+     * @var string
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Length(
+     *      max = 5,
+     *      maxMessage = "Saisie limitée à 5 caractères"
+     * )
+     *
+     * @ORM\Column(name="etage", type="string", length=5, nullable=true)
+     */
+    private $etage;
+
+    /**
+     * @return string
+     */
+    public function getEtage()
+    {
+        return $this->etage;
+    }
+
+    /**
+     * @param string $etage
+     * @return Flat
+     */
+    public function setEtage($etage)
+    {
+        $this->etage = $etage;
+        return $this;
+    }
+
+    /**
      * @return float
      */
     public function getSurfaceBalcon()

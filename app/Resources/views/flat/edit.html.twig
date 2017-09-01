@@ -22,58 +22,75 @@
                                 <div class="col s6">
                                     {{ form_label(edit_form.prix, 'Prix :') }}
                                     {{ form_widget(edit_form.prix) }}
+                                    {{ form_errors(edit_form.prix) }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s4">
+                                <div class="col s3">
                                     {{ form_label(edit_form.typeBien, 'Type du bien :') }}
                                     {{ form_widget(edit_form.typeBien) }}
+                                    {{ form_errors(edit_form.typeBien) }}
                                 </div>
-                                <div class="col s4">
+                                <div class="col s3">
                                     {{ form_label(edit_form.typeLogement, 'Type du Logement :') }}
                                     {{ form_widget(edit_form.typeLogement) }}
+                                    {{ form_errors(edit_form.typeLogement) }}
                                 </div>
-                                <div class="col s4">
+                                <div class="col s3">
+                                    {{ form_label(edit_form.etage, 'Etage :') }}
+                                    {{ form_widget(edit_form.etage) }}
+                                    {{ form_errors(edit_form.etage) }}
+                                </div>
+                                <div class="col s3">
                                     {{ form_label(edit_form.statut, 'Statut du bien :') }}
                                     {{ form_widget(edit_form.statut) }}
+                                    {{ form_errors(edit_form.statut) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s4">
                                     {{ form_label(edit_form.surface, 'Surface Habitable :') }}
                                     {{ form_widget(edit_form.surface) }}
+                                    {{ form_errors(edit_form.surface) }}
                                 </div>
                                 <div class="col s4">
                                     {{ form_label(edit_form.surfaceSejour, 'Surface séjour :') }}
                                     {{ form_widget(edit_form.surfaceSejour) }}
+                                    {{ form_errors(edit_form.surfaceSejour) }}
                                 </div>
                                 <div class="col s4">
                                     {{ form_label(edit_form.surfaceBalcon, 'Surface Balcon :') }}
                                     {{ form_widget(edit_form.surfaceBalcon) }}
+                                    {{ form_errors(edit_form.surfaceBalcon) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s4">
                                     {{ form_label(edit_form.surfaceTerrasse, 'Surface Terrasse :') }}
                                     {{ form_widget(edit_form.surfaceTerrasse) }}
+                                    {{ form_errors(edit_form.surfaceTerrasse) }}
                                 </div>
                                 <div class="col s4">
                                     {{ form_label(edit_form.surfaceJardin, 'Surface Jardin :') }}
                                     {{ form_widget(edit_form.surfaceJardin) }}
+                                    {{ form_errors(edit_form.surfaceJardin) }}
                                 </div>
                                 <div class="col s4">
                                     {{ form_label(edit_form.surfaceTerrain, 'Surface Terrain :') }}
                                     {{ form_widget(edit_form.surfaceTerrain) }}
+                                    {{ form_errors(edit_form.surfaceTerrain) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
                                     {{ form_label(edit_form.expositionSejour, 'Exposition du séjour: ') }}
                                     {{ form_widget(edit_form.expositionSejour) }}
+                                    {{ form_errors(edit_form.expositionSejour) }}
                                 </div>
                                 <div class="col s6">
                                     {{ form_label(edit_form.stationnement, 'Stationnement: ') }}
                                     {{ form_widget(edit_form.stationnement) }}
+                                    {{ form_errors(edit_form.stationnement) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -87,28 +104,34 @@
                                 <div class="col s4">
                                     {{ form_label(edit_form.solSejour, 'Revêtements Sol Séjour :') }}
                                     {{ form_widget(edit_form.solSejour) }}
+                                    {{ form_errors(edit_form.solSejour) }}
                                 </div>
                                 <div class="col s4">
                                     {{ form_label(edit_form.solSdb, 'Revêtements Sol Salle de bains :') }}
                                     {{ form_widget(edit_form.solSdb) }}
+                                    {{ form_errors(edit_form.solSdb) }}
                                 </div>
                                 <div class="col s4">
                                     {{ form_label(edit_form.solChambre, 'Revêtements Sol Chambre :') }}
                                     {{ form_widget(edit_form.solChambre) }}
+                                    {{ form_errors(edit_form.solChambre) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s4">
                                     {{ form_label(edit_form.revetementMur, 'Revêtements Muraux :') }}
                                     {{ form_widget(edit_form.revetementMur) }}
+                                    {{ form_errors(edit_form.revetementMur) }}
                                 </div>
                                 <div class="col s4">
                                     {{ form_label(edit_form.menuiserie, 'Menuiserie :') }}
                                     {{ form_widget(edit_form.menuiserie) }}
+                                    {{ form_errors(edit_form.menuiserie) }}
                                 </div>
                                 <div class="col s4">
                                     {{ form_label(edit_form.chauffage, 'Chauffage :') }}
                                     {{ form_widget(edit_form.chauffage) }}
+                                    {{ form_errors(edit_form.chauffage) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -130,6 +153,7 @@
                                     <p>Utilisez le type de média "<b>plan</b>" pour associer un plan à un
                                         appartement.</p>
                                     {{ form_widget(edit_form.medias) }}
+                                    {{ form_errors(edit_form.medias) }}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
                                                 class="material-icons">add</i></a>

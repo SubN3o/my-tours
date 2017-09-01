@@ -182,7 +182,11 @@ class FlatType extends AbstractType
                 'allow_add' => true,
                 'prototype' => true,
                 'by_reference' => false
-            ]);
+            ])
+            ->add('etage', TextType::class, [
+                'required' => false
+            ])
+        ;
     }
 
     /**
