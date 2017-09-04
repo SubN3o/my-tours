@@ -250,10 +250,11 @@ class FlatController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $flatCloned = $form->getData();
 
-            $em->persist($cloneFlat);
+            $em->persist($flatCloned);
             $em->flush();
-            $this->addFlash('success', 'Votre appartement a bien été cloné');
+
             return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
         }
 
