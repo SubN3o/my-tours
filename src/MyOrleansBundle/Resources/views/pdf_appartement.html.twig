@@ -38,9 +38,9 @@
 <div class="photoinfo-apt">
     <div class="photo-apt">
         {% if media['image'] is defined and  media['image'] != null %}
-            <img src="{{ asset('uploads/'~media['image'].mediaName) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+            <img src="{{ absolute_url(asset('uploads/'~media['image'].mediaName)) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
         {% else %}
-            <img src="{{ asset('img/Pas-dimage.jpg') }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
+            <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" class="thumb_pdf_photo_apt" alt="photo-appart"/>
         {% endif %}
     </div>
     <div class="info-apt">
@@ -60,7 +60,7 @@
             <div class="rang-presta">
                 <div class="row">
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/floor.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/floor.png')) }}"
                              alt="revetement">
                     </div>
                     <div class="col s10 prestation">
@@ -69,14 +69,14 @@
                         <p>Revetment Séjour : Carrelage</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/Parking.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/Parking.png')) }}"
                              alt="stationnement voiture">
                     </div>
                     <div class="col s10 prestation">
                         <p>Stationnement : {{ flat.stationnement }}</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/surface.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/surface.png')) }}"
                              alt="surfaces">
                     </div>
                     <div class="col s10 prestation">
@@ -90,35 +90,35 @@
             <div class="rang-presta">
                 <div class="row">
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/agenda.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/agenda.png')) }}"
                              alt="date de livraison">
                     </div>
                     <div class="col s10 prestation">
                         <p>livraison {{ residence.dateLivraison }}</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/boussole.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/boussole.png')) }}"
                              alt="exposition séjour">
                     </div>
                     <div class="col s10 prestation">
                         <p>Exposition du séjour : {{ flat.expositionSejour }}</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/chauffage.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/chauffage.png')) }}"
                              alt="type de chauffage">
                     </div>
                     <div class="col s10 prestation">
                         <p>Chauffage gaz collectif</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/menuiserie.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/menuiserie.png')) }}"
                              alt="type de menuiseries">
                     </div>
                     <div class="col s10 prestation">
                         <p>Menuiseries : PVC</p>
                     </div>
                     <div class="col s2 icon-prestation">
-                        <img class="icon-apt" src="{{ absolute_url(asset('img/icons/room.png')) }}"
+                        <img class="icon-apt" src="{{ absolute_url(asset('img/room.png')) }}"
                              alt="nombre de pièces">
                     </div>
                     <div class="col s10 prestation">
@@ -133,10 +133,10 @@
 <div class="plan-apt center">
 
     <h3 class="titre-plan">Plans</h3>
-    {% if media['image'] is defined and  media['image'] != null %}
-        <img src="{{ asset('uploads/'~media['plans'].mediaName) }}" alt="plans"/>
+    {% if media['plan'] is defined and  media['plan'] != null %}
+        <img src="{{ absolute_url(asset('uploads/'~media['plan'].mediaName)) }}" alt="plans"/>
     {% else %}
-        <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="plans"/>
+        <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" alt="plans"/>
     {% endif %}
 </div>
 
@@ -153,10 +153,10 @@
 </div>
 
 <div class="photo-residence center">
-    {% if residence.media['image'] is defined and  residence.media['image'] != null %}
-        <img src="{{ asset('uploads/'~residence.media['image'].mediaName) }}" alt="photo_residence"/>
+    {% if residence.media['image-cover'] is defined and  residence.media['image-cover'] != null %}
+        <img src="{{ absolute_url(asset('uploads/'~residence.media['image-cover'].mediaName)) }}" alt="photo_residence"/>
     {% else %}
-        <img src="{{ asset('img/Pas-dimage.jpg') }}" alt="photo_residence"/>
+        <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" alt="photo_residence"/>
     {% endif %}
 </div>
 
@@ -167,7 +167,7 @@
             <div class="row">
                 <li>
                 <li class="design col s3">
-                    <div class="notesite" id="note_0" data-note="{{ residence.noteTransports }}"></div>
+                    <div class="notesite" id="note_0" data-note="{{ residence.noteTransports|number_format(2,'.') }}"></div>
                     <br/>
                     <div class="list-legend">
                         <div class="row center-align">
@@ -178,7 +178,7 @@
                     </div>
                 </li>
                 <li class="content col s3">
-                    <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces }}"></div>
+                    <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces|number_format(2,'.') }}"></div>
                     <br/>
                     <div class="list-legend">
                         <div class="row">
@@ -189,7 +189,7 @@
                     </div>
                 </li>
                 <li class="creativity col s3">
-                    <div class="notesite" id="note_1" data-note="{{ residence.noteServices }}"></div>
+                    <div class="notesite" id="note_1" data-note="{{ residence.noteServices|number_format(2,'.') }}"></div>
                     <div class="list-legend">
                         <div class="row">
                             <ul>
@@ -199,7 +199,7 @@
                     </div>
                 </li>
                 <li class="usability col s3">
-                    <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme }}"></div>
+                    <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme|number_format(2,'.') }}"></div>
                     <div class="list-legend">
                         <div class="row">
                             <ul>

@@ -40,12 +40,12 @@ class PdfController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $residence = $flat->getResidence();
-        $reference = $flat->getReference();
         $typelogement = $flat->getTypeLogement();
         $typebien = $flat->getTypeBien();
         $prixMin = $calculateur->calculPrix($residence);
         $flatsDispo = $calculateur->calculFlatDispo($residence);
         $typeMinMax = $calculateur->calculSizes($residence);
+        $reference = $flat->getReference();
         $mailagence = $this->getParameter('mail_agence');
         $telephoneNumber = $this->getParameter('telephone_number');
         $mappy = $this->get("knp_snappy.pdf");
@@ -55,8 +55,8 @@ class PdfController extends Controller
         foreach ($medias as $media) {
             if ($media->getTypeMedia()->getNom() == 'image') {
                 $mediaDefine['image'] = $media;
-            }elseif ($media->getTypeMedia()->getNom() == 'plans') {
-                $mediaDefine['plans'] = $media;
+            }elseif ($media->getTypeMedia()->getNom() == 'plan') {
+                $mediaDefine['plan'] = $media;
             }
         }
 
@@ -73,7 +73,7 @@ class PdfController extends Controller
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
             'mail_agence'=>$mailagence,
-            'reference'=>$reference
+            'reference' => $reference
 
         ));
 
