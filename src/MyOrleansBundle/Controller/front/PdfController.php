@@ -40,8 +40,9 @@ class PdfController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $residence = $flat->getResidence();
-        $typelogement = $em->getRepository(TypeLogement::class)->findAll();
-        $typebien = $em->getRepository(TypeBien::class)->findAll();
+        $reference = $flat->getReference();
+        $typelogement = $flat->getTypeLogement();
+        $typebien = $flat->getTypeBien();
         $prixMin = $calculateur->calculPrix($residence);
         $flatsDispo = $calculateur->calculFlatDispo($residence);
         $typeMinMax = $calculateur->calculSizes($residence);
@@ -72,6 +73,7 @@ class PdfController extends Controller
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
             'mail_agence'=>$mailagence,
+            'reference'=>$reference
 
         ));
 
