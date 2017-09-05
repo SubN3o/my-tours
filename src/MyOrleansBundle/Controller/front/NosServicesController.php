@@ -45,7 +45,7 @@ class NosServicesController extends Controller
         $services = $em->getRepository(Service::class)->findBy([], ['tri'=>'ASC']);
         $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->get('sujet')->setData(Client::SUJET_SERVICES);
+//        $formulaire->get('sujet')->setData(Client::SUJET_SERVICES);
         $packs = $em->getRepository(Pack::class)->findBy([], ['tri'=>'ASC']);
 
         $temoignages = $em->getRepository(Temoignage::class)->findBy([], ['tri'=>'ASC'], 4);

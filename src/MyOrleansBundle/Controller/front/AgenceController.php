@@ -56,7 +56,7 @@ class AgenceController extends Controller
         $telephone_number = $this->getParameter('telephone_number');
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
 
-        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
+//        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
 
         $formulaire->handleRequest($request);
 

@@ -14,13 +14,13 @@
                                 <thead>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Prenom</th>
                                     <th>Email</th>
                                     <th>Telephone</th>
-                                    <th>Adresse</th>
                                     <th>Codepostal</th>
-                                    <th>Ville</th>
                                     <th>Newsletter</th>
+                                    <th>Sujet</th>
+                                    <th>Projet</th>
+                                    <th>Budget</th>
                                     <th>Aperçu</th>
                                     <th>Éditer</th>
                                 </tr>
@@ -29,13 +29,13 @@
                                 {% for client in clients %}
                                     <tr>
                                         <td>{{ client.nom }}</td>
-                                        <td>{{ client.prenom }}</td>
                                         <td>{{ client.email }}</td>
                                         <td>{{ client.telephone }}</td>
-                                        <td>{{ client.adresse }}</td>
                                         <td>{{ client.codePostal }}</td>
-                                        <td>{{ client.ville }}</td>
                                         <td>{{ client.newsletter }}</td>
+                                        <td>{{ client.sujet }}</td>
+                                        <td>{{ client.projet }}</td>
+                                        <td>{{ client.budget }}</td>
                                         <td>
                                             <a href="{{ path('admin_client_show', { 'id': client.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>

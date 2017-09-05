@@ -77,7 +77,7 @@ class ResidencesController extends Controller
 
             $em->persist($client);
             $em->flush();
-            return $this->redirectToRoute('residences');
+            return $this->redirectToRoute('nosbiens');
         }
 
         return $this->render('MyOrleansBundle::residence.html.twig', [

@@ -13,13 +13,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Client
 {
-    const SUJET_INFO_RESID_PRINC = 1;
-    const SUJET_INFO_APPART = 2;
-    const SUJET_INSCRIPT_EVENT = 3;
-    const SUJET_INSCR_NEWSLETTER = 4;
-    const SUJET_SERVICES = 5;
-    const SUJET_AUTRES = 6;
-
     /**
      * @var int
      *
@@ -32,16 +25,23 @@ class Client
     /**
      * @var string
      *
+     * @ORM\Column(name="civilite", type="string", length=45, nullable=true)
+     */
+    private $civilite;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nom", type="string", length=45, nullable=true)
      */
     private $nom;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="prenom", type="string", length=45, nullable=true)
+     * @ORM\Column(name="budget", type="integer", length=45, nullable=true)
      */
-    private $prenom;
+    private $budget;
 
     /**
      * @var string
@@ -60,23 +60,23 @@ class Client
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=45, nullable=true)
+     * @ORM\Column(name="projet", type="string", length=45, nullable=true)
      */
-    private $adresse;
+    private $projet;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="codePostal", type="string", length=5, nullable=true)
+     * @ORM\Column(name="codePostal", type="integer", length=5, nullable=true)
      */
     private $codePostal;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="ville", type="string", length=45, nullable=true)
+     * @ORM\Column(name="typeLogement", type="array", length=45, nullable=true)
      */
-    private $ville;
+    private $typeLogement;
 
 
     /**
@@ -111,6 +111,24 @@ class Client
     }
 
     /**
+     * @return string
+     */
+    public function getCivilite()
+    {
+        return $this->civilite;
+    }
+
+    /**
+     * @param string $civilite
+     * @return Client
+     */
+    public function setCivilite($civilite)
+    {
+        $this->civilite = $civilite;
+        return $this;
+    }
+
+    /**
      * Set nom
      *
      * @param string $nom
@@ -135,27 +153,27 @@ class Client
     }
 
     /**
-     * Set prenom
+     * Set budget
      *
-     * @param string $prenom
+     * @param integer $budget
      *
      * @return Client
      */
-    public function setPrenom($prenom)
+    public function setBudget($budget)
     {
-        $this->prenom = $prenom;
+        $this->budget = $budget;
 
         return $this;
     }
 
     /**
-     * Get prenom
+     * Get budget
      *
-     * @return string
+     * @return integer
      */
-    public function getPrenom()
+    public function getBudget()
     {
-        return $this->prenom;
+        return $this->budget;
     }
 
     /**
@@ -207,27 +225,27 @@ class Client
     }
 
     /**
-     * Set adresse
+     * Set projet
      *
-     * @param string $adresse
+     * @param string $projet
      *
      * @return Client
      */
-    public function setAdresse($adresse)
+    public function setProjet($projet)
     {
-        $this->adresse = $adresse;
+        $this->projet = $projet;
 
         return $this;
     }
 
     /**
-     * Get adresse
+     * Get projet
      *
      * @return string
      */
-    public function getAdresse()
+    public function getProjet()
     {
-        return $this->adresse;
+        return $this->projet;
     }
 
     /**
@@ -255,27 +273,27 @@ class Client
     }
 
     /**
-     * Set ville
+     * Set typeLogement
      *
-     * @param string $ville
+     * @param array $typeLogement
      *
      * @return Client
      */
-    public function setVille($ville)
+    public function setTypeLogement($typeLogement)
     {
-        $this->ville = $ville;
+        $this->typeLogement = $typeLogement;
 
         return $this;
     }
 
     /**
-     * Get ville
+     * Get typeLogement
      *
-     * @return string
+     * @return array
      */
-    public function getVille()
+    public function getTypeLogement()
     {
-        return $this->ville;
+        return $this->typeLogement;
     }
 
     /**
