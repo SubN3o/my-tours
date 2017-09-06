@@ -222,44 +222,84 @@ class FlatController extends Controller
      * @Route("/clone/{id}", name="admin_flat_clone")
      * @Method({"GET", "POST"})
      */
-    public function cloneFlat(Request $request, Flat $flat)
+    public function cloneFlat(Request $request, Residence $residence, Flat $flat)
     {
-        $residence = $flat->getResidence();
+        var_dump($flat);
+        die();
+//        $residence = $flat->getResidence();
 
         // Création d'un clone de l'objet Flat
-        $cloneFlat = clone $flat;
+//        $cloneFlat = clone $flat;
+//
+//        $media = new Media();
+//
+//        // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
+//        if (is_null($media->getMediaName())) {
+//            $em = $this->getDoctrine()->getManager();
+//            $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE);
+//            $media->setTypeMedia($typeMediaImgCover);
+//            $media->setMediaName('default.jpg');
+//            $date = new \DateTimeImmutable();
+//            $media->setUpdatedAt($date);
+//        }
+//
+//        // On set le nouveau media
+//        $cloneFlat->setMedias([$media]);
 
+
+
+        $cloneFlat = new Flat();
         $media = new Media();
-
-        // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
-        if (is_null($media->getMediaName())) {
-            $em = $this->getDoctrine()->getManager();
-            $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE);
-            $media->setTypeMedia($typeMediaImgCover);
-            $media->setMediaName('default.jpg');
-            $date = new \DateTimeImmutable();
-            $media->setUpdatedAt($date);
-        }
-
-        // On set le nouveau media
-        $cloneFlat->setMedias([$media]);
+        $cloneFlat->getMedias()->add($media);
 
         $form = $this->createForm(FlatType::class, $cloneFlat);
+
+        $form->get('reference')->setData($flat->getReference());
+        $form->get('prix')->setData($flat->getPrix());
+        $form->get('typeLogement')->setData($flat->getTypeLogement());
+        $form->get('typeBien')->setData($flat->getTypeBien());
+        $form->get('etage')->setData($flat->getEtage());
+        $form->get('statut')->setData($flat->getStatut());
+        $form->get('surface')->setData($flat->getSurface());
+        $form->get('surfaceSejour')->setData($flat->getSurfaceSejour());
+        $form->get('surfaceBalcon')->setData($flat->getSurfaceBalcon());
+        $form->get('surfaceTerrasse')->setData($flat->getSurfaceTerrasse());
+        $form->get('surfaceJardin')->setData($flat->getSurfaceJardin());
+        $form->get('surfaceTerrain')->setData($flat->getSurfaceTerrain());
+        $form->get('expositionSejour')->setData($flat->getExpositionSejour());
+        $form->get('stationnement')->setData($flat->getStationnement());
+        $form->get('dateLivraison')->setData($flat->getDateLivraison());
+        $form->get('solSejour')->setData($flat->getSolSejour());
+        $form->get('solSdb')->setData($flat->getSolSdb());
+        $form->get('solChambre')->setData($flat->getSolChambre());
+        $form->get('revetementMur')->setData($flat->getRevetementMur());
+        $form->get('menuiserie')->setData($flat->getMenuiserie());
+        $form->get('chauffage')->setData($flat->getChauffage());
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $flatCloned = $form->getData();
+//            $flatCloned = $form->getData();
+            // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
+            $medias = $cloneFlat->getMedias();
+            foreach ($medias as $media) {
+                if (is_null($media->getMediaName())) {
+                    /* @var $media Media */
+                    $media->setMediaName('default.jpg');
+                    $date = new \DateTimeImmutable();
+                    $media->setUpdatedAt($date);
+                }
+            }
 
-            $em->persist($flatCloned);
+            $em->persist($cloneFlat);
             $em->flush();
 
-            return $this->redirectToRoute('admin_flat_index', array('id' => $flat->getResidence()->getId()));
+            return $this->redirectToRoute('admin_flat_index', array('id' => $cloneFlat->getResidence()->getId()));
         }
 
         return $this->render('flat/clone.html.twig', [
-                'flat' => $flat,
+                'flat' => $cloneFlat,
                 'residence' => $residence,
                 'clone_form' => $form->createView()
             ]
