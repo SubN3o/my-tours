@@ -222,14 +222,16 @@ class FlatController extends Controller
      * @Route("/clone/{id}", name="admin_flat_clone")
      * @Method({"GET", "POST"})
      */
-    public function cloneFlat(Request $request, Residence $residence, Flat $flat)
+    public function cloneFlat(Request $request, Flat $flat)
     {
+        $residence = $flat->getResidence();
         $cloneFlat = new Flat();
         $media = new Media();
         $cloneFlat->getMedias()->add($media);
 
         $form = $this->createForm(FlatType::class, $cloneFlat);
 
+        //On charge les champs necessaire depuis l'appartement à cloner dans le formulaire du nouveau clone
         $form->get('reference')->setData($flat->getReference());
         $form->get('prix')->setData($flat->getPrix());
         $form->get('typeLogement')->setData($flat->getTypeLogement());
