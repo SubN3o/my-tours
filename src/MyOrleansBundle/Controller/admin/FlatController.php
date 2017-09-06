@@ -224,30 +224,6 @@ class FlatController extends Controller
      */
     public function cloneFlat(Request $request, Residence $residence, Flat $flat)
     {
-        var_dump($flat);
-        die();
-//        $residence = $flat->getResidence();
-
-        // Création d'un clone de l'objet Flat
-//        $cloneFlat = clone $flat;
-//
-//        $media = new Media();
-//
-//        // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
-//        if (is_null($media->getMediaName())) {
-//            $em = $this->getDoctrine()->getManager();
-//            $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE);
-//            $media->setTypeMedia($typeMediaImgCover);
-//            $media->setMediaName('default.jpg');
-//            $date = new \DateTimeImmutable();
-//            $media->setUpdatedAt($date);
-//        }
-//
-//        // On set le nouveau media
-//        $cloneFlat->setMedias([$media]);
-
-
-
         $cloneFlat = new Flat();
         $media = new Media();
         $cloneFlat->getMedias()->add($media);
@@ -280,7 +256,8 @@ class FlatController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-//            $flatCloned = $form->getData();
+            $cloneFlat->setResidence($residence);
+
             // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
             $medias = $cloneFlat->getMedias();
             foreach ($medias as $media) {
