@@ -30,7 +30,7 @@ class ClientType extends AbstractType
                     'Mme'=>'Mme'
                 ]
             ])
-            ->add('nom', TextType::class,[
+            ->add('nom', IntegerType::class,[
                 'required' => true
             ])
             ->add('email', EmailType::class,[

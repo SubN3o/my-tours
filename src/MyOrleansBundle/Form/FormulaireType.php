@@ -44,7 +44,7 @@ class FormulaireType extends AbstractType
             ->add('telephone', TextType::class,[
                 'required' => true
             ])
-            ->add('codePostal', TextType::class,[
+            ->add('codePostal', IntegerType::class,[
                 'required' => true
             ])
             ->add('projet', ChoiceType::class,[

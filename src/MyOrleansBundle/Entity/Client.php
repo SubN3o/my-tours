@@ -4,6 +4,8 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Client
@@ -24,6 +26,11 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="civilite", type="string", length=45, nullable=true)
      */
@@ -31,6 +38,11 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="nom", type="string", length=45, nullable=true)
      */
@@ -38,6 +50,11 @@ class Client
 
     /**
      * @var integer
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="budget", type="integer", length=45, nullable=true)
      */
@@ -45,6 +62,11 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="email", type="string", length=45, nullable=true)
      */
@@ -52,6 +74,11 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="telephone", type="string", length=10, nullable=true)
      */
@@ -59,6 +86,11 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="projet", type="string", length=45, nullable=true)
      */
@@ -66,6 +98,11 @@ class Client
 
     /**
      * @var integer
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="codePostal", type="integer", length=5, nullable=true)
      */
@@ -73,6 +110,11 @@ class Client
 
     /**
      * @var array
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="array",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="typeLogement", type="array", length=45, nullable=true)
      */
@@ -82,12 +124,18 @@ class Client
     /**
      * @var int
      *
+     *
      * @ORM\Column(name="newsletter", type="integer", nullable=true)
      */
     private $newsletter;
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="sujet", type="string", nullable=true)
      */
@@ -95,6 +143,11 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="message", type="text", nullable=true)
      */
