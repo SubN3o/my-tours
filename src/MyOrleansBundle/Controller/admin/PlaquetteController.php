@@ -56,6 +56,12 @@ class PlaquetteController extends Controller
     {
         $plaquette = new Plaquette();
         $form = $this->createForm('MyOrleansBundle\Form\PlaquetteType', $plaquette);
+
+
+        $em = $this->getDoctrine()->getManager();
+        $typeMediaPdf = $em->getRepository(TypeMedia::class)->find(TypeMedia::PDF);
+        $form->get('media')->get('typemedia')->setData($typeMediaPdf);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
