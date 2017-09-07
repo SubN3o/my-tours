@@ -1,0 +1,61 @@
+{% extends '::layout_admin.html.twig' %}
+
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Liste des plaquettes</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Lien</th>
+                                    <th>Aperçu</th>
+                                    <th>Éditer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for plaquette in plaquettes %}
+                                    <tr>
+
+                                        <td>{{ plaquette.nom }}</td>
+                                        <td>{{ absolute_url(asset('uploads/'~plaquette.media.mediaName)) }}</td>
+                                        <td>
+                                            <a href="{{ path('admin_plaquette_show', { 'id': plaquette.id }) }}"><i
+                                                        class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_plaquette_edit', { 'id': plaquette.id }) }}"><i
+                                                        class="material-icons">build</i></a>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <hr>
+                            <div class="navigation center">
+                                {{ knp_pagination_render(plaquettes, 'MyOrleansBundle::pagination.html.twig') }}
+                            </div>
+                            <ul>
+                                <li>
+
+                                    <a href="{{ path('admin_plaquette_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">add</i>Ajouter une plaquette</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

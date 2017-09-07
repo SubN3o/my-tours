@@ -133,6 +133,29 @@ class Media
     private $accueils;
 
     /**
+     * @ORM\OneToOne(targetEntity="Plaquette", mappedBy="media")
+     */
+    private $plaquette;
+
+    /**
+     * @return mixed
+     */
+    public function getPlaquette()
+    {
+        return $this->plaquette;
+    }
+
+    /**
+     * @param mixed $plaquette
+     * @return Media
+     */
+    public function setPlaquette($plaquette)
+    {
+        $this->plaquette = $plaquette;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getAccueils()
