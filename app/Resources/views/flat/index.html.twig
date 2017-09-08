@@ -25,6 +25,7 @@
                                         <th>Aperçu</th>
                                         <th>Éditer</th>
                                         <th>Cloner</th>
+                                        <th>Image</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -54,6 +55,10 @@
                                             <td>
                                                 <a href="{{ path('admin_flat_clone', { 'id': flat.id }) }}"><i
                                                             class="material-icons">done_all</i></a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('flat_pdf', { 'id': flat.id}) }}"><i
+                                                            class="material-icons">photo</i></a>
                                             </td>
                                         </tr>
 
