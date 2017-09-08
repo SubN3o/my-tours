@@ -43,7 +43,7 @@ class ImageController extends Controller
         $reference = $flat->getReference();
         $mailagence = $this->getParameter('mail_agence');
         $telephoneNumber = $this->getParameter('telephone_number');
-        $mappy = $this->get("knp_snappy.image");
+//        $mappy = $this->get("knp_snappy.image");
 
         $medias = $flat->getMedias();
         $mediaDefine = [];
@@ -72,14 +72,15 @@ class ImageController extends Controller
 
         ));
 
-        $filename = "appartement-".$flat->getReference().".image";
+        $filename = "appartement-".$flat->getReference().".jpg";
 
         return new Response(
-            $mappy->getOutputFromHtml($html),
+//            $mappy->getOutputFromHtml($html),
+            $this->get('knp_snappy.image')->getOutputFromHtml($html),
             200,
             [
                 'Content-Type' => 'image/jpg',
-                'Content-Disposition' => sprintf('filename="%s"', $filename),
+                'Content-Disposition' => 'filename="'.$filename.'"'
             ]);
     }
 }
