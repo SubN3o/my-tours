@@ -78,8 +78,8 @@ class ImageController extends Controller
             $mappy->getOutputFromHtml($html),
             200,
             [
-                'Content-Type' => 'application/image',
-                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+                'Content-Type' => 'image/jpg',
+                'Content-Disposition' => sprintf('filename="%s"', $filename),
             ]);
     }
 }
