@@ -14,10 +14,11 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>Reference</th>
-                                        <th>Prix</th>
-                                        <th>Surface</th>
-                                        <th>Surface Sejour</th>
+                                        <th>Reference {{ knp_pagination_sortable(flats, '↑↓', 'flat.reference') }}</th>
+                                        <th>Prix {{ knp_pagination_sortable(flats, '↑↓', 'flat.prix') }}</th>
+                                        <th>Surface {{ knp_pagination_sortable(flats, '↑↓', 'flat.surface') }}</th>
+                                        <th>Etage {{ knp_pagination_sortable(flats, '↑↓', 'flat.etage') }}</th>
+                                        <th>Type de logement</th>
                                         <th>Exposition Sejour</th>
                                         <th>Stationnement</th>
                                         <th>Statut</th>
@@ -33,7 +34,8 @@
                                             <td>{{ flat.reference }}</td>
                                             <td>{{ flat.prix }}{% if flat.prix != null %} €{% endif %}</td>
                                             <td>{{ flat.surface }}{% if flat.surface != null %} m²{% endif %}</td>
-                                            <td>{{ flat.surfaceSejour }}{% if flat.surfaceSejour != null %} m²{% endif %}</td>
+                                            <td>{{ flat.etage }}</td>
+                                            <td>{{ flat.typeLogement.nom}}</td>
                                             <td>{{ flat.expositionSejour }}</td>
                                             <td>{{ flat.stationnement }}</td>
                                             {% if flat.statut %}

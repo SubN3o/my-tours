@@ -36,7 +36,7 @@ class FlatController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $flats = $em->getRepository('MyOrleansBundle:Flat')->findByResidence($residence);
+        $flats = $em->getRepository('MyOrleansBundle:Flat')->findByResidence($residence, ['typeLogement'=>'ASC']);
 
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"
