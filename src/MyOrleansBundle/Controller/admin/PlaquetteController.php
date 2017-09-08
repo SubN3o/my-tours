@@ -57,7 +57,7 @@ class PlaquetteController extends Controller
         $plaquette = new Plaquette();
         $form = $this->createForm('MyOrleansBundle\Form\PlaquetteType', $plaquette);
 
-
+        //On charge le champ typemedia avec le type PDF par defaut
         $em = $this->getDoctrine()->getManager();
         $typeMediaPdf = $em->getRepository(TypeMedia::class)->find(TypeMedia::PDF);
         $form->get('media')->get('typemedia')->setData($typeMediaPdf);
