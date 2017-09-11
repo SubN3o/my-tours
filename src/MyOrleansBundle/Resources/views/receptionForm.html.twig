@@ -3,33 +3,18 @@
 {% block body %}
     <h1>Reception du formulaire de contact</h1>
     <div>
-        <p>Vous avez reçu un nouveau message de <strong>{{ client.prenom }} {{ client.nom }}</strong></p>
+        <p>Vous avez reçu un nouveau message de <strong>{{ client.civilite }} {{ client.nom }}</strong></p>
     </div>
 
     <div>
-        <p><strong>Mail:</strong> {{ client.email }}</p>
-        <p><strong>Téléphone:</strong> {{ client.telephone }}</p>
-        <p><strong>Code postal:</strong> {{ client.codePostal }}</p>
-        <p><strong>Ville:</strong> {{ client.ville }}</p>
-        <p><strong>Adresse:</strong> {{ client.adresse }}</p>
-
-        <p><strong>Sujet:</strong>
-            {% if client.sujet == 1 %}
-                Infos résidence principale
-            {% elseif client.sujet == 2 %}
-                Infos appartement
-            {% elseif client.sujet == 3 %}
-                Inscription événement
-            {% elseif client.sujet == 4 %}
-                Inscription Newsletter
-            {% elseif client.sujet == 5 %}
-                Services
-            {% else %}
-                Autres
-            {% endif %}
-        </p>
-
-        <p><strong>Message:</strong> {{ client.message }}</p>
+        <p><strong>Mail :</strong> {{ client.email }}</p>
+        <p><strong>Téléphone :</strong> {{ client.telephone }}</p>
+        <p><strong>Code postal :</strong> {{ client.codePostal }}</p>
+        <p><strong>Projet :</strong> {{ client.projet }}</p>
+        <p><strong>Type de Logement:</strong> {% for type in client.typeLogement %}{{ type }} {% endfor %}</p>
+        <p><strong>Budget :</strong> {{ client.budget }}</p>
+        <p><strong>Sujet :</strong> {{ client.sujet }}</p>
+        <p><strong>Message :</strong> {{ client.message }}</p>
 
         {% if client.newsletter == 0 %}
             <p><strong>Inscription newsletter:</strong> non </p>

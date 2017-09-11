@@ -1,3 +1,13 @@
+[type="radio"]:not(:checked) + label,[type="radio"]:checked + label{
+    padding-left: 25px;
+    padding-right: 30px;
+}
+
+[type="checkbox"] + label{
+    padding-left: 25px;
+    padding-right: 30px;
+}
+
 .interligne{
     line-height:15px;
 }

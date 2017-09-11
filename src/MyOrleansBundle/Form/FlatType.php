@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Form;
 
 use MyOrleansBundle\Entity\TypeBien;
 use MyOrleansBundle\Entity\TypeLogement;
+use MyOrleansBundle\Entity\TypeMedia;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

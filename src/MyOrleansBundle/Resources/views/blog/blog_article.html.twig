@@ -114,8 +114,15 @@
                 <h3 align="center">Contactez nous !</h3>
                 <h4 align="center">{{ telephone_number }}</h4>
                 {{ form_start(form) }}
-                <div class="row">
 
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="input-field col l6 m6 s12">
                         <i class="material-icons prefix">account_circle</i>
                         {{ form_label(form.nom) }}
@@ -124,10 +131,10 @@
                     </div>
 
                     <div class="input-field col l6 m6 s12">
-                        <i class="material-icons prefix">account_circle</i>
-                        {{ form_label(form.prenom) }}
-                        {{ form_widget(form.prenom) }}
-                        {{ form_errors(form.prenom) }}
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
                     </div>
 
                     <div class="input-field col l6 m6 s12">
@@ -143,32 +150,32 @@
                         {{ form_widget(form.telephone) }}
                         {{ form_errors(form.telephone) }}
                     </div>
+                </div>
 
-                    <div class="input-field col l6 m6 s12">
-                        <i class="material-icons prefix">my_location</i>
-                        {{ form_label(form.codePostal) }}
-                        {{ form_widget(form.codePostal) }}
-                        {{ form_errors(form.codePostal) }}
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <p class="newsletter">Quel est votre projet ?</p>
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
                     </div>
 
-                    <div class="input-field col l6 m6 s12">
-                        <i class="material-icons prefix">location_on</i>
-                        {{ form_label(form.ville) }}
-                        {{ form_widget(form.ville) }}
-                        {{ form_errors(form.ville) }}
+                    <div class="input-field col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
                     </div>
 
-                    <div class="input-field col l12 m12 s12">
-                        <i class="material-icons prefix">my_location</i>
-                        {{ form_label(form.adresse) }}
-                        {{ form_widget(form.adresse) }}
-                        {{ form_errors(form.adresse) }}
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
                     </div>
+                </div>
 
+                <div class="row">
                     <div class="input-field col l12 m12 s12">
                         <p class="newsletter">Quel est l'objet de votre message?</p>
                         <i class="material-icons prefix">info_outline</i>
-
                         {{ form_widget(form.sujet) }}
                         {{ form_errors(form.sujet) }}
                     </div>
@@ -179,13 +186,11 @@
                         {{ form_widget(form.message) }}
                         {{ form_errors(form.message) }}
                     </div>
-
-                    <div class="row center">
-                        <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
-
-                        {{ form_widget(form.newsletter) }}
-                        {{ form_errors(form.newsletter) }}
-                    </div>
+                </div>
+                <div class="row center">
+                    <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                    {{ form_widget(form.newsletter) }}
+                    {{ form_errors(form.newsletter) }}
                 </div>
 
                 <div class="input-field col l12 newsletter envoyer">

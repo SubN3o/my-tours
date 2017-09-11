@@ -877,7 +877,15 @@ FIN ACCUEIL - BLOC AGENCE
 /* --------------------------------------------------------------------*/
 /* ------------------------------ FORMULAIRE DE CONTACT ---------------------*/
 /* --------------------------------------------------------------------*/
+[type="radio"]:not(:checked) + label,[type="radio"]:checked + label{
+    padding-left: 25px;
+    padding-right: 30px;
+}
 
+[type="checkbox"] + label{
+    padding-left: 25px;
+    padding-right: 30px;
+}
 .side-nav{
     width: 600px;
     z-index: 1000;

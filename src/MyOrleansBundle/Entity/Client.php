@@ -4,6 +4,8 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Client
@@ -13,13 +15,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Client
 {
-    const SUJET_INFO_RESID_PRINC = 1;
-    const SUJET_INFO_APPART = 2;
-    const SUJET_INSCRIPT_EVENT = 3;
-    const SUJET_INSCR_NEWSLETTER = 4;
-    const SUJET_SERVICES = 5;
-    const SUJET_AUTRES = 6;
-
     /**
      * @var int
      *
@@ -31,20 +26,47 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     *
+     * @ORM\Column(name="civilite", type="string", length=45, nullable=true)
+     */
+    private $civilite;
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="nom", type="string", length=45, nullable=true)
      */
     private $nom;
 
     /**
-     * @var string
+     * @var integer
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
-     * @ORM\Column(name="prenom", type="string", length=45, nullable=true)
+     * @ORM\Column(name="budget", type="integer", length=45, nullable=true)
      */
-    private $prenom;
+    private $budget;
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="email", type="string", length=45, nullable=true)
      */
@@ -52,6 +74,11 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="telephone", type="string", length=10, nullable=true)
      */
@@ -59,28 +86,44 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
-     * @ORM\Column(name="adresse", type="string", length=45, nullable=true)
+     * @ORM\Column(name="projet", type="string", length=45, nullable=true)
      */
-    private $adresse;
+    private $projet;
 
     /**
-     * @var string
+     * @var integer
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
-     * @ORM\Column(name="codePostal", type="string", length=5, nullable=true)
+     * @ORM\Column(name="codePostal", type="integer", length=5, nullable=true)
      */
     private $codePostal;
 
     /**
-     * @var string
+     * @var array
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="array",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
-     * @ORM\Column(name="ville", type="string", length=45, nullable=true)
+     * @ORM\Column(name="typeLogement", type="array", length=45, nullable=true)
      */
-    private $ville;
+    private $typeLogement;
 
 
     /**
      * @var int
+     *
      *
      * @ORM\Column(name="newsletter", type="integer", nullable=true)
      */
@@ -88,6 +131,11 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="sujet", type="string", nullable=true)
      */
@@ -95,6 +143,11 @@ class Client
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
      *
      * @ORM\Column(name="message", type="text", nullable=true)
      */
@@ -108,6 +161,24 @@ class Client
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCivilite()
+    {
+        return $this->civilite;
+    }
+
+    /**
+     * @param string $civilite
+     * @return Client
+     */
+    public function setCivilite($civilite)
+    {
+        $this->civilite = $civilite;
+        return $this;
     }
 
     /**
@@ -135,27 +206,27 @@ class Client
     }
 
     /**
-     * Set prenom
+     * Set budget
      *
-     * @param string $prenom
+     * @param integer $budget
      *
      * @return Client
      */
-    public function setPrenom($prenom)
+    public function setBudget($budget)
     {
-        $this->prenom = $prenom;
+        $this->budget = $budget;
 
         return $this;
     }
 
     /**
-     * Get prenom
+     * Get budget
      *
-     * @return string
+     * @return integer
      */
-    public function getPrenom()
+    public function getBudget()
     {
-        return $this->prenom;
+        return $this->budget;
     }
 
     /**
@@ -207,27 +278,27 @@ class Client
     }
 
     /**
-     * Set adresse
+     * Set projet
      *
-     * @param string $adresse
+     * @param string $projet
      *
      * @return Client
      */
-    public function setAdresse($adresse)
+    public function setProjet($projet)
     {
-        $this->adresse = $adresse;
+        $this->projet = $projet;
 
         return $this;
     }
 
     /**
-     * Get adresse
+     * Get projet
      *
      * @return string
      */
-    public function getAdresse()
+    public function getProjet()
     {
-        return $this->adresse;
+        return $this->projet;
     }
 
     /**
@@ -255,27 +326,27 @@ class Client
     }
 
     /**
-     * Set ville
+     * Set typeLogement
      *
-     * @param string $ville
+     * @param array $typeLogement
      *
      * @return Client
      */
-    public function setVille($ville)
+    public function setTypeLogement($typeLogement)
     {
-        $this->ville = $ville;
+        $this->typeLogement = $typeLogement;
 
         return $this;
     }
 
     /**
-     * Get ville
+     * Get typeLogement
      *
-     * @return string
+     * @return array
      */
-    public function getVille()
+    public function getTypeLogement()
     {
-        return $this->ville;
+        return $this->typeLogement;
     }
 
     /**

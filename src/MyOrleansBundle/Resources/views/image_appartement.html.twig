@@ -153,15 +153,11 @@
 </div>
 
 <div class="photo-residence center">
-    <div class="photo-residence center">
-        {% for media in residence.medias %}
-            {% if media is defined and  media != null %}
-                <img src="{{ absolute_url(asset('uploads/'~media.mediaName)) }}" alt="photo_residence"/>
-            {% else %}
-                <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" alt="photo_residence"/>
-            {% endif %}
-        {% endfor %}
-    </div>
+    {% if residence.media['image-cover'] is defined and  residence.media['image-cover'] != null %}
+        <img src="{{ absolute_url(asset('uploads/'~residence.media['image-cover'].mediaName)) }}" alt="photo_residence"/>
+    {% else %}
+        <img src="{{ absolute_url(asset('img/Pas-dimage.jpg')) }}" alt="photo_residence"/>
+    {% endif %}
 </div>
 
 

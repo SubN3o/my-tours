@@ -91,8 +91,8 @@ class Media
      * @Vich\UploadableField(mapping="media", fileNameProperty="mediaName")
      *
      * @Assert\File(
-     *     maxSize = "2M",
-     *     maxSizeMessage="Le fichier est trop volumineux. Sa taille ne doit pas dépasser 2 MB",
+     *     maxSize = "5M",
+     *     maxSizeMessage="Le fichier est trop volumineux. Sa taille ne doit pas dépasser 5 MB",
      *     mimeTypes = {"application/pdf",
      *     "application/x-pdf",
      *     "image/jpg",
@@ -131,6 +131,29 @@ class Media
      * @ORM\ManyToMany(targetEntity="Accueil", cascade={"persist"})
      */
     private $accueils;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Plaquette", mappedBy="media")
+     */
+    private $plaquette;
+
+    /**
+     * @return mixed
+     */
+    public function getPlaquette()
+    {
+        return $this->plaquette;
+    }
+
+    /**
+     * @param mixed $plaquette
+     * @return Media
+     */
+    public function setPlaquette($plaquette)
+    {
+        $this->plaquette = $plaquette;
+        return $this;
+    }
 
     /**
      * @return mixed

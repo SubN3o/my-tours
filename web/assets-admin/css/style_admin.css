@@ -83,3 +83,13 @@ input[type="search"]:not(.browser-default),
 textarea.materialize-textarea {
     font-size: 16px;
 }
+
+[type="radio"]:not(:checked) + label,[type="radio"]:checked + label{
+    padding-left: 25px;
+    padding-right: 30px;
+}
+
+[type="checkbox"] + label{
+    padding-left: 25px;
+    padding-right: 30px;
+}

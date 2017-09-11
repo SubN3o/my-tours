@@ -252,7 +252,7 @@ class Residence
     private $affichagePrix;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"},fetch="EAGER")
      * @JoinTable(name="residence_media")
      * @Assert\Valid()
      */

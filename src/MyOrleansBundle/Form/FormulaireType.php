@@ -13,6 +13,7 @@ use MyOrleansBundle\Entity\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -25,30 +26,59 @@ class FormulaireType extends AbstractType
     {
         $builder
             ->setMethod('post')
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('telephone', TextType::class)
-            ->add('codePostal', TextType::class)
-            ->add('ville', TextType::class)
-            ->add('adresse', TextType::class)
-            ->add('sujet', ChoiceType::class, [
-                'choices' => ['Infos residence principale' => Client::SUJET_INFO_RESID_PRINC,
-                                'Infos appartement' => Client::SUJET_INFO_APPART,
-                                'Inscription événement' => Client::SUJET_INSCRIPT_EVENT,
-                                'Inscription newsletter' => Client::SUJET_INSCR_NEWSLETTER,
-                                'Infos services' => Client::SUJET_SERVICES,
-                                'Autres' => Client::SUJET_AUTRES],
-                'expanded' => false,
-                'multiple' => false
+            ->add('civilite', ChoiceType::class,[
+                'expanded' => true,
+                'multiple' => false,
+                'data' => 'Mr',
+                'choices' => [
+                    'Mr'=>'Mr',
+                    'Mme'=>'Mme'
+                ]
             ])
+            ->add('nom', TextType::class,[
+                'required' => true
+            ])
+            ->add('email', EmailType::class,[
+                'required' => true
+            ])
+            ->add('telephone', TextType::class,[
+                'required' => true
+            ])
+            ->add('codePostal', IntegerType::class,[
+                'required' => true
+            ])
+            ->add('projet', ChoiceType::class,[
+                'expanded' => true,
+                'multiple' => false,
+                'choices' => [
+                    'Habiter'=>'Habiter',
+                    'Investir' => 'Investir'
+                ],
+                'data' => 'Habiter'
+            ])
+            ->add('typeLogement', ChoiceType::class,[
+                'expanded' => true,
+                'multiple' => true,
+                'choices'=>[
+                    'T1'=>'T1',
+                    'T2'=>'T2',
+                    'T3'=>'T3',
+                    'T4'=>'T4',
+                    'T5+'=>'T5+',
+                    ],
+                'required' => false
+            ])
+            ->add('budget', IntegerType::class,[
+                'required' => false
+            ])
+            ->add('sujet', TextType::class)
             ->add('message', TextareaType::class, [
-                'attr' =>['class' => 'materialize-textarea']
+                'attr' =>['class' => 'materialize-textarea'],
+                'required' => true
             ])
             ->add('newsletter', ChoiceType::class, [
                 'choices' => array('oui' => true, 'non' => false),
                 'data' => true,
-
                 'expanded' => true,
                 'multiple' => false
             ])

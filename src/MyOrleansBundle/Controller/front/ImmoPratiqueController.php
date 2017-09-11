@@ -38,7 +38,7 @@ class ImmoPratiqueController extends Controller
         $em = $this->getDoctrine()->getManager();
         $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
+//        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
         $formulaire->handleRequest($request);
 
         $articlesActu = $em->getRepository(Article::class)->ArticleByType("Actualités immobilières", 2);
