@@ -110,7 +110,7 @@ class HomeController extends Controller
 
                 
 
-        return $this->render('MyOrleansBundle::index.html.twig', [
+        return $this->render('MyOrleansBundle::NEWindex.html.twig', [
             'parcours' => $parcours,
             'simpleSearch' => $simpleSearch->createView(),
             'villes' => $villes,
