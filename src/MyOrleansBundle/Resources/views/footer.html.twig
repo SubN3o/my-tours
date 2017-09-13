@@ -1,0 +1,126 @@
+<footer>
+    <div class="footer1">
+        <div class="row">
+            <!--colonne gauche-->
+            <div class="col s3">
+                <h5 class="center">Contactez-nous</h5>
+                <div class="row">
+                    <div class="offset-s1 col s11">
+                        <p><i class="material-icons">phone</i><a href="tel:+33238759447"> 02 38 75 94 47</a></p>
+                        <p><i class="material-icons">location_on</i> 13, rue Bannier 45000 Orléans</p>
+                        <p><i class="material-icons">email</i><a href="mailto:contact@my-orleans.fr">
+                                contact@my-orleans.fr</a>
+                        </p>
+                    </div>
+                </div>
+                <h5 class="center">Suivez-nous</h5>
+                <div class="row">
+                    <div class="offset-s2 col s2">
+                        <a href="https://www.facebook.com/myorleans/?ref=page_internal" target="_blank">
+                            <div class="social-btn">
+                                <i class="fa fa-facebook fa-3x fb-social"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col offset-s1 s2">
+                        <a href="https://twitter.com/myorleans" target="_blank">
+                            <div class="social-btn">
+                                <i class="fa fa-twitter fa-3x icon-social"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col offset-s1 s2">
+                        <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ" target="_blank">
+                            <div class="social-btn">
+                                <i class="fa fa-youtube fa-3x icon-social"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--colonne milieu-->
+            <div class="col s5 bordureFooter">
+                <h5 class="center"><a href="{{ path("nosbiens") }}">Nos programmes neufs</a></h5>
+                <div class="row">
+                    {% for programme in programmes %}
+                        <div class="offset-s1 col s5">
+                            <p><a href="{{ path("nosbiens") }}">{{ programme.nom }}</a></p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <h5 class="center"><a href="{{ path("nos_services") }}">Nos Services</a></h5>
+                <div class="row">
+                    <div class="offset-s1 col s11">
+                        {% for service in services %}
+                            <p><a href="{{ path("nos_services") }}">{{ service.type }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <h5 class="center"><a href="{{ path("nos_services") }}">Nos Packs</a></h5>
+                <div class="row">
+                    <div class="offset-s1 col s11">
+                        {% for pack in packs %}
+                            <p><a href="{{ path("nos_services") }}">{{ pack.nom }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!--colonne droite-->
+            <div class="col s4">
+                <h5 class="center"><a href="{{ path("agence") }}">My Orléans</a></h5>
+                <div class="row">
+                    <div class="offset-s1 col s11">
+                        <p><a href="{{ path("agence") }}">L'agence</a></p>
+                        <p><a href="{{ path("agence") }}">L'équipe</a></p>
+                        <p><a href="{{ path("agence") }}">Nos partenaires</a></p>
+                        <p><a href="{{ path("agence") }}">Nos événements</a></p>
+                    </div>
+                </div>
+                <h5 class="center"><a href="{{ path("immo_pratique") }}">Infos Pratique</a></h5>
+                <div class="row">
+                    <div class="offset-s1 col s11">
+                        {% for article in articles %}
+                            <p><a href="{{ path("immo_pratique") }}">{{ article.titre }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer2">
+        <div class="row">
+            <div class="offset-s1 col 2">
+                <p>© 2017 My-Orléans</p>
+            </div>
+            <div class="offset-s1 col 2">
+                <p><a href="#modal1">Informations légales</a></p>
+            </div>
+            <div class="col 2">
+                <p><a href="#modal2">Frais et honoraires de gestion</a></p>
+            </div>
+            <div class="offset-s1 col 1">
+                <img src="#" alt="logo FNAIM">
+            </div>
+            <div class="col 2">
+                <img src="#" alt="logo Galian">
+            </div>
+        </div>
+        <!--modale informations légales-->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                {{ accueil.mentions | raw }}
+            </div>
+        </div>
+        <!--modale honoraires-->
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                {% for media in accueil.medias if media.typeMedia.nom == 'image' %}
+                    <img src="{{ asset('uploads/'~media.mediaName) }}">
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+            </div>
+        </div>
+    </div>
+</footer>
