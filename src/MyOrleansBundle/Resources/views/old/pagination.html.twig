@@ -1,0 +1,45 @@
+{% if pageCount > 1 %}
+    <ul class="pagination">
+
+
+        {# application d'une classe disabled sur le bouton previous si on se trouve sur la premiere page #}
+        {% if previous is defined %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
+                    <i class="material-icons">chevron_left</i>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="#!"><i class="material-icons">chevron_left</i></a>
+            </li>
+        {% endif %}
+
+        {% for page in pagesInRange %}
+            {% if page != current %}
+                <li class="waves-effect">
+                    <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+                </li>
+            {% else %}
+                <li class="active">
+                    <a href="#!">{{ page }}</a>
+                </li>
+            {% endif %}
+
+        {% endfor %}
+
+
+        {# application d'une classe disabled sur le bouton next si on se trouve sur la derniere page #}
+        {% if next is defined %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="#!"><i class="material-icons">chevron_right</i></a>
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}

@@ -1,6 +1,7 @@
 // initialisation des select de Materialize
 
 $(document).ready(function () {
+
     $('select').material_select();
 
     $('.parallax').parallax();
@@ -41,6 +42,14 @@ $(document).ready(function () {
         $( "#alert_box" ).fadeOut( "slow", function() {
         });
     });
+
+    //ouverture du formulaire contact
+    $('.button-collapse').sideNav({
+            edge: 'right', // Choose the horizontal origin
+            draggable: false, // Choose whether you can drag to open on touch screens
+            closeOnClick: true
+        }
+    );
 });
 
 $(document).ready(function(){
