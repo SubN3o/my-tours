@@ -2,18 +2,20 @@
     <div class="footer1">
         <div class="row">
             <!--colonne gauche-->
-            <div class="col s3">
-                <h5 class="center">Contactez-nous</h5>
+            <div class="col s4">
+                <h5 class="center">CONTACTEZ-NOUS</h5>
                 <div class="row">
                     <div class="offset-s1 col s11">
-                        <p><i class="material-icons">phone</i><a href="tel:+33238759447"> 02 38 75 94 47</a></p>
-                        <p><i class="material-icons">location_on</i> 13, rue Bannier 45000 Orléans</p>
-                        <p><i class="material-icons">email</i><a href="mailto:contact@my-orleans.fr">
+                        <p class="linkFooter"><i class="small material-icons align-icon">phone</i><a
+                                    href="tel:+33238759447"> 02 38 75 94 47</a></p>
+                        <p><i class="small material-icons align-icon">location_on</i> 13, rue Bannier 45000 Orléans</p>
+                        <p class="linkFooter"><i class="small material-icons align-icon">email</i><a
+                                    href="mailto:contact@my-orleans.fr">
                                 contact@my-orleans.fr</a>
                         </p>
                     </div>
                 </div>
-                <h5 class="center">Suivez-nous</h5>
+                <h5 class="center h5Footer">SUIVEZ-NOUS</h5>
                 <div class="row">
                     <div class="offset-s2 col s2">
                         <a href="https://www.facebook.com/myorleans/?ref=page_internal" target="_blank">
@@ -39,48 +41,48 @@
                 </div>
             </div>
             <!--colonne milieu-->
-            <div class="col s5 bordureFooter">
-                <h5 class="center"><a href="{{ path("nosbiens") }}">Nos programmes neufs</a></h5>
+            <div class="col s4 bordureFooter">
+                <h5 class="center"><a href="{{ path("nosbiens") }}">NOS PROGRAMMES NEUFS</a></h5>
                 <div class="row">
                     {% for programme in programmes %}
-                        <div class="offset-s1 col s5">
-                            <p><a href="{{ path("nosbiens") }}">{{ programme.nom }}</a></p>
+                        <div class="col s6">
+                            <p class="linkFooter"><a href="{{ path("nosbiens") }}">{{ programme.nom }}</a></p>
                         </div>
                     {% endfor %}
                 </div>
-                <h5 class="center"><a href="{{ path("nos_services") }}">Nos Services</a></h5>
+                <h5 class="center h5Footer"><a href="{{ path("nos_services") }}">NOS SERVICES</a></h5>
                 <div class="row">
-                    <div class="offset-s1 col s11">
+                    <div class="col s12">
                         {% for service in services %}
-                            <p><a href="{{ path("nos_services") }}">{{ service.type }}</a></p>
+                            <p class="linkFooter"><a href="{{ path("nos_services") }}">{{ service.type }}</a></p>
                         {% endfor %}
                     </div>
                 </div>
-                <h5 class="center"><a href="{{ path("nos_services") }}">Nos Packs</a></h5>
+                <h5 class="center h5Footer"><a href="{{ path("nos_services") }}">NOS PACKS</a></h5>
                 <div class="row">
-                    <div class="offset-s1 col s11">
+                    <div class="col s12">
                         {% for pack in packs %}
-                            <p><a href="{{ path("nos_services") }}">{{ pack.nom }}</a></p>
+                            <p class="linkFooter"><a href="{{ path("nos_services") }}">{{ pack.nom }}</a></p>
                         {% endfor %}
                     </div>
                 </div>
             </div>
             <!--colonne droite-->
             <div class="col s4">
-                <h5 class="center"><a href="{{ path("agence") }}">My Orléans</a></h5>
+                <h5 class="center"><a href="{{ path("agence") }}">MY ORLÉANS</a></h5>
                 <div class="row">
                     <div class="offset-s1 col s11">
-                        <p><a href="{{ path("agence") }}">L'agence</a></p>
-                        <p><a href="{{ path("agence") }}">L'équipe</a></p>
-                        <p><a href="{{ path("agence") }}">Nos partenaires</a></p>
-                        <p><a href="{{ path("agence") }}">Nos événements</a></p>
+                        <p class="linkFooter"><a href="{{ path("agence") }}">L'agence</a></p>
+                        <p class="linkFooter"><a href="{{ path("agence") }}">L'équipe</a></p>
+                        <p class="linkFooter"><a href="{{ path("agence") }}">Nos partenaires</a></p>
+                        <p class="linkFooter"><a href="{{ path("agence") }}">Nos événements</a></p>
                     </div>
                 </div>
-                <h5 class="center"><a href="{{ path("immo_pratique") }}">Infos Pratique</a></h5>
+                <h5 class="center h5Footer"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></h5>
                 <div class="row">
                     <div class="offset-s1 col s11">
                         {% for article in articles %}
-                            <p><a href="{{ path("immo_pratique") }}">{{ article.titre }}</a></p>
+                            <p class="linkFooter"><a href="{{ path("immo_pratique") }}">{{ article.titre }}</a></p>
                         {% endfor %}
                     </div>
                 </div>
@@ -88,21 +90,21 @@
         </div>
     </div>
     <div class="footer2">
-        <div class="row">
-            <div class="offset-s1 col 2">
+        <div class="row valign-wrapper">
+            <div class="offset-s1 col s2">
                 <p>© 2017 My-Orléans</p>
             </div>
-            <div class="offset-s1 col 2">
-                <p><a href="#modal1">Informations légales</a></p>
+            <div class="col s2">
+                <p class="linkFooter"><a href="#modal1">Informations légales</a></p>
             </div>
-            <div class="col 2">
-                <p><a href="#modal2">Frais et honoraires de gestion</a></p>
+            <div class="offset-s1 col s3">
+                <p class="linkFooter"><a href="#modal2">Frais et honoraires de gestion</a></p>
             </div>
-            <div class="offset-s1 col 1">
-                <img src="#" alt="logo FNAIM">
+            <div class="col s1">
+                <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}" alt="logo FNAIM" class="logoFooter"></a>
             </div>
-            <div class="col 2">
-                <img src="#" alt="logo Galian">
+            <div class="col s2">
+                <a href="https://www.galian.fr/" target="_blank"><img src="{{ asset('img/logo-galian.png') }}" alt="logo Galian" class="logoFooter"></a>
             </div>
         </div>
         <!--modale informations légales-->
