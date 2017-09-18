@@ -37,24 +37,26 @@ class HomeController extends Controller
      */
     public function indexAction(SessionInterface $session, Request $request)
     {
-        $parcours = null;
-        if ($session->has('parcours')) {
-            $parcours = $session->get('parcours');
-        }
+//        $parcours = null;
+//        if ($session->has('parcours')) {
+//            $parcours = $session->get('parcours');
+//        }
         $em = $this->getDoctrine()->getManager();
 
         $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC']);
 
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
-        $residenceFav = $em->getRepository(Residence::class)->findOneFav();
-        $residenceTwoFav = $em->getRepository(Residence::class)->findTwoFav();
-        $residenceAll = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
+//        $residenceFav = $em->getRepository(Residence::class)->findOneFav();
+//        $residenceTwoFav = $em->getRepository(Residence::class)->findTwoFav();
+        $residenceCol1 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],3,2);
+        $residenceCol2 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],2,0);
+        $residenceCol3 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],2,5);
 
         $testimonials = $em->getRepository(Temoignage::class)->findAll();
 
-        $actu = $em->getRepository(Article::class)->findOneActu();
-        $event = $em->getRepository(Evenement::class)->findOneEvent();
+//        $actu = $em->getRepository(Article::class)->findOneActu();
+//        $event = $em->getRepository(Evenement::class)->findOneEvent();
 
         $telephoneNumber = $this->getParameter('telephone_number');
 
@@ -111,15 +113,17 @@ class HomeController extends Controller
                 
 
         return $this->render('MyOrleansBundle::index.html.twig', [
-            'parcours' => $parcours,
+//            'parcours' => $parcours,
             'simpleSearch' => $simpleSearch->createView(),
             'villes' => $villes,
             'collaborateurs' => $collaborateurs,
-            'residenceFav' => $residenceFav,
-            'residenceTwoFav' => $residenceTwoFav,
-            'residenceAll' => $residenceAll,
-            'actu' => $actu,
-            'event' => $event,
+//            'residenceFav' => $residenceFav,
+//            'residenceTwoFav' => $residenceTwoFav,
+            'residenceCol1' => $residenceCol1,
+            'residenceCol2' => $residenceCol2,
+            'residenceCol3' => $residenceCol3,
+//            'actu' => $actu,
+//            'event' => $event,
             'testimonials' => $testimonials,
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView(),

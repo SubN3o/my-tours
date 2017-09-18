@@ -11,24 +11,61 @@
 {% endblock video %}
 
 {% block content %}
-    <div class="container-fluid">
-        <h1>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h1>
-        <section class="home-mast">
-            <div class="home-mast__container">
-                <div>
-                    <div class="absolute-bg" style="background-image: url('https://source.unsplash.com/3IEZsaXmzzs/1500x1200');"></div>
-                </div>
-                <div class="">
-                    <div class="absolute-bg" style="background-image: url('https://source.unsplash.com/BIZv8MWH00s/1500x1200');"></div>
+    <h1>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h1>
+    <div class="row">
+        <div class="offset-s1 col s10 mosaic">
+            <div class='colonne'>
+                {% for residence in residenceCol1 %}
+                    <div class="zone">
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img src="{{ asset('uploads/'~media.mediaName) }}">
+                    {% endfor %}
+                        <div class="contenu">
+                            <p>{{ residence.nom }}</p>
+                            {#<p>{{ residence.ville.nom }}</p>#}
+                            <a href="#">VOIR PLUS</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class='colonne milieu'>
+                {% for residence in residenceCol2 %}
+                    <div class="zone">
+                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                            <img src="{{ asset('uploads/'~media.mediaName) }}">
+                        {% endfor %}
+                        <div class="contenu">
+                            <p>{{ residence.nom }}</p>
+                            {#<p>{{ residence.ville.nom }}</p>#}
+                            <a href="#">VOIR PLUS</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="voir">
+                    <a href="#"><p>VOIR PLUS DE PROGRAMMES</p></a>
                 </div>
             </div>
-        </section>
+            <div class='colonne'>
+                {% for residence in residenceCol3 %}
+                    <div class="zone">
+                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                            <img src="{{ asset('uploads/'~media.mediaName) }}">
+                        {% endfor %}
+                        <div class="contenu">
+                            <p>{{ residence.nom }}</p>
+                            {#<p>{{ residence.ville.nom }}</p>#}
+                            <a href="#">VOIR PLUS</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
-        <h1>NOTRE ÉQUIPE</h1>
-        <div class="row">
-            <div class="offset-s1 col s5">
-                <img src="{{ asset('img/test/barillet.png') }}">
-            </div>
+    <h1>NOTRE ÉQUIPE</h1>
+    <div class="row">
+        <div class="offset-s1 col s5">
+            <img src="{{ asset('img/test/barillet.png') }}">
         </div>
     </div>
 {% endblock content %}
