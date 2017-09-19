@@ -2,6 +2,22 @@
 
 $(document).ready(function () {
 
+    // Slider teloignage
+    $('.slider').slider({
+        height: 300,
+        indicators: false,
+        interval: 12000
+    });
+
+//$('.slider').slider('pause');
+
+    $('.next').click(function() {
+        $('.slider').slider('next');
+    });
+    $('.prev').click(function() {
+        $('.slider').slider('prev');
+    });
+
     $('select').material_select();
 
     $('.parallax').parallax();

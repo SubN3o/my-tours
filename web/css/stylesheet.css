@@ -54,6 +54,7 @@ nav ul a, nav a {
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #C8CACC;
+    margin-top: 100px;
  }
 
 footer h5 {
@@ -280,6 +281,68 @@ footer p {
 }
 .contenu > p {
     margin-bottom: 5%;
+}
+
+.temoignage {
+    margin-top: 150px;
+}
+
+.enteteCarousel{
+    background-color: #F2F2F2;
+    text-align: center;
+    height:60px;
+    color: #676767;
+    font-family: Montserrat;
+    font-weight: 400;
+    letter-spacing: .55pt;
+    font-size: 16pt;
+}
+
+.enteteCarousel > p {
+    padding-top: 15px;
+}
+
+.slider {
+    position: relative;
+}
+
+.imageTemoignage {
+    filter: brightness(60%);
+}
+
+.slider .slides li .caption {
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-family: Cantarell;
+    font-weight: 400;
+    letter-spacing: 0.1pt;
+}
+
+.slider .slides li .caption h5 {
+    font-size: 16pt;
+}
+
+.prev {
+    position: absolute;
+    bottom:40%;
+    left: -45px;
+    z-index: 100;
+}
+.next {
+    position: absolute;
+    bottom:40%;
+    right: -45px;
+    z-index: 100;
+}
+.btn-large .fa-caret-right {
+     font-size: 64px;
+     margin-left: 6px;
+ }
+
+.btn-large .fa-caret-left {
+    font-size: 64px;
+    margin-left: -9px;
 }
 
 @media screen and (max-width: 992px) {
