@@ -193,20 +193,26 @@ footer p {
 /* --------------------------------------------------------------------*/
 /* ----------------------------- INDEX -------------------------------*/
 /* --------------------------------------------------------------------*/
-.videoAccueil {
+.accueil {
     position: relative;
 }
 
-.videoAccueil video{
+.accueil video{
     filter: brightness(50%);
 }
 
-.videoAccueil > .logoAccueil {
+.accueil > .logoAccueil {
     position: absolute;
-    top: 40%;
+    top: 35%;
     left: 25%;
     width: 50%;
 }
+
+.accueil .imageAccueil{
+    filter: brightness(50%);
+    width: 100%;
+}
+
 
 .mosaic {
     margin-top: 70px;

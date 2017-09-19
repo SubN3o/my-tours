@@ -1,12 +1,18 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block video %}
-    <div class="videoAccueil">
-        <video width="100%" autoplay loop muted>
-            <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/mp4">
-            <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/ogg">
-            <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/webm">
-        </video>
+    <div class="accueil">
+        {% for media in accueil.medias %}
+            {% if media.typeMedia.nom == 'video' %}
+                <video width="100%" autoplay loop muted>
+                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/mp4">
+                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/ogg">
+                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/webm">
+                </video>
+            {% elseif media.typeMedia.nom == 'image-cover' %}
+                <img class="imageAccueil" src="{{ asset('uploads/'~media.mediaName) }}" alt="accueil">
+            {% endif %}
+        {% endfor %}
         <img class="logoAccueil" src="{{ asset('img/logo_myorleans_accueil.png') }}" alt="logo">
     </div>
 {% endblock video %}
@@ -68,7 +74,7 @@
     <div class="row">
         <!-- Barillet équipe -->
         {#<div class="offset-l1 col l4">#}
-            {#<img src="{{ asset('img/test/barillet.png') }}">#}
+        {#<img src="{{ asset('img/test/barillet.png') }}">#}
         {#</div>#}
         <!-- Slider Temoignages -->
         <div class="offset-s1 offset-l6 col l5 s10">
@@ -80,7 +86,8 @@
                     <ul class="slides">
                         {% for temoignage in temoignages %}
                             <li>
-                                <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}" alt="témoin">
+                                <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}"
+                                     alt="témoin">
                                 <div class="caption center-align">
                                     <h3>{{ temoignage.auteur }}</h3>
                                     <h5>{{ temoignage.message }}</h5>
