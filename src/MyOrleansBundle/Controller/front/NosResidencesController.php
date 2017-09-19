@@ -25,15 +25,15 @@ use MyOrleansBundle\Repository\ArticleRepository;
 use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 
 
-class NosBiensController extends Controller
+class NosResidencesController extends Controller
 {
     /**
-     * @Route("/nos_biens", name="nosbiens")
+     * @Route("/nos_residences", name="nosresidences")
      */
-    public function nosBiensAction(Request $request, SessionInterface $session)
+    public function nosResidencesAction(Request $request, SessionInterface $session)
     {
         // Definition des contenus associes par defaut
-        $message = "Découvrez les biens suggérés";
+        $message = "Découvrez les residences suggérés";
         $objectif = "investir";
         $suggestionActive = 0;
         $residencesSuggerees = '';
@@ -65,7 +65,7 @@ class NosBiensController extends Controller
         }
 
         // Generation du moteur de recherche simplifie
-        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', null, ['action' => $this->generateUrl('nosbiens')]);
+        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', null, ['action' => $this->generateUrl('nosresidences')]);
         $simpleSearch->handleRequest($request);
 
         // initialisation des variables ville et type a 0 si le formulaire simpleSearch n'est pas soumis
@@ -110,7 +110,7 @@ class NosBiensController extends Controller
             // Parametrage du parcours visiteur
             $parcours = $session->get('parcours');
 
-            // recherche des biens à exclure de la liste des biens à suggerer
+            // recherche des residences à exclure de la liste des residences à suggerer
             if (!empty($residences)) {
                 foreach ($residences as $residence) {
                     $idResidences[] = $residence->getId();
@@ -124,7 +124,7 @@ class NosBiensController extends Controller
         }
 
         // Generation du moteur de recherche complet avec les valeurs ville et type definies ou non dans simpleSearch
-        $completeSearch = $this->createForm('MyOrleansBundle\Form\CompleteSearchType', ['ville'=>$selectedVille, 'type'=>$selectedType], ['action' => $this->generateUrl('nosbiens-search')]);
+        $completeSearch = $this->createForm('MyOrleansBundle\Form\CompleteSearchType', ['ville'=>$selectedVille, 'type'=>$selectedType], ['action' => $this->generateUrl('nosresidences-search')]);
         $completeSearch->handleRequest($request);
 
         // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
@@ -132,7 +132,7 @@ class NosBiensController extends Controller
             $residences = $em -> getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
         }
 
-        return $this->render('MyOrleansBundle::nosbiens.html.twig', [
+        return $this->render('MyOrleansBundle::nosresidences.html.twig', [
             'parcours' => $parcours,
             'suggestionActive' => $suggestionActive,
             'residencesSuggerees' => $residencesSuggerees,
@@ -149,7 +149,7 @@ class NosBiensController extends Controller
     }
 
     /**
-     * @Route("/nos-biens/search", name="nosbiens-search")
+     * @Route("/nos-residences/search", name="nosresidences-search")
      */
     public function completeSearchAction(Request $request, SessionInterface $session)
     {
@@ -184,14 +184,14 @@ class NosBiensController extends Controller
 
             // Fin contenu associe
 
-            // recherche des biens à exclure de la liste des biens à suggerer
+            // recherche des residences à exclure de la liste des residences à suggerer
             if (!empty($residences)) {
                 foreach ($residences as $residence) {
                     $idResidences[] = $residence->getId();
                 }
             }
 
-            // recherche des biens suggeres
+            // recherche des residences suggeres
             if ($data != null ) {
                 $residencesSuggerees = $em -> getRepository(Residence::class)
                     ->completeSuggestedSearch($idResidences, $data);
@@ -227,7 +227,7 @@ class NosBiensController extends Controller
                 $objectif = "investir";
             }
 
-            return $this->render('MyOrleansBundle::nosbiens.html.twig',[
+            return $this->render('MyOrleansBundle::nosresidences.html.twig',[
                 'parcours' => $parcours,
                 'completeSearch' => $completeSearch->createView(),
                 'completeSearchSmallScreen' => $completeSearch->createView(),
@@ -242,7 +242,7 @@ class NosBiensController extends Controller
             ]);
 
         } else {
-            return $this->redirectToRoute('nosbiens');
+            return $this->redirectToRoute('nosresidences');
         }
 
     }
