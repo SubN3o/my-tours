@@ -1,13 +1,14 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block video %}
-    {#<div class="container-fluid">#}
+    <div class="videoAccueil">
         <video width="100%" autoplay loop muted>
             <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/mp4">
             <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/ogg">
             <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/webm">
         </video>
-    {#</div>#}
+        <img class="logoAccueil" src="{{ asset('img/logo_myorleans_accueil.png') }}" alt="logo">
+    </div>
 {% endblock video %}
 
 {% block content %}
@@ -20,7 +21,7 @@
                 {% for residence in residenceCol1 %}
                     <div class="zone">
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}">
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu">
                             <p>{{ residence.nom }}</p>
@@ -34,7 +35,7 @@
                 {% for residence in residenceCol2 %}
                     <div class="zone">
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}">
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu">
                             <p>{{ residence.nom }}</p>
@@ -51,7 +52,7 @@
                 {% for residence in residenceCol3 %}
                     <div class="zone">
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}">
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu">
                             <p>{{ residence.nom }}</p>
@@ -79,7 +80,7 @@
                     <ul class="slides">
                         {% for temoignage in temoignages %}
                             <li>
-                                <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}">
+                                <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}" alt="témoin">
                                 <div class="caption center-align">
                                     <h3>{{ temoignage.auteur }}</h3>
                                     <h5>{{ temoignage.message }}</h5>

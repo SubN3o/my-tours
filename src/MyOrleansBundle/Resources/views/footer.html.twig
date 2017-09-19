@@ -101,8 +101,8 @@
                 <p class="linkFooter"><a href="#modal2">Frais et honoraires de gestion</a></p>
             </div>
             <div class="col s12 l3">
-                <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}" alt="logo FNAIM" class="logoFooter"></a>
-                <a href="https://www.galian.fr/" target="_blank"><img src="{{ asset('img/logo-galian.png') }}" alt="logo Galian" class="logoFooter"></a>
+                <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}" alt="FNAIM" class="logoFooter"></a>
+                <a href="https://www.galian.fr/" target="_blank"><img src="{{ asset('img/logo-galian.png') }}" alt="Galian" class="logoFooter"></a>
             </div>
         </div>
         <!--modale informations légales-->
@@ -115,7 +115,7 @@
         <div id="modal2" class="modal">
             <div class="modal-content">
                 {% for media in accueil.medias if media.typeMedia.nom == 'image' %}
-                    <img src="{{ asset('uploads/'~media.mediaName) }}">
+                    <img src="{{ asset('uploads/'~media.mediaName) }}" alt="honoraires">
                 {% endfor %}
             </div>
             <div class="modal-footer">
