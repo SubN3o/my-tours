@@ -290,7 +290,7 @@ footer p {
 .enteteCarousel{
     background-color: #F2F2F2;
     text-align: center;
-    height:60px;
+    /*height:60px;*/
     color: #676767;
     font-family: Montserrat;
     font-weight: 400;
@@ -299,7 +299,7 @@ footer p {
 }
 
 .enteteCarousel > p {
-    padding-top: 15px;
+    padding: 15px;
 }
 
 .slider {

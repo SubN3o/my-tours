@@ -1,19 +1,21 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block video %}
-    <div class="container-fluid">
+    {#<div class="container-fluid">#}
         <video width="100%" autoplay loop muted>
             <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/mp4">
             <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/ogg">
             <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/webm">
         </video>
-    </div>
+    {#</div>#}
 {% endblock video %}
 
 {% block content %}
     <h1>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h1>
+    <!-- Mosaïque Résidences -->
     <div class="row">
         <div class="offset-s1 col s10 mosaic">
+            <!-- Colonne Gauche -->
             <div class='colonne'>
                 {% for residence in residenceCol1 %}
                     <div class="zone">
@@ -27,6 +29,7 @@
                     </div>
                 {% endfor %}
             </div>
+            <!-- Colonne Centre -->
             <div class='colonne milieu'>
                 {% for residence in residenceCol2 %}
                     <div class="zone">
@@ -43,6 +46,7 @@
                     <a href="#"><p>VOIR PLUS DE PROGRAMMES</p></a>
                 </div>
             </div>
+            <!-- Colonne Droite -->
             <div class='colonne'>
                 {% for residence in residenceCol3 %}
                     <div class="zone">
@@ -62,11 +66,11 @@
     <h1>NOTRE ÉQUIPE</h1>
     <div class="row">
         <!-- Barillet équipe -->
-        <div class="offset-l1 col l4">
-            <img src="{{ asset('img/test/barillet.png') }}">
-        </div>
+        {#<div class="offset-l1 col l4">#}
+            {#<img src="{{ asset('img/test/barillet.png') }}">#}
+        {#</div>#}
         <!-- Slider Temoignages -->
-        <div class="offset-l1 col l5">
+        <div class="offset-s1 offset-l6 col l5 s10">
             <div class="temoignage">
                 <div class="enteteCarousel">
                     <p>CE QUE NOS CLIENTS PENSENT DE NOUS</p>

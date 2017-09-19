@@ -6,9 +6,11 @@
 {% endblock %}
 
 {% block body %}
+    <div class="container-fluid">
 
     <div class="breadcrumb formulaireBouton">
-        <a href="#" data-activates="slide-out" class="button-collapse pulse-button"><i class="material-icons">message</i></a>
+        <a href="#" data-activates="slide-out" class="button-collapse pulse-button"><i
+                    class="material-icons">message</i></a>
     </div>
 
     <!-- début formulaire de contact -->
@@ -114,27 +116,28 @@
     {% endblock video %}
 
     {#{% block navbar %}#}
-        <nav>
-            <div class="nav-wrapper">
-                <a href="{{ path("home") }}" class="brand-logo">
-                    <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
-                </a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ path("nosbiens") }}">NOS RÉSIDENCES</a></li>
-                    <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
-                    <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
-                    <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
-                    <li><a href="#"><i class="material-icons">search</i></a></li>
-                </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><a href="{{ path("nosbiens") }}">NOS RÉSIDENCES</a></li>
-                    <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
-                    <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
-                    <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
-                </ul>
-            </div>
-        </nav>
+    <nav class="menu">
+        <div class="nav-wrapper">
+            <a href="{{ path("home") }}" class="brand-logo">
+                <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
+            </a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i
+                        class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ path("nosbiens") }}">NOS RÉSIDENCES</a></li>
+                <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
+                <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
+                <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
+                <li><a href="#"><i class="material-icons">search</i></a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="{{ path("nosbiens") }}">NOS RÉSIDENCES</a></li>
+                <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
+                <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
+                <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
+            </ul>
+        </div>
+    </nav>
     {#{% endblock navbar %}#}
 
     {% block content %}
@@ -144,13 +147,14 @@
     {% endblock content %}
 
     {#{% block footer %}#}
-        {{ render(controller('MyOrleansBundle:front/Layout:footer')) }}
+    {{ render(controller('MyOrleansBundle:front/Layout:footer')) }}
     {#{% endblock footer %}#}
-
+    </div>
 {% endblock body %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
