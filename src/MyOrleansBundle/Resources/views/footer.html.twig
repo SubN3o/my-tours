@@ -2,10 +2,10 @@
     <div class="footer1">
         <div class="row">
             <!--colonne gauche-->
-            <div class="col s4">
+            <div class="col s12 l4">
                 <h5 class="center">CONTACTEZ-NOUS</h5>
                 <div class="row">
-                    <div class="offset-s1 col s11">
+                    <div class="offset-l1 col l11">
                         <p class="linkFooter"><i class="small material-icons align-icon">phone</i><a
                                     href="tel:+33238759447"> 02 38 75 94 47</a></p>
                         <p><i class="small material-icons align-icon">location_on</i> 13, rue Bannier 45000 Orléans</p>
@@ -17,21 +17,21 @@
                 </div>
                 <h5 class="center h5Footer">SUIVEZ-NOUS</h5>
                 <div class="row">
-                    <div class="offset-s2 col s2">
+                    <div class="offset-s3 offset-l2 col l2 s2">
                         <a href="https://www.facebook.com/myorleans/?ref=page_internal" target="_blank">
                             <div class="social-btn">
                                 <i class="fa fa-facebook fa-3x fb-social"></i>
                             </div>
                         </a>
                     </div>
-                    <div class="col offset-s1 s2">
+                    <div class="offset-l1 col l2 s2">
                         <a href="https://twitter.com/myorleans" target="_blank">
                             <div class="social-btn">
                                 <i class="fa fa-twitter fa-3x icon-social"></i>
                             </div>
                         </a>
                     </div>
-                    <div class="col offset-s1 s2">
+                    <div class="offset-l1 col l2 s2">
                         <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ" target="_blank">
                             <div class="social-btn">
                                 <i class="fa fa-youtube fa-3x icon-social"></i>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <!--colonne milieu-->
-            <div class="col s4 bordureFooter">
+            <div class="col s12 l4 bordureFooter">
                 <h5 class="center"><a href="{{ path("nosbiens") }}">NOS PROGRAMMES NEUFS</a></h5>
                 <div class="row">
                     {% for programme in programmes %}
@@ -68,10 +68,10 @@
                 </div>
             </div>
             <!--colonne droite-->
-            <div class="col s4">
+            <div class="col s12 l4">
                 <h5 class="center"><a href="{{ path("agence") }}">MY ORLÉANS</a></h5>
                 <div class="row">
-                    <div class="offset-s1 col s11">
+                    <div class="offset-l1 col l11">
                         <p class="linkFooter"><a href="{{ path("agence") }}">L'agence</a></p>
                         <p class="linkFooter"><a href="{{ path("agence") }}">L'équipe</a></p>
                         <p class="linkFooter"><a href="{{ path("agence") }}">Nos partenaires</a></p>
@@ -80,7 +80,7 @@
                 </div>
                 <h5 class="center h5Footer"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></h5>
                 <div class="row">
-                    <div class="offset-s1 col s11">
+                    <div class="offset-l1 col l11">
                         {% for article in articles %}
                             <p class="linkFooter"><a href="{{ path("immo_pratique") }}">{{ article.titre }}</a></p>
                         {% endfor %}
@@ -90,20 +90,18 @@
         </div>
     </div>
     <div class="footer2">
-        <div class="row valign-wrapper">
-            <div class="offset-s1 col s2">
+        <div class="row">
+            <div class="offset-l1 col s12 l2">
                 <p>© 2017 My-Orléans</p>
             </div>
-            <div class="col s2">
+            <div class="col s12 l2">
                 <p class="linkFooter"><a href="#modal1">Informations légales</a></p>
             </div>
-            <div class="offset-s1 col s3">
+            <div class="offset-l1 s12 col l3">
                 <p class="linkFooter"><a href="#modal2">Frais et honoraires de gestion</a></p>
             </div>
-            <div class="col s1">
+            <div class="col s12 l3">
                 <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}" alt="logo FNAIM" class="logoFooter"></a>
-            </div>
-            <div class="col s2">
                 <a href="https://www.galian.fr/" target="_blank"><img src="{{ asset('img/logo-galian.png') }}" alt="logo Galian" class="logoFooter"></a>
             </div>
         </div>
