@@ -53,7 +53,7 @@ class HomeController extends Controller
         $residenceCol2 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],2,0);
         $residenceCol3 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],2,5);
 
-        $testimonials = $em->getRepository(Temoignage::class)->findAll();
+        $temoignages = $em->getRepository(Temoignage::class)->findAll();
 
 //        $actu = $em->getRepository(Article::class)->findOneActu();
 //        $event = $em->getRepository(Evenement::class)->findOneEvent();
@@ -124,7 +124,7 @@ class HomeController extends Controller
             'residenceCol3' => $residenceCol3,
 //            'actu' => $actu,
 //            'event' => $event,
-            'testimonials' => $testimonials,
+            'temoignages' => $temoignages,
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView(),
             'accueil' => $accueil

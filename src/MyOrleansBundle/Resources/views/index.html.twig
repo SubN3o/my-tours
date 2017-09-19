@@ -17,12 +17,11 @@
             <div class='colonne'>
                 {% for residence in residenceCol1 %}
                     <div class="zone">
-                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                        <img src="{{ asset('uploads/'~media.mediaName) }}">
-                    {% endfor %}
+                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                            <img src="{{ asset('uploads/'~media.mediaName) }}">
+                        {% endfor %}
                         <div class="contenu">
                             <p>{{ residence.nom }}</p>
-                            {#<p>{{ residence.ville.nom }}</p>#}
                             <a href="#">VOIR PLUS</a>
                         </div>
                     </div>
@@ -36,7 +35,6 @@
                         {% endfor %}
                         <div class="contenu">
                             <p>{{ residence.nom }}</p>
-                            {#<p>{{ residence.ville.nom }}</p>#}
                             <a href="#">VOIR PLUS</a>
                         </div>
                     </div>
@@ -53,7 +51,6 @@
                         {% endfor %}
                         <div class="contenu">
                             <p>{{ residence.nom }}</p>
-                            {#<p>{{ residence.ville.nom }}</p>#}
                             <a href="#">VOIR PLUS</a>
                         </div>
                     </div>
@@ -64,8 +61,36 @@
 
     <h1>NOTRE ÉQUIPE</h1>
     <div class="row">
-        <div class="offset-s1 col s5">
+        <!-- Barillet équipe -->
+        <div class="offset-l1 col l4">
             <img src="{{ asset('img/test/barillet.png') }}">
+        </div>
+        <!-- Slider Temoignages -->
+        <div class="offset-l1 col l5">
+            <div class="temoignage">
+                <div class="enteteCarousel">
+                    <p>CE QUE NOS CLIENTS PENSENT DE NOUS</p>
+                </div>
+                <div class="slider">
+                    <ul class="slides">
+                        {% for temoignage in temoignages %}
+                            <li>
+                                <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}">
+                                <div class="caption center-align">
+                                    <h3>{{ temoignage.auteur }}</h3>
+                                    <h5>{{ temoignage.message }}</h5>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="col s12">
+                        <button class="prev btn grey darken-3 btn-floating btn-large"><i
+                                    class="fa fa-caret-left white-text text-lighten-1"></i></button>
+                        <button class="next btn grey darken-3 btn-floating btn-large"><i
+                                    class="fa fa-caret-right white-text text-lighten-1"></i></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock content %}
