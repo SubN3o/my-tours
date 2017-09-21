@@ -42,11 +42,11 @@
             </div>
             <!--colonne milieu-->
             <div class="col s12 l4 bordureFooter">
-                <h5 class="center"><a href="{{ path("nosbiens") }}">NOS PROGRAMMES NEUFS</a></h5>
+                <h5 class="center"><a href="{{ path("nosresidences") }}">NOS PROGRAMMES NEUFS</a></h5>
                 <div class="row">
                     {% for programme in programmes %}
                         <div class="col s12 l6">
-                            <p class="linkFooter"><a href="{{ path("nosbiens") }}">{{ programme.nom }}</a></p>
+                            <p class="linkFooter"><a href="{{ path("nosresidences") }}">{{ programme.nom }}</a></p>
                         </div>
                     {% endfor %}
                 </div>

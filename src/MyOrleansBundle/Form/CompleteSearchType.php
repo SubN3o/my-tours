@@ -34,16 +34,16 @@ class CompleteSearchType extends AbstractType
                 ]
 
             ])
-            ->add('quartier', SearchType::class, [
-                'required'=>false,
-                'attr'=> [
-                    'id'=>'quartiers',
-                    'placeholder'=>'Chercher un quartier...',
-                    'class'=>'autocomplete',
-                    'autocomplete' => 'off'
-                ]
-
-            ])
+//            ->add('quartier', SearchType::class, [
+//                'required'=>false,
+//                'attr'=> [
+//                    'id'=>'quartiers',
+//                    'placeholder'=>'Chercher un quartier...',
+//                    'class'=>'autocomplete',
+//                    'autocomplete' => 'off'
+//                ]
+//
+//            ])
             ->add('type', ChoiceType::class, [
                 'required'=>false,
                 'placeholder'=>'Type du bien',
@@ -55,18 +55,18 @@ class CompleteSearchType extends AbstractType
                     'T5+' => 'T5+',
                 )
             ])
-            ->add('surfaceMin', IntegerType::class, [
-                'required' => false,
-                'attr' => ['placeholder'=>'Surface min',
-                            'min' => '0'
-                            ],
-            ])
-            ->add('surfaceMax', IntegerType::class, [
-                'required' => false,
-                'attr' => ['placeholder'=>'Surface max',
-                    'min' => '0'
-                    ],
-            ])
+//            ->add('surfaceMin', IntegerType::class, [
+//                'required' => false,
+//                'attr' => ['placeholder'=>'Surface min',
+//                            'min' => '0'
+//                            ],
+//            ])
+//            ->add('surfaceMax', IntegerType::class, [
+//                'required' => false,
+//                'attr' => ['placeholder'=>'Surface max',
+//                    'min' => '0'
+//                    ],
+//            ])
 //            ->add('nbChambres', ChoiceType::class, [
 //                'required'=>false,
 //                'placeholder'=>'Nb. Chambre(s)',
@@ -78,14 +78,14 @@ class CompleteSearchType extends AbstractType
 //                )
 //            ])
 
-            ->add('objectif', ChoiceType::class, [
-                'required'=>false,
-                'placeholder'=>'Objectif',
-                'choices' => array(
-                    'investir' => 'investir',
-                    'acheter en résidence principale' => 'Residence Principale',
-                )
-            ])
+//            ->add('objectif', ChoiceType::class, [
+//                'required'=>false,
+//                'placeholder'=>'Objectif',
+//                'choices' => array(
+//                    'investir' => 'investir',
+//                    'acheter en résidence principale' => 'Residence Principale',
+//                )
+//            ])
             ->add('budgetMin', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
