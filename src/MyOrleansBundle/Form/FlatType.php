@@ -66,6 +66,7 @@ class FlatType extends AbstractType
           ])
             ->add('dateLivraison', ChoiceType::class, [
                 'choices' => [
+                    'Immédiate'=>'Immédiate',
                     '1er trimestre 2017' => '1er trimestre 2017',
                     '2nd trimestre 2017' => '2nd trimestre 2017',
                     '3e trimestre 2017' => '3e trimestre 2017',
