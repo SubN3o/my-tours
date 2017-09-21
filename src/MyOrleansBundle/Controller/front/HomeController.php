@@ -58,41 +58,6 @@ class HomeController extends Controller
 //        $actu = $em->getRepository(Article::class)->findOneActu();
 //        $event = $em->getRepository(Evenement::class)->findOneEvent();
 
-        $telephoneNumber = $this->getParameter('telephone_number');
-
-
-        // Formulaire de contact
-        $client = new Client();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->handleRequest($request);
-
-        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($message);
-
-            $em->persist($client);
-            $em->flush();
-
-            $this->addFlash('success', 'votre message a bien été envoyé');
-            return $this->redirectToRoute('home');
-        }
-
 
         // Recuperation de la liste des villes dans lesquelles se trouvent les residences
         $residences = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
@@ -108,7 +73,7 @@ class HomeController extends Controller
         // Fin recuperation des villes
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
             null,
-            ['action' => $this->generateUrl('nosbiens')]);
+            ['action' => $this->generateUrl('nosresidences')]);
 
                 
 
@@ -125,8 +90,6 @@ class HomeController extends Controller
 //            'actu' => $actu,
 //            'event' => $event,
             'temoignages' => $temoignages,
-            'telephone_number' => $telephoneNumber,
-            'form' => $formulaire->createView(),
             'accueil' => $accueil
 
         ]);

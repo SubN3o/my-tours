@@ -1,6 +1,7 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block video %}
+    <!--Accueil video ou image Full Page-->
     <div class="accueil">
         {% for media in accueil.medias %}
             {% if media.typeMedia.nom == 'video' %}
