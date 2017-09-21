@@ -12,7 +12,7 @@
                         <h4>{{ residence.nom }}</h4>
                         <div class="row">
                             <p class="col s12 xl6 lieu">{{ residence.ville.nom }} {% if residence.quartier is not empty %}{{ residence.quartier.nom }}{% endif %}</p>
-                            <p class="col s12 xl6 prix">À partir de {{ prixMin }}€</p>
+                            <p class="col s12 xl6 prix">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</p>
                         </div>
                         <div class="row">
                             <p class="col s12 xl8 livraison">Livraison {{ residence.dateLivraison }}</p>

@@ -32,7 +32,7 @@
                                 </tr>
                                 <tr>
                                     <th>Prix</th>
-                                    <td>{{ flat.prix }}{% if flat.prix != null %} €{% endif %}</td>
+                                    <td>{{ flat.prix|number_format(0, '.', ' ') }}{% if flat.prix != null %} €{% endif %}</td>
                                 </tr>
                                 <tr>
                                     <th>Surface Habitable</th>
