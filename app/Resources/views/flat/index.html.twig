@@ -33,7 +33,7 @@
                                     {% for flat in flats %}
                                         <tr>
                                             <td>{{ flat.reference }}</td>
-                                            <td>{{ flat.prix }}{% if flat.prix != null %} €{% endif %}</td>
+                                            <td>{{ flat.prix|number_format(0, '.', ' ') }}{% if flat.prix != null %} €{% endif %}</td>
                                             <td>{{ flat.surface }}{% if flat.surface != null %} m²{% endif %}</td>
                                             <td>{{ flat.etage }}</td>
                                             <td>{{ flat.typeLogement.nom}}</td>
