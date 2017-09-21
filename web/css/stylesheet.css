@@ -458,3 +458,64 @@ footer p {
     font-size: 16pt;
     text-transform: uppercase;
 }
+
+.card .card-image .card-title, .card .card-image .card-title .card-content{
+    padding: 0 0;
+    width: 100%;
+}
+
+.bandeau {
+    background-color: rgba(255,255,255,.9);
+    font-family: Montserrat;
+    font-weight: 400;
+    letter-spacing: .55pt;
+}
+
+.bandeau > h4 {
+    font-size: 24pt;
+    text-transform: uppercase;
+    color: #1D1D1B;
+    margin: 3px 5px;
+}
+
+.bandeau > div > .lieu {
+    font-weight: 400;
+    font-size: 15pt;
+    text-transform: capitalize;
+    color: #B5CC17;
+    margin: 0 0;
+    letter-spacing: .1pt;
+}
+
+.bandeau > div > .livraison{
+    font-weight: 400;
+    font-size: 15pt;
+    text-transform: capitalize;
+    color: #676767;
+    margin: 0 0;
+    letter-spacing: .1pt;
+}
+
+.bandeau > div > .prix {
+    text-align: right;
+    font-weight: 400;
+    font-size: 15pt;
+    color: #1D1D1B;
+    margin: 0 0;
+    letter-spacing: .1pt;
+}
+
+.bandeau > div > .type {
+    text-align: right;
+    font-weight: 400;
+    font-size: 15pt;
+    color: #1D1D1B;
+    margin: 0 0;
+    letter-spacing: .1pt;
+}
+
+@media screen and (max-width: 1200px) {
+    .bandeau > div > .prix, .bandeau > div > .type {
+        text-align: left;
+    }
+}
