@@ -119,8 +119,8 @@
                         });
 
 
-                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                            return function() {
+                        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                            return function () {
                                 infowindow.setContent(locations[i][0]);
                                 infowindow.open(map, marker);
                             }
@@ -144,7 +144,7 @@
             <div class="row center no-margin-bottom">
                 {% set nb_res = residences|length %}
 
-                {% if rechercheSansResultat == 0 %}
+                {% if rechercheSansResultat == 1 %}
                     <h1 class="section-title">
                         Aucune résidence ne correspond à votre recherche.<br/>Découvrez les biens suggérés.
                     </h1>
@@ -174,14 +174,25 @@
 
                     {% transchoice nb_res_suggerees %}
                     {0} |
-                    {1} <h3>D'autres biens pourraient vous intéresser dans cette résidence</h3>|
-                    ]1,Inf[ <h3>D'autres biens pourraient vous intéresser dans ces résidences</h3>
+                    {1} <h1>D'autres biens pourraient vous intéresser dans cette résidence</h1>|
+                    ]1,Inf[ <h1>D'autres biens pourraient vous intéresser dans ces résidences</h1>
                     {% endtranschoice %}
-
+                </div>
+                <div class="row">
                     {% for residence in residencesSuggerees %}
-
-                        {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidence', {'id': residence.id })) }}
-
+                            <div class="col s3">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                                            {% if residence.medias is not empty %}
+                                                {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}" alt="residence">
+                                                {% endfor %}
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                     {% endfor %}
                 </div>
             {% else %}
@@ -204,7 +215,7 @@
             $('#complete_search_quartier').autocomplete({
                 data: {
                     {% for quartier in quartiers %}
-                    "{{ quartier.nom }}" : null,
+                    "{{ quartier.nom }}": null,
                     {% endfor %}
                 },
                 limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
@@ -218,7 +229,7 @@
             $('#complete_search_ville').autocomplete({
                 data: {
                     {% for ville in villes %}
-                    "{{ ville.nom }}" : null,
+                    "{{ ville.nom }}": null,
                     {% endfor %}
                 },
                 limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
