@@ -90,10 +90,12 @@ class CompleteSearchType extends AbstractType
             ->add('budgetMin', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
+                'attr' => ['min' => '0'],
             ])
             ->add('budgetMax', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
+                'attr' => ['min' => '0'],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Rechercher',
