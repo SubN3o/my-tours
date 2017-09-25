@@ -1,33 +1,6 @@
 // initialisation des select de Materialize
 
 $(document).ready(function () {
-
-    // Slider teloignage
-    $('.slider').slider({
-        height: 300,
-        indicators: false,
-        interval: 12000
-    });
-
-//$('.slider').slider('pause');
-
-    $('.next').click(function() {
-        $('.slider').slider('next');
-    });
-    $('.prev').click(function() {
-        $('.slider').slider('prev');
-    });
-
-    $('select').material_select();
-
-    $('.parallax').parallax();
-
-    $('.carousel').carousel({
-        indicators: true,
-        dist: 0,
-        shift: 20,
-        duration: 100
-    });
   
     $('.modal').modal();
     // Script JS pour l'autocomplétion
