@@ -90,16 +90,18 @@ class CompleteSearchType extends AbstractType
             ->add('budgetMin', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
-                'attr' => ['min' => '0'],
+                'attr' => ['min' => '0',
+                            'max' => '500000'],
             ])
             ->add('budgetMax', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
-                'attr' => ['min' => '0'],
+                'attr' => ['min' => '0',
+                            'max'=> '500000'],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Rechercher',
-                'attr' => ['class' => 'waves-effect waves-light btn-large light-green']
+                'attr' => ['class' => 'waves-effect waves-light btn white']
             ])
             ->getForm();
 
