@@ -31,7 +31,7 @@
 
     <!-- Search Complete -->
     <div class="row">
-        <div class="offset-l1 col l4">
+        <div class="offset-s1 offset-m2 offset-l1 col s10 m8 l4">
 
             <div class="card">
                 {{ form_start(completeSearch) }}
@@ -48,7 +48,10 @@
                     <div id="localisation">
                         <h4>Où souhaitez-vous acheter ?</h4>
                         <div class="row no-margin-bottom">
-                            <div class="col s6">
+                            <div class="offset-s1 offset-xl1 col s10 xl4 localisation">
+                                <p>Localisation</p>
+                            </div>
+                            <div class="offset-s1 offset-xl1 col s10 xl6">
                                 {{ form_widget(completeSearch.ville) }}
                                 {{ form_errors(completeSearch.ville) }}
                             </div>
@@ -58,8 +61,28 @@
                         <h4>Sélectionnez le type souhaité</h4>
                         <div class="row no-margin-bottom">
                             <div class="col s12">
-                                {{ form_widget(completeSearch.type) }}
-                                {{ form_errors(completeSearch.type) }}
+                                <div class="row">
+                                    <div class="offset-s2 col s8 typeSearch">
+                                        <span class="T1">T1</span>
+                                        <span class="T2">T2</span>
+                                        <span class="T3">T3</span>
+                                        <span class="T4">T4</span>
+                                        <span class="T5">T5+</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="offset-s2 col s8 curseur">
+                                        <div class="slider type2">
+                                            {{ form_widget(completeSearch.type) }}
+                                            {{ form_errors(completeSearch.type) }}
+                                        </div>
+                                        <span class="division1"></span>
+                                        <span class="division2"></span>
+                                        <span class="division3"></span>
+                                        <span class="division4"></span>
+                                        <span class="division5"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,11 +91,11 @@
                         <div class="row no-margin-bottom">
                             <div class="col s12">
                                 <div class="row">
-                                    <div class="offset-s1 col s4 compteur">
+                                    <div class="offset-s1 col s4 budget">
                                         <p>Budget min</p>
                                         {{ form_widget(completeSearch.budgetMin) }}
                                     </div>
-                                    <div class="offset-s2 col s4 compteur">
+                                    <div class="offset-s2 col s4 budget">
                                         <p>Budget max</p>
                                         {{ form_widget(completeSearch.budgetMax) }}
                                     </div>
@@ -83,8 +106,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="col s6">
                                 {{ form_widget(completeSearch.budgetMin) }}
                                 {{ form_errors(completeSearch.budgetMin) }}
@@ -96,19 +117,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-content">
-                    <div class="col s6 center">
+                <div class="rechercher center">
                         {{ form_widget(completeSearch.submit) }}
-                    </div>
                 </div>
                 {{ form_end(completeSearch) }}
             </div>
         </div>
-        <div class="col l6 hide-on-small-only">
+
+        <div class="col l6 hide-on-med-only">
             <div class="card" id="map"></div>
-
-
         </div>
+
     </div>
     {% dump(residences) %}
     <div class="row carte-liste-articles">
@@ -182,9 +201,9 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
     <script>
-
         $(document).ready(function () {
 
             //Autocompletion Moteur de Recherche
@@ -216,10 +235,24 @@
 
             });
 
-            //Slider Moteur de Recherche
+            //Slider Range Type Moteur de Recherche
+            var select = $("#complete_search_type");
+            var slider = $("<div id='slider'></div>").insertAfter(select).slider({
+                min: 1,
+                max: 5,
+                range: "min",
+                value: select[0].selectedIndex + 1,
+                slide: function (event, ui) {
+                    select[0].selectedIndex = ui.value - 1;
+                }
+            });
+            $("#complete_search_type").on("change", function () {
+                slider.slider("value", this.selectedIndex + 1);
+            });
+
+            //Slider Range Budget Moteur de Recherche
             $("#slider-range").slider({
                 range: true,
-                min: 0,
                 max: 500000,
                 values: [100000, 300000],
                 animate: true,
@@ -234,10 +267,8 @@
             $("#complete_search_budgetMax").val($("#slider-range").slider("values", 1));
 
         });
-
     </script>
     <script>
-
         function initMap() {
 
 //                    var count = 0;
@@ -275,7 +306,6 @@
                 })(marker, i));
             }
         }
-
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
