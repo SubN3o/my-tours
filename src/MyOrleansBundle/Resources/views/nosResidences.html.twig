@@ -44,9 +44,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="search card-content center">
+                <div class="search card-content">
                     <div id="localisation">
-                        <p>Où souhaitez-vous acheter ?</p>
+                        <h4>Où souhaitez-vous acheter ?</h4>
                         <div class="row no-margin-bottom">
                             <div class="col s6">
                                 {{ form_widget(completeSearch.ville) }}
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div id="type">
-                        <p>Sélectionnez le type souhaité</p>
+                        <h4>Sélectionnez le type souhaité</h4>
                         <div class="row no-margin-bottom">
                             <div class="col s12">
                                 {{ form_widget(completeSearch.type) }}
@@ -64,8 +64,27 @@
                         </div>
                     </div>
                     <div id="budget">
-                        <p>Votre budget</p>
+                        <h4>Votre budget</h4>
                         <div class="row no-margin-bottom">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="offset-s1 col s4 compteur">
+                                        <p>Budget min</p>
+                                        {{ form_widget(completeSearch.budgetMin) }}
+                                    </div>
+                                    <div class="offset-s2 col s4 compteur">
+                                        <p>Budget max</p>
+                                        {{ form_widget(completeSearch.budgetMax) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="offset-s2 col s8 curseur">
+                                        <div id="slider-range" class="slider type2"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="col s6">
                                 {{ form_widget(completeSearch.budgetMin) }}
                                 {{ form_errors(completeSearch.budgetMin) }}
@@ -85,54 +104,9 @@
                 {{ form_end(completeSearch) }}
             </div>
         </div>
-        <div class="col s7 hide-on-small-only carte">
-            <div id="map"></div>
-            <script>
+        <div class="col l6 hide-on-small-only">
+            <div class="card" id="map"></div>
 
-                function initMap() {
-
-                    var count = 0;
-                    var locations = [
-                        {% for residence in residences %}
-                        ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}],
-                        {% endfor %}
-
-                    ];
-
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 12,
-                        center: new google.maps.LatLng(47.902964, 1.909251),
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    });
-
-                    var infowindow = new google.maps.InfoWindow();
-                    var iconBase = 'img/';
-                    var marker, i;
-
-                    for (i = 0; i < locations.length; i++) {
-
-
-                        marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                            map: map,
-                            icon: iconBase + 'marker.png'
-                        });
-
-
-                        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                            return function () {
-                                infowindow.setContent(locations[i][0]);
-                                infowindow.open(map, marker);
-                            }
-                        })(marker, i));
-                    }
-                }
-
-            </script>
-
-            <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
-            </script>
 
         </div>
     </div>
@@ -180,19 +154,20 @@
                 </div>
                 <div class="row">
                     {% for residence in residencesSuggerees %}
-                            <div class="col s3">
-                                <div class="card">
-                                    <div class="card-image">
-                                        <a href="{{ path('residences', { 'slug': residence.slug }) }}">
-                                            {% if residence.medias is not empty %}
-                                                {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                                                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}" alt="residence">
-                                                {% endfor %}
-                                            {% endif %}
-                                        </a>
-                                    </div>
+                        <div class="col s3">
+                            <div class="card">
+                                <div class="card-image">
+                                    <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                                        {% if residence.medias is not empty %}
+                                            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                                <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                                                     alt="residence">
+                                            {% endfor %}
+                                        {% endif %}
+                                    </a>
                                 </div>
                             </div>
+                        </div>
                     {% endfor %}
                 </div>
             {% else %}
@@ -212,6 +187,7 @@
 
         $(document).ready(function () {
 
+            //Autocompletion Moteur de Recherche
             $('#complete_search_quartier').autocomplete({
                 data: {
                     {% for quartier in quartiers %}
@@ -239,7 +215,69 @@
                 minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
 
             });
+
+            //Slider Moteur de Recherche
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 500000,
+                values: [100000, 300000],
+                animate: true,
+                step: 5,
+                slide: function (event, ui) {
+                    $("#complete_search_budgetMin").val(ui.values[0]);
+                    $("#complete_search_budgetMax").val(ui.values[1]);
+                }
+            });
+
+            $("#complete_search_budgetMin").val($("#slider-range").slider("values", 0));
+            $("#complete_search_budgetMax").val($("#slider-range").slider("values", 1));
+
         });
 
+    </script>
+    <script>
+
+        function initMap() {
+
+//                    var count = 0;
+            var locations = [
+                {% for residence in residences %}
+                ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}],
+                {% endfor %}
+
+            ];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {lat: 47.902964, lng: 1.909251},
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+
+
+                marker = new google.maps.Marker({
+                    position: {lat: locations[i][1], lng: locations[i][2]},
+                    map: map,
+                    icon: 'img/marker.png'
+                });
+
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
     </script>
 {% endblock %}

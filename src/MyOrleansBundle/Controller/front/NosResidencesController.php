@@ -250,9 +250,10 @@ class NosResidencesController extends Controller
                 'rechercheSansResultat' => $rechercheSansResultat
             ]);
 
-        } else {
-            return $this->redirectToRoute('nosresidences');
         }
+//        else {
+//            return $this->redirectToRoute('nosresidences');
+//        }
 
     }
 

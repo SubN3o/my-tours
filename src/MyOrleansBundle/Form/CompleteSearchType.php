@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class CompleteSearchType extends AbstractType
@@ -89,16 +90,10 @@ class CompleteSearchType extends AbstractType
             ->add('budgetMin', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
-                'attr' => ['placeholder'=>'Budget min',
-                    'min' => '0'
-                    ],
             ])
             ->add('budgetMax', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
-                'attr' => ['placeholder'=>'Budget max',
-                    'min' => '0'
-                    ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Rechercher',
