@@ -49,49 +49,16 @@ class ResidencesController extends Controller
             }
         }
 
-        // Formulaire de contact
-        $client = new  Client();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $telephoneNumber = $this->getParameter('telephone_number');
-        $formulaire->handleRequest($request);
-
-        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($message);
-
-            $em->persist($client);
-            $em->flush();
-            return $this->redirectToRoute('nosbiens');
-        }
-
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'residence' => $residence,
             'flats' => $flats,
             'parcours' => $parcours,
             'media' => $mediaDefine,
-            'telephone_number' => $telephoneNumber,
             'prixMin' => $prixMin,
             'flatsDispo' => $flatsDispo,
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
             'typeLogement'=>$typelogment,
-            'form' => $formulaire->createView()
         ]);
 
 

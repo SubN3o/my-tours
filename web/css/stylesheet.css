@@ -207,8 +207,9 @@ footer p {
 
 .accueil > .logoAccueil {
     position: absolute;
-    top: 35%;
-    left: 25%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     width: 50%;
 }
 
@@ -350,16 +351,19 @@ footer p {
 
 .prev {
     position: absolute;
-    bottom:40%;
+    top:50%;
+    transform: translateY(-50%);
     left: -45px;
     z-index: 100;
 }
 .next {
     position: absolute;
-    bottom:40%;
+    top:50%;
+    transform: translateY(-50%);
     right: -45px;
     z-index: 100;
 }
+
 .btn-large .fa-caret-right {
      font-size: 64px;
      margin-left: 6px;
@@ -701,5 +705,105 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
 @media screen and (max-width: 1200px) {
     .bandeau > div > .prix, .bandeau > div > .type {
         text-align: left;
+    }
+}
+
+/* --------------------------------------------------------------------*/
+/* ---------------------------- RESIDENCE -----------------------------*/
+/* --------------------------------------------------------------------*/
+.retourSearch a, .retourSearch a:hover{
+    background-color: #B3B3B3;
+    margin: 40px 0;
+}
+
+.sliderResidence .slider, .sliderResidence .slider .slides {
+    height: 720px;
+}
+
+.sliderResidence .prev {
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    left: 0;
+    z-index: 100;
+    padding: 0 0;
+}
+
+.sliderResidence .next {
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    right: 0;
+    z-index: 100;
+    padding: 0 0;
+}
+
+.sliderResidence .prev > i, .sliderResidence .next > i{
+     font-size: 128px;
+}
+
+.sliderResidence a > i {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 64px;
+}
+
+#ytplayer {
+    display: none;
+}
+
+.encart {
+    position: absolute;
+    padding: 10px 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: white;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+}
+
+.encart h2 {
+    font-weight: 300;
+    margin: 0 0;
+    font-size: 70pt;
+}
+
+.encart p {
+    font-weight: 400;
+    margin: 0 0;
+    font-size: 24pt;
+    font-style: italic;
+}
+
+@media screen and (max-width: 992px) {
+
+    .sliderResidence .slider, .sliderResidence .slider .slides {
+        height: 360px;
+    }
+
+    .encart {
+        width: 400px;
+    }
+
+    .encart h2 {
+        font-weight: 300;
+        margin: 0 0;
+        font-size: 35pt;
+    }
+
+    .encart p {
+        font-weight: 400;
+        margin: 0 0;
+        font-size: 12pt;
+        font-style: italic;
+    }
+
+    .sliderResidence .prev > i, .sliderResidence .next > i{
+        font-size: 96px;
     }
 }

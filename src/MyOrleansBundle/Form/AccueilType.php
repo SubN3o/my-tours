@@ -36,9 +36,6 @@ class AccueilType extends AbstractType
                     'prototype' => true,
                     'by_reference' => false
                 ])
-                ->add('lienYoutube', TextType::class, [
-                    'required' => false,
-                ])
         ;
     }
     

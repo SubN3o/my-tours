@@ -290,9 +290,9 @@ class Residence
 
     /**
      * @var string
-     *  @Assert\Url(
-     *     message = "L'URL saisie n'est pas correcte",
-     *     protocols = {"http", "https", "ftp"}
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
      * )
      * @ORM\Column(name="lien_youtube", type="string", nullable=true)
      */
