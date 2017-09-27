@@ -4,10 +4,12 @@
     <div class="row">
         <div class="col offset-s1 retourSearch">
             <a class="waves-effect waves-light btn"
-               href="#" onclick="javascript:history.back()">
+               href="#" onclick="history.back()">
                 <i class="fa fa-caret-left white-text"></i> RETOUR AUX RÉSULTATS DE MA RECHERCHE</a>
         </div>
     </div>
+
+    <!-- Slider Residence -->
     <div class="sliderResidence">
         <div class="slider">
             <ul class="slides">
@@ -16,6 +18,7 @@
                         <img id="image" src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                     {% endfor %}
                     <div id="surCouche">
+                        <!-- Remplacement de #image et #surCouche par #ytplayer avec la fonction onclick -->
                         <a href="#" {% if residence.lienYoutube != null %}onclick="imageByYoutube()"{% endif %}><i
                                     class="material-icons white-text">play_circle_outline</i></a>
                         <div class="encart center">
@@ -24,7 +27,7 @@
                             </p>
                         </div>
                     </div>
-                    <iframe id="ytplayer" type="text/html" width="100%" height="720"
+                    <iframe id="ytplayer" type="text/html"
                             src="http://www.youtube.com/embed/{{ residence.lienYoutube }}?autoplay=0&modestbranding=1&rel=0&showinfo=0"
                             frameborder="0"></iframe>
                 </li>
@@ -58,8 +61,8 @@
             $('.slider').slider({
                 indicators: false,
                 interval: 12000,
-                height: null,
-            });
+                height: null
+            },'pause');
 
             $('.slider').slider('pause');
 

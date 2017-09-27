@@ -46,7 +46,7 @@
                 <div class="row">
                     {% for programme in programmes %}
                         <div class="col s12 l6">
-                            <p class="linkFooter"><a href="{{ path("nosresidences") }}">{{ programme.nom }}</a></p>
+                            <p class="linkFooter"><a href="{{ path('residences', { 'slug': programme.slug }) }}">{{ programme.nom }}</a></p>
                         </div>
                     {% endfor %}
                 </div>

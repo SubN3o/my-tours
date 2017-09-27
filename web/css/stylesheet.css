@@ -1,6 +1,11 @@
 /* --------------------------------------------------------------------*/
 /* ----------------------------- GENERAL ------------------------------*/
 /* --------------------------------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     color: #1D1D1B;
 }
@@ -141,7 +146,6 @@ footer p {
 .formulaireBouton a{
     text-decoration: none;
     color:white;
-    /*centering*/
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
     background-color: #B5CC17;
     overflow: hidden;
@@ -184,6 +188,11 @@ footer p {
 [type="checkbox"] + label{
     padding-left: 25px;
     padding-right: 30px;
+}
+
+[type="radio"]:checked + label::after{
+    background-color: #B5CC17;
+    border: #B5CC17;
 }
 
 .newsletter{
@@ -234,7 +243,7 @@ footer p {
     font-weight: 400;
     letter-spacing: .55pt;
     font-size: 12pt;
-    padding-top: auto;
+    padding-top: 15px;
 }
 
 
@@ -307,6 +316,7 @@ footer p {
 }
 .contenu > p {
     margin-bottom: 5%;
+    margin-top: 30px;
 }
 
 .temoignage {
@@ -325,7 +335,6 @@ footer p {
 
 .enteteCarousel > p {
     padding: 15px;
-    margin: 0;
 }
 
 .slider {
@@ -555,7 +564,6 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
 }
 
 .budget > input[type="number"]:not(.browser-default){
-    margin: 0 0;
     background-color: #B3B3B3;
     border: 1px solid white;
     padding: 0 8px 0 8px;
@@ -663,7 +671,6 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
     font-size: 15pt;
     text-transform: capitalize;
     color: #B5CC17;
-    margin: 0 0;
     letter-spacing: .1pt;
 }
 
@@ -672,7 +679,6 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
     font-size: 15pt;
     text-transform: capitalize;
     color: #676767;
-    margin: 0 0;
     letter-spacing: .1pt;
 }
 
@@ -681,7 +687,6 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
     font-weight: 400;
     font-size: 15pt;
     color: #1D1D1B;
-    margin: 0 0;
     letter-spacing: .1pt;
 }
 
@@ -690,7 +695,6 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
     font-weight: 400;
     font-size: 15pt;
     color: #1D1D1B;
-    margin: 0 0;
     letter-spacing: .1pt;
 }
 
@@ -711,7 +715,7 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
 /* --------------------------------------------------------------------*/
 /* ---------------------------- RESIDENCE -----------------------------*/
 /* --------------------------------------------------------------------*/
-.retourSearch a, .retourSearch a:hover{
+.retourSearch a, .retourSearch a:hover, .retourSearch a:focus{
     background-color: #B3B3B3;
     margin: 40px 0;
 }
@@ -726,7 +730,6 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
     transform: translateY(-50%);
     left: 0;
     z-index: 100;
-    padding: 0 0;
 }
 
 .sliderResidence .next {
@@ -735,7 +738,6 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
     transform: translateY(-50%);
     right: 0;
     z-index: 100;
-    padding: 0 0;
 }
 
 .sliderResidence .prev > i, .sliderResidence .next > i{
@@ -752,6 +754,8 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
 
 #ytplayer {
     display: none;
+    width: 100%;
+    height: 720px;
 }
 
 .encart {
@@ -798,12 +802,15 @@ input[type="search"]:focus:not(.browser-default):not([readonly]){
 
     .encart p {
         font-weight: 400;
-        margin: 0 0;
         font-size: 12pt;
         font-style: italic;
     }
 
     .sliderResidence .prev > i, .sliderResidence .next > i{
         font-size: 96px;
+    }
+
+    #ytplayer {
+        height: 360px;
     }
 }

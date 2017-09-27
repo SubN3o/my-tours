@@ -32,7 +32,7 @@
                         {% endfor %}
                         <div class="contenu">
                             <p>{{ residence.nom }}</p>
-                            <a href="#">VOIR PLUS</a>
+                            <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -46,12 +46,12 @@
                         {% endfor %}
                         <div class="contenu">
                             <p>{{ residence.nom }}</p>
-                            <a href="#">VOIR PLUS</a>
+                            <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
                 <div class="voir">
-                    <a href="#"><p>VOIR PLUS DE PROGRAMMES</p></a>
+                    <a href="{{ path('nosresidences') }}"><p>VOIR PLUS DE PROGRAMMES</p></a>
                 </div>
             </div>
             <!-- Colonne Droite -->
@@ -63,7 +63,7 @@
                         {% endfor %}
                         <div class="contenu">
                             <p>{{ residence.nom }}</p>
-                            <a href="#">VOIR PLUS</a>
+                            <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
