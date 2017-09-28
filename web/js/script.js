@@ -1,16 +1,6 @@
 // initialisation des select de Materialize
 
 $(document).ready(function () {
-    $('select').material_select();
-
-    $('.parallax').parallax();
-
-    $('.carousel').carousel({
-        indicators: true,
-        dist: 0,
-        shift: 20,
-        duration: 100
-    });
   
     $('.modal').modal();
     // Script JS pour l'autocomplétion
@@ -41,6 +31,14 @@ $(document).ready(function () {
         $( "#alert_box" ).fadeOut( "slow", function() {
         });
     });
+
+    //ouverture du formulaire contact
+    $('.button-collapse').sideNav({
+            edge: 'right', // Choose the horizontal origin
+            draggable: false, // Choose whether you can drag to open on touch screens
+            closeOnClick: true
+        }
+    );
 });
 
 $(document).ready(function(){

@@ -1,49 +1,26 @@
-<div class="col s12 xl6">
-    <div class="card large">
+<div class="col s12 l6">
+    <div class="card">
         <div class="card-image">
             <a href="{{ path('residences', { 'slug': residence.slug }) }}">
-            {% if residence.medias is not empty %}
-                {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-
-                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}">
-
-                {% endfor %}
-            {% endif %}
-            </a>
-        </div>
-        <div class="card-content">
-            <div class="row grille-infos">
-                <div class="col s7 grille-gauche">
-                    <div class="row nom-residence">
+                {% if residence.medias is not empty %}
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}">
+                    {% endfor %}
+                {% endif %}
+                <div class="card-title">
+                    <div class="card-content bandeau">
                         <h4>{{ residence.nom }}</h4>
-                        <p>à {{ residence.ville.nom }}</p>
-                    </div>
-                    <div class="row annee-nbPiece">
-                        <div class="col s6 annee-residence">
-                            <h4>Livraison</h4>
-                            <p>{{ residence.dateLivraison }}</p>
+                        <div class="row">
+                            <p class="col s12 xl6 lieu">{{ residence.ville.nom }} {% if residence.quartier is not empty %}{{ residence.quartier.nom }}{% endif %}</p>
+                            <p class="col s12 xl6 prix">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</p>
                         </div>
-                        <div class="col s6">
-                            <h4>Nb. pièces</h4>
-                            <p>Du {{ typeMin }} au {{ typeMax }}</p>
+                        <div class="row">
+                            <p class="col s12 xl8 livraison">Livraison {{ residence.dateLivraison }}</p>
+                            <p class="col s12 xl4 type">Du {{ typeMin }} au {{ typeMax }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col s5">
-                    <h4>Prix</h4>
-                    {% if residence.affichagePrix %}
-                    <p>A partir de {{ prixMin }}€</p>
-                    {% else %}
-                    <p>Nous contacter</p>
-                    {% endif %}
-                    <br/>
-                    <h4>Disponibilité</h4>
-                    <p>{{ flatsDispo }} logements</p>
-                </div>
-            </div>
-        </div>
-        <div class="card-action center">
-            <a href="{{ path('residences', { 'slug': residence.slug }) }}">Découvrir la résidence</a>
+            </a>
         </div>
     </div>
 </div>

@@ -1,840 +1,143 @@
-{% extends '::base.html.twig' %}
+{% extends 'MyOrleansBundle::layout.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.carousel.css') }}">
-    <!-- Default Theme -->
-    <link rel="stylesheet" href="{{ asset('owlcarousel/assets/owl.theme.default.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style_accueil.css') }}" media="screen,projection"/>
-{% endblock %}
-
-{% block body %}
-    <div class="breadcrumb">
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">message</i></a>
-    </div>
-    <!--fin logo dde de documentation-->
-
-
-    <div id="GrandeIntro">
-        {#{% for media in accueil.medias if media.typeMedia.nom == 'image-cover' %}#}
-        {#<img src="{{ asset('uploads/'~media.mediaName) }}">#}
-        {#{% endfor %}#}
-        <div class="row center logoIntro">
-            <div class="col s12">
-                <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
-            </div>
-        </div>
-
-        <div class="row center">
-            <div class="col s10 offset-s1 m8 offset-m2 l4 offset-l4">
-                <div class="explication-parcours">
-                    <p>Envie d'investir ou d'acheter une résidence principale ? Choisissez le parcours qui vous
-                        ressemble en cliquant sur l'un des deux pictogrammes.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row center">
-            {% if parcours == 'investisseur' %}
-                <div class="col s12 m6 center">
-                    <div class="pictoParcours">
-                        <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
-                           class="profil-investisseur">
-                            <i class="fa fa-calculator" aria-hidden="true"></i>
-                            <p>INVESTIR DANS UN BIEN IMMOBILIER</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col s12 m6 center">
-                    <div class="pictoParcours-small">
-                        <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
-                           class="profil-residence">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <p>CHANGER DE PARCOURS</p>
-                        </a>
-                    </div>
-                </div>
-            {% elseif parcours == 'residence' %}
-                <div class="col s12 m6 center">
-                    <div class="pictoParcours-small center">
-                        <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
-                           class="profil-investisseur">
-                            <i class="fa fa-calculator" aria-hidden="true"></i>
-                            <p>CHANGER DE PARCOURS</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col s12 m6 center">
-                    <div class="pictoParcours center">
-                        <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
-                           class="profil-residence">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <p>ACHETER UNE RESIDENCE PRINCIPALE</p>
-                        </a>
-                    </div>
-                </div>
-            {% else %}
-                <div class="col s12 m6 center">
-                    <div class="pictoParcours">
-                        <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"
-                           class="profil-investisseur">
-                            <i class="fa fa-calculator" aria-hidden="true"></i>
-                            <p>INVESTIR DANS UN BIEN IMMOBILIER</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col s12 m6 center">
-                    <div class="pictoParcours">
-                        <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"
-                           class="profil-residence">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <p>ACHETER UNE RESIDENCE PRINCIPALE</p>
-                        </a>
-                    </div>
-                </div>
+{% block video %}
+    <!--Accueil video ou image Full Page-->
+    <div class="accueil">
+        {% for media in accueil.medias %}
+            {% if media.typeMedia.nom == 'video' %}
+                <video width="100%" autoplay loop muted>
+                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/mp4">
+                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/ogg">
+                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/webm">
+                </video>
+            {% elseif media.typeMedia.nom == 'image-cover' %}
+                <img class="imageAccueil" src="{{ asset('uploads/'~media.mediaName) }}" alt="accueil">
             {% endif %}
-        </div>
-
-    </div>
-    <!--logo dde de documentation-->
-
-    <div class="container-fluid" id="siteWrapper">
-    <header>
-        <div id="headerTop"></div>
-        <div class="navbar" id="Grandenavigation">
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="{{ path("home") }}" class="brand-logo">
-                        <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"/>
-                    </a>
-
-                    <a href="#" data-activates="menu-dropdown-mobile" class="dropdown-button hide-on-large-only"><i
-                                class="material-icons">menu</i></a>
-
-                    <ul class="center hide-on-med-and-down">
-                        {% if parcours == 'investisseur' %}
-                            <li>
-                                <div class="icone-profil icone-investisseur">
-                                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}"><i
-                                                class="fa fa-calculator" aria-hidden="true"></i>
-                                        <p> Changer de parcours</p></a>
-                                </div>
-                            </li>
-                        {% elseif parcours == 'residence' %}
-                            <li>
-                                <div class="icone-profil icone-residence">
-                                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}"><i
-                                                class="fa fa-users" aria-hidden="true"></i> Changer de parcours</a>
-                                </div>
-                            </li>
-                        {% endif %}
-                    </ul>
-
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="{{ path("nosbiens") }}">Nos résidences</a></li>
-                        <li><a href="{{ path("nos_services") }}">Nos services</a></li>
-                        <li><a href="{{ path("agence") }}">My Orléans</a></li>
-                        <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
-                        {#<li><a href="{{ path("homeblog") }}" target="_blank">Blog</a></li>#}
-                    </ul>
-                    <ul class="dropdown-content hide-on-large-only" id="menu-dropdown-mobile">
-                        <li><a href="{{ path("nosbiens") }}">Nos résidences</a></li>
-                        <li><a href="{{ path("nos_services") }}">Nos services</a></li>
-                        <li><a href="{{ path("agence") }}">My Orléans</a></li>
-                        <li><a href="{{ path("immo_pratique") }}">L'immobilier pratique</a></li>
-                        {#<li><a href="{{ path("homeblog") }}" target="_blank">Blog</a></li>#}
-                        {% if parcours == 'investisseur' %}
-                            <li>
-                                <div class="icone-profil icone-investisseur">
-                                    <a href="{{ path('parcours', {'profil': 'residence', 'route': app.request.get('_route') }) }}">
-                                        Votre parcours : <i class="fa fa-calculator" aria-hidden="true"></i>
-                                        <p> Changer de parcours</p></a>
-                                </div>
-                            </li>
-                        {% elseif parcours == 'residence' %}
-                            <li>
-                                <div class="icone-profil icone-residence">
-                                    <a href="{{ path('parcours', {'profil': 'investisseur', 'route': app.request.get('_route') }) }}">
-                                        Votre parcours : <i class="fa fa-home" aria-hidden="true"></i></a>
-                                </div>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </nav>
-        </div>
-
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="row" id="alert_box">
-                    <div class="col s12 m6 l4 offset-l4">
-                        <div class="card message">
-                            <div class="row message center-align">
-                                <div class="col s12 m10">
-                                    <div class="card-content white-text">
-                                        {{ message }}
-                                    </div>
-                                </div>
-                                <div class="col s12 m2">
-                                    <i class="fa fa-times icon_style" id="alert_close" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
         {% endfor %}
-    </header>
-
-    <!--logo dde de documentation-->
-
-    {% block content %}
-
-
-        <section id="content">
-
-            <div class="row">
-                <div class="col s12 l10 offset-l1 formSearch z-depth-3">
-                    <div class="row">
-                        <h1>
-                            <span>Recherchez votre bien immobilier neuf</span>
-                        </h1>
-                    </div>
-                    {{ form_start(simpleSearch) }}
-                    <div class="row">
-                        <div class="input-field col s4 offset-s1">
-                            {{ form_label(simpleSearch.ville, 'Localisation') }}
-                            {{ form_widget(simpleSearch.ville) }}
-                            {{ form_errors(simpleSearch.ville) }}
-                        </div>
-
-                        <div class="input-field col s4 offset-s1">
-                            {{ form_widget(simpleSearch.type) }}
-                            {{ form_errors(simpleSearch.type) }}
-                        </div>
-                    </div>
-                    <div class="row center">
-
-                        {% if parcours == 'investisseur' %}
-                            <div class="formButton col s12 m12 l4 offset-l4">
-                                {{ form_widget(simpleSearch.investBtn) }}
-                                {{ form_widget(simpleSearch._token) }}
-
-                                </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
-                            </div>
-                        {% elseif parcours == 'residence' %}
-                            <div class="formButton col s12 m12 l4 offset-l4">
-                                {{ form_widget(simpleSearch.resPrincipaleBtn) }}
-                                {{ form_widget(simpleSearch._token) }}
-
-                                </form> {# fermeture obligatoire du form sinon impossible de le soumettre #}
-                            </div>
-                        {% else %}
-                            <div class="formButton col s12 m12 l4 offset-l1">
-                                {{ form_widget(simpleSearch.investBtn) }}
-                            </div>
-                            <div class="formButton col s12 m12 l6">
-                                {{ form_widget(simpleSearch.resPrincipaleBtn) }}
-                            </div>
-                            {{ form_end(simpleSearch) }}
-                        {% endif %}
-
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-        <div class="container-fluid">
-            <div class="section white">
-                <div class="row container">
-
-                    <div class="col s12 l12 liste-biens">
-                        <h2>
-                            <span>Nos biens phares</span>
-                        </h2>
-                        <div class="row">
-                            <div class="col s12 l6">
-                                {% for residence in residenceFav %}
-                                    {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidenceHome',
-                                    {'id': residence.id })) }}
-                                {% endfor %}
-                            </div>
-
-                            <div class="col s12 l6">
-                                {% if residenceTwoFav is not empty %}
-                                    {% for resTwoFav in residenceTwoFav %}
-                                        <div class="col s12 l12">
-                                            <div class="card">
-                                                <div class="card-image">
-                                                    {% for media in resTwoFav.medias if media.typeMedia.nom == 'image-cover' %}
-                                                        <img src="{{ asset('uploads/'~media.mediaName) }}"
-                                                             class="responsive-img"
-                                                             alt="{{ resTwoFav.nom }}">
-                                                    {% endfor %}
-                                                    <span class="card-title">{{ resTwoFav.nom }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="row parallax-container">
-                <div class="parallax parallax-testimonial">
-                    <img src="{{ asset('img/apt-neuf.jpg') }}">
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <h3 class="h3-testimonial center-align"> Ce que les clients pensent de nous</h3>
-                        <div class="col m8 offset-m2 col s12">
-                            <div class="owl-carousel owl-theme owl-responsive-1000 owl-loaded">
-                                {% for testimonial in testimonials if testimonial.theme == 'Achat' %}
-                                    <div class="item cloned">
-                                        <div>
-                                            <div class="box_overlay">
-                                                <div class="pic">
-                                                    <figure>
-                                                        <img src="{{ asset('img/testimonial_comment.jpg') }}" alt=""
-                                                             class="circle responsive-img">
-                                                    </figure>
-                                                    <h4>{{ testimonial.auteur }}
-                                                        <small>{{ testimonial.date }}</small>
-                                                    </h4>
-                                                </div>
-                                                <div class="comment">
-                                                    <p>{{ testimonial.message }}</p>
-                                                </div>
-                                            </div><!-- End box_overlay -->
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Modal Trigger -->
-        <div class="row">
-            <div class="col s12 center">
-                <div class="row carouselAgence">
-                    <div class="col s12 m10 l10 offset-l1">
-                        <p>"{{ accueil.presentation }}"</p>
-                        <div class="carousel center-align">
-                            {% for collaborateur in collaborateurs %}
-                                {% if collaborateur.media.mediaName is defined %}
-                                    <a class="carousel-item" href="#one!"><img
-                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) }}">
-                                        <p>{{ collaborateur.prenom }} {{ collaborateur.nom }}
-                                            <br><span>{{ collaborateur.fonction }}</span></p>
-                                    </a>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-
-                    </div>
-                </div>
-
-                <!-- Modal Trigger -->
-                <div class="row">
-                    <div class="col s12 center">
-                        <a class="modal-trigger waves-effect waves-light btn white z-depth-5 buttonNewsletter button-collapse"
-
-                           href="#" data-activates="slide-out">
-
-                            <i class="material-icons">mail_outline</i> | Abonnez-vous à notre newsletter
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </div>
-
-
-        <div class="row">
-            {% if actu is not empty %}
-                <div class="col s12 l6">
-                    <h3>L'actualité</h3>
-                    <div class="card small">
-                        <div class="card-image waves-effect waves-block waves-light">
-
-                            {% for media in actu[0].medias if media.typeMedia.nom == 'image-cover' %}
-                                <img class="activator"
-                                     src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_article_site') }}">
-                            {% endfor %}
-                        </div>
-                        <div class="card-content">
-
-                        <span class="card-title activator grey-text text-darken-4">{{ actu[0].titre }}<i
-                                    class="material-icons right">add</i></span>
-                            <p>{% if actu[0].date %}{{ actu[0].date|date('j-m-Y') }}{% endif %}</p>
-                            <p class="truncate">{{ actu[0].texte | truncate(10, true, '...') | raw }}</p>
-                        </div>
-                        <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ actu[0].titre }}<i
-                                    class="material-icons right">close</i></span>
-                            <p>{{ actu[0].texte | truncate(10, true, '...') | raw }}</p>
-                            <div class="center">
-                                <a class="waves-effect waves-light btn-large light-green"
-                                   href="{{ path('blog-article', { 'slug': actu[0].slug }) }}">Lire l'article</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if event is not empty %}
-                <div class="col s12 l6">
-                    <h3>L'événement</h3>
-                    <div class="card small">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            {% for media in event[0].media if media.typeMedia.nom == 'image-cover' %}
-                                <img class="activator" src="{{ asset('uploads/'~media.mediaName) }}">
-                            {% endfor %}
-                        </div>
-                        <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ event[0].nom }}<i
-                                    class="material-icons right">add</i></span>
-                            <p>{% if event[0].dateDebut %}{{ event[0].dateDebut|date('j-m-Y') }}{% endif %}</p>
-                            <p class="truncate">{{ event[0].description }}</p>
-                        </div>
-                        <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ event[0].nom }}<i
-                                    class="material-icons right">close</i></span>
-                            <p>{{ event[0].description }}</p>
-                            <div class="center">
-                                <a class="waves-effect waves-light btn-large light-green" href="{{ path('agence') }}">Découvrir
-                                    l'événement</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-
-        </div>
-
-    {% endblock %}
-
-
-    <div class="pre-footer">
-        <img class="skyline" src="{{ asset('img/toit_Orleans_vFinal.png') }}" alt="toits d'Orléans"/>
+        <img class="logoAccueil" src="{{ asset('img/logo_myorleans_accueil.png') }}" alt="logo">
     </div>
+{% endblock video %}
 
-    <footer class="page-footer">
-        <div class="container">
-            <p id="back-top"><a href="#top"><img src="{{ asset('img/backTop.png') }}"></a></p>
-            <div class="row">
-                <div class="col l6 s12 footer-left-side">
-                    <h5 class="white-text">Suivez-nous</h5>
-                    <div class="row">
-                        <div class="col s1">
-                            <a href="https://www.facebook.com/myorleans/?ref=page_internal"
-                               target="_blank">
-                                <div class="social-btn">
-                                    <i class="fa fa-facebook fa-3x fb-social" aria-hidden="true"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col offset-s1 s1">
-                            <a href="https://twitter.com/myorleans" target="_blank">
-                                <div class="social-btn">
-                                    <i class="fa fa-twitter fa-3x icon-social" aria-hidden="true"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col offset-s1 s1">
-                            <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ"
-                               target="_blank">
-                                <div class="social-btn">
-                                    <i class="fa fa-youtube fa-3x icon-social" aria-hidden="true"></i>
-                                </div>
-                            </a>
+{% block content %}
+    <h1>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h1>
+    <!-- Mosaïque Résidences -->
+    <div class="row">
+        <div class="offset-s1 col s10 mosaic">
+            <!-- Colonne Gauche -->
+            <div class='colonne'>
+                {% for residence in residenceCol1 %}
+                    <div class="zone">
+                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                        {% endfor %}
+                        <div class="contenu">
+                            <p>{{ residence.nom }}</p>
+                            <a href="#">VOIR PLUS</a>
                         </div>
                     </div>
-                </div>
-                <div class="col l5 offset-l1 s12 footer-right-side">
-                    <h5 class="white-text">Contactez-nous</h5>
-                    <p class="p-footer-phone no-margin-bottom"><span><i
-                                    class="small material-icons align-icon">phone</i></span><a
-                                href="tel:+33238759447">02
-                            38 75 94
-                            47</a></p>
-                    <p class="p-footer"><span><i class="small material-icons align-icon">location_on</i></span>13,
-                        rue Bannier 45000 Orléans</p>
-                    <p class="p-footer email"><span><i class="small material-icons align-icon">email</i></span><a
-                                href="mailto:agence@my-orleans.com">agence@my-orleans.com</a></p>
+                {% endfor %}
+            </div>
+            <!-- Colonne Centre -->
+            <div class='colonne milieu'>
+                {% for residence in residenceCol2 %}
+                    <div class="zone">
+                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                        {% endfor %}
+                        <div class="contenu">
+                            <p>{{ residence.nom }}</p>
+                            <a href="#">VOIR PLUS</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="voir">
+                    <a href="#"><p>VOIR PLUS DE PROGRAMMES</p></a>
                 </div>
             </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                <div class="row row-ml">
-                    <div class="col s2">
-                        <p>© 2017 My-Orléans</p>
+            <!-- Colonne Droite -->
+            <div class='colonne'>
+                {% for residence in residenceCol3 %}
+                    <div class="zone">
+                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                        {% endfor %}
+                        <div class="contenu">
+                            <p>{{ residence.nom }}</p>
+                            <a href="#">VOIR PLUS</a>
+                        </div>
                     </div>
-                    <div class="col s8 center">
-                        <p><a class="grey-text text-lighten-4 ml-padding-right" href="#modal1">Informations
-                                légales</a>
-                            <a class="grey-text text-lighten-4" href="#modal2">Frais et honoraires de
-                                gestion</a></p>
-                    </div>
-                    <div class="col s2">
-                        <p><a class="grey-text text-lighten-4" href="http://wildcodeschool.fr" target="_blank">Wild Code
-                                School</a></p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-        </div>
-    </footer>
-
-
-    <!-- début formulaire de contact -->
-    <form method="post" action="">
-        <div id="slide-out" class="side-nav">
-            <div class="userView">
-                <h3 align="center">Contactez nous !</h3>
-                <h4 align="center">{{ telephone_number }}</h4>
-                {{ form_start(form) }}
-
-                <div class="row center">
-                    <div class="input-field col s12">
-                        {{ form_widget(form.civilite) }}
-                        {{ form_errors(form.civilite) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col l6 m6 s12">
-                        <i class="material-icons prefix">account_circle</i>
-                        {{ form_label(form.nom) }}
-                        {{ form_widget(form.nom) }}
-                        {{ form_errors(form.nom) }}
-                    </div>
-
-                    <div class="input-field col l6 m6 s12">
-                        <i class="material-icons prefix">my_location</i>
-                        {{ form_label(form.codePostal) }}
-                        {{ form_widget(form.codePostal) }}
-                        {{ form_errors(form.codePostal) }}
-                    </div>
-
-                    <div class="input-field col l6 m6 s12">
-                        <i class="material-icons prefix">email</i>
-                        {{ form_label(form.email) }}
-                        {{ form_widget(form.email) }}
-                        {{ form_errors(form.email) }}
-                    </div>
-
-                    <div class="input-field col l6 m6 s12">
-                        <i class="material-icons prefix">phone</i>
-                        {{ form_label(form.telephone) }}
-                        {{ form_widget(form.telephone) }}
-                        {{ form_errors(form.telephone) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12 center">
-                        <p class="newsletter">Quel est votre projet ?</p>
-                        {{ form_widget(form.projet) }}
-                        {{ form_errors(form.projet) }}
-                    </div>
-
-                    <div class="input-field col s12 center">
-                        {{ form_widget(form.typeLogement) }}
-                        {{ form_errors(form.typeLogement) }}
-                    </div>
-
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">euro_symbol</i>
-                        {{ form_label(form.budget) }}
-                        {{ form_widget(form.budget) }}
-                        {{ form_errors(form.budget) }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col l12 m12 s12">
-                        <p class="newsletter">Quel est l'objet de votre message?</p>
-                        <i class="material-icons prefix">info_outline</i>
-                        {{ form_widget(form.sujet, {'attr': {'value':'Demande d\'information'}}) }}
-                        {{ form_errors(form.sujet) }}
-                    </div>
-
-                    <div class="input-field col l12 m12 s12">
-                        <i class="material-icons prefix">mode_edit</i>
-                        {{ form_label(form.message) }}
-                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
-                        {{ form_errors(form.message) }}
-                    </div>
-                </div>
-                <div class="row center">
-                    <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
-                    {{ form_widget(form.newsletter) }}
-                    {{ form_errors(form.newsletter) }}
-                </div>
-
-                <div class="input-field col l12 newsletter envoyer">
-                    {{ form_row(form.envoyer) }}
-                </div>
-
-                {{ form_end(form) }}
-            </div>
-
-        </div>
-
-    </form>
-
-    <!--fin formulaire de contact-->
-
-
-    <!-- Mentions légales -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <div>
-                {{ accueil.mentions | raw }}
-            </div>
-            {#<h2>Informations légales</h2>#}
-            {#<h3>1. Présentation du site.</h3>#}
-            {#<p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie#}
-            {#numérique, il est précisé aux utilisateurs du site <a href="http://www.my-orleans.com/">www.my-orleans.com</a>#}
-            {#l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :</p>#}
-            {#<p><strong>Propriétaire</strong> : My Orléans<br/>#}
-            {#<strong>Créateur</strong> : <a href="https://wildcodeschool.fr" target="_blank">Isabelle MULIGO</a><br/>#}
-            {#<strong>Créateur</strong> : <a href="https://wildcodeschool.fr/" target="_blank">Hagera NECHE</a><br/>#}
-            {#<strong>Créateur</strong> : <a href="https://wildcodeschool.fr/" target="_blank">Nicolas#}
-            {#PINSARD</a><br/>#}
-            {#<strong>Créateur</strong> : <a href="http://www.jbh-webcreation.com/" target="_blank">Jean-Baptiste#}
-            {#HALLASSOU</a><br/>#}
-            {#<strong>Créateur</strong> : <a href="https://wildcodeschool.fr/" target="_blank">Wild Code#}
-            {#School</a><br/>#}
-            {#<strong>Responsable publication</strong> : My Orleans <br/>#}
-            {#Le responsable publication est une personne physique ou une personne morale.<br/>#}
-            {#<strong>Webmaster</strong> : Albane POTHAIN – albane@my-orleans.com<br/>#}
-            {#<strong>Hébergeur</strong> : OVH – OVH 2 rue Kellermann - 59100 Roubaix - France.<br/>#}
-            {#Crédits : les mentions légales ont été générées et offertes par Subdelirium <a target="_blank"#}
-            {#href="http://www.subdelirium.com/generateur-de-mentions-legales/">Mentions#}
-            {#légales</a></p>#}
-
-            {#<h3>2. Conditions générales d’utilisation du site et des services proposés.</h3>#}
-            {#<p>L’utilisation du site <a href="http://www.my-orleans.com/">www.my-orleans.com</a> implique l’acceptation#}
-            {#pleine et entière des conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation#}
-            {#sont susceptibles d’être modifiées ou complétées à tout moment, les utilisateurs du site <a#}
-            {#href="http://www.my-orleans.com/">www.my-orleans.com</a> sont donc invités à les consulter de#}
-            {#manière régulière.</p>#}
-            {#<p>Ce site est normalement accessible à tout moment aux utilisateurs. Une interruption pour raison de#}
-            {#maintenance technique peut être toutefois décidée par Laklak Production, qui s’efforcera alors de#}
-            {#communiquer préalablement aux utilisateurs les dates et heures de l’intervention.</p>#}
-            {#<p>Le site <a href="http://www.my-orleans.com/">www.my-orleans.com</a> est mis à jour régulièrement par#}
-            {#Sylvain Foucault. De la même façon, les mentions légales peuvent être modifiées à tout moment : elles#}
-            {#s’imposent néanmoins à l’utilisateur qui est invité à s’y référer le plus souvent possible afin d’en#}
-            {#prendre connaissance.</p>#}
-            {#<h3>3. Description des services fournis.</h3>#}
-            {#<p>Le site <a href="http://www.my-orleans.com/">www.my-orleans.com</a> a pour objet de fournir une#}
-            {#information concernant l’ensemble des activités de la société.</p>#}
-            {#<p>Laklak Production s’efforce de fournir sur le site <a href="http://www.my-orleans.com/">www.my-orleans.com</a>#}
-            {#des informations aussi précises que possible. Toutefois, il ne pourra être tenue responsable des#}
-            {#omissions, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait#}
-            {#des tiers partenaires qui lui fournissent ces informations.</p>#}
-            {#<p>Tous les informations indiquées sur le site <a href="http://www.my-orleans.com/">www.my-orleans.com</a>#}
-            {#sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les renseignements#}
-            {#figurant sur le site <a href="http://www.my-orleans.com/">www.my-orleans.com</a> ne sont pas exhaustifs.#}
-            {#Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne.</p>#}
-            {#<h3>4. Limitations contractuelles sur les données techniques.</h3>#}
-            {#<p>Le site utilise la technologie JavaScript.</p>#}
-            {#<p>Le site Internet ne pourra être tenu responsable de dommages matériels liés à l’utilisation du site. De#}
-            {#plus, l’utilisateur du site s’engage à accéder au site en utilisant un matériel récent, ne contenant pas#}
-            {#de virus et avec un navigateur de dernière génération mis-à-jour</p>#}
-            {#<h3>5. Propriété intellectuelle et contrefaçons.</h3>#}
-            {#<p>Laklak Production est propriétaire des droits de propriété intellectuelle ou détient les droits d’usage#}
-            {#sur tous les éléments accessibles sur le site, notamment les textes, images, graphismes, logo, icônes,#}
-            {#sons, logiciels.</p>#}
-            {#<p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments#}
-            {#du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable#}
-            {#de : Laklak Production.</p>#}
-            {#<p>Toute exploitation non autorisée du site ou de l’un quelconque des éléments qu’il contient sera#}
-            {#considérée comme constitutive d’une contrefaçon et poursuivie conformément aux dispositions des articles#}
-            {#L.335-2 et suivants du Code de Propriété Intellectuelle.</p>#}
-            {#<h3>6. Limitations de responsabilité.</h3>#}
-            {#<p>Laklak Production ne pourra être tenue responsable des dommages directs et indirects causés au matériel#}
-            {#de l’utilisateur, lors de l’accès au site www.my-orleans.com, et résultant soit de l’utilisation d’un#}
-            {#matériel ne répondant pas aux spécifications indiquées au point 4, soit de l’apparition d’un bug ou#}
-            {#d’une incompatibilité.</p>#}
-            {#<p>Laklak Production ne pourra également être tenue responsable des dommages indirects (tels par exemple#}
-            {#qu’une perte de marché ou perte d’une chance) consécutifs à l’utilisation du site <a#}
-            {#href="http://www.my-orleans.com/">www.my-orleans.com</a>.</p>#}
-            {#<p>Des espaces interactifs (possibilité de poser des questions dans l’espace contact) sont à la disposition#}
-            {#des utilisateurs. Laklak Production se réserve le droit de supprimer, sans mise en demeure préalable,#}
-            {#tout contenu déposé dans cet espace qui contreviendrait à la législation applicable en France, en#}
-            {#particulier aux dispositions relatives à la protection des données. Le cas échéant, Laklak Production se#}
-            {#réserve également la possibilité de mettre en cause la responsabilité civile et/ou pénale de#}
-            {#l’utilisateur, notamment en cas de message à caractère raciste, injurieux, diffamant, ou pornographique,#}
-            {#quel que soit le support utilisé (texte, photographie…).</p>#}
-            {#<h3>7. Gestion des données personnelles.</h3>#}
-            {#<p>En France, les données personnelles sont notamment protégées par la loi n° 78-87 du 6 janvier 1978, la#}
-            {#loi n° 2004-801 du 6 août 2004, l'article L. 226-13 du Code pénal et la Directive Européenne du 24#}
-            {#octobre 1995.</p>#}
-            {#<p>A l'occasion de l'utilisation du site <a href="http://www.my-orleans.com/">www.my-orleans.com</a>,#}
-            {#peuvent êtres recueillies : l'URL des liens par l'intermédiaire desquels l'utilisateur a accédé au site#}
-            {#<a href="http://www.my-orleans.com/">www.my-orleans.com</a>, le fournisseur d'accès de l'utilisateur,#}
-            {#l'adresse de protocole Internet (IP) de l'utilisateur.</p>#}
-            {#<p> En tout état de cause Laklak Production ne collecte des informations personnelles relatives à#}
-            {#l'utilisateur que pour le besoin de certains services proposés par le site <a#}
-            {#href="http://www.my-orleans.com/">www.my-orleans.com</a>. L'utilisateur fournit ces informations#}
-            {#en toute connaissance de cause, notamment lorsqu'il procède par lui-même à leur saisie. Il est alors#}
-            {#précisé à l'utilisateur du site <a href="http://www.my-orleans.com/">www.my-orleans.com</a> l’obligation#}
-            {#ou non de fournir ces informations.</p>#}
-            {#<p>Conformément aux dispositions des articles 38 et suivants de la loi 78-17 du 6 janvier 1978 relative à#}
-            {#l’informatique, aux fichiers et aux libertés, tout utilisateur dispose d’un droit d’accès, de#}
-            {#rectification et d’opposition aux données personnelles le concernant, en effectuant sa demande écrite et#}
-            {#signée, accompagnée d’une copie du titre d’identité avec signature du titulaire de la pièce, en#}
-            {#précisant l’adresse à laquelle la réponse doit être envoyée.</p>#}
-            {#<p>Aucune information personnelle de l'utilisateur du site <a href="http://www.my-orleans.com/">www.my-orleans.com</a>#}
-            {#n'est publiée à l'insu de l'utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque#}
-            {#à des tiers. Seule l'hypothèse du rachat de Laklak Production et de ses droits permettrait la#}
-            {#transmission des dites informations à l'éventuel acquéreur qui serait à son tour tenu de la même#}
-            {#obligation de conservation et de modification des données vis à vis de l'utilisateur du site <a#}
-            {#href="http://www.my-orleans.com/">www.my-orleans.com</a>.</p>#}
-            {#<p>Le site n'est pas déclaré à la CNIL car il ne recueille pas d'informations personnelles. .</p>#}
-            {#<p>Les bases de données sont protégées par les dispositions de la loi du 1er juillet 1998 transposant la#}
-            {#directive 96/9 du 11 mars 1996 relative à la protection juridique des bases de données.</p>#}
-            {#<h3>8. Liens hypertextes et cookies.</h3>#}
-            {#<p>Le site <a href="http://www.my-orleans.com/">www.my-orleans.com</a> contient un certain nombre de liens#}
-            {#hypertextes vers d’autres sites, mis en place avec l’autorisation de Laklak Production. Cependant,#}
-            {#Laklak Production n’a pas la possibilité de vérifier le contenu des sites ainsi visités, et n’assumera#}
-            {#en conséquence aucune responsabilité de ce fait.</p>#}
-            {#<p>La navigation sur le site <a href="http://www.my-orleans.com/">www.my-orleans.com</a> est susceptible de#}
-            {#provoquer l’installation de cookie(s) sur l’ordinateur de l’utilisateur. Un cookie est un fichier de#}
-            {#petite taille, qui ne permet pas l’identification de l’utilisateur, mais qui enregistre des informations#}
-            {#relatives à la navigation d’un ordinateur sur un site. Les données ainsi obtenues visent à faciliter la#}
-            {#navigation ultérieure sur le site, et ont également vocation à permettre diverses mesures de#}
-            {#fréquentation.</p>#}
-            {#<p>Le refus d’installation d’un cookie peut entraîner l’impossibilité d’accéder à certains services.#}
-            {#L’utilisateur peut toutefois configurer son ordinateur de la manière suivante, pour refuser#}
-            {#l’installation des cookies :</p>#}
-            {#<p>Sous Internet Explorer : onglet outil (pictogramme en forme de rouage en haut a droite) / options#}
-            {#internet. Cliquez sur Confidentialité et choisissez Bloquer tous les cookies. Validez sur Ok.</p>#}
-            {#<p>Sous Firefox : en haut de la fenêtre du navigateur, cliquez sur le bouton Firefox, puis aller dans#}
-            {#l'onglet Options. Cliquer sur l'onglet Vie privée.#}
-            {#Paramétrez les Règles de conservation sur : utiliser les paramètres personnalisés pour l'historique.#}
-            {#Enfin décochez-la pour désactiver les cookies.</p>#}
-            {#<p>Sous Safari : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par un#}
-            {#rouage). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la section#}
-            {#"Confidentialité", cliquez sur Paramètres de contenu. Dans la section "Cookies", vous pouvez bloquer les#}
-            {#cookies.</p>#}
-            {#<p>Sous Chrome : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par trois#}
-            {#lignes horizontales). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la#}
-            {#section "Confidentialité", cliquez sur préférences. Dans l'onglet "Confidentialité", vous pouvez bloquer#}
-            {#les cookies.</p>#}
-
-            {#<h3>9. Droit applicable et attribution de juridiction.</h3>#}
-            {#<p>Tout litige en relation avec l’utilisation du site <a href="http://www.my-orleans.com/">www.my-orleans.com</a>#}
-            {#est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents#}
-            {#de Paris.</p>#}
-            {#<h3>10. Les principales lois concernées.</h3>#}
-            {#<p>Loi n° 78-17 du 6 janvier 1978, notamment modifiée par la loi n° 2004-801 du 6 août 2004 relative à#}
-            {#l'informatique, aux fichiers et aux libertés.</p>#}
-            {#<p> Loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.</p>#}
-            {#<h3>11. Lexique.</h3>#}
-            {#<p>Utilisateur : Internaute se connectant, utilisant le site susnommé.</p>#}
-            {#<p>Informations personnelles : « les informations qui permettent, sous quelque forme que ce soit,#}
-            {#directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4#}
-            {#de la loi n° 78-17 du 6 janvier 1978).</p>#}
-            {#...<strong>La seule contrepartie à l'utilisation de ces mentions légales, est l'engagement total à laisser#}
-            {#le lien crédit subdelirium sur cette page de mentions légales.</strong><br/>#}
-            {#Vos mentions légales :#}
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
         </div>
     </div>
 
-    <!--honoraires-->
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            {% for media in accueil.medias if media.typeMedia.nom == 'image' %}
-                <img src="{{ asset('uploads/'~media.mediaName) }}">
-            {% endfor %}
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+    <h1>NOTRE ÉQUIPE</h1>
+    <div class="row">
+        <!-- Barillet équipe -->
+        {#<div class="offset-l1 col l4">#}
+        {#<img src="{{ asset('img/test/barillet.png') }}">#}
+        {#</div>#}
+        <!-- Slider Temoignages -->
+        <div class="offset-s1 offset-l6 col l5 s10">
+            <div class="temoignage">
+                <div class="enteteCarousel">
+                    <p>CE QUE NOS CLIENTS PENSENT DE NOUS</p>
+                </div>
+                <div class="slider">
+                    <ul class="slides">
+                        {% for temoignage in temoignages %}
+                            <li>
+                                <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}"
+                                     alt="témoin">
+                                <div class="caption center-align">
+                                    <h3>{{ temoignage.auteur }}</h3>
+                                    <h5>{{ temoignage.message }}</h5>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="col s12">
+                        <button class="prev btn grey darken-3 btn-floating btn-large"><i
+                                    class="fa fa-caret-left white-text text-lighten-1"></i></button>
+                        <button class="next btn grey darken-3 btn-floating btn-large"><i
+                                    class="fa fa-caret-right white-text text-lighten-1"></i></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+{% endblock content %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Slider temoignage
+            $('.slider').slider({
+                height: 300,
+                indicators: false,
+                interval: 12000
+            });
 
+            //$('.slider').slider('pause');
+
+            $('.next').click(function () {
+                $('.slider').slider('next');
+            });
+            $('.prev').click(function () {
+                $('.slider').slider('prev');
+            });
+
+            $('select').material_select();
+
+            $('.parallax').parallax();
+
+            $('.carousel').carousel({
+                indicators: true,
+                dist: 0,
+                shift: 20,
+                duration: 100
+            });
+        });
+    </script>
 {% endblock %}
-
-                    {% block javascripts %}
-                        {{ parent() }}
-
-                        <script type="text/javascript" src="{{ asset("js/carousel-testimonial.js") }}"></script>
-                        <script type="text/javascript" src="{{ asset('owlcarousel/owl.carousel.js') }}"></script>
-                        <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-                        <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
-
-                        <script type="text/javascript">
-                            $(document).ready(function () {
-
-                                // hide #back-top first
-                                $("#back-top").hide();
-
-                                // fade in #back-top
-                                $(function () {
-                                    $(window).scroll(function () {
-                                        if ($(this).scrollTop() > 100) {
-                                            $('#back-top').fadeIn();
-                                        } else {
-                                            $('#back-top').fadeOut();
-                                        }
-                                    });
-
-                                    // scroll body to 0px on click
-                                    $('#back-top a').click(function () {
-                                        $('body,html').animate({
-                                            scrollTop: 0
-                                        }, 800);
-                                        return false;
-                                    });
-                                });
-
-
-                                $('input.autocomplete').autocomplete({
-                                    data: {
-                                        {% for ville in villes %}
-                                        "{{ ville.nom }}": null,
-                                        {% endfor %}
-                                    },
-                                    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                                    onAutocomplete: function (val) {
-                                        // Callback function when value is autcompleted.
-                                    },
-                                    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-
-
-                                });
-
-                                $('.button-collapse').sideNav({
-                                        edge: 'right', // Choose the horizontal origin
-                                        draggable: false, // Choose whether you can drag to open on touch screens
-                                        closeOnClick: true
-                                    }
-                                );
-
-                            });
-                        </script>
-
-                    {% endblock %}

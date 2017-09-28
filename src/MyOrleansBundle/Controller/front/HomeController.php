@@ -37,59 +37,26 @@ class HomeController extends Controller
      */
     public function indexAction(SessionInterface $session, Request $request)
     {
-        $parcours = null;
-        if ($session->has('parcours')) {
-            $parcours = $session->get('parcours');
-        }
+//        $parcours = null;
+//        if ($session->has('parcours')) {
+//            $parcours = $session->get('parcours');
+//        }
         $em = $this->getDoctrine()->getManager();
 
         $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC']);
 
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
-        $residenceFav = $em->getRepository(Residence::class)->findOneFav();
-        $residenceTwoFav = $em->getRepository(Residence::class)->findTwoFav();
-        $residenceAll = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
+//        $residenceFav = $em->getRepository(Residence::class)->findOneFav();
+//        $residenceTwoFav = $em->getRepository(Residence::class)->findTwoFav();
+        $residenceCol1 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],3,2);
+        $residenceCol2 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],2,0);
+        $residenceCol3 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],2,5);
 
-        $testimonials = $em->getRepository(Temoignage::class)->findAll();
+        $temoignages = $em->getRepository(Temoignage::class)->findAll();
 
-        $actu = $em->getRepository(Article::class)->findOneActu();
-        $event = $em->getRepository(Evenement::class)->findOneEvent();
-
-        $telephoneNumber = $this->getParameter('telephone_number');
-
-
-        // Formulaire de contact
-        $client = new Client();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->handleRequest($request);
-
-        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($message);
-
-            $em->persist($client);
-            $em->flush();
-
-            $this->addFlash('success', 'votre message a bien été envoyé');
-            return $this->redirectToRoute('home');
-        }
+//        $actu = $em->getRepository(Article::class)->findOneActu();
+//        $event = $em->getRepository(Evenement::class)->findOneEvent();
 
 
         // Recuperation de la liste des villes dans lesquelles se trouvent les residences
@@ -106,23 +73,23 @@ class HomeController extends Controller
         // Fin recuperation des villes
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
             null,
-            ['action' => $this->generateUrl('nosbiens')]);
+            ['action' => $this->generateUrl('nosresidences')]);
 
                 
 
         return $this->render('MyOrleansBundle::index.html.twig', [
-            'parcours' => $parcours,
+//            'parcours' => $parcours,
             'simpleSearch' => $simpleSearch->createView(),
             'villes' => $villes,
             'collaborateurs' => $collaborateurs,
-            'residenceFav' => $residenceFav,
-            'residenceTwoFav' => $residenceTwoFav,
-            'residenceAll' => $residenceAll,
-            'actu' => $actu,
-            'event' => $event,
-            'testimonials' => $testimonials,
-            'telephone_number' => $telephoneNumber,
-            'form' => $formulaire->createView(),
+//            'residenceFav' => $residenceFav,
+//            'residenceTwoFav' => $residenceTwoFav,
+            'residenceCol1' => $residenceCol1,
+            'residenceCol2' => $residenceCol2,
+            'residenceCol3' => $residenceCol3,
+//            'actu' => $actu,
+//            'event' => $event,
+            'temoignages' => $temoignages,
             'accueil' => $accueil
 
         ]);

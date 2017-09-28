@@ -208,8 +208,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
         $qb->andWhere('flts.statut = true')
             ->join('r.flats', 'flts')
-            ->setMaxResults(2)
-            ->orderBy('r.tri', 'ASC');
+            ->setMaxResults(4);
 
         return $qb->getQuery()->getResult();
     }

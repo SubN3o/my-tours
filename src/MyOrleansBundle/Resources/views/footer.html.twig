@@ -1,0 +1,126 @@
+<footer>
+    <div class="footer1">
+        <div class="row">
+            <!--colonne gauche-->
+            <div class="col s12 l4">
+                <h5 class="center">CONTACTEZ-NOUS</h5>
+                <div class="row">
+                    <div class="offset-l1 col l11">
+                        <p class="linkFooter"><i class="small material-icons align-icon">phone</i><a
+                                    href="tel:+33238759447"> 02 38 75 94 47</a></p>
+                        <p><i class="small material-icons align-icon">location_on</i> 13, rue Bannier 45000 Orléans</p>
+                        <p class="linkFooter"><i class="small material-icons align-icon">email</i><a
+                                    href="mailto:contact@my-orleans.fr">
+                                contact@my-orleans.fr</a>
+                        </p>
+                    </div>
+                </div>
+                <h5 class="center h5Footer">SUIVEZ-NOUS</h5>
+                <div class="row">
+                    <div class="offset-s3 offset-l2 col l2 s2">
+                        <a href="https://www.facebook.com/myorleans/?ref=page_internal" target="_blank">
+                            <div class="social-btn">
+                                <i class="fa fa-facebook fa-3x fb-social"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="offset-l1 col l2 s2">
+                        <a href="https://twitter.com/myorleans" target="_blank">
+                            <div class="social-btn">
+                                <i class="fa fa-twitter fa-3x icon-social"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="offset-l1 col l2 s2">
+                        <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ" target="_blank">
+                            <div class="social-btn">
+                                <i class="fa fa-youtube fa-3x icon-social"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--colonne milieu-->
+            <div class="col s12 l4 bordureFooter">
+                <h5 class="center"><a href="{{ path("nosresidences") }}">NOS PROGRAMMES NEUFS</a></h5>
+                <div class="row">
+                    {% for programme in programmes %}
+                        <div class="col s12 l6">
+                            <p class="linkFooter"><a href="{{ path("nosresidences") }}">{{ programme.nom }}</a></p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <h5 class="center h5Footer"><a href="{{ path("nos_services") }}">NOS SERVICES</a></h5>
+                <div class="row">
+                    <div class="col s12">
+                        {% for service in services %}
+                            <p class="linkFooter"><a href="{{ path("nos_services") }}">{{ service.type }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <h5 class="center h5Footer"><a href="{{ path("nos_services") }}">NOS PACKS</a></h5>
+                <div class="row">
+                    <div class="col s12">
+                        {% for pack in packs %}
+                            <p class="linkFooter"><a href="{{ path("nos_services") }}">{{ pack.nom }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!--colonne droite-->
+            <div class="col s12 l4">
+                <h5 class="center"><a href="{{ path("agence") }}">MY ORLÉANS</a></h5>
+                <div class="row">
+                    <div class="offset-l1 col l11">
+                        <p class="linkFooter"><a href="{{ path("agence") }}">L'agence</a></p>
+                        <p class="linkFooter"><a href="{{ path("agence") }}">L'équipe</a></p>
+                        <p class="linkFooter"><a href="{{ path("agence") }}">Nos partenaires</a></p>
+                        <p class="linkFooter"><a href="{{ path("agence") }}">Nos événements</a></p>
+                    </div>
+                </div>
+                <h5 class="center h5Footer"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></h5>
+                <div class="row">
+                    <div class="offset-l1 col l11">
+                        {% for article in articles %}
+                            <p class="linkFooter"><a href="{{ path("immo_pratique") }}">{{ article.titre }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer2">
+        <div class="row">
+            <div class="offset-l1 col s12 l2">
+                <p>© 2017 My-Orléans</p>
+            </div>
+            <div class="col s12 l2">
+                <p class="linkFooter"><a href="#modal1">Informations légales</a></p>
+            </div>
+            <div class="offset-l1 s12 col l3">
+                <p class="linkFooter"><a href="#modal2">Frais et honoraires de gestion</a></p>
+            </div>
+            <div class="col s12 l3">
+                <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}" alt="FNAIM" class="logoFooter"></a>
+                <a href="https://www.galian.fr/" target="_blank"><img src="{{ asset('img/logo-galian.png') }}" alt="Galian" class="logoFooter"></a>
+            </div>
+        </div>
+        <!--modale informations légales-->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                {{ accueil.mentions | raw }}
+            </div>
+        </div>
+        <!--modale honoraires-->
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                {% for media in accueil.medias if media.typeMedia.nom == 'image' %}
+                    <img src="{{ asset('uploads/'~media.mediaName) }}" alt="honoraires">
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+            </div>
+        </div>
+    </div>
+</footer>

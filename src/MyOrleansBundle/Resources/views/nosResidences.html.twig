@@ -1,0 +1,313 @@
+{% extends 'MyOrleansBundle::layout.html.twig' %}
+
+{% block content %}
+    <!-- Chiffres -->
+    <div class="row center countRow">
+        <div class="col s4">
+            {% for chiffre in chiffres %}
+                {% if loop.index == 1 %}
+                    <span class="count countTitle">{{ chiffre.valeur }}</span>
+                    <p class="chiffreNom">{{ chiffre.nom }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col s4">
+            {% for chiffre in chiffres %}
+                {% if loop.index == 2 %}
+                    <span class="count countTitle">{{ chiffre.valeur }}</span>
+                    <p class="chiffreNom">{{ chiffre.nom }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col s4 ">
+            {% for chiffre in chiffres %}
+                {% if loop.index == 3 %}
+                    <span class="count countTitle">{{ chiffre.valeur }}</span>
+                    <p class="chiffreNom">{{ chiffre.nom }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Search Complete -->
+    <div class="row">
+        <div class="offset-s1 offset-m2 offset-l1 col s10 m8 l4">
+
+            <div class="card">
+                {{ form_start(completeSearch) }}
+                <div class="card-tabs">
+                    <ul class="onglet tabs tabs-fixed-width">
+                        <li class="tab"><a class="active" href="#localisation"><i class="material-icons medium">location_on</i><br>Localisation</a>
+                        </li>
+                        <li class="tab"><a href="#type"><i class="material-icons medium">dashboard</i><br>Type</a></li>
+                        <li class="tab"><a href="#budget"><i class="material-icons medium">euro_symbol</i><br>Budget</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="search card-content">
+                    <div id="localisation">
+                        <h4>Où souhaitez-vous acheter ?</h4>
+                        <div class="row no-margin-bottom">
+                            <div class="offset-s1 offset-xl1 col s10 xl4 localisation">
+                                <p>Localisation</p>
+                            </div>
+                            <div class="offset-s1 offset-xl1 col s10 xl6">
+                                {{ form_widget(completeSearch.ville) }}
+                                {{ form_errors(completeSearch.ville) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="type">
+                        <h4>Sélectionnez le type souhaité</h4>
+                        <div class="row no-margin-bottom">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="offset-s2 col s8 typeSearch">
+                                        <span class="T1">T1</span>
+                                        <span class="T2">T2</span>
+                                        <span class="T3">T3</span>
+                                        <span class="T4">T4</span>
+                                        <span class="T5">T5+</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="offset-s2 col s8 curseur">
+                                        <div class="slider type2">
+                                            {{ form_widget(completeSearch.type) }}
+                                            {{ form_errors(completeSearch.type) }}
+                                        </div>
+                                        <span class="division1"></span>
+                                        <span class="division2"></span>
+                                        <span class="division3"></span>
+                                        <span class="division4"></span>
+                                        <span class="division5"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="budget">
+                        <h4>Votre budget</h4>
+                        <div class="row no-margin-bottom">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="offset-s1 col s4 budget">
+                                        <p>Budget min</p>
+                                        {{ form_widget(completeSearch.budgetMin) }}
+                                    </div>
+                                    <div class="offset-s2 col s4 budget">
+                                        <p>Budget max</p>
+                                        {{ form_widget(completeSearch.budgetMax) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="offset-s2 col s8 curseur">
+                                        <div id="slider-range" class="slider type2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                {{ form_widget(completeSearch.budgetMin) }}
+                                {{ form_errors(completeSearch.budgetMin) }}
+                            </div>
+                            <div class="col s6">
+                                {{ form_widget(completeSearch.budgetMax) }}
+                                {{ form_errors(completeSearch.budgetMax) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rechercher center">
+                        {{ form_widget(completeSearch.submit) }}
+                </div>
+                {{ form_end(completeSearch) }}
+            </div>
+        </div>
+
+        <div class="col l6 hide-on-med-only">
+            <div class="card" id="map"></div>
+        </div>
+
+    </div>
+    {% dump(residences) %}
+    <div class="row carte-liste-articles">
+
+        <div class="offset-s1 col s10 liste-biens">
+
+            <div class="row center no-margin-bottom">
+                {% set nb_res = residences|length %}
+
+                {% if rechercheSansResultat == 1 %}
+                    <h1 class="section-title">
+                        Aucune résidence ne correspond à votre recherche.<br/>Découvrez les biens suggérés.
+                    </h1>
+                {% else %}
+                    <h1 class="section-title">
+                        {% transchoice nb_res %}
+                        {1} 1 résidence correspond à votre recherche|
+                        ]1,Inf[ %count% résidences correspondent à votre recherche.
+                        {% endtranschoice %}
+                    </h1>
+                {% endif %}
+            </div>
+
+            <div class="row">
+
+                {% for residence in residences %}
+
+                    {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidence', {'id': residence.id })) }}
+
+                {% endfor %}
+
+            </div>
+
+            {% if suggestionActive == 1 and rechercheSansResultat == 0 %}
+                <div class="row suggestion-biens">
+                    {% set nb_res_suggerees = residencesSuggerees|length %}
+
+                    {% transchoice nb_res_suggerees %}
+                    {0} |
+                    {1} <h1>D'autres biens pourraient vous intéresser dans cette résidence</h1>|
+                    ]1,Inf[ <h1>D'autres biens pourraient vous intéresser dans ces résidences</h1>
+                    {% endtranschoice %}
+                </div>
+                <div class="row">
+                    {% for residence in residencesSuggerees %}
+                        <div class="col s3">
+                            <div class="card">
+                                <div class="card-image">
+                                    <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                                        {% if residence.medias is not empty %}
+                                            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                                <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                                                     alt="residence">
+                                            {% endfor %}
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+
+            {% endif %}
+
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
+    <script>
+        $(document).ready(function () {
+
+            //Autocompletion Moteur de Recherche
+            $('#complete_search_quartier').autocomplete({
+                data: {
+                    {% for quartier in quartiers %}
+                    "{{ quartier.nom }}": null,
+                    {% endfor %}
+                },
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                    // Callback function when value is autcompleted.
+                },
+                minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+
+            });
+
+            $('#complete_search_ville').autocomplete({
+                data: {
+                    {% for ville in villes %}
+                    "{{ ville.nom }}": null,
+                    {% endfor %}
+                },
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                    // Callback function when value is autcompleted.
+                },
+                minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+
+            });
+
+            //Slider Range Type Moteur de Recherche
+            var select = $("#complete_search_type");
+            var slider = $("<div id='slider'></div>").insertAfter(select).slider({
+                min: 1,
+                max: 5,
+                range: "min",
+                value: select[0].selectedIndex + 1,
+                slide: function (event, ui) {
+                    select[0].selectedIndex = ui.value - 1;
+                }
+            });
+            $("#complete_search_type").on("change", function () {
+                slider.slider("value", this.selectedIndex + 1);
+            });
+
+            //Slider Range Budget Moteur de Recherche
+            $("#slider-range").slider({
+                range: true,
+                max: 500000,
+                values: [100000, 300000],
+                animate: true,
+                step: 5,
+                slide: function (event, ui) {
+                    $("#complete_search_budgetMin").val(ui.values[0]);
+                    $("#complete_search_budgetMax").val(ui.values[1]);
+                }
+            });
+
+            $("#complete_search_budgetMin").val($("#slider-range").slider("values", 0));
+            $("#complete_search_budgetMax").val($("#slider-range").slider("values", 1));
+
+        });
+    </script>
+    <script>
+        function initMap() {
+
+//                    var count = 0;
+            var locations = [
+                {% for residence in residences %}
+                ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}],
+                {% endfor %}
+
+            ];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {lat: 47.902964, lng: 1.909251},
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+
+
+                marker = new google.maps.Marker({
+                    position: {lat: locations[i][1], lng: locations[i][2]},
+                    map: map,
+                    icon: 'img/marker.png'
+                });
+
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
+    </script>
+{% endblock %}

@@ -91,8 +91,8 @@ class Media
      * @Vich\UploadableField(mapping="media", fileNameProperty="mediaName")
      *
      * @Assert\File(
-     *     maxSize = "5M",
-     *     maxSizeMessage="Le fichier est trop volumineux. Sa taille ne doit pas dépasser 5 MB",
+     *     maxSize = "15M",
+     *     maxSizeMessage="Le fichier est trop volumineux. Sa taille ne doit pas dépasser 15 MB",
      *     mimeTypes = {"application/pdf",
      *     "application/x-pdf",
      *     "image/jpg",

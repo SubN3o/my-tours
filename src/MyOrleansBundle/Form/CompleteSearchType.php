@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class CompleteSearchType extends AbstractType
@@ -34,16 +35,16 @@ class CompleteSearchType extends AbstractType
                 ]
 
             ])
-            ->add('quartier', SearchType::class, [
-                'required'=>false,
-                'attr'=> [
-                    'id'=>'quartiers',
-                    'placeholder'=>'Chercher un quartier...',
-                    'class'=>'autocomplete',
-                    'autocomplete' => 'off'
-                ]
-
-            ])
+//            ->add('quartier', SearchType::class, [
+//                'required'=>false,
+//                'attr'=> [
+//                    'id'=>'quartiers',
+//                    'placeholder'=>'Chercher un quartier...',
+//                    'class'=>'autocomplete',
+//                    'autocomplete' => 'off'
+//                ]
+//
+//            ])
             ->add('type', ChoiceType::class, [
                 'required'=>false,
                 'placeholder'=>'Type du bien',
@@ -55,18 +56,18 @@ class CompleteSearchType extends AbstractType
                     'T5+' => 'T5+',
                 )
             ])
-            ->add('surfaceMin', IntegerType::class, [
-                'required' => false,
-                'attr' => ['placeholder'=>'Surface min',
-                            'min' => '0'
-                            ],
-            ])
-            ->add('surfaceMax', IntegerType::class, [
-                'required' => false,
-                'attr' => ['placeholder'=>'Surface max',
-                    'min' => '0'
-                    ],
-            ])
+//            ->add('surfaceMin', IntegerType::class, [
+//                'required' => false,
+//                'attr' => ['placeholder'=>'Surface min',
+//                            'min' => '0'
+//                            ],
+//            ])
+//            ->add('surfaceMax', IntegerType::class, [
+//                'required' => false,
+//                'attr' => ['placeholder'=>'Surface max',
+//                    'min' => '0'
+//                    ],
+//            ])
 //            ->add('nbChambres', ChoiceType::class, [
 //                'required'=>false,
 //                'placeholder'=>'Nb. Chambre(s)',
@@ -78,31 +79,29 @@ class CompleteSearchType extends AbstractType
 //                )
 //            ])
 
-            ->add('objectif', ChoiceType::class, [
-                'required'=>false,
-                'placeholder'=>'Objectif',
-                'choices' => array(
-                    'investir' => 'investir',
-                    'acheter en résidence principale' => 'Residence Principale',
-                )
-            ])
+//            ->add('objectif', ChoiceType::class, [
+//                'required'=>false,
+//                'placeholder'=>'Objectif',
+//                'choices' => array(
+//                    'investir' => 'investir',
+//                    'acheter en résidence principale' => 'Residence Principale',
+//                )
+//            ])
             ->add('budgetMin', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
-                'attr' => ['placeholder'=>'Budget min',
-                    'min' => '0'
-                    ],
+                'attr' => ['min' => '0',
+                            'max' => '500000'],
             ])
             ->add('budgetMax', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,
-                'attr' => ['placeholder'=>'Budget max',
-                    'min' => '0'
-                    ],
+                'attr' => ['min' => '0',
+                            'max'=> '500000'],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Rechercher',
-                'attr' => ['class' => 'waves-effect waves-light btn-large light-green']
+                'attr' => ['class' => 'waves-effect waves-light btn white']
             ])
             ->getForm();
 
