@@ -35,7 +35,6 @@ class SimpleSearchType extends AbstractType
 
             ->add('type', ChoiceType::class, [
                 'required'=>false,
-                'placeholder'=>'Sélectionnez le type du bien',
                 'choices' => array(
                     'T1' => 'T1',
                     'T2' => 'T2',
@@ -45,14 +44,9 @@ class SimpleSearchType extends AbstractType
                 )
             ])
 
-            ->add('investBtn', SubmitType::class, [
-                'label' => 'Je souhaite investir',
-                'attr' => ['class' => 'waves-effect waves-light btn-large light-green']
-            ])
-            ->add('resPrincipaleBtn', SubmitType::class, [
-                'label' => 'Je recherche une résidence principale',
-                'attr' => ['class' => 'waves-effect waves-light btn-large light-green']
-            ])
+            ->add('search', SubmitType::class, [
+                    'attr' => ['style'=>'visibility:hidden']
+                ])
 
             ->getForm();
     }

@@ -66,21 +66,15 @@ class HomeController extends Controller
             $villes[] = $residence->getVille();
         }
 
-        // Recuperation de la liste des villes dans lesqulles se trouvent les residences
-        $villes = $em->getRepository(Ville::class)->findAll();
 
 
-        // Fin recuperation des villes
-        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
-            null,
-            ['action' => $this->generateUrl('nosresidences')]);
+
+
 
                 
 
         return $this->render('MyOrleansBundle::index.html.twig', [
 //            'parcours' => $parcours,
-            'simpleSearch' => $simpleSearch->createView(),
-            'villes' => $villes,
             'collaborateurs' => $collaborateurs,
 //            'residenceFav' => $residenceFav,
 //            'residenceTwoFav' => $residenceTwoFav,

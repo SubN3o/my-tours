@@ -1,0 +1,64 @@
+<nav class="menu">
+    <div class="nav-wrapper">
+        <a href="{{ path("home") }}" class="brand-logo">
+            <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo"/>
+        </a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i
+                    class="material-icons">menu</i></a>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{{ path("nosresidences") }}">NOS RÉSIDENCES</a></li>
+            <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
+            <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
+            <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
+            <li onclick="simpleSearch()"><i class="material-icons">search</i></li>
+        </ul>
+        <ul id="simpleSearch" class="right hide-on-med-and-down">
+            {{ form_start(simpleSearch) }}
+            <li>{{ form_label(simpleSearch.ville, 'Localisation') }}</li>
+            <li>{{ form_widget(simpleSearch.ville) }}</li>
+            <li>{{ form_label(simpleSearch.type, 'Type de logement') }}</li>
+            <li>{{ form_widget(simpleSearch.type) }}</li>
+            <li>{{ form_widget(simpleSearch.search) }}</li>
+            <li onclick="navClassique()"><i class="material-icons">search</i></li>
+            {{ form_end(simpleSearch) }}
+        </ul>
+
+        <ul class="side-nav" id="mobile-demo">
+            <li><a href="{{ path("nosresidences") }}">NOS RÉSIDENCES</a></li>
+            <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
+            <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
+            <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
+        </ul>
+    </div>
+</nav>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('input.autocomplete').autocomplete({
+            data: {
+                {% for ville in villes %}
+                "{{ ville.nom }}": null,
+                {% endfor %}
+            },
+            limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+            onAutocomplete: function (val) {
+                // Callback function when value is autcompleted.
+            },
+            minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    function simpleSearch() {
+        document.getElementById('nav-mobile').style.display = 'none';
+        document.getElementById('simpleSearch').style.display = 'block';
+    }
+    function navClassique() {
+        document.getElementById('nav-mobile').style.display = 'block';
+        document.getElementById('simpleSearch').style.display = 'none';
+    }
+</script>

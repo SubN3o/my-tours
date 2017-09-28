@@ -21,6 +21,24 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LayoutController extends Controller
 {
+    public function navBarAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Recuperation de la liste des villes dans lesqulles se trouvent les residences
+        $villes = $em->getRepository(Ville::class)->findAll();
+
+        // Fin recuperation des villes
+        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
+            null,
+            ['action' => $this->generateUrl('nosresidences')]);
+
+        return $this->render('MyOrleansBundle::navBar.html.twig',[
+            'villes' => $villes,
+            'simpleSearch' => $simpleSearch->createView(),
+        ]);
+    }
+
     public function formulaireAction(Request $request)
     {
         $telephoneNumber = $this->getParameter('telephone_number');
