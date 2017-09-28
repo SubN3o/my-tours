@@ -33,7 +33,7 @@ class LayoutController extends Controller
             null,
             ['action' => $this->generateUrl('nosresidences')]);
 
-        return $this->render('MyOrleansBundle::navBar.html.twig',[
+        return $this->render('MyOrleansBundle::navBar.html.twig', [
             'villes' => $villes,
             'simpleSearch' => $simpleSearch->createView(),
         ]);
@@ -75,7 +75,7 @@ class LayoutController extends Controller
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('MyOrleansBundle::formulaire.html.twig',[
+        return $this->render('MyOrleansBundle::formulaire.html.twig', [
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView(),
         ]);
@@ -87,19 +87,19 @@ class LayoutController extends Controller
 
         $programmes = $em->getRepository(Residence::class)->findAll();
 
-        $services = $em->getRepository(Service::class)->findBy([], ['tri'=>'ASC']);
+        $services = $em->getRepository(Service::class)->findBy([], ['tri' => 'ASC']);
 
-        $packs = $em->getRepository(Pack::class)->findBy([], ['tri'=>'ASC']);
+        $packs = $em->getRepository(Pack::class)->findBy([], ['tri' => 'ASC']);
 
-        $articles = $em->getRepository(Article::class)->findBy([], ['date'=>'DESC'], 3,0);
+        $articles = $em->getRepository(Article::class)->findBy([], ['date' => 'DESC'], 3, 0);
 
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
-        return $this->render('MyOrleansBundle::footer.html.twig',[
-            'programmes'=>$programmes,
-            'services'=>$services,
-            'packs'=>$packs,
-            'articles'=>$articles,
+        return $this->render('MyOrleansBundle::footer.html.twig', [
+            'programmes' => $programmes,
+            'services' => $services,
+            'packs' => $packs,
+            'articles' => $articles,
             'accueil' => $accueil
         ]);
     }
