@@ -12,7 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="temoignage")
  * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\TemoignageRepository")
- * @UniqueEntity(fields="tri", message="Ce tri existe déjà.")
  */
 class Temoignage
 {
@@ -70,7 +69,7 @@ class Temoignage
      *      min = 1,
      *      minMessage = "Saisissez une valeur supérieure ou égale à 1",
      * )
-     * @ORM\Column(name="tri", type="integer", nullable=true, unique=true)
+     * @ORM\Column(name="tri", type="integer", nullable=true)
      */
     private $tri;
 
