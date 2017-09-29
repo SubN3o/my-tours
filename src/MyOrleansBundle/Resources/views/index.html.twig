@@ -2,7 +2,7 @@
 
 {% block video %}
     <!--Accueil video ou image Full Page-->
-    <div class="accueil">
+    <div class="accueil" id="intro">
         {% for media in accueil.medias %}
             {% if media.typeMedia.nom == 'video' %}
                 <video width="100%" autoplay loop muted>

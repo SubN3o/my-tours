@@ -1,27 +1,46 @@
-// Create a clone of the menu, right next to original.
-$('.menu').addClass('original').clone().insertAfter('.menu').addClass('cloned').css('position','fixed').css('top','0').css('margin-top','0').css('z-index','500').removeClass('original').hide();
+// // Page Scroll
+// jQuery(document).ready(function ($) {
+//     $('a[href*=#]:not([href=#])').click(function() {
+//         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+//             || location.hostname == this.hostname) {
+//
+//             var target = $(this.hash);
+//             target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+//             if (target.length) {
+//                 $('html,body').animate({
+//                     scrollTop: target.offset().top - 32
+//                 }, 1000);
+//                 return false;
+//             }
+//         }
+//     });
+// });
 
-scrollIntervalID = setInterval(stickIt, 10);
+// Fixed Nav
+jQuery(document).ready(function ($) {
+    $(window).scroll(function(){
 
+        var scrollTop = 0;
 
-function stickIt() {
+        if (document.getElementById("intro")){
+            scrollTop = document.getElementById("intro").offsetHeight
+        }
 
-    var orgElementPos = $('.original').offset();
-    orgElementTop = orgElementPos.top;
+        if($(window).scrollTop() >= scrollTop){
+            $('nav').css({
+                position : 'fixed',
+                top : '0'
+            });
+        }
+        if($(window).scrollTop() < scrollTop){
+            $('nav').removeAttr('style');
+        }
+    })
 
-    if ($(window).scrollTop() >= (orgElementTop)) {
-        // scrolled past the original position; now only show the cloned, sticky element.
+    // // Active Nav Link
+    // $('nav ul li a').click(function(){
+    //     $('nav ul li a').removeClass('active');
+    //     $(this).addClass('active');
+    // });
+});
 
-        // Cloned element should always have same left position and width as original element.
-        orgElement = $('.original');
-        coordsOrgElement = orgElement.offset();
-        leftOrgElement = coordsOrgElement.left;
-        widthOrgElement = orgElement.css('width');
-        $('.cloned').css('left',leftOrgElement+'px').css('top',0).css('width',widthOrgElement).show();
-        $('.original').css('visibility','visible');
-    } else {
-        // not scrolled past the menu; only show the original menu.
-        $('.cloned').hide();
-        $('.original').css('visibility','visible');
-    }
-}
