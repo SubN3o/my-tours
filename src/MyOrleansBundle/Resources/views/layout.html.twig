@@ -33,6 +33,51 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#simple_search_ville').autocomplete({
+                data: {
+                    "Boigny-sur-Bionne": null,
+                    "Bou": null,
+                    "Chanteau": null,
+                    "Chécy": null,
+                    "Fleury-les-Aubrais": null,
+                    "Ingré": null,
+                    "La Chapelle-Saint-Mesmin": null,
+                    "Mardié": null,
+                    "Marigny-les-Usages": null,
+                    "Olivet": null,
+                    "Orléans": null,
+                    "Ormes": null,
+                    "Saint-Cyr-en-Val": null,
+                    "Saint-Denis-en-Val": null,
+                    "Saint-Hilaire-Saint-Mesmin": null,
+                    "Saint-Jean-de-Braye": null,
+                    "Saint-Jean-de-la-Ruelle": null,
+                    "Saint-Jean-le-Blanc": null,
+                    "Saint-Pryvé-Saint-Mesmin": null,
+                    "Saran": null,
+                    "Semoy": null
+                },
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                    // Callback function when value is autcompleted.
+                },
+                minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+
+            });
+
+        });
+        function simpleSearch() {
+            document.getElementById('nav-mobile').style.display = 'none';
+            document.getElementById('simpleSearch').style.display = 'block';
+        }
+        function navClassique() {
+            document.getElementById('nav-mobile').style.display = 'block';
+            document.getElementById('simpleSearch').style.display = 'none';
+        }
+    </script>
     <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>

@@ -19,7 +19,7 @@
             <li>{{ form_widget(simpleSearch.ville) }}</li>
             <li>{{ form_label(simpleSearch.type, 'Type de logement') }}</li>
             <li>{{ form_widget(simpleSearch.type) }}</li>
-            <li>{{ form_widget(simpleSearch.search) }}</li>
+            <li class="go">{{ form_widget(simpleSearch.search) }}</li>
             <li onclick="navClassique()"><i class="material-icons">search</i></li>
             {{ form_end(simpleSearch) }}
         </ul>
@@ -29,36 +29,17 @@
             <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
             <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
             <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
+            <li class="divider"></li>
+            {{ form_start(simpleSearchMobile) }}
+            <li>{{ form_label(simpleSearchMobile.ville, 'Localisation') }}</li>
+            <li>{{ form_widget(simpleSearchMobile.ville) }}</li>
+            <li>{{ form_label(simpleSearchMobile.type, 'Type de logement') }}</li>
+            <li>{{ form_widget(simpleSearchMobile.type) }}</li>
+            <li class="go">{{ form_widget(simpleSearchMobile.search) }}</li>
+            {{ form_end(simpleSearchMobile) }}
         </ul>
     </div>
 </nav>
+{#{% dump(villes) %}#}
 
-<script type="text/javascript">
-    $(document).ready(function () {
 
-        $('input.autocomplete').autocomplete({
-            data: {
-                {% for ville in villes %}
-                "{{ ville.nom }}": null,
-                {% endfor %}
-            },
-            limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-            onAutocomplete: function (val) {
-                // Callback function when value is autcompleted.
-            },
-            minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
-
-        });
-
-    });
-</script>
-<script type="text/javascript">
-    function simpleSearch() {
-        document.getElementById('nav-mobile').style.display = 'none';
-        document.getElementById('simpleSearch').style.display = 'block';
-    }
-    function navClassique() {
-        document.getElementById('nav-mobile').style.display = 'block';
-        document.getElementById('simpleSearch').style.display = 'none';
-    }
-</script>

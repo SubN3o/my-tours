@@ -84,12 +84,6 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->orderBy('r.tri', 'ASC');
         }
 
-        if (!empty($data['quartier'])) {
-            $qb->andWhere('q.nom LIKE :quartier')
-                ->setParameter('quartier', '%'.$data['quartier'].'%')
-                ->join('r.quartier', 'q')
-                ->orderBy('r.tri', 'ASC');
-        }
 
         if (!empty($data['type'])) {
             $qb->andWhere('t.nom = :type')
@@ -99,25 +93,6 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
                 ->orderBy('r.tri', 'ASC');
         }
 
-        if (!empty($data['surfaceMin'])) {
-            $qb->andWhere('fl.surface >= :surfaceMin')
-                ->setParameter('surfaceMin', $data['surfaceMin'])
-                ->join('r.flats', 'fl')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($data['surfaceMax'])) {
-            $qb->andWhere('fla.surface <= :surfaceMax')
-                ->setParameter('surfaceMax', $data['surfaceMax'])
-                ->join('r.flats', 'fla')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-//        if (!empty($data['nbChambres'])) {
-//            $qb->andWhere('flt.nbChambre >= :nbChambres')
-//                ->setParameter('nbChambres', $data['nbChambres'])
-//                ->join('r.flats', 'flt');
-//        }
 
         if (!empty($data['budgetMin'])) {
             $qb->andWhere('ft.prix >= :budgetMin')

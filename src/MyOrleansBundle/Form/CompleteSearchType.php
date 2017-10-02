@@ -28,23 +28,14 @@ class CompleteSearchType extends AbstractType
             ->add('ville', SearchType::class, [
                 'required'=>false,
                 'attr'=> [
-                    'id'=>'villes',
+//                    'id'=>'villes',
                     'placeholder'=>'Chercher une ville...',
                     'class'=>'autocomplete',
                     'autocomplete' => 'off'
                 ]
 
             ])
-//            ->add('quartier', SearchType::class, [
-//                'required'=>false,
-//                'attr'=> [
-//                    'id'=>'quartiers',
-//                    'placeholder'=>'Chercher un quartier...',
-//                    'class'=>'autocomplete',
-//                    'autocomplete' => 'off'
-//                ]
-//
-//            ])
+
             ->add('type', ChoiceType::class, [
                 'required'=>false,
                 'placeholder'=>'Type du bien',
@@ -56,28 +47,6 @@ class CompleteSearchType extends AbstractType
                     'T5+' => 'T5+',
                 )
             ])
-//            ->add('surfaceMin', IntegerType::class, [
-//                'required' => false,
-//                'attr' => ['placeholder'=>'Surface min',
-//                            'min' => '0'
-//                            ],
-//            ])
-//            ->add('surfaceMax', IntegerType::class, [
-//                'required' => false,
-//                'attr' => ['placeholder'=>'Surface max',
-//                    'min' => '0'
-//                    ],
-//            ])
-//            ->add('nbChambres', ChoiceType::class, [
-//                'required'=>false,
-//                'placeholder'=>'Nb. Chambre(s)',
-//                'choices' => array(
-//                    '1 chambre' => '1',
-//                    '2 chambres' => '2',
-//                    '3 chambres' => '3',
-//                    '4 chambres et plus' => '4',
-//                )
-//            ])
 
 //            ->add('objectif', ChoiceType::class, [
 //                'required'=>false,
