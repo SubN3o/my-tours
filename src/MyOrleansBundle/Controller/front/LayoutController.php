@@ -23,11 +23,6 @@ class LayoutController extends Controller
 {
     public function navBarAction(Request $request)
     {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        // Recuperation de la liste des villes dans lesqulles se trouvent les residences
-//        $villes = $em->getRepository(Ville::class)->findAll();
-
         // Fin recuperation des villes
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
             null,
@@ -38,7 +33,6 @@ class LayoutController extends Controller
             ['action' => $this->generateUrl('nosresidences')]);
 
         return $this->render('MyOrleansBundle::navBar.html.twig', [
-//            'villes' => $villes,
             'simpleSearch' => $simpleSearch->createView(),
             'simpleSearchMobile' => $simpleSearchMobile->createView(),
         ]);
