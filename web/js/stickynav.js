@@ -32,7 +32,7 @@ jQuery(document).ready(function ($) {
                 top : '0'
             });
         }
-        if($(window).scrollTop() < scrollTop){
+        if($(window).scrollTop() <= scrollTop){
             $('nav').removeAttr('style');
         }
     })

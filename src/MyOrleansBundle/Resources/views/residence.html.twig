@@ -1,11 +1,16 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/residence.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col offset-s1 retourSearch">
             <a class="waves-effect waves-light btn"
-               href="#" onclick="history.back()">
-                <i class="fa fa-caret-left white-text"></i> RETOUR AUX RÉSULTATS DE MA RECHERCHE</a>
+               href="{{ path("nosresidences") }}">
+                <i class="fa fa-caret-left white-text"></i> RETOUR AUX RÉSIDENCES</a>
         </div>
     </div>
 
@@ -41,12 +46,80 @@
                 <button class="prev btn-flat"><i class="material-icons white-text">chevron_left</i></button>
                 <button class="next btn-flat"><i class="material-icons white-text">chevron_right</i></button>
             </div>
+                <div class="cartouche">
+                    <div class="row">
+                        <p class="col s12 l6 xl3">Prix : {{ prixMin|number_format(0, '.', ' ') }}€</p>
+                        <p class="col s12 l6 xl5">Livraison {{ residence.dateLivraison }}</p>
+                        <p class="col s6 l6 xl2">Du {{ typeMin }} au {{ typeMax }}</p>
+                        <p class="col s6 l6 xl2">Locatif</p>
+                    </div>
+                </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col offset-xl1 s12 l5 xl4 center situation">
+            <h1>{{ residence.ville.nom }}</h1>
+            <p>{% if residence.quartier != null %}quartier {{ residence.quartier.nom }}{% endif %}</p>
+        </div>
+        <div class="col offset-xl1 s12 l7 xl6 box-notesite">
+                <div class="row">
+                    <ul>
+                        <li class="design col s6 m3">
+                            <div class="notesite" id="note_0" data-note="{{ residence.noteTransports|number_format(2,'.') }}"></div>
+                            <br/>
+                            <div class="list-legend">
+                                <div class="row center-align">
+                                    <ul>
+                                        <li class="design col m12">transports</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="content col s6 m3">
+                            <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces|number_format(2,'.') }}"></div>
+                            <br/>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">commerces</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="creativity col s6 m3">
+                            <div class="notesite" id="note_1" data-note="{{ residence.noteServices|number_format(2,'.') }}"></div>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">services</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="usability col s6 m3">
+                            <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme|number_format(2,'.') }}"></div>
+                            <div class="list-legend">
+                                <div class="row">
+                                    <ul>
+                                        <li class="design col m12">esthétisme</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock content %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('js/testcompteur.js') }}"></script>
+    {#<script src="{{ asset('js/jquery.circliful.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>#}
     <script type="text/javascript">
         function imageByYoutube() {
             document.getElementById('image').style.display = 'none';

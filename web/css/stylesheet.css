@@ -20,6 +20,7 @@ h1 {
     font-weight: 300;
     font-size: 34pt;
     margin-top: 70px;
+    text-transform: uppercase;
 }
 
 .align-icon {
@@ -47,6 +48,7 @@ h1 {
 nav {
     background-color: #F2F2F2;
     z-index: 500;
+    /*position: fixed;*/
 }
 
 nav ul a, nav li, nav label {
@@ -526,7 +528,7 @@ footer p {
 /* -------------------------- Nos Residence ---------------------------*/
 /* --------------------------------------------------------------------*/
 .countRow{
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 50px;
 }
 
@@ -840,11 +842,11 @@ footer p {
 /* --------------------------------------------------------------------*/
 .retourSearch a, .retourSearch a:hover, .retourSearch a:focus{
     background-color: #B3B3B3;
-    margin: 40px 0;
+    margin: 20px 0;
 }
 
 .sliderResidence .slider, .sliderResidence .slider .slides {
-    height: 720px;
+    height: 600px;
 }
 
 .sliderResidence .prev {
@@ -853,6 +855,7 @@ footer p {
     transform: translateY(-50%);
     left: 0;
     z-index: 100;
+    padding: 0;
 }
 
 .sliderResidence .next {
@@ -861,6 +864,7 @@ footer p {
     transform: translateY(-50%);
     right: 0;
     z-index: 100;
+    padding: 0;
 }
 
 .sliderResidence .prev > i, .sliderResidence .next > i{
@@ -907,14 +911,47 @@ footer p {
     font-style: italic;
 }
 
+.cartouche {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    margin-top: -10px;
+    background-color: #C8CACC;
+    padding: 15px 20px;
+    z-index: 100;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+    font-size: 13pt;
+    color: #1D1D1B;
+}
+.situation {
+    margin-top: 30px;
+}
+
+.situation p{
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 18pt;
+    font-style: italic;
+    color: #1D1D1B;
+}
+
+.box-notesite {
+    margin-top: 70px;
+}
+
 @media screen and (max-width: 992px) {
 
     .sliderResidence .slider, .sliderResidence .slider .slides {
-        height: 360px;
+        height: 300px;
     }
 
     .encart {
-        width: 400px;
+        width: 100%;
     }
 
     .encart h2 {
@@ -930,10 +967,20 @@ footer p {
     }
 
     .sliderResidence .prev > i, .sliderResidence .next > i{
-        font-size: 96px;
+        font-size: 48px;
     }
 
     #ytplayer {
-        height: 360px;
+        height: 300px;
+    }
+
+    .cartouche {
+        margin-top: 0;
+        width: 90%;
+        padding: 10px 15px;
+    }
+
+    .box-notesite {
+        margin-top: 40px;
     }
 }
