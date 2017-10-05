@@ -206,21 +206,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            //Autocompletion Moteur de Recherche
-            {#$('#complete_search_quartier').autocomplete({#}
-                {#data: {#}
-                    {#{% for quartier in quartiers %}#}
-                    {#"{{ quartier.nom }}": null,#}
-                    {#{% endfor %}#}
-                {#},#}
-                {#limit: 20, // The max amount of results that can be shown at once. Default: Infinity.#}
-                {#onAutocomplete: function (val) {#}
-                    {#// Callback function when value is autcompleted.#}
-                {#},#}
-                {#minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.#}
-
-            {#});#}
-
             $('#complete_search_ville').autocomplete({
                 data: {
                     {% for ville in villes %}
@@ -231,7 +216,7 @@
                 onAutocomplete: function (val) {
                     // Callback function when value is autcompleted.
                 },
-                minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+                minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
 
             });
 

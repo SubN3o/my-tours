@@ -84,7 +84,7 @@ class FormulaireType extends AbstractType
             ])
 
             ->add('envoyer', SubmitType::class, [
-                'attr'=> ['class' => 'waves-effect waves-light btn-large light-green']
+                'attr'=> ['class' => 'waves-effect waves-light btn-large greenMyO']
             ])
             ->getForm();
 

@@ -33,32 +33,52 @@ class ResidencesController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $flats = $em->getRepository(Flat::class)->findBy(['residence' => $residence], ['prix' => 'ASC']);
+
+        $flatsT1 = $em->getRepository(Flat::class)->flatByType($residence,'T1');
+        $flatsT2 = $em->getRepository(Flat::class)->flatByType($residence,'T2');
+        $flatsT3 = $em->getRepository(Flat::class)->flatByType($residence,'T3');
+        $flatsT4 = $em->getRepository(Flat::class)->flatByType($residence,'T4');
+        $flatsT5 = $em->getRepository(Flat::class)->flatByType($residence,'T5+');
+
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
         $prixMin = $calculator->calculPrix($residence);
         $flatsDispo = $calculator->calculFlatDispo($residence);
         $typeMinMax = $calculator->calculSizes($residence);
-
         $medias = $residence->getMedias();
-        $mediaDefine = [];
-        foreach ($medias as $media) {
-            if ($media->getTypeMedia()->getNom() == 'video') {
-                $mediaDefine['video'] = $media;
-            } elseif ($media->getTypeMedia()->getNom() == 'image-cover') {
-                $mediaDefine['image-cover'] = $media;
-            }
-        }
+
+        $T1Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence,'T1'));
+        $T2Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence,'T2'));
+        $T3Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence,'T3'));
+        $T4Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence,'T4'));
+        $T5Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence,'T5+'));
+//        $mediaDefine = [];
+//        foreach ($medias as $media) {
+//            if ($media->getTypeMedia()->getNom() == 'video') {
+//                $mediaDefine['video'] = $media;
+//            } elseif ($media->getTypeMedia()->getNom() == 'image-cover') {
+//                $mediaDefine['image-cover'] = $media;
+//            }
+//        }
 
         return $this->render('MyOrleansBundle::residence.html.twig', [
             'residence' => $residence,
-            'flats' => $flats,
+            'flatsT1' => $flatsT1,
+            'flatsT2' => $flatsT2,
+            'flatsT3' => $flatsT3,
+            'flatsT4' => $flatsT4,
+            'flatsT5' => $flatsT5,
             'parcours' => $parcours,
-            'media' => $mediaDefine,
+            'media' => $medias,
             'prixMin' => $prixMin,
             'flatsDispo' => $flatsDispo,
             'typeMin' => $typeMinMax[0],
             'typeMax' => $typeMinMax[1],
             'typeLogement'=>$typelogment,
+            'T1Dispo'=>$T1Dispo,
+            'T2Dispo'=>$T2Dispo,
+            'T3Dispo'=>$T3Dispo,
+            'T4Dispo'=>$T4Dispo,
+            'T5Dispo'=>$T5Dispo
         ]);
 
 

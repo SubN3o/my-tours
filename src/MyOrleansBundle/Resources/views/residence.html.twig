@@ -6,46 +6,47 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col offset-s1 retourSearch">
-            <a class="waves-effect waves-light btn"
-               href="{{ path("nosresidences") }}">
-                <i class="fa fa-caret-left white-text"></i> RETOUR AUX RÉSIDENCES</a>
-        </div>
-    </div>
-
-    <!-- Slider Residence -->
-    <div class="sliderResidence">
-        <div class="slider">
-            <ul class="slides">
-                <li>
-                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                        <img id="image" src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
-                    {% endfor %}
-                    <div id="surCouche">
-                        <!-- Remplacement de #image et #surCouche par #ytplayer avec la fonction onclick -->
-                        <a href="#" {% if residence.lienYoutube != null %}onclick="imageByYoutube()"{% endif %}><i
-                                    class="material-icons white-text">play_circle_outline</i></a>
-                        <div class="encart center">
-                            <h2>{{ residence.nom }}</h2>
-                            <p>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}
-                            </p>
-                        </div>
-                    </div>
-                    <iframe id="ytplayer" type="text/html"
-                            src="http://www.youtube.com/embed/{{ residence.lienYoutube }}?autoplay=0&modestbranding=1&rel=0&showinfo=0"
-                            frameborder="0"></iframe>
-                </li>
-                {% for media in residence.medias if media.typeMedia.nom == 'image' %}
-                    <li>
-                        <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
-                    </li>
-                {% endfor %}
-            </ul>
-            <div class="col s12">
-                <button class="prev btn-flat"><i class="material-icons white-text">chevron_left</i></button>
-                <button class="next btn-flat"><i class="material-icons white-text">chevron_right</i></button>
+    <div id="residence">
+        <div class="row">
+            <div class="col offset-s1 retourSearch">
+                <a class="waves-effect waves-light btn"
+                   href="{{ path("nosresidences") }}">
+                    <i class="fa fa-caret-left white-text"></i> RETOUR AUX RÉSIDENCES</a>
             </div>
+        </div>
+
+        <!-- Slider Residence -->
+        <div class="sliderResidence">
+            <div class="slider">
+                <ul class="slides">
+                    <li>
+                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                            <img id="image" src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                        {% endfor %}
+                        <div id="surCouche">
+                            <!-- Remplacement de #image et #surCouche par #ytplayer avec la fonction onclick -->
+                            <a href="#" {% if residence.lienYoutube != null %}onclick="imageByYoutube()"{% endif %}><i
+                                        class="material-icons white-text">play_circle_outline</i></a>
+                            <div class="encart center">
+                                <h2>{{ residence.nom }}</h2>
+                                <p>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        <iframe id="ytplayer" type="text/html"
+                                src="http://www.youtube.com/embed/{{ residence.lienYoutube }}?autoplay=0&modestbranding=1&rel=0&showinfo=0"
+                                frameborder="0"></iframe>
+                    </li>
+                    {% for media in residence.medias if media.typeMedia.nom == 'image' %}
+                        <li>
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="col s12">
+                    <button class="prev btn-flat"><i class="material-icons white-text">chevron_left</i></button>
+                    <button class="next btn-flat"><i class="material-icons white-text">chevron_right</i></button>
+                </div>
                 <div class="cartouche">
                     <div class="row">
                         <p class="col s12 l6 xl3">Prix : {{ prixMin|number_format(0, '.', ' ') }}€</p>
@@ -54,18 +55,19 @@
                         <p class="col s6 l6 xl2">Locatif</p>
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col offset-xl1 s12 l5 xl4 center situation">
-            <h1>{{ residence.ville.nom }}</h1>
-            <p>{% if residence.quartier != null %}quartier {{ residence.quartier.nom }}{% endif %}</p>
-        </div>
-        <div class="col offset-xl1 s12 l7 xl6 box-notesite">
+        <div class="row">
+            <div class="col offset-xl1 s12 l5 xl4 center situation">
+                <h1>{{ residence.ville.nom }}</h1>
+                <p>{% if residence.quartier != null %}quartier {{ residence.quartier.nom }}{% endif %}</p>
+            </div>
+            <div class="col offset-xl1 s12 l7 xl6 box-notesite">
                 <div class="row">
                     <ul>
                         <li class="design col s6 m3">
-                            <div class="notesite" id="note_0" data-note="{{ residence.noteTransports|number_format(2,'.') }}"></div>
+                            <div class="notesite" id="note_0"
+                                 data-note="{{ residence.noteTransports|number_format(2,'.') }}"></div>
                             <br/>
                             <div class="list-legend">
                                 <div class="row center-align">
@@ -76,7 +78,8 @@
                             </div>
                         </li>
                         <li class="content col s6 m3">
-                            <div class="notesite" id="note_3" data-note="{{ residence.noteCommerces|number_format(2,'.') }}"></div>
+                            <div class="notesite" id="note_3"
+                                 data-note="{{ residence.noteCommerces|number_format(2,'.') }}"></div>
                             <br/>
                             <div class="list-legend">
                                 <div class="row">
@@ -87,7 +90,8 @@
                             </div>
                         </li>
                         <li class="creativity col s6 m3">
-                            <div class="notesite" id="note_1" data-note="{{ residence.noteServices|number_format(2,'.') }}"></div>
+                            <div class="notesite" id="note_1"
+                                 data-note="{{ residence.noteServices|number_format(2,'.') }}"></div>
                             <div class="list-legend">
                                 <div class="row">
                                     <ul>
@@ -97,7 +101,8 @@
                             </div>
                         </li>
                         <li class="usability col s6 m3">
-                            <div class="notesite" id="note_2" data-note="{{ residence.noteEsthetisme|number_format(2,'.') }}"></div>
+                            <div class="notesite" id="note_2"
+                                 data-note="{{ residence.noteEsthetisme|number_format(2,'.') }}"></div>
                             <div class="list-legend">
                                 <div class="row">
                                     <ul>
@@ -108,18 +113,465 @@
                         </li>
                         <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
                     </ul>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col offset-l1 offset-xl2 s12 l10 xl8" id="menuResidence">
+            <ul class="tabs tabs-transparent tabs-fixed-width">
+                <li class="tab"><a href="#test1">La résidence</a></li>
+                <li class="tab"><a href="#test2">Localisation</a></li>
+                <li class="tab"><a href="#test3">Nos biens</a></li>
+                <li class="tab"><a href="#test4">Info pratiques</a></li>
+            </ul>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col offset-l1 s12 l7">
+            <div class="card-panel accrocheResidence">
+                <h3 class="center accroche">{{ residence.accroche }}</h3>
+                <div class="description">{{ residence.description | raw }}</div>
+            </div>
+        </div>
+        {#<div class="col offset-l1 l2">#}
+        {#<div class="card-panel">#}
+        {#<span>Hello</span>#}
+        {#</div>#}
+        {#</div>#}
+    </div>
+
+    <h1>Situation de la résidence</h1>
+
+    <div class="row">
+        <div class="col offset-l1 s12 l7">
+            <div class="card" id="map"></div>
+        </div>
+        {#<div class="col offset-l1 l2">#}
+        {#<div class="card-panel">#}
+        {#<span>Hello</span>#}
+        {#</div>#}
+        {#</div>#}
+    </div>
+
+    <h1>Consultez nos biens disponibles</h1>
+
+    <div class="row">
+        <div class="col offset-l1 s12 l10">
+            <div class="accordeon-residence center">
+                <div class="row accordeon-entete">
+                    <div class="col s2 l3 colType">Type</div>
+                    <div class="col s4 l3 colSurface">Surface habitable</div>
+                    <div class="col s4 l3 colPrix">Prix</div>
+                    <div class="col s2 l3 colDispo">Disponibilité</div>
+                </div>
+                <ul class="collapsible" data-collapsible="accordion">
+                    {% if flatsT1 != null %}
+                        <li>
+                            <div class="collapsible-header">
+                                <div class="row">
+                                    <div class="col s2 l3">1 pièce</div>
+                                    <div class="col s4 l3">
+                                        {% for flat in flatsT1 %}
+                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup> à
+                                        {% for flat in flatsT1 %}
+                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup>
+                                    </div>
+                                    <div class="col s4 l3">
+                                        à partir de
+                                        {% for flat in flatsT1 %}
+                                            {% if loop.first %}{{ flat.prix|number_format(0, '.', ' ') }}{% endif %}
+                                        {% endfor %}
+                                        €
+                                    </div>
+                                    <div class="col s2 l3 ">
+                                        <div class="btn greenMyO">
+                                            {% transchoice T1Dispo %}
+                                            {1} %count% logement disponible|
+                                            ]1,Inf[ %count% logements disponibles
+                                            {% endtranschoice %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapsible-body">
+                                {% for flat in flatsT1 %}
+                                    <div class="row">
+                                        {% if flat.statut %}
+                                            <a href="{{ path('appartement', { 'id': flat.id }) }}">
+                                                <div class="col s2 l3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s4 l3">{{ flat.surface }} m<sup>2</sup></div>
+                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                </div>
+                                                <div class="col s2 l3">
+                                                    <div class="btn white black-text">Voir</div>
+                                                </div>
+                                            </a>
+                                        {% else %}
+
+                                            <div class="col s2 l3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col s4 l3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
+                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            </div>
+                                            <div class="col s2 l3"><i>Vendu</i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if flatsT2 != null %}
+                        <li>
+                            <div class="collapsible-header">
+                                <div class="row">
+                                    <div class="col s2 l3">2 pièces</div>
+                                    <div class="col s4 l3">
+                                        {% for flat in flatsT2 %}
+                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup> à
+                                        {% for flat in flatsT2 %}
+                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup>
+                                    </div>
+                                    <div class="col s4 l3">
+                                        à partir de
+                                        {% for flat in flatsT2 %}
+                                            {% if loop.first %}{{ flat.prix|number_format(0, '.', ' ') }}{% endif %}
+                                        {% endfor %}
+                                        €
+                                    </div>
+                                    <div class="col s2 l3 ">
+                                        <div class="btn greenMyO">
+                                            {% transchoice T2Dispo %}
+                                            {1} %count% logement disponible|
+                                            ]1,Inf[ %count% logements disponibles
+                                            {% endtranschoice %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapsible-body">
+                                {% for flat in flatsT2 %}
+                                    <div class="row">
+                                        {% if flat.statut %}
+                                            <a href="{{ path('appartement', { 'id': flat.id }) }}">
+                                                <div class="col s2 l3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s4 l3">{{ flat.surface }} m<sup>2</sup></div>
+                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                </div>
+                                                <div class="col s2 l3">
+                                                    <div class="col s2 l3">
+                                                        <div class="btn white black-text">Voir</div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        {% else %}
+
+                                            <div class="col s2 l3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col s4 l3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
+                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            </div>
+                                            <div class="col s2 l3"><i>Vendu</i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if flatsT3 != null %}
+                        <li>
+                            <div class="collapsible-header">
+                                <div class="row">
+                                    <div class="col s2 l3">3 pièces</div>
+                                    <div class="col s4 l3">
+                                        {% for flat in flatsT3 %}
+                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup> à
+                                        {% for flat in flatsT3 %}
+                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup>
+                                    </div>
+                                    <div class="col s4 l3">
+                                        à partir de
+                                        {% for flat in flatsT3 %}
+                                            {% if loop.first %}{{ flat.prix|number_format(0, '.', ' ') }}{% endif %}
+                                        {% endfor %}
+                                        €
+                                    </div>
+                                    <div class="col s2 l3 ">
+                                        <div class="btn greenMyO">
+                                                {% transchoice T3Dispo %}
+                                                {1} %count% logement disponible|
+                                                ]1,Inf[ %count% logements disponibles
+                                                {% endtranschoice %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapsible-body">
+                                {% for flat in flatsT3 %}
+                                    <div class="row">
+                                        {% if flat.statut %}
+                                            <a href="{{ path('appartement', { 'id': flat.id }) }}">
+                                                <div class="col s2 l3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s4 l3">{{ flat.surface }} m<sup>2</sup></div>
+                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                </div>
+                                                <div class="col s2 l3">
+                                                    <div class="btn white black-text">Voir</div>
+                                                </div>
+                                            </a>
+                                        {% else %}
+
+                                            <div class="col s2 l3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col s4 l3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
+                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            </div>
+                                            <div class="col s2 l3"><i>Vendu</i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if flatsT4 != null %}
+                        <li>
+                            <div class="collapsible-header">
+                                <div class="row">
+                                    <div class="col s2 l3">4 pièces</div>
+                                    <div class="col s4 l3">
+                                        {% for flat in flatsT4 %}
+                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup> à
+                                        {% for flat in flatsT4 %}
+                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup>
+                                    </div>
+                                    <div class="col s4 l3">
+                                        à partir de
+                                        {% for flat in flatsT4 %}
+                                            {% if loop.first %}{{ flat.prix|number_format(0, '.', ' ') }}{% endif %}
+                                        {% endfor %}
+                                        €
+                                    </div>
+                                    <div class="col s2 l3 ">
+                                        <div class="btn greenMyO">
+                                            {% transchoice T4Dispo %}
+                                            {1} %count% logement disponible|
+                                            ]1,Inf[ %count% logements disponibles
+                                            {% endtranschoice %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapsible-body">
+                                {% for flat in flatsT4 %}
+                                    <div class="row">
+                                        {% if flat.statut %}
+                                            <a href="{{ path('appartement', { 'id': flat.id }) }}">
+                                                <div class="col s2 l3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s4 l3">{{ flat.surface }} m<sup>2</sup></div>
+                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                </div>
+                                                <div class="col s2 l3">
+                                                    <div class="btn white black-text">Voir</div>
+                                                </div>
+                                            </a>
+                                        {% else %}
+
+                                            <div class="col s2 l3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col s4 l3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
+                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            </div>
+                                            <div class="col s2 l3"><i>Vendu</i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if flatsT5 != null %}
+                        <li>
+                            <div class="collapsible-header">
+                                <div class="row">
+                                    <div class="col s2 l3">5 pièces et plus</div>
+                                    <div class="col s4 l3">
+                                        {% for flat in flatsT5 %}
+                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup> à
+                                        {% for flat in flatsT5 %}
+                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                        {% endfor %}
+                                        m<sup>2</sup>
+                                    </div>
+                                    <div class="col s4 l3">
+                                        à partir de
+                                        {% for flat in flatsT5 %}
+                                            {% if loop.first %}{{ flat.prix|number_format(0, '.', ' ') }}{% endif %}
+                                        {% endfor %}
+                                        €
+                                    </div>
+                                    <div class="col s2 l3 ">
+                                        <div class="btn greenMyO">
+                                            {% transchoice T5Dispo %}
+                                            {1} %count% logement disponible|
+                                            ]1,Inf[ %count% logements disponibles
+                                            {% endtranschoice %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapsible-body">
+                                {% for flat in flatsT5 %}
+                                    <div class="row">
+                                        {% if flat.statut %}
+                                            <a href="{{ path('appartement', { 'id': flat.id }) }}">
+                                                <div class="col s2 l3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s4 l3">{{ flat.surface }} m<sup>2</sup></div>
+                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                </div>
+                                                <div class="col s2 l3">
+                                                    <div class="btn white black-text">Voir</div>
+                                                </div>
+                                            </a>
+                                        {% else %}
+
+                                            <div class="col s2 l3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col s4 l3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
+                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            </div>
+                                            <div class="col s2 l3"><i>Vendu</i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {#</div>#}
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
+    <p>blabla</p><br>
 
 {% endblock content %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        function initMap() {
+
+//                    var count = 0;
+            var location = ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: {lat: location[1], lng: location[2]},
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker;
+
+            marker = new google.maps.Marker({
+                position: {lat: location[1], lng: location[2]},
+                map: map,
+//                    icon: 'img/marker.png'
+            });
+
+
+            google.maps.event.addListener(marker, 'click', (function (marker) {
+                return function () {
+                    infowindow.setContent(location[0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker));
+
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
+    </script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(window).scroll(function () {
+
+                var scrollTop = $(window).scrollTop(),
+
+                    scroll = document.getElementById("residence").offsetHeight,
+
+                    nav = document.getElementById("nav").offsetHeight,
+
+                    menu = $(document.getElementById("menuResidence"));
+
+                if (scrollTop >= scroll) {
+                    menu.css({
+                        position: 'fixed',
+                        top: nav
+                    });
+                }
+                if (scrollTop <= scroll) {
+                    menu.removeAttr('style');
+                }
+            })
+        });
+    </script>
     <script src="{{ asset('js/testcompteur.js') }}"></script>
-    {#<script src="{{ asset('js/jquery.circliful.min.js') }}"></script>#}
-    {#<script type="text/javascript" src="{{ asset('js/aos.js') }}"></script>#}
     <script type="text/javascript">
         function imageByYoutube() {
             document.getElementById('image').style.display = 'none';
@@ -135,7 +587,7 @@
                 indicators: false,
                 interval: 12000,
                 height: null
-            },'pause');
+            }, 'pause');
 
             $('.slider').slider('pause');
 

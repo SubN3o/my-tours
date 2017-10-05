@@ -1,5 +1,5 @@
 <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper" id="nav">
         <a href="{{ path("home") }}" class="brand-logo">
             <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo"/>
         </a>
@@ -11,7 +11,7 @@
             <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
             <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
             <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
-            <li onclick="simpleSearch()"><i class="material-icons">search</i></li>
+            <li onclick="simpleSearch()"><a><i class="material-icons">search</i></a></li>
         </ul>
         <ul id="simpleSearch" class="right hide-on-med-and-down">
             {{ form_start(simpleSearch) }}
@@ -20,7 +20,7 @@
             <li>{{ form_label(simpleSearch.type, 'Type de logement') }}</li>
             <li>{{ form_widget(simpleSearch.type) }}</li>
             <li class="go">{{ form_widget(simpleSearch.search) }}</li>
-            <li onclick="navClassique()"><i class="material-icons">search</i></li>
+            <li onclick="navClassique()"><a><i class="material-icons">search</i></a></li>
             {{ form_end(simpleSearch) }}
         </ul>
 

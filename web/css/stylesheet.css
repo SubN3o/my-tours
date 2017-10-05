@@ -30,12 +30,13 @@ h1 {
 }
 
 .row {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
-.light-green {
-    background-color: #B5CC17!important;
+.greenMyO, .greenMyO:hover, .greenMyO:focus, .greenMyO:active{
+    background-color: #B5CC17;
 }
+
 /* --------------------------------------------------------------------*/
 /* ----------------------------- NAVBAR -------------------------------*/
 /* --------------------------------------------------------------------*/
@@ -917,7 +918,7 @@ footer p {
     transform: translateX(-50%);
     width: 70%;
     margin-top: -10px;
-    background-color: #C8CACC;
+    background-color: #e6e6e6;
     padding: 15px 20px;
     z-index: 100;
     font-family: Montserrat;
@@ -942,7 +943,98 @@ footer p {
 
 .box-notesite {
     margin-top: 70px;
+    margin-bottom: 50px;
 }
+
+#menuResidence{
+    background-color: #f9f9f4;
+    border-bottom: solid 2px #e6e6e6;
+    z-index: 100;
+}
+
+#menuResidence a {
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 14pt;
+    color: #1D1D1B;
+    padding: 15px 0;
+}
+
+#menuResidence .active {
+    font-weight: 500;
+    background-color: #e6e6e6;
+}
+
+.accrocheResidence {
+    margin-top: 100px;
+    padding: 5px 20px 10px 20px;
+    background-color: #f9f9f7;
+}
+
+.accroche {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    font-family: Lato;
+    letter-spacing: .55pt;
+    font-weight: 500;
+    font-size: 25pt;
+    font-style: italic;
+    color: #676767;
+}
+
+.description {
+    font-family: Cantarell;
+    font-weight: 400;
+    font-size: 17pt;
+    color: #1D1D1B;
+}
+
+.accordeon-residence ul {
+    margin: 0;
+}
+
+.accordeon-entete {
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 14pt;
+    background-color: #B3B3B3;
+    padding: 10px 0;
+    color: white;
+}
+
+.accordeon-residence .collapsible-header, .accordeon-residence .collapsible-header .col{
+    padding: 0 0;
+}
+
+.accordeon-residence .collapsible-body, .accordeon-residence .collapsible-body .col{
+    padding: 5px 0;
+}
+
+.accordeon-residence .collapsible-body{
+    background-color: #F2F2F2;
+}
+
+.accordeon-residence .collapsible-body .row i{
+    color: #676767;
+}
+
+.accordeon-residence .collapsible-body .row:hover {
+    background-color: #ccf03f;
+}
+
+.colType, .colSurface, .colPrix {
+    border-right: solid 2px white;
+}
+
+/*.flatDispo {*/
+    /*text-decoration: underline #B5CC17;*/
+/*}*/
 
 @media screen and (max-width: 992px) {
 
@@ -982,5 +1074,19 @@ footer p {
 
     .box-notesite {
         margin-top: 40px;
+    }
+
+    #menuResidence a {
+        font-size: 10pt;
+        padding: 15px 5px;
+    }
+
+    .accroche {
+        width: 100%;
+        font-size: 20pt;
+    }
+
+    .description {
+        font-size: 12pt;
     }
 }

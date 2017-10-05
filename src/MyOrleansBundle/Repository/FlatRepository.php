@@ -10,5 +10,32 @@ namespace MyOrleansBundle\Repository;
  */
 class FlatRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function flatByType($residence,$type)
+    {
+        $qb = $this->createQueryBuilder('f');
 
+        $qb->Where('f.residence = :residence')
+            ->setParameter('residence', $residence)
+            ->andWhere('t.nom = :typeLogement')
+            ->setParameter('typeLogement', $type)
+            ->join('f.typeLogement', 't')
+            ->addOrderBy('f.prix','ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function flatDispoByType($residence,$type)
+    {
+        $qb = $this->createQueryBuilder('f');
+
+        $qb->Where('f.residence = :residence')
+            ->setParameter('residence', $residence)
+            ->andWhere('t.nom = :typeLogement')
+            ->setParameter('typeLogement', $type)
+            ->andWhere('f.statut = true')
+            ->join('f.typeLogement', 't')
+            ->addOrderBy('f.prix','ASC');
+
+        return $qb->getQuery()->getResult();
+    }
 }
