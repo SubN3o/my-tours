@@ -60,11 +60,12 @@
         <div id="modalYtp" class="modal">
             <div class="modal-content">
                 <div class="video-container">
-                    <iframe src="http://www.youtube.com/embed/{{ residence.lienYoutube }}?autoplay=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="http://www.youtube.com/embed/{{ residence.lienYoutube }}?autoplay=0&modestbranding=1&rel=0&showinfo=0"
+                            frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             {#<div class="modal-footer">#}
-                {#<a onclick="closeYtp()" href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>#}
+            {#<a onclick="closeYtp()" href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>#}
             {#</div>#}
         </div>
 
@@ -494,6 +495,32 @@
         </div>
     </div>
 
+    <!-- Suggestion residence -->
+    <h1>D'autres programmes peuvent vous intéresser</h1>
+
+    <div class="row">
+        <div class="col offset-l1 s12 l10">
+            <div class="row">
+                {% for residence in residencesSuggerees %}
+                    <div class="col s3">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                                    {% if residence.medias is not empty %}
+                                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                            <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                                                 alt="residence">
+                                        {% endfor %}
+                                    {% endif %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
 {% endblock content %}
 
 {% block javascripts %}
@@ -588,19 +615,19 @@
         });
     </script>
     {#<script type="text/javascript">#}
-        {#$(document).ready(function(){#}
-            {#// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered#}
-            {#$('#modalYtp').modal(#}
-                {#{#}
-                    {#dismissible: false#}
-                {#}#}
-            {#);#}
-        {#});#}
+    {#$(document).ready(function(){#}
+    {#// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered#}
+    {#$('#modalYtp').modal(#}
+    {#{#}
+    {#dismissible: false#}
+    {#}#}
+    {#);#}
+    {#});#}
     {#</script>#}
     {#<script type="text/javascript">#}
-        {#function closeYtp() {#}
-            {#document.getElementById('modalYtp').contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');#}
-        {#}#}
+    {#function closeYtp() {#}
+    {#document.getElementById('modalYtp').contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');#}
+    {#}#}
     {#</script>#}
 
 {% endblock %}

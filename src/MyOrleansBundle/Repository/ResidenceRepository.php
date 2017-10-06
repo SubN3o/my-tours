@@ -188,6 +188,16 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function suggestResidence($idResidence)
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.id != :idResidence')
+            ->setParameter('idResidence',$idResidence)
+            ->orderBy('r.tri', 'ASC')
+            ->setMaxResults(4);
+        return $qb->getQuery()->getResult();
+
+    }
 
     public function findAllLimit()
     {

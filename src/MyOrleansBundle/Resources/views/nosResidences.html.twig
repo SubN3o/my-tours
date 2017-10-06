@@ -129,7 +129,8 @@
         </div>
 
     </div>
-    {% dump(residences) %}
+
+    <!-- Resultat Recherche -->
     <div class="row carte-liste-articles">
 
         <div class="offset-s1 col s10 liste-biens">
@@ -161,6 +162,7 @@
 
             </div>
 
+            <!-- suggestion residence -->
             {% if suggestionActive == 1 and rechercheSansResultat == 0 %}
                 <div class="row suggestion-biens">
                     {% set nb_res_suggerees = residencesSuggerees|length %}
