@@ -841,7 +841,7 @@ footer p {
 /* --------------------------------------------------------------------*/
 /* ---------------------------- RESIDENCE -----------------------------*/
 /* --------------------------------------------------------------------*/
-.retourSearch a, .retourSearch a:hover, .retourSearch a:focus{
+.retourSearch1 a, .retourSearch1 a:hover, .retourSearch1 a:focus{
     background-color: #B3B3B3;
     margin: 20px 0;
 }
@@ -880,10 +880,8 @@ footer p {
     font-size: 64px;
 }
 
-#ytplayer {
-    display: none;
-    width: 100%;
-    height: 720px;
+#modalYtp .modal-content {
+    padding: 0!important;
 }
 
 .encart {
@@ -913,13 +911,10 @@ footer p {
 }
 
 .cartouche {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     width: 70%;
     margin-top: -10px;
     background-color: #e6e6e6;
-    padding: 15px 20px;
     z-index: 100;
     font-family: Montserrat;
     letter-spacing: .55pt;
@@ -927,6 +922,15 @@ footer p {
     font-size: 13pt;
     color: #1D1D1B;
 }
+
+.cartouche .row {
+    padding: 15px 10px;
+}
+
+.cartouche .col {
+    padding: 0 0;
+}
+
 .situation {
     margin-top: 30px;
 }
@@ -1008,12 +1012,20 @@ footer p {
     color: white;
 }
 
-.accordeon-residence .collapsible-header, .accordeon-residence .collapsible-header .col{
+.accordeon-residence .collapsible-header{
     padding: 0 0;
+    font-family: Work Sans;
+    letter-spacing: .55pt;
+    font-weight: 500;
+    font-size: 14pt;
 }
 
-.accordeon-residence .collapsible-body, .accordeon-residence .collapsible-body .col{
-    padding: 5px 0;
+.accordeon-residence .collapsible-body{
+    padding: 0 0;
+    font-family: Gill Sans;
+    letter-spacing: .55pt;
+    font-weight: 400;
+    font-size: 13pt;
 }
 
 .accordeon-residence .collapsible-body{
@@ -1024,6 +1036,10 @@ footer p {
     color: #676767;
 }
 
+.accordeon-residence .collapsible-body .row{
+    padding: 5px 0;
+}
+
 .accordeon-residence .collapsible-body .row:hover {
     background-color: #ccf03f;
 }
@@ -1032,9 +1048,17 @@ footer p {
     border-right: solid 2px white;
 }
 
-/*.flatDispo {*/
-    /*text-decoration: underline #B5CC17;*/
-/*}*/
+.accordeon-residence .greenMyO {
+    width: 70%;
+    text-transform: none;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.retourSearch2 a, .retourSearch2 a:hover, .retourSearch2 a:focus{
+    background-color: #B3B3B3;
+    margin: 80px 0;
+}
 
 @media screen and (max-width: 992px) {
 
@@ -1062,15 +1086,15 @@ footer p {
         font-size: 48px;
     }
 
-    #ytplayer {
-        height: 300px;
-    }
+    /*#ytplayer {*/
+        /*height: 300px;*/
+    /*}*/
 
-    .cartouche {
-        margin-top: 0;
-        width: 90%;
-        padding: 10px 15px;
-    }
+    /*.cartouche {*/
+        /*margin-top: 0;*/
+        /*width: 90%;*/
+        /*padding: 10px 15px;*/
+    /*}*/
 
     .box-notesite {
         margin-top: 40px;

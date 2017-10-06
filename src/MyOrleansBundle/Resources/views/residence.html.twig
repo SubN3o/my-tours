@@ -8,7 +8,7 @@
 {% block content %}
     <div id="residence">
         <div class="row">
-            <div class="col offset-s1 retourSearch">
+            <div class="col offset-s1 retourSearch1">
                 <a class="waves-effect waves-light btn"
                    href="{{ path("nosresidences") }}">
                     <i class="fa fa-caret-left white-text"></i> RETOUR AUX RÉSIDENCES</a>
@@ -23,19 +23,15 @@
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                             <img id="image" src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
-                        <div id="surCouche">
-                            <!-- Remplacement de #image et #surCouche par #ytplayer avec la fonction onclick -->
-                            <a href="#" {% if residence.lienYoutube != null %}onclick="imageByYoutube()"{% endif %}><i
-                                        class="material-icons white-text">play_circle_outline</i></a>
-                            <div class="encart center">
-                                <h2>{{ residence.nom }}</h2>
-                                <p>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}
-                                </p>
-                            </div>
+                        {% if residence.lienYoutube != null %}
+                            <a href="#modalYtp"><i class="material-icons white-text">play_circle_outline</i></a>
+                        {% endif %}
+                        <div class="encart center">
+                            <h2>{{ residence.nom }}</h2>
+                            <p>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}
+                            </p>
                         </div>
-                        <iframe id="ytplayer" type="text/html"
-                                src="http://www.youtube.com/embed/{{ residence.lienYoutube }}?autoplay=0&modestbranding=1&rel=0&showinfo=0"
-                                frameborder="0"></iframe>
+
                     </li>
                     {% for media in residence.medias if media.typeMedia.nom == 'image' %}
                         <li>
@@ -47,21 +43,38 @@
                     <button class="prev btn-flat"><i class="material-icons white-text">chevron_left</i></button>
                     <button class="next btn-flat"><i class="material-icons white-text">chevron_right</i></button>
                 </div>
-                <div class="cartouche">
-                    <div class="row">
-                        <p class="col s12 l6 xl3">Prix : {{ prixMin|number_format(0, '.', ' ') }}€</p>
-                        <p class="col s12 l6 xl5">Livraison {{ residence.dateLivraison }}</p>
-                        <p class="col s6 l6 xl2">Du {{ typeMin }} au {{ typeMax }}</p>
-                        <p class="col s6 l6 xl2">Locatif</p>
+                <div class="row">
+                    <div class="col offset-s1 offset-l2 offset-xl1 s10 l8 xl10 cartouche center">
+                        <div class="row">
+                            <p class="col s12 l6 xl3">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</p>
+                            <p class="col s12 l6 xl4">Livraison {{ residence.dateLivraison }}</p>
+                            <p class="col s12 l6 xl2">Du {{ typeMin }} au {{ typeMax }}</p>
+                            <p class="col s12 l6 xl3">{{ flatsDispo }} lots disponibles</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Modal Video Youtube -->
+        <div id="modalYtp" class="modal">
+            <div class="modal-content">
+                <div class="video-container">
+                    <iframe src="http://www.youtube.com/embed/{{ residence.lienYoutube }}?autoplay=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            {#<div class="modal-footer">#}
+                {#<a onclick="closeYtp()" href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>#}
+            {#</div>#}
+        </div>
+
         <div class="row">
             <div class="col offset-xl1 s12 l5 xl4 center situation">
                 <h1>{{ residence.ville.nom }}</h1>
                 <p>{% if residence.quartier != null %}quartier {{ residence.quartier.nom }}{% endif %}</p>
             </div>
+
+            <!-- Compteurs Notes -->
             <div class="col offset-xl1 s12 l7 xl6 box-notesite">
                 <div class="row">
                     <ul>
@@ -117,6 +130,8 @@
             </div>
         </div>
     </div>
+
+    <!-- 2nde Navbar -->
     <div class="row">
         <div class="col offset-l1 offset-xl2 s12 l10 xl8" id="menuResidence">
             <ul class="tabs tabs-transparent tabs-fixed-width">
@@ -128,6 +143,7 @@
         </div>
     </div>
 
+    <!-- Description Résidence -->
     <div class="row">
         <div class="col offset-l1 s12 l7">
             <div class="card-panel accrocheResidence">
@@ -142,6 +158,7 @@
         {#</div>#}
     </div>
 
+    <!-- Situation Résidence GoogleMap -->
     <h1>Situation de la résidence</h1>
 
     <div class="row">
@@ -155,6 +172,7 @@
         {#</div>#}
     </div>
 
+    <!-- Tableau lots disponibles -->
     <h1>Consultez nos biens disponibles</h1>
 
     <div class="row">
@@ -204,7 +222,7 @@
                                     <div class="row">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}">
-                                                <div class="col s2 l3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s2 l3 info">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s4 l3">{{ flat.surface }} m<sup>2</sup></div>
                                                 <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
                                                 </div>
@@ -311,10 +329,10 @@
                                     </div>
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
-                                                {% transchoice T3Dispo %}
-                                                {1} %count% logement disponible|
-                                                ]1,Inf[ %count% logements disponibles
-                                                {% endtranschoice %}
+                                            {% transchoice T3Dispo %}
+                                            {1} %count% logement disponible|
+                                            ]1,Inf[ %count% logements disponibles
+                                            {% endtranschoice %}
                                         </div>
                                     </div>
                                 </div>
@@ -468,46 +486,13 @@
             </div>
         </div>
     </div>
-    {#</div>#}
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
-    <p>blabla</p><br>
+    <div class="row">
+        <div class="col offset-s1 retourSearch2">
+            <a class="waves-effect waves-light btn"
+               href="{{ path("nosresidences") }}">
+                <i class="fa fa-caret-left white-text"></i> RETOUR AUX RÉSIDENCES</a>
+        </div>
+    </div>
 
 {% endblock content %}
 
@@ -573,14 +558,6 @@
     </script>
     <script src="{{ asset('js/testcompteur.js') }}"></script>
     <script type="text/javascript">
-        function imageByYoutube() {
-            document.getElementById('image').style.display = 'none';
-            document.getElementById('surCouche').style.display = 'none';
-            document.getElementById('ytplayer').style.display = 'block';
-            document.getElementById('ytplayer').src = 'http://www.youtube.com/embed/{{ residence.lienYoutube }}?autoplay=1&modestbranding=1&rel=0&showinfo=0';
-        }
-    </script>
-    <script type="text/javascript">
         $(document).ready(function () {
             // Slider residence
             $('.slider').slider({
@@ -610,4 +587,20 @@
             });
         });
     </script>
+    {#<script type="text/javascript">#}
+        {#$(document).ready(function(){#}
+            {#// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered#}
+            {#$('#modalYtp').modal(#}
+                {#{#}
+                    {#dismissible: false#}
+                {#}#}
+            {#);#}
+        {#});#}
+    {#</script>#}
+    {#<script type="text/javascript">#}
+        {#function closeYtp() {#}
+            {#document.getElementById('modalYtp').contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');#}
+        {#}#}
+    {#</script>#}
+
 {% endblock %}
