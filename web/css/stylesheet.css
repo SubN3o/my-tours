@@ -37,6 +37,10 @@ h1 {
     background-color: #B5CC17;
 }
 
+.accrocheResidence {
+    box-shadow: none;
+}
+
 /* --------------------------------------------------------------------*/
 /* ----------------------------- NAVBAR -------------------------------*/
 /* --------------------------------------------------------------------*/
@@ -829,7 +833,6 @@ footer p {
     height: 450px;
     background-color: white;
     box-shadow: 1px 1px 10px #c2c2c2;
-
 }
 
 @media screen and (max-width: 1200px) {
@@ -954,9 +957,10 @@ footer p {
     background-color: #f9f9f4;
     border-bottom: solid 2px #e6e6e6;
     z-index: 100;
+    margin-bottom: 10px;
 }
 
-#menuResidence a {
+#menuResidence li{
     font-family: Montserrat;
     letter-spacing: .55pt;
     text-transform: uppercase;
@@ -972,7 +976,7 @@ footer p {
 }
 
 .accrocheResidence {
-    margin-top: 100px;
+    margin-top: 70px;
     padding: 5px 20px 10px 20px;
     background-color: #f9f9f7;
 }
@@ -995,6 +999,24 @@ footer p {
     font-weight: 400;
     font-size: 17pt;
     color: #1D1D1B;
+}
+
+.filtreMap p {
+    background-color: #e6e6e6;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+}
+
+.filtreMap span img {
+    width: 36px;
+}
+
+.service, .transport {
+    margin-top: 70px;
+}
+.service p, .transport p, .commerce p {
+    margin: 10px 0;
 }
 
 .accordeon-residence ul {
@@ -1060,6 +1082,15 @@ footer p {
     margin: 80px 0;
 }
 
+.parallax-container {
+    height: 250px;
+}
+
+.parallax-container .parallax img {
+    max-width: 50%;
+    filter: grayscale(100%);
+}
+
 @media screen and (max-width: 992px) {
 
     .sliderResidence .slider, .sliderResidence .slider .slides {
@@ -1085,16 +1116,6 @@ footer p {
     .sliderResidence .prev > i, .sliderResidence .next > i{
         font-size: 48px;
     }
-
-    /*#ytplayer {*/
-        /*height: 300px;*/
-    /*}*/
-
-    /*.cartouche {*/
-        /*margin-top: 0;*/
-        /*width: 90%;*/
-        /*padding: 10px 15px;*/
-    /*}*/
 
     .box-notesite {
         margin-top: 40px;

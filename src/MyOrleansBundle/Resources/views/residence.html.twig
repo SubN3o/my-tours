@@ -134,19 +134,25 @@
 
     <!-- 2nde Navbar -->
     <div class="row">
-        <div class="col offset-l1 offset-xl2 s12 l10 xl8" id="menuResidence">
-            <ul class="tabs tabs-transparent tabs-fixed-width">
-                <li class="tab"><a href="#test1">La résidence</a></li>
-                <li class="tab"><a href="#test2">Localisation</a></li>
-                <li class="tab"><a href="#test3">Nos biens</a></li>
-                <li class="tab"><a href="#test4">Info pratiques</a></li>
+        <div class="col offset-l2 s12 l8 center" id="menuResidence">
+            <ul>
+                <li class="col s4"><a href="#anchor-residence">La résidence</a></li>
+                <li class="col s4"><a href="#anchor-localisation">Localisation</a></li>
+                <li class="col s4"><a href="#anchor-bien">Nos biens</a></li>
             </ul>
+        </div>
+    </div>
+
+    <!-- Effet Parallax -->
+    <div id="anchor-residence" class="parallax-container">
+        <div class="parallax">
+            <img src="{{ asset('img/parallax1.jpg') }}" alt="résidence">
         </div>
     </div>
 
     <!-- Description Résidence -->
     <div class="row">
-        <div class="col offset-l1 s12 l7">
+        <div class="col offset-l2 s12 l6">
             <div class="card-panel accrocheResidence">
                 <h3 class="center accroche">{{ residence.accroche }}</h3>
                 <div class="description">{{ residence.description | raw }}</div>
@@ -159,25 +165,78 @@
         {#</div>#}
     </div>
 
+    <!-- Effet Parallax -->
+    <div id="anchor-localisation" class="parallax-container">
+        <div class="parallax">
+            <img src="{{ asset('img/parallax8.jpg') }}" alt="résidence">
+        </div>
+    </div>
+
     <!-- Situation Résidence GoogleMap -->
+
     <h1>Situation de la résidence</h1>
 
     <div class="row">
-        <div class="col offset-l1 s12 l7">
+
+        <!-- Carte GoogleMap -->
+        <div class="col offset-l2 s12 l6">
             <div class="card" id="map"></div>
         </div>
-        {#<div class="col offset-l1 l2">#}
-        {#<div class="card-panel">#}
-        {#<span>Hello</span>#}
-        {#</div>#}
-        {#</div>#}
+
+        <!-- Filtre Places GoogleMap -->
+        <div class="col l2 center filtreMap">
+            <div class="commerce">
+                <div class="row">
+                    <p class="col offset-s3 s6">Commerces</p>
+                </div>
+                <div class="row">
+                    <span class="col s4"><img src="{{ asset('img/googleMap/boulangerie.png') }}"></span>
+                    <span class="col s4"><img src="{{ asset('img/googleMap/epicerie.png') }}"></span>
+                    <span class="col s4"><img src="{{ asset('img/googleMap/supermarche.png') }}"></span>
+                </div>
+            </div>
+            <div class="service">
+                <div class="row">
+                    <p class="col offset-s3 s6">Services</p>
+                </div>
+                <div class="row">
+                    <span class="col s3"><img src="{{ asset('img/googleMap/poste.png') }}"></span>
+                    <span class="col s3"><img src="{{ asset('img/googleMap/banque.png') }}"></span>
+                    <span class="col s3"><img src="{{ asset('img/googleMap/biblioteque.png') }}"></span>
+                    <span class="col s3"><img src="{{ asset('img/googleMap/ecole.png') }}"></span>
+                    <span class="col s3"><img src="{{ asset('img/googleMap/medecin.png') }}"></span>
+                    <span class="col s3"><img src="{{ asset('img/googleMap/parc.png') }}"></span>
+                    <span class="col s3"><img src="{{ asset('img/googleMap/pharmacie.png') }}"></span>
+                    <span class="col s3"><img src="{{ asset('img/googleMap/piscine.png') }}"></span>
+                </div>
+            </div>
+            <div class="transport">
+                <div class="row">
+                    <p class="col offset-s3 s6">Transports</p>
+                </div>
+                <div class="row">
+                    <span class="col offset-s1 s2"><img src="{{ asset('img/googleMap/bus.png') }}"></span>
+                    <span class="col s2"><img src="{{ asset('img/googleMap/gare.png') }}"></span>
+                    <span class="col s2"><img src="{{ asset('img/googleMap/route.png') }}"></span>
+                    <span class="col s2"><img src="{{ asset('img/googleMap/tram.png') }}"></span>
+                    <span class="col s2"><img src="{{ asset('img/googleMap/velo.png') }}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Effet Parallax -->
+    <div id="anchor-bien" class="parallax-container">
+        <div class="parallax">
+            <img src="{{ asset('img/parallax2.jpg') }}" alt="résidence">
+        </div>
     </div>
 
     <!-- Tableau lots disponibles -->
     <h1>Consultez nos biens disponibles</h1>
 
     <div class="row">
-        <div class="col offset-l1 s12 l10">
+        <div class="col offset-l2 s12 l8">
             <div class="accordeon-residence center">
                 <div class="row accordeon-entete">
                     <div class="col s2 l3 colType">Type</div>
@@ -496,7 +555,7 @@
     </div>
 
     <!-- Suggestion residence -->
-    <h1>D'autres programmes peuvent vous intéresser</h1>
+    <h1>La selection de la semaine</h1>
 
     <div class="row">
         <div class="col offset-l1 s12 l10">
@@ -611,6 +670,16 @@
                 dist: 0,
                 shift: 20,
                 duration: 100
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('a[href*="anchor-"]').click(function () { // Au clic sur un élément
+                var page = $(this).attr('href'); // Page cible
+                var speed = 750; // Durée de l'animation (en ms)
+                $('html, body').animate({scrollTop: $(page).offset().top - 10}, speed); // Go
+                return false;
             });
         });
     </script>
