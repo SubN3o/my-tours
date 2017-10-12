@@ -56,6 +56,7 @@ class CompleteSearchType extends AbstractType
 //                    'acheter en résidence principale' => 'Residence Principale',
 //                )
 //            ])
+
             ->add('budgetMin', IntegerType::class, [
                 'scale' => 0,
                 'required' => false,

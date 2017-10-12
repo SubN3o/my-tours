@@ -75,6 +75,7 @@ class LayoutController extends Controller
         }
 
         return $this->render('MyOrleansBundle::formulaire.html.twig', [
+
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView(),
         ]);

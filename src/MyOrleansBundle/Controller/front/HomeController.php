@@ -67,10 +67,6 @@ class HomeController extends Controller
         }
 
 
-
-
-
-
                 
 
         return $this->render('MyOrleansBundle::index.html.twig', [

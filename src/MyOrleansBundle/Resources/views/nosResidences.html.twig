@@ -131,6 +131,7 @@
     </div>
 
     <!-- Resultat Recherche -->
+
     <div class="row carte-liste-articles">
 
         <div class="offset-s1 col s10 liste-biens">
@@ -163,6 +164,7 @@
             </div>
 
             <!-- suggestion residence -->
+
             {% if suggestionActive == 1 and rechercheSansResultat == 0 %}
                 <div class="row suggestion-biens">
                     {% set nb_res_suggerees = residencesSuggerees|length %}
@@ -208,6 +210,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+
             $('#complete_search_ville').autocomplete({
                 data: {
                     {% for ville in villes %}
@@ -219,6 +222,7 @@
                     // Callback function when value is autcompleted.
                 },
                 minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
+
 
             });
 
@@ -270,6 +274,7 @@
                     {% endfor %},
                     '{{ path('residences', { 'slug': residence.slug }) }}'
                 ],
+
                 {% endfor %}
 
             ];
@@ -290,6 +295,7 @@
                     position: {lat: locations[i][1], lng: locations[i][2]},
                     map: map,
                     icon: '../img/marker.png'
+
                 });
 
 
@@ -299,6 +305,7 @@
                         var vignette = '<a href="' + locations[i][4] + '"><h6>' + locations[i][0] + '</h6><br><IMG border="0" align="Left" width="200" src="../uploads/' + locations[i][3] + '"></a>'
 
                         infowindow.setContent(vignette);
+
                         infowindow.open(map, marker);
                     }
                 })(marker, i));
