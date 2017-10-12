@@ -143,12 +143,12 @@
         </div>
     </div>
 
-    {#<!-- Effet Parallax -->#}
-    {#<div id="anchor-residence" class="parallax-container">#}
-    {#<div class="parallax">#}
-    {#<img src="{{ asset('img/parallax1.jpg') }}" alt="résidence">#}
-    {#</div>#}
-    {#</div>#}
+    <!-- Effet Parallax -->
+    <div id="anchor-residence" class="parallax-container">
+        <div class="parallax">
+            <img src="{{ asset('img/parallax1.jpg' | imagine_filter('thumb_photo_residence')) }}" alt="famille">
+        </div>
+    </div>
 
     <!-- Description Résidence -->
     <div class="row">
@@ -165,12 +165,12 @@
         {#</div>#}
     </div>
 
-    {#<!-- Effet Parallax -->#}
-    {#<div id="anchor-localisation" class="parallax-container">#}
-    {#<div class="parallax">#}
-    {#<img src="{{ asset('img/parallax8.jpg') }}" alt="résidence">#}
-    {#</div>#}
-    {#</div>#}
+    <!-- Effet Parallax -->
+    <div id="anchor-localisation" class="parallax-container">
+        <div class="parallax">
+            <img src="{{ asset('img/parallax2.jpg' | imagine_filter('thumb_photo_residence')) }}" alt="famille">
+        </div>
+    </div>
 
     <!-- Situation Résidence GoogleMap -->
 
@@ -185,65 +185,33 @@
 
         <!-- Filtre Places GoogleMap -->
         <div class="col l2 center filtreMap">
-            {#<form name="frm_map" id="frm_map">#}
-            {#<table>#}
-            {#<tr>#}
-            {#<th>Types</th>#}
-            {#<td>#}
-            {#<div id="type_holder">#}
-            {#<!-- Dynamic Content -->#}
-            {#</div>#}
-            {#</td>#}
-            {#</tr>#}
-            {#<tr>#}
-            {#<td></td>#}
-            {#<td>#}
-            {#<input type="button" value="Show" id="submit" onclick="renderMap();">#}
-            {#<input type="reset" value="Reset">#}
-            {#</td>#}
-            {#</tr>#}
-            {#</table>#}
-            {#</form>#}
             <div class="commerce">
                 <div class="row">
                     <p class="col offset-s3 s6">Commerces</p>
                 </div>
-                <div class="row" id="commerce">
-                    {#<span class="col s4"><img src="{{ asset('img/googleMap/boulangerie.png') }}"></span>#}
-                    {#<span class="col s4"><img src="{{ asset('img/googleMap/epicerie.png') }}"></span>#}
-                    {#<span class="col s4"><img src="{{ asset('img/googleMap/supermarche.png') }}"></span>#}
-                </div>
+                <div class="row" id="commerce"></div>
             </div>
             <div class="service">
                 <div class="row">
                     <p class="col offset-s3 s6">Services</p>
                 </div>
-                <div class="row" id="service">
-                    {#<span class="col s3"><img src="{{ asset('img/googleMap/banque.png') }}"></span>#}
-                    {#<span class="col s3"><img src="{{ asset('img/googleMap/ecole.png') }}"></span>#}
-                    {#<span class="col s3"><img src="{{ asset('img/googleMap/parc.png') }}"></span>#}
-                    {#<span class="col s3"><img src="{{ asset('img/googleMap/pharmacie.png') }}"></span>#}
-                </div>
+                <div class="row" id="service"></div>
             </div>
             <div class="transport">
                 <div class="row">
                     <p class="col offset-s3 s6">Transports</p>
                 </div>
-                <div class="row" id="transport">
-                    {#<span class="col s4"><img src="{{ asset('img/googleMap/gare.png') }}"></span>#}
-                    {#<span class="col s4"><img src="{{ asset('img/googleMap/tram.png') }}"></span>#}
-                    {#<span class="col s4"><img src="{{ asset('img/googleMap/velo.png') }}"></span>#}
-                </div>
+                <div class="row" id="transport"></div>
             </div>
         </div>
     </div>
 
-    {#<!-- Effet Parallax -->#}
-    {#<div id="anchor-bien" class="parallax-container">#}
-    {#<div class="parallax">#}
-    {#<img src="{{ asset('img/parallax2.jpg') }}" alt="résidence">#}
-    {#</div>#}
-    {#</div>#}
+    <!-- Effet Parallax -->
+    <div id="anchor-bien" class="parallax-container">
+        <div class="parallax">
+            <img src="{{ asset('img/parallax3.jpg' | imagine_filter('thumb_photo_residence')) }}" alt="famille">
+        </div>
+    </div>
 
     <!-- Tableau lots disponibles -->
     <h1>Consultez nos biens disponibles</h1>
@@ -804,7 +772,7 @@
             }
         }
 
-        function createMarker(place,icon) {
+        function createMarker(place, icon) {
             var placeLoc = place.geometry.location;
 
 //            var icons = {

@@ -1109,11 +1109,6 @@ footer p {
     height: 250px;
 }
 
-.parallax-container .parallax img {
-    max-width: 50%;
-    filter: grayscale(100%);
-}
-
 @media screen and (max-width: 992px) {
 
     .sliderResidence .slider, .sliderResidence .slider .slides {
