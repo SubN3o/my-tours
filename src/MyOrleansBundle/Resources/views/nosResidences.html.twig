@@ -118,7 +118,7 @@
                     </div>
                 </div>
                 <div class="rechercher center">
-                        {{ form_widget(completeSearch.submit) }}
+                    {{ form_widget(completeSearch.submit) }}
                 </div>
                 {{ form_end(completeSearch) }}
             </div>
@@ -261,7 +261,15 @@
 //                    var count = 0;
             var locations = [
                 {% for residence in residences %}
-                ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}],
+                [
+                    '{{ residence.nom }}',
+                    {{ residence.latitude }},
+                    {{ residence.longitude }},
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                    '{{ media.mediaName }}'
+                    {% endfor %},
+                    '{{ path('residences', { 'slug': residence.slug }) }}'
+                ],
                 {% endfor %}
 
             ];
@@ -281,13 +289,16 @@
                 marker = new google.maps.Marker({
                     position: {lat: locations[i][1], lng: locations[i][2]},
                     map: map,
-//                    icon: 'img/marker.png'
+                    icon: '../img/marker.png'
                 });
 
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
-                        infowindow.setContent(locations[i][0]);
+
+                        var vignette = '<a href="' + locations[i][4] + '"><h6>' + locations[i][0] + '</h6><br><IMG border="0" align="Left" width="200" src="../uploads/' + locations[i][3] + '"></a>'
+
+                        infowindow.setContent(vignette);
                         infowindow.open(map, marker);
                     }
                 })(marker, i));

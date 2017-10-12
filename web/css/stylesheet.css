@@ -1008,8 +1008,31 @@ footer p {
     text-transform: uppercase;
 }
 
-.filtreMap span img {
+.filtreMap {
     width: 36px;
+}
+
+[type="radio"]:checked + label img {
+    border: 2px solid #B5CC17;
+    border-radius: 26px;
+    padding: 3px 3px;
+}
+
+[type="radio"]:not(:checked) + label img {
+    padding: 5px 5px;
+}
+
+[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+[type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after {
+    display: none;
+}
+
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after {
+    display: none;
 }
 
 .service, .transport {

@@ -143,12 +143,12 @@
         </div>
     </div>
 
-    <!-- Effet Parallax -->
-    <div id="anchor-residence" class="parallax-container">
-        <div class="parallax">
-            <img src="{{ asset('img/parallax1.jpg') }}" alt="résidence">
-        </div>
-    </div>
+    {#<!-- Effet Parallax -->#}
+    {#<div id="anchor-residence" class="parallax-container">#}
+    {#<div class="parallax">#}
+    {#<img src="{{ asset('img/parallax1.jpg') }}" alt="résidence">#}
+    {#</div>#}
+    {#</div>#}
 
     <!-- Description Résidence -->
     <div class="row">
@@ -165,12 +165,12 @@
         {#</div>#}
     </div>
 
-    <!-- Effet Parallax -->
-    <div id="anchor-localisation" class="parallax-container">
-        <div class="parallax">
-            <img src="{{ asset('img/parallax8.jpg') }}" alt="résidence">
-        </div>
-    </div>
+    {#<!-- Effet Parallax -->#}
+    {#<div id="anchor-localisation" class="parallax-container">#}
+    {#<div class="parallax">#}
+    {#<img src="{{ asset('img/parallax8.jpg') }}" alt="résidence">#}
+    {#</div>#}
+    {#</div>#}
 
     <!-- Situation Résidence GoogleMap -->
 
@@ -185,52 +185,65 @@
 
         <!-- Filtre Places GoogleMap -->
         <div class="col l2 center filtreMap">
+            {#<form name="frm_map" id="frm_map">#}
+            {#<table>#}
+            {#<tr>#}
+            {#<th>Types</th>#}
+            {#<td>#}
+            {#<div id="type_holder">#}
+            {#<!-- Dynamic Content -->#}
+            {#</div>#}
+            {#</td>#}
+            {#</tr>#}
+            {#<tr>#}
+            {#<td></td>#}
+            {#<td>#}
+            {#<input type="button" value="Show" id="submit" onclick="renderMap();">#}
+            {#<input type="reset" value="Reset">#}
+            {#</td>#}
+            {#</tr>#}
+            {#</table>#}
+            {#</form>#}
             <div class="commerce">
                 <div class="row">
                     <p class="col offset-s3 s6">Commerces</p>
                 </div>
-                <div class="row">
-                    <span class="col s4"><img src="{{ asset('img/googleMap/boulangerie.png') }}"></span>
-                    <span class="col s4"><img src="{{ asset('img/googleMap/epicerie.png') }}"></span>
-                    <span class="col s4"><img src="{{ asset('img/googleMap/supermarche.png') }}"></span>
+                <div class="row" id="commerce">
+                    {#<span class="col s4"><img src="{{ asset('img/googleMap/boulangerie.png') }}"></span>#}
+                    {#<span class="col s4"><img src="{{ asset('img/googleMap/epicerie.png') }}"></span>#}
+                    {#<span class="col s4"><img src="{{ asset('img/googleMap/supermarche.png') }}"></span>#}
                 </div>
             </div>
             <div class="service">
                 <div class="row">
                     <p class="col offset-s3 s6">Services</p>
                 </div>
-                <div class="row">
-                    <span class="col s3"><img src="{{ asset('img/googleMap/poste.png') }}"></span>
-                    <span class="col s3"><img src="{{ asset('img/googleMap/banque.png') }}"></span>
-                    <span class="col s3"><img src="{{ asset('img/googleMap/biblioteque.png') }}"></span>
-                    <span class="col s3"><img src="{{ asset('img/googleMap/ecole.png') }}"></span>
-                    <span class="col s3"><img src="{{ asset('img/googleMap/medecin.png') }}"></span>
-                    <span class="col s3"><img src="{{ asset('img/googleMap/parc.png') }}"></span>
-                    <span class="col s3"><img src="{{ asset('img/googleMap/pharmacie.png') }}"></span>
-                    <span class="col s3"><img src="{{ asset('img/googleMap/piscine.png') }}"></span>
+                <div class="row" id="service">
+                    {#<span class="col s3"><img src="{{ asset('img/googleMap/banque.png') }}"></span>#}
+                    {#<span class="col s3"><img src="{{ asset('img/googleMap/ecole.png') }}"></span>#}
+                    {#<span class="col s3"><img src="{{ asset('img/googleMap/parc.png') }}"></span>#}
+                    {#<span class="col s3"><img src="{{ asset('img/googleMap/pharmacie.png') }}"></span>#}
                 </div>
             </div>
             <div class="transport">
                 <div class="row">
                     <p class="col offset-s3 s6">Transports</p>
                 </div>
-                <div class="row">
-                    <span class="col offset-s1 s2"><img src="{{ asset('img/googleMap/bus.png') }}"></span>
-                    <span class="col s2"><img src="{{ asset('img/googleMap/gare.png') }}"></span>
-                    <span class="col s2"><img src="{{ asset('img/googleMap/route.png') }}"></span>
-                    <span class="col s2"><img src="{{ asset('img/googleMap/tram.png') }}"></span>
-                    <span class="col s2"><img src="{{ asset('img/googleMap/velo.png') }}"></span>
+                <div class="row" id="transport">
+                    {#<span class="col s4"><img src="{{ asset('img/googleMap/gare.png') }}"></span>#}
+                    {#<span class="col s4"><img src="{{ asset('img/googleMap/tram.png') }}"></span>#}
+                    {#<span class="col s4"><img src="{{ asset('img/googleMap/velo.png') }}"></span>#}
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Effet Parallax -->
-    <div id="anchor-bien" class="parallax-container">
-        <div class="parallax">
-            <img src="{{ asset('img/parallax2.jpg') }}" alt="résidence">
-        </div>
-    </div>
+    {#<!-- Effet Parallax -->#}
+    {#<div id="anchor-bien" class="parallax-container">#}
+    {#<div class="parallax">#}
+    {#<img src="{{ asset('img/parallax2.jpg') }}" alt="résidence">#}
+    {#</div>#}
+    {#</div>#}
 
     <!-- Tableau lots disponibles -->
     <h1>Consultez nos biens disponibles</h1>
@@ -270,8 +283,8 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T1Dispo %}
-                                            {1} %count% logement disponible|
-                                            ]1,Inf[ %count% logements disponibles
+                                            {1} %count% logement |
+                                            ]1,Inf[ %count% logements
                                             {% endtranschoice %}
                                         </div>
                                     </div>
@@ -329,8 +342,8 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T2Dispo %}
-                                            {1} %count% logement disponible|
-                                            ]1,Inf[ %count% logements disponibles
+                                            {1} %count% logement|
+                                            ]1,Inf[ %count% logements
                                             {% endtranschoice %}
                                         </div>
                                     </div>
@@ -390,8 +403,8 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T3Dispo %}
-                                            {1} %count% logement disponible|
-                                            ]1,Inf[ %count% logements disponibles
+                                            {1} %count% logement|
+                                            ]1,Inf[ %count% logements
                                             {% endtranschoice %}
                                         </div>
                                     </div>
@@ -449,8 +462,8 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T4Dispo %}
-                                            {1} %count% logement disponible|
-                                            ]1,Inf[ %count% logements disponibles
+                                            {1} %count% logement|
+                                            ]1,Inf[ %count% logements
                                             {% endtranschoice %}
                                         </div>
                                     </div>
@@ -508,8 +521,8 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T5Dispo %}
-                                            {1} %count% logement disponible|
-                                            ]1,Inf[ %count% logements disponibles
+                                            {1} %count% logement|
+                                            ]1,Inf[ %count% logements
                                             {% endtranschoice %}
                                         </div>
                                     </div>
@@ -584,40 +597,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        function initMap() {
-
-//                    var count = 0;
-            var location = ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}];
-
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: {lat: location[1], lng: location[2]},
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
-
-            var infowindow = new google.maps.InfoWindow();
-            var marker;
-
-            marker = new google.maps.Marker({
-                position: {lat: location[1], lng: location[2]},
-                map: map,
-//                    icon: 'img/marker.png'
-            });
-
-
-            google.maps.event.addListener(marker, 'click', (function (marker) {
-                return function () {
-                    infowindow.setContent(location[0]);
-                    infowindow.open(map, marker);
-                }
-            })(marker));
-
-        }
-    </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
-    </script>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             $(window).scroll(function () {
@@ -683,20 +662,198 @@
             });
         });
     </script>
-    {#<script type="text/javascript">#}
-    {#$(document).ready(function(){#}
-    {#// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered#}
-    {#$('#modalYtp').modal(#}
-    {#{#}
-    {#dismissible: false#}
-    {#}#}
-    {#);#}
-    {#});#}
-    {#</script>#}
-    {#<script type="text/javascript">#}
-    {#function closeYtp() {#}
-    {#document.getElementById('modalYtp').contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');#}
-    {#}#}
-    {#</script>#}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('#modalYtp').modal(
+                {
+                    dismissible: true,
+                    complete: function () {
+                        $("#modalYtp iframe").attr("src", $("#modalYtp iframe").attr("src"))
+                    }
+
+                });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            var commerce = ['boulangerie', 'epicerie', 'supermarche'];
+            var service = ['banque', 'school', 'parc', 'pharmacie'];
+            var transport = ['train_station', 'arret de tram', 'station de velos'];
+            var htmlCommerce = '';
+            var htmlService = '';
+            var htmlTransport = '';
+
+            $.each(commerce, function (index, value) {
+                var name = value.replace(/_/g, " ");
+                htmlCommerce += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png"/></label></span>';
+            });
+
+            $.each(service, function (index, value) {
+                var name = value.replace(/_/g, " ");
+                htmlService += '<span class="col s3"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png"/></label></span>';
+            });
+
+            $.each(transport, function (index, value) {
+                var name = value.replace(/_/g, " ");
+                htmlTransport += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png"/></label></span>';
+            });
+
+            $('#commerce').html(htmlCommerce);
+
+            $('#service').html(htmlService);
+
+            $('#transport').html(htmlTransport);
+        });
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        var map;
+        var infowindow;
+        var selectedTypes = [];
+
+        function initialize() {
+
+            var residence = {lat: {{ residence.latitude }} , lng: {{ residence.longitude }} };
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: residence,
+                zoom: 15
+
+            });
+
+            var marker = new google.maps.Marker({
+                position: residence,
+                icon: '../img/marker.png'
+            });
+
+            // To add the marker to the map, call setMap();
+            marker.setMap(map);
+        }
+
+        function renderMap() {
+            // Get the user defined values
+            var residence = {lat: {{ residence.latitude }} , lng: {{ residence.longitude }} };
+            var radius = 3000;
+
+            // get the selected type
+            selectedTypes = [];
+            $('.type').each(function () {
+                if ($(this).is(':checked')) {
+                    selectedTypes.push($(this).val());
+                }
+            });
+
+            console.log(selectedTypes);
+
+            var geocoder = new google.maps.Geocoder();
+            var selLocLat = 0;
+            var selLocLng = 0;
+
+            geocoder.geocode({'location': residence}, function (results, status) {
+                if (status === 'OK') {
+                    //console.log(results[0].geometry.location.lat() + ' - ' + results[0].geometry.location.lng());
+
+                    selLocLat = results[0].geometry.location.lat();
+                    selLocLng = results[0].geometry.location.lng();
+
+                    var residence = new google.maps.LatLng(selLocLat, selLocLng);
+
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: residence,
+                        zoom: 15
+                    });
+
+
+                    var marker = new google.maps.Marker({
+                        position: residence,
+                        map: map,
+                        icon: '../img/marker.png'
+                    });
+
+                    //console.log(selectedTypes);
+
+                    var request = {
+                        location: residence,
+                        radius: radius,
+                        keyword: selectedTypes
+
+
+                    };
+
+                    infowindow = new google.maps.InfoWindow();
+
+                    var service = new google.maps.places.PlacesService(map);
+                    service.nearbySearch(request, callback);
+                }
+                else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        function callback(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    createMarker(results[i], results[i].icon);
+                }
+            }
+        }
+
+        function createMarker(place,icon) {
+            var placeLoc = place.geometry.location;
+
+//            var icons = {
+//                school: {
+//                    icon: '../img/googleMap/school.png'
+//                },
+//                boulangerie: {
+//                    icon: '../img/googleMap/boulangerie.png'
+//                }
+//            };
+//
+//            var features = [
+//                {
+//                    position: place.geometry.location,
+//                    keyword: 'school'
+//                }, {
+//                    position: place.geometry.location,
+//                    keyword: 'boulangerie'
+//                }
+//            ];
+//
+//            features.forEach(function(feature) {
+//                var marker = new google.maps.Marker({
+//                    position: feature.position,
+//                    icon: {
+//                        url: icons[feature.keyword].icon,
+//                        scaledSize: new google.maps.Size(36, 36) // pixels
+//                    },
+//                    map: map
+//                });
+//            });
+
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location,
+                icon: {
+                    url: '../img/marker.png',
+                    scaledSize: new google.maps.Size(30, 36) // pixels
+//                animation: google.maps.Animation.DROP
+                }
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent(place.name + '<br>' + place.vicinity);
+                infowindow.open(map, this);
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&libraries=places&callback=initialize"
+            async defer></script>
 
 {% endblock %}
