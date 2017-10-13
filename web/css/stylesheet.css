@@ -1095,6 +1095,18 @@ footer p {
     box-shadow: 1px 1px 10px #c2c2c2;
 }
 
+.infoWindow{
+    font-family: Montserrat;
+    font-weight: 400;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+}
+
+.infoImg{
+    border: none;
+    width: 200px;
+}
+
 @media screen and (max-width: 1200px) {
     .bandeau > div > .prix, .bandeau > div > .type {
         text-align: left;

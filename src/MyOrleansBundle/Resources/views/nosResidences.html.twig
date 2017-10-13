@@ -305,7 +305,7 @@
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
 
-                        var vignette = '<a href="' + locations[i][4] + '"><h6>' + locations[i][0] + '</h6><br><IMG border="0" align="Left" width="200" src="../uploads/' + locations[i][3] + '"></a>'
+                        var vignette = '<a href="' + locations[i][4] + '"><h6 class="infoWindow">' + locations[i][0] + '</h6><br><img class="infoImg" src="../uploads/' + locations[i][3] + '"></a>'
 
                         infowindow.setContent(vignette);
 
