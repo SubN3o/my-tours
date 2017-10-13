@@ -142,9 +142,9 @@
 
     <!-- Effet Parallax -->
     <div id="anchor-residence" class="parallax-container">
-        {#<div class="parallax">#}
-            {#<img src="{{ asset('img/parallax1.jpg' | imagine_filter('thumb_photo_residence')) }}" alt="famille">#}
-        {#</div>#}
+        <div class="parallax">
+            <img src="{{ asset('img/parallax1.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">
+        </div>
     </div>
 
     <!-- Description Résidence -->
@@ -164,9 +164,9 @@
 
     <!-- Effet Parallax -->
     <div id="anchor-localisation" class="parallax-container">
-        {#<div class="parallax">#}
-            {#<img src="{{ asset('img/parallax2.jpg' | imagine_filter('thumb_photo_residence')) }}" alt="famille">#}
-        {#</div>#}
+        <div class="parallax">
+            <img src="{{ asset('img/parallax2.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">
+        </div>
     </div>
 
     <!-- Situation Résidence GoogleMap -->
@@ -184,7 +184,7 @@
         <div class="col l2 center filtreMap">
             <div class="commerce">
                 <div class="row">
-                    <p class="col offset-s3 s6">Commerces</p>
+                    <p class="col offset-s2 s8">Commerces</p>
                 </div>
                 <div class="row" id="commerce"></div>
             </div>
@@ -196,7 +196,7 @@
             </div>
             <div class="transport">
                 <div class="row">
-                    <p class="col offset-s3 s6">Transports</p>
+                    <p class="col offset-s2 s8">Transports</p>
                 </div>
                 <div class="row" id="transport"></div>
             </div>
@@ -205,9 +205,9 @@
 
     <!-- Effet Parallax -->
     <div id="anchor-bien" class="parallax-container">
-        {#<div class="parallax">#}
-            {#<img src="{{ asset('img/parallax3.jpg' | imagine_filter('thumb_photo_residence')) }}" alt="famille">#}
-        {#</div>#}
+        <div class="parallax">
+            <img src="{{ asset('img/parallax3.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">
+        </div>
     </div>
 
     <!-- Tableau lots disponibles -->

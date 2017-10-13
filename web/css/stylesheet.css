@@ -208,9 +208,15 @@ footer p {
     background-color: #1D1D1B;
 }
 
-.icon-social {
+.ytb-social {
     margin-top: 10px;
     margin-left: 13px;
+    color: #C8CACC;
+}
+
+.gplus-social{
+    margin-top: 10px;
+    margin-left: 6px;
     color: #C8CACC;
 }
 
@@ -233,6 +239,25 @@ footer p {
 
 .logoFooter {
     height: 48px;
+}
+
+#modalHonoraire{
+    max-height: 80%;
+    width: 40%;
+}
+
+#modalHonoraire .modal-content{
+    padding: 0;
+}
+
+#modalHonoraire div img{
+    height: 70vh;
+}
+
+@media only screen and (max-width: 992px) {
+    #modalHonoraire{
+        width: 90%;
+    }
 }
 
 /* --------------------------------------------------------------------*/
