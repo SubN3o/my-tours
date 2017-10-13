@@ -53,7 +53,7 @@ class ResidencesController extends Controller
         $T5Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence, 'T5+'));
 
 
-        $idResidence = $residence->getId();
+        $idResidence [] = $residence->getId();
 
         $residencesSuggerees = $em->getRepository(Residence::class)->suggestResidence($idResidence);
 

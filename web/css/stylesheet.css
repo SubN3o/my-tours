@@ -165,7 +165,7 @@ footer h5 {
     font-weight: 500;
     font-size: 19pt;
     letter-spacing: 0.5pt;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 footer p {
@@ -173,8 +173,8 @@ footer p {
     font-weight: 400;
     font-size: 16pt;
     letter-spacing: 0.1pt;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .footer2 {
@@ -184,12 +184,16 @@ footer p {
 }
 
 .h5Footer {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .bordureFooter {
     border-left: 1px solid white;
     border-right: 1px solid white;
+}
+
+.contact p{
+    font-size: 19pt;
 }
 
 .social-btn {
@@ -722,7 +726,6 @@ footer p {
 }
 
 .circle-container .active {
-    /*background: #e6282b !important;*/
     -moz-transform: scale(1.5);
     -ms-transform: scale(1.5);
     -webkit-transform: scale(1.5);
@@ -782,33 +785,37 @@ footer p {
 /* --------------------------------------------------------------------*/
 /* -------------------------- Nos Residence ---------------------------*/
 /* --------------------------------------------------------------------*/
-.countRow {
-    margin-top: 30px;
-    margin-bottom: 50px;
-}
+/*.countRow {*/
+    /*margin-top: 30px;*/
+    /*margin-bottom: 50px;*/
+/*}*/
 
-.countTitle {
-    font-size: 100px;
-    font-weight: 300;
-}
+/*.countTitle {*/
+    /*font-size: 100px;*/
+    /*font-weight: 300;*/
+/*}*/
 
-.countTitle::after {
-    content: "";
-    position: relative;
-    display: block;
-    width: 300px;
-    height: 2px;
-    margin: 0 auto;
-    background-color: #B5CC17;
-}
+/*.countTitle::after {*/
+    /*content: "";*/
+    /*position: relative;*/
+    /*display: block;*/
+    /*width: 300px;*/
+    /*height: 2px;*/
+    /*margin: 0 auto;*/
+    /*background-color: #B5CC17;*/
+/*}*/
 
-.chiffreNom {
-    color: #676767;
-    font-family: Montserrat;
-    font-weight: 400;
-    letter-spacing: .55pt;
-    font-size: 16pt;
-    text-transform: uppercase;
+/*.chiffreNom {*/
+    /*color: #676767;*/
+    /*font-family: Montserrat;*/
+    /*font-weight: 400;*/
+    /*letter-spacing: .55pt;*/
+    /*font-size: 16pt;*/
+    /*text-transform: uppercase;*/
+/*}*/
+
+.completeSearch {
+    margin-top: 40px;
 }
 
 .search {
@@ -872,6 +879,11 @@ footer p {
     border-radius: 6px;
     /*background-color: B5CC17;*/
 }
+
+/*.section-title {*/
+    /*font-size: 28px;*/
+    /*text-align: center;*/
+/*}*/
 
 .localisation p {
     font-family: Montserrat;

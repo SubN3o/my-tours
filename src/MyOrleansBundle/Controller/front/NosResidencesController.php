@@ -38,9 +38,9 @@ class NosResidencesController extends Controller
         // Definition des contenus associes par defaut
 //        $message = "Découvrez les residences suggérés";
 //        $objectif = "investir";
-        $suggestionActive = 0;
+//        $suggestionActive = 0;
         $residencesSuggerees = '';
-        $rechercheSansResultat = 0;
+        $resultatRecherche = 0;
 
         // Definition du parcours du visiteur
 //        $parcours = null;
@@ -82,7 +82,7 @@ class NosResidencesController extends Controller
 //            // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
 //            $objectif = 'investir';
 //            $tag = 'Investissement';
-            $suggestionActive = 1;
+//            $suggestionActive = 1;
 //
 //            $session->set('parcours', $this->getParameter('parcours_investisseur'));
 //
@@ -106,10 +106,14 @@ class NosResidencesController extends Controller
             $residences = $em -> getRepository(Residence::class)->simpleSearch($selectedVille, $selectedType);
 //
 //
+            if (!empty($residences)){
+                $resultatRecherche = 2;
+            }
+
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
                 $residences = $em -> getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
-                $rechercheSansResultat = 1;
+                $resultatRecherche = 1;
             }
 //
 //            // Parametrage du parcours visiteur
@@ -123,7 +127,8 @@ class NosResidencesController extends Controller
             }
 
             if ($selectedVille != null || $selectedType != null) {
-                $residencesSuggerees = $em->getRepository(Residence::class)->simpleSuggestedSearch($idResidences, $selectedVille, $selectedType);
+//                $residencesSuggerees = $em->getRepository(Residence::class)->simpleSuggestedSearch($idResidences, $selectedVille, $selectedType);
+                $residencesSuggerees = $em->getRepository(Residence::class)->suggestResidence($idResidences);
             }
 
         }
@@ -140,7 +145,7 @@ class NosResidencesController extends Controller
         return $this->render('MyOrleansBundle::nosResidences.html.twig', [
             'chiffres' => $chiffres,
 //            'parcours' => $parcours,
-            'suggestionActive' => $suggestionActive,
+//            'suggestionActive' => $suggestionActive,
             'residencesSuggerees' => $residencesSuggerees,
             'residences' => $residences,
             'completeSearch' => $completeSearch->createView(),
@@ -149,7 +154,7 @@ class NosResidencesController extends Controller
             'quartiers' => $quartiers,
 //            'objectif' => $objectif,
 //            'article' => $article ?? null,
-            'rechercheSansResultat' => $rechercheSansResultat
+            'resultatRecherche' => $resultatRecherche
         ]);
 
     }
@@ -173,8 +178,8 @@ class NosResidencesController extends Controller
         // Traitement de la requete
         if ($completeSearch->isSubmitted()) {
 
-            $suggestionActive = 1;
-            $rechercheSansResultat = 0;
+//            $suggestionActive = 1;
+            $resultatRecherche = 0;
 //            $objectif = "";
 //            $article = [];
 
@@ -183,10 +188,14 @@ class NosResidencesController extends Controller
 
             $residences = $em->getRepository(Residence::class)->completeSearch($data);
 
+            if (!empty($residences)){
+                $resultatRecherche = 2;
+            }
+
             // Recuperation de toutes les residences pour affichage si la ville selectionnee n'existe pas
             if(empty($residences)) {
                 $residences = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
-                $rechercheSansResultat = 1;
+                $resultatRecherche = 1;
             }
 
 
@@ -201,8 +210,8 @@ class NosResidencesController extends Controller
 
             // recherche des residences suggeres
             if ($data != null ) {
-                $residencesSuggerees = $em -> getRepository(Residence::class)
-                    ->completeSuggestedSearch($idResidences, $data);
+//                $residencesSuggerees = $em -> getRepository(Residence::class)->completeSuggestedSearch($idResidences, $data);
+                $residencesSuggerees = $em -> getRepository(Residence::class)->suggestResidence($idResidences);
             }
 
 //            // Generation des contenus associes en fonction de l'objectif
@@ -240,14 +249,14 @@ class NosResidencesController extends Controller
 //                'parcours' => $parcours,
                 'completeSearch' => $completeSearch->createView(),
 //                'completeSearchSmallScreen' => $completeSearch->createView(),
-                'suggestionActive' => $suggestionActive,
+//                'suggestionActive' => $suggestionActive,
                 'residencesSuggerees' => $residencesSuggerees,
                 'residences' => $residences,
                 'villes' => $villes,
                 'quartiers' => $quartiers,
 //                'objectif' => $objectif,
 //                'article' => $article,
-                'rechercheSansResultat' => $rechercheSansResultat
+                'resultatRecherche' => $resultatRecherche
             ]);
 
         }

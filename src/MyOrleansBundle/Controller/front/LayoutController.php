@@ -85,7 +85,7 @@ class LayoutController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $programmes = $em->getRepository(Residence::class)->findAll();
+        $programmes = $em->getRepository(Residence::class)->findBy([], ['tri' => 'ASC'], 7,0);
 
         $services = $em->getRepository(Service::class)->findBy([], ['tri' => 'ASC']);
 

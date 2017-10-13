@@ -36,41 +36,41 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function simpleSuggestedSearch($ids, $ville, $type)
-    {
-        $qb = $this->createQueryBuilder('r');
-
-        if (!empty($ville)) {
-            $qb->where('v.nom != :ville')
-                ->setParameter('ville', $ville)
-                ->join('r.ville', 'v')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($type)) {
-            $qb->andWhere('t.nom != :type')
-                ->setParameter('type', $type)
-                ->join('r.flats', 'f')
-                ->join('f.typeLogement', 't')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($ids)) {
-            foreach ($ids as $key => $id) {
-                $idParam = 'id'.$key;
-                $qb->andwhere('r.id != :'.$idParam)
-                    ->setParameter($idParam, $id)
-                    ->orderBy('r.tri', 'ASC');
-            }
-        }
-
-        $qb->andWhere('flts.statut = true')
-            ->join('r.flats', 'flts')
-            ->setMaxResults(2)
-            ->orderBy('r.tri', 'ASC');
-
-        return $qb->getQuery()->getResult();
-    }
+//    public function simpleSuggestedSearch($ids, $ville, $type)
+//    {
+//        $qb = $this->createQueryBuilder('r');
+//
+//        if (!empty($ville)) {
+//            $qb->where('v.nom != :ville')
+//                ->setParameter('ville', $ville)
+//                ->join('r.ville', 'v')
+//                ->orderBy('r.tri', 'ASC');
+//        }
+//
+//        if (!empty($type)) {
+//            $qb->andWhere('t.nom != :type')
+//                ->setParameter('type', $type)
+//                ->join('r.flats', 'f')
+//                ->join('f.typeLogement', 't')
+//                ->orderBy('r.tri', 'ASC');
+//        }
+//
+//        if (!empty($ids)) {
+//            foreach ($ids as $key => $id) {
+//                $idParam = 'id'.$key;
+//                $qb->andwhere('r.id != :'.$idParam)
+//                    ->setParameter($idParam, $id)
+//                    ->orderBy('r.tri', 'ASC');
+//            }
+//        }
+//
+//        $qb->andWhere('flts.statut = true')
+//            ->join('r.flats', 'flts')
+//            ->setMaxResults(4)
+//            ->orderBy('r.tri', 'ASC');
+//
+//        return $qb->getQuery()->getResult();
+//    }
 
 
     public function completeSearch($data)
@@ -190,12 +190,17 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
     public function suggestResidence($idResidence)
     {
-        $qb = $this->createQueryBuilder('r')
-            ->where('r.id != :idResidence')
-            ->setParameter('idResidence',$idResidence)
-            ->orderBy('r.tri', 'ASC')
-            ->setMaxResults(4);
-        return $qb->getQuery()->getResult();
+        foreach ($idResidence as $key => $id) {
+            $qb = $this->createQueryBuilder('r')
+                ->where('r.id != :idResidence')
+                ->setParameter('idResidence', $id)
+                ->andWhere('r.favoris = true')
+                ->orderBy('r.tri', 'ASC')
+                ->setMaxResults(4);
+
+            return $qb->getQuery()->getResult();
+        }
+
 
     }
 
