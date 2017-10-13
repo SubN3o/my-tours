@@ -115,78 +115,78 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function completeSuggestedSearch($ids, $data)
-    {
-        $qb = $this->createQueryBuilder('r');
-
-        if (!empty($data['quartier'])) {
-            $qb->where('v.nom = :ville')
-                ->setParameter('ville', 'Orléans')
-                ->join('r.ville', 'v')
-                ->andWhere('q.nom != :quartier')
-                ->setParameter('quartier', $data['quartier'])
-                ->join('r.quartier', 'q')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($data['ville']) && empty($data['quartier'])) {
-            $qb->where('v.nom != :ville')
-                ->setParameter('ville', $data['ville'])
-                ->join('r.ville', 'v')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($data['type'])) {
-            $qb->andWhere('t.nom != :type')
-                ->setParameter('type', $data['type'])
-                ->join('r.flats', 'f')
-                ->join('f.typeLogement', 't')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($data['surfaceMin'])) {
-            $qb->andWhere('fl.surface != :surfaceMin')
-                ->setParameter('surfaceMin', $data['surfaceMin'])
-                ->join('r.flats', 'fl')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($data['surfaceMax'])) {
-            $qb->andWhere('fla.surface != :surfaceMax')
-                ->setParameter('surfaceMax', $data['surfaceMax'])
-                ->join('r.flats', 'fla')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($data['budgetMin'])) {
-            $qb->andWhere('ft.prix != :budgetMin')
-                ->setParameter('budgetMin', $data['budgetMin'])
-                ->join('r.flats', 'ft')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($data['budgetMax'])) {
-            $qb->andWhere('fts.prix != :budgetMax ')
-                ->setParameter('budgetMax', $data['budgetMax'])
-                ->join('r.flats', 'fts')
-                ->orderBy('r.tri', 'ASC');
-        }
-
-        if (!empty($ids)) {
-            foreach ($ids as $key => $id) {
-                $idParam = 'id' . $key;
-                $qb->andwhere('r.id != :' . $idParam)
-                    ->setParameter($idParam, $id)
-                    ->orderBy('r.tri', 'ASC');
-            }
-        }
-
-        $qb->andWhere('flts.statut = true')
-            ->join('r.flats', 'flts')
-            ->setMaxResults(4);
-
-        return $qb->getQuery()->getResult();
-    }
+//    public function completeSuggestedSearch($ids, $data)
+//    {
+//        $qb = $this->createQueryBuilder('r');
+//
+//        if (!empty($data['quartier'])) {
+//            $qb->where('v.nom = :ville')
+//                ->setParameter('ville', 'Orléans')
+//                ->join('r.ville', 'v')
+//                ->andWhere('q.nom != :quartier')
+//                ->setParameter('quartier', $data['quartier'])
+//                ->join('r.quartier', 'q')
+//                ->orderBy('r.tri', 'ASC');
+//        }
+//
+//        if (!empty($data['ville']) && empty($data['quartier'])) {
+//            $qb->where('v.nom != :ville')
+//                ->setParameter('ville', $data['ville'])
+//                ->join('r.ville', 'v')
+//                ->orderBy('r.tri', 'ASC');
+//        }
+//
+//        if (!empty($data['type'])) {
+//            $qb->andWhere('t.nom != :type')
+//                ->setParameter('type', $data['type'])
+//                ->join('r.flats', 'f')
+//                ->join('f.typeLogement', 't')
+//                ->orderBy('r.tri', 'ASC');
+//        }
+//
+//        if (!empty($data['surfaceMin'])) {
+//            $qb->andWhere('fl.surface != :surfaceMin')
+//                ->setParameter('surfaceMin', $data['surfaceMin'])
+//                ->join('r.flats', 'fl')
+//                ->orderBy('r.tri', 'ASC');
+//        }
+//
+//        if (!empty($data['surfaceMax'])) {
+//            $qb->andWhere('fla.surface != :surfaceMax')
+//                ->setParameter('surfaceMax', $data['surfaceMax'])
+//                ->join('r.flats', 'fla')
+//                ->orderBy('r.tri', 'ASC');
+//        }
+//
+//        if (!empty($data['budgetMin'])) {
+//            $qb->andWhere('ft.prix != :budgetMin')
+//                ->setParameter('budgetMin', $data['budgetMin'])
+//                ->join('r.flats', 'ft')
+//                ->orderBy('r.tri', 'ASC');
+//        }
+//
+//        if (!empty($data['budgetMax'])) {
+//            $qb->andWhere('fts.prix != :budgetMax ')
+//                ->setParameter('budgetMax', $data['budgetMax'])
+//                ->join('r.flats', 'fts')
+//                ->orderBy('r.tri', 'ASC');
+//        }
+//
+//        if (!empty($ids)) {
+//            foreach ($ids as $key => $id) {
+//                $idParam = 'id' . $key;
+//                $qb->andwhere('r.id != :' . $idParam)
+//                    ->setParameter($idParam, $id)
+//                    ->orderBy('r.tri', 'ASC');
+//            }
+//        }
+//
+//        $qb->andWhere('flts.statut = true')
+//            ->join('r.flats', 'flts')
+//            ->setMaxResults(4);
+//
+//        return $qb->getQuery()->getResult();
+//    }
 
     public function suggestResidence($idResidence)
     {
