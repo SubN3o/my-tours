@@ -71,7 +71,7 @@ class CompleteSearchType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Rechercher',
-                'attr' => ['class' => 'waves-effect waves-light btn white']
+                'attr' => ['class' => 'waves-effect waves-light btn greenMyO']
             ])
             ->getForm();
 

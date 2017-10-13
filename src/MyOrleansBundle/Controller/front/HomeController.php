@@ -43,7 +43,7 @@ class HomeController extends Controller
 //        }
         $em = $this->getDoctrine()->getManager();
 
-        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC']);
+        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],5,0);
 
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
