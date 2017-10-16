@@ -3,30 +3,30 @@
 {% block content %}
     {#<!-- Chiffres -->#}
     {#<div class="row center countRow">#}
-        {#<div class="col s4">#}
-            {#{% for chiffre in chiffres %}#}
-                {#{% if loop.index == 1 %}#}
-                    {#<span class="count countTitle">{{ chiffre.valeur }}</span>#}
-                    {#<p class="chiffreNom">{{ chiffre.nom }}</p>#}
-                {#{% endif %}#}
-            {#{% endfor %}#}
-        {#</div>#}
-        {#<div class="col s4">#}
-            {#{% for chiffre in chiffres %}#}
-                {#{% if loop.index == 2 %}#}
-                    {#<span class="count countTitle">{{ chiffre.valeur }}</span>#}
-                    {#<p class="chiffreNom">{{ chiffre.nom }}</p>#}
-                {#{% endif %}#}
-            {#{% endfor %}#}
-        {#</div>#}
-        {#<div class="col s4 ">#}
-            {#{% for chiffre in chiffres %}#}
-                {#{% if loop.index == 3 %}#}
-                    {#<span class="count countTitle">{{ chiffre.valeur }}</span>#}
-                    {#<p class="chiffreNom">{{ chiffre.nom }}</p>#}
-                {#{% endif %}#}
-            {#{% endfor %}#}
-        {#</div>#}
+    {#<div class="col s4">#}
+    {#{% for chiffre in chiffres %}#}
+    {#{% if loop.index == 1 %}#}
+    {#<span class="count countTitle">{{ chiffre.valeur }}</span>#}
+    {#<p class="chiffreNom">{{ chiffre.nom }}</p>#}
+    {#{% endif %}#}
+    {#{% endfor %}#}
+    {#</div>#}
+    {#<div class="col s4">#}
+    {#{% for chiffre in chiffres %}#}
+    {#{% if loop.index == 2 %}#}
+    {#<span class="count countTitle">{{ chiffre.valeur }}</span>#}
+    {#<p class="chiffreNom">{{ chiffre.nom }}</p>#}
+    {#{% endif %}#}
+    {#{% endfor %}#}
+    {#</div>#}
+    {#<div class="col s4 ">#}
+    {#{% for chiffre in chiffres %}#}
+    {#{% if loop.index == 3 %}#}
+    {#<span class="count countTitle">{{ chiffre.valeur }}</span>#}
+    {#<p class="chiffreNom">{{ chiffre.nom }}</p>#}
+    {#{% endif %}#}
+    {#{% endfor %}#}
+    {#</div>#}
     {#</div>#}
 
     <!-- Search Complete -->
@@ -139,13 +139,12 @@
             <div class="row center no-margin-bottom">
                 {% set nb_res = residences|length %}
                 {% if  resultatRecherche == 0 %}
-                    <h1 class="section-title">
+                    <h1>
                         Nos résidences actuellement disponibles.
                     </h1>
                 {% elseif resultatRecherche == 1 %}
-                    <h1 class="section-title">
-                        Aucune résidence ne correspond à votre recherche.<br/>Découvrez celles actuellement disponibles.
-                    </h1>
+                    <h1>Aucune résidence ne correspond à votre recherche.</h1>
+                    <h1>Découvrez celles actuellement disponibles.</h1>
                 {% else %}
                     <h1 class="section-title">
                         {% transchoice nb_res %}
@@ -170,13 +169,7 @@
 
             {% if resultatRecherche == 2 %}
                 <div class="row suggestion-biens">
-                    {% set nb_res_suggerees = residencesSuggerees|length %}
-
-                    {% transchoice nb_res_suggerees %}
-                    {0} |
-                    {1} <h1>Une autre résidence pouvant vous intéresser</h1>|
-                    ]1,Inf[ <h1>D'autres résidences pouvant vous intéresser</h1>
-                    {% endtranschoice %}
+                    <h1>La sélection My Orléans</h1>
                 </div>
                 <div class="row">
                     {% for residence in residencesSuggerees %}

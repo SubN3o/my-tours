@@ -69,28 +69,6 @@ nav label {
     margin-right: 5px;
 }
 
-/* --------------------------------------------------------------------*/
-/* ---------------------- FORMULAIRE DE CONTACT -----------------------*/
-/* --------------------------------------------------------------------*/
-.formulaireBouton a {
-    text-decoration: none;
-    color: white;
-    /*centering*/
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
-    background-color: #B5CC17;
-    overflow: hidden;
-    border-radius: 5px;
-    margin-top: 100px;
-    position: fixed;
-    right: 20px;
-    padding: 10px;
-    z-index: 200;
-    -webkit-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
-    -moz-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
-
-    animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
-}
-
 nav ul {
     margin-right: 20px;
 }
@@ -113,6 +91,28 @@ nav ul {
     height: 13pt;
     border-bottom: 1px solid #B5CC17;
     margin-top: 25px;
+}
+
+/* --------------------------------------------------------------------*/
+/* ---------------------- FORMULAIRE DE CONTACT -----------------------*/
+/* --------------------------------------------------------------------*/
+.formulaireBouton a {
+    text-decoration: none;
+    color: white;
+    /*centering*/
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+    background-color: #B5CC17;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-top: 100px;
+    position: fixed;
+    right: 20px;
+    padding: 10px;
+    z-index: 200;
+    -webkit-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
+    -moz-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
+
+    animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
 }
 
 .button-collapse {
@@ -943,6 +943,11 @@ footer p {
     z-index: 1;
     left: -1px;
 }
+
+#type .type2 .ui-slider-range {
+    background: #1D1D1B;
+}
+
 
 .budget p {
     font-family: Montserrat;

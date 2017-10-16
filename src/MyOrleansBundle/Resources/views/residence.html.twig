@@ -49,7 +49,10 @@
                             <p class="col s12 l6 xl3">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</p>
                             <p class="col s12 l6 xl4">Livraison {{ residence.dateLivraison }}</p>
                             <p class="col s12 l6 xl2">Du {{ typeMin }} au {{ typeMax }}</p>
-                            <p class="col s12 l6 xl3">{{ flatsDispo }} lots disponibles</p>
+                            {% transchoice flatsDispo %}
+                            {1} <p class="col s12 l6 xl3">%count% lot disponible</p> |
+                            ]1,Inf[ <p class="col s12 l6 xl3">%count% lots disponibles</p>
+                            {% endtranschoice %}
                         </div>
                     </div>
                 </div>
@@ -533,7 +536,7 @@
     </div>
 
     <!-- Suggestion residence -->
-    <h1>La selection de la semaine</h1>
+    <h1>La sélection My Orléans</h1>
 
     <div class="row">
         <div class="col offset-l1 s12 l10">

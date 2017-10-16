@@ -37,8 +37,10 @@ class CompleteSearchType extends AbstractType
             ])
 
             ->add('type', ChoiceType::class, [
-                'required'=>false,
-                'placeholder'=>'Type du bien',
+                'expanded' => false,
+                'multiple' => false,
+//                'required'=>false,
+//                'placeholder'=>'Type du bien',
                 'choices' => array(
                     'T1' => 'T1',
                     'T2' => 'T2',
