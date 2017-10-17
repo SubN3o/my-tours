@@ -42,6 +42,12 @@ h1 {
     box-shadow: none;
 }
 
+.align-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
 /* --------------------------------------------------------------------*/
 /* ----------------------------- NAVBAR -------------------------------*/
 /* --------------------------------------------------------------------*/
@@ -424,15 +430,6 @@ video {
     width: 100%;
     height: 100%;
 }
-
-/*.video-cover {*/
-    /*position: relative;*/
-    /*overflow: hidden;*/
-/*}*/
-
-/*.video-cover video {*/
-    /*object-fit: cover;*/
-/*}*/
 
 .accueil video {
     filter: brightness(50%);
@@ -1452,3 +1449,87 @@ video {
     }
 }
 
+/* --------------------------------------------------------------------*/
+/* -------------------------- APPARTEMENT -----------------------------*/
+/* --------------------------------------------------------------------*/
+
+.residenceFlat {
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+}
+
+.residenceFlat h2 {
+    font-weight: 300;
+    font-size: 31pt;
+    color: #B5CC17;
+}
+
+.residenceFlat p {
+    font-weight: 300;
+    font-size: 18pt;
+    font-style: italic;
+    color: #676767;
+}
+
+.pdfFlat {
+    margin-top: 50px;
+    background-color: #e6e6e6;
+    padding: 5px 0;
+}
+
+.pdfFlat a {
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+}
+
+.referenceZone {
+    position: relative;
+    color: white;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+    font-size: 31pt;
+}
+
+.referenceZone img {
+    filter: brightness(70%);
+    width: 100%;
+}
+
+.referenceFlat {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.infoFlat {
+    margin-bottom: 40px;
+}
+
+.descriptif {
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+}
+
+.descriptif p {
+    float: left;
+    font-size: 14pt;
+}
+
+.descriptif span {
+    float: right;
+    font-size: 16pt;
+}
+
+.descriptifLine {
+    border-bottom: 2px solid #B5CC17;
+    margin-bottom: 20px;
+}
+
+.icon-apt{
+    width: 60px;
+    height: 60px;
+}
