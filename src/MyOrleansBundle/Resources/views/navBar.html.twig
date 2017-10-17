@@ -1,44 +1,46 @@
-<nav>
-    <div class="nav-wrapper" id="nav">
-        <a href="{{ path("home") }}" class="brand-logo">
-            <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo"/>
-        </a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i
-                    class="material-icons">menu</i></a>
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper" id="nav">
+            <a href="{{ path("home") }}" class="brand-logo">
+                <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo"/>
+            </a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i
+                        class="material-icons">menu</i></a>
 
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="{{ path("nosresidences") }}">NOS RÉSIDENCES</a></li>
-            <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
-            <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
-            <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
-            <li onclick="simpleSearch()"><a><i class="material-icons">search</i></a></li>
-        </ul>
-        <ul id="simpleSearch" class="right hide-on-med-and-down">
-            {{ form_start(simpleSearch) }}
-            <li>{{ form_label(simpleSearch.ville, 'Localisation') }}</li>
-            <li>{{ form_widget(simpleSearch.ville) }}</li>
-            <li>{{ form_label(simpleSearch.type, 'Type de logement') }}</li>
-            <li>{{ form_widget(simpleSearch.type) }}</li>
-            <li class="go">{{ form_widget(simpleSearch.search) }}</li>
-            <li onclick="navClassique()"><a><i class="material-icons">search</i></a></li>
-            {{ form_end(simpleSearch) }}
-        </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ path("nosresidences") }}">NOS RÉSIDENCES</a></li>
+                <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
+                <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
+                <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
+                <li onclick="simpleSearch()"><a><i class="material-icons">search</i></a></li>
+            </ul>
+            <ul id="simpleSearch" class="right hide-on-med-and-down">
+                {{ form_start(simpleSearch) }}
+                <li>{{ form_label(simpleSearch.ville, 'Localisation') }}</li>
+                <li>{{ form_widget(simpleSearch.ville) }}</li>
+                <li>{{ form_label(simpleSearch.type, 'Type de logement') }}</li>
+                <li>{{ form_widget(simpleSearch.type) }}</li>
+                <li class="go">{{ form_widget(simpleSearch.search) }}</li>
+                <li onclick="navClassique()"><a><i class="material-icons">search</i></a></li>
+                {{ form_end(simpleSearch) }}
+            </ul>
 
-        <ul class="side-nav" id="mobile-demo">
-            <li><a href="{{ path("nosresidences") }}">NOS RÉSIDENCES</a></li>
-            <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
-            <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
-            <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
-            <li class="divider"></li>
-            {{ form_start(simpleSearchMobile) }}
-            <li>{{ form_label(simpleSearchMobile.ville, 'Localisation') }}</li>
-            <li>{{ form_widget(simpleSearchMobile.ville) }}</li>
-            <li>{{ form_label(simpleSearchMobile.type, 'Type de logement') }}</li>
-            <li>{{ form_widget(simpleSearchMobile.type) }}</li>
-            <li class="go">{{ form_widget(simpleSearchMobile.search) }}</li>
-            {{ form_end(simpleSearchMobile) }}
-        </ul>
-    </div>
-</nav>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="{{ path("nosresidences") }}">NOS RÉSIDENCES</a></li>
+                <li><a href="{{ path("nos_services") }}">NOS SERVICES</a></li>
+                <li><a href="{{ path("agence") }}">MY ORLÉANS</a></li>
+                <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
+                <li class="divider"></li>
+                {{ form_start(simpleSearchMobile) }}
+                <li>{{ form_label(simpleSearchMobile.ville, 'Localisation') }}</li>
+                <li>{{ form_widget(simpleSearchMobile.ville) }}</li>
+                <li>{{ form_label(simpleSearchMobile.type, 'Type de logement') }}</li>
+                <li>{{ form_widget(simpleSearchMobile.type) }}</li>
+                <li class="go">{{ form_widget(simpleSearchMobile.search) }}</li>
+                {{ form_end(simpleSearchMobile) }}
+            </ul>
+        </div>
+    </nav>
+</div>
 
 

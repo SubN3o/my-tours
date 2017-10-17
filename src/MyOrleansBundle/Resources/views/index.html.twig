@@ -5,11 +5,11 @@
     <div class="accueil" id="intro">
         {% for media in accueil.medias %}
             {% if media.typeMedia.nom == 'video' %}
-                <video width="100%" autoplay loop muted>
-                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/mp4">
-                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/ogg">
-                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/webm">
-                </video>
+                    <video autoplay loop muted>
+                        <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/mp4">
+                        <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/ogg">
+                        <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/webm">
+                    </video>
             {% elseif media.typeMedia.nom == 'image-cover' %}
                 <img class="imageAccueil" src="{{ asset('uploads/'~media.mediaName) }}" alt="accueil">
             {% endif %}
@@ -82,7 +82,8 @@
                             {% if loop.index == 1 %}
                                 <li class="item"><a class="active" href="#"><img
                                                 class="collaborateurBarillet circle"
-                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a></li>
+                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                </li>
                             {% else %}
                                 <li class="item"><a href="#"><img class="collaborateurBarillet circle"
                                                                   src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
@@ -159,6 +160,13 @@
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function () {
+
+            $('.navbar-fixed').removeAttr('class').css({bottom : '0'});
+
+            var height = (window.innerHeight - document.getElementById("nav").offsetHeight) +'px';
+
+            document.getElementById('intro').style.height = height;
+
             // Slider temoignage
             $('.slider').slider({
                 height: 300,
@@ -187,5 +195,6 @@
             });
         });
     </script>
+    <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
 {% endblock %}

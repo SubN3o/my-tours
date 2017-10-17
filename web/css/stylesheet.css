@@ -56,6 +56,10 @@ nav {
     z-index: 1000;
 }
 
+#sidenav-overlay{
+    z-index: 996;
+}
+
 nav ul a, nav li, nav label {
     color: #676767;
     font-family: Montserrat;
@@ -413,10 +417,26 @@ footer p {
 /* --------------------------------------------------------------------*/
 .accueil {
     position: relative;
+    overflow: hidden;
 }
+
+video {
+    width: 100%;
+    height: 100%;
+}
+
+/*.video-cover {*/
+    /*position: relative;*/
+    /*overflow: hidden;*/
+/*}*/
+
+/*.video-cover video {*/
+    /*object-fit: cover;*/
+/*}*/
 
 .accueil video {
     filter: brightness(50%);
+    object-fit: cover;
 }
 
 .accueil > .logoAccueil {
