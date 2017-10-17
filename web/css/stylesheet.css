@@ -1533,3 +1533,30 @@ video {
     width: 60px;
     height: 60px;
 }
+
+.accrocheResidenceFlat {
+    margin: 70px 0;
+    background-color: #f9f9f7;
+}
+
+.accrocheFlat {
+    padding-top: 20px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    font-family: Lato;
+    letter-spacing: .55pt;
+    font-weight: 500;
+    font-size: 25pt;
+    font-style: italic;
+    color: #676767;
+}
+
+.descriptionFlat {
+    padding-bottom: 20px;
+    font-family: Cantarell;
+    font-weight: 400;
+    font-size: 17pt;
+    color: #1D1D1B;
+}

@@ -99,22 +99,22 @@
                 <div class="col s1">
                     <img class="icon-apt" src="{{ asset('img/floor.png') }}" alt="revetement">
                 </div>
-                    <div class="col s12">
-                        <p>Revêtement Sol Séjour</p>
-                        <span>{{ flat.solSejour }}</span>
-                    </div>
-                    <div class="col s12">
-                        <p>Revêtement Sol Salle de Bains</p>
-                        <span>{{ flat.solSdb }}</span>
-                    </div>
-                    <div class="col s12">
-                        <p>Revêtement Sol Chambre</p>
-                        <span>{{ flat.solChambre }}</span>
-                    </div>
-                    <div class="col s12">
-                        <p>Revêtement Muraux</p>
-                        <span>{{ flat.revetementMur }}</span>
-                    </div>
+                <div class="col s12">
+                    <p>Revêtement Sol Séjour</p>
+                    <span>{{ flat.solSejour }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Sol Salle de Bains</p>
+                    <span>{{ flat.solSdb }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Sol Chambre</p>
+                    <span>{{ flat.solChambre }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Muraux</p>
+                    <span>{{ flat.revetementMur }}</span>
+                </div>
                 <span class="col s12 descriptifLine"></span>
             </div>
         </div>
@@ -159,6 +159,21 @@
                 </div>
                 <span class="col s12 descriptifLine"></span>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 accrocheResidenceFlat">
+            <div class="col offset-l2 l8">
+                <h3 class="center accrocheFlat">{{ residence.accroche }}</h3>
+                <div class="center descriptionFlat">{{ residence.description | raw }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-s1 retourSearch1">
+            <a class="waves-effect waves-light btn"
+               href="{{ path('residences', { 'slug': residence.slug }) }}">
+                <i class="fa fa-caret-left white-text"></i> RETOUR À LA RÉSIDENCE</a>
         </div>
     </div>
 {% endblock %}
