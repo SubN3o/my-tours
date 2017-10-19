@@ -54,9 +54,16 @@ h1 {
 nav {
     background-color: #F2F2F2;
     z-index: 1000;
+    box-shadow: none;
 }
 
-#sidenav-overlay{
+nav li a:hover{
+    border-bottom: solid 2px #B5CC17;
+    background-color: transparent;
+    color: #B5CC17;
+}
+
+#sidenav-overlay {
     z-index: 996;
 }
 
@@ -196,7 +203,7 @@ footer p {
     border-right: 1px solid white;
 }
 
-.contact p{
+.contact p {
     font-size: 19pt;
 }
 
@@ -222,7 +229,7 @@ footer p {
     color: #C8CACC;
 }
 
-.gplus-social{
+.gplus-social {
     margin-top: 10px;
     margin-left: 6px;
     color: #C8CACC;
@@ -249,21 +256,21 @@ footer p {
     height: 48px;
 }
 
-#modalHonoraire{
+#modalHonoraire {
     max-height: 80%;
     width: 40%;
 }
 
-#modalHonoraire .modal-content{
+#modalHonoraire .modal-content {
     padding: 0;
 }
 
-#modalHonoraire div img{
+#modalHonoraire div img {
     height: 70vh;
 }
 
 @media only screen and (max-width: 992px) {
-    #modalHonoraire{
+    #modalHonoraire {
         width: 90%;
     }
 }
@@ -426,12 +433,12 @@ video {
 }
 
 /*.video-cover {*/
-    /*position: relative;*/
-    /*overflow: hidden;*/
+/*position: relative;*/
+/*overflow: hidden;*/
 /*}*/
 
 /*.video-cover video {*/
-    /*object-fit: cover;*/
+/*object-fit: cover;*/
 /*}*/
 
 .accueil video {
@@ -806,32 +813,32 @@ video {
 /* -------------------------- Nos Residence ---------------------------*/
 /* --------------------------------------------------------------------*/
 /*.countRow {*/
-    /*margin-top: 30px;*/
-    /*margin-bottom: 50px;*/
+/*margin-top: 30px;*/
+/*margin-bottom: 50px;*/
 /*}*/
 
 /*.countTitle {*/
-    /*font-size: 100px;*/
-    /*font-weight: 300;*/
+/*font-size: 100px;*/
+/*font-weight: 300;*/
 /*}*/
 
 /*.countTitle::after {*/
-    /*content: "";*/
-    /*position: relative;*/
-    /*display: block;*/
-    /*width: 300px;*/
-    /*height: 2px;*/
-    /*margin: 0 auto;*/
-    /*background-color: #B5CC17;*/
+/*content: "";*/
+/*position: relative;*/
+/*display: block;*/
+/*width: 300px;*/
+/*height: 2px;*/
+/*margin: 0 auto;*/
+/*background-color: #B5CC17;*/
 /*}*/
 
 /*.chiffreNom {*/
-    /*color: #676767;*/
-    /*font-family: Montserrat;*/
-    /*font-weight: 400;*/
-    /*letter-spacing: .55pt;*/
-    /*font-size: 16pt;*/
-    /*text-transform: uppercase;*/
+/*color: #676767;*/
+/*font-family: Montserrat;*/
+/*font-weight: 400;*/
+/*letter-spacing: .55pt;*/
+/*font-size: 16pt;*/
+/*text-transform: uppercase;*/
 /*}*/
 
 .completeSearch {
@@ -967,7 +974,6 @@ video {
 #type .type2 .ui-slider-range {
     background: #1D1D1B;
 }
-
 
 .budget p {
     font-family: Montserrat;
@@ -1120,14 +1126,14 @@ video {
     box-shadow: 1px 1px 10px #c2c2c2;
 }
 
-.infoWindow{
+.infoWindow {
     font-family: Montserrat;
     font-weight: 400;
     letter-spacing: .55pt;
     text-transform: uppercase;
 }
 
-.infoImg{
+.infoImg {
     border: none;
     width: 200px;
 }
@@ -1211,38 +1217,22 @@ video {
 }
 
 .cartouche {
-    position: relative;
-    width: 70%;
-    margin-top: -10px;
-    background-color: #e6e6e6;
-    z-index: 100;
+    height: 160px;
+    margin: 40px 0;
+    background-color: #f9f9f7;
     font-family: Montserrat;
     letter-spacing: .55pt;
+}
+
+.cartouche span {
+    margin: 15px;
     text-transform: uppercase;
-    font-size: 13pt;
-    color: #1D1D1B;
-}
-
-.cartouche .row {
-    padding: 15px 10px;
-}
-
-.cartouche .col {
-    padding: 0 0;
-}
-
-.situation {
-    margin-top: 30px;
-}
-
-.situation p {
-    font-family: Montserrat;
-    letter-spacing: .55pt;
-    text-transform: uppercase;
-    font-weight: 300;
     font-size: 18pt;
-    font-style: italic;
-    color: #1D1D1B;
+    color: #B5CC17;
+}
+
+.cartouche p {
+    font-size: 14pt;
 }
 
 .box-notesite {
@@ -1250,11 +1240,13 @@ video {
     margin-bottom: 50px;
 }
 
+#menuResidence nav{
+    background-color: white;
+    box-shadow: none;
+}
+
 #menuResidence {
-    background-color: #f9f9f4;
-    border-bottom: solid 2px #e6e6e6;
-    z-index: 100;
-    margin-bottom: 10px;
+    z-index: 500;
 }
 
 #menuResidence li {
@@ -1264,12 +1256,22 @@ video {
     font-weight: 400;
     font-size: 14pt;
     color: #1D1D1B;
-    padding: 15px 0;
+}
+
+#menuResidence li a:hover{
+    border-bottom: solid 2px #B5CC17;
+    background-color: transparent;
+    color: #B5CC17;
+}
+
+#menuResidence .active a{
+    border-bottom: solid 2px #B5CC17;
+    background-color: transparent;
+    color: #B5CC17;
 }
 
 #menuResidence .active {
-    font-weight: 500;
-    background-color: #e6e6e6;
+    background-color: transparent;
 }
 
 .accrocheResidence {
@@ -1319,16 +1321,16 @@ video {
     padding: 5px 5px;
 }
 
-.filtreMap [type="radio"]:not(:checked) + label,.filtreMap  [type="radio"]:checked + label {
+.filtreMap [type="radio"]:not(:checked) + label, .filtreMap [type="radio"]:checked + label {
     padding-left: 0;
     padding-right: 0;
 }
 
-.filtreMap [type="radio"]:not(:checked) + label:before,.filtreMap  [type="radio"]:not(:checked) + label:after {
+.filtreMap [type="radio"]:not(:checked) + label:before, .filtreMap [type="radio"]:not(:checked) + label:after {
     display: none;
 }
 
-.filtreMap [type="radio"]:checked + label:after,.filtreMap  [type="radio"].with-gap:checked + label:before, [type="radio"].with-gap:checked + label:after {
+.filtreMap [type="radio"]:checked + label:after, .filtreMap [type="radio"].with-gap:checked + label:before, [type="radio"].with-gap:checked + label:after {
     display: none;
 }
 
