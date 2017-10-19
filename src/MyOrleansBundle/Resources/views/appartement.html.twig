@@ -1,41 +1,40 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col offset-s1 retourSearch1">
-            <a class="waves-effect waves-light btn"
-               href="{{ path('residences', { 'slug': residence.slug }) }}">
-                <i class="fa fa-caret-left white-text"></i> RETOUR À LA RÉSIDENCE</a>
-        </div>
-    </div>
     <div class="row infoFlat">
+        <div class="col offset-s1 s2">
+            <div class="retourZone">
+                <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img class="responsive-img"
+                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                             alt="résidence">
+                    {% endfor %}
+                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
+                </a>
+            </div>
+        </div>
         <div class="col offset-s1 s4">
             <div class="residenceFlat center">
                 <h2>{{ residence.nom }}</h2>
-                <p>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}
-                </p>
-            </div>
-        </div>
-        <div class="col s3">
-            <div class="pdfFlat center">
-                <a href="#">Télécharger la fiche <i class="material-icons align-icon">picture_as_pdf</i></a>
-            </div>
-        </div>
-        <div class="col s3">
-            <div class="referenceZone">
-                {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                    <img class="responsive-img"
-                         src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
-                         alt="résidence">
-                {% endfor %}
-                <span class="referenceFlat">{{ flat.reference }}</span>
+                <p>{{ residence.ville.nom }}</p>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col offset-s1 offset-l2 s10 l8 cartouche center">
+        <div class="col offset-l3 offset-xl4 l6 xl4 prixFlat center">
+            <div class="col l8">
+                {{ flat.prix|number_format(0, '.', ' ') }}€
+            </div>
+            <div class="col l4 offre shake">
+                <a href="#" class="btn greenMyO center">En ce moment</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-s1 offset-l2 s10 l8 cartoucheFlat center">
             <div class="row">
-                <p class="col s12 l3">Prix {{ flat.prix|number_format(0, '.', ' ') }}€</p>
+                <p class="col s12 l3"></p>
                 <p class="col s12 l6">Livraison {{ flat.dateLivraison }}</p>
                 <p class="col s12 l3">Type {{ flat.typeLogement.id }}</p>
             </div>
@@ -170,10 +169,35 @@
         </div>
     </div>
     <div class="row">
-        <div class="col offset-s1 retourSearch1">
-            <a class="waves-effect waves-light btn"
-               href="{{ path('residences', { 'slug': residence.slug }) }}">
-                <i class="fa fa-caret-left white-text"></i> RETOUR À LA RÉSIDENCE</a>
+        <div class="col offset-s1 s2">
+            <div class="retourZone">
+                <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img class="responsive-img"
+                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                             alt="résidence">
+                    {% endfor %}
+                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
+                </a>
+            </div>
         </div>
     </div>
+    <div class="row">
+        <p class="col offset-s4 s2"><i class="material-icons align-icon">share</i>PARTAGER LA FICHE</p>
+        <div class="col s1">
+            <div id="fb-root"></div>
+            <div class="fb-share-button" data-href="{{ path('appartement', { 'id': flat.id }) }}" data-layout="button"
+                 data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+                                                                href="{{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}">Partager</a>
+            </div>
+        </div>
+        <div class="col s1">
+            <a class="waves-effect waves-light btn" href="mailto:?to= &subject=Appartement%20my%20Orleans">Envoyez à
+                un ami par mail </a>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
 {% endblock %}
