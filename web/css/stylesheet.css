@@ -771,7 +771,7 @@ video {
 
 .barillet {
     position: relative;
-    margin: 50px auto 0 auto;
+    margin: 100px auto 0 auto;
 }
 
 .colBarillet {
@@ -1679,4 +1679,108 @@ video {
 
 .partage p {
     padding: 0 20px;
+}
+
+/* --------------------------------------------------------------------*/
+/* --------------------------- MY ORLEANS -----------------------------*/
+/* --------------------------------------------------------------------*/
+
+.presentation {
+    background-color: #F2F2F2;
+}
+
+.presentation p {
+    padding: 5px 20px;
+    font-family: Cantarell;
+    font-weight: 400;
+    font-size: 14pt;
+}
+
+.imageEquipe {
+    margin-top: 20px;
+}
+
+.carouselRea .carousel .carousel-item>img {
+    width: 400px;
+    margin-left: -100px;
+}
+
+.realisation {
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    font-size: 19pt;
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    opacity: 0;
+}
+
+.carouselRea .active:hover .realisation {
+    opacity: 1;
+}
+
+.carouselRea .active:hover img {
+    filter: brightness(70%);
+
+}
+
+.partenaire {
+    width: 100%;
+    margin: 10px;
+    filter: grayscale(100%);
+}
+
+.carouselEvenement .carousel .carousel-item{
+    /*height: 600px;*/
+    margin-left: -100px;
+    margin-top: -100px;
+}
+
+.carouselEvenement .carousel {
+    overflow: visible;
+    margin-bottom: 100px;
+}
+
+.polaroid {
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    padding: 10px;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+}
+
+.titreEvenement {
+    background-color: #2d2d2d;
+    color: white;
+    height: 50px;
+}
+
+.titreEvenement span {
+    font-size: 11pt;
+    text-transform: uppercase;
+}
+
+.titreEvenement p {
+    font-size: 10pt;
+}
+
+.evenement {
+    background-color: #f9f9f4;
+    height: 130px;
+    font-size: 9pt;
+}
+
+.evenement p {
+    padding: 10px;
+}
+
+.polaroid .responsive-img {
+    padding: 0;
+    object-fit: cover;
+    height: 300px;
 }

@@ -1,0 +1,167 @@
+{% extends 'MyOrleansBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col offset-s1 s5">
+            <h1>My Orléans</h1>
+            <div class="col s12 presentation">
+                <p>{{ accueil.presentation | raw }}</p>
+            </div>
+            <img class="imageEquipe responsive-img" src="{{ asset('img/equipe.jpg') }}" alt="equipe">
+        </div>
+        <div class="col s5">
+            <h1>Notre équipe</h1>
+            <div class="barillet">
+                <div class="colBarillet">
+                    <ul class="circle-container">
+                        {% for collaborateur in collaborateurs %}
+                            {% if loop.index == 1 %}
+                                <li class="item"><a class="active" href="#"><img
+                                                class="collaborateurBarillet circle"
+                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                </li>
+                            {% else %}
+                                <li class="item"><a href="#"><img class="collaborateurBarillet circle"
+                                                                  src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="colBarillet">
+                    <ul class="bioCollaborateur">
+                        {% for collaborateur in collaborateurs %}
+                            {% if loop.index == 1 %}
+                                <li>
+                                    <a class="active" href="#">
+                                        <div class="bio center circle">
+                                            <h5>{{ collaborateur.prenom }} {{ collaborateur.nom }}</h5>
+                                            <p>Métier : {{ collaborateur.fonction }}</p>
+                                            <p>E-mail : {{ collaborateur.email }}</p>
+                                            <p class="vision">Sa vision :</p>
+                                            <p>"{{ collaborateur.bio }}"</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a>
+                                        <div class="bio center circle">
+                                            <h5>{{ collaborateur.prenom }} {{ collaborateur.nom }}</h5>
+                                            <p>Métier : {{ collaborateur.fonction }}</p>
+                                            <p>E-mail : {{ collaborateur.email }}</p>
+                                            <p class="vision">Sa vision :</p>
+                                            <p>"{{ collaborateur.bio }}"</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>Nos réalisations commerciales</h1>
+    <div class="row">
+        <div class="carouselRea">
+            <div class="carousel">
+                <a class="carousel-item" href="#Elégance de Loire"><img
+                            src="{{ asset('img/rea/ElégancedeLoire.jpg') }}">
+                    <div class="realisation">Elégance de Loire</div>
+                </a>
+                <a class="carousel-item" href="#L'Amiral de Coligny"><img
+                            src="{{ asset('img/rea/LAmiraldeColigny.jpg') }}">
+                    <div class="realisation">L'Amiral de Coligny</div>
+                </a>
+                <a class="carousel-item" href="#La Résidence des Charmes"><img
+                            src="{{ asset('img/rea/LaRésidencedesCharmes.jpg') }}">
+                    <div class="realisation">La Résidence des Charmes</div>
+                </a>
+                <a class="carousel-item" href="#La Souche Sud"><img src="{{ asset('img/rea/LaSoucheSud.jpg') }}">
+                    <div class="realisation">La Souche Sud</div>
+                </a>
+                <a class="carousel-item" href="#La Villa Maunoury"><img
+                            src="{{ asset('img/rea/LaVillaMaunoury.jpg') }}">
+                    <div class="realisation">La Villa Maunoury</div>
+                </a>
+                <a class="carousel-item" href="#Le Bourg Ouest"><img src="{{ asset('img/rea/LeBourgOuest.jpg') }}">
+                    <div class="realisation">Le Bourg Ouest</div>
+                </a>
+                <a class="carousel-item" href="#Le Clos Colombier"><img
+                            src="{{ asset('img/rea/LeClosColombier.jpg') }}">
+                    <div class="realisation">Le Clos Colombier</div>
+                </a>
+                <a class="carousel-item" href="#Le Clos de la Cerisaille"><img
+                            src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}">
+                    <div class="realisation">Le Clos de la Cerisaille</div>
+                </a>
+                <a class="carousel-item" href="#Le Lièvre d'Or"><img src="{{ asset('img/rea/LeLièvredOr.jpg') }}">
+                    <div class="realisation">Le Lièvre d'Or</div>
+                </a>
+                <a class="carousel-item" href="#Le Parc de l'école normale"><img
+                            src="{{ asset('img/rea/LeParcdelécolenormale.jpg') }}">
+                    <div class="realisation">Le Parc de l'école normale</div>
+                </a>
+                <a class="carousel-item" href="#Les Cascades"><img src="{{ asset('img/rea/LesCascades.jpg') }}">
+                    <div class="realisation">Les Cascades</div>
+                </a>
+                <a class="carousel-item" href="#Les Jardins d'Andréa"><img
+                            src="{{ asset('img/rea/LesJardinsdAndréa.jpg') }}">
+                    <div class="realisation">Les Jardins d'Andréa</div>
+                </a>
+                <a class="carousel-item" href="#Les Vergers d'Olivet"><img
+                            src="{{ asset('img/rea/LesVergersdOlivet.jpg') }}">
+                    <div class="realisation">Les Vergers d'Olivet</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <h1>Consultez notre actualité</h1>
+    <div class="row">
+        <div class="carouselEvenement">
+            <div class="carousel">
+                {% for evenement in evenements %}
+                <a class="carousel-item" href="#1">
+                    <div class="polaroid">
+                        <img class="col s12 responsive-img" src="{{ asset('uploads/'~evenement.media.mediaName) }}">
+                        <div class="col s12 titreEvenement center">
+                            <span>{{ evenement.nom }}</span>
+                            <p>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                {{ evenement.dateDebut|date('Y') }}</p>
+                        </div>
+                        <div class="col s12 evenement">
+                            <p>{{ evenement.description[:200] }} ...</p>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+    <h1>Nos partenaires</h1>
+    <div class="row">
+        <div class="col offset-s1 s10">
+            {% for partenaire in partenaires %}
+                <div class="col s1 partenaire">
+                    <a {% if partenaire.url != null %}href="{{ partenaire.url }}"{% endif %}>
+                        <img class="responsive-img" src="{{ asset('uploads/'~partenaire.media.mediaName) }}">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                dist: -50,
+                padding: 100
+            });
+        });
+    </script>
+{% endblock %}
