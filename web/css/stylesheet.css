@@ -42,6 +42,12 @@ h1 {
     box-shadow: none;
 }
 
+.align-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
 /* --------------------------------------------------------------------*/
 /* ----------------------------- NAVBAR -------------------------------*/
 /* --------------------------------------------------------------------*/
@@ -431,15 +437,6 @@ video {
     width: 100%;
     height: 100%;
 }
-
-/*.video-cover {*/
-/*position: relative;*/
-/*overflow: hidden;*/
-/*}*/
-
-/*.video-cover video {*/
-/*object-fit: cover;*/
-/*}*/
 
 .accueil video {
     filter: brightness(50%);
@@ -1535,3 +1532,196 @@ video {
     }
 }
 
+/* --------------------------------------------------------------------*/
+/* -------------------------- APPARTEMENT -----------------------------*/
+/* --------------------------------------------------------------------*/
+
+.retourZone {
+    position: relative;
+    margin-top: 20px;
+}
+
+.retourFlat {
+    position: absolute;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.retourZone img {
+    filter: brightness(70%);
+    width: 100%;
+}
+
+.residenceFlat h2 {
+    font-weight: 300;
+    font-size: 31pt;
+    color: #B5CC17;
+}
+
+.residenceFlat p {
+    font-weight: 300;
+    font-size: 18pt;
+    font-style: italic;
+    color: #676767;
+}
+
+.offre {
+    margin-bottom: 5px;
+}
+
+.offre .greenMyO {
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    font-size: 10pt;
+    color: white;
+    padding: 0 5px;
+}
+
+.shake {
+    animation-name: shake;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg);
+    }
+    1% {
+        transform: translate(4px, 0px) rotate(0deg);
+    }
+    2% {
+        transform: translate(-3px, 0px) rotate(0deg);
+    }
+    3% {
+        transform: translate(-2px, 0px) rotate(0deg);
+    }
+    4% {
+        transform: translate(-3px, 0px) rotate(0deg);
+    }
+    5% {
+        transform: translate(-3px, 0px) rotate(0deg);
+    }
+    6% {
+        transform: translate(1px, 0px) rotate(0deg);
+    }
+    7% {
+        transform: translate(2px, 0px) rotate(0deg);
+    }
+    8% {
+        transform: translate(5px, 0px) rotate(0deg);
+    }
+    9% {
+        transform: translate(-1px, 0px) rotate(0deg);
+    }
+    10% {
+        transform: translate(0px, 0px) rotate(0deg);
+    }
+}
+
+.prixFlat{
+    border-left: 2px solid #B5CC17;
+    border-top: 2px solid #B5CC17;
+    border-right: 2px solid #B5CC17;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    font-size: 24pt;
+}
+
+.cartoucheFlat {
+    position: relative;
+    width: 70%;
+    background-color: #e6e6e6;
+    z-index: 100;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+    font-size: 13pt;
+    color: #1D1D1B;
+}
+
+.cartoucheFlat .row {
+    padding: 15px 10px;
+}
+
+.cartoucheFlat .col {
+    padding: 0 0;
+}
+
+/*.pdfFlat {*/
+    /*margin-top: 50px;*/
+    /*background-color: #e6e6e6;*/
+    /*padding: 5px 0;*/
+/*}*/
+
+/*.pdfFlat a {*/
+    /*font-family: Montserrat;*/
+    /*letter-spacing: .55pt;*/
+    /*text-transform: uppercase;*/
+/*}*/
+
+
+
+
+.infoFlat {
+    margin-bottom: 40px;
+}
+
+.descriptif {
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+}
+
+.descriptif p {
+    float: left;
+    font-size: 14pt;
+}
+
+.descriptif span {
+    float: right;
+    font-size: 16pt;
+}
+
+.descriptifLine {
+    border-bottom: 2px solid #B5CC17;
+    margin-bottom: 20px;
+}
+
+.icon-apt{
+    width: 60px;
+    height: 60px;
+}
+
+.accrocheResidenceFlat {
+    margin: 70px 0;
+    background-color: #f9f9f7;
+}
+
+.accrocheFlat {
+    padding-top: 20px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    font-family: Lato;
+    letter-spacing: .55pt;
+    font-weight: 500;
+    font-size: 25pt;
+    font-style: italic;
+    color: #676767;
+}
+
+.descriptionFlat {
+    padding-bottom: 20px;
+    font-family: Cantarell;
+    font-weight: 400;
+    font-size: 17pt;
+    color: #1D1D1B;
+}
