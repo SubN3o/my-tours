@@ -3,15 +3,20 @@
 {% block content %}
     <div class="row infoFlat">
         <div class="col offset-s1 s2">
-            <div class="retourZone">
-                <a href="{{ path('residences', { 'slug': residence.slug }) }}">
-                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                        <img class="responsive-img"
-                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
-                             alt="résidence">
-                    {% endfor %}
-                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
-                </a>
+            <div class="col s12">
+                <div class="retourZone">
+                    <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                            <img class="responsive-img"
+                                 src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                                 alt="résidence">
+                        {% endfor %}
+                        <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col s12 center">
+                <p class="referenceFlat">{{ flat.reference }}</p>
             </div>
         </div>
         <div class="col offset-s1 s4">
@@ -20,35 +25,48 @@
                 <p>{{ residence.ville.nom }}</p>
             </div>
         </div>
+        {% if residence.offre != null %}
+            <div class="col offset-s1 s2 offreFlat">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <img class="vignette" src="{{ asset('img/offreFile.png') }}">
+                            {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
+                                <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
+                            {% endfor %}
+                        </div>
+                        <div class="back">
+                            <p>{{ residence.offre }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
-    <div class="row">
-        <div class="col offset-l3 offset-xl4 l6 xl4 prixFlat center">
-            <div class="col l8">
-                {{ flat.prix|number_format(0, '.', ' ') }}€
-            </div>
-            <div class="col l4 offre shake">
-                <a href="#" class="btn greenMyO center">En ce moment</a>
-            </div>
+
+    <div class="row infoFlat2">
+        <div class="col offset-s1 s5 typeFlat">
+            {{ flat.typeBien.nom }} de type {{ flat.typeLogement.id }}
+        </div>
+        <div class="col s5 right-align prixFlat">
+            {{ flat.prix|number_format(0, '.', ' ') }} €
         </div>
     </div>
-    <div class="row">
-        <div class="col offset-s1 offset-l2 s10 l8 cartoucheFlat center">
-            <div class="row">
-                <p class="col s12 l3"></p>
-                <p class="col s12 l6">Livraison {{ flat.dateLivraison }}</p>
-                <p class="col s12 l3">Type {{ flat.typeLogement.id }}</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
+    <div class="row planFlat">
         <div class="col offset-s1 s10">
             {% for media in flat.medias if media.typeMedia.nom == 'plan' %}
-                <img class="responsive-img"
+                <img class="responsive-img materialboxed"
                      src="{{ asset('uploads/'~media.mediaName) }}"
                      alt="résidence">
             {% endfor %}
         </div>
+
     </div>
+    {#<div class="row">#}
+    {#<div class="col offset-s1 s10">#}
+    {#<img class="pdfIcon" src="{{ asset('img/PDF.png') }}">#}
+    {#</div>#}
+    {#</div>#}
     <h1>Descriptif du Logement</h1>
     <div class="row">
         <div class="col offset-l1 l5">
@@ -181,19 +199,20 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <p class="col offset-s4 s2"><i class="material-icons align-icon">share</i>PARTAGER LA FICHE</p>
-        <div class="col s1">
-            <div id="fb-root"></div>
-            <div class="fb-share-button" data-href="{{ path('appartement', { 'id': flat.id }) }}" data-layout="button"
-                 data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
-                                                                href="{{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}">Partager</a>
+        <div class="col offset-s1 s7 partage valign-wrapper">
+            <p><i class="material-icons align-icon">share</i>Partager l'annonce</p>
+            <div class="partageIcone">
+                <div id="fb-root"></div>
+                <div class="fb-share-button" data-href="{{ path('appartement', { 'id': flat.id }) }}"
+                     data-layout="button"
+                     data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+                                                                    href="{{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}">Partager</a>
+                </div>
+                <a class="waves-effect waves-light btn greenMyO"
+                   href="mailto:?to= &subject={{ flat.reference }}%20-%20{{ flat.typeBien.nom }}%20{{ flat.typeLogement.nom }}%20{{ residence.nom }}%20-%20My%20Orleans&body={{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}">
+                    <i class="material-icons">mail</i>
+                </a>
             </div>
-        </div>
-        <div class="col s1">
-            <a class="waves-effect waves-light btn" href="mailto:?to= &subject=Appartement%20my%20Orleans">Envoyez à
-                un ami par mail </a>
         </div>
     </div>
 {% endblock %}

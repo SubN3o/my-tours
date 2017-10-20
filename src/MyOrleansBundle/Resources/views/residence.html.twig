@@ -43,19 +43,6 @@
                     <button class="prev btn-flat"><i class="material-icons white-text">chevron_left</i></button>
                     <button class="next btn-flat"><i class="material-icons white-text">chevron_right</i></button>
                 </div>
-                <div class="row">
-                    <div class="col offset-s1 offset-l2 offset-xl1 s10 l8 xl10 cartouche center">
-                        <div class="row">
-                            <p class="col s12 l6 xl3">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</p>
-                            <p class="col s12 l6 xl4">Livraison {{ residence.dateLivraison }}</p>
-                            <p class="col s12 l6 xl2">Du {{ typeMin }} au {{ typeMax }}</p>
-                            {% transchoice flatsDispo %}
-                            {1} <p class="col s12 l6 xl3">%count% lot disponible</p> |
-                            ]1,Inf[ <p class="col s12 l6 xl3">%count% lots disponibles</p>
-                            {% endtranschoice %}
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -70,9 +57,16 @@
         </div>
 
         <div class="row">
-            <div class="col offset-xl1 s12 l5 xl4 center situation">
-                <h1>{{ residence.ville.nom }}</h1>
-                <p>{% if residence.quartier != null %}quartier {{ residence.quartier.nom }}{% endif %}</p>
+            <div class="col offset-xl1 s12 l5 xl4 cartouche">
+                <span class="col s12 center">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</span>
+                <div class="cartoucheInfo">
+                    <p class="col s12">Livraison {{ residence.dateLivraison }}</p>
+                    <p class="col s12">Du {{ typeMin }} au {{ typeMax }}</p>
+                    {% transchoice flatsDispo %}
+                    {1} <p class="col s12">%count% lot disponible</p> |
+                    ]1,Inf[ <p class="col s12">%count% lots disponibles</p>
+                    {% endtranschoice %}
+                </div>
             </div>
 
             <!-- Compteurs Notes -->
@@ -134,20 +128,24 @@
 
     <!-- 2nde Navbar -->
     <div class="row">
-        <div class="col offset-l2 s12 l8 center" id="menuResidence">
-            <ul>
-                <li class="col s4"><a href="#anchor-residence">La résidence</a></li>
-                <li class="col s4"><a href="#anchor-localisation">Localisation</a></li>
-                <li class="col s4"><a href="#anchor-bien">Nos biens</a></li>
-            </ul>
+        <div class="col offset-l2 s12 l8" id="menuResidence">
+            <nav>
+                <div class="nav-wrapper center">
+                    <ul>
+                        <li class="col s4" id="residenceNav"><a href="#anchor-residence">La résidence</a></li>
+                        <li class="col s4" id="localisationNav"><a href="#anchor-localisation">Localisation</a></li>
+                        <li class="col s4" id="bienNav"><a href="#anchor-bien">Nos biens</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </div>
 
     <!-- Effet Parallax -->
     <div id="anchor-residence" class="parallax-container">
-        <div class="parallax">
-            <img src="{{ asset('img/parallax1.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">
-        </div>
+        {#<div class="parallax">#}
+        {#<img src="{{ asset('img/parallax1.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">#}
+        {#</div>#}
     </div>
 
     <!-- Description Résidence -->
@@ -158,18 +156,30 @@
                 <div class="description">{{ residence.description | raw }}</div>
             </div>
         </div>
-        {#<div class="col offset-l1 l2">#}
-        {#<div class="card-panel">#}
-        {#<span>Hello</span>#}
-        {#</div>#}
-        {#</div>#}
+        {% if residence.offre != null %}
+        <div class="col offset-l1 l2" id="offre">
+            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                <div class="flipper">
+                    <div class="front">
+                        <img class="vignette" src="{{ asset('img/offreFile.png') }}">
+                        {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
+                        <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
+                        {% endfor %}
+                    </div>
+                    <div class="back">
+                        <p>{{ residence.offre }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 
     <!-- Effet Parallax -->
     <div id="anchor-localisation" class="parallax-container">
-        <div class="parallax">
-            <img src="{{ asset('img/parallax2.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">
-        </div>
+        {#<div class="parallax">#}
+        {#<img src="{{ asset('img/parallax2.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">#}
+        {#</div>#}
     </div>
 
     <!-- Situation Résidence GoogleMap -->
@@ -208,9 +218,9 @@
 
     <!-- Effet Parallax -->
     <div id="anchor-bien" class="parallax-container">
-        <div class="parallax">
-            <img src="{{ asset('img/parallax3.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">
-        </div>
+        {#<div class="parallax">#}
+        {#<img src="{{ asset('img/parallax3.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">#}
+        {#</div>#}
     </div>
 
     <!-- Tableau lots disponibles -->
@@ -585,6 +595,42 @@
                 }
                 if (scrollTop <= scroll) {
                     menu.removeAttr('style');
+                }
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(window).scroll(function () {
+
+                var scrollTop = $(window).scrollTop(),
+                    nav = document.getElementById("nav").offsetHeight;
+
+                if (scrollTop >= document.getElementById("anchor-residence").offsetTop - nav) {
+                    $(document.getElementById("residenceNav")).addClass('active');
+                    $(document.getElementById("offre")).addClass('zoomOffre');
+                }
+
+                if (scrollTop < document.getElementById("anchor-residence").offsetTop - nav) {
+                    $(document.getElementById("residenceNav")).removeClass('active');
+                }
+
+                if (scrollTop >= document.getElementById("anchor-localisation").offsetTop - nav) {
+                    $(document.getElementById("localisationNav")).addClass('active');
+                    $(document.getElementById("residenceNav")).removeClass('active');
+                }
+
+                if (scrollTop < document.getElementById("anchor-localisation").offsetTop - nav) {
+                    $(document.getElementById("localisationNav")).removeClass('active');
+                }
+
+                if (scrollTop >= document.getElementById("anchor-bien").offsetTop - nav) {
+                    $(document.getElementById("bienNav")).addClass('active');
+                    $(document.getElementById("localisationNav")).removeClass('active');
+                }
+
+                if (scrollTop < document.getElementById("anchor-bien").offsetTop - nav) {
+                    $(document.getElementById("bienNav")).removeClass('active');
                 }
             })
         });
