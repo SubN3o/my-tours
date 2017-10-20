@@ -57,7 +57,7 @@ nav {
     box-shadow: none;
 }
 
-nav li a:hover{
+nav li a:hover {
     border-bottom: solid 2px #B5CC17;
     background-color: transparent;
     color: #B5CC17;
@@ -1240,7 +1240,7 @@ video {
     margin-bottom: 50px;
 }
 
-#menuResidence nav{
+#menuResidence nav {
     background-color: white;
     box-shadow: none;
 }
@@ -1258,13 +1258,13 @@ video {
     color: #1D1D1B;
 }
 
-#menuResidence li a:hover{
+#menuResidence li a:hover {
     border-bottom: solid 2px #B5CC17;
     background-color: transparent;
     color: #B5CC17;
 }
 
-#menuResidence .active a{
+#menuResidence .active a {
     border-bottom: solid 2px #B5CC17;
     background-color: transparent;
     color: #B5CC17;
@@ -1299,6 +1299,87 @@ video {
     font-size: 17pt;
     color: #1D1D1B;
 }
+
+#offre {
+    margin-top: 100px;
+    position: relative;
+}
+
+.vignette {
+    transform: rotateY(180deg);
+}
+
+.iconeOffre {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 10;
+    width: 70%;
+}
+
+.zoomOffre {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s;
+}
+
+.flip-container {
+    perspective: 1000px;
+    float: left;
+}
+/* turning on hover */
+
+.flip-container:hover .flipper {
+    transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+    width: 250px;
+    height: 250px;
+    text-align: center;
+}
+/* flipping speed here */
+
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+/* making the the other side hidden while flipping */
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/* front side is in front of a back side */
+
+.front {
+    z-index: 2;
+}
+/* back side */
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.back p {
+    font-size: 14pt;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    border: 8px solid #d2d2d2;
+    border-radius: 20px;
+    background-color: white;
+    padding: 20px;
+}
+
+
 
 .filtreMap p {
     background-color: #e6e6e6;
