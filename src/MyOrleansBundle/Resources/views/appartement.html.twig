@@ -1,55 +1,67 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col offset-s1 retourSearch1">
-            <a class="waves-effect waves-light btn"
-               href="{{ path('residences', { 'slug': residence.slug }) }}">
-                <i class="fa fa-caret-left white-text"></i> RETOUR À LA RÉSIDENCE</a>
-        </div>
-    </div>
     <div class="row infoFlat">
+        <div class="col offset-s1 s2">
+            <div class="retourZone">
+                <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img class="responsive-img"
+                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                             alt="résidence">
+                    {% endfor %}
+                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
+                </a>
+            </div>
+        </div>
         <div class="col offset-s1 s4">
             <div class="residenceFlat center">
                 <h2>{{ residence.nom }}</h2>
-                <p>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}
-                </p>
+                <p>{{ residence.ville.nom }}</p>
             </div>
         </div>
-        <div class="col s3">
-            <div class="pdfFlat center">
-                <a href="#">Télécharger la fiche <i class="material-icons align-icon">picture_as_pdf</i></a>
+        {% if residence.offre != null %}
+            <div class="col offset-s1 s2 offreFlat">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <img class="vignette" src="{{ asset('img/offreFile.png') }}">
+                            {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
+                                <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
+                            {% endfor %}
+                        </div>
+                        <div class="back">
+                            <p>{{ residence.offre }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+        {% endif %}
+    </div>
+
+    <div class="row infoFlat2">
+        <div class="col offset-s1 s5 typeFlat">
+            {{ flat.typeBien.nom }} de type {{ flat.typeLogement.id }}
         </div>
-        <div class="col s3">
-            <div class="referenceZone">
-                {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                    <img class="responsive-img"
-                         src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
-                         alt="résidence">
-                {% endfor %}
-                <span class="referenceFlat">{{ flat.reference }}</span>
-            </div>
+        <div class="col s5 right-align prixFlat">
+            {{ flat.prix|number_format(0, '.', ' ') }} €
         </div>
     </div>
-    <div class="row">
-        <div class="col offset-s1 offset-l2 s10 l8 cartouche center">
-            <div class="row">
-                <p class="col s12 l3">Prix {{ flat.prix|number_format(0, '.', ' ') }}€</p>
-                <p class="col s12 l6">Livraison {{ flat.dateLivraison }}</p>
-                <p class="col s12 l3">Type {{ flat.typeLogement.id }}</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
+    <div class="row planFlat">
         <div class="col offset-s1 s10">
             {% for media in flat.medias if media.typeMedia.nom == 'plan' %}
-                <img class="responsive-img"
+                <img class="responsive-img materialboxed"
                      src="{{ asset('uploads/'~media.mediaName) }}"
                      alt="résidence">
             {% endfor %}
         </div>
+
     </div>
+    {#<div class="row">#}
+    {#<div class="col offset-s1 s10">#}
+    {#<img class="pdfIcon" src="{{ asset('img/PDF.png') }}">#}
+    {#</div>#}
+    {#</div>#}
     <h1>Descriptif du Logement</h1>
     <div class="row">
         <div class="col offset-l1 l5">
@@ -99,22 +111,22 @@
                 <div class="col s1">
                     <img class="icon-apt" src="{{ asset('img/floor.png') }}" alt="revetement">
                 </div>
-                    <div class="col s12">
-                        <p>Revêtement Sol Séjour</p>
-                        <span>{{ flat.solSejour }}</span>
-                    </div>
-                    <div class="col s12">
-                        <p>Revêtement Sol Salle de Bains</p>
-                        <span>{{ flat.solSdb }}</span>
-                    </div>
-                    <div class="col s12">
-                        <p>Revêtement Sol Chambre</p>
-                        <span>{{ flat.solChambre }}</span>
-                    </div>
-                    <div class="col s12">
-                        <p>Revêtement Muraux</p>
-                        <span>{{ flat.revetementMur }}</span>
-                    </div>
+                <div class="col s12">
+                    <p>Revêtement Sol Séjour</p>
+                    <span>{{ flat.solSejour }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Sol Salle de Bains</p>
+                    <span>{{ flat.solSdb }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Sol Chambre</p>
+                    <span>{{ flat.solChambre }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Muraux</p>
+                    <span>{{ flat.revetementMur }}</span>
+                </div>
                 <span class="col s12 descriptifLine"></span>
             </div>
         </div>
@@ -161,4 +173,45 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col s12 accrocheResidenceFlat">
+            <div class="col offset-l2 l8">
+                <h3 class="center accrocheFlat">{{ residence.accroche }}</h3>
+                <div class="center descriptionFlat">{{ residence.description | raw }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-s1 s2">
+            <div class="retourZone">
+                <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img class="responsive-img"
+                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                             alt="résidence">
+                    {% endfor %}
+                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
+                </a>
+            </div>
+        </div>
+        <div class="col offset-s1 s7 partage valign-wrapper">
+            <p><i class="material-icons align-icon">share</i>Partager l'annonce</p>
+            <div class="partageIcone">
+                <div id="fb-root"></div>
+                <div class="fb-share-button" data-href="{{ path('appartement', { 'id': flat.id }) }}"
+                     data-layout="button"
+                     data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+                                                                    href="{{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}">Partager</a>
+                </div>
+                <a class="waves-effect waves-light btn greenMyO" href="mailto:?to= &subject=Appartement%20my%20Orleans">
+                    <i class="material-icons">mail</i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
 {% endblock %}
