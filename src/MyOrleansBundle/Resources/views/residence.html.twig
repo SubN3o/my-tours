@@ -156,12 +156,12 @@
                 <div class="description">{{ residence.description | raw }}</div>
             </div>
         </div>
-
+        {% if residence.offre != null %}
         <div class="col offset-l1 l2" id="offre">
             <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
                 <div class="flipper">
                     <div class="front">
-                        <img src="{{ asset('img/offreFile.png') }}">
+                        <img class="vignette" src="{{ asset('img/offreFile.png') }}">
                         {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
                         <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
                         {% endfor %}
@@ -172,6 +172,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 
     <!-- Effet Parallax -->
