@@ -1,0 +1,164 @@
+{% extends 'MyOrleansBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col offset-s1 retourSearch1">
+            <a class="waves-effect waves-light btn"
+               href="{{ path('residences', { 'slug': residence.slug }) }}">
+                <i class="fa fa-caret-left white-text"></i> RETOUR À LA RÉSIDENCE</a>
+        </div>
+    </div>
+    <div class="row infoFlat">
+        <div class="col offset-s1 s4">
+            <div class="residenceFlat center">
+                <h2>{{ residence.nom }}</h2>
+                <p>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}
+                </p>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="pdfFlat center">
+                <a href="#">Télécharger la fiche <i class="material-icons align-icon">picture_as_pdf</i></a>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="referenceZone">
+                {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                    <img class="responsive-img"
+                         src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                         alt="résidence">
+                {% endfor %}
+                <span class="referenceFlat">{{ flat.reference }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-s1 offset-l2 s10 l8 cartouche center">
+            <div class="row">
+                <p class="col s12 l3">Prix {{ flat.prix|number_format(0, '.', ' ') }}€</p>
+                <p class="col s12 l6">Livraison {{ flat.dateLivraison }}</p>
+                <p class="col s12 l3">Type {{ flat.typeLogement.id }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-s1 s10">
+            {% for media in flat.medias if media.typeMedia.nom == 'plan' %}
+                <img class="responsive-img"
+                     src="{{ asset('uploads/'~media.mediaName) }}"
+                     alt="résidence">
+            {% endfor %}
+        </div>
+    </div>
+    <h1>Descriptif du Logement</h1>
+    <div class="row">
+        <div class="col offset-l1 l5">
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/room.png') }}" alt="plan">
+                </div>
+                {% if flat.surface != null %}
+                    <div class="col s12">
+                        <p>Surface Habitable</p>
+                        <span>{{ flat.surface }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceSejour != null %}
+                    <div class="col s12">
+                        <p>Surface Séjour</p>
+                        <span>{{ flat.surfaceSejour }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceBalcon != null %}
+                    <div class="col s12">
+                        <p>Surface Balcon</p>
+                        <span>{{ flat.surfaceBalcon }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceTerrasse != null %}
+                    <div class="col s12">
+                        <p>Surface Terrasse</p>
+                        <span>{{ flat.surfaceTerrasse }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceJardin != null %}
+                    <div class="col s12">
+                        <p>Surface Jardin</p>
+                        <span>{{ flat.surfaceJardin }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceTerrain != null %}
+                    <div class="col s12">
+                        <p>Surface Terrain</p>
+                        <span>{{ flat.surfaceTerrain }} m²</span>
+                    </div>
+                {% endif %}
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/floor.png') }}" alt="revetement">
+                </div>
+                    <div class="col s12">
+                        <p>Revêtement Sol Séjour</p>
+                        <span>{{ flat.solSejour }}</span>
+                    </div>
+                    <div class="col s12">
+                        <p>Revêtement Sol Salle de Bains</p>
+                        <span>{{ flat.solSdb }}</span>
+                    </div>
+                    <div class="col s12">
+                        <p>Revêtement Sol Chambre</p>
+                        <span>{{ flat.solChambre }}</span>
+                    </div>
+                    <div class="col s12">
+                        <p>Revêtement Muraux</p>
+                        <span>{{ flat.revetementMur }}</span>
+                    </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+        </div>
+        <div class="col l5">
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/menuiserie.png') }}" alt="menuiserie">
+                </div>
+                <div class="col s12">
+                    <p>Menuiseries</p>
+                    <span>{{ flat.menuiserie }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/chauffage.png') }}" alt="chauffage">
+                </div>
+                <div class="col s12">
+                    <p>Chauffage</p>
+                    <span>{{ flat.chauffage }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/boussole.png') }}" alt="boussole">
+                </div>
+                <div class="col s12">
+                    <p>Exposition du séjour</p>
+                    <span>{{ flat.expositionSejour }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/Parking.png') }}" alt="voiture">
+                </div>
+                <div class="col s12">
+                    <p>Stationnement</p>
+                    <span>{{ flat.stationnement }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
