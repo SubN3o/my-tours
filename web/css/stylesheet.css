@@ -1541,6 +1541,14 @@ video {
 
 .infoFlat {
     margin-bottom: 40px;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+
+}
+
+.referenceFlat {
+    font-size: 20pt;
+    text-transform: uppercase;
 }
 
 .offreFlat {
