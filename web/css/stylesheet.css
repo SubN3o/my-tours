@@ -1487,7 +1487,7 @@ video {
 }
 
 .parallax-container {
-    height: 250px;
+    height: 100px;
 }
 
 @media screen and (max-width: 992px) {
