@@ -209,7 +209,7 @@
                                                                     href="{{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}">Partager</a>
                 </div>
                 <a class="waves-effect waves-light btn greenMyO"
-                   href="mailto:?to= &subject={{ flat.reference }}%20-%20{{ flat.typeBien.nom }}%20{{ flat.typeLogement.nom }}%20{{ residence.nom }}%20-%20My%20Orleans&body={{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}">
+                   href="mailto:?to= &subject={{ flat.reference }}%20-%20{{ flat.typeBien.nom }}%20{{ flat.typeLogement.nom }}%20{{ residence.nom }}%20-%20My%20Orleans&body=Bonjour,%0A%0AJ'ai trouvé un logement qui devrait vous intéresser sur {{ absolute_url( path('home'))|url_encode }}%0A%0AVoici le lien vers l'annonce:%0A{{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}%0A%0ADans certains cas, le lien est inactif. Veuillez alors le copier dans la barre d'adresse de votre navigateur.">
                     <i class="material-icons">mail</i>
                 </a>
             </div>
