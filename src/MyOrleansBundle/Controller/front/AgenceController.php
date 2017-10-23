@@ -63,7 +63,7 @@ class AgenceController extends Controller
 
         $partenaires = $em->getRepository(Partenaire::class)->findBy([], ['tri'=>'ASC']);
         $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],5,0);
-        $evenements = $em->getRepository(Evenement::class)->findAll();
+        $evenements = $em->getRepository(Evenement::class)->findBy([], ['dateDebut'=>'ASC']);
         $cover = $em->getRepository(Media::class)->findAll();
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
