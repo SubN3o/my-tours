@@ -158,21 +158,21 @@
             </div>
         </div>
         {% if residence.offre != null %}
-        <div class="col offset-l1 l2" id="offre">
-            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-                <div class="flipper">
-                    <div class="front">
-                        <img class="vignette" src="{{ asset('img/offreFile.png') }}">
-                        {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
-                        <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
-                        {% endfor %}
-                    </div>
-                    <div class="back">
-                        <p>{{ residence.offre }}</p>
+            <div class="col offset-l1 l2" id="offre">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <img class="vignette" src="{{ asset('img/offreFile.png') }}">
+                            {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
+                                <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
+                            {% endfor %}
+                        </div>
+                        <div class="back">
+                            <p>{{ residence.offre }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         {% endif %}
     </div>
 
@@ -340,9 +340,7 @@
                                                 <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
                                                 </div>
                                                 <div class="col s2 l3">
-                                                    <div class="col s2 l3">
-                                                        <div class="btn white black-text">Voir</div>
-                                                    </div>
+                                                    <div class="btn white black-text">Voir</div>
                                                 </div>
                                             </a>
                                         {% else %}
