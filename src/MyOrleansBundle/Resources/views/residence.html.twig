@@ -63,6 +63,7 @@
                     <p class="col s12">Livraison {{ residence.dateLivraison }}</p>
                     <p class="col s12">Du {{ typeMin }} au {{ typeMax }}</p>
                     {% transchoice flatsDispo %}
+                    {0} <p class="col s12">Aucun lot disponible</p> |
                     {1} <p class="col s12">%count% lot disponible</p> |
                     ]1,Inf[ <p class="col s12">%count% lots disponibles</p>
                     {% endtranschoice %}
@@ -261,6 +262,7 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T1Dispo %}
+                                            {0} %count% logement |
                                             {1} %count% logement |
                                             ]1,Inf[ %count% logements
                                             {% endtranschoice %}
@@ -320,6 +322,7 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T2Dispo %}
+                                            {0} %count% logement |
                                             {1} %count% logement|
                                             ]1,Inf[ %count% logements
                                             {% endtranschoice %}
@@ -381,6 +384,7 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T3Dispo %}
+                                            {0} %count% logement |
                                             {1} %count% logement|
                                             ]1,Inf[ %count% logements
                                             {% endtranschoice %}
@@ -440,6 +444,7 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T4Dispo %}
+                                            {0} %count% logement |
                                             {1} %count% logement|
                                             ]1,Inf[ %count% logements
                                             {% endtranschoice %}
@@ -499,6 +504,7 @@
                                     <div class="col s2 l3 ">
                                         <div class="btn greenMyO">
                                             {% transchoice T5Dispo %}
+                                            {0} %count% logement |
                                             {1} %count% logement|
                                             ]1,Inf[ %count% logements
                                             {% endtranschoice %}
