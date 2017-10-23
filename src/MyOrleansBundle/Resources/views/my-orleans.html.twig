@@ -145,7 +145,7 @@
         <div class="col offset-s1 s10">
             {% for partenaire in partenaires %}
                 <div class="col s1 partenaire">
-                    <a {% if partenaire.url != null %}href="{{ partenaire.url }}"{% endif %}>
+                    <a {% if partenaire.url != null %}href="{{ partenaire.url }}" target="_blank"{% endif %}>
                         <img class="responsive-img" src="{{ asset('uploads/'~partenaire.media.mediaName) }}">
                     </a>
                 </div>
