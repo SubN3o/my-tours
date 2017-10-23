@@ -66,16 +66,16 @@
     <div class="row">
         <div class="carouselRea">
             <div class="carousel">
-                <a class="carousel-item" href="#Elégance de Loire"><img
-                            src="{{ asset('img/rea/ElégancedeLoire.jpg') }}">
+                <a class="carousel-item" href="#Elegance de Loire"><img
+                            src="{{ asset('img/rea/ElegancedeLoire.jpg') }}">
                     <div class="realisation">Elégance de Loire</div>
                 </a>
-                <a class="carousel-item" href="#L'Amiral de Coligny"><img
+                <a class="carousel-item" href="#LAmiral de Coligny"><img
                             src="{{ asset('img/rea/LAmiraldeColigny.jpg') }}">
                     <div class="realisation">L'Amiral de Coligny</div>
                 </a>
-                <a class="carousel-item" href="#La Résidence des Charmes"><img
-                            src="{{ asset('img/rea/LaRésidencedesCharmes.jpg') }}">
+                <a class="carousel-item" href="#La Residence des Charmes"><img
+                            src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}">
                     <div class="realisation">La Résidence des Charmes</div>
                 </a>
                 <a class="carousel-item" href="#La Souche Sud"><img src="{{ asset('img/rea/LaSoucheSud.jpg') }}">
@@ -96,21 +96,21 @@
                             src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}">
                     <div class="realisation">Le Clos de la Cerisaille</div>
                 </a>
-                <a class="carousel-item" href="#Le Lièvre d'Or"><img src="{{ asset('img/rea/LeLièvredOr.jpg') }}">
-                    <div class="realisation">Le Lièvre d'Or</div>
+                <a class="carousel-item" href="#Le Lievre d'Or"><img src="{{ asset('img/rea/LeLievredOr.jpg') }}">
+                    <div class="realisation">Le Lievre d'Or</div>
                 </a>
-                <a class="carousel-item" href="#Le Parc de l'école normale"><img
-                            src="{{ asset('img/rea/LeParcdelécolenormale.jpg') }}">
+                <a class="carousel-item" href="#Le Parc de lecole normale"><img
+                            src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}">
                     <div class="realisation">Le Parc de l'école normale</div>
                 </a>
                 <a class="carousel-item" href="#Les Cascades"><img src="{{ asset('img/rea/LesCascades.jpg') }}">
                     <div class="realisation">Les Cascades</div>
                 </a>
-                <a class="carousel-item" href="#Les Jardins d'Andréa"><img
-                            src="{{ asset('img/rea/LesJardinsdAndréa.jpg') }}">
+                <a class="carousel-item" href="#Les Jardins d'Andrea"><img
+                            src="{{ asset('img/rea/LesJardinsdAndrea.jpg') }}">
                     <div class="realisation">Les Jardins d'Andréa</div>
                 </a>
-                <a class="carousel-item" href="#Les Vergers d'Olivet"><img
+                <a class="carousel-item" href="#Les Vergers dOlivet"><img
                             src="{{ asset('img/rea/LesVergersdOlivet.jpg') }}">
                     <div class="realisation">Les Vergers d'Olivet</div>
                 </a>
@@ -122,19 +122,19 @@
         <div class="carouselEvenement">
             <div class="carousel">
                 {% for evenement in evenements %}
-                <a class="carousel-item" href="#1">
-                    <div class="polaroid">
-                        <img class="col s12 responsive-img" src="{{ asset('uploads/'~evenement.media.mediaName) }}">
-                        <div class="col s12 titreEvenement center">
-                            <span>{{ evenement.nom }}</span>
-                            <p>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
-                                {{ evenement.dateDebut|date('Y') }}</p>
+                    <a class="carousel-item" href="#1">
+                        <div class="polaroid">
+                            <img class="col s12 responsive-img" src="{{ asset('uploads/'~evenement.media.mediaName) }}">
+                            <div class="col s12 titreEvenement center">
+                                <span>{{ evenement.nom }}</span>
+                                <p>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                    {{ evenement.dateDebut|date('Y') }}</p>
+                            </div>
+                            <div class="col s12 evenement">
+                                <p>{{ evenement.description[:200] }} ...</p>
+                            </div>
                         </div>
-                        <div class="col s12 evenement">
-                            <p>{{ evenement.description[:200] }} ...</p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
                 {% endfor %}
             </div>
         </div>
