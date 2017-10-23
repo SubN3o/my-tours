@@ -1,6 +1,31 @@
 /* --------------------------------------------------------------------*/
 /* ----------------------------- GENERAL ------------------------------*/
 /* --------------------------------------------------------------------*/
+@font-face {
+    font-family: "Montserrat";
+    src: url('../fonts/Montserrat/Montserrat-regular.ttf');
+}
+
+@font-face {
+    font-family: "Cantarell";
+    src: url('../fonts/Cantarell/Cantarell-regular.ttf');
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url('../fonts/Lato/Lato-regular.ttf');
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url('../fonts/Gill_Sans/Gill Sans MT.ttf');
+}
+
+@font-face {
+    font-family: "Work Sans";
+    src: url('../fonts/Work_Sans/WorkSans-regular.ttf');
+}
+
 * {
     margin: 0;
     padding: 0;
