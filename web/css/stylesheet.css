@@ -635,7 +635,7 @@ video {
     margin: 0;
 }
 
-.slider {
+.temoignage .slider {
     position: relative;
 }
 
@@ -643,7 +643,7 @@ video {
     filter: brightness(60%);
 }
 
-.slider .slides li .caption{
+.temoignage .slider .slides li .caption{
     top: 0;
     left: 0;
     width: 100%;
@@ -654,20 +654,20 @@ video {
 
 }
 
-.slider .slides li .caption p{
+.temoignage .slider .slides li .caption p{
     padding: 10px;
 }
 
-.slider .slides li .caption span {
+.temoignage .slider .slides li .caption span {
     font-size: 24pt;
 }
 
-.slider .indicators {
+.temoignage .slider .indicators {
     bottom: 50px;
     z-index: 10;
 }
 
-.slider .indicators .indicator-item.active {
+.temoignage .slider .indicators .indicator-item.active {
     background-color: #B5CC17;
 }
 
@@ -1320,47 +1320,24 @@ video {
     margin: 20px 0;
 }
 
-.sliderResidence .slider, .sliderResidence .slider .slides {
-    height: 600px;
-}
-
-.sliderResidence .prev {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    left: 0;
-    z-index: 100;
-    padding: 0;
-}
-
-.sliderResidence .next {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    right: 0;
-    z-index: 100;
-    padding: 0;
-}
-
-.sliderResidence .prev > i, .sliderResidence .next > i {
-    font-size: 128px;
-}
-
 .sliderResidence a > i {
     position: absolute;
-    bottom: 5%;
+    bottom: 10%;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     font-size: 64px;
+}
+
+.sliderResidence .slider .indicators {
+    bottom: 50px;
+    z-index: 10;
+}
+
+.sliderResidence .slider .indicators .indicator-item.active {
+    background-color: #B5CC17;
 }
 
 #modalYtp .modal-content {
@@ -1383,7 +1360,8 @@ video {
     text-transform: uppercase;
 }
 
-.encart h2 {
+.encart h1 {
+    color: white;
     font-weight: 300;
     margin: 0 0;
     font-size: 70pt;
@@ -1456,11 +1434,11 @@ video {
 
 .accrocheResidence {
     margin-top: 70px;
-    padding: 5px 20px 10px 20px;
     background-color: #f9f9f7;
 }
 
 .accroche {
+    padding-top: 20px;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
@@ -1474,6 +1452,7 @@ video {
 }
 
 .description {
+    padding-bottom: 20px;
     font-family: Cantarell;
     font-weight: 400;
     font-size: 17pt;
@@ -1578,7 +1557,7 @@ video {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-    background-color: white;
+    background-color: transparent;
     padding: 20px;
 }
 
@@ -1694,10 +1673,6 @@ video {
 }
 
 @media screen and (max-width: 992px) {
-
-    .sliderResidence .slider, .sliderResidence .slider .slides {
-        height: 300px;
-    }
 
     .encart {
         width: 100%;

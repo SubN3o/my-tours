@@ -27,7 +27,7 @@
                             <a href="#modalYtp"><i class="material-icons white-text">play_circle_outline</i></a>
                         {% endif %}
                         <div class="encart center">
-                            <h2>{{ residence.nom }}</h2>
+                            <h1>{{ residence.nom }}</h1>
                             <p>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}
                             </p>
                         </div>
@@ -39,10 +39,6 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <div class="col s12">
-                    <button class="prev btn-flat"><i class="material-icons white-text">chevron_left</i></button>
-                    <button class="next btn-flat"><i class="material-icons white-text">chevron_right</i></button>
-                </div>
             </div>
         </div>
 
@@ -151,12 +147,12 @@
 
     <!-- Description Résidence -->
     <div class="row">
-        <div class="col offset-l2 s12 l6">
-            <div class="card-panel accrocheResidence">
+        <div class="col s12 accrocheResidence">
+            <div class="col offset-l2 l6">
                 <h3 class="center accroche">{{ residence.accroche }}</h3>
-                <div class="description">{{ residence.description | raw }}</div>
+                <div class="center description">{{ residence.description | raw }}</div>
             </div>
-        </div>
+
         {% if residence.offre != null %}
             <div class="col offset-l1 l2" id="offre">
                 <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
@@ -174,6 +170,7 @@
                 </div>
             </div>
         {% endif %}
+        </div>
     </div>
 
     <!-- Effet Parallax -->
@@ -185,7 +182,7 @@
 
     <!-- Situation Résidence GoogleMap -->
 
-    <h1>Situation de la résidence</h1>
+    <h2>Situation de la résidence</h2>
 
     <div class="row">
 
@@ -225,7 +222,7 @@
     </div>
 
     <!-- Tableau lots disponibles -->
-    <h1>Consultez nos biens disponibles</h1>
+    <h2>Consultez nos biens disponibles</h2>
 
     <div class="row">
         <div class="col offset-l2 s12 l8">
@@ -550,7 +547,7 @@
     </div>
 
     <!-- Suggestion residence -->
-    <h1>La sélection My Orléans</h1>
+    <h2>La sélection My Orléans</h2>
 
     <div class="row">
         <div class="col offset-l1 s12 l10">
@@ -643,31 +640,23 @@
     <script type="text/javascript">
         $(document).ready(function () {
             // Slider residence
-            $('.slider').slider({
-                indicators: false,
-                interval: 12000,
-                height: null
-            }, 'pause');
+            if (window.innerWidth > 992) {
+                $('.slider').slider({
+                    indicators: true,
+                    interval: 12000,
+                    height: 600
+                });
+            }
+            if (window.innerWidth <= 992) {
+                $('.slider').slider({
+                    indicators: true,
+                    interval: 12000,
+                    height: 300
+                });
+            }
 
             $('.slider').slider('pause');
 
-            $('.next').click(function () {
-                $('.slider').slider('next');
-            });
-            $('.prev').click(function () {
-                $('.slider').slider('prev');
-            });
-
-            $('select').material_select();
-
-            $('.parallax').parallax();
-
-            $('.carousel').carousel({
-                indicators: true,
-                dist: 0,
-                shift: 20,
-                duration: 100
-            });
         });
     </script>
     <script>
