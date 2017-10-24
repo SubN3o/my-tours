@@ -19,10 +19,10 @@
 {% endblock video %}
 
 {% block content %}
-    <h1>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h1>
+    <h2>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h2>
     <!-- Mosaïque Résidences -->
     <div class="row">
-        <div class="offset-s1 col s10 mosaic">
+        <div class="col offset-l1 s12 l10 mosaic">
             <!-- Colonne Gauche -->
             <div class='colonne'>
                 {% for residence in residenceCol1 %}
@@ -31,7 +31,7 @@
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu">
-                            <p>{{ residence.nom }}</p>
+                            <h3>{{ residence.nom }}</h3>
                             <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu">
-                            <p>{{ residence.nom }}</p>
+                            <h3>{{ residence.nom }}</h3>
                             <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu">
-                            <p>{{ residence.nom }}</p>
+                            <h3>{{ residence.nom }}</h3>
                             <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
         </div>
     </div>
 
-    <h1 class=" hide-on-small-only">NOTRE ÉQUIPE</h1>
+    <h2 class=" hide-on-small-only">NOTRE ÉQUIPE</h2>
     <div class="row  hide-on-small-only">
         <!-- Barillet équipe -->
         <div class="col offset-l1 l5">
@@ -99,9 +99,8 @@
                                 <li>
                                     <a class="active" href="#">
                                         <div class="bio center circle">
-                                            <h5>{{ collaborateur.prenom }} {{ collaborateur.nom }}</h5>
-                                            <p>Métier : {{ collaborateur.fonction }}</p>
-                                            <p>E-mail : {{ collaborateur.email }}</p>
+                                            <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
+                                            <p>{{ collaborateur.fonction }}</p>
                                             <p class="vision">Sa vision :</p>
                                             <p>"{{ collaborateur.bio }}"</p>
                                         </div>
@@ -111,9 +110,8 @@
                                 <li>
                                     <a>
                                         <div class="bio center circle">
-                                            <h5>{{ collaborateur.prenom }} {{ collaborateur.nom }}</h5>
-                                            <p>Métier : {{ collaborateur.fonction }}</p>
-                                            <p>E-mail : {{ collaborateur.email }}</p>
+                                            <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
+                                            <p>{{ collaborateur.fonction }}</p>
                                             <p class="vision">Sa vision :</p>
                                             <p>"{{ collaborateur.bio }}"</p>
                                         </div>
@@ -129,7 +127,7 @@
         <div class="offset-s1 col l5 s10">
             <div class="temoignage">
                 <div class="enteteCarousel">
-                    <p>CE QUE NOS CLIENTS PENSENT DE NOUS</p>
+                    <h3>CE QUE NOS CLIENTS PENSENT DE NOUS</h3>
                 </div>
                 <div class="slider">
                     <ul class="slides">
@@ -138,8 +136,8 @@
                                 <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}"
                                      alt="témoin">
                                 <div class="caption center-align">
-                                    <h3>{{ temoignage.auteur }}</h3>
-                                    <h5>{{ temoignage.message }}</h5>
+                                    <span>{{ temoignage.auteur }}</span>
+                                    <p>{{ temoignage.message }}</p>
                                 </div>
                             </li>
                         {% endfor %}
