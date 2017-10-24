@@ -3,7 +3,7 @@
 {% block content %}
     <!-- Search Complete -->
     <div class="row completeSearch">
-        <div class="offset-s1 offset-m2 offset-l1 col s10 m8 l4">
+        <div class="col offset-m2 offset-l1 s12 m8 l4">
 
             <div class="card">
                 {{ form_start(completeSearch) }}
@@ -20,10 +20,10 @@
                     <div id="localisation">
                         <h4>Où souhaitez-vous acheter ?</h4>
                         <div class="row no-margin-bottom">
-                            <div class="offset-s1 offset-xl1 col s10 xl4 localisation">
+                            <div class="col offset-s1 offset-xl1 s10 xl4 localisation">
                                 <p>Localisation</p>
                             </div>
-                            <div class="offset-s1 offset-xl1 col s10 xl6">
+                            <div class="col offset-s1 offset-xl1 s10 xl6">
                                 {{ form_widget(completeSearch.ville) }}
                                 {{ form_errors(completeSearch.ville) }}
                             </div>
@@ -34,7 +34,7 @@
                         <div class="row no-margin-bottom">
                             <div class="col s12">
                                 <div class="row">
-                                    <div class="offset-s2 col s8 typeSearch">
+                                    <div class="col offset-s2 s8 typeSearch">
                                         <span class="T1">T1</span>
                                         <span class="T2">T2</span>
                                         <span class="T3">T3</span>
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="offset-s2 col s8 curseur">
+                                    <div class="col offset-s2 s8 curseur">
                                         <div class="slider type2">
                                             {{ form_widget(completeSearch.type) }}
                                             {{ form_errors(completeSearch.type) }}
@@ -63,17 +63,17 @@
                         <div class="row no-margin-bottom">
                             <div class="col s12">
                                 <div class="row">
-                                    <div class="offset-s1 col s4 budget">
+                                    <div class="col offset-s1 s4 budget">
                                         <p>Budget min</p>
                                         {{ form_widget(completeSearch.budgetMin) }}
                                     </div>
-                                    <div class="offset-s2 col s4 budget">
+                                    <div class="col offset-s2 s4 budget">
                                         <p>Budget max</p>
                                         {{ form_widget(completeSearch.budgetMax) }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="offset-s2 col s8 curseur">
+                                    <div class="col offset-s2 s8 curseur">
                                         <div id="slider-range" class="slider type2"></div>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
             </div>
         </div>
 
-        <div class="col l6 hide-on-med-only">
+        <div class="col l6 hide-on-med-and-down">
             <div class="card" id="map"></div>
         </div>
 
@@ -106,7 +106,7 @@
 
     <div class="row carte-liste-articles">
 
-        <div class="offset-s1 col s10 liste-biens">
+        <div class="col offset-l1 s12 l10 liste-biens">
 
             <div class="row center no-margin-bottom">
                 {% set nb_res = residences|length %}

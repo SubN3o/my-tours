@@ -1232,7 +1232,7 @@ video {
     letter-spacing: .55pt;
 }
 
-.bandeau > h4 {
+.bandeau > h3 {
     font-size: 24pt;
     text-transform: uppercase;
     color: #1D1D1B;
@@ -1255,15 +1255,7 @@ video {
     letter-spacing: .1pt;
 }
 
-.bandeau > div > .prix {
-    text-align: right;
-    font-weight: 400;
-    font-size: 15pt;
-    color: #1D1D1B;
-    letter-spacing: .1pt;
-}
-
-.bandeau > div > .type {
+.bandeau > div > .prix, .bandeau > div > .type {
     text-align: right;
     font-weight: 400;
     font-size: 15pt;
@@ -1291,13 +1283,32 @@ video {
 }
 
 @media screen and (max-width: 1200px) {
-    .bandeau > div > .prix, .bandeau > div > .type {
-        text-align: left;
+    .bandeau > h3 {
+        font-size: 20pt;
     }
-}
+
+    .bandeau > div > .lieu, .bandeau > div > .livraison {
+        font-size: 12pt;
+    }
+
+    .bandeau > div > .prix, .bandeau > div > .type {
+        text-align: right;
+        font-size: 12pt;
+    }
 
 @media screen and (max-width: 992px) {
+    .bandeau > h3 {
+        font-size: 15pt;
+    }
 
+    .bandeau > div > .lieu, .bandeau > div > .livraison {
+        font-size: 9pt;
+    }
+
+    .bandeau > div > .prix, .bandeau > div > .type {
+        text-align: right;
+        font-size: 9pt;
+    }
 }
 
 /* --------------------------------------------------------------------*/

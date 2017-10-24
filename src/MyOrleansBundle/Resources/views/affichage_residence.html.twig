@@ -9,14 +9,14 @@
                 {% endif %}
                 <div class="card-title">
                     <div class="card-content bandeau">
-                        <h4>{{ residence.nom }}</h4>
+                        <h3>{{ residence.nom }}</h3>
                         <div class="row">
-                            <p class="col s12 xl6 lieu">{{ residence.ville.nom }} {% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}</p>
-                            <p class="col s12 xl6 prix">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</p>
+                            <p class="col s6 lieu">{{ residence.ville.nom }} {% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}</p>
+                            <p class="col s6 prix">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</p>
                         </div>
                         <div class="row">
-                            <p class="col s12 xl8 livraison">Livraison {{ residence.dateLivraison }}</p>
-                            <p class="col s12 xl4 type">Du {{ typeMin }} au {{ typeMax }}</p>
+                            <p class="col s8 livraison">Livraison {{ residence.dateLivraison }}</p>
+                            <p class="col s4 type">Du {{ typeMin }} au {{ typeMax }}</p>
                         </div>
                     </div>
                 </div>
