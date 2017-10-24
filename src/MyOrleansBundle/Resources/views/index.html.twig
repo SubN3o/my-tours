@@ -126,7 +126,7 @@
             </div>
         </div>
         <!-- Slider Temoignages -->
-        <div class="offset-s1 col l5 s10">
+        <div class="col offset-s1 offset-l1 l4 s10">
             <div class="temoignage">
                 <div class="enteteCarousel">
                     <h3>CE QUE NOS CLIENTS PENSENT DE NOUS</h3>
@@ -144,12 +144,6 @@
                             </li>
                         {% endfor %}
                     </ul>
-                    <div class="col s12">
-                        <button class="prev btn grey darken-3 btn-floating btn-large"><i
-                                    class="fa fa-caret-left white-text text-lighten-1"></i></button>
-                        <button class="next btn grey darken-3 btn-floating btn-large"><i
-                                    class="fa fa-caret-right white-text text-lighten-1"></i></button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -170,29 +164,19 @@
             // Slider temoignage
             $('.slider').slider({
                 height: 300,
-                indicators: false,
+                indicators: true,
                 interval: 12000
             });
 
             //$('.slider').slider('pause');
 
-            $('.next').click(function () {
-                $('.slider').slider('next');
-            });
-            $('.prev').click(function () {
-                $('.slider').slider('prev');
-            });
+//            $('.next').click(function () {
+//                $('.slider').slider('next');
+//            });
+//            $('.prev').click(function () {
+//                $('.slider').slider('prev');
+//            });
 
-            $('select').material_select();
-
-            $('.parallax').parallax();
-
-            $('.carousel').carousel({
-                indicators: true,
-                dist: 0,
-                shift: 20,
-                duration: 100
-            });
         });
     </script>
     <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>

@@ -1,34 +1,6 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block content %}
-    {#<!-- Chiffres -->#}
-    {#<div class="row center countRow">#}
-    {#<div class="col s4">#}
-    {#{% for chiffre in chiffres %}#}
-    {#{% if loop.index == 1 %}#}
-    {#<span class="count countTitle">{{ chiffre.valeur }}</span>#}
-    {#<p class="chiffreNom">{{ chiffre.nom }}</p>#}
-    {#{% endif %}#}
-    {#{% endfor %}#}
-    {#</div>#}
-    {#<div class="col s4">#}
-    {#{% for chiffre in chiffres %}#}
-    {#{% if loop.index == 2 %}#}
-    {#<span class="count countTitle">{{ chiffre.valeur }}</span>#}
-    {#<p class="chiffreNom">{{ chiffre.nom }}</p>#}
-    {#{% endif %}#}
-    {#{% endfor %}#}
-    {#</div>#}
-    {#<div class="col s4 ">#}
-    {#{% for chiffre in chiffres %}#}
-    {#{% if loop.index == 3 %}#}
-    {#<span class="count countTitle">{{ chiffre.valeur }}</span>#}
-    {#<p class="chiffreNom">{{ chiffre.nom }}</p>#}
-    {#{% endif %}#}
-    {#{% endfor %}#}
-    {#</div>#}
-    {#</div>#}
-
     <!-- Search Complete -->
     <div class="row completeSearch">
         <div class="offset-s1 offset-m2 offset-l1 col s10 m8 l4">
@@ -139,19 +111,19 @@
             <div class="row center no-margin-bottom">
                 {% set nb_res = residences|length %}
                 {% if  resultatRecherche == 0 %}
-                    <h1>
+                    <h2>
                         Nos résidences actuellement disponibles.
-                    </h1>
+                    </h2>
                 {% elseif resultatRecherche == 1 %}
-                    <h1>Aucune résidence ne correspond à votre recherche.</h1>
-                    <h1>Découvrez celles actuellement disponibles.</h1>
+                    <h2>Aucune résidence ne correspond à votre recherche.</h2>
+                    <h2>Découvrez celles actuellement disponibles.</h2>
                 {% else %}
-                    <h1 class="section-title">
+                    <h2 class="section-title">
                         {% transchoice nb_res %}
                         {1} 1 résidence correspond à votre recherche|
                         ]1,Inf[ %count% résidences correspondent à votre recherche.
                         {% endtranschoice %}
-                    </h1>
+                    </h2>
                 {% endif %}
             </div>
 
@@ -169,7 +141,7 @@
 
             {% if resultatRecherche == 2 %}
                 <div class="row suggestion-biens">
-                    <h1>La sélection My Orléans</h1>
+                    <h2>La sélection My Orléans</h2>
                 </div>
                 <div class="row">
                     {% for residence in residencesSuggerees %}

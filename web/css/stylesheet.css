@@ -331,13 +331,11 @@ footer p {
     margin-top: 100px;
     position: fixed;
     right: 20px;
-    padding: 10px;
+    padding: 15px;
     z-index: 200;
     -webkit-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
     -moz-animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
-
     animation: pulse 2s infinite cubic-bezier(0, 0, 0, 0.1);
-
 }
 
 .pulse-button:hover {
@@ -633,7 +631,7 @@ video {
 
 .enteteCarousel > h3 {
     padding: 15px;
-    font-size: 19pt;
+    font-size: 17pt;
     margin: 0;
 }
 
@@ -664,38 +662,14 @@ video {
     font-size: 24pt;
 }
 
-.prev {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    left: -45px;
-    z-index: 100;
+.slider .indicators {
+    bottom: 50px;
+    z-index: 10;
 }
 
-.next {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    right: -45px;
-    z-index: 100;
+.slider .indicators .indicator-item.active {
+    background-color: #B5CC17;
 }
-
-.btn-large .fa-caret-right {
-    font-size: 64px;
-    margin-left: 6px;
-}
-
-.btn-large .fa-caret-left {
-    font-size: 64px;
-    margin-left: -9px;
-}
-
 
 @media screen and (max-width: 992px) {
     .mosaic {
@@ -1008,35 +982,6 @@ video {
 /* --------------------------------------------------------------------*/
 /* -------------------------- Nos Residence ---------------------------*/
 /* --------------------------------------------------------------------*/
-/*.countRow {*/
-/*margin-top: 30px;*/
-/*margin-bottom: 50px;*/
-/*}*/
-
-/*.countTitle {*/
-/*font-size: 100px;*/
-/*font-weight: 300;*/
-/*}*/
-
-/*.countTitle::after {*/
-/*content: "";*/
-/*position: relative;*/
-/*display: block;*/
-/*width: 300px;*/
-/*height: 2px;*/
-/*margin: 0 auto;*/
-/*background-color: #B5CC17;*/
-/*}*/
-
-/*.chiffreNom {*/
-/*color: #676767;*/
-/*font-family: Montserrat;*/
-/*font-weight: 400;*/
-/*letter-spacing: .55pt;*/
-/*font-size: 16pt;*/
-/*text-transform: uppercase;*/
-/*}*/
-
 .completeSearch {
     margin-top: 40px;
 }
@@ -1349,6 +1294,10 @@ video {
     .bandeau > div > .prix, .bandeau > div > .type {
         text-align: left;
     }
+}
+
+@media screen and (max-width: 992px) {
+
 }
 
 /* --------------------------------------------------------------------*/

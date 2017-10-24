@@ -39,6 +39,8 @@ $(document).ready(function () {
             closeOnClick: true
         }
     );
+
+    $('select').material_select();
 });
 
 $(document).ready(function(){
