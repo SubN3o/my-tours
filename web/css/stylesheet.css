@@ -1295,6 +1295,7 @@ video {
         text-align: right;
         font-size: 12pt;
     }
+}
 
 @media screen and (max-width: 992px) {
     .bandeau > h3 {
