@@ -27,10 +27,6 @@ class ResidencesController extends Controller
      */
     public function residenceAction(Residence $residence, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
     {
-//        $parcours = null;
-//        if ($session->has('parcours')) {
-//            $parcours = $session->get('parcours');
-//        }
 
         $em = $this->getDoctrine()->getManager();
 
@@ -58,14 +54,50 @@ class ResidencesController extends Controller
         $residencesSuggerees = $em->getRepository(Residence::class)->suggestResidence($idResidence);
 
 
+        $telephoneNumber = $this->getParameter('telephone_number');
+
+        // Formulaire de contact
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($this->getParameter('mailer_user'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
+            return $this->redirectToRoute('home');
+        }
+
+
         return $this->render('MyOrleansBundle::residence.html.twig', [
+            'telephone_number' => $telephoneNumber,
+            'form' => $formulaire->createView(),
             'residence' => $residence,
             'flatsT1' => $flatsT1,
             'flatsT2' => $flatsT2,
             'flatsT3' => $flatsT3,
             'flatsT4' => $flatsT4,
             'flatsT5' => $flatsT5,
-//            'parcours' => $parcours,
             'media' => $medias,
             'prixMin' => $prixMin,
             'flatsDispo' => $flatsDispo,

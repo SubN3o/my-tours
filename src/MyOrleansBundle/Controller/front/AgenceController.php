@@ -54,12 +54,10 @@ class AgenceController extends Controller
         $chiffres = $em->getRepository(Chiffre::class)->findBy([], ['tri'=>'ASC'], 3);
 
 
-//        $telephone_number = $this->getParameter('telephone_number');
-//        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $telephone_number = $this->getParameter('telephone_number');
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
 
-//        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
-
-//        $formulaire->handleRequest($request);
+        $formulaire->handleRequest($request);
 
         $partenaires = $em->getRepository(Partenaire::class)->findBy([], ['tri'=>'ASC']);
         $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],5,0);
@@ -67,36 +65,36 @@ class AgenceController extends Controller
         $cover = $em->getRepository(Media::class)->findAll();
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
-//        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-//
-//            $mailer = $this->get('mailer');
-//
-//            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-//            $message
-//                ->setTo($this->getParameter('mailer_user'))
-//                ->setFrom($this->getParameter('mailer_user'))
-//                ->setBody(
-//                    $this->renderView(
-//
-//                        'MyOrleansBundle::receptionForm.html.twig',
-//                        array('client' => $client)
-//                    ),
-//                    'text/html'
-//                );
-//
-//            $mailer->send($message);
-//
-//            $em->persist($client);
-//            $em->flush();
-//
-//            $this->addFlash('success', 'votre message a bien été envoyé');
-//
-//            return $this->redirectToRoute('agence');
-//        }
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($this->getParameter('mailer_user'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
+
+            return $this->redirectToRoute('agence');
+        }
 
         return $this->render('MyOrleansBundle::my-orleans.html.twig',
             [
-//                'telephone_number' => $telephone_number,
+                'telephone_number' => $telephone_number,
                 'mois' => $mois,
                 'parcours' => $parcours,
                 'partenaires' => $partenaires,
@@ -104,8 +102,8 @@ class AgenceController extends Controller
                 'evenements' => $evenements,
                 'cover' => $cover,
                 'chiffres' => $chiffres,
-                'accueil' => $accueil
-//                'form' => $formulaire->createView()
+                'accueil' => $accueil,
+                'form' => $formulaire->createView()
 
             ]
         );

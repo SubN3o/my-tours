@@ -36,23 +36,9 @@ class NosResidencesController extends Controller
     {
 
         // Definition des contenus associes par defaut
-//        $message = "Découvrez les residences suggérés";
-//        $objectif = "investir";
-//        $suggestionActive = 0;
+
         $residencesSuggerees = '';
         $resultatRecherche = 0;
-
-        // Definition du parcours du visiteur
-//        $parcours = null;
-//
-//        if ($session->has('parcours')) {
-//            $parcours = $session->get('parcours');
-//            if ($parcours == $this->getParameter('parcours_investisseur')) {
-//                $objectif = 'investir';
-//            } else {
-//                $objectif = 'Residence Principale';
-//            }
-//        }
 
         // Generation du manager
         $em = $this->getDoctrine()->getManager();
@@ -62,12 +48,6 @@ class NosResidencesController extends Controller
         // Recuperation de la liste des villes et des quartiers dans lesqulles se trouvent les residences
         $villes = $em->getRepository(Ville::class)->findAll();
         $quartiers = $em->getRepository(Quartier::class)->findAll();
-
-        // Generation du dernier article avec le tag 'Investissement'
-//        $articles = $em->getRepository(Article::class)->articleByTag('Investissement', 1);
-//        if (!empty($articles)) {
-//            $article = $articles[0];
-//        }
 
         // Generation du moteur de recherche simplifie
         $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType', null, ['action' => $this->generateUrl('nosresidences')]);
@@ -79,33 +59,12 @@ class NosResidencesController extends Controller
         // affectation des valeurs ville et type si le form simpleSearch est valide
         if ($simpleSearch->isSubmitted() && $simpleSearch->isValid()) {
 
-//            // Envoi de contenu different en fonction du bouton clique : investisseur ou residence principale
-//            $objectif = 'investir';
-//            $tag = 'Investissement';
-//            $suggestionActive = 1;
-//
-//            $session->set('parcours', $this->getParameter('parcours_investisseur'));
-//
-//            if ($simpleSearch->get('resPrincipaleBtn')->isClicked()) {
-//                $objectif = $tag = 'Residence Principale';
-//
-//                $session->set('parcours', $this->getParameter('parcours_residence'));
-//
-//            }
-//
-//
-//            // Generation du dernier article avec le tag 'Residence Principale'
-//            if ($article = $em->getRepository(Article::class)->articleByTag($tag, 1)) {
-//                $article = $article[0];
-//            }
-//
             // Prise en compte des filtres du moteur de recherche
             $data = $simpleSearch->getData();
             $selectedVille = $data['ville'];
             $selectedType = $data['type'];
             $residences = $em -> getRepository(Residence::class)->simpleSearch($selectedVille, $selectedType);
-//
-//
+
             if (!empty($residences)){
                 $resultatRecherche = 2;
             }
@@ -115,10 +74,7 @@ class NosResidencesController extends Controller
                 $residences = $em -> getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
                 $resultatRecherche = 1;
             }
-//
-//            // Parametrage du parcours visiteur
-//            $parcours = $session->get('parcours');
-//
+
             // recherche des residences à exclure de la liste des residences à suggerer
             if (!empty($residences)) {
                 foreach ($residences as $residence) {
@@ -127,7 +83,6 @@ class NosResidencesController extends Controller
             }
 
             if ($selectedVille != null || $selectedType != null) {
-//                $residencesSuggerees = $em->getRepository(Residence::class)->simpleSuggestedSearch($idResidences, $selectedVille, $selectedType);
                 $residencesSuggerees = $em->getRepository(Residence::class)->suggestResidence($idResidences);
             }
 
@@ -142,18 +97,49 @@ class NosResidencesController extends Controller
             $residences = $em -> getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
         }
 
+        $telephoneNumber = $this->getParameter('telephone_number');
+
+        // Formulaire de contact
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($this->getParameter('mailer_user'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('MyOrleansBundle::nosResidences.html.twig', [
+            'telephone_number' => $telephoneNumber,
+            'form' => $formulaire->createView(),
             'chiffres' => $chiffres,
-//            'parcours' => $parcours,
-//            'suggestionActive' => $suggestionActive,
             'residencesSuggerees' => $residencesSuggerees,
             'residences' => $residences,
             'completeSearch' => $completeSearch->createView(),
-//            'completeSearchSmallScreen' => $completeSearch->createView(),
             'villes' => $villes,
             'quartiers' => $quartiers,
-//            'objectif' => $objectif,
-//            'article' => $article ?? null,
             'resultatRecherche' => $resultatRecherche
         ]);
 
@@ -178,10 +164,7 @@ class NosResidencesController extends Controller
         // Traitement de la requete
         if ($completeSearch->isSubmitted()) {
 
-//            $suggestionActive = 1;
             $resultatRecherche = 0;
-//            $objectif = "";
-//            $article = [];
 
             $data = $completeSearch->getData();
 
@@ -210,59 +193,57 @@ class NosResidencesController extends Controller
 
             // recherche des residences suggeres
             if ($data != null ) {
-//                $residencesSuggerees = $em -> getRepository(Residence::class)->completeSuggestedSearch($idResidences, $data);
                 $residencesSuggerees = $em -> getRepository(Residence::class)->suggestResidence($idResidences);
             }
 
-//            // Generation des contenus associes en fonction de l'objectif
-//            if (isset($data['objectif']) && $data['objectif'] == 'Residence Principale') {
-//
-//                // Generation du dernier article avec le tag 'Residence Principale'
-//                if ($article = $em->getRepository(Article::class)->articleByTag('Residence Principale', 1)) {
-//                    $article = $article[0];
-//                }
-//
-//                $objectif = "Residence Principale";
-//                $session->set('parcours', $this->getParameter('parcours_residence'));
-//            }
-//
-//            if (isset($data['objectif']) && $data['objectif'] == 'investir') {
-//
-//                // Generation du derier article avec le tag 'Investissement'
-//                if ($article = $em->getRepository(Article::class)->articleByTag('Investissement', 1)) {
-//                    $article = $article[0];
-//                }
-//
-//                $objectif = "investir";
-//                $session->set('parcours', $this->getParameter('parcours_investisseur'));
-//            }
-//
-//            // Parametrage du parcours visiteur
-//            $parcours = $session->get('parcours');
-//
-//            if (empty($objectif)) {
-//                $objectif = "investir";
-//            }
+        $telephoneNumber = $this->getParameter('telephone_number');
+
+        // Formulaire de contact
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($this->getParameter('mailer_user'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
+            return $this->redirectToRoute('home');
+        }
+
 
             return $this->render('MyOrleansBundle::nosResidences.html.twig',[
+                'telephone_number' => $telephoneNumber,
+                'form' => $formulaire->createView(),
                 'chiffres' => $chiffres,
-//                'parcours' => $parcours,
                 'completeSearch' => $completeSearch->createView(),
-//                'completeSearchSmallScreen' => $completeSearch->createView(),
-//                'suggestionActive' => $suggestionActive,
                 'residencesSuggerees' => $residencesSuggerees,
                 'residences' => $residences,
                 'villes' => $villes,
                 'quartiers' => $quartiers,
-//                'objectif' => $objectif,
-//                'article' => $article,
                 'resultatRecherche' => $resultatRecherche
             ]);
 
         }
-//        else {
-//            return $this->redirectToRoute('nosresidences');
-//        }
 
     }
 

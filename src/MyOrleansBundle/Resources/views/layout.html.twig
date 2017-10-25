@@ -9,7 +9,11 @@
     <div class="container-fluid">
 
         <!--Formulaire-->
-        {{ render(controller('MyOrleansBundle:front/Layout:formulaire')) }}
+        {#{{ render(controller('MyOrleansBundle:front/Layout:formulaire')) }}#}
+        <div class="breadcrumb formulaireBouton">
+            <a href="#" data-activates="slide-out" class="button-collapse pulse-button"><i
+                        class="material-icons">message</i></a>
+        </div>
 
         {% block video %}
         {% endblock video %}

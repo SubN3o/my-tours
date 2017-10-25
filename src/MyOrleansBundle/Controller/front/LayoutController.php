@@ -38,49 +38,6 @@ class LayoutController extends Controller
         ]);
     }
 
-    public function formulaireAction(Request $request)
-    {
-        $telephoneNumber = $this->getParameter('telephone_number');
-
-        // Formulaire de contact
-        $client = new Client();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->handleRequest($request);
-
-        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($message);
-
-            $em->persist($client);
-            $em->flush();
-
-            $this->addFlash('success', 'votre message a bien été envoyé');
-            return $this->redirectToRoute('home');
-        }
-
-        return $this->render('MyOrleansBundle::formulaire.html.twig', [
-
-            'telephone_number' => $telephoneNumber,
-            'form' => $formulaire->createView(),
-        ]);
-    }
-
     public function footerAction()
     {
         $em = $this->getDoctrine()->getManager();
