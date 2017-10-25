@@ -23,7 +23,7 @@
 
 @font-face {
     font-family: "Work Sans";
-    src: url('../fonts/Work_Sans/WorkSans-Regular.ttf');
+    src: url('../fonts/Work_Sans/WorkSans-SemiBold.ttf');
 }
 
 * {
@@ -75,7 +75,7 @@ h2 {
 
 @media screen and (max-width: 992px) {
     h2 {
-        margin-top: 10px;
+        margin-top: 20px;
         font-size: 12pt;
     }
 }
@@ -1614,7 +1614,7 @@ video {
     letter-spacing: .55pt;
     text-transform: uppercase;
     font-weight: 400;
-    font-size: 14pt;
+    font-size: 13pt;
     background-color: #B3B3B3;
     padding: 10px 0;
     color: white;
@@ -1623,9 +1623,9 @@ video {
 .accordeon-residence .collapsible-header {
     padding: 0 0;
     font-family: Work Sans;
-    letter-spacing: .55pt;
-    font-weight: 500;
-    font-size: 14pt;
+    letter-spacing: .1pt;
+    font-weight: 400;
+    font-size: 12pt;
 }
 
 .accordeon-residence .collapsible-body {
@@ -1674,11 +1674,15 @@ video {
 
 @media screen and (max-width: 992px) {
 
+    .cartouche {
+        margin: 10px 0;
+    }
+
     .encart {
         width: 100%;
     }
 
-    .encart h2 {
+    .encart h1 {
         font-weight: 300;
         margin: 0 0;
         font-size: 35pt;
@@ -1710,6 +1714,50 @@ video {
 
     .description {
         font-size: 12pt;
+    }
+
+    .service, .transport {
+        margin-top: 0;
+    }
+
+    .filtreMap {
+        width: 24px;
+    }
+
+    .filtreMap [type="radio"]:not(:checked) + label img {
+        padding: 5px 5px;
+        margin-left: -11px;
+    }
+
+    .filtreMap [type="radio"]:checked + label img {
+        margin-left: -11px;
+    }
+
+    .filtreMap p {
+        font-size: 10pt;
+    }
+
+    .accordeon-entete {
+        font-size: 4pt;
+    }
+
+    .accordeon-residence .collapsible-header{
+        font-size: 6pt;
+    }
+
+    .accordeon-residence .collapsible-body{
+        font-size: 6pt;
+    }
+
+    .accordeon-residence .btn {
+        font-size: 7pt;
+        padding: 3px;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .retourSearch2 a, .retourSearch2 a:hover, .retourSearch2 a:focus {
+        margin: 20px 0;
     }
 }
 
