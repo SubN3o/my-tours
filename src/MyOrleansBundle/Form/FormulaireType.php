@@ -42,10 +42,10 @@ class FormulaireType extends AbstractType
                 'required' => true
             ])
             ->add('telephone', TextType::class,[
-//                'required' => true
+                'required' => false
             ])
             ->add('codePostal', IntegerType::class,[
-//                'required' => true
+                'required' => false
             ])
             ->add('projet', ChoiceType::class,[
                 'expanded' => true,
