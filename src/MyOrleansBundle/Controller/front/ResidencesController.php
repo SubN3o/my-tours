@@ -85,7 +85,7 @@ class ResidencesController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'votre message a bien été envoyé');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('residences');
         }
 
 

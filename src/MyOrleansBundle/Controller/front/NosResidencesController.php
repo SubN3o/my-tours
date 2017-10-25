@@ -128,7 +128,7 @@ class NosResidencesController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'votre message a bien été envoyé');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('nosresidences');
         }
 
         return $this->render('MyOrleansBundle::nosResidences.html.twig', [
@@ -227,7 +227,7 @@ class NosResidencesController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'votre message a bien été envoyé');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('nosresidences');
         }
 
 

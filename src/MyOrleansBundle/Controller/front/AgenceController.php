@@ -89,7 +89,7 @@ class AgenceController extends Controller
 
             $this->addFlash('success', 'votre message a bien été envoyé');
 
-            return $this->redirectToRoute('agence');
+            return $this->redirectToRoute('my-orleans');
         }
 
         return $this->render('MyOrleansBundle::my-orleans.html.twig',
