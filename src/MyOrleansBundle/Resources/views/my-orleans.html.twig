@@ -2,11 +2,11 @@
 
 {% block content %}
     <div class="row">
-        <div class="col offset-l1 l5">
+        <div class="col offset-l1 l5 s12">
             <h2>My Orléans</h2>
             <div class="col s12 presentation">
                 <p>{{ accueil.presentation | raw }}</p>
-                <a href="#modalEquipe" class="btn greenMyO col push-s9"><i class="material-icons left">play_circle_outline</i>Voir
+                <a href="#modalEquipe" class="btn greenMyO col push-l9 push-s4"><i class="material-icons left">play_circle_outline</i>Voir
                     video</a>
             </div>
             <!-- Modal Video Accueil -->
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="col l5">
+        <div class="col s12 l5">
             <h2>Notre équipe</h2>
             <div class="barillet">
                 <div class="colBarillet">
@@ -63,7 +63,7 @@
                                     <a class="active" href="#">
                                         <div class="bio center circle">
                                             <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
-                                            <p>Métier : {{ collaborateur.fonction }}</p>
+                                            <p>{{ collaborateur.fonction }}</p>
                                             <p>E-mail : {{ collaborateur.email }}</p>
                                             <p class="vision">Sa vision :</p>
                                             <p>"{{ collaborateur.bio }}"</p>
@@ -75,7 +75,7 @@
                                     <a>
                                         <div class="bio center circle">
                                             <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
-                                            <p>Métier : {{ collaborateur.fonction }}</p>
+                                            <p>{{ collaborateur.fonction }}</p>
                                             <p>E-mail : {{ collaborateur.email }}</p>
                                             <p class="vision">Sa vision :</p>
                                             <p>"{{ collaborateur.bio }}"</p>
@@ -96,79 +96,79 @@
                 <ul class="slides">
                     <li>
                         <img src="{{ asset('img/rea/ElegancedeLoire.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>Elégance de Loire</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LAmiraldeColigny.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>L'Amiral de Coligny</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>La Résidence des Charmes</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LaSoucheSud.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>La Souche Sud</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LaVillaMaunoury.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>La Villa Maunoury</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeBourgOuest.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>Le Bourg Ouest</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeClosColombier.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>Le Clos Colombier</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>Le Clos de la Cerisaille</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeLievredOr.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>Le Lievre d'Or</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>Le Parc de l'école normale</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LesCascades.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>Les Cascades</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LesJardinsdAndrea.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>Les Jardins d'Andréa</span>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LesVergersdOlivet.jpg') }}">
-                        <div class="caption left-align">
+                        <div class="caption center-align">
                             <span>Les Vergers d'Olivet</span>
                         </div>
                     </li>
@@ -176,34 +176,95 @@
             </div>
         </div>
     </div>
-    <h2>Consultez notre actualité</h2>
-    <div class="row">
-        <div class="carouselEvenement">
-            <div class="carousel">
+    <h2 class="hide-on-med-and-down">Consultez notre actualité</h2>
+    <div class="row hide-on-med-and-down">
+        <div class="col l10 offset-l1 offset-s1 s11">
+            <section class="timeline">
+
+                <ol>
+                    {% for evenement in evenements %}
+
+                        {% if evenement.dateDebut|date("Ymd") < "now"|date("Ymd") %}
+
+                            <li>
+                                <div class="event past-event center">
+                                    <h3>{{ evenement.nom }}</h3>
+                                    <h4>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                        {{ evenement.dateDebut|date('Y') }}</h4>
+                                    <p>{{ evenement.description }}</p>
+                                    {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
+                                    <img class="responsive-img"
+                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}">
+                                    {#{% endfor %}#}
+                                    {#<a class="waves-effect waves-light btn white" data-toggle="modal"#}
+                                    {#data-id="{{ evenement.id }}"#}
+                                    {#href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>#}
+                                </div>
+                            </li>
+
+                        {% else %}
+                            <li>
+                                <div class="event future-event center">
+                                    <h3>{{ evenement.nom }}</h3>
+                                    <time>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                        {{ evenement.dateDebut|date('Y') }} |
+                                        <span>
+                                        {{ evenement.heureDebut|date('H:m') }} - {{ evenement.heureFin|date('H:m') }}
+                                        </span>
+                                    </time>
+                                    <p>{{ evenement.description }}</p>
+                                    {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
+                                    <img class="responsive-img"
+                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}">
+                                    {#{% endfor %}#}
+                                    <a class="button-collapse greenMyO btn" data-activates="slide-out">JE
+                                        M'INSCRIS</a>
+                                </div>
+                            </li>
+
+                        {% endif %}
+
+                    {% endfor %}
+                    <li></li>
+                </ol>
+
+                {# On place les modals dans une boucle a part, sinon cela compromet le css de la timeline  #}
                 {% for evenement in evenements %}
-                    <a class="carousel-item" href="#1">
-                        <div class="polaroid">
-                            <img class="col s12 responsive-img" src="{{ asset('uploads/'~evenement.media.mediaName) }}">
-                            <div class="col s12 titreEvenement center">
-                                <span>{{ evenement.nom }}</span>
-                                <p>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
-                                    {{ evenement.dateDebut|date('Y') }}</p>
+
+                    {% if evenement.dateDebut|date("Ymd") < "now"|date("Ymd") %}
+                        <!-- Modal Structure -->
+                        <div id="modal-{{ evenement.id }}" class="modal">
+                            <div class="modal-content center">
+                                <h3>Photos de l'événement {{ evenement.nom }}</h3>
+                                {{ render(controller('MyOrleansBundle:Carrousel:affichageCarrousel',
+                                {'id': evenement.id })) }}
                             </div>
-                            <div class="col s12 evenement">
-                                <p>{{ evenement.description[:200] }} ...</p>
+                            <div class="modal-footer">
+                                <a href="#!"
+                                   class="modal-action modal-close waves-effect waves-light grey lighten-2 btn-flat">Fermer</a>
                             </div>
                         </div>
-                    </a>
+                    {% endif %}
                 {% endfor %}
-            </div>
-        </div>
 
+
+                <div class="arrows">
+                    <button class="arrow arrow__prev disabled btn-floating btn-large greenMyO"
+                            disabled>
+                        <i class="medium material-icons">keyboard_arrow_left</i>
+                    </button>
+                    <button class="arrow arrow__next btn-floating btn-large greenMyO">
+                        <i class="medium material-icons">keyboard_arrow_right</i>
+                    </button>
+                </div>
+            </section>
+        </div>
     </div>
     <h2>Nos partenaires</h2>
     <div class="row">
-        <div class="col offset-s1 s10">
+        <div class="col s12 offset-l1 l10">
             {% for partenaire in partenaires %}
-                <div class="col s1 partenaire">
+                <div class="col s2 l1 partenaire">
                     <a {% if partenaire.url != null %}href="{{ partenaire.url }}" target="_blank"{% endif %}>
                         <img class="responsive-img" src="{{ asset('uploads/'~partenaire.media.mediaName) }}">
                     </a>
@@ -310,6 +371,7 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
     <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {

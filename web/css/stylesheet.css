@@ -990,6 +990,13 @@ video {
 
 }
 
+@media screen and (max-width: 992px){
+
+    .bioCollaborateur > li {
+        top: -300px;
+    }
+}
+
 /* --------------------------------------------------------------------*/
 /* -------------------------- Nos Residence ---------------------------*/
 /* --------------------------------------------------------------------*/
@@ -2008,21 +2015,12 @@ video {
     margin-bottom: 20px;
 }
 
-.sliderEquipe .slider .indicators {
+.sliderEquipe .slider .indicators, .sliderRea .slider .indicators {
     bottom: 50px;
     z-index: 10;
 }
 
-.sliderEquipe .slider .indicators .indicator-item.active {
-    background-color: #B5CC17;
-}
-
-.sliderRea .slider .indicators {
-    bottom: 50px;
-    z-index: 10;
-}
-
-.sliderRea .slider .indicators .indicator-item.active {
+.sliderEquipe .slider .indicators .indicator-item.active, .sliderRea .slider .indicators .indicator-item.active {
     background-color: #B5CC17;
 }
 
@@ -2031,39 +2029,10 @@ video {
     letter-spacing: .55pt;
     font-size: 19pt;
     text-transform: uppercase;
-    background-color: rgba(103, 103, 103, .8);
+    background-color: rgba(200, 200, 200, .8);
     padding: 20px;
 }
 
-/*.carouselRea .carousel .carousel-item>img {*/
-    /*width: 400px;*/
-    /*margin-left: -100px;*/
-/*}*/
-
-/*.realisation {*/
-    /*text-align: center;*/
-    /*text-transform: uppercase;*/
-    /*color: white;*/
-    /*font-family: Montserrat;*/
-    /*letter-spacing: .55pt;*/
-    /*font-size: 19pt;*/
-    /*position: absolute;*/
-    /*top: 60%;*/
-    /*-webkit-transform: translateY(-50%);*/
-    /*-moz-transform: translateY(-50%);*/
-    /*-ms-transform: translateY(-50%);*/
-    /*transform: translateY(-50%);*/
-    /*opacity: 0;*/
-/*}*/
-
-/*.carouselRea .active:hover .realisation {*/
-    /*opacity: 1;*/
-/*}*/
-
-/*.carouselRea .active:hover img {*/
-    /*filter: brightness(70%);*/
-
-/*}*/
 
 .partenaire {
     position: relative;
@@ -2081,53 +2050,298 @@ video {
     transform: translateY(-50%);
 }
 
-/*.carouselEvenement .carousel .carousel-item{*/
-    /*margin-left: -100px;*/
-    /*margin-top: -100px;*/
-/*}*/
+@media screen and (max-width: 992px) {
+    .presentation p {
+        font-size: 10pt;
+    }
 
-/*.carouselEvenement .carousel {*/
-    /*overflow: visible;*/
-    /*margin-bottom: 100px;*/
-/*}*/
+    .sliderRea span{
+        font-size: 10pt;
+    }
 
-.polaroid {
-    width: 400px;
-    height: 500px;
-    background-color: white;
-    box-shadow: 1px 1px 10px #c2c2c2;
-    padding: 10px;
+    .sliderEquipe .slider .indicators, .sliderRea .slider .indicators {
+        display: none;
+    }
+}
+/**************************   TIMELINE   **************************/
+
+/* TIMELINE */
+
+.event {
+    box-shadow: 1px 1px 3px #676767;
+}
+
+.past-event {
+    background-color: #f9f9f4;
+}
+
+.past-event time, .past-event h3, .past-event p, .past-event h4 {
+    color: #676767;
+}
+
+.past-event h3 {
+    margin-top: 10px;
     font-family: Montserrat;
     letter-spacing: .55pt;
+    font-size: 17pt;
 }
 
-.titreEvenement {
-    background-color: #2d2d2d;
-    color: white;
-    height: 50px;
+.past-event h4 {
+    margin-top: 5px;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    font-size: 13pt;
 }
 
-.titreEvenement span {
+.past-event a {
+    margin-top: 5px;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    font-size: 13pt;
+}
+
+.past-event p {
+    font-family: Cantarell;
+    letter-spacing: .1pt;
     font-size: 11pt;
-    text-transform: uppercase;
 }
 
-.titreEvenement p {
-    font-size: 10pt;
+.future-event {
+    background-color: #ffffff;
 }
 
-.evenement {
-    background-color: #f9f9f4;
-    height: 130px;
-    font-size: 9pt;
+.future-event time {
+    margin-top: 0;
+    color: #444444;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    font-size: 13pt;
 }
 
-.evenement p {
-    padding: 10px;
+.future-event time span {
+    color: #c2c2c2;
 }
 
-.polaroid .responsive-img {
-    padding: 0;
-    object-fit: cover;
-    height: 300px;
+.future-event h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #a5ca2a;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    font-size: 17pt;
 }
+
+.future-event p {
+    color: #444444;
+    font-family: Cantarell;
+    letter-spacing: .1pt;
+    font-size: 11pt;
+}
+
+.future-event a {
+    margin-top: 5px;
+}
+
+.carousel-slider {
+    height: 400px !important;
+}
+
+.modal {
+    max-height: 80%;
+}
+
+/*–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline {
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.timeline ol {
+    font-size: 0;
+    width: 100vw;
+    padding: 400px 0;
+    transition: all 1s;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.timeline ol .slider li:not(:last-child)::after {
+    display: none;
+}
+
+.timeline ol li {
+    position: relative;
+    display: inline-block;
+    list-style-type: none;
+    width: 200px;
+    height: 3px;
+    background:grey;
+}
+
+.timeline ol li:first-child {
+    width: 80px;
+}
+
+.timeline ol li:last-child {
+    width: 280px;
+}
+
+.timeline ol li:not(:first-child) {
+    margin-left: 14px;
+}
+
+.timeline ol li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 1px);
+    bottom: 0;
+    width: 12px;
+    height: 12px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #B5CC17;
+}
+
+.timeline ol li div {
+    position: absolute;
+    left: calc(100% + 7px);
+    width: 320px;
+    padding: 15px;
+    font-size: 1rem;
+    white-space: normal;
+    color: black;
+}
+
+.timeline ol li div::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.timeline ol li:nth-child(odd) div {
+    top: -16px;
+    transform: translateY(-100%);
+}
+
+.timeline ol li:nth-child(odd) div::before {
+    top: 100%;
+    border-width: 8px 8px 0 0;
+    border-color: white transparent transparent transparent;
+}
+
+.timeline ol li:nth-child(even) div {
+    top: calc(100% + 16px);
+}
+
+.timeline ol li:nth-child(even) div::before {
+    top: -8px;
+    border-width: 8px 0 0 8px;
+    border-color: transparent transparent transparent white;
+}
+
+.timeline time {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+
+/* TIMELINE ARROWS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline .arrows {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.timeline .arrows .arrow__prev {
+    margin-right: 20px;
+}
+
+.timeline .disabled {
+    opacity: .5;
+}
+
+.timeline .arrows img {
+    width: 45px;
+    height: 45px;
+}
+
+
+/*!* GENERAL MEDIA QUERIES*/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––– *!*/
+/*@media screen and (max-width: 992px) {*/
+    /*.timeline ol,*/
+    /*.timeline ol li {*/
+        /*width: auto;*/
+    /*}*/
+
+    /*.timeline ol {*/
+        /*padding: 0;*/
+        /*transform: none !important;*/
+    /*}*/
+
+    /*.timeline ol li {*/
+        /*display: block;*/
+        /*height: auto;*/
+        /*background: transparent;*/
+    /*}*/
+
+    /*.timeline ol li:first-child {*/
+        /*margin-top: 25px;*/
+        /*width: 100%;*/
+    /*}*/
+
+    /*.timeline ol li:not(:first-child) {*/
+        /*margin-left: auto;*/
+    /*}*/
+
+    /*.timeline ol li div {*/
+        /*width: 94%;*/
+        /*height: auto !important;*/
+        /*margin: 0 auto 25px;*/
+    /*}*/
+
+    /*.timeline ol li div {*/
+        /*position: static;*/
+    /*}*/
+
+    /*.timeline ol li:nth-child(odd) div {*/
+        /*transform: none;*/
+    /*}*/
+
+    /*.timeline ol li:nth-child(odd) div::before,*/
+    /*.timeline ol li:nth-child(even) div::before {*/
+        /*left: 50%;*/
+        /*top: 100%;*/
+        /*transform: translateX(-50%);*/
+        /*border: none;*/
+        /*border-left: 1px solid white;*/
+        /*height: 25px;*/
+    /*}*/
+
+    /*.timeline ol li:last-child,*/
+    /*.timeline ol li:nth-last-child(2) div::before,*/
+    /*.timeline ol li:not(:last-child)::after,*/
+    /*.timeline .arrows {*/
+        /*display: none;*/
+    /*}*/
+/*}*/
+
+
+/*.fnaimRow div img{*/
+    /*width: 40%;*/
+    /*height: 30%;*/
+    /*display: inline;*/
+/*}*/
+/*.fnaimRow div img:last-child{*/
+    /*margin: auto;*/
+/*}*/
