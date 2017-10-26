@@ -2004,56 +2004,92 @@ video {
     font-size: 14pt;
 }
 
-.imageEquipe {
-    margin-top: 20px;
+.presentation a {
+    margin-bottom: 20px;
 }
 
-.carouselRea .carousel .carousel-item>img {
-    width: 400px;
-    margin-left: -100px;
+.sliderEquipe .slider .indicators {
+    bottom: 50px;
+    z-index: 10;
 }
 
-.realisation {
-    text-align: center;
-    text-transform: uppercase;
-    color: white;
+.sliderEquipe .slider .indicators .indicator-item.active {
+    background-color: #B5CC17;
+}
+
+.sliderRea .slider .indicators {
+    bottom: 50px;
+    z-index: 10;
+}
+
+.sliderRea .slider .indicators .indicator-item.active {
+    background-color: #B5CC17;
+}
+
+.sliderRea span{
     font-family: Montserrat;
     letter-spacing: .55pt;
     font-size: 19pt;
+    text-transform: uppercase;
+    background-color: rgba(103, 103, 103, .8);
+    padding: 20px;
+}
+
+/*.carouselRea .carousel .carousel-item>img {*/
+    /*width: 400px;*/
+    /*margin-left: -100px;*/
+/*}*/
+
+/*.realisation {*/
+    /*text-align: center;*/
+    /*text-transform: uppercase;*/
+    /*color: white;*/
+    /*font-family: Montserrat;*/
+    /*letter-spacing: .55pt;*/
+    /*font-size: 19pt;*/
+    /*position: absolute;*/
+    /*top: 60%;*/
+    /*-webkit-transform: translateY(-50%);*/
+    /*-moz-transform: translateY(-50%);*/
+    /*-ms-transform: translateY(-50%);*/
+    /*transform: translateY(-50%);*/
+    /*opacity: 0;*/
+/*}*/
+
+/*.carouselRea .active:hover .realisation {*/
+    /*opacity: 1;*/
+/*}*/
+
+/*.carouselRea .active:hover img {*/
+    /*filter: brightness(70%);*/
+
+/*}*/
+
+.partenaire {
+    position: relative;
+    width: 100%;
+    margin: 40px 10px;
+    filter: grayscale(100%);
+}
+
+.partenaire img {
     position: absolute;
-    top: 60%;
+    top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    opacity: 0;
 }
 
-.carouselRea .active:hover .realisation {
-    opacity: 1;
-}
+/*.carouselEvenement .carousel .carousel-item{*/
+    /*margin-left: -100px;*/
+    /*margin-top: -100px;*/
+/*}*/
 
-.carouselRea .active:hover img {
-    filter: brightness(70%);
-
-}
-
-.partenaire {
-    width: 100%;
-    margin: 10px;
-    filter: grayscale(100%);
-}
-
-.carouselEvenement .carousel .carousel-item{
-    /*height: 600px;*/
-    margin-left: -100px;
-    margin-top: -100px;
-}
-
-.carouselEvenement .carousel {
-    overflow: visible;
-    margin-bottom: 100px;
-}
+/*.carouselEvenement .carousel {*/
+    /*overflow: visible;*/
+    /*margin-bottom: 100px;*/
+/*}*/
 
 .polaroid {
     width: 400px;

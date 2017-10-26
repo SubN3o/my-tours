@@ -2,15 +2,42 @@
 
 {% block content %}
     <div class="row">
-        <div class="col offset-s1 s5">
-            <h1>My Orléans</h1>
+        <div class="col offset-l1 l5">
+            <h2>My Orléans</h2>
             <div class="col s12 presentation">
                 <p>{{ accueil.presentation | raw }}</p>
+                <a href="#modalEquipe" class="btn greenMyO col push-s9"><i class="material-icons left">play_circle_outline</i>Voir
+                    video</a>
             </div>
-            <img class="imageEquipe responsive-img" src="{{ asset('img/Equipe.jpg') }}" alt="equipe">
+            <!-- Modal Video Accueil -->
+            <div id="modalEquipe" class="modal">
+                <div class="modal-content">
+                    <video controls>
+                        <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="sliderEquipe">
+                <div class="slider col s12">
+                    <ul class="slides">
+                        <li>
+                            <img src="{{ asset('img/Equipe1.jpg') }}" alt="equipe">
+                        </li>
+                        <li>
+                            <img src="{{ asset('img/Equipe2.jpg') }}" alt="equipe">
+                        </li>
+                        <li>
+                            <img src="{{ asset('img/Equipe3.jpg') }}" alt="equipe">
+                        </li>
+                        <li>
+                            <img src="{{ asset('img/Equipe4.jpg') }}" alt="equipe">
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="col s5">
-            <h1>Notre équipe</h1>
+        <div class="col l5">
+            <h2>Notre équipe</h2>
             <div class="barillet">
                 <div class="colBarillet">
                     <ul class="circle-container">
@@ -62,62 +89,94 @@
             </div>
         </div>
     </div>
-    <h1>Nos réalisations commerciales</h1>
+    <h2>Nos réalisations commerciales</h2>
     <div class="row">
-        <div class="carouselRea">
-            <div class="carousel">
-                <a class="carousel-item" href="#Elegance de Loire"><img
-                            src="{{ asset('img/rea/ElegancedeLoire.jpg') }}">
-                    <div class="realisation">Elégance de Loire</div>
-                </a>
-                <a class="carousel-item" href="#LAmiral de Coligny"><img
-                            src="{{ asset('img/rea/LAmiraldeColigny.jpg') }}">
-                    <div class="realisation">L'Amiral de Coligny</div>
-                </a>
-                <a class="carousel-item" href="#La Residence des Charmes"><img
-                            src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}">
-                    <div class="realisation">La Résidence des Charmes</div>
-                </a>
-                <a class="carousel-item" href="#La Souche Sud"><img src="{{ asset('img/rea/LaSoucheSud.jpg') }}">
-                    <div class="realisation">La Souche Sud</div>
-                </a>
-                <a class="carousel-item" href="#La Villa Maunoury"><img
-                            src="{{ asset('img/rea/LaVillaMaunoury.jpg') }}">
-                    <div class="realisation">La Villa Maunoury</div>
-                </a>
-                <a class="carousel-item" href="#Le Bourg Ouest"><img src="{{ asset('img/rea/LeBourgOuest.jpg') }}">
-                    <div class="realisation">Le Bourg Ouest</div>
-                </a>
-                <a class="carousel-item" href="#Le Clos Colombier"><img
-                            src="{{ asset('img/rea/LeClosColombier.jpg') }}">
-                    <div class="realisation">Le Clos Colombier</div>
-                </a>
-                <a class="carousel-item" href="#Le Clos de la Cerisaille"><img
-                            src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}">
-                    <div class="realisation">Le Clos de la Cerisaille</div>
-                </a>
-                <a class="carousel-item" href="#Le Lievre d'Or"><img src="{{ asset('img/rea/LeLievredOr.jpg') }}">
-                    <div class="realisation">Le Lievre d'Or</div>
-                </a>
-                <a class="carousel-item" href="#Le Parc de lecole normale"><img
-                            src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}">
-                    <div class="realisation">Le Parc de l'école normale</div>
-                </a>
-                <a class="carousel-item" href="#Les Cascades"><img src="{{ asset('img/rea/LesCascades.jpg') }}">
-                    <div class="realisation">Les Cascades</div>
-                </a>
-                <a class="carousel-item" href="#Les Jardins d'Andrea"><img
-                            src="{{ asset('img/rea/LesJardinsdAndrea.jpg') }}">
-                    <div class="realisation">Les Jardins d'Andréa</div>
-                </a>
-                <a class="carousel-item" href="#Les Vergers dOlivet"><img
-                            src="{{ asset('img/rea/LesVergersdOlivet.jpg') }}">
-                    <div class="realisation">Les Vergers d'Olivet</div>
-                </a>
+        <div class="sliderRea">
+            <div class="slider col offset-l3 l6 s12">
+                <ul class="slides">
+                    <li>
+                        <img src="{{ asset('img/rea/ElegancedeLoire.jpg') }}">
+                        <div class="caption left-align">
+                            <span>Elégance de Loire</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LAmiraldeColigny.jpg') }}">
+                        <div class="caption left-align">
+                            <span>L'Amiral de Coligny</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}">
+                        <div class="caption left-align">
+                            <span>La Résidence des Charmes</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LaSoucheSud.jpg') }}">
+                        <div class="caption left-align">
+                            <span>La Souche Sud</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LaVillaMaunoury.jpg') }}">
+                        <div class="caption left-align">
+                            <span>La Villa Maunoury</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeBourgOuest.jpg') }}">
+                        <div class="caption left-align">
+                            <span>Le Bourg Ouest</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeClosColombier.jpg') }}">
+                        <div class="caption left-align">
+                            <span>Le Clos Colombier</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}">
+                        <div class="caption left-align">
+                            <span>Le Clos de la Cerisaille</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeLievredOr.jpg') }}">
+                        <div class="caption left-align">
+                            <span>Le Lievre d'Or</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}">
+                        <div class="caption left-align">
+                            <span>Le Parc de l'école normale</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LesCascades.jpg') }}">
+                        <div class="caption left-align">
+                            <span>Les Cascades</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LesJardinsdAndrea.jpg') }}">
+                        <div class="caption left-align">
+                            <span>Les Jardins d'Andréa</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LesVergersdOlivet.jpg') }}">
+                        <div class="caption left-align">
+                            <span>Les Vergers d'Olivet</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-    <h1>Consultez notre actualité</h1>
+    <h2>Consultez notre actualité</h2>
     <div class="row">
         <div class="carouselEvenement">
             <div class="carousel">
@@ -140,7 +199,7 @@
         </div>
 
     </div>
-    <h1>Nos partenaires</h1>
+    <h2>Nos partenaires</h2>
     <div class="row">
         <div class="col offset-s1 s10">
             {% for partenaire in partenaires %}
@@ -254,10 +313,7 @@
     <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.carousel').carousel({
-                dist: -50,
-                padding: 100
-            });
+            $('.slider').slider();
         });
     </script>
 {% endblock %}
