@@ -112,16 +112,16 @@
                 {% set nb_res = residences|length %}
                 {% if  resultatRecherche == 0 %}
                     <h2>
-                        Nos résidences actuellement disponibles.
+                        Nos résidences actuellement disponibles
                     </h2>
                 {% elseif resultatRecherche == 1 %}
-                    <h2>Aucune résidence ne correspond à votre recherche.</h2>
-                    <h2>Découvrez celles actuellement disponibles.</h2>
+                    <h2>Aucune résidence ne correspond à votre recherche</h2>
+                    <h2>Découvrez celles actuellement disponibles</h2>
                 {% else %}
                     <h2 class="section-title">
                         {% transchoice nb_res %}
                         {1} 1 résidence correspond à votre recherche|
-                        ]1,Inf[ %count% résidences correspondent à votre recherche.
+                        ]1,Inf[ %count% résidences correspondent à votre recherche
                         {% endtranschoice %}
                     </h2>
                 {% endif %}
