@@ -1821,7 +1821,11 @@ video {
     width: 100%;
 }
 
-.residenceFlat h2 {
+.residenceFlat {
+    margin-top: 30px;
+}
+
+.residenceFlat span {
     font-weight: 300;
     font-size: 40pt;
     color: #B5CC17;
@@ -1889,9 +1893,6 @@ video {
 
 .accrocheFlat {
     padding-top: 20px;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 0;
     font-family: Lato;
     letter-spacing: .55pt;
@@ -1919,6 +1920,73 @@ video {
 
 .partage p {
     padding: 0 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .descriptif p {
+        font-size: 10pt;
+    }
+
+    .descriptif span {
+        font-size: 12pt;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .icon-apt {
+        width: 36px;
+        height: 36px;
+    }
+
+    .typeFlat {
+        font-size: 13pt;
+    }
+
+    .prixFlat {
+        font-size: 14pt;
+    }
+
+    .accrocheFlat {
+        font-size: 14pt;
+    }
+
+    .descriptionFlat {
+        font-size: 10pt;
+    }
+
+    .partage {
+        font-size: 10pt;
+    }
+
+    .accrocheResidenceFlat {
+        margin: 20px 0;
+    }
+
+    .residenceFlat span {
+        font-size: 25pt;
+    }
+
+    .residenceFlat p {
+        font-size: 20pt;
+    }
+
+    .offreSmall {
+        margin-top: 20px;
+        font-size: 11pt;
+        background-color: #B5CC17;
+    }
+
+    .referenceFlat {
+        font-size: 14pt;
+    }
+
+    .residenceFlat {
+        margin-top: 20px;
+    }
+
+    .retourFlat {
+        font-size: 8pt;
+    }
 }
 
 /* --------------------------------------------------------------------*/

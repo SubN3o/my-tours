@@ -2,31 +2,32 @@
 
 {% block content %}
     <div class="row infoFlat">
-        <div class="col offset-s1 s2">
-            <div class="col s12">
-                <div class="retourZone">
-                    <a href="{{ path('residences', { 'slug': residence.slug }) }}">
-                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img class="responsive-img"
-                                 src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
-                                 alt="résidence">
-                        {% endfor %}
-                        <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
-                    </a>
-                </div>
+        <div class="col offset-l1 l2 s12">
+            <div class="retourZone col s3 l12">
+                <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img class="responsive-img"
+                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                             alt="résidence">
+                    {% endfor %}
+                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
+                </a>
             </div>
-            <div class="col s12 center">
-                <p class="referenceFlat">{{ flat.reference }}</p>
+            <div class="col l12 offset-s1 s4 center">
+                <h1 class="referenceFlat">{{ flat.reference }}</h1>
             </div>
         </div>
-        <div class="col offset-s1 s4">
+        <div class="col offset-l1 l4 s12">
             <div class="residenceFlat center">
-                <h2>{{ residence.nom }}</h2>
+                <span>{{ residence.nom }}</span>
                 <p>{{ residence.ville.nom }}</p>
             </div>
         </div>
+        <div class="col s12 center hide-on-large-only offreSmall">
+            <p>{{ residence.offre }}</p>
+        </div>
         {% if residence.offre != null %}
-            <div class="col offset-s1 s2 offreFlat">
+            <div class="col offset-l1 l2 s4 offreFlat hide-on-med-and-down">
                 <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
                     <div class="flipper">
                         <div class="front">
@@ -45,15 +46,15 @@
     </div>
 
     <div class="row infoFlat2">
-        <div class="col offset-s1 s5 typeFlat">
+        <div class="col offset-l1 l5 s8 typeFlat">
             {{ flat.typeBien.nom }} de type {{ flat.typeLogement.id }}
         </div>
-        <div class="col s5 right-align prixFlat">
+        <div class="col l5 s4 right-align prixFlat">
             {{ flat.prix|number_format(0, '.', ' ') }} €
         </div>
     </div>
     <div class="row planFlat">
-        <div class="col offset-s1 s10">
+        <div class="col offset-l1 s12 l10">
             {% for media in flat.medias if media.typeMedia.nom == 'plan' %}
                 <img class="responsive-img materialboxed"
                      src="{{ asset('uploads/'~media.mediaName) }}"
@@ -67,7 +68,7 @@
     {#<img class="pdfIcon" src="{{ asset('img/PDF.png') }}">#}
     {#</div>#}
     {#</div>#}
-    <h1>Descriptif du Logement</h1>
+    <h2>Descriptif du Logement</h2>
     <div class="row">
         <div class="col offset-l1 l5">
             <div class="col s12 descriptif">
@@ -181,13 +182,13 @@
     <div class="row">
         <div class="col s12 accrocheResidenceFlat">
             <div class="col offset-l2 l8">
-                <h3 class="center accrocheFlat">{{ residence.accroche }}</h3>
-                <div class="center descriptionFlat">{{ residence.description | raw }}</div>
+                <span class="center accrocheFlat col offset-l2 offset-s1 l8 s10">{{ residence.accroche }}</span>
+                <div class="center descriptionFlat col s12">{{ residence.description | raw }}</div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col offset-s1 s2">
+        <div class="col offset-l1 s3 l2">
             <div class="retourZone">
                 <a href="{{ path('residences', { 'slug': residence.slug }) }}">
                     {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
@@ -199,7 +200,7 @@
                 </a>
             </div>
         </div>
-        <div class="col offset-s1 s7 partage valign-wrapper">
+        <div class="col offset-l1 l7 s12 partage valign-wrapper">
             <p><i class="material-icons align-icon">share</i>Partager l'annonce</p>
             <div class="partageIcone">
                 <div id="fb-root"></div>
