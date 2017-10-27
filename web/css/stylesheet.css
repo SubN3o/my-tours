@@ -2016,12 +2016,13 @@ video {
 }
 
 .sliderRea span{
-    font-family: Montserrat;
-    letter-spacing: .55pt;
+    font-family: Cantarell;
+    letter-spacing: .1pt;
     font-size: 19pt;
     text-transform: uppercase;
-    background-color: rgba(200, 200, 200, .8);
+    background-color: rgba(249, 249, 244, .8);
     padding: 20px;
+    color: #676767;
 }
 
 

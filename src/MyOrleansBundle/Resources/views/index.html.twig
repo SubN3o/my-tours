@@ -5,11 +5,11 @@
     <div class="accueil" id="intro">
         {% for media in accueil.medias %}
             {% if media.typeMedia.nom == 'video' %}
-                    <video autoplay loop muted>
-                        <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/mp4">
-                        <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/ogg">
-                        <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/webm">
-                    </video>
+                <video autoplay loop muted>
+                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/mp4">
+                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/ogg">
+                    <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/webm">
+                </video>
             {% elseif media.typeMedia.nom == 'image-cover' %}
                 <img class="imageAccueil" src="{{ asset('uploads/'~media.mediaName) }}" alt="accueil">
             {% endif %}
@@ -152,6 +152,7 @@
     <form method="post" action="">
         <div id="slide-out" class="side-nav formulaireVolet">
             <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
                 <div class="contactNous center">Contactez nous !</div>
                 <div class="contactTel center">{{ telephone_number }}</div>
                 {{ form_start(form) }}
@@ -251,9 +252,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $('.navbar-fixed').removeAttr('class').css({bottom : '0'});
+            $('.navbar-fixed').removeAttr('class').css({bottom: '0'});
 
-            var height = (window.innerHeight - document.getElementById("nav").offsetHeight) +'px';
+            var height = (window.innerHeight - document.getElementById("nav").offsetHeight) + 'px';
 
             document.getElementById('intro').style.height = height;
 
