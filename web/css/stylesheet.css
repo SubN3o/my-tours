@@ -637,12 +637,12 @@ video {
     font-family: Montserrat;
     font-weight: 400;
     letter-spacing: .55pt;
-    font-size: 16pt;
+    /*font-size: 14pt;*/
 }
 
 .enteteCarousel > h3 {
     padding: 15px;
-    font-size: 17pt;
+    font-size: 14pt;
     margin: 0;
 }
 
@@ -669,17 +669,8 @@ video {
     padding: 10px;
 }
 
-.temoignage .slider .slides li .caption span {
-    font-size: 24pt;
-}
-
 .temoignage .slider .indicators {
-    bottom: 50px;
-    z-index: 10;
-}
-
-.temoignage .slider .indicators .indicator-item.active {
-    background-color: #B5CC17;
+    display: none;
 }
 
 @media screen and (max-width: 992px) {

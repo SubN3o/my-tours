@@ -138,8 +138,8 @@
                                 <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}"
                                      alt="témoin">
                                 <div class="caption center-align">
-                                    <span>{{ temoignage.auteur }}</span>
                                     <p>{{ temoignage.message }}</p>
+                                    <p class="right">{{ temoignage.auteur }}</p>
                                 </div>
                             </li>
                         {% endfor %}
@@ -259,7 +259,7 @@
 
             // Slider temoignage
             $('.slider').slider({
-                height: 300,
+                height: 200,
                 indicators: true,
                 interval: 12000
             });

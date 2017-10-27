@@ -8,7 +8,9 @@
                     <div class="col offset-l1 l11">
                         <p class="linkFooter"><i class="small material-icons align-icon">phone</i><a
                                     href="tel:+33238759447"> 02 38 75 94 47</a></p>
-                        <p><i class="small material-icons align-icon">location_on</i> 13, rue Bannier 45000 Orléans</p>
+                        <p class="linkFooter"><i class="small material-icons align-icon">location_on</i><a
+                                    href="https://goo.gl/maps/znYTm1bE8pz" target="_blank"> 13, rue
+                                Bannier 45000 Orléans</a></p>
                         <p class="linkFooter"><i class="small material-icons align-icon">email</i><a
                                     href="mailto:contact@my-orleans.fr">
                                 contact@my-orleans.fr</a>
@@ -32,7 +34,7 @@
                         </a>
                     </div>
                     <div class="col offset-l1 l2 s4">
-                        <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ" target="_blank">
+                        <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ/videos" target="_blank">
                             <div class="social-btn">
                                 <i class="fa fa-youtube fa-3x ytb-social"></i>
                             </div>
@@ -46,25 +48,27 @@
                 <div class="row">
                     {% for programme in programmes %}
                         <div class="col s12 l6">
-                            <p class="linkFooter"><a href="{{ path('residences', { 'slug': programme.slug }) }}">{{ programme.nom }}</a></p>
+                            <p class="linkFooter"><a
+                                        href="{{ path('residences', { 'slug': programme.slug }) }}">{{ programme.nom }}</a>
+                            </p>
                         </div>
                     {% endfor %}
                 </div>
                 {#<h5 class="center h5Footer"><a href="{{ path("nos_services") }}">NOS SERVICES</a></h5>#}
                 {#<div class="row">#}
-                    {#<div class="col s12">#}
-                        {#{% for service in services %}#}
-                            {#<p class="linkFooter"><a href="{{ path("nos_services") }}">{{ service.type }}</a></p>#}
-                        {#{% endfor %}#}
-                    {#</div>#}
+                {#<div class="col s12">#}
+                {#{% for service in services %}#}
+                {#<p class="linkFooter"><a href="{{ path("nos_services") }}">{{ service.type }}</a></p>#}
+                {#{% endfor %}#}
+                {#</div>#}
                 {#</div>#}
                 {#<h5 class="center h5Footer"><a href="{{ path("nos_services") }}">NOS PACKS</a></h5>#}
                 {#<div class="row">#}
-                    {#<div class="col s12">#}
-                        {#{% for pack in packs %}#}
-                            {#<p class="linkFooter"><a href="{{ path("nos_services") }}">{{ pack.nom }}</a></p>#}
-                        {#{% endfor %}#}
-                    {#</div>#}
+                {#<div class="col s12">#}
+                {#{% for pack in packs %}#}
+                {#<p class="linkFooter"><a href="{{ path("nos_services") }}">{{ pack.nom }}</a></p>#}
+                {#{% endfor %}#}
+                {#</div>#}
                 {#</div>#}
             </div>
             <!--colonne droite-->
@@ -80,11 +84,11 @@
                 </div>
                 {#<h5 class="center h5Footer"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></h5>#}
                 {#<div class="row">#}
-                    {#<div class="offset-l1 col l11">#}
-                        {#{% for article in articles %}#}
-                            {#<p class="linkFooter"><a href="{{ path("immo_pratique") }}">{{ article.titre }}</a></p>#}
-                        {#{% endfor %}#}
-                    {#</div>#}
+                {#<div class="offset-l1 col l11">#}
+                {#{% for article in articles %}#}
+                {#<p class="linkFooter"><a href="{{ path("immo_pratique") }}">{{ article.titre }}</a></p>#}
+                {#{% endfor %}#}
+                {#</div>#}
                 {#</div>#}
             </div>
         </div>
@@ -101,8 +105,10 @@
                 <p class="linkFooter"><a href="#modalHonoraire">Frais et honoraires de gestion</a></p>
             </div>
             <div class="col s12 l3">
-                <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}" alt="FNAIM" class="logoFooter"></a>
-                <a href="https://www.galian.fr/" target="_blank"><img src="{{ asset('img/logo-galian.png') }}" alt="Galian" class="logoFooter"></a>
+                <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}" alt="FNAIM"
+                                                                    class="logoFooter"></a>
+                <a href="https://www.galian.fr/" target="_blank"><img src="{{ asset('img/logo-galian.png') }}"
+                                                                      alt="Galian" class="logoFooter"></a>
             </div>
         </div>
         <!--modale informations légales-->
