@@ -39,6 +39,10 @@ $(document).ready(function () {
             closeOnClick: true
         }
     );
+
+    $('select').material_select();
+
+    $('.closeSideNave').sideNav('hide');
 });
 
 $(document).ready(function(){

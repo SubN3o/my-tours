@@ -1,37 +1,9 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block content %}
-    <!-- Chiffres -->
-    <div class="row center countRow">
-        <div class="col s4">
-            {% for chiffre in chiffres %}
-                {% if loop.index == 1 %}
-                    <span class="count countTitle">{{ chiffre.valeur }}</span>
-                    <p class="chiffreNom">{{ chiffre.nom }}</p>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="col s4">
-            {% for chiffre in chiffres %}
-                {% if loop.index == 2 %}
-                    <span class="count countTitle">{{ chiffre.valeur }}</span>
-                    <p class="chiffreNom">{{ chiffre.nom }}</p>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="col s4 ">
-            {% for chiffre in chiffres %}
-                {% if loop.index == 3 %}
-                    <span class="count countTitle">{{ chiffre.valeur }}</span>
-                    <p class="chiffreNom">{{ chiffre.nom }}</p>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-
     <!-- Search Complete -->
-    <div class="row">
-        <div class="offset-s1 offset-m2 offset-l1 col s10 m8 l4">
+    <div class="row completeSearch">
+        <div class="col offset-m2 offset-l1 s12 m8 l4">
 
             <div class="card">
                 {{ form_start(completeSearch) }}
@@ -48,41 +20,22 @@
                     <div id="localisation">
                         <h4>Où souhaitez-vous acheter ?</h4>
                         <div class="row no-margin-bottom">
-                            <div class="offset-s1 offset-xl1 col s10 xl4 localisation">
+                            <div class="col offset-s1 offset-xl1 s10 xl4 localisation">
                                 <p>Localisation</p>
                             </div>
-                            <div class="offset-s1 offset-xl1 col s10 xl6">
+                            <div class="col offset-s1 offset-xl1 s10 xl6">
                                 {{ form_widget(completeSearch.ville) }}
                                 {{ form_errors(completeSearch.ville) }}
                             </div>
                         </div>
                     </div>
+                    {% dump(data) %}
                     <div id="type">
                         <h4>Sélectionnez le type souhaité</h4>
                         <div class="row no-margin-bottom">
                             <div class="col s12">
-                                <div class="row">
-                                    <div class="offset-s2 col s8 typeSearch">
-                                        <span class="T1">T1</span>
-                                        <span class="T2">T2</span>
-                                        <span class="T3">T3</span>
-                                        <span class="T4">T4</span>
-                                        <span class="T5">T5+</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="offset-s2 col s8 curseur">
-                                        <div class="slider type2">
-                                            {{ form_widget(completeSearch.type) }}
-                                            {{ form_errors(completeSearch.type) }}
-                                        </div>
-                                        <span class="division1"></span>
-                                        <span class="division2"></span>
-                                        <span class="division3"></span>
-                                        <span class="division4"></span>
-                                        <span class="division5"></span>
-                                    </div>
-                                </div>
+                                {{ form_widget(completeSearch.typeLogement) }}
+                                {{ form_errors(completeSearch.typeLogement) }}
                             </div>
                         </div>
                     </div>
@@ -91,63 +44,56 @@
                         <div class="row no-margin-bottom">
                             <div class="col s12">
                                 <div class="row">
-                                    <div class="offset-s1 col s4 budget">
+                                    <div class="col offset-s1 s4 budget">
                                         <p>Budget min</p>
-                                        {{ form_widget(completeSearch.budgetMin) }}
+                                        <div class="budgetMin">{{ form_widget(completeSearch.budgetMin) }}</div>
+                                        {{ form_errors(completeSearch.budgetMin) }}
                                     </div>
-                                    <div class="offset-s2 col s4 budget">
+                                    <div class="col offset-s2 s4 budget">
                                         <p>Budget max</p>
-                                        {{ form_widget(completeSearch.budgetMax) }}
+                                        <div class="budgetMin">{{ form_widget(completeSearch.budgetMax) }}</div>
+                                        {{ form_errors(completeSearch.budgetMax) }}
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="offset-s2 col s8 curseur">
-                                        <div id="slider-range" class="slider type2"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s6">
-                                {{ form_widget(completeSearch.budgetMin) }}
-                                {{ form_errors(completeSearch.budgetMin) }}
-                            </div>
-                            <div class="col s6">
-                                {{ form_widget(completeSearch.budgetMax) }}
-                                {{ form_errors(completeSearch.budgetMax) }}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="rechercher center">
-                        {{ form_widget(completeSearch.submit) }}
+                    {{ form_widget(completeSearch.submit) }}
                 </div>
                 {{ form_end(completeSearch) }}
             </div>
         </div>
 
-        <div class="col l6 hide-on-med-only">
+        <div class="col l6 hide-on-med-and-down">
             <div class="card" id="map"></div>
         </div>
 
     </div>
-    {% dump(residences) %}
+
+    <!-- Resultat Recherche -->
+
     <div class="row carte-liste-articles">
 
-        <div class="offset-s1 col s10 liste-biens">
+        <div class="col offset-l1 s12 l10 liste-biens">
 
             <div class="row center no-margin-bottom">
                 {% set nb_res = residences|length %}
-
-                {% if rechercheSansResultat == 1 %}
-                    <h1 class="section-title">
-                        Aucune résidence ne correspond à votre recherche.<br/>Découvrez les biens suggérés.
-                    </h1>
+                {% if  resultatRecherche == 0 %}
+                    <h2>
+                        Nos résidences actuellement disponibles
+                    </h2>
+                {% elseif resultatRecherche == 1 %}
+                    <h2>Aucune résidence ne correspond à votre recherche</h2>
+                    <h2>Découvrez celles actuellement disponibles</h2>
                 {% else %}
-                    <h1 class="section-title">
+                    <h2 class="section-title">
                         {% transchoice nb_res %}
                         {1} 1 résidence correspond à votre recherche|
-                        ]1,Inf[ %count% résidences correspondent à votre recherche.
+                        ]1,Inf[ %count% résidences correspondent à votre recherche
                         {% endtranschoice %}
-                    </h1>
+                    </h2>
                 {% endif %}
             </div>
 
@@ -161,15 +107,11 @@
 
             </div>
 
-            {% if suggestionActive == 1 and rechercheSansResultat == 0 %}
-                <div class="row suggestion-biens">
-                    {% set nb_res_suggerees = residencesSuggerees|length %}
+            <!-- suggestion residence -->
 
-                    {% transchoice nb_res_suggerees %}
-                    {0} |
-                    {1} <h1>D'autres biens pourraient vous intéresser dans cette résidence</h1>|
-                    ]1,Inf[ <h1>D'autres biens pourraient vous intéresser dans ces résidences</h1>
-                    {% endtranschoice %}
+            {% if resultatRecherche == 2 %}
+                <div class="row suggestion-biens">
+                    <h2>La sélection My Orléans</h2>
                 </div>
                 <div class="row">
                     {% for residence in residencesSuggerees %}
@@ -195,31 +137,112 @@
 
         </div>
     </div>
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
 
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <p class="newsletter">Quel est votre projet ?</p>
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="input-field col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <p class="newsletter">Quel est l'objet de votre message?</p>
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_widget(form.sujet, {'attr': {'value':'Demande d\'information'}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <div class="row center">
+                    <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                    {{ form_widget(form.newsletter) }}
+                    {{ form_errors(form.newsletter) }}
+                </div>
+
+                <div class="input-field col l12 newsletter envoyer">
+                    {{ form_row(form.envoyer) }}
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+
+    </form>
 
 {% endblock content %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
 
-            //Autocompletion Moteur de Recherche
-            $('#complete_search_quartier').autocomplete({
-                data: {
-                    {% for quartier in quartiers %}
-                    "{{ quartier.nom }}": null,
-                    {% endfor %}
-                },
-                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                onAutocomplete: function (val) {
-                    // Callback function when value is autcompleted.
-                },
-                minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
-
-            });
 
             $('#complete_search_ville').autocomplete({
                 data: {
@@ -231,40 +254,9 @@
                 onAutocomplete: function (val) {
                     // Callback function when value is autcompleted.
                 },
-                minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+                minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
 
             });
-
-            //Slider Range Type Moteur de Recherche
-            var select = $("#complete_search_type");
-            var slider = $("<div id='slider'></div>").insertAfter(select).slider({
-                min: 1,
-                max: 5,
-                range: "min",
-                value: select[0].selectedIndex + 1,
-                slide: function (event, ui) {
-                    select[0].selectedIndex = ui.value - 1;
-                }
-            });
-            $("#complete_search_type").on("change", function () {
-                slider.slider("value", this.selectedIndex + 1);
-            });
-
-            //Slider Range Budget Moteur de Recherche
-            $("#slider-range").slider({
-                range: true,
-                max: 500000,
-                values: [100000, 300000],
-                animate: true,
-                step: 5,
-                slide: function (event, ui) {
-                    $("#complete_search_budgetMin").val(ui.values[0]);
-                    $("#complete_search_budgetMax").val(ui.values[1]);
-                }
-            });
-
-            $("#complete_search_budgetMin").val($("#slider-range").slider("values", 0));
-            $("#complete_search_budgetMax").val($("#slider-range").slider("values", 1));
 
         });
     </script>
@@ -274,7 +266,16 @@
 //                    var count = 0;
             var locations = [
                 {% for residence in residences %}
-                ['{{ residence.nom }}', {{ residence.latitude }}, {{ residence.longitude }}],
+                [
+                    '{{ residence.nom }}',
+                    {{ residence.latitude }},
+                    {{ residence.longitude }},
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                    '{{ media.mediaName }}'
+                    {% endfor %},
+                    '{{ path('residences', { 'slug': residence.slug }) }}'
+                ],
+
                 {% endfor %}
 
             ];
@@ -294,13 +295,18 @@
                 marker = new google.maps.Marker({
                     position: {lat: locations[i][1], lng: locations[i][2]},
                     map: map,
-                    icon: 'img/marker.png'
+                    icon: '../img/marker.png'
+
                 });
 
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
-                        infowindow.setContent(locations[i][0]);
+
+                        var vignette = '<a href="' + locations[i][4] + '"><h6 class="infoWindow">' + locations[i][0] + '</h6><br><img class="infoImg" src="../uploads/' + locations[i][3] + '"></a>'
+
+                        infowindow.setContent(vignette);
+
                         infowindow.open(map, marker);
                     }
                 })(marker, i));

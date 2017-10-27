@@ -16,7 +16,11 @@ class AccueilType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('presentation', TextareaType::class)
+        $builder->add('presentation', TextareaType::class, [
+                    "attr" => [
+                        "class" => "materialize ckeditor"
+                    ]
+                ])
                 ->add('mentions', TextareaType::class, [
                     "attr" => [
                         "class" => "materialize ckeditor"
@@ -35,9 +39,6 @@ class AccueilType extends AbstractType
                     'allow_add' => true,
                     'prototype' => true,
                     'by_reference' => false
-                ])
-                ->add('lienYoutube', TextType::class, [
-                    'required' => false,
                 ])
         ;
     }

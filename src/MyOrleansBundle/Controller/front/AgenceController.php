@@ -8,6 +8,7 @@
 
 namespace MyOrleansBundle\Controller\front;
 
+use MyOrleansBundle\Entity\Accueil;
 use MyOrleansBundle\Entity\Chiffre;
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Collaborateur;
@@ -22,7 +23,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class AgenceController extends Controller
 {
     /**
-     * @Route("/agence", name="agence")
+     * @Route("/my-orleans", name="my-orleans")
      */
     public function agencyAction(SessionInterface $session, Request $request)
     {
@@ -56,14 +57,13 @@ class AgenceController extends Controller
         $telephone_number = $this->getParameter('telephone_number');
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
 
-//        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
-
         $formulaire->handleRequest($request);
 
         $partenaires = $em->getRepository(Partenaire::class)->findBy([], ['tri'=>'ASC']);
-        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC']);
-        $evenements = $em->getRepository(Evenement::class)->findAll();
+        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],5,0);
+        $evenements = $em->getRepository(Evenement::class)->findBy([], ['dateDebut'=>'ASC']);
         $cover = $em->getRepository(Media::class)->findAll();
+        $accueil = $em->getRepository(Accueil::class)->find(1);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
@@ -89,10 +89,10 @@ class AgenceController extends Controller
 
             $this->addFlash('success', 'votre message a bien été envoyé');
 
-            return $this->redirectToRoute('agence');
+            return $this->redirectToRoute('my-orleans');
         }
 
-        return $this->render('MyOrleansBundle::agence.html.twig',
+        return $this->render('MyOrleansBundle::my-orleans.html.twig',
             [
                 'telephone_number' => $telephone_number,
                 'mois' => $mois,
@@ -102,6 +102,7 @@ class AgenceController extends Controller
                 'evenements' => $evenements,
                 'cover' => $cover,
                 'chiffres' => $chiffres,
+                'accueil' => $accueil,
                 'form' => $formulaire->createView()
 
             ]

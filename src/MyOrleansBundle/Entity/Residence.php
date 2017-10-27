@@ -14,7 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="residence")
  * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\ResidenceRepository")
- * @UniqueEntity(fields="tri", message="Ce tri existe déjà.")
  */
 class Residence
 {
@@ -286,14 +285,14 @@ class Residence
      *      min = 1,
      *      minMessage = "Saisissez une valeur supérieure ou égale à 1",
      *)
-     * @ORM\Column(name="tri", type="integer", nullable=true, unique=true)
+     * @ORM\Column(name="tri", type="integer", nullable=true)
      */private $tri;
 
     /**
      * @var string
-     *  @Assert\Url(
-     *     message = "L'URL saisie n'est pas correcte",
-     *     protocols = {"http", "https", "ftp"}
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
      * )
      * @ORM\Column(name="lien_youtube", type="string", nullable=true)
      */

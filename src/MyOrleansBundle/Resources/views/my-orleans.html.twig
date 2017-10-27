@@ -1,0 +1,382 @@
+{% extends 'MyOrleansBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col offset-l1 l5 s12">
+            <h2>My Orléans</h2>
+            <div class="col s12 presentation">
+                <p>{{ accueil.presentation | raw }}</p>
+                <a href="#modalEquipe" class="btn greenMyO col push-l7 push-xl9 push-s4"><i class="material-icons left">play_circle_outline</i>Voir
+                    video</a>
+            </div>
+            <!-- Modal Video Accueil -->
+            <div id="modalEquipe" class="modal">
+                <div class="modal-content">
+                    <video controls>
+                        <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="sliderEquipe">
+                <div class="slider col s12">
+                    <ul class="slides">
+                        <li>
+                            <img src="{{ asset('img/Equipe1.jpg') }}" alt="equipe">
+                        </li>
+                        <li>
+                            <img src="{{ asset('img/Equipe2.jpg') }}" alt="equipe">
+                        </li>
+                        <li>
+                            <img src="{{ asset('img/Equipe3.jpg') }}" alt="equipe">
+                        </li>
+                        <li>
+                            <img src="{{ asset('img/Equipe4.jpg') }}" alt="equipe">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l5">
+            <h2>Notre équipe</h2>
+            <div class="barillet">
+                <div class="colBarillet">
+                    <ul class="circle-container">
+                        {% for collaborateur in collaborateurs %}
+                            {% if loop.index == 1 %}
+                                <li class="item"><a class="active" href="#"><img
+                                                class="collaborateurBarillet circle"
+                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                </li>
+                            {% else %}
+                                <li class="item"><a href="#"><img class="collaborateurBarillet circle"
+                                                                  src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="colBarillet">
+                    <ul class="bioCollaborateur">
+                        {% for collaborateur in collaborateurs %}
+                            {% if loop.index == 1 %}
+                                <li>
+                                    <a class="active" href="#">
+                                        <div class="bio center circle">
+                                            <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
+                                            <p>{{ collaborateur.fonction }}</p>
+                                            <p>E-mail : {{ collaborateur.email }}</p>
+                                            <p class="vision">Sa vision :</p>
+                                            <p>"{{ collaborateur.bio }}"</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a>
+                                        <div class="bio center circle">
+                                            <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
+                                            <p>{{ collaborateur.fonction }}</p>
+                                            <p>E-mail : {{ collaborateur.email }}</p>
+                                            <p class="vision">Sa vision :</p>
+                                            <p>"{{ collaborateur.bio }}"</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Nos réalisations commerciales</h2>
+    <div class="row">
+        <div class="sliderRea">
+            <div class="slider col offset-l3 l6 s12">
+                <ul class="slides">
+                    <li>
+                        <img src="{{ asset('img/rea/ElegancedeLoire.jpg') }}">
+                        <div class="caption center-align">
+                            <span>Elégance de Loire</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LAmiraldeColigny.jpg') }}">
+                        <div class="caption center-align">
+                            <span>L'Amiral de Coligny</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}">
+                        <div class="caption center-align">
+                            <span>La Résidence des Charmes</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LaSoucheSud.jpg') }}">
+                        <div class="caption center-align">
+                            <span>La Souche Sud</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LaVillaMaunoury.jpg') }}">
+                        <div class="caption center-align">
+                            <span>La Villa Maunoury</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeBourgOuest.jpg') }}">
+                        <div class="caption center-align">
+                            <span>Le Bourg Ouest</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeClosColombier.jpg') }}">
+                        <div class="caption center-align">
+                            <span>Le Clos Colombier</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}">
+                        <div class="caption center-align">
+                            <span>Le Clos de la Cerisaille</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeLievredOr.jpg') }}">
+                        <div class="caption center-align">
+                            <span>Le Lievre d'Or</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}">
+                        <div class="caption center-align">
+                            <span>Le Parc de l'école normale</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LesCascades.jpg') }}">
+                        <div class="caption center-align">
+                            <span>Les Cascades</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LesJardinsdAndrea.jpg') }}">
+                        <div class="caption center-align">
+                            <span>Les Jardins d'Andréa</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('img/rea/LesVergersdOlivet.jpg') }}">
+                        <div class="caption center-align">
+                            <span>Les Vergers d'Olivet</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h2 class="hide-on-med-and-down">Consultez notre actualité</h2>
+    <div class="row hide-on-med-and-down">
+        <div class="col l10 offset-l1 offset-s1 s11">
+            <section class="timeline">
+
+                <ol>
+                    {% for evenement in evenements %}
+
+                        {% if evenement.dateDebut|date("Ymd") < "now"|date("Ymd") %}
+
+                            <li>
+                                <div class="event past-event center">
+                                    <h3>{{ evenement.nom }}</h3>
+                                    <h4>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                        {{ evenement.dateDebut|date('Y') }}</h4>
+                                    <p>{{ evenement.description }}</p>
+                                    {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
+                                    <img class="responsive-img"
+                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}">
+                                    {#{% endfor %}#}
+                                    {#<a class="waves-effect waves-light btn white" data-toggle="modal"#}
+                                    {#data-id="{{ evenement.id }}"#}
+                                    {#href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>#}
+                                </div>
+                            </li>
+
+                        {% else %}
+                            <li>
+                                <div class="event future-event center">
+                                    <h3>{{ evenement.nom }}</h3>
+                                    <time>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
+                                        {{ evenement.dateDebut|date('Y') }} |
+                                        <span>
+                                        {{ evenement.heureDebut|date('H:m') }} - {{ evenement.heureFin|date('H:m') }}
+                                        </span>
+                                    </time>
+                                    <p>{{ evenement.description }}</p>
+                                    {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
+                                    <img class="responsive-img"
+                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}">
+                                    {#{% endfor %}#}
+                                    <a class="button-collapse greenMyO btn" data-activates="slide-out">JE
+                                        M'INSCRIS</a>
+                                </div>
+                            </li>
+
+                        {% endif %}
+
+                    {% endfor %}
+                    <li></li>
+                </ol>
+
+                {# On place les modals dans une boucle a part, sinon cela compromet le css de la timeline  #}
+                {% for evenement in evenements %}
+
+                    {% if evenement.dateDebut|date("Ymd") < "now"|date("Ymd") %}
+                        <!-- Modal Structure -->
+                        <div id="modal-{{ evenement.id }}" class="modal">
+                            <div class="modal-content center">
+                                <h3>Photos de l'événement {{ evenement.nom }}</h3>
+                                {{ render(controller('MyOrleansBundle:Carrousel:affichageCarrousel',
+                                {'id': evenement.id })) }}
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!"
+                                   class="modal-action modal-close waves-effect waves-light grey lighten-2 btn-flat">Fermer</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+
+                <div class="arrows">
+                    <button class="arrow arrow__prev disabled btn-floating btn-large greenMyO"
+                            disabled>
+                        <i class="medium material-icons">keyboard_arrow_left</i>
+                    </button>
+                    <button class="arrow arrow__next btn-floating btn-large greenMyO">
+                        <i class="medium material-icons">keyboard_arrow_right</i>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <h2>Nos partenaires</h2>
+    <div class="row">
+        <div class="col s12 offset-l1 l10">
+            {% for partenaire in partenaires %}
+                <div class="col s2 l1 partenaire">
+                    <a {% if partenaire.url != null %}href="{{ partenaire.url }}" target="_blank"{% endif %}>
+                        <img class="responsive-img" src="{{ asset('uploads/'~partenaire.media.mediaName) }}">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
+
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <p class="newsletter">Quel est votre projet ?</p>
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="input-field col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <p class="newsletter">Quel est l'objet de votre message?</p>
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_widget(form.sujet, {'attr': {'value':'Demande d\'information'}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <div class="row center">
+                    <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                    {{ form_widget(form.newsletter) }}
+                    {{ form_errors(form.newsletter) }}
+                </div>
+
+                <div class="input-field col l12 newsletter envoyer">
+                    {{ form_row(form.envoyer) }}
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+
+    </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
+    <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.slider').slider();
+        });
+    </script>
+{% endblock %}

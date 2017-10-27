@@ -2,10 +2,10 @@
 
 {% block video %}
     <!--Accueil video ou image Full Page-->
-    <div class="accueil">
+    <div class="accueil" id="intro">
         {% for media in accueil.medias %}
             {% if media.typeMedia.nom == 'video' %}
-                <video width="100%" autoplay loop muted>
+                <video autoplay loop muted>
                     <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/mp4">
                     <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/ogg">
                     <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/webm">
@@ -19,10 +19,10 @@
 {% endblock video %}
 
 {% block content %}
-    <h1>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h1>
+    <h2>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h2>
     <!-- Mosaïque Résidences -->
     <div class="row">
-        <div class="offset-s1 col s10 mosaic">
+        <div class="col offset-l1 s12 l10 mosaic">
             <!-- Colonne Gauche -->
             <div class='colonne'>
                 {% for residence in residenceCol1 %}
@@ -31,8 +31,8 @@
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu">
-                            <p>{{ residence.nom }}</p>
-                            <a href="#">VOIR PLUS</a>
+                            <h3>{{ residence.nom }}</h3>
+                            <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -45,13 +45,13 @@
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu">
-                            <p>{{ residence.nom }}</p>
-                            <a href="#">VOIR PLUS</a>
+                            <h3>{{ residence.nom }}</h3>
+                            <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
                 <div class="voir">
-                    <a href="#"><p>VOIR PLUS DE PROGRAMMES</p></a>
+                    <a href="{{ path('nosresidences') }}"><p>VOIR PLUS DE PROGRAMMES</p></a>
                 </div>
             </div>
             <!-- Colonne Droite -->
@@ -62,8 +62,8 @@
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu">
-                            <p>{{ residence.nom }}</p>
-                            <a href="#">VOIR PLUS</a>
+                            <h3>{{ residence.nom }}</h3>
+                            <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -71,17 +71,65 @@
         </div>
     </div>
 
-    <h1>NOTRE ÉQUIPE</h1>
-    <div class="row">
+    <h2 class=" hide-on-small-only">NOTRE ÉQUIPE</h2>
+    <div class="row  hide-on-small-only">
         <!-- Barillet équipe -->
-        {#<div class="offset-l1 col l4">#}
-        {#<img src="{{ asset('img/test/barillet.png') }}">#}
-        {#</div>#}
+        <div class="col offset-l1 l5">
+            <div class="barillet">
+                <div class="colBarillet">
+                    <ul class="circle-container">
+                        {% for collaborateur in collaborateurs %}
+                            {% if loop.index == 1 %}
+                                <li class="item"><a class="active" href="#"><img
+                                                class="collaborateurBarillet circle"
+                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                </li>
+                            {% else %}
+                                <li class="item"><a href="#"><img class="collaborateurBarillet circle"
+                                                                  src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="colBarillet">
+                    <ul class="bioCollaborateur">
+                        {% for collaborateur in collaborateurs %}
+                            {% if loop.index == 1 %}
+                                <li>
+                                    <a class="active" href="#">
+                                        <div class="bio center circle">
+                                            <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
+                                            <p>{{ collaborateur.fonction }}</p>
+                                            <p>E-mail : {{ collaborateur.email }}</p>
+                                            <p class="vision">Sa vision :</p>
+                                            <p>"{{ collaborateur.bio }}"</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a>
+                                        <div class="bio center circle">
+                                            <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
+                                            <p>{{ collaborateur.fonction }}</p>
+                                            <p>E-mail : {{ collaborateur.email }}</p>
+                                            <p class="vision">Sa vision :</p>
+                                            <p>"{{ collaborateur.bio }}"</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
         <!-- Slider Temoignages -->
-        <div class="offset-s1 offset-l6 col l5 s10">
+        <div class="col offset-s1 offset-l1 l4 s10">
             <div class="temoignage">
                 <div class="enteteCarousel">
-                    <p>CE QUE NOS CLIENTS PENSENT DE NOUS</p>
+                    <h3>CE QUE NOS CLIENTS PENSENT DE NOUS</h3>
                 </div>
                 <div class="slider">
                     <ul class="slides">
@@ -90,54 +138,135 @@
                                 <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}"
                                      alt="témoin">
                                 <div class="caption center-align">
-                                    <h3>{{ temoignage.auteur }}</h3>
-                                    <h5>{{ temoignage.message }}</h5>
+                                    <p>{{ temoignage.message }}</p>
+                                    <p class="right">{{ temoignage.auteur }}</p>
                                 </div>
                             </li>
                         {% endfor %}
                     </ul>
-                    <div class="col s12">
-                        <button class="prev btn grey darken-3 btn-floating btn-large"><i
-                                    class="fa fa-caret-left white-text text-lighten-1"></i></button>
-                        <button class="next btn grey darken-3 btn-floating btn-large"><i
-                                    class="fa fa-caret-right white-text text-lighten-1"></i></button>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
+
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <p class="newsletter">Quel est votre projet ?</p>
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="input-field col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <p class="newsletter">Quel est l'objet de votre message?</p>
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_widget(form.sujet, {'attr': {'value':'Demande d\'information'}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <div class="row center">
+                    <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                    {{ form_widget(form.newsletter) }}
+                    {{ form_errors(form.newsletter) }}
+                </div>
+
+                <div class="input-field col l12 newsletter envoyer">
+                    {{ form_row(form.envoyer) }}
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+
+    </form>
 {% endblock content %}
 
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function () {
+
+            $('.navbar-fixed').removeAttr('class').css({bottom: '0'});
+
+            var height = (window.innerHeight - document.getElementById("nav").offsetHeight) + 'px';
+
+            document.getElementById('intro').style.height = height;
+
             // Slider temoignage
             $('.slider').slider({
-                height: 300,
-                indicators: false,
+                height: 200,
+                indicators: true,
                 interval: 12000
             });
 
-            //$('.slider').slider('pause');
-
-            $('.next').click(function () {
-                $('.slider').slider('next');
-            });
-            $('.prev').click(function () {
-                $('.slider').slider('prev');
-            });
-
-            $('select').material_select();
-
-            $('.parallax').parallax();
-
-            $('.carousel').carousel({
-                indicators: true,
-                dist: 0,
-                shift: 20,
-                duration: 100
-            });
         });
     </script>
+    <script type="text/javascript" src="{{ asset('js/stickynav.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
 {% endblock %}

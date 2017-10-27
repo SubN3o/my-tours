@@ -13,12 +13,15 @@ class LoadTypeBienData implements FixtureInterface
     {
         $typeBien1 = new TypeBien();
         $typeBien2 = new TypeBien();
+        $typeBien3 = new TypeBien();
 
         $typeBien1->setNom('Appartement');
         $typeBien2->setNom('Maison');
+        $typeBien3->setNom('Duplex');
 
         $manager->persist($typeBien1);
         $manager->persist($typeBien2);
+        $manager->persist($typeBien3);
 
         $manager->flush();
 

@@ -1,0 +1,320 @@
+{% extends 'MyOrleansBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row infoFlat">
+        <div class="col offset-l1 l2 s12">
+            <div class="retourZone col s3 l12">
+                <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img class="responsive-img"
+                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                             alt="résidence">
+                    {% endfor %}
+                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
+                </a>
+            </div>
+            <div class="col l12 offset-s1 s4 center">
+                <h1 class="referenceFlat">{{ flat.reference }}</h1>
+            </div>
+        </div>
+        <div class="col offset-l1 l4 s12">
+            <div class="residenceFlat center">
+                <span>{{ residence.nom }}</span>
+                <p>{{ residence.ville.nom }}</p>
+            </div>
+        </div>
+        <div class="col s12 center hide-on-large-only offreSmall">
+            <p>{{ residence.offre }}</p>
+        </div>
+        {% if residence.offre != null %}
+            <div class="col offset-l1 l2 s4 offreFlat hide-on-med-and-down">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <img class="vignette" src="{{ asset('img/offreFile.png') }}">
+                            {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
+                                <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
+                            {% endfor %}
+                        </div>
+                        <div class="back">
+                            <p>{{ residence.offre }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="row infoFlat2">
+        <div class="col offset-l1 l5 s8 typeFlat">
+            {{ flat.typeBien.nom }} de type {{ flat.typeLogement.id }}
+        </div>
+        <div class="col l5 s4 right-align prixFlat">
+            {{ flat.prix|number_format(0, '.', ' ') }} €
+        </div>
+    </div>
+    <div class="row planFlat">
+        <div class="col offset-l1 s12 l10">
+            {% for media in flat.medias if media.typeMedia.nom == 'plan' %}
+                <img class="responsive-img materialboxed"
+                     src="{{ asset('uploads/'~media.mediaName) }}"
+                     alt="résidence">
+            {% endfor %}
+        </div>
+
+    </div>
+    {#<div class="row">#}
+    {#<div class="col offset-s1 s10">#}
+    {#<img class="pdfIcon" src="{{ asset('img/PDF.png') }}">#}
+    {#</div>#}
+    {#</div>#}
+    <h2>Descriptif du Logement</h2>
+    <div class="row">
+        <div class="col offset-l1 l5">
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/room.png') }}" alt="plan">
+                </div>
+                {% if flat.surface != null %}
+                    <div class="col s12">
+                        <p>Surface Habitable</p>
+                        <span>{{ flat.surface }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceSejour != null %}
+                    <div class="col s12">
+                        <p>Surface Séjour</p>
+                        <span>{{ flat.surfaceSejour }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceBalcon != null %}
+                    <div class="col s12">
+                        <p>Surface Balcon</p>
+                        <span>{{ flat.surfaceBalcon }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceTerrasse != null %}
+                    <div class="col s12">
+                        <p>Surface Terrasse</p>
+                        <span>{{ flat.surfaceTerrasse }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceJardin != null %}
+                    <div class="col s12">
+                        <p>Surface Jardin</p>
+                        <span>{{ flat.surfaceJardin }} m²</span>
+                    </div>
+                {% endif %}
+                {% if flat.surfaceTerrain != null %}
+                    <div class="col s12">
+                        <p>Surface Terrain</p>
+                        <span>{{ flat.surfaceTerrain }} m²</span>
+                    </div>
+                {% endif %}
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/floor.png') }}" alt="revetement">
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Sol Séjour</p>
+                    <span>{{ flat.solSejour }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Sol Salle de Bains</p>
+                    <span>{{ flat.solSdb }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Sol Chambre</p>
+                    <span>{{ flat.solChambre }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Revêtement Muraux</p>
+                    <span>{{ flat.revetementMur }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+        </div>
+        <div class="col l5">
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/menuiserie.png') }}" alt="menuiserie">
+                </div>
+                <div class="col s12">
+                    <p>Menuiseries</p>
+                    <span>{{ flat.menuiserie }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/chauffage.png') }}" alt="chauffage">
+                </div>
+                <div class="col s12">
+                    <p>Chauffage</p>
+                    <span>{{ flat.chauffage }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/boussole.png') }}" alt="boussole">
+                </div>
+                <div class="col s12">
+                    <p>Exposition du séjour</p>
+                    <span>{{ flat.expositionSejour }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/Parking.png') }}" alt="voiture">
+                </div>
+                <div class="col s12">
+                    <p>Stationnement</p>
+                    <span>{{ flat.stationnement }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 accrocheResidenceFlat">
+            <div class="col offset-l2 l8">
+                <span class="center accrocheFlat col offset-l2 offset-s1 l8 s10">{{ residence.accroche }}</span>
+                <div class="center descriptionFlat col s12">{{ residence.description | raw }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-l1 s3 l2">
+            <div class="retourZone">
+                <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img class="responsive-img"
+                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                             alt="résidence">
+                    {% endfor %}
+                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR À LA RÉSIDENCE</span>
+                </a>
+            </div>
+        </div>
+        <div class="col offset-l1 l7 s12 partage valign-wrapper">
+            <p><i class="material-icons align-icon">share</i>Partager l'annonce</p>
+            <div class="partageIcone">
+                <div id="fb-root"></div>
+                <div class="fb-share-button" data-href="{{ path('appartement', { 'id': flat.id }) }}"
+                     data-layout="button"
+                     data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+                                                                    href="{{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}">Partager</a>
+                </div>
+                <a class="waves-effect waves-light btn greenMyO"
+                   href="mailto:?to= &subject={{ flat.reference }}%20-%20{{ flat.typeBien.nom }}%20{{ flat.typeLogement.nom }}%20{{ residence.nom }}%20-%20My%20Orleans&body=Bonjour,%0A%0AJ'ai trouvé un logement qui devrait vous intéresser sur {{ absolute_url( path('home'))|url_encode }}%0A%0AVoici le lien vers l'annonce:%0A{{ absolute_url( path('appartement', { 'id': flat.id }))|url_encode }}%0A%0ADans certains cas, le lien est inactif. Veuillez alors le copier dans la barre d'adresse de votre navigateur.">
+                    <i class="material-icons">mail</i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
+
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <p class="newsletter">Quel est votre projet ?</p>
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="input-field col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <p class="newsletter">Quel est l'objet de votre message?</p>
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_widget(form.sujet, {'attr': {'value':'Demande d\'information'}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <div class="row center">
+                    <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                    {{ form_widget(form.newsletter) }}
+                    {{ form_errors(form.newsletter) }}
+                </div>
+
+                <div class="input-field col l12 newsletter envoyer">
+                    {{ form_row(form.envoyer) }}
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+
+    </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
+{% endblock %}

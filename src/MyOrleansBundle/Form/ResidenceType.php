@@ -84,6 +84,9 @@ class ResidenceType extends AbstractType
                 'required' => false
             ])
             ->add('description', TextareaType::class, [
+                "attr" => [
+                    "class" => "materialize ckeditor"
+                ],
                 'required' => false,
             ])
             ->add('nbTotalLogements', IntegerType::class, [

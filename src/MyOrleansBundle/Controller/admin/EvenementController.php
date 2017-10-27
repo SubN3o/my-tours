@@ -30,7 +30,7 @@ class EvenementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('MyOrleansBundle:Evenement')->findAll();
+        $evenements = $em->getRepository('MyOrleansBundle:Evenement')->findBy([], ['dateDebut'=>'ASC']);
 
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"

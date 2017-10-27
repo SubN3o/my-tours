@@ -13,13 +13,8 @@ class TemoignageControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-<<<<<<< HEAD
         $crawler = $client->request('GET', '/admin/temoignage/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /admin/temoignage/");
-=======
-        $crawler = $client->request('GET', '/temoignage/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /temoignage/");
->>>>>>> 8ddd01b11fbe0d8f81868096f5b9e58d8350b48a
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it

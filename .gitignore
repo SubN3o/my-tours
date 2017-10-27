@@ -24,3 +24,4 @@ web/uploads/*
 web/media/
 !/web/uploads/pdf.jpg
 !/web/uploads/default.jpg
+!/web/uploads/video.jpg

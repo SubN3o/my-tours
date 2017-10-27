@@ -21,45 +21,20 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LayoutController extends Controller
 {
-    public function formulaireAction(Request $request)
+    public function navBarAction(Request $request)
     {
-        $telephoneNumber = $this->getParameter('telephone_number');
+        // Fin recuperation des villes
+        $simpleSearch = $this->createForm('MyOrleansBundle\Form\SimpleSearchType',
+            null,
+            ['action' => $this->generateUrl('nosresidences')]);
 
-        // Formulaire de contact
-        $client = new Client();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->handleRequest($request);
+        $simpleSearchMobile = $this->createForm('MyOrleansBundle\Form\SimpleSearchMobileType',
+            null,
+            ['action' => $this->generateUrl('nosresidences')]);
 
-        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($message);
-
-            $em->persist($client);
-            $em->flush();
-
-            $this->addFlash('success', 'votre message a bien été envoyé');
-            return $this->redirectToRoute('home');
-        }
-
-        return $this->render('MyOrleansBundle::formulaire.html.twig',[
-            'telephone_number' => $telephoneNumber,
-            'form' => $formulaire->createView(),
+        return $this->render('MyOrleansBundle::navBar.html.twig', [
+            'simpleSearch' => $simpleSearch->createView(),
+            'simpleSearchMobile' => $simpleSearchMobile->createView(),
         ]);
     }
 
@@ -67,21 +42,21 @@ class LayoutController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $programmes = $em->getRepository(Residence::class)->findAll();
+        $programmes = $em->getRepository(Residence::class)->findBy([], ['tri' => 'ASC'], 7,0);
 
-        $services = $em->getRepository(Service::class)->findBy([], ['tri'=>'ASC']);
+        $services = $em->getRepository(Service::class)->findBy([], ['tri' => 'ASC']);
 
-        $packs = $em->getRepository(Pack::class)->findBy([], ['tri'=>'ASC']);
+        $packs = $em->getRepository(Pack::class)->findBy([], ['tri' => 'ASC']);
 
-        $articles = $em->getRepository(Article::class)->findBy([], ['date'=>'DESC'], 3,0);
+        $articles = $em->getRepository(Article::class)->findBy([], ['date' => 'DESC'], 3, 0);
 
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
-        return $this->render('MyOrleansBundle::footer.html.twig',[
-            'programmes'=>$programmes,
-            'services'=>$services,
-            'packs'=>$packs,
-            'articles'=>$articles,
+        return $this->render('MyOrleansBundle::footer.html.twig', [
+            'programmes' => $programmes,
+            'services' => $services,
+            'packs' => $packs,
+            'articles' => $articles,
             'accueil' => $accueil
         ]);
     }

@@ -9,6 +9,9 @@
 namespace MyOrleansBundle\Form;
 
 
+use MyOrleansBundle\Entity\TypeBien;
+use MyOrleansBundle\Entity\TypeLogement;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -28,80 +31,55 @@ class CompleteSearchType extends AbstractType
             ->add('ville', SearchType::class, [
                 'required'=>false,
                 'attr'=> [
-                    'id'=>'villes',
+//                    'id'=>'villes',
                     'placeholder'=>'Chercher une ville...',
                     'class'=>'autocomplete',
                     'autocomplete' => 'off'
                 ]
 
             ])
-//            ->add('quartier', SearchType::class, [
-//                'required'=>false,
-//                'attr'=> [
-//                    'id'=>'quartiers',
-//                    'placeholder'=>'Chercher un quartier...',
-//                    'class'=>'autocomplete',
-//                    'autocomplete' => 'off'
-//                ]
-//
-//            ])
-            ->add('type', ChoiceType::class, [
-                'required'=>false,
-                'placeholder'=>'Type du bien',
-                'choices' => array(
-                    'T1' => 'T1',
-                    'T2' => 'T2',
-                    'T3' => 'T3',
-                    'T4' => 'T4',
-                    'T5+' => 'T5+',
-                )
-            ])
-//            ->add('surfaceMin', IntegerType::class, [
-//                'required' => false,
-//                'attr' => ['placeholder'=>'Surface min',
-//                            'min' => '0'
-//                            ],
-//            ])
-//            ->add('surfaceMax', IntegerType::class, [
-//                'required' => false,
-//                'attr' => ['placeholder'=>'Surface max',
-//                    'min' => '0'
-//                    ],
-//            ])
-//            ->add('nbChambres', ChoiceType::class, [
-//                'required'=>false,
-//                'placeholder'=>'Nb. Chambre(s)',
-//                'choices' => array(
-//                    '1 chambre' => '1',
-//                    '2 chambres' => '2',
-//                    '3 chambres' => '3',
-//                    '4 chambres et plus' => '4',
-//                )
-//            ])
 
-//            ->add('objectif', ChoiceType::class, [
+//            ->add('typeLogement', ChoiceType::class, [
+//                'expanded' => true,
+//                'multiple' => false,
 //                'required'=>false,
-//                'placeholder'=>'Objectif',
+//                'placeholder'=>'Aucun',
 //                'choices' => array(
-//                    'investir' => 'investir',
-//                    'acheter en résidence principale' => 'Residence Principale',
+//                    'T1' => 'T1',
+//                    'T2' => 'T2',
+//                    'T3' => 'T3',
+//                    'T4' => 'T4',
+//                    'T5+' => 'T5+',
 //                )
 //            ])
-            ->add('budgetMin', IntegerType::class, [
-                'scale' => 0,
+            ->add('typeLogement', EntityType::class, [
+                'class' => TypeLogement::class,
+                'choice_label' => 'nom',
                 'required' => false,
-                'attr' => ['min' => '0',
-                            'max' => '500000'],
+                'expanded' => true,
+                'multiple' => true,
             ])
-            ->add('budgetMax', IntegerType::class, [
+
+
+            ->add('budgetMin', MoneyType::class, [
                 'scale' => 0,
                 'required' => false,
+                'grouping'=> true,
                 'attr' => ['min' => '0',
-                            'max'=> '500000'],
+                           'placeholder' => '50 000'
+                ],
+            ])
+            ->add('budgetMax', MoneyType::class, [
+                'scale' => 0,
+                'required' => false,
+                'grouping'=> true,
+                'attr' => ['min' => '0',
+                            'placeholder' => '300 000'
+                            ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Rechercher',
-                'attr' => ['class' => 'waves-effect waves-light btn white']
+                'attr' => ['class' => 'waves-effect waves-light btn greenMyO']
             ])
             ->getForm();
 
