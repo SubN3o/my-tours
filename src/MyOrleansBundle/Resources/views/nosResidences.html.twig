@@ -29,32 +29,13 @@
                             </div>
                         </div>
                     </div>
+                    {% dump(data) %}
                     <div id="type">
                         <h4>Sélectionnez le type souhaité</h4>
                         <div class="row no-margin-bottom">
                             <div class="col s12">
-                                <div class="row">
-                                    <div class="col offset-s2 s8 typeSearch">
-                                        <span class="T1">T1</span>
-                                        <span class="T2">T2</span>
-                                        <span class="T3">T3</span>
-                                        <span class="T4">T4</span>
-                                        <span class="T5">T5+</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col offset-s2 s8 curseur">
-                                        <div class="slider type2">
-                                            {{ form_widget(completeSearch.type) }}
-                                            {{ form_errors(completeSearch.type) }}
-                                        </div>
-                                        <span class="division1"></span>
-                                        <span class="division2"></span>
-                                        <span class="division3"></span>
-                                        <span class="division4"></span>
-                                        <span class="division5"></span>
-                                    </div>
-                                </div>
+                                {{ form_widget(completeSearch.typeLogement) }}
+                                {{ form_errors(completeSearch.typeLogement) }}
                             </div>
                         </div>
                     </div>
@@ -65,26 +46,15 @@
                                 <div class="row">
                                     <div class="col offset-s1 s4 budget">
                                         <p>Budget min</p>
-                                        {{ form_widget(completeSearch.budgetMin) }}
+                                        <div class="budgetMin">{{ form_widget(completeSearch.budgetMin) }}</div>
+                                        {{ form_errors(completeSearch.budgetMin) }}
                                     </div>
                                     <div class="col offset-s2 s4 budget">
                                         <p>Budget max</p>
-                                        {{ form_widget(completeSearch.budgetMax) }}
+                                        <div class="budgetMin">{{ form_widget(completeSearch.budgetMax) }}</div>
+                                        {{ form_errors(completeSearch.budgetMax) }}
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col offset-s2 s8 curseur">
-                                        <div id="slider-range" class="slider type2"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s6">
-                                {{ form_widget(completeSearch.budgetMin) }}
-                                {{ form_errors(completeSearch.budgetMin) }}
-                            </div>
-                            <div class="col s6">
-                                {{ form_widget(completeSearch.budgetMax) }}
-                                {{ form_errors(completeSearch.budgetMax) }}
                             </div>
                         </div>
                     </div>
@@ -269,7 +239,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -287,39 +256,7 @@
                 },
                 minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
 
-
             });
-
-            //Slider Range Type Moteur de Recherche
-            var select = $("#complete_search_type");
-            var slider = $("<div id='slider'></div>").insertAfter(select).slider({
-                min: 1,
-                max: 5,
-                range: "min",
-                value: select[0].selectedIndex + 1,
-                slide: function (event, ui) {
-                    select[0].selectedIndex = ui.value - 1;
-                }
-            });
-            $("#complete_search_type").on("change", function () {
-                slider.slider("value", this.selectedIndex + 1);
-            });
-
-            //Slider Range Budget Moteur de Recherche
-            $("#slider-range").slider({
-                range: true,
-                max: 500000,
-                values: [100000, 300000],
-                animate: true,
-                step: 5,
-                slide: function (event, ui) {
-                    $("#complete_search_budgetMin").val(ui.values[0]);
-                    $("#complete_search_budgetMax").val(ui.values[1]);
-                }
-            });
-
-            $("#complete_search_budgetMin").val($("#slider-range").slider("values", 0));
-            $("#complete_search_budgetMax").val($("#slider-range").slider("values", 1));
 
         });
     </script>
