@@ -236,6 +236,26 @@ footer p {
     padding-bottom: 10px;
 }
 
+.copyrightMyO {
+    margin-top: 10px;
+}
+
+.mentions {
+    float: right;
+    font-size: 10pt;
+    margin-top: 15px;
+}
+
+.honoraires {
+    font-size: 10pt;
+    float: left;
+    margin-top: 15px;
+}
+
+.labels {
+    float: right;
+}
+
 .h5Footer {
     margin-top: 20px;
 }
@@ -314,6 +334,15 @@ footer p {
     #modalHonoraire {
         width: 90%;
     }
+
+    .mentions, .honoraires {
+        float: none;
+        margin-top: 0;
+    }
+
+    .labels {
+        float: none;
+    }
 }
 
 /* --------------------------------------------------------------------*/
@@ -391,6 +420,7 @@ footer p {
 [type="checkbox"] + label {
     padding-left: 22px;
     padding-right: 20px;
+    margin-top: 10px;
 }
 
 
@@ -411,10 +441,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 
 .newsletter {
     text-align: center;
-}
-
-.envoyer {
-    margin-bottom: 100px;
+    margin-top: 15px;
 }
 
 /* --------------------------------------------------------------------*/
@@ -1544,7 +1571,7 @@ video {
     background-color: #ccf03f;
 }
 
-.colType, .colSurface, .colPrix {
+.colRef, .colType, .colSurface, .colPrix {
     border-right: solid 2px white;
 }
 

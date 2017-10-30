@@ -36,16 +36,20 @@ class FormulaireType extends AbstractType
                 ]
             ])
             ->add('nom', TextType::class,[
-                'required' => true
+//                'required' => true,
+                'label'=> 'Nom *'
             ])
             ->add('email', EmailType::class,[
-                'required' => true
+//                'required' => true,
+                'label'=> 'E-mail *'
             ])
             ->add('telephone', TextType::class,[
-                'required' => true
+                'required'=>false,
+                'label'=> 'Téléphone'
             ])
             ->add('codePostal', IntegerType::class,[
-                'required' => true
+                'required'=>false,
+                'label' => 'Code Postal'
             ])
             ->add('projet', ChoiceType::class,[
                 'expanded' => true,
@@ -66,15 +70,18 @@ class FormulaireType extends AbstractType
                     'T4'=>'T4',
                     'T5+'=>'T5+',
                     ],
-                'required' => false
+                'required'=>false,
             ])
             ->add('budget', IntegerType::class,[
-                'required' => false
+                'required'=>false,
             ])
-            ->add('sujet', TextType::class)
+            ->add('sujet', TextType::class,[
+                'required'=>false,
+            ])
             ->add('message', TextareaType::class, [
                 'attr' =>['class' => 'materialize-textarea'],
-                'required' => false
+                'label'=> 'Message *'
+//                'required' => false
             ])
             ->add('newsletter', ChoiceType::class, [
                 'choices' => array('oui' => true, 'non' => false),

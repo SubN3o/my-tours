@@ -50,7 +50,6 @@ class Client
 
     /**
      * @var integer
-     * @Assert\NotBlank()
      * @Assert\Type(
      *     type="integer",
      *     message="La saisie n'est pas correcte."
@@ -74,7 +73,6 @@ class Client
 
     /**
      * @var string
-     * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",
      *     message="La saisie n'est pas correcte."
@@ -98,7 +96,6 @@ class Client
 
     /**
      * @var integer
-     * @Assert\NotBlank()
      * @Assert\Type(
      *     type="integer",
      *     message="La saisie n'est pas correcte."
@@ -110,7 +107,6 @@ class Client
 
     /**
      * @var array
-     * @Assert\NotBlank()
      * @Assert\Type(
      *     type="array",
      *     message="La saisie n'est pas correcte."
@@ -131,7 +127,6 @@ class Client
 
     /**
      * @var string
-     * @Assert\NotBlank()
      * @Assert\Type(
      *     type="string",
      *     message="La saisie n'est pas correcte."

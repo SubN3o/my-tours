@@ -31,16 +31,16 @@ class ClientType extends AbstractType
                 ]
             ])
             ->add('nom', TextType::class,[
-                'required' => true
+//                'required' => true
             ])
             ->add('email', EmailType::class,[
-                'required' => true
+//                'required' => true
             ])
             ->add('telephone', TextType::class,[
-                'required' => true
+                'required' => false
             ])
             ->add('codePostal', IntegerType::class,[
-                'required' => true
+                'required' => false
             ])
             ->add('projet', ChoiceType::class,[
                 'expanded' => true,

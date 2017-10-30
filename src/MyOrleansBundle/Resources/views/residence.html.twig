@@ -231,8 +231,9 @@
         <div class="col offset-l1 offset-xl2 s12 l10 xl8">
             <div class="accordeon-residence center">
                 <div class="row accordeon-entete">
-                    <div class="col s3 colType">Type</div>
-                    <div class="col s3 colSurface">Surface habitable</div>
+                    <div class="col s1 colRef">Réf</div>
+                    <div class="col s2 colType">Type</div>
+                    <div class="col s3 colSurface">Surface Habitable</div>
                     <div class="col s4 l3 colPrix">Prix</div>
                     <div class="col s2 l3 colDispo">Disponibilité</div>
                 </div>
@@ -241,7 +242,7 @@
                         <li>
                             <div class="collapsible-header">
                                 <div class="row">
-                                    <div class="col s3">1 pièce</div>
+                                    <div class="col offset-s1 s2">1 pièce</div>
                                     <div class="col s3">
                                         {% for flat in flatsT1 %}
                                             {% if loop.first %}{{ flat.surface }}{% endif %}
@@ -280,7 +281,8 @@
                                     <div class="row">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}">
-                                                <div class="col s3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s1">{{ flat.reference }}</div>
+                                                <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
                                                 <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
                                                 </div>
@@ -289,8 +291,7 @@
                                                 </div>
                                             </a>
                                         {% else %}
-
-                                            <div class="col s3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
                                             <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
                                             </div>
@@ -306,7 +307,7 @@
                         <li>
                             <div class="collapsible-header">
                                 <div class="row">
-                                    <div class="col s3">2 pièces</div>
+                                    <div class="col offset-s1 s2">1 pièce</div>
                                     <div class="col s3">
                                         {% for flat in flatsT2 %}
                                             {% if loop.first %}{{ flat.surface }}{% endif %}
@@ -345,7 +346,8 @@
                                     <div class="row">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}">
-                                                <div class="col s3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s1">{{ flat.reference }}</div>
+                                                <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
                                                 <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
                                                 </div>
@@ -354,8 +356,7 @@
                                                 </div>
                                             </a>
                                         {% else %}
-
-                                            <div class="col s3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
                                             <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
                                             </div>
@@ -371,7 +372,7 @@
                         <li>
                             <div class="collapsible-header">
                                 <div class="row">
-                                    <div class="col s3">3 pièces</div>
+                                    <div class="col offset-s1 s2">1 pièce</div>
                                     <div class="col s3">
                                         {% for flat in flatsT3 %}
                                             {% if loop.first %}{{ flat.surface }}{% endif %}
@@ -410,7 +411,8 @@
                                     <div class="row">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}">
-                                                <div class="col s3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s1">{{ flat.reference }}</div>
+                                                <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
                                                 <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
                                                 </div>
@@ -419,8 +421,7 @@
                                                 </div>
                                             </a>
                                         {% else %}
-
-                                            <div class="col s3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
                                             <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
                                             </div>
@@ -436,7 +437,7 @@
                         <li>
                             <div class="collapsible-header">
                                 <div class="row">
-                                    <div class="col s3">4 pièces</div>
+                                    <div class="col offset-s1 s2">1 pièce</div>
                                     <div class="col s3">
                                         {% for flat in flatsT4 %}
                                             {% if loop.first %}{{ flat.surface }}{% endif %}
@@ -475,7 +476,8 @@
                                     <div class="row">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}">
-                                                <div class="col s3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s1">{{ flat.reference }}</div>
+                                                <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
                                                 <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
                                                 </div>
@@ -484,8 +486,7 @@
                                                 </div>
                                             </a>
                                         {% else %}
-
-                                            <div class="col s3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
                                             <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
                                             </div>
@@ -501,7 +502,7 @@
                         <li>
                             <div class="collapsible-header">
                                 <div class="row">
-                                    <div class="col s3">5 pièces et plus</div>
+                                    <div class="col offset-s1 s2">1 pièce</div>
                                     <div class="col s3">
                                         {% for flat in flatsT5 %}
                                             {% if loop.first %}{{ flat.surface }}{% endif %}
@@ -540,7 +541,8 @@
                                     <div class="row">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'id': flat.id }) }}">
-                                                <div class="col s3">{{ flat.typeLogement.nom }}</div>
+                                                <div class="col s1">{{ flat.reference }}</div>
+                                                <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
                                                 <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
                                                 </div>
@@ -549,8 +551,7 @@
                                                 </div>
                                             </a>
                                         {% else %}
-
-                                            <div class="col s3"><i>{{ flat.typeLogement.nom }}</i></div>
+                                            <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
                                             <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
                                             </div>
@@ -644,15 +645,14 @@
                         {{ form_errors(form.telephone) }}
                     </div>
                 </div>
-
+                <p class="newsletter">Quel est votre projet ?</p>
                 <div class="row">
-                    <div class="input-field col s12 center">
-                        <p class="newsletter">Quel est votre projet ?</p>
+                    <div class="col s12 center">
                         {{ form_widget(form.projet) }}
                         {{ form_errors(form.projet) }}
                     </div>
 
-                    <div class="input-field col s12 center">
+                    <div class="col s12 center">
                         {{ form_widget(form.typeLogement) }}
                         {{ form_errors(form.typeLogement) }}
                     </div>
@@ -664,12 +664,12 @@
                         {{ form_errors(form.budget) }}
                     </div>
                 </div>
-
+                <p class="newsletter">Quel est l'objet de votre message?</p>
                 <div class="row">
                     <div class="input-field col l12 m12 s12">
-                        <p class="newsletter">Quel est l'objet de votre message?</p>
                         <i class="material-icons prefix">info_outline</i>
-                        {{ form_widget(form.sujet, {'attr': {'value':'Demande d\'information'}}) }}
+                        {{ form_label(form.sujet) }}
+                        {{ form_widget(form.sujet, {'attr': {'value':'Documentation - '~residence.nom }}) }}
                         {{ form_errors(form.sujet) }}
                     </div>
 
@@ -680,21 +680,21 @@
                         {{ form_errors(form.message) }}
                     </div>
                 </div>
+                <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
                 <div class="row center">
-                    <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
-                    {{ form_widget(form.newsletter) }}
-                    {{ form_errors(form.newsletter) }}
+                    <div class="col s12 center">
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
                 </div>
 
-                <div class="input-field col l12 newsletter envoyer">
+                <div class="col l12 newsletter">
                     {{ form_row(form.envoyer) }}
                 </div>
-
+                <p class="newsletter"><i>* Champs requis</i></p>
                 {{ form_end(form) }}
             </div>
-
         </div>
-
     </form>
 {% endblock content %}
 
