@@ -1571,7 +1571,7 @@ video {
     background-color: #ccf03f;
 }
 
-.colType, .colSurface, .colPrix {
+.colRef, .colType, .colSurface, .colPrix {
     border-right: solid 2px white;
 }
 
