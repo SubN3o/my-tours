@@ -420,6 +420,7 @@ footer p {
 [type="checkbox"] + label {
     padding-left: 22px;
     padding-right: 20px;
+    margin-top: 10px;
 }
 
 
@@ -440,10 +441,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 
 .newsletter {
     text-align: center;
-}
-
-.envoyer {
-    margin-bottom: 100px;
+    margin-top: 15px;
 }
 
 /* --------------------------------------------------------------------*/

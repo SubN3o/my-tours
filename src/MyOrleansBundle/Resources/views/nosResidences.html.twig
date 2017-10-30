@@ -29,7 +29,6 @@
                             </div>
                         </div>
                     </div>
-                    {% dump(data) %}
                     <div id="type">
                         <h4>Sélectionnez le type souhaité</h4>
                         <div class="row no-margin-bottom">
@@ -182,15 +181,14 @@
                         {{ form_errors(form.telephone) }}
                     </div>
                 </div>
-
+                <p class="newsletter">Quel est votre projet ?</p>
                 <div class="row">
-                    <div class="input-field col s12 center">
-                        <p class="newsletter">Quel est votre projet ?</p>
+                    <div class="col s12 center">
                         {{ form_widget(form.projet) }}
                         {{ form_errors(form.projet) }}
                     </div>
 
-                    <div class="input-field col s12 center">
+                    <div class="col s12 center">
                         {{ form_widget(form.typeLogement) }}
                         {{ form_errors(form.typeLogement) }}
                     </div>
@@ -202,12 +200,12 @@
                         {{ form_errors(form.budget) }}
                     </div>
                 </div>
-
+                <p class="newsletter">Quel est l'objet de votre message?</p>
                 <div class="row">
                     <div class="input-field col l12 m12 s12">
-                        <p class="newsletter">Quel est l'objet de votre message?</p>
                         <i class="material-icons prefix">info_outline</i>
-                        {{ form_widget(form.sujet, {'attr': {'value':'Demande d\'information'}}) }}
+                        {{ form_label(form.sujet) }}
+                        {{ form_widget(form.sujet, {'attr': {'value':'Demande de documentation'}}) }}
                         {{ form_errors(form.sujet) }}
                     </div>
 
@@ -218,23 +216,22 @@
                         {{ form_errors(form.message) }}
                     </div>
                 </div>
+                <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
                 <div class="row center">
-                    <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
-                    {{ form_widget(form.newsletter) }}
-                    {{ form_errors(form.newsletter) }}
+                    <div class="col s12 center">
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
                 </div>
 
-                <div class="input-field col l12 newsletter envoyer">
+                <div class="col l12 newsletter">
                     {{ form_row(form.envoyer) }}
                 </div>
-
+                <p class="newsletter"><i>* Champs requis</i></p>
                 {{ form_end(form) }}
             </div>
-
         </div>
-
     </form>
-
 {% endblock content %}
 
 {% block javascripts %}
