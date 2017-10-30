@@ -168,7 +168,6 @@ class NosResidencesController extends Controller
 
             $data = $completeSearch->getData();
 
-
             $residences = $em->getRepository(Residence::class)->completeSearch($data);
 
             if (!empty($residences)){
