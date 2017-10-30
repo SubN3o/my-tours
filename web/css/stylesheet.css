@@ -236,6 +236,26 @@ footer p {
     padding-bottom: 10px;
 }
 
+.copyrightMyO {
+    margin-top: 10px;
+}
+
+.mentions {
+    float: right;
+    font-size: 10pt;
+    margin-top: 15px;
+}
+
+.honoraires {
+    font-size: 10pt;
+    float: left;
+    margin-top: 15px;
+}
+
+.labels {
+    float: right;
+}
+
 .h5Footer {
     margin-top: 20px;
 }
@@ -313,6 +333,15 @@ footer p {
 @media only screen and (max-width: 992px) {
     #modalHonoraire {
         width: 90%;
+    }
+
+    .mentions, .honoraires {
+        float: none;
+        margin-top: 0;
+    }
+
+    .labels {
+        float: none;
     }
 }
 

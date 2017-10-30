@@ -95,37 +95,39 @@
     </div>
     <div class="footer2">
         <div class="row">
-            <div class="col offset-l1 s12 l2">
-                <p>© 2017 My-Orléans</p>
+            <div class="col offset-l1 s12 l3">
+                <p class="copyrightMyO">© 2017 My-Orléans</p>
             </div>
             <div class="col s12 l2">
-                <p class="linkFooter"><a href="#modalMention">Informations légales</a></p>
+                <p class="linkFooter mentions"><a href="#modalMention">Informations légales</a></p>
             </div>
-            <div class="col offset-l1 s12 l3">
-                <p class="linkFooter"><a href="#modalHonoraire">Frais et honoraires de gestion</a></p>
+            <div class="col s12 l2">
+                <p class="linkFooter honoraires"><a href="#modalHonoraire">Frais et honoraires de gestion</a></p>
             </div>
             <div class="col s12 l3">
-                <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}" alt="FNAIM"
-                                                                    class="logoFooter"></a>
-                <a href="https://www.galian.fr/" target="_blank"><img src="{{ asset('img/logo-galian.png') }}"
-                                                                      alt="Galian" class="logoFooter"></a>
+                <div class="labels">
+                    <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}"
+                                                                        alt="FNAIM"
+                                                                        class="logoFooter"></a>
+                    <a href="https://www.galian.fr/" target="_blank"><img src="{{ asset('img/logo-galian.png') }}"
+                                                                          alt="Galian" class="logoFooter"></a>
+                </div>
             </div>
         </div>
         <!--modale informations légales-->
         <div id="modalMention" class="modal">
             <div class="modal-content">
+                <a href="#" class="modal-action modal-close right"><i class="material-icons">close</i></a>
                 {{ accueil.mentions | raw }}
             </div>
         </div>
         <!--modale honoraires-->
         <div id="modalHonoraire" class="modal">
+            <a href="#" class="modal-action modal-close right"><i class="material-icons">close</i></a>
             <div class="modal-content">
                 {% for media in accueil.medias if media.typeMedia.nom == 'image' %}
                     <img src="{{ asset('uploads/'~media.mediaName) }}" alt="honoraires">
                 {% endfor %}
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
             </div>
         </div>
     </div>
