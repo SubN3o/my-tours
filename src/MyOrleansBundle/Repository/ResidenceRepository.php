@@ -16,22 +16,21 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
         if (!empty($ville)) {
             $qb->andWhere('v.nom LIKE :ville')
+                ->andWhere('fl.statut = true')
                 ->setParameter('ville', '%'.$ville.'%')
+                ->join('r.flats', 'fl')
                 ->join('r.ville', 'v')
                 ->orderBy('r.tri', 'ASC');
         }
 
         if (!empty($type)) {
             $qb->andWhere('t.nom = :type')
+                ->andWhere('f.statut = true')
                 ->setParameter('type', $type)
                 ->join('r.flats', 'f')
                 ->join('f.typeLogement', 't')
                 ->orderBy('r.tri', 'ASC');
         }
-
-        $qb->andWhere('flts.statut = true')
-            ->join('r.flats', 'flts')
-            ->orderBy('r.tri', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
@@ -43,8 +42,10 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
         if (!empty($data['ville'])) {
             $qb->andWhere('v.nom LIKE :ville')
+                ->andWhere('flt.statut = true')
                 ->setParameter('ville', '%'.$data['ville'].'%')
                 ->join('r.ville', 'v')
+                ->join('r.flats', 'flt')
                 ->orderBy('r.tri', 'ASC');
         }
 

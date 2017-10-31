@@ -173,7 +173,6 @@ class NosResidencesController extends Controller
                 $data['typeLogement'] = null;
             }
 
-
             $residences = $em->getRepository(Residence::class)->completeSearch($data);
 
             if (!empty($residences)){
