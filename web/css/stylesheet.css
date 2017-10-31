@@ -1204,6 +1204,13 @@ video {
     width: 200px;
 }
 
+.bandeau > h4 {
+    font-size: 18pt;
+    text-transform: uppercase;
+    color: #1D1D1B;
+    margin: 0 10px;
+}
+
 @media screen and (max-width: 1200px) {
     .bandeau > h3 {
         font-size: 20pt;
@@ -1216,6 +1223,10 @@ video {
     .bandeau > div > .prix, .bandeau > div > .type {
         text-align: right;
         font-size: 12pt;
+    }
+
+    .bandeau > h4 {
+        font-size: 9pt;
     }
 }
 
