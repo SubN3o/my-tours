@@ -1111,6 +1111,11 @@ video {
     color: #B5CC17;
 }
 
+#type [type="checkbox"]:checked+label:before {
+    border-right: 2px solid #B5CC17;
+    border-bottom: 2px solid #B5CC17;
+}
+
 .budgetMin, .budgetMax {
     display: inline-flex;
     background-color: #B3B3B3;
@@ -1134,6 +1139,8 @@ video {
     border: none;
     box-shadow: none;
 }
+
+
 
 .card .card-image .card-title, .card .card-image .card-title .card-content {
     padding: 0 0;
