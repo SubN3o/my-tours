@@ -51,6 +51,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
         if (!empty($data['typeLogement'])) {
             $qb->andWhere('t.id IN(:type)')
+                ->andWhere('f.statut = true')
                 ->setParameter('type', $data['typeLogement'])
                 ->join('r.flats', 'f')
                 ->join('f.typeLogement', 't')
@@ -60,6 +61,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
         if (!empty($data['budgetMin'])) {
             $qb->andWhere('ft.prix >= :budgetMin')
+                ->andWhere('ft.statut = true')
                 ->setParameter('budgetMin', $data['budgetMin'])
                 ->join('r.flats', 'ft')
                 ->orderBy('r.tri', 'ASC');
@@ -67,14 +69,12 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
         if (!empty($data['budgetMax'])) {
             $qb->andWhere('fts.prix <= :budgetMax ')
+                ->andWhere('fts.statut = true')
                 ->setParameter('budgetMax', $data['budgetMax'])
                 ->join('r.flats', 'fts')
                 ->orderBy('r.tri', 'ASC');
         }
 
-        $qb->andWhere('flts.statut = true')
-            ->join('r.flats', 'flts')
-            ->orderBy('r.tri', 'ASC');
         return $qb->getQuery()->getResult();
     }
 
