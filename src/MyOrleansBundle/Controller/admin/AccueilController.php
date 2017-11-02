@@ -39,20 +39,20 @@ class AccueilController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
-
-            // Si l'administrateur n'upload pas de photo pour l'accueil, une photo est chargée par défaut
-            $medias = $accueil->getMedias();
-            foreach ($medias as $media){
-                if (is_null($media->getMediaName())) {
-                    /* @var $media Media */
-                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-                    $media->setTypeMedia($typeMediaImgCover);
-                    $media->setMediaName('default.jpg');
-                    $date = new \DateTimeImmutable();
-                    $media->setUpdatedAt($date);
-                }
-            }
+//            $em = $this->getDoctrine()->getManager();
+//
+//            // Si l'administrateur n'upload pas de photo pour l'accueil, une photo est chargée par défaut
+//            $medias = $accueil->getMedias();
+//            foreach ($medias as $media){
+//                if (is_null($media->getMediaName())) {
+//                    /* @var $media Media */
+//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+//                    $media->setTypeMedia($typeMediaImgCover);
+//                    $media->setMediaName('default.jpg');
+//                    $date = new \DateTimeImmutable();
+//                    $media->setUpdatedAt($date);
+//                }
+//            }
             
             $this->getDoctrine()->getManager()->flush();
 

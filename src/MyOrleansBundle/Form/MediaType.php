@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class MediaType extends AbstractType
 {
@@ -26,7 +27,7 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('mediaFile', FileType::class,[
+            ->add('mediaFile', VichFileType::class,[
                 'required' => false,
                 'label' => 'Fichier média'
             ])

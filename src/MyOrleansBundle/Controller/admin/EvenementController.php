@@ -62,14 +62,14 @@ class EvenementController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            // Si l'administrateur n'upload pas de photo pour l'evenement, une photo est chargée par défaut
-            $media = $evenement->getMedia();
-            if (is_null($media->getMediaName())) {
-                /* @var $media Media */
-                $media->setMediaName('default.jpg');
-                $date = new \DateTimeImmutable();
-                $media->setUpdatedAt($date);
-            }
+//            // Si l'administrateur n'upload pas de photo pour l'evenement, une photo est chargée par défaut
+//            $media = $evenement->getMedia();
+//            if (is_null($media->getMediaName())) {
+//                /* @var $media Media */
+//                $media->setMediaName('default.jpg');
+//                $date = new \DateTimeImmutable();
+//                $media->setUpdatedAt($date);
+//            }
 
             $em->persist($evenement);
             $em->flush();
@@ -114,18 +114,18 @@ class EvenementController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
-
-            // Si l'administrateur n'upload pas de photo pour l'evenement, une photo est chargée par défaut
-            $media = $evenement->getMedia();
-                if (is_null($media->getMediaName())) {
-                    /* @var $media Media */
-                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-                    $media->setTypeMedia($typeMediaImgCover);
-                    $media->setMediaName('default.jpg');
-                    $date = new \DateTimeImmutable();
-                    $media->setUpdatedAt($date);
-                }
+//            $em = $this->getDoctrine()->getManager();
+//
+//            // Si l'administrateur n'upload pas de photo pour l'evenement, une photo est chargée par défaut
+//            $media = $evenement->getMedia();
+//                if (is_null($media->getMediaName())) {
+//                    /* @var $media Media */
+//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
+//                    $media->setTypeMedia($typeMediaImgCover);
+//                    $media->setMediaName('default.jpg');
+//                    $date = new \DateTimeImmutable();
+//                    $media->setUpdatedAt($date);
+//                }
 
             $this->getDoctrine()->getManager()->flush();
 
