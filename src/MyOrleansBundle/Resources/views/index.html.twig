@@ -30,7 +30,7 @@
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
-                        <div class="contenu">
+                        <div class="contenu col offset-l1 l10">
                             <h3>{{ residence.nom }}</h3>
                             <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
@@ -44,7 +44,7 @@
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
-                        <div class="contenu">
+                        <div class="contenu col offset-l1 l10">
                             <h3>{{ residence.nom }}</h3>
                             <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
@@ -61,12 +61,15 @@
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
-                        <div class="contenu">
+                        <div class="contenu col offset-l1 l10">
                             <h3>{{ residence.nom }}</h3>
                             <a href="{{ path('residences', { 'slug': residence.slug }) }}">VOIR PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+            <div class="voir2">
+                <a href="{{ path('nosresidences') }}"><p>VOIR PLUS DE PROGRAMMES</p></a>
             </div>
         </div>
     </div>
@@ -261,7 +264,7 @@
             $('.slider').slider({
                 height: 200,
                 indicators: true,
-                interval: 12000
+                interval: 6000
             });
 
         });

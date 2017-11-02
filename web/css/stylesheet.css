@@ -216,7 +216,7 @@ footer h5 {
     color: white;
     font-family: Montserrat;
     font-weight: 500;
-    font-size: 19pt;
+    font-size: 17pt;
     letter-spacing: 0.5pt;
     margin-bottom: 15px;
 }
@@ -224,7 +224,7 @@ footer h5 {
 footer p {
     font-family: Cantarell;
     font-weight: 400;
-    font-size: 16pt;
+    font-size: 14pt;
     letter-spacing: 0.1pt;
     margin-top: 0;
     margin-bottom: 0;
@@ -547,16 +547,30 @@ video {
 }
 
 .voir {
-    background-color: #F2F2F2;
+    background-color: #B5CC17;
     text-align: center;
     margin: 5px;
     height: 60px;
-    color: #676767;
+    color: white;
     font-family: Montserrat;
     font-weight: 400;
     letter-spacing: .55pt;
     font-size: 12pt;
     padding-top: 15px;
+}
+
+.voir2 {
+    background-color: #B5CC17;
+    text-align: center;
+    margin: 5px;
+    height: 60px;
+    color: white;
+    font-family: Montserrat;
+    font-weight: 400;
+    letter-spacing: .55pt;
+    font-size: 12pt;
+    padding-top: 15px;
+    display: none;
 }
 
 .zone {
@@ -613,14 +627,15 @@ video {
     background-color: rgba(242, 242, 242, .8);
     text-transform: uppercase;
     position: absolute;
-    top: 20%;
-    left: 5%;
-    width: 90%;
-    height: 60%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
     opacity: 0;
     font-family: Montserrat;
     font-weight: 300;
-    line-height: 100%;
+    padding: 5% 0 10% 0;
 }
 
 .contenu > a {
@@ -640,7 +655,7 @@ video {
 }
 
 .zone:hover > img {
-    filter: brightness(40%);
+    filter: brightness(70%);
     -moz-transition: 500ms;
     -o-transition: 500ms;
     -webkit-transition: 500ms;
@@ -648,8 +663,6 @@ video {
 }
 
 .contenu > h3 {
-    margin-bottom: 5%;
-    margin-top: 30px;
     font-size: 30pt;
 }
 
@@ -697,7 +710,12 @@ video {
 }
 
 .temoignage .slider .indicators {
-    display: none;
+    bottom: 50px;
+    z-index: 10;
+}
+
+.temoignage .slider .indicators .indicator-item.active {
+    background-color: #B5CC17;
 }
 
 @media screen and (max-width: 992px) {
@@ -735,19 +753,31 @@ video {
         display: none;
     }
 
+    .voir2 {
+        display: block;
+    }
+
     .zone > .contenu {
         position: absolute;
         left: 0;
         top: auto;
         bottom: 5px;
         width: 100%;
-        height: auto;
         opacity: 1;
         font-weight: 300;
+        padding: 0;
+        -webkit-transform: translateY(0%);
+        -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        transform: translateY(0%);
     }
 
     .zone:hover > img {
         filter: none;
+    }
+
+    .temoignage .slider .indicators {
+        display: none;
     }
 }
 
@@ -1205,7 +1235,7 @@ video {
 }
 
 .bandeau > h4 {
-    font-size: 18pt;
+    font-size: 14pt;
     text-transform: uppercase;
     color: #1D1D1B;
     margin: 0 10px;
@@ -1251,6 +1281,10 @@ video {
 .retourSearch1 a, .retourSearch1 a:hover, .retourSearch1 a:focus {
     background-color: #B3B3B3;
     margin: 20px 0;
+}
+
+.sliderResidence {
+    height: 600px;
 }
 
 .sliderResidence a > i {
@@ -1313,7 +1347,7 @@ video {
 
 .cartouche {
     height: 160px;
-    margin: 40px 0;
+    margin: 80px 0 40px 0;
     background-color: #f9f9f7;
     font-family: Montserrat;
     letter-spacing: .55pt;
@@ -1331,7 +1365,7 @@ video {
 }
 
 .box-notesite {
-    margin-top: 70px;
+    margin-top: 80px;
     margin-bottom: 50px;
 }
 
@@ -1610,6 +1644,10 @@ video {
 }
 
 @media screen and (max-width: 992px) {
+
+    .sliderResidence {
+        height: 300px;
+    }
 
     .cartouche {
         margin: 10px 0;

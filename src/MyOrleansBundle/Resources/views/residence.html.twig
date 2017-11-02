@@ -36,6 +36,9 @@
                     {% for media in residence.medias if media.typeMedia.nom == 'image' %}
                         <li>
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                            {% if residence.lienYoutube != null %}
+                                <a href="#modalYtp"><i class="material-icons white-text">play_circle_outline</i></a>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
@@ -48,76 +51,6 @@
                 <div class="video-container">
                     <iframe src="http://www.youtube.com/embed/{{ residence.lienYoutube }}?autoplay=0&modestbranding=1&rel=0&showinfo=0"
                             frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col offset-xl1 s12 l5 xl4 cartouche">
-                <span class="col s12 center">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</span>
-                <div class="cartoucheInfo">
-                    <p class="col s12">Livraison {{ residence.dateLivraison }}</p>
-                    <p class="col s12">Du {{ typeMin }} au {{ typeMax }}</p>
-                    {% transchoice flatsDispo %}
-                    {0} <p class="col s12">Aucun lot disponible</p> |
-                    {1} <p class="col s12">%count% lot disponible</p> |
-                    ]1,Inf[ <p class="col s12">%count% lots disponibles</p>
-                    {% endtranschoice %}
-                </div>
-            </div>
-
-            <!-- Compteurs Notes -->
-            <div class="col offset-xl1 s12 l7 xl5 box-notesite hide-on-med-and-down">
-                <div class="row">
-                    <ul>
-                        <li class="design col s6 m3">
-                            <div class="notesite" id="note_0"
-                                 data-note="{{ residence.noteTransports|number_format(2,'.') }}"></div>
-                            <br/>
-                            <div class="list-legend">
-                                <div class="row center-align">
-                                    <ul>
-                                        <li class="design col m12">transports</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="content col s6 m3">
-                            <div class="notesite" id="note_3"
-                                 data-note="{{ residence.noteCommerces|number_format(2,'.') }}"></div>
-                            <br/>
-                            <div class="list-legend">
-                                <div class="row">
-                                    <ul>
-                                        <li class="design col m12">commerces</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="creativity col s6 m3">
-                            <div class="notesite" id="note_1"
-                                 data-note="{{ residence.noteServices|number_format(2,'.') }}"></div>
-                            <div class="list-legend">
-                                <div class="row">
-                                    <ul>
-                                        <li class="design col m12">services</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="usability col s6 m3">
-                            <div class="notesite" id="note_2"
-                                 data-note="{{ residence.noteEsthetisme|number_format(2,'.') }}"></div>
-                            <div class="list-legend">
-                                <div class="row">
-                                    <ul>
-                                        <li class="design col m12">esthétisme</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
-                    </ul>
                 </div>
             </div>
         </div>
@@ -137,6 +70,77 @@
             </nav>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col offset-xl1 s12 l5 xl4 cartouche">
+            <span class="col s12 center">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</span>
+            <div class="cartoucheInfo">
+                <p class="col s12">Livraison {{ residence.dateLivraison }}</p>
+                <p class="col s12">Du {{ typeMin }} au {{ typeMax }}</p>
+                {% transchoice flatsDispo %}
+                {0} <p class="col s12">Aucun lot disponible</p> |
+                {1} <p class="col s12">%count% lot disponible</p> |
+                ]1,Inf[ <p class="col s12">%count% lots disponibles</p>
+                {% endtranschoice %}
+            </div>
+        </div>
+
+        <!-- Compteurs Notes -->
+        <div class="col offset-xl1 s12 l7 xl5 box-notesite hide-on-med-and-down">
+            <div class="row">
+                <ul>
+                    <li class="design col s6 m3">
+                        <div class="notesite" id="note_0"
+                             data-note="{{ residence.noteTransports|number_format(2,'.') }}"></div>
+                        <br/>
+                        <div class="list-legend">
+                            <div class="row center-align">
+                                <ul>
+                                    <li class="design col m12">transports</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="content col s6 m3">
+                        <div class="notesite" id="note_3"
+                             data-note="{{ residence.noteCommerces|number_format(2,'.') }}"></div>
+                        <br/>
+                        <div class="list-legend">
+                            <div class="row">
+                                <ul>
+                                    <li class="design col m12">commerces</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="creativity col s6 m3">
+                        <div class="notesite" id="note_1"
+                             data-note="{{ residence.noteServices|number_format(2,'.') }}"></div>
+                        <div class="list-legend">
+                            <div class="row">
+                                <ul>
+                                    <li class="design col m12">services</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="usability col s6 m3">
+                        <div class="notesite" id="note_2"
+                             data-note="{{ residence.noteEsthetisme|number_format(2,'.') }}"></div>
+                        <div class="list-legend">
+                            <div class="row">
+                                <ul>
+                                    <li class="design col m12">esthétisme</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <div class="col s12 center hide-on-large-only offreSmall">
         <p>{{ residence.offre }}</p>
     </div>
@@ -156,23 +160,23 @@
                 <div class="center description">{{ residence.description | raw }}</div>
             </div>
 
-        {% if residence.offre != null %}
-            <div class="col offset-l1 l2 hide-on-med-and-down" id="offre">
-                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-                    <div class="flipper">
-                        <div class="front">
-                            <img class="vignette" src="{{ asset('img/offreFile.png') }}">
-                            {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
-                                <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
-                            {% endfor %}
-                        </div>
-                        <div class="back">
-                            <p>{{ residence.offre }}</p>
+            {% if residence.offre != null %}
+                <div class="col offset-l1 l2 hide-on-med-and-down" id="offre">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <img class="vignette" src="{{ asset('img/offreFile.png') }}">
+                                {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
+                                    <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
+                                {% endfor %}
+                            </div>
+                            <div class="back">
+                                <p>{{ residence.offre }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endif %}
+            {% endif %}
         </div>
     </div>
 
