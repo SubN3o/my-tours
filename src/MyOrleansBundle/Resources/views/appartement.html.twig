@@ -180,10 +180,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col s12 accrocheResidenceFlat">
-            <div class="col offset-l2 l8">
-                <span class="center accrocheFlat col offset-l2 offset-s1 l8 s10">{{ residence.accroche }}</span>
-                <div class="center descriptionFlat col s12">{{ residence.description | raw }}</div>
+        <div class="col s12 accrocheResidence">
+            <div class="col offset-l2 l6">
+                <h3 class="center accroche">{{ residence.accroche }}</h3>
+                <div class="description">{{ residence.description | raw }}</div>
+            </div>
+
+            <div class="col offset-l1 l2">
+                {% if residence.eligibilitePinel == 1 %}
+                    <img class="responsive-img col l8 offset-s3 s3" src="{{ asset('img/pinel.png') }}" alt="rt2012">
+                {% endif %}
+                {% if residence.normeThermique == 'RT2012' %}
+                    <img class="responsive-img col l8 s3" src="{{ asset('img/rt2012.png') }}" alt="rt2012">
+                {% elseif residence.normeThermique == 'BBC' %}
+                    <img class="responsive-img col l8 s3" src="{{ asset('img/bbc.png') }}" alt="rt2012">
+                {% endif %}
             </div>
         </div>
     </div>

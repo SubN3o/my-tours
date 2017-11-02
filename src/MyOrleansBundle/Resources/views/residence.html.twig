@@ -145,53 +145,46 @@
         <p>{{ residence.offre }}</p>
     </div>
 
-    <!-- Effet Parallax -->
-    <div id="anchor-residence" class="parallax-container hide-on-med-and-down">
-        {#<div class="parallax">#}
-        {#<img src="{{ asset('img/parallax1.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">#}
-        {#</div>#}
-    </div>
+    <div id="anchor-residence"></div>
 
     <!-- Description Résidence -->
     <div class="row">
         <div class="col s12 accrocheResidence">
             <div class="col offset-l2 l6">
                 <h3 class="center accroche">{{ residence.accroche }}</h3>
-                <div class="center description">{{ residence.description | raw }}</div>
+                <div class="description">{{ residence.description | raw }}</div>
             </div>
 
-            {% if residence.offre != null %}
-                <div class="col offset-l1 l2 hide-on-med-and-down" id="offre">
-                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-                        <div class="flipper">
-                            <div class="front">
-                                <img class="vignette" src="{{ asset('img/offreFile.png') }}">
-                                {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
-                                    <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
-                                {% endfor %}
-                            </div>
-                            <div class="back">
-                                <p>{{ residence.offre }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+            <div class="col offset-l1 l2">
+                {% if residence.eligibilitePinel == 1 %}
+                    <img class="responsive-img col l8 offset-s3 s3" src="{{ asset('img/pinel.png') }}" alt="rt2012">
+                {% endif %}
+                {% if residence.normeThermique == 'RT2012' %}
+                    <img class="responsive-img col l8 s3" src="{{ asset('img/rt2012.png') }}" alt="rt2012">
+                {% elseif residence.normeThermique == 'BBC' %}
+                    <img class="responsive-img col l8 s3" src="{{ asset('img/bbc.png') }}" alt="rt2012">
+                {% endif %}
+            </div>
         </div>
     </div>
 
     <!-- Effet Parallax -->
-    <div id="anchor-localisation" class="parallax-container hide-on-med-and-down">
-        {#<div class="parallax">#}
-        {#<img src="{{ asset('img/parallax2.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">#}
-        {#</div>#}
+    <div class="parallax-container hide-on-med-and-down">
+        <div class="parallax">
+            <img src="{{ asset('img/Orleans5.png') | imagine_filter('thumb_photo_residence') }}" alt="famille">
+        </div>
+        <div class="row">
+            <span class="accroche2 col offset-l2 l8 center">"{{ residence.accroche2 }}"</span>
+        </div>
     </div>
+
+    <div id="anchor-localisation"></div>
 
     <!-- Situation Résidence GoogleMap -->
 
     <h2 class="hide-on-med-and-down">Situation de la résidence</h2>
 
-    <div class="row hide-on-med-and-down">
+    <div class="row hide-on-med-and-down googleMap">
 
         <!-- Carte GoogleMap -->
         <div class="col offset-l1 offset-xl2 s12 l7 xl6">
@@ -221,12 +214,7 @@
         </div>
     </div>
 
-    <!-- Effet Parallax -->
-    <div id="anchor-bien" class="parallax-container hide-on-med-and-down">
-        {#<div class="parallax">#}
-        {#<img src="{{ asset('img/parallax3.jpg') | imagine_filter('thumb_photo_residence') }}" alt="famille">#}
-        {#</div>#}
-    </div>
+    <div id="anchor-bien"></div>
 
     <!-- Tableau lots disponibles -->
     <h2>Consultez nos biens disponibles</h2>
@@ -737,11 +725,11 @@
             $(window).scroll(function () {
 
                 var scrollTop = $(window).scrollTop(),
-                    nav = document.getElementById("nav").offsetHeight;
+                    nav = 150;
 
                 if (scrollTop >= document.getElementById("anchor-residence").offsetTop - nav) {
                     $(document.getElementById("residenceNav")).addClass('active');
-                    $(document.getElementById("offre")).addClass('zoomOffre');
+//                    $(document.getElementById("offre")).addClass('zoomOffre');
                 }
 
                 if (scrollTop < document.getElementById("anchor-residence").offsetTop - nav) {
@@ -796,7 +784,7 @@
             $('a[href*="anchor-"]').click(function () { // Au clic sur un élément
                 var page = $(this).attr('href'); // Page cible
                 var speed = 750; // Durée de l'animation (en ms)
-                $('html, body').animate({scrollTop: $(page).offset().top - 10}, speed); // Go
+                $('html, body').animate({scrollTop: $(page).offset().top - 140}, speed); // Go
                 return false;
             });
         });

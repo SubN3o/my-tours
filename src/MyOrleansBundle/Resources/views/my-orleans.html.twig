@@ -98,78 +98,91 @@
                         <img src="{{ asset('img/rea/ElegancedeLoire.jpg') }}">
                         <div class="caption center-align">
                             <span>Elégance de Loire</span>
+                            <p>Saint-Jean-de-Braye</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LAmiraldeColigny.jpg') }}">
                         <div class="caption center-align">
                             <span>L'Amiral de Coligny</span>
+                            <p>Orléans</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}">
                         <div class="caption center-align">
                             <span>La Résidence des Charmes</span>
+                            <p>Olivet</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LaSoucheSud.jpg') }}">
                         <div class="caption center-align">
-                            <span>La Souche Sud</span>
+                            <span>La Souche</span>
+                            <p>Gidy</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LaVillaMaunoury.jpg') }}">
                         <div class="caption center-align">
                             <span>La Villa Maunoury</span>
+                            <p>Orléans</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeBourgOuest.jpg') }}">
                         <div class="caption center-align">
                             <span>Le Bourg Ouest</span>
+                            <p>Saint-Denis-en-Val</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeClosColombier.jpg') }}">
                         <div class="caption center-align">
                             <span>Le Clos Colombier</span>
+                            <p>Orléans</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}">
                         <div class="caption center-align">
                             <span>Le Clos de la Cerisaille</span>
+                            <p>Saint-Jean-le-Blanc</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeLievredOr.jpg') }}">
                         <div class="caption center-align">
                             <span>Le Lievre d'Or</span>
+                            <p>Orléans</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}">
                         <div class="caption center-align">
                             <span>Le Parc de l'école normale</span>
+                            <p>Orléans</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LesCascades.jpg') }}">
                         <div class="caption center-align">
                             <span>Les Cascades</span>
+                            <p>Saint-Jean-de-Braye</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LesJardinsdAndrea.jpg') }}">
                         <div class="caption center-align">
                             <span>Les Jardins d'Andréa</span>
+                            <p>Saran</p>
                         </div>
                     </li>
                     <li>
                         <img src="{{ asset('img/rea/LesVergersdOlivet.jpg') }}">
                         <div class="caption center-align">
                             <span>Les Vergers d'Olivet</span>
+                            <p>Olivet</p>
                         </div>
                     </li>
                 </ul>
@@ -375,7 +388,9 @@
     <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.slider').slider();
+            $('.slider').slider({
+                interval: 4000
+            });
         });
     </script>
 {% endblock %}

@@ -43,6 +43,10 @@ $(document).ready(function () {
     $('select').material_select();
 
     $('.closeSideNave').sideNav('hide');
+
+    $(document).ready(function(){
+        $('.parallax').parallax();
+    });
 });
 
 $(document).ready(function(){
