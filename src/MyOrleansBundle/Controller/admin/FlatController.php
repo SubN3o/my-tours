@@ -72,16 +72,16 @@ class FlatController extends Controller
             $em = $this->getDoctrine()->getManager();
             $flat->setResidence($residence);
 
-//            // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
-//            $medias = $flat->getMedias();
-//            foreach ($medias as $media) {
-//                if (is_null($media->getMediaName())) {
-//                    /* @var $media Media */
-//                    $media->setMediaName('default.jpg');
-//                    $date = new \DateTimeImmutable();
-//                    $media->setUpdatedAt($date);
-//                }
-//            }
+            // Si l'administrateur n'upload pas de photo pour le bien, une photo est chargée par défaut
+            $medias = $flat->getMedias();
+            foreach ($medias as $media) {
+                if (is_null($media->getMediaName())) {
+                    /* @var $media Media */
+                    $media->setMediaName('no_file');
+                    $date = new \DateTimeImmutable();
+                    $media->setUpdatedAt($date);
+                }
+            }
             $em->persist($flat);
             $em->flush();
 
