@@ -63,9 +63,6 @@ h2 {
     background-color: #B5CC17;
 }
 
-.accrocheResidence {
-    box-shadow: none;
-}
 
 .align-icon {
     display: inline-flex;
@@ -1410,6 +1407,7 @@ video {
 .accrocheResidence {
     margin: 40px 0 40px 0;
     background-color: #f9f9f7;
+    box-shadow: none;
 }
 
 .accroche {
@@ -1447,8 +1445,12 @@ video {
     margin-top: 150px;
 }
 
-.accrocheResidence img {
-    margin-top: 40px
+.normeLabel {
+    margin-top: 50px;
+}
+
+.normeLabel img {
+    margin: 10px 0;
 }
 
 .googleMap {
@@ -1602,8 +1604,12 @@ video {
         font-size: 20pt;
     }
 
-    .accrocheResidence img {
-        margin:0 0 10px ;
+    .normeLabel {
+        margin-top: 0;
+    }
+
+    .normeLabel img {
+        margin: 10px 0;
     }
 
     .description {
