@@ -76,7 +76,11 @@
             <span class="col s12 center">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</span>
             <div class="cartoucheInfo">
                 <p class="col s12">Livraison {{ residence.dateLivraison }}</p>
-                <p class="col s12">Du {{ typeMin }} au {{ typeMax }}</p>
+                {% if typeMin == typeMax %}
+                    <p class="col s12">{{ typeMin }}</p>
+                {% else %}
+                    <p class="col s12">Du {{ typeMin }} au {{ typeMax }}</p>
+                {% endif %}
                 {% transchoice flatsDispo %}
                 {0} <p class="col s12">Aucun lot disponible</p> |
                 {1} <p class="col s12">%count% lot disponible</p> |
@@ -171,7 +175,7 @@
     <!-- Effet Parallax -->
     <div class="parallax-container hide-on-med-and-down">
         <div class="parallax">
-            <img src="{{ asset('img/Orleans7.jpg') | imagine_filter('thumb_photo_residence') }}" alt="orleans">
+            <img src="{{ asset('img/apart2.jpg') | imagine_filter('thumb_photo_residence') }}" alt="orleans">
         </div>
         <div class="row">
             <span class="accroche2 col offset-l2 l8 center">"{{ residence.accroche2 }}"</span>
