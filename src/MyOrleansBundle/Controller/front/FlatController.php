@@ -93,7 +93,7 @@ class FlatController extends Controller
 
             $em->persist($client);
             $em->flush();
-            return $this->redirectToRoute('appartement');
+            return $this->redirectToRoute('appartement',['id'=>$flat->getId()]);
         }
 
 
