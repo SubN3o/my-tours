@@ -24,8 +24,12 @@ class EvenementType extends AbstractType
             ->add('adresse', TextType::class)
             ->add('codePostal', NumberType::class)
             ->add('ville', TextType::class)
-            ->add('dateDebut', DateType::class)
-            ->add('dateFin',DateType::class)
+            ->add('dateDebut', DateType::class,[
+                'years' => range(date('Y')-7, date('Y')+7),
+            ])
+            ->add('dateFin',DateType::class,[
+                'years' => range(date('Y')-7, date('Y')+7),
+            ])
             ->add('heureDebut', TimeType::class)
             ->add('heureFin', TimeType::class)
             ->add('description', TextareaType::class)
