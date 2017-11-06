@@ -51,7 +51,9 @@ class CalculateurCaracteristiquesResidence
 
         $sizes = [];
         foreach ($flats as $flat) {
-            $sizes[] = $flat->getTypeLogement()->getNom();
+            if ($flat->getStatut() == true) {
+                $sizes[] = $flat->getTypeLogement()->getNom();
+            }
         }
 
         if (!$sizes) {
@@ -62,10 +64,10 @@ class CalculateurCaracteristiquesResidence
 
         $minMaxType[0] = $sizes[0];
 
-        if ((count($sizes)-1)<=1) {
+        if ((count($sizes) - 1) <= 1) {
             $minMaxType[1] = $sizes[0];
         } else {
-            $minMaxType[1] = $sizes[count($sizes)-1];
+            $minMaxType[1] = $sizes[count($sizes) - 1];
         }
 
         return $minMaxType;
