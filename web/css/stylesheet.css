@@ -1457,6 +1457,13 @@ video {
     margin-bottom: 140px;
 }
 
+.adresse {
+    font-family: Montserrat;
+    font-size: 17pt;
+    letter-spacing: .55pt;
+    text-transform: uppercase;
+}
+
 .filtreMap p {
     background-color: #e6e6e6;
     font-family: Montserrat;
@@ -1797,6 +1804,8 @@ video {
 
 .front,
 .back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
     backface-visibility: hidden;
     position: absolute;
     top: 0;

@@ -131,7 +131,7 @@ class FlatType extends AbstractType
             ->add('solSejour', ChoiceType::class, [
                 'choices' =>[
                     'Parquet' => 'Parquet',
-                    'Vinylique' => 'Vinylique',
+                    'Vinyl' => 'Vinyl',
                     'Carrelage' => 'Carrelage',
                 ],
                 'expanded' => false,
