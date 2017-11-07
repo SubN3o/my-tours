@@ -1962,8 +1962,7 @@ video {
 
 .partenaire {
     position: relative;
-    width: 100%;
-    margin: 40px 10px;
+    margin: 60px 10px;
     filter: grayscale(100%);
 }
 
