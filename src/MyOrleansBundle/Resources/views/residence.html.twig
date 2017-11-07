@@ -251,11 +251,11 @@
                                     <div class="col offset-s1 s2">1 pièce</div>
                                     <div class="col s3">
                                         {% for flat in flatsT1 %}
-                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup> à
                                         {% for flat in flatsT1 %}
-                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup>
                                     </div>
@@ -314,11 +314,11 @@
                                     <div class="col offset-s1 s2">2 pièces</div>
                                     <div class="col s3">
                                         {% for flat in flatsT2 %}
-                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup> à
                                         {% for flat in flatsT2 %}
-                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup>
                                     </div>
@@ -377,11 +377,11 @@
                                     <div class="col offset-s1 s2">3 pièces</div>
                                     <div class="col s3">
                                         {% for flat in flatsT3 %}
-                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup> à
                                         {% for flat in flatsT3 %}
-                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup>
                                     </div>
@@ -440,11 +440,11 @@
                                     <div class="col offset-s1 s2">4 pièces</div>
                                     <div class="col s3">
                                         {% for flat in flatsT4 %}
-                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup> à
                                         {% for flat in flatsT4 %}
-                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup>
                                     </div>
@@ -503,11 +503,11 @@
                                     <div class="col offset-s1 s2">5 pièces et plus</div>
                                     <div class="col s3">
                                         {% for flat in flatsT5 %}
-                                            {% if loop.first %}{{ flat.surface }}{% endif %}
+                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup> à
                                         {% for flat in flatsT5 %}
-                                            {% if loop.last %}{{ flat.surface }}{% endif %}
+                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
                                         {% endfor %}
                                         m<sup>2</sup>
                                     </div>
