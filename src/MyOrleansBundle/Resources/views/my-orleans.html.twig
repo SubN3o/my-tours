@@ -13,8 +13,7 @@
             <!-- Modal Video Accueil -->
             <div id="modalEquipe" class="modal">
                 <div class="modal-content">
-                    <video controls>
-                        <source src="{{ asset('video/MyOrleans.mp4') }}" type="video/mp4">
+                    <video controls src="{{ asset('video/MyOrleans.mp4') }}">
                     </video>
                 </div>
             </div>
@@ -395,6 +394,19 @@
             $('.slider').slider({
                 interval: 4000
             });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('#modalEquipe').modal(
+                {
+                    dismissible: true,
+                    complete: function () {
+                        $("#modalEquipe video").attr("src", $("#modalEquipe video").attr("src"))
+                    }
+
+                });
         });
     </script>
 {% endblock %}
