@@ -161,12 +161,15 @@
 
             <div class="col offset-l1 l2 normeLabel">
                 {% if residence.eligibilitePinel == 1 %}
-                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/pinel.png') }}" alt="rt2012">
+                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/pinel.png') }}"
+                         alt="rt2012">
                 {% endif %}
                 {% if residence.normeThermique == 'RT2012' %}
-                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/rt2012.png') }}" alt="rt2012">
+                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/rt2012.png') }}"
+                         alt="rt2012">
                 {% elseif residence.normeThermique == 'BBC' %}
-                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/bbc.png') }}" alt="rt2012">
+                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/bbc.png') }}"
+                         alt="rt2012">
                 {% endif %}
             </div>
         </div>
@@ -175,7 +178,13 @@
     <!-- Effet Parallax -->
     <div class="parallax-container hide-on-med-and-down">
         <div class="parallax">
-            <img src="{{ asset('img/orleans.jpg') }}" alt="orleans">
+            {% for media in residence.medias %}
+                {% if media.typeMedia.nom == "image-header" %}
+                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_photo_residence')}}">
+                {% else %}
+                    <img src="{{ asset('img/orleans.jpg') }}" alt="orleans">
+                {% endif %}
+            {% endfor %}
         </div>
         <div class="row">
             <span class="accroche2 col offset-l2 l8 center">"{{ residence.accroche2 }}"</span>
