@@ -180,7 +180,7 @@
         <div class="parallax">
             {% for media in residence.medias %}
                 {% if media.typeMedia.nom == "image-header" %}
-                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_photo_residence')}}">
+                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_photo_residence') }}">
                 {% else %}
                     <img src="{{ asset('img/orleans.jpg') }}" alt="orleans">
                 {% endif %}

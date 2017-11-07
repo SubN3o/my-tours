@@ -186,14 +186,17 @@
                 <div class="description">{{ residence.description | raw }}</div>
             </div>
 
-            <div class="col offset-l1 l2">
+            <div class="col offset-l1 l2 normeLabel">
                 {% if residence.eligibilitePinel == 1 %}
-                    <img class="responsive-img col l8 offset-s3 s3" src="{{ asset('img/pinel.png') }}" alt="rt2012">
+                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/pinel.png') }}"
+                         alt="rt2012">
                 {% endif %}
                 {% if residence.normeThermique == 'RT2012' %}
-                    <img class="responsive-img col l8 s3" src="{{ asset('img/rt2012.png') }}" alt="rt2012">
+                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/rt2012.png') }}"
+                         alt="rt2012">
                 {% elseif residence.normeThermique == 'BBC' %}
-                    <img class="responsive-img col l8 s3" src="{{ asset('img/bbc.png') }}" alt="rt2012">
+                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/bbc.png') }}"
+                         alt="rt2012">
                 {% endif %}
             </div>
         </div>
