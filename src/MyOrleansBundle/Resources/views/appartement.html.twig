@@ -31,9 +31,9 @@
                 <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
                     <div class="flipper">
                         <div class="front">
-                            <img class="vignette" src="{{ asset('img/offreFile.png') }}">
+                            <img class="vignette" src="{{ asset('img/offreFile.png') }}" alt="fichier">
                             {% for media in residence.medias if media.typeMedia.nom == 'icone' %}
-                                <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="offre">
+                                <img class="iconeOffre" src="{{ asset('uploads/'~media.mediaName) }}" alt="logo">
                             {% endfor %}
                         </div>
                         <div class="back">
@@ -189,14 +189,14 @@
             <div class="col offset-l1 l2 normeLabel">
                 {% if residence.eligibilitePinel == 1 %}
                     <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/pinel.png') }}"
-                         alt="rt2012">
+                         alt="logo pinel">
                 {% endif %}
                 {% if residence.normeThermique == 'RT2012' %}
                     <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/rt2012.png') }}"
-                         alt="rt2012">
+                         alt="logo rt2012">
                 {% elseif residence.normeThermique == 'BBC' %}
                     <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/bbc.png') }}"
-                         alt="rt2012">
+                         alt="logo bbc">
                 {% endif %}
             </div>
         </div>
