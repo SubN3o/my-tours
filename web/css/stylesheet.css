@@ -1408,6 +1408,10 @@ video {
     height: 400px;
 }
 
+.parallax img {
+    filter: brightness(90%);
+}
+
 .accroche2 {
     color: white;
     font-family: Lato;
