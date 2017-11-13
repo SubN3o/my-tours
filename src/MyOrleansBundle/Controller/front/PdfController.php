@@ -33,50 +33,23 @@ class PdfController extends Controller
      */
     public function pdfFlatAction(Flat $flat, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculateur)
     {
-//        $parcours = null;
-//        if ($session->has('parcours')) {
-//            $parcours = $session->get('parcours');
-//        }
+
         $em = $this->getDoctrine()->getManager();
 
         $residence = $flat->getResidence();
-//        $typelogement = $flat->getTypeLogement();
-//        $typebien = $flat->getTypeBien();
-//        $prixMin = $calculateur->calculPrix($residence);
-//        $flatsDispo = $calculateur->calculFlatDispo($residence);
-//        $typeMinMax = $calculateur->calculSizes($residence);
-//        $reference = $flat->getReference();
         $mailagence = $this->getParameter('mail_agence');
         $telephoneNumber = $this->getParameter('telephone_number');
         $snappy = $this->get("knp_snappy.pdf");
         $medias = $residence->getMedias();
-//
-//        $medias = $flat->getMedias();
-//        $mediaDefine = [];
-//        foreach ($medias as $media) {
-//            if ($media->getTypeMedia()->getNom() == 'image') {
-//                $mediaDefine['image'] = $media;
-//            }elseif ($media->getTypeMedia()->getNom() == 'plan') {
-//                $mediaDefine['plan'] = $media;
-//            }
-//        }
+
 
         $html = $this->renderView('MyOrleansBundle::pdf_appartement.html.twig', array(
             'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath(),
             'flat'=>$flat,
-//            'parcours'=>$parcours,
             'residence'=>$residence,
-////            'media' => $mediaDefine,
             'medias' => $medias,
             'telephone_number' => $telephoneNumber,
-//            'typeBien'=>$typebien,
-//            'typeLogement' => $typelogement,
-//            'prixMin' => $prixMin,
-//            'flatsDispo' => $flatsDispo,
-//            'typeMin' => $typeMinMax[0],
-//            'typeMax' => $typeMinMax[1],
             'mail_agence'=>$mailagence,
-//            'reference' => $reference
 
         ));
 
