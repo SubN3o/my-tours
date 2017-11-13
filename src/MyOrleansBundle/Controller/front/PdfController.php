@@ -33,54 +33,57 @@ class PdfController extends Controller
      */
     public function pdfFlatAction(Flat $flat, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculateur)
     {
-        $parcours = null;
-        if ($session->has('parcours')) {
-            $parcours = $session->get('parcours');
-        }
+//        $parcours = null;
+//        if ($session->has('parcours')) {
+//            $parcours = $session->get('parcours');
+//        }
         $em = $this->getDoctrine()->getManager();
 
         $residence = $flat->getResidence();
-        $typelogement = $flat->getTypeLogement();
-        $typebien = $flat->getTypeBien();
-        $prixMin = $calculateur->calculPrix($residence);
-        $flatsDispo = $calculateur->calculFlatDispo($residence);
-        $typeMinMax = $calculateur->calculSizes($residence);
-        $reference = $flat->getReference();
+//        $typelogement = $flat->getTypeLogement();
+//        $typebien = $flat->getTypeBien();
+//        $prixMin = $calculateur->calculPrix($residence);
+//        $flatsDispo = $calculateur->calculFlatDispo($residence);
+//        $typeMinMax = $calculateur->calculSizes($residence);
+//        $reference = $flat->getReference();
         $mailagence = $this->getParameter('mail_agence');
         $telephoneNumber = $this->getParameter('telephone_number');
-        $mappy = $this->get("knp_snappy.pdf");
-
-        $medias = $flat->getMedias();
-        $mediaDefine = [];
-        foreach ($medias as $media) {
-            if ($media->getTypeMedia()->getNom() == 'image') {
-                $mediaDefine['image'] = $media;
-            }elseif ($media->getTypeMedia()->getNom() == 'plan') {
-                $mediaDefine['plan'] = $media;
-            }
-        }
+        $snappy = $this->get("knp_snappy.pdf");
+        $medias = $residence->getMedias();
+//
+//        $medias = $flat->getMedias();
+//        $mediaDefine = [];
+//        foreach ($medias as $media) {
+//            if ($media->getTypeMedia()->getNom() == 'image') {
+//                $mediaDefine['image'] = $media;
+//            }elseif ($media->getTypeMedia()->getNom() == 'plan') {
+//                $mediaDefine['plan'] = $media;
+//            }
+//        }
 
         $html = $this->renderView('MyOrleansBundle::pdf_appartement.html.twig', array(
+            'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath(),
             'flat'=>$flat,
-            'parcours'=>$parcours,
+//            'parcours'=>$parcours,
             'residence'=>$residence,
-            'media' => $mediaDefine,
+////            'media' => $mediaDefine,
+            'medias' => $medias,
             'telephone_number' => $telephoneNumber,
-            'typeBien'=>$typebien,
-            'typeLogement' => $typelogement,
-            'prixMin' => $prixMin,
-            'flatsDispo' => $flatsDispo,
-            'typeMin' => $typeMinMax[0],
-            'typeMax' => $typeMinMax[1],
+//            'typeBien'=>$typebien,
+//            'typeLogement' => $typelogement,
+//            'prixMin' => $prixMin,
+//            'flatsDispo' => $flatsDispo,
+//            'typeMin' => $typeMinMax[0],
+//            'typeMax' => $typeMinMax[1],
             'mail_agence'=>$mailagence,
-            'reference' => $reference
+//            'reference' => $reference
 
         ));
 
         $filename = "appartement-".$flat->getReference().".pdf";
 
         return new Response(
-            $mappy->getOutputFromHtml($html),
+            $snappy->getOutputFromHtml($html),
             200,
             [
                 'Content-Type' => 'application/pdf',
@@ -88,64 +91,64 @@ class PdfController extends Controller
             ]);
 
     }
-    /**
-     * Retrun a pdf file from a residence.
-     * @return Response
-     * @Route("/pdf/residence/{id}", name="residence_pdf")
-     * @Method("GET")
-     */
-    public function pdfResidenceAction(Residence $residence, SessionInterface $session, CalculateurCaracteristiquesResidence $calculateur)
-    {
-        $parcours = null;
-        if ($session->has('parcours')) {
-            $parcours = $session->get('parcours');
-        }
-        $em = $this->getDoctrine()->getManager();
-        $flats = $em->getRepository(Flat::class)->findByResidence($residence);
-        $typelogment = $em->getRepository(TypeLogement::class)->findAll();
-        $typebien = $em->getRepository(TypeBien::class)->findAll();
-        $prixMin = $calculateur->calculPrix($residence);
-        $flatsDispo = $calculateur->calculFlatDispo($residence);
-        $typeMinMax = $calculateur->calculSizes($residence);
-        $mailagence = $this->getParameter('mail_agence');
-        $googlemapstatickey = $this->getParameter('googlemap_static_map_key');
-        $telephoneNumber = $this->getParameter('telephone_number');
-        $mappy = $this->get("knp_snappy.pdf");
-
-        $medias = $residence->getMedias();
-        $mediaDefine = [];
-        foreach ($medias as $media) {
-            if ($media->getTypeMedia()->getNom() == 'image-cover') {
-                $mediaDefine['image-cover'] = $media;
-            }
-        }
-
-        $html = $this->renderView('MyOrleansBundle::pdf_residence.html.twig', array(
-            'residence' => $residence,
-            'flats' => $flats,
-            'parcours' => $parcours,
-            'media' => $mediaDefine,
-            'telephone_number' => $telephoneNumber,
-            'prixMin' => $prixMin,
-            'flatsDispo' => $flatsDispo,
-            'typeMin' => $typeMinMax[0],
-            'typeMax' => $typeMinMax[1],
-            'typeLogement'=>$typelogment,
-            'typeBien'=>$typebien,
-            'mail_agence'=>$mailagence,
-            'googlemap_static_map_key'=>$googlemapstatickey,
-
-        ));
-
-        $filename = "residence-".$residence->getNom().".pdf";
-
-        return new Response(
-            $mappy->getOutputFromHtml($html),
-            200,
-            [
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
-            ]);
-
-    }
+//    /**
+//     * Retrun a pdf file from a residence.
+//     * @return Response
+//     * @Route("/pdf/residence/{id}", name="residence_pdf")
+//     * @Method("GET")
+//     */
+//    public function pdfResidenceAction(Residence $residence, SessionInterface $session, CalculateurCaracteristiquesResidence $calculateur)
+//    {
+//        $parcours = null;
+//        if ($session->has('parcours')) {
+//            $parcours = $session->get('parcours');
+//        }
+//        $em = $this->getDoctrine()->getManager();
+//        $flats = $em->getRepository(Flat::class)->findByResidence($residence);
+//        $typelogment = $em->getRepository(TypeLogement::class)->findAll();
+//        $typebien = $em->getRepository(TypeBien::class)->findAll();
+//        $prixMin = $calculateur->calculPrix($residence);
+//        $flatsDispo = $calculateur->calculFlatDispo($residence);
+//        $typeMinMax = $calculateur->calculSizes($residence);
+//        $mailagence = $this->getParameter('mail_agence');
+//        $googlemapstatickey = $this->getParameter('googlemap_static_map_key');
+//        $telephoneNumber = $this->getParameter('telephone_number');
+//        $mappy = $this->get("knp_snappy.pdf");
+//
+//        $medias = $residence->getMedias();
+//        $mediaDefine = [];
+//        foreach ($medias as $media) {
+//            if ($media->getTypeMedia()->getNom() == 'image-cover') {
+//                $mediaDefine['image-cover'] = $media;
+//            }
+//        }
+//
+//        $html = $this->renderView('MyOrleansBundle::pdf_residence.html.twig', array(
+//            'residence' => $residence,
+//            'flats' => $flats,
+//            'parcours' => $parcours,
+//            'media' => $mediaDefine,
+//            'telephone_number' => $telephoneNumber,
+//            'prixMin' => $prixMin,
+//            'flatsDispo' => $flatsDispo,
+//            'typeMin' => $typeMinMax[0],
+//            'typeMax' => $typeMinMax[1],
+//            'typeLogement'=>$typelogment,
+//            'typeBien'=>$typebien,
+//            'mail_agence'=>$mailagence,
+//            'googlemap_static_map_key'=>$googlemapstatickey,
+//
+//        ));
+//
+//        $filename = "residence-".$residence->getNom().".pdf";
+//
+//        return new Response(
+//            $mappy->getOutputFromHtml($html),
+//            200,
+//            [
+//                'Content-Type' => 'application/pdf',
+//                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+//            ]);
+//
+//    }
 }

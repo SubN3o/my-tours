@@ -1,0 +1,121 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url('../fonts/Montserrat/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Cantarell";
+    src: url('../fonts/Cantarell/Cantarell-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url('../fonts/Lato/Lato-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Gill Sans";
+    src: url('../fonts/Gill_Sans/Gill Sans MT.ttf');
+}
+
+@font-face {
+    font-family: "Work Sans";
+    src: url('../fonts/Work_Sans/WorkSans-SemiBold.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Gill Sans";
+}
+
+.greenMyO {
+    color: #B5CC17;
+}
+
+.adresse, .contact {
+    font-size: 14pt;
+}
+
+.trait {
+    top: 32px;
+    position: relative;
+    height: 5px;
+    background-color: #B5CC17;
+}
+
+.situation {
+    position: relative;
+    z-index: 10;
+}
+
+.residence {
+    font-size: 30pt;
+    text-transform: uppercase;
+    padding: 20px;
+    background-color: white;
+}
+
+.ville {
+    font-size: 13pt;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.reference {
+    background-color: #B5CC17;
+    color: white;
+    font-size: 20pt;
+    padding: 5px 10px;
+}
+
+.plan {
+    height: 550px;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.icone {
+    width: 48px;
+    height: 48px;
+}
+
+.info {
+    margin-top: 7px;
+    font-size: 15pt;
+}
+
+.cartouche {
+    border: solid 2px #B5CC17;
+    padding: 5px 0 40px 0;
+}
+
+.divider {
+    background-color: black;
+    position: relative;
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+.cartouche p {
+    font-size: 21pt;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.residencePhoto {
+    z-index: 10;
+    position: relative;
+    height: 170px;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-20%);
+    -moz-transform: translateX(-50%) translateY(-20%);
+    -ms-transform: translateX(-50%) translateY(-20%);
+    transform: translateX(-50%) translateY(-20%);
+}
