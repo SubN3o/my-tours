@@ -27,7 +27,7 @@
             <p class="greenMyO">45000 ORLEANS</p>
         </div>
         <div class="col s4">
-            <img src="{{ base_dir ~ asset('img/logo_myorleans.png') }}">
+            <img class="responsive-img" src="{{ base_dir ~ asset('img/logo_myorleans.png') }}">
         </div>
         <div class="col s4 right-align contact">
             <p>{{ telephone_number }}</p>
@@ -127,21 +127,23 @@
                 </div>
                 <div class="col s10 push-s1">
                     {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                        <img class="residencePhoto img-responsive" src="{{ base_dir ~ asset('uploads/'~media.mediaName) }}"
+                        <img class="residencePhoto responsive-img"
+                             src="{{ base_dir ~ asset('uploads/'~media.mediaName) }}"
                              alt="résidence">
                     {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!--Import jQuery before materialize.js-->
+<!--Import jQuery before materialize.js-->
 
-    {#<script type="text/javascript" src="{{ absolute_url(asset('js/jquery-3.1.1.min.js')) }}"></script>#}
-    <script type="text/javascript" src="{{ base_dir ~ asset('js/jquery-3.1.1.min.js') }}"></script>
+{#<script type="text/javascript" src="{{ absolute_url(asset('js/jquery-3.1.1.min.js')) }}"></script>#}
+<script type="text/javascript" src="{{ base_dir ~ asset('js/jquery-3.1.1.min.js') }}"></script>
 
-    {#<script type="text/javascript" src="{{ absolute_url(asset('js/materialize.js')) }}"></script>#}
-    <script type="text/javascript" src="{{ base_dir ~ asset('js/materialize.js') }}"></script>
+{#<script type="text/javascript" src="{{ absolute_url(asset('js/materialize.js')) }}"></script>#}
+<script type="text/javascript" src="{{ base_dir ~ asset('js/materialize.js') }}"></script>
 
 </body>
 
