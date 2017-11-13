@@ -53,7 +53,7 @@ class PdfController extends Controller
 
         ));
 
-        $filename = "appartement-".$flat->getReference().".pdf";
+        $filename = $flat->getTypeBien()->getNom()."-".$flat->getReference().".pdf";
 
         return new Response(
             $snappy->getOutputFromHtml($html),

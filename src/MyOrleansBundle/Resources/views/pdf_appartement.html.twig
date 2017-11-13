@@ -40,7 +40,7 @@
             <div class="situation">
                 <span class="residence">{{ residence.nom }}</span>
                 <p class="ville">{{ residence.ville.nom }}{% if residence.quartier != null %} {{ residence.quartier.nom }}{% endif %}</p>
-                <span class="reference">Ref : {{ flat.reference }} - {{ flat.prix|number_format(0, '.', ' ') }} €</span>
+                <span class="reference">Réf : {{ flat.reference }} - {{ flat.prix|number_format(0, '.', ' ') }} €</span>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
                     <img class="icone" src="{{ base_dir ~ asset('img/floor.png') }}" alt="revetement">
                 </div>
                 <div class="col offset-s1 s10">
-                    <p class="info">Séjour - {{ flat.solSejour }}</p>
+                    <p class="info">Séjour : {{ flat.solSejour }}</p>
                 </div>
             </div>
             <div class="col s12">
@@ -84,7 +84,7 @@
                     <img class="icone" src="{{ base_dir ~ asset('img/floor.png') }}" alt="revetement">
                 </div>
                 <div class="col offset-s1 s10">
-                    <p class="info">Chambre - {{ flat.solChambre }}</p>
+                    <p class="info">Chambre : {{ flat.solChambre }}</p>
                 </div>
             </div>
             <div class="col s12">
@@ -92,7 +92,7 @@
                     <img class="icone" src="{{ base_dir ~ asset('img/floor.png') }}" alt="revetement">
                 </div>
                 <div class="col offset-s1 s10">
-                    <p class="info">Salle de bains - {{ flat.solSdb }}</p>
+                    <p class="info">Salle de bains : {{ flat.solSdb }}</p>
                 </div>
             </div>
             <div class="col s12">
@@ -116,18 +116,18 @@
             <div class="col s10 push-s2">
                 <div class="s12 center cartouche">
                     <p>{{ flat.typeLogement.nom }} - {{ flat.surface }} m²</p>
-                    <div class="divider col s4"></div>
+                    <div class="divider col s2"></div>
                     <p>{{ flat.prix|number_format(0, '.', ' ') }} €</p>
-                    <div class="divider col s4"></div>
+                    <div class="divider col s2"></div>
                     <p>{{ flat.dateLivraison }}</p>
                     {% if residence.eligibilitePinel == 1 %}
-                        <div class="divider col s4"></div>
+                        <div class="divider col s2"></div>
                         <p>Eligible Pinel</p>
                     {% endif %}
                 </div>
-                <div class="col s12">
+                <div class="col s10 push-s1">
                     {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                        <img class="residencePhoto" src="{{ base_dir ~ asset('uploads/'~media.mediaName) }}"
+                        <img class="residencePhoto img-responsive" src="{{ base_dir ~ asset('uploads/'~media.mediaName) }}"
                              alt="résidence">
                     {% endfor %}
                 </div>
