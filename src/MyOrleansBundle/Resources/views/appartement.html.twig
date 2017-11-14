@@ -63,11 +63,13 @@
         </div>
 
     </div>
-    {#<div class="row">#}
-    {#<div class="col offset-s1 s10">#}
-    {#<img class="pdfIcon" src="{{ asset('img/PDF.png') }}">#}
-    {#</div>#}
-    {#</div>#}
+    <div class="row">
+        <div class="col offset-s1 s10">
+            <a href="{{ path('flat_pdf', { 'id': flat.id}) }}"><img class="pdfIcon"
+                                                                          src="{{ asset('img/PDF.png') }}"></a>
+
+        </div>
+    </div>
     <h2>Descriptif du Logement</h2>
     <div class="row">
         <div class="col offset-l1 l5">

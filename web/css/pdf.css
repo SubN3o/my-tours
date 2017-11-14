@@ -89,6 +89,10 @@
     font-size: 15pt;
 }
 
+.info i {
+    color: lightgray;
+}
+
 .cartouche {
     border: solid 2px #B5CC17;
     padding: 5px 0 40px 0;

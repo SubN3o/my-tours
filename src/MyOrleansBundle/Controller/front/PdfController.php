@@ -28,10 +28,10 @@ class PdfController extends Controller
     /**
      * Retrun a pdf file from a flat.
      * @return Response
-     * @Route("/pdf/flat/{id}", name="flat_pdf")
+     * @Route("/admin/pdf/flat/{id}", name="flat_pdf_admin")
      * @Method("GET")
      */
-    public function pdfFlatAction(Flat $flat, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculateur)
+    public function pdfFlatAdminAction(Flat $flat, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -64,6 +64,47 @@ class PdfController extends Controller
             ]);
 
     }
+
+    /**
+     * Retrun a pdf file from a flat.
+     * @return Response
+     * @Route("/pdf/flat/{id}", name="flat_pdf")
+     * @Method("GET")
+     */
+    public function pdfFlatAction(Flat $flat, Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $residence = $flat->getResidence();
+        $mailagence = $this->getParameter('mail_agence');
+        $telephoneNumber = $this->getParameter('telephone_number');
+        $snappy = $this->get("knp_snappy.pdf");
+        $medias = $residence->getMedias();
+
+
+        $html = $this->renderView('MyOrleansBundle::pdf_appartement.html.twig', array(
+            'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath(),
+            'flat'=>$flat,
+            'residence'=>$residence,
+            'medias' => $medias,
+            'telephone_number' => $telephoneNumber,
+            'mail_agence'=>$mailagence,
+
+        ));
+
+        $filename = $flat->getTypeBien()->getNom()."-".$flat->getReference().".pdf";
+
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+            ]);
+
+    }
+
 //    /**
 //     * Retrun a pdf file from a residence.
 //     * @return Response

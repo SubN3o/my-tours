@@ -40,7 +40,16 @@
             <div class="situation">
                 <span class="residence">{{ residence.nom }}</span>
                 <p class="ville">{{ residence.ville.nom }}{% if residence.quartier != null %} {{ residence.quartier.nom }}{% endif %}</p>
-                <span class="reference">Réf : {{ flat.reference }} - {{ flat.prix|number_format(0, '.', ' ') }} €</span>
+                <span class="reference">
+                    Réf : {{ flat.reference }}
+                    {% if app.request.get('_route') == 'flat_pdf_admin' %}
+                         - {{ flat.prix|number_format(0, '.', ' ') }} €
+                    {% else %}
+                        {% if residence.affichagePrix %}
+                             - {{ flat.prix|number_format(0, '.', ' ') }} €
+                        {% endif %}
+                    {% endif %}
+                </span>
             </div>
         </div>
     </div>
@@ -60,7 +69,14 @@
                     <img class="icone" src="{{ base_dir ~ asset('img/boussole.png') }}" alt="boussole">
                 </div>
                 <div class="col offset-s1 s10">
-                    <p class="info">Séjour : {{ flat.expositionSejour }}</p>
+                    <p class="info">
+                        Séjour :
+                        {% if flat.expositionSejour %}
+                            {{ flat.expositionSejour }}
+                        {% else %}
+                            <i>non communiqué</i>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
             <div class="col s12">
@@ -68,7 +84,13 @@
                     <img class="icone" src="{{ base_dir ~ asset('img/Parking.png') }}" alt="voiture">
                 </div>
                 <div class="col offset-s1 s10">
-                    <p class="info">{{ flat.stationnement }}</p>
+                    <p class="info">
+                        {% if flat.stationnement %}
+                            {{ flat.stationnement }}
+                        {% else %}
+                            <i>non communiqué</i>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
             <div class="col s12">
@@ -108,7 +130,13 @@
                     <img class="icone" src="{{ base_dir ~ asset('img/chauffage.png') }}" alt="chauffage">
                 </div>
                 <div class="col offset-s1 s10">
-                    <p class="info">{{ flat.chauffage }}</p>
+                    <p class="info">
+                        {% if flat.chauffage %}
+                            {{ flat.chauffage }}
+                        {% else %}
+                            <i>non communiqué</i>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
@@ -117,7 +145,17 @@
                 <div class="s12 center cartouche">
                     <p>{{ flat.typeLogement.nom }} - {{ flat.surface }} m²</p>
                     <div class="divider col s2"></div>
-                    <p>{{ flat.prix|number_format(0, '.', ' ') }} €</p>
+                    <p>
+                        {% if app.request.get('_route') == 'flat_pdf_admin' %}
+                            {{ flat.prix|number_format(0, '.', ' ') }} €
+                        {% else %}
+                            {% if residence.affichagePrix %}
+                                {{ flat.prix|number_format(0, '.', ' ') }} €
+                            {% else %}
+                                Prix : nous contacter
+                            {% endif %}
+                        {% endif %}
+                    </p>
                     <div class="divider col s2"></div>
                     <p>{{ flat.dateLivraison }}</p>
                     {% if residence.eligibilitePinel == 1 %}
