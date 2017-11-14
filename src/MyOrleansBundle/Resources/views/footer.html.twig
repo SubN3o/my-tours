@@ -54,22 +54,22 @@
                         </div>
                     {% endfor %}
                 </div>
-                {#<h5 class="center h5Footer"><a href="{{ path("nos_services") }}">NOS SERVICES</a></h5>#}
-                {#<div class="row">#}
-                {#<div class="col s12">#}
-                {#{% for service in services %}#}
-                {#<p class="linkFooter"><a href="{{ path("nos_services") }}">{{ service.type }}</a></p>#}
-                {#{% endfor %}#}
-                {#</div>#}
-                {#</div>#}
-                {#<h5 class="center h5Footer"><a href="{{ path("nos_services") }}">NOS PACKS</a></h5>#}
-                {#<div class="row">#}
-                {#<div class="col s12">#}
-                {#{% for pack in packs %}#}
-                {#<p class="linkFooter"><a href="{{ path("nos_services") }}">{{ pack.nom }}</a></p>#}
-                {#{% endfor %}#}
-                {#</div>#}
-                {#</div>#}
+                <h5 class="center h5Footer"><a href="{{ path("nos_services")~'#service' }}">NOS SERVICES</a></h5>
+                <div class="row">
+                    <div class="col s12">
+                        {% for service in services %}
+                            <p class="linkFooter"><a href="{{ path("nos_services")~'#'~service.type }}">{{ service.type }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <h5 class="center h5Footer"><a href="{{ path("nos_services")~'#pack' }}">NOS PACKS</a></h5>
+                <div class="row">
+                    <div class="col s12">
+                        {% for pack in packs %}
+                            <p class="linkFooter"><a href="{{ path("nos_services")~'#'~pack.nom }}">{{ pack.nom }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
             <!--colonne droite-->
             <div class="col s12 l4">

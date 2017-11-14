@@ -35,10 +35,10 @@ class NosServicesController extends Controller
     {
 
         $client = new Client();
-        $parcours = null;
-        if ($session->has('parcours')) {
-            $parcours = $session->get('parcours');
-        }
+//        $parcours = null;
+//        if ($session->has('parcours')) {
+//            $parcours = $session->get('parcours');
+//        }
 
 
         $em = $this->getDoctrine()->getManager();
@@ -91,7 +91,7 @@ class NosServicesController extends Controller
             'packs' => $packs,
             'temoignages' => $temoignages,
             'telephone_number' => $telephoneNumber,
-            'parcours' => $parcours,
+//            'parcours' => $parcours,
             'form' => $formulaire->createView()
         ]);
     }

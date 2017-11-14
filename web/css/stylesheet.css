@@ -2282,3 +2282,24 @@ video {
 /*.fnaimRow div img:last-child{*/
     /*margin: auto;*/
 /*}*/
+
+/* ------------------------------------------------------------------*/
+/* -------------------------- NOS SERVICES --------------------------*/
+/* ------------------------------------------------------------------*/
+
+
+.box .card .card-image .card-title{
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 24px;
+}
+
+.box .card .card-image img {
+    height: 380px;
+    object-fit: cover;
+}
+
+.ancreService {
+    position: relative;
+    bottom: 70px;
+}
