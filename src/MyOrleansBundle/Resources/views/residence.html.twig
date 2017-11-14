@@ -250,14 +250,25 @@
                                 <div class="row">
                                     <div class="col offset-s1 s2">1 pièce</div>
                                     <div class="col s3">
-                                        {% for flat in flatsT1 %}
-                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup> à
-                                        {% for flat in flatsT1 %}
-                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup>
+                                        {% if T1Dispo %}
+                                            {% if flatsT1 | length == 1 %}
+
+                                                {% for flat in T1Dispo %}
+                                                    {{ flat.surface|number_format(0) }} m<sup>2</sup>
+                                                {% endfor %}
+
+                                            {% elseif flatsT1 | length > 1 %}
+
+                                                {% for flat in T1Dispo %}
+                                                    {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup> à
+                                                {% for flat in T1Dispo %}
+                                                    {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s4 l3">
                                         {% if residence.affichagePrix %}
@@ -270,12 +281,12 @@
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
-                                            {{ T1Dispo }}
+                                            {{ T1Dispo | length }}
                                         </div>
                                     </div>
                                     <div class="col l3 hide-on-small-only">
                                         <div class="btn greenMyO">
-                                            {% transchoice T1Dispo %}
+                                            {% transchoice T1Dispo | length %}
                                             {0} %count% logement |
                                             {1} %count% logement |
                                             ]1,Inf[ %count% logements
@@ -325,14 +336,25 @@
                                 <div class="row">
                                     <div class="col offset-s1 s2">2 pièces</div>
                                     <div class="col s3">
-                                        {% for flat in flatsT2 %}
-                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup> à
-                                        {% for flat in flatsT2 %}
-                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup>
+                                        {% if T2Dispo %}
+                                            {% if flatsT2 | length == 1 %}
+
+                                                {% for flat in T2Dispo %}
+                                                    {{ flat.surface|number_format(0) }} m<sup>2</sup>
+                                                {% endfor %}
+
+                                            {% elseif flatsT2 | length > 1 %}
+
+                                                {% for flat in T2Dispo %}
+                                                    {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup> à
+                                                {% for flat in T2Dispo %}
+                                                    {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s4 l3">
                                         {% if residence.affichagePrix %}
@@ -345,12 +367,12 @@
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
-                                            {{ T2Dispo }}
+                                            {{ T2Dispo | length }}
                                         </div>
                                     </div>
                                     <div class="col l3 hide-on-small-only">
                                         <div class="btn greenMyO">
-                                            {% transchoice T2Dispo %}
+                                            {% transchoice T2Dispo | length %}
                                             {0} %count% logement |
                                             {1} %count% logement |
                                             ]1,Inf[ %count% logements
@@ -399,14 +421,25 @@
                                 <div class="row">
                                     <div class="col offset-s1 s2">3 pièces</div>
                                     <div class="col s3">
-                                        {% for flat in flatsT3 %}
-                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup> à
-                                        {% for flat in flatsT3 %}
-                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup>
+                                        {% if T3Dispo %}
+                                            {% if flatsT1 | length == 1 %}
+
+                                                {% for flat in T3Dispo %}
+                                                    {{ flat.surface|number_format(0) }} m<sup>2</sup>
+                                                {% endfor %}
+
+                                            {% elseif flatsT3 | length > 1 %}
+
+                                                {% for flat in T3Dispo %}
+                                                    {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup> à
+                                                {% for flat in T3Dispo %}
+                                                    {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s4 l3">
                                         {% if residence.affichagePrix %}
@@ -419,12 +452,12 @@
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
-                                            {{ T3Dispo }}
+                                            {{ T3Dispo | length }}
                                         </div>
                                     </div>
                                     <div class="col l3 hide-on-small-only">
                                         <div class="btn greenMyO">
-                                            {% transchoice T3Dispo %}
+                                            {% transchoice T3Dispo | length %}
                                             {0} %count% logement |
                                             {1} %count% logement |
                                             ]1,Inf[ %count% logements
@@ -473,14 +506,25 @@
                                 <div class="row">
                                     <div class="col offset-s1 s2">4 pièces</div>
                                     <div class="col s3">
-                                        {% for flat in flatsT4 %}
-                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup> à
-                                        {% for flat in flatsT4 %}
-                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup>
+                                        {% if T4Dispo %}
+                                            {% if flatsT4 | length == 1 %}
+
+                                                {% for flat in T4Dispo %}
+                                                    {{ flat.surface|number_format(0) }} m<sup>2</sup>
+                                                {% endfor %}
+
+                                            {% elseif flatsT4 | length > 1 %}
+
+                                                {% for flat in T4Dispo %}
+                                                    {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup> à
+                                                {% for flat in T4Dispo %}
+                                                    {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s4 l3">
                                         {% if residence.affichagePrix %}
@@ -493,12 +537,12 @@
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
-                                            {{ T4Dispo }}
+                                            {{ T4Dispo | length }}
                                         </div>
                                     </div>
                                     <div class="col l3 hide-on-small-only">
                                         <div class="btn greenMyO">
-                                            {% transchoice T4Dispo %}
+                                            {% transchoice T4Dispo | length %}
                                             {0} %count% logement |
                                             {1} %count% logement |
                                             ]1,Inf[ %count% logements
@@ -547,14 +591,25 @@
                                 <div class="row">
                                     <div class="col offset-s1 s2">5 pièces et plus</div>
                                     <div class="col s3">
-                                        {% for flat in flatsT5 %}
-                                            {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup> à
-                                        {% for flat in flatsT5 %}
-                                            {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
-                                        {% endfor %}
-                                        m<sup>2</sup>
+                                        {% if T5Dispo %}
+                                            {% if flatsT5 | length == 1 %}
+
+                                                {% for flat in T5Dispo %}
+                                                    {{ flat.surface|number_format(0) }} m<sup>2</sup>
+                                                {% endfor %}
+
+                                            {% elseif flatsT5 | length > 1 %}
+
+                                                {% for flat in T5Dispo %}
+                                                    {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup> à
+                                                {% for flat in T5Dispo %}
+                                                    {% if loop.last %}{{ flat.surface|number_format(0) }}{% endif %}
+                                                {% endfor %}
+                                                m<sup>2</sup>
+                                            {% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s4 l3">
                                         {% if residence.affichagePrix %}
@@ -567,12 +622,12 @@
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
-                                            {{ T5Dispo }}
+                                            {{ T5Dispo | length }}
                                         </div>
                                     </div>
                                     <div class="col l3 hide-on-small-only">
                                         <div class="btn greenMyO">
-                                            {% transchoice T5Dispo %}
+                                            {% transchoice T5Dispo | length %}
                                             {0} %count% logement |
                                             {1} %count% logement |
                                             ]1,Inf[ %count% logements

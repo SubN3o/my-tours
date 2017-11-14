@@ -42,11 +42,11 @@ class ResidencesController extends Controller
         $typeMinMax = $calculator->calculSizes($residence);
         $medias = $residence->getMedias();
 
-        $T1Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence, 'T1'));
-        $T2Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence, 'T2'));
-        $T3Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence, 'T3'));
-        $T4Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence, 'T4'));
-        $T5Dispo = count($em->getRepository(Flat::class)->flatDispoByType($residence, 'T5+'));
+        $T1Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T1');
+        $T2Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T2');
+        $T3Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T3');
+        $T4Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T4');
+        $T5Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T5+');
 
 
         $idResidence [] = $residence->getId();
