@@ -20,7 +20,9 @@ class CalculateurCaracteristiquesResidence
         $prix = [];
 
         foreach ($flats as $flat) {
-            $prix[] = $flat->getPrix();
+            if ($flat->getStatut() == true) {
+                $prix[] = $flat->getPrix();
+            }
         }
 
         if (!$prix) {
