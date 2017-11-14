@@ -34,24 +34,16 @@ class NosServicesController extends Controller
     public function nosServicesAction(SessionInterface $session, Request $request)
     {
 
-        $client = new Client();
-//        $parcours = null;
-//        if ($session->has('parcours')) {
-//            $parcours = $session->get('parcours');
-//        }
 
 
         $em = $this->getDoctrine()->getManager();
         $services = $em->getRepository(Service::class)->findBy([], ['tri'=>'ASC']);
         $telephoneNumber = $this->getParameter('telephone_number');
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-//        $formulaire->get('sujet')->setData(Client::SUJET_SERVICES);
         $packs = $em->getRepository(Pack::class)->findBy([], ['tri'=>'ASC']);
 
-        $temoignages = $em->getRepository(Temoignage::class)->findBy([], ['tri'=>'ASC'], 4);
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
-
-
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
@@ -89,9 +81,7 @@ class NosServicesController extends Controller
         return $this->render('MyOrleansBundle::nosServices.html.twig',  [
             'services' => $services,
             'packs' => $packs,
-            'temoignages' => $temoignages,
             'telephone_number' => $telephoneNumber,
-//            'parcours' => $parcours,
             'form' => $formulaire->createView()
         ]);
     }
