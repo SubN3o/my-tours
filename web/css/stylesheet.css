@@ -1835,6 +1835,10 @@ video {
     font-size: 16pt;
 }
 
+.descriptif i {
+    color: lightgray;
+}
+
 .descriptifLine {
     border-bottom: 2px solid #B5CC17;
     margin-bottom: 20px;

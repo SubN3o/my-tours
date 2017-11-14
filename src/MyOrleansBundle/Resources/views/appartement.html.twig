@@ -50,7 +50,11 @@
             {{ flat.typeBien.nom }} de type {{ flat.typeLogement.id }}
         </div>
         <div class="col l5 s4 right-align prixFlat">
-            {{ flat.prix|number_format(0, '.', ' ') }} €
+            {% if residence.affichagePrix %}
+                {{ flat.prix|number_format(0, '.', ' ') }} €
+            {% else %}
+                Prix : nous contacter
+            {% endif %}
         </div>
     </div>
     <div class="row planFlat">
@@ -155,7 +159,13 @@
                 </div>
                 <div class="col s12">
                     <p>Chauffage</p>
-                    <span>{{ flat.chauffage }}</span>
+                    <span>
+                    {% if flat.chauffage %}
+                        {{ flat.chauffage }}
+                    {% else %}
+                        <i>non communiqué</i>
+                    {% endif %}
+                    </span>
                 </div>
                 <span class="col s12 descriptifLine"></span>
             </div>
@@ -165,7 +175,13 @@
                 </div>
                 <div class="col s12">
                     <p>Exposition du séjour</p>
-                    <span>{{ flat.expositionSejour }}</span>
+                    <span>
+                    {% if flat.expositionSejour %}
+                        {{ flat.expositionSejour }}
+                    {% else %}
+                        <i>non communiqué</i>
+                    {% endif %}
+                    </span>
                 </div>
                 <span class="col s12 descriptifLine"></span>
             </div>
@@ -175,7 +191,13 @@
                 </div>
                 <div class="col s12">
                     <p>Stationnement</p>
-                    <span>{{ flat.stationnement }}</span>
+                    <span>
+                    {% if flat.stationnement %}
+                        {{ flat.stationnement }}
+                    {% else %}
+                        <i>non communiqué</i>
+                    {% endif %}
+                    </span>
                 </div>
                 <span class="col s12 descriptifLine"></span>
             </div>

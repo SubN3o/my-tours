@@ -260,9 +260,13 @@
                                         m<sup>2</sup>
                                     </div>
                                     <div class="col s4 l3">
-                                        {% for flat in flatsT1 if flat.statut %}
-                                            {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
-                                        {% endfor %}
+                                        {% if residence.affichagePrix %}
+                                            {% for flat in flatsT1 if flat.statut %}
+                                                {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            {% if T1Dispo %}nous contacter{% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
@@ -288,7 +292,10 @@
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
-                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                <div class="col s4 l3">
+                                                    {% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
                                                 </div>
                                                 <div class="col s2 l3">
                                                     <div class="btn white black-text">Voir</div>
@@ -297,7 +304,12 @@
                                         {% else %}
                                             <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
-                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            <div class="col s4 l3">
+                                                <i>
+                                                    {% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
+                                                </i>
                                             </div>
                                             <div class="col s2 l3"><i>Vendu</i>
                                             </div>
@@ -323,9 +335,13 @@
                                         m<sup>2</sup>
                                     </div>
                                     <div class="col s4 l3">
-                                        {% for flat in flatsT2 if flat.statut %}
-                                            {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
-                                        {% endfor %}
+                                        {% if residence.affichagePrix %}
+                                            {% for flat in flatsT2 if flat.statut %}
+                                                {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            {% if T2Dispo %}nous contacter{% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
@@ -351,7 +367,10 @@
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
-                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                <div class="col s4 l3">
+                                                    {% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
                                                 </div>
                                                 <div class="col s2 l3">
                                                     <div class="btn white black-text">Voir</div>
@@ -360,7 +379,11 @@
                                         {% else %}
                                             <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
-                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            <div class="col s4 l3">
+                                                <i>{% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
+                                                </i>
                                             </div>
                                             <div class="col s2 l3"><i>Vendu</i>
                                             </div>
@@ -386,9 +409,13 @@
                                         m<sup>2</sup>
                                     </div>
                                     <div class="col s4 l3">
-                                        {% for flat in flatsT3 if flat.statut %}
-                                            {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
-                                        {% endfor %}
+                                        {% if residence.affichagePrix %}
+                                            {% for flat in flatsT3 if flat.statut %}
+                                                {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            {% if T3Dispo %}nous contacter{% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
@@ -414,7 +441,10 @@
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
-                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                <div class="col s4 l3">
+                                                    {% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
                                                 </div>
                                                 <div class="col s2 l3">
                                                     <div class="btn white black-text">Voir</div>
@@ -423,7 +453,11 @@
                                         {% else %}
                                             <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
-                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            <div class="col s4 l3">
+                                                <i>{% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
+                                                </i>
                                             </div>
                                             <div class="col s2 l3"><i>Vendu</i>
                                             </div>
@@ -449,9 +483,13 @@
                                         m<sup>2</sup>
                                     </div>
                                     <div class="col s4 l3">
-                                        {% for flat in flatsT4 if flat.statut %}
-                                            {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
-                                        {% endfor %}
+                                        {% if residence.affichagePrix %}
+                                            {% for flat in flatsT4 if flat.statut %}
+                                                {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            {% if T4Dispo %}nous contacter{% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
@@ -477,7 +515,10 @@
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
-                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                <div class="col s4 l3">
+                                                    {% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
                                                 </div>
                                                 <div class="col s2 l3">
                                                     <div class="btn white black-text">Voir</div>
@@ -486,7 +527,11 @@
                                         {% else %}
                                             <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
-                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            <div class="col s4 l3">
+                                                <i>{% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
+                                                </i>
                                             </div>
                                             <div class="col s2 l3"><i>Vendu</i>
                                             </div>
@@ -512,9 +557,13 @@
                                         m<sup>2</sup>
                                     </div>
                                     <div class="col s4 l3">
-                                        {% for flat in flatsT5 if flat.statut %}
-                                            {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
-                                        {% endfor %}
+                                        {% if residence.affichagePrix %}
+                                            {% for flat in flatsT5 if flat.statut %}
+                                                {% if loop.first %}à partir de {{ flat.prix|number_format(0, '.', ' ') }} €{% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            {% if T5Dispo %}nous contacter{% endif %}
+                                        {% endif %}
                                     </div>
                                     <div class="col s2 hide-on-med-and-up">
                                         <div class="btn greenMyO">
@@ -540,7 +589,10 @@
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
-                                                <div class="col s4 l3">{{ flat.prix|number_format(0, '.', ' ') }}€
+                                                <div class="col s4 l3">
+                                                    {% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
                                                 </div>
                                                 <div class="col s2 l3">
                                                     <div class="btn white black-text">Voir</div>
@@ -549,7 +601,11 @@
                                         {% else %}
                                             <div class="col offset-s1 s2"><i>{{ flat.typeLogement.nom }}</i></div>
                                             <div class="col s3"><i>{{ flat.surface }} m<sup>2</sup></i></div>
-                                            <div class="col s4 l3"><i>{{ flat.prix|number_format(0, '.', ' ') }} €</i>
+                                            <div class="col s4 l3">
+                                                <i>{% if residence.affichagePrix %}
+                                                        {{ flat.prix|number_format(0, '.', ' ') }} €
+                                                    {% endif %}
+                                                </i>
                                             </div>
                                             <div class="col s2 l3"><i>Vendu</i>
                                             </div>
