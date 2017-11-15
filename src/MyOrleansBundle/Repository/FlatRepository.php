@@ -34,7 +34,7 @@ class FlatRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('typeLogement', $type)
             ->andWhere('f.statut = true')
             ->join('f.typeLogement', 't')
-            ->addOrderBy('f.prix','ASC');
+            ->addOrderBy('f.surface','ASC');
 
         return $qb->getQuery()->getResult();
     }

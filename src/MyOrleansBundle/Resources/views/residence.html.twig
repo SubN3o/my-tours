@@ -251,13 +251,13 @@
                                     <div class="col offset-s1 s2">1 pièce</div>
                                     <div class="col s3">
                                         {% if T1Dispo %}
-                                            {% if flatsT1 | length == 1 %}
+                                            {% if T1Dispo | length == 1 %}
 
                                                 {% for flat in T1Dispo %}
                                                     {{ flat.surface|number_format(0) }} m<sup>2</sup>
                                                 {% endfor %}
 
-                                            {% elseif flatsT1 | length > 1 %}
+                                            {% elseif T1Dispo | length > 1 %}
 
                                                 {% for flat in T1Dispo %}
                                                     {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
@@ -337,13 +337,13 @@
                                     <div class="col offset-s1 s2">2 pièces</div>
                                     <div class="col s3">
                                         {% if T2Dispo %}
-                                            {% if flatsT2 | length == 1 %}
+                                            {% if T2Dispo | length == 1 %}
 
                                                 {% for flat in T2Dispo %}
                                                     {{ flat.surface|number_format(0) }} m<sup>2</sup>
                                                 {% endfor %}
 
-                                            {% elseif flatsT2 | length > 1 %}
+                                            {% elseif T2Dispo | length > 1 %}
 
                                                 {% for flat in T2Dispo %}
                                                     {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
@@ -422,13 +422,13 @@
                                     <div class="col offset-s1 s2">3 pièces</div>
                                     <div class="col s3">
                                         {% if T3Dispo %}
-                                            {% if flatsT1 | length == 1 %}
+                                            {% if T3Dispo | length == 1 %}
 
                                                 {% for flat in T3Dispo %}
                                                     {{ flat.surface|number_format(0) }} m<sup>2</sup>
                                                 {% endfor %}
 
-                                            {% elseif flatsT3 | length > 1 %}
+                                            {% elseif T3Dispo | length > 1 %}
 
                                                 {% for flat in T3Dispo %}
                                                     {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
@@ -507,13 +507,13 @@
                                     <div class="col offset-s1 s2">4 pièces</div>
                                     <div class="col s3">
                                         {% if T4Dispo %}
-                                            {% if flatsT4 | length == 1 %}
+                                            {% if T4Dispo | length == 1 %}
 
                                                 {% for flat in T4Dispo %}
                                                     {{ flat.surface|number_format(0) }} m<sup>2</sup>
                                                 {% endfor %}
 
-                                            {% elseif flatsT4 | length > 1 %}
+                                            {% elseif T4Dispo | length > 1 %}
 
                                                 {% for flat in T4Dispo %}
                                                     {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
@@ -592,13 +592,13 @@
                                     <div class="col offset-s1 s2">5 pièces et plus</div>
                                     <div class="col s3">
                                         {% if T5Dispo %}
-                                            {% if flatsT5 | length == 1 %}
+                                            {% if T5Dispo | length == 1 %}
 
                                                 {% for flat in T5Dispo %}
                                                     {{ flat.surface|number_format(0) }} m<sup>2</sup>
                                                 {% endfor %}
 
-                                            {% elseif flatsT5 | length > 1 %}
+                                            {% elseif T5Dispo | length > 1 %}
 
                                                 {% for flat in T5Dispo %}
                                                     {% if loop.first %}{{ flat.surface|number_format(0) }}{% endif %}
