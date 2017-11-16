@@ -1,88 +1,86 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block content %}
-    <div id="pack"></div>
-    <h2>Nos packs</h2>
-    <div class="row">
-        <div class="col offset-l1 l10 s12">
-            <div class="row">
-                {% for pack in packs %}
-                    <div id="{{ pack.nom }}" class="ancreService"></div>
-                    <div class="col s12 m6 l4 box">
-                        <div class="card">
-                            <div class="card-image">
-                                <div data-aos="flip-left">
-                                    <img src="{{ asset('uploads/'~pack.media.mediaName) | imagine_filter('thumb_pack') }}" class="responsive-img" alt="pack">
-                                    <span class="card-title">{{ pack.nom }}</span>
-                                    <a class="btn-floating halfway-fab waves-effect waves-light greenMyO button-collapse"
-                                       data-activates="slide-out" href="#"><i class="material-icons">message</i></a>
-                                </div>
-                                <div class="card-content">
-                                    <div>
-                                        <a class="waves-effect waves-light btn greenMyO" href="#modal-{{ pack.id }}">VOIR
-                                            PLUS</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal Structure -->
-                    <div id="modal-{{ pack.id }}" class="modal modalService">
-                        <div class="modal-content">
-                            <h3>{{ pack.nom }}</h3>
-                            <p>{{ pack.description | raw }}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#"
-                               class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
-                        </div>
-                    </div>
-
-                {% endfor %}
-
-            </div>
-        </div>
-    </div>
     <div id="service"></div>
     <h2>Nos services</h2>
     <div class="row">
-        <div class="col offset-l1 l10 s12">
-            <div class="row">
-                {% for service in services %}
-                    <div id="{{ service.type }}" class="ancreService"></div>
-                    <div class="col s12 m6 l4 box">
-                        <div class="card">
-                            <div class="card-image">
-                                <div data-aos="flip-left">
-                                    <img src="{{ asset('uploads/'~service.media.mediaName) | imagine_filter('thumb_pack') }}" class="responsive-img" alt="service">
-                                    <span class="card-title">{{ service.type }}</span>
-                                </div>
-                                <div class="card-content">
-                                    <div>
-                                        <a class="waves-effect waves-light btn greenMyO" href="#modal-{{ service.id }}">VOIR
-                                            PLUS</a>
-                                    </div>
+        <div class="col offset-l1 l10">
+        {% for service in services %}
+            {% if service.tri is odd %}
+                <div id="{{ service.type }}" class="ancreService"></div>
+                <div class="row serviceBox valign-wrapper">
+                    <div class="col s12 m6 l6">
+                        <div data-aos="fade-up-right">
+                            <div class="boxi">
+                                <h3 class="center">{{ service.type }}</h3>
+                                <p>{{ service.description | raw }}</p>
+                                <div class="center">
+
+                                    <a href="#" data-activates="slide-out"
+                                       class="button-collapse waves-effect waves-light greenMyO btn"><i class="material-icons">message</i>
+                                        Demander la documentation</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Modal Structure -->
-                    <div id="modal-{{ service.id }}" class="modal modalService">
-                        <div class="modal-content">
-                            <h3>{{ service.type }}</h3>
-                            <p>{{ service.description | raw }}</p>
+                    <div class="col s12 m6 l6">
+                        <div data-aos="fade-up-left">
+
+                            {% if service.media.typeMedia.nom == 'image-cover' %}
+
+                                <img src="{{ asset('uploads/'~service.media.mediaName) }}"
+                                     class="responsive-img">
+
+                            {% elseif media.typeMedia.nom == 'video' %}
+
+                                <div class="video-container">
+                                    <iframe width="560" height="315" src="{{ service.media.mediaName }}" frameborder="0"
+                                            allowfullscreen></iframe>
+                                </div>
+                            {% endif %}
+
                         </div>
-                        <div class="modal-footer">
-                            <a href="#"
-                               class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                    </div>
+                </div>
+
+            {% elseif service.tri is even %}
+                <div id="{{ service.type }}" class="ancreService"></div>
+                <div class="row serviceBox valign-wrapper">
+                    <div class="col s12 m6 l6">
+
+                        <div data-aos="fade-up-right">
+
+                            {% if service.media.typeMedia.nom == 'image-cover' %}
+                                <img src="{{ asset('uploads/'~service.media.mediaName) }}"
+                                     class="responsive-img">
+                            {% elseif service.media.typeMedia.nom == 'video' %}
+                                <div class="video-container">
+                                    <iframe width="560" height="315" src="{{ service.media.mediaName }}" frameborder="0"
+                                            allowfullscreen></iframe>
+                                </div>
+                            {% endif %}
+
                         </div>
                     </div>
 
-                {% endfor %}
+                    <div class="col s12 m6 l6">
+                        <div data-aos="fade-up-left">
+                            <div class="boxi">
+                                <h3 class="center">{{ service.type }}</h3>
+                                <p>{{ service.description | raw }}</p>
+                                <div class="center">
+                                    <a href="#" data-activates="slide-out"
+                                       class="button-collapse waves-effect waves-light greenMyO btn"><i class="material-icons">message</i>
+                                        Demander la documentation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
 
-            </div>
         </div>
     </div>
 

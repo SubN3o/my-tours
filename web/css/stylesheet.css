@@ -2287,32 +2287,34 @@ video {
 /* -------------------------- NOS SERVICES --------------------------*/
 /* ------------------------------------------------------------------*/
 
-
-.box .card .card-image .card-title{
-    background: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    padding: 24px;
-    font-family: Montserrat;
-}
-
-.box .card .card-image img {
-    height: 380px;
-    object-fit: cover;
-}
-
-.box .card-content {
-    font-family: Montserrat;
-}
-
-.modalService h3{
-    font-family: Montserrat;
-}
-
-.modalService p {
-    font-family: Cantarell;
-}
-
 .ancreService {
     position: relative;
     bottom: 70px;
+}
+
+.serviceBox {
+    margin: 20px;
+}
+
+.boxi {
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px #c2c2c2;
+    margin-top: -10px;
+    padding: 20px;
+    background-color: #f9f9f4;
+    font-family: Cantarell;
+}
+
+.boxi h3 {
+    font-family: Cantarell;
+    font-size: 17pt;
+    text-transform: uppercase;
+    letter-spacing: .55pt;
+    color: #676767;
+    margin-bottom: 30px;
+}
+
+.boxi a {
+    margin-top: 30px;
+    color: white;
 }
