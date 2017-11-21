@@ -24,17 +24,15 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 
-class NosServicesController extends Controller
+class ExpertiseController extends Controller
 {
 
     /**
-     * @Route("/nos_services", name="nos_services")
+     * @Route("/expertise", name="expertise")
      */
 
-    public function nosServicesAction(SessionInterface $session, Request $request)
+    public function expertiseAction(SessionInterface $session, Request $request)
     {
-
-
 
         $em = $this->getDoctrine()->getManager();
         $services = $em->getRepository(Service::class)->findBy([], ['tri'=>'ASC']);
@@ -73,12 +71,12 @@ class NosServicesController extends Controller
 
 
 
-            return $this->redirectToRoute('nos_services');
+            return $this->redirectToRoute('epertise');
         }
 
 
 
-        return $this->render('MyOrleansBundle::nosServices.html.twig',  [
+        return $this->render('MyOrleansBundle::expertise.html.twig',  [
             'services' => $services,
             'packs' => $packs,
             'telephone_number' => $telephoneNumber,

@@ -2287,34 +2287,130 @@ video {
 /* -------------------------- NOS SERVICES --------------------------*/
 /* ------------------------------------------------------------------*/
 
-.ancreService {
+#timeline .timeline-item:after, #timeline .timeline-item:before {
+    content: "";
+    display: block;
+    width: 100%;
+    clear: both;
+}
+
+#timeline {
+    width: 90%;
+    margin: 30px;
     position: relative;
-    bottom: 70px;
+    padding: 0;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+#timeline:before {
+    content: "";
+    width: 3px;
+    height: 100%;
+    background: #B5CC17;
+    left: 0;
+    top: 0;
+    position: absolute;
 }
 
-.serviceBox {
-    margin: 20px;
+#timeline:after {
+    content: "";
+    clear: both;
+    display: table;
+    width: 90%;
 }
 
-.boxi {
-    border-radius: 2px;
-    box-shadow: 1px 1px 10px #c2c2c2;
-    margin-top: -10px;
-    padding: 20px;
-    background-color: #f9f9f4;
-    font-family: Cantarell;
+#timeline .timeline-item {
+    margin-bottom: 50px;
+    position: relative;
 }
 
-.boxi h3 {
-    font-family: Cantarell;
-    font-size: 17pt;
-    text-transform: uppercase;
-    letter-spacing: .55pt;
-    color: #676767;
-    margin-bottom: 30px;
+#timeline .timeline-item .timeline-icon {
+    background: #B5CC17;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    margin-left: -23px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
 }
 
-.boxi a {
-    margin-top: 30px;
+#timeline .timeline-item .timeline-icon p {
+    font-size: 15pt;
+    margin: 8px;
     color: white;
+    font-family: Cantarell;
+}
+
+#timeline .timeline-item .timeline-icon img {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#timeline .timeline-item .timeline-content {
+    width: 90%;
+    padding: 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    float: right;
+}
+
+#timeline .timeline-item .timeline-content h3 {
+    color: #676767;
+    margin: 0;
+    font-size: 22pt;
+}
+
+#timeline .timeline-item .timeline-content p {
+    margin: 5px;
+}
+
+#timeline .timeline-item .timeline-content .collapsible-body, #timeline .timeline-item .timeline-content .collapsible-header {
+    border: none;
+}
+
+#timeline .timeline-item .timeline-content:before {
+    content: "";
+    position: absolute;
+    left: 10%;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 0 solid #B5CC17;
+    border-right: 7px solid #B5CC17;
+    margin-left: -6px;
+
+}
+
+@media screen and (max-width: 992px) {
+    #timeline .timeline-item .timeline-content h3 {
+        font-size: 12pt;
+    }
+
+    #timeline .timeline-item .timeline-content p {
+        margin: 2px;
+        font-size: 9pt;
+    }
 }
