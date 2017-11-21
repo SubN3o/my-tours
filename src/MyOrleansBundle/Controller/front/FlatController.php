@@ -27,6 +27,7 @@ use MyOrleansBundle\Entity\TypeLogement;
 use MyOrleansBundle\Entity\TypePresta;
 use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Form\SimpleSearchType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,7 +41,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class FlatController extends Controller
 {
     /**
-     * @Route("/appartement/{id}", name="appartement")
+     * @Route("/appartement/{slug}/{reference}", name="appartement")
+     * @ParamConverter("appartement", class="MyOrleansBundle:Flat", options={"reference" = "reference"})
+     * @ParamConverter("residence", class="MyOrleansBundle:REsidence", options={"slug" = "slug"})
      */
     public function flat(Flat $flat, SessionInterface $session, Request $request)
     {

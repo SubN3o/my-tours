@@ -117,7 +117,7 @@
                         <div class="col s6 l3">
                             <div class="card">
                                 <div class="card-image">
-                                    <a href="{{ path('residences', { 'slug': residence.slug }) }}">
+                                    <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
                                         {% if residence.medias is not empty %}
                                             {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                                                 <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}">
@@ -274,7 +274,7 @@
                     {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                     '{{ media.mediaName }}'
                     {% endfor %},
-                    '{{ path('residences', { 'slug': residence.slug }) }}'
+                    '{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}'
                 ],
 
                 {% endfor %}

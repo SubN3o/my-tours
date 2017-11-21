@@ -22,8 +22,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class ResidencesController extends Controller
 {
     /**
-     * @Route("/residences/{slug}", name="residences")
+     * @Route("/residence/{Ville}/{slug}/", name="residences")
      * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
+     * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"Ville" = "Ville"})
      */
     public function residenceAction(Residence $residence, SessionInterface $session, Request $request, CalculateurCaracteristiquesResidence $calculator)
     {
