@@ -15,6 +15,7 @@ use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypeBien;
 use MyOrleansBundle\Entity\TypeLogement;
 use MyOrleansBundle\Service\CalculateurCaracteristiquesResidence;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -68,7 +69,9 @@ class PdfController extends Controller
     /**
      * Retrun a pdf file from a flat.
      * @return Response
-     * @Route("/pdf/flat/{id}", name="flat_pdf")
+     * @Route("/appartement/{slug}/{reference}/pdf", name="flat_pdf")
+     * @ParamConverter("appartement", class="MyOrleansBundle:Flat", options={"reference" = "reference"})
+     * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
      * @Method("GET")
      */
     public function pdfFlatAction(Flat $flat, Request $request)
