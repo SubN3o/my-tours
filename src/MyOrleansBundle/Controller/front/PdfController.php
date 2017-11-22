@@ -29,7 +29,9 @@ class PdfController extends Controller
     /**
      * Retrun a pdf file from a flat.
      * @return Response
-     * @Route("/admin/pdf/flat/{id}", name="flat_pdf_admin")
+     * @Route("/pdf-full/{slug}/{reference}.pdf", name="flat_pdf_admin")
+     * @ParamConverter("appartement", class="MyOrleansBundle:Flat", options={"reference" = "reference"})
+     * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
      * @Method("GET")
      */
     public function pdfFlatAdminAction(Flat $flat, Request $request)
@@ -69,7 +71,7 @@ class PdfController extends Controller
     /**
      * Retrun a pdf file from a flat.
      * @return Response
-     * @Route("/appartement/{slug}/{reference}/pdf", name="flat_pdf")
+     * @Route("/pdf/{slug}/{reference}.pdf", name="flat_pdf")
      * @ParamConverter("appartement", class="MyOrleansBundle:Flat", options={"reference" = "reference"})
      * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
      * @Method("GET")

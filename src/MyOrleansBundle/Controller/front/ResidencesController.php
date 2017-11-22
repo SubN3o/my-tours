@@ -22,7 +22,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class ResidencesController extends Controller
 {
     /**
-     * @Route("/residence/{Ville}/{slug}/", name="residences")
+     * @Route("/{Ville}/residence-{slug}/", name="residences")
      * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
      * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"Ville" = "Ville"})
      */

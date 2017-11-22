@@ -100,7 +100,7 @@
 
                 {% for residence in residences %}
 
-                    {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidence', {'id': residence.id })) }}
+                    {{ render(controller('MyOrleansBundle:VignetteResidence:affichageResidence', {'slug': residence.slug })) }}
 
                 {% endfor %}
 

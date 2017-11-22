@@ -69,7 +69,7 @@
     </div>
     <div class="row">
         <div class="col offset-s1 s10">
-            <a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference  }) }}"><img class="pdfIcon"
+            <a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}"><img class="pdfIcon"
                                                                           src="{{ asset('img/PDF.png') }}"></a>
 
         </div>
@@ -242,13 +242,13 @@
             <p><i class="material-icons align-icon">share</i>Partager l'annonce</p>
             <div class="partageIcone">
                 <div id="fb-root"></div>
-                <div class="fb-share-button" data-href="{{ path('appartement', { 'slug': residence.slug,'reference': flat.reference }) }}"
+                <div class="fb-share-button" data-href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}"
                      data-layout="button"
                      data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
-                                                                    href="{{ absolute_url( path('appartement', { 'slug': residence.slug,'reference': flat.reference }))|url_encode }}">Partager</a>
+                                                                    href="{{ absolute_url( path('appartement', { 'slug': residence.slug, 'reference': flat.reference }))|url_encode }}">Partager</a>
                 </div>
                 <a class="waves-effect waves-light btn greenMyO"
-                   href="mailto:?to= &subject={{ flat.reference }}%20-%20{{ flat.typeBien.nom }}%20{{ flat.typeLogement.nom }}%20{{ residence.nom }}%20-%20My%20Orleans&body=Bonjour,%0A%0AJ'ai trouvé un logement qui devrait vous intéresser sur {{ absolute_url( path('home'))|url_encode }}%0A%0AVoici le lien vers l'annonce:%0A{{ absolute_url( path('appartement', { 'slug': residence.slug,'reference': flat.reference }))|url_encode }}%0A%0ADans certains cas, le lien est inactif. Veuillez alors le copier dans la barre d'adresse de votre navigateur.">
+                   href="mailto:?to= &subject={{ flat.reference }}%20-%20{{ flat.typeBien.nom }}%20{{ flat.typeLogement.nom }}%20{{ residence.nom }}%20-%20My%20Orleans&body=Bonjour,%0A%0AJ'ai trouvé un logement qui devrait vous intéresser sur {{ absolute_url( path('home'))|url_encode }}%0A%0AVoici le lien vers l'annonce:%0A{{ absolute_url( path('appartement', { 'slug': residence.slug, 'reference': flat.reference }))|url_encode }}%0A%0ADans certains cas, le lien est inactif. Veuillez alors le copier dans la barre d'adresse de votre navigateur.">
                     <i class="material-icons">mail</i>
                 </a>
             </div>

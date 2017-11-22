@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinTable;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -12,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="flat")
  * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\FlatRepository")
+ * @UniqueEntity(fields="reference", message="Une reference existe déjà avec ce nom.")
  */
 class Flat
 {
@@ -30,7 +32,7 @@ class Flat
      *     type="string",
      *     message="La référence saisie n'est pas correcte."
      * )
-     * @ORM\Column(name="reference", type="string", length=45, nullable=true)
+     * @ORM\Column(name="reference", type="string", length=45, nullable=true, unique=true)
      */
     private $reference;
 

@@ -25,7 +25,7 @@ class FlatType extends AbstractType
     {
         $builder
             ->add('reference', TextType::class, [
-                'required' => false
+                'required' => true
             ])
             ->add('prix', IntegerType::class, [
                 'attr' => ['min' => '0'],
