@@ -1,5 +1,9 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
+{% block description %}
+    <meta name="description" content="description de la page home" />
+{% endblock %}
+
 {% block video %}
     <!--Accueil video ou image Full Page-->
     <div class="accueil" id="intro">
@@ -19,7 +23,7 @@
 {% endblock video %}
 
 {% block content %}
-    <h2>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h2>
+    <h1>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h1>
     <!-- Mosaïque Résidences -->
     <div class="row">
         <div class="col offset-l1 s12 l10 mosaic">
@@ -31,8 +35,9 @@
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu col offset-l1 l10">
-                            <h3>{{ residence.nom }}</h3>
-                            <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">VOIR PLUS</a>
+                            <h2>{{ residence.nom }}</h2>
+                            <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">VOIR
+                                PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -45,8 +50,9 @@
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu col offset-l1 l10">
-                            <h3>{{ residence.nom }}</h3>
-                            <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">VOIR PLUS</a>
+                            <h2>{{ residence.nom }}</h2>
+                            <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">VOIR
+                                PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -62,8 +68,9 @@
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
                         {% endfor %}
                         <div class="contenu col offset-l1 l10">
-                            <h3>{{ residence.nom }}</h3>
-                            <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">VOIR PLUS</a>
+                            <h2>{{ residence.nom }}</h2>
+                            <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">VOIR
+                                PLUS</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -74,7 +81,7 @@
         </div>
     </div>
 
-    <h2 class="hide-on-med-and-down">NOTRE ÉQUIPE</h2>
+    <h1 class="hide-on-med-and-down">NOTRE ÉQUIPE</h1>
     <div class="row  hide-on-med-and-down">
         <!-- Barillet équipe -->
         <div class="col offset-l1 l5">
@@ -85,7 +92,8 @@
                             {% if loop.index == 1 %}
                                 <li class="item"><a class="active" href="#"><img
                                                 class="collaborateurBarillet circle"
-                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}" alt="{{ collaborateur.nom }}"></a>
+                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
+                                                alt="{{ collaborateur.nom }}"></a>
                                 </li>
                             {% else %}
                                 <li class="item"><a href="#"><img class="collaborateurBarillet circle"
@@ -132,7 +140,7 @@
         <div class="col offset-s1 offset-l1 l4 s10">
             <div class="temoignage">
                 <div class="enteteCarousel">
-                    <h3>CE QUE NOS CLIENTS PENSENT DE NOUS</h3>
+                    <h2>CE QUE NOS CLIENTS PENSENT DE NOUS</h2>
                 </div>
                 <div class="slider">
                     <ul class="slides">

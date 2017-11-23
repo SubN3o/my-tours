@@ -9,7 +9,7 @@
                 {% endif %}
                 <div class="card-title">
                     <div class="card-content bandeau">
-                        <h3>{{ residence.nom }}</h3>
+                        <h2>{{ residence.nom }}</h2>
                         <div class="row">
                             <p class="col s6 lieu">{{ residence.ville.nom }} {% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}</p>
                             <p class="col s6 prix">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</p>

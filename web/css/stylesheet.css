@@ -39,7 +39,7 @@ a {
     color: inherit;
 }
 
-h2 {
+h1 {
     text-align: center;
     color: #B5CC17;
     font-family: Montserrat;
@@ -71,7 +71,7 @@ h2 {
 }
 
 @media screen and (max-width: 992px) {
-    h2 {
+    h1 {
         margin-top: 20px;
         font-size: 12pt;
     }
@@ -664,7 +664,7 @@ video {
     transition: 500ms;
 }
 
-.contenu > h3 {
+.contenu > h2 {
     font-size: 30pt;
 }
 
@@ -682,7 +682,7 @@ video {
     /*font-size: 14pt;*/
 }
 
-.enteteCarousel > h3 {
+.enteteCarousel > h2 {
     padding: 15px;
     font-size: 14pt;
     margin: 0;
@@ -735,7 +735,7 @@ video {
         height: 250px;
     }
 
-    .contenu h3 {
+    .contenu h2 {
         font-size: 15pt;
         float: left;
         margin: 0;
@@ -1158,7 +1158,7 @@ video {
     letter-spacing: .55pt;
 }
 
-.bandeau > h3 {
+.bandeau > h2 {
     font-size: 24pt;
     text-transform: uppercase;
     color: #1D1D1B;
@@ -1216,7 +1216,7 @@ video {
 }
 
 @media screen and (max-width: 1200px) {
-    .bandeau > h3 {
+    .bandeau > h2 {
         font-size: 20pt;
     }
 
@@ -1235,7 +1235,7 @@ video {
 }
 
 @media screen and (max-width: 992px) {
-    .bandeau > h3 {
+    .bandeau > h2 {
         font-size: 15pt;
     }
 

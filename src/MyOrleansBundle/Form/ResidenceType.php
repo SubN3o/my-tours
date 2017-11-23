@@ -85,7 +85,7 @@ class ResidenceType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 "attr" => [
-                    "class" => "materialize ckeditor"
+                    "class" => "materialize-textarea"
                 ],
                 'required' => false,
             ])
@@ -128,9 +128,15 @@ class ResidenceType extends AbstractType
                     'Non' => false],
             ])
             ->add('accroche', TextareaType::class, [
+                "attr" => [
+                    "class" => "materialize-textarea"
+                ],
                 'required' => false
             ])
             ->add('accroche2', TextareaType::class, [
+                "attr" => [
+                    "class" => "materialize-textarea"
+                ],
                 'required' => false
             ])
             ->add('medias', CollectionType::class,

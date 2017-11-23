@@ -1,5 +1,11 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
+{% block title %}My-Orléans.com | Nos résidences{% endblock %}
+
+{% block description %}
+    <meta name="description" content="description de la page Nos Résidences"/>
+{% endblock %}
+
 {% block content %}
     <!-- Search Complete -->
     <div class="row completeSearch">
@@ -80,19 +86,19 @@
             <div class="row center no-margin-bottom">
                 {% set nb_res = residences|length %}
                 {% if  resultatRecherche == 0 %}
-                    <h2>
+                    <h1>
                         Nos résidences actuellement disponibles
-                    </h2>
+                    </h1>
                 {% elseif resultatRecherche == 1 %}
-                    <h2>Aucune résidence ne correspond à votre recherche</h2>
-                    <h2>Découvrez celles actuellement disponibles</h2>
+                    <h1>Aucune résidence ne correspond à votre recherche</h1>
+                    <h1>Découvrez celles actuellement disponibles</h1>
                 {% else %}
-                    <h2 class="section-title">
+                    <h1 class="section-title">
                         {% transchoice nb_res %}
                         {1} 1 résidence correspond à votre recherche|
                         ]1,Inf[ %count% résidences correspondent à votre recherche
                         {% endtranschoice %}
-                    </h2>
+                    </h1>
                 {% endif %}
             </div>
 
@@ -110,7 +116,7 @@
 
             {% if resultatRecherche == 2 and residencesSuggerees != null %}
                 <div class="row suggestion-biens">
-                    <h2>La sélection My Orléans</h2>
+                    <h1>La sélection My Orléans</h1>
                 </div>
                 <div class="row">
                     {% for residence in residencesSuggerees %}

@@ -1,5 +1,11 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
+{% block title %}My-Orléans.com | Résidence {{ residence.nom }} - {{ residence.ville.nom }}{% endblock %}
+
+{% block description %}
+    <meta name="description" content="{{ residence.description | truncate(160, true, '...') }}"/>
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('css/residence.css') }}" rel="stylesheet" type="text/css"/>
@@ -195,7 +201,7 @@
 
     <!-- Situation Résidence GoogleMap -->
 
-    <h2 class="hide-on-med-and-down">Situation de la résidence</h2>
+    <h1 class="hide-on-med-and-down">Situation de la résidence</h1>
 
     <div class="row hide-on-med-and-down googleMap">
 
@@ -231,7 +237,7 @@
     <div id="anchor-bien"></div>
 
     <!-- Tableau lots disponibles -->
-    <h2>Consultez nos biens disponibles</h2>
+    <h1>Consultez nos biens disponibles</h1>
 
     <div class="row">
         <div class="col offset-l1 offset-xl2 s12 l10 xl8">
@@ -683,7 +689,7 @@
     </div>
 
     <!-- Suggestion residence -->
-    <h2>La sélection My Orléans</h2>
+    <h1>La sélection My Orléans</h1>
 
     <div class="row">
         <div class="col offset-l1 s12 l10">

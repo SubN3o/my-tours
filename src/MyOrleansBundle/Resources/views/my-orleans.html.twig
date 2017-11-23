@@ -1,10 +1,16 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
+{% block title %}My-Orléans.com | Présentation{% endblock %}
+
+{% block description %}
+    <meta name="description" content="description de la page My-Orléans"/>
+{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col offset-l1 l5 s12">
             <div id="agence"></div>
-            <h2>My Orléans</h2>
+            <h1>My Orléans</h1>
             <div class="col s12 presentation">
                 <p>{{ accueil.presentation | raw }}</p>
                 <a href="#modalEquipe" class="btn greenMyO col push-l7 push-xl9 push-s4"><i class="material-icons left">play_circle_outline</i>Voir
@@ -38,7 +44,7 @@
         </div>
         <div class="col s12 l5">
             <div id="equipe"></div>
-            <h2>Notre équipe</h2>
+            <h1>Notre équipe</h1>
             <div class="barillet">
                 <div class="colBarillet">
                     <ul class="circle-container">
@@ -90,7 +96,7 @@
             </div>
         </div>
     </div>
-    <h2>Nos réalisations commerciales</h2>
+    <h1>Nos réalisations commerciales</h1>
     <div class="row">
         <div class="sliderRea">
             <div class="slider col offset-l3 l6 s12">
@@ -191,7 +197,7 @@
         </div>
     </div>
     <div id="evenements"></div>
-    <h2 class="hide-on-med-and-down">Consultez notre actualité</h2>
+    <h1 class="hide-on-med-and-down">Consultez notre actualité</h1>
     <div class="row hide-on-med-and-down">
         <div class="col l10 offset-l1 offset-s1 s11">
             <section class="timeline">
@@ -276,7 +282,7 @@
         </div>
     </div>
     <div id="partenaires"></div>
-    <h2>Nos partenaires</h2>
+    <h1>Nos partenaires</h1>
     <div class="row">
         <div class="col s12 offset-l1 l10">
             {% for partenaire in partenaires %}

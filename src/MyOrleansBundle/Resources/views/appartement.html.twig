@@ -1,5 +1,11 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
+{% block title %}{{ flat.typeBien.nom }} {{ flat.typeLogement.nom }} {{ residence.ville.nom }} {{ residence.nom }} | My-Orléans.com{% endblock %}
+
+{% block description %}
+    <meta name="description" content="{{ residence.description | truncate(160, true, '...') }}"/>
+{% endblock %}
+
 {% block content %}
     <div class="row infoFlat">
         <div class="col offset-l1 l2 s12">
@@ -14,7 +20,7 @@
                 </a>
             </div>
             <div class="col l12 offset-s1 s4 center">
-                <h1 class="referenceFlat">{{ flat.reference }}</h1>
+                <h2 class="referenceFlat">{{ flat.reference }}</h2>
             </div>
         </div>
         <div class="col offset-l1 l4 s12">
@@ -74,7 +80,7 @@
 
         </div>
     </div>
-    <h2>Descriptif du Logement</h2>
+    <h1>Descriptif du Logement</h1>
     <div class="row">
         <div class="col offset-l1 l5">
             <div class="col s12 descriptif">
@@ -206,7 +212,7 @@
     <div class="row">
         <div class="col s12 accrocheResidence">
             <div class="col offset-l2 l6">
-                <h3 class="center accroche">{{ residence.accroche }}</h3>
+                <h2 class="center accroche">{{ residence.accroche }}</h2>
                 <div class="description">{{ residence.description | raw }}</div>
             </div>
 
