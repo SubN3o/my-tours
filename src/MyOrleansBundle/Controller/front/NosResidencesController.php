@@ -146,7 +146,7 @@ class NosResidencesController extends Controller
     }
 
     /**
-     * @Route("/nos-residences/resultat", name="nosresidences-search")
+     * @Route("/nos-residences/search", name="nosresidences-search")
      */
     public function completeSearchAction(Request $request, SessionInterface $session)
     {

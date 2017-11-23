@@ -41,9 +41,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class FlatController extends Controller
 {
     /**
-     * @Route("/{slug}/{reference}", name="appartement")
+     * @Route("/residence-{slug}/{reference}", name="appartement")
      * @ParamConverter("appartement", class="MyOrleansBundle:Flat", options={"reference" = "reference"})
-//     * @ParamConverter("appartement", class="MyOrleansBundle:Flat", options={"typeBien" = "typeBien"})
      * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
      */
     public function flat(Flat $flat, SessionInterface $session, Request $request)
