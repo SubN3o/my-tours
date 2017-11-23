@@ -10,6 +10,7 @@ namespace MyOrleansBundle\Service;
 
 
 use Doctrine\Common\Persistence\ObjectManager;
+use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Residence;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -49,7 +50,15 @@ class SiteMap
 
         foreach ($residences as $residence) {
             $urls[] = array(
-                'loc' => $this->router->generate('residences', array('slug' => $residence->getSlug()),true)
+                'loc' => $this->router->generate('residences', array('Ville' => $residence->getVille()->getNom(),'slug' => $residence->getSlug()),true)
+            );
+        }
+
+        $flats = $this->em->getRepository(Flat::class)->findAll();
+
+        foreach ($flats as $flat) {
+            $urls[] = array(
+                'loc' => $this->router->generate('appartement', array('slug' => $flat->getResidence()->getSlug(),'reference' => $flat->getReference()),true)
             );
         }
 
