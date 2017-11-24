@@ -24,7 +24,7 @@
                 </div>
                 <div class="search card-content">
                     <div id="localisation">
-                        <h4>Où souhaitez-vous acheter ?</h4>
+                        <div class="titreSearch">Où souhaitez-vous acheter ?</div>
                         <div class="row no-margin-bottom">
                             <div class="col offset-s1 offset-xl1 s10 xl4 localisation">
                                 <p>Localisation</p>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div id="type">
-                        <h4>Sélectionnez le type souhaité</h4>
+                        <div class="titreSearch">Sélectionnez le type souhaité</div>
                         <div class="row no-margin-bottom">
                             <div class="col s12 center">
                                 {{ form_widget(completeSearch.typeLogement) }}
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div id="budget">
-                        <h4>Votre budget</h4>
+                        <div class="titreSearch">Votre budget</div>
                         <div class="row no-margin-bottom">
                             <div class="col s12">
                                 <div class="row">
@@ -126,12 +126,12 @@
                                     <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
                                         {% if residence.medias is not empty %}
                                             {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                                                <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}">
+                                                <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}" alt="residence {{ residence.nom }}">
                                             {% endfor %}
                                         {% endif %}
                                         <div class="card-title">
                                             <div class="card-content bandeau">
-                                                <h4>{{ residence.nom }}</h4>
+                                                <span class="titreSuggest">{{ residence.nom }}</span>
                                             </div>
                                         </div>
                                     </a>
@@ -310,7 +310,7 @@
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
 
-                        var vignette = '<a href="' + locations[i][4] + '"><h6 class="infoWindow">' + locations[i][0] + '</h6><br><img class="infoImg" src="../uploads/' + locations[i][3] + '"></a>'
+                        var vignette = '<a href="' + locations[i][4] + '"><span class="infoWindow">' + locations[i][0] + '</span><br><img class="infoImg" src="../uploads/' + locations[i][3] + '" alt="residence ' + locations[i][0] + '"></a>'
 
                         infowindow.setContent(vignette);
 

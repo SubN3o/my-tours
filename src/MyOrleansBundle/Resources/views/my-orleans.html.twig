@@ -27,16 +27,16 @@
                 <div class="slider col s12">
                     <ul class="slides">
                         <li>
-                            <img src="{{ asset('img/Equipe1.jpg') }}" alt="equipe">
+                            <img src="{{ asset('img/Equipe1.jpg') }}" alt="equipe1">
                         </li>
                         <li>
-                            <img src="{{ asset('img/Equipe2.jpg') }}" alt="equipe">
+                            <img src="{{ asset('img/Equipe2.jpg') }}" alt="equipe2">
                         </li>
                         <li>
-                            <img src="{{ asset('img/Equipe3.jpg') }}" alt="equipe">
+                            <img src="{{ asset('img/Equipe3.jpg') }}" alt="equipe3">
                         </li>
                         <li>
-                            <img src="{{ asset('img/Equipe4.jpg') }}" alt="equipe">
+                            <img src="{{ asset('img/Equipe4.jpg') }}" alt="equipe4">
                         </li>
                     </ul>
                 </div>
@@ -50,13 +50,19 @@
                     <ul class="circle-container">
                         {% for collaborateur in collaborateurs %}
                             {% if loop.index == 1 %}
-                                <li class="item"><a class="active" href="#"><img
-                                                class="collaborateurBarillet circle"
-                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                <li class="item">
+                                    <a class="active" href="#">
+                                        <img class="collaborateurBarillet circle"
+                                             src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
+                                             alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
+                                    </a>
                                 </li>
                             {% else %}
-                                <li class="item"><a href="#"><img class="collaborateurBarillet circle"
-                                                                  src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                <li class="item"><a href="#">
+                                        <img class="collaborateurBarillet circle"
+                                             src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
+                                             alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
+                                    </a>
                                 </li>
                             {% endif %}
                         {% endfor %}
@@ -103,91 +109,91 @@
             <div class="slider col offset-l3 l6 s12">
                 <ul class="slides">
                     <li>
-                        <img src="{{ asset('img/rea/ElegancedeLoire.jpg') }}">
+                        <img src="{{ asset('img/rea/ElegancedeLoire.jpg') }}" alt="residence Elégance de Loire">
                         <div class="caption center-align">
                             <span>Elégance de Loire</span>
                             <p>Saint-Jean-de-Braye</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LAmiraldeColigny.jpg') }}">
+                        <img src="{{ asset('img/rea/LAmiraldeColigny.jpg') }}" alt="residence L'Amiral de Coligny">
                         <div class="caption center-align">
                             <span>L'Amiral de Coligny</span>
                             <p>Orléans</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}">
+                        <img src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}" alt="residence La Souche Sud">
                         <div class="caption center-align">
                             <span>La Résidence des Charmes</span>
                             <p>Olivet</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LaSoucheSud.jpg') }}">
+                        <img src="{{ asset('img/rea/LaSoucheSud.jpg') }}" alt="residence ">
                         <div class="caption center-align">
                             <span>La Souche Sud</span>
                             <p>Gidy</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LaVillaMaunoury.jpg') }}">
+                        <img src="{{ asset('img/rea/LaVillaMaunoury.jpg') }}" alt="residence Le Bourg Ouest">
                         <div class="caption center-align">
                             <span>La Villa Maunoury</span>
                             <p>Orléans</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LeBourgOuest.jpg') }}">
+                        <img src="{{ asset('img/rea/LeBourgOuest.jpg') }}" alt="residence ">
                         <div class="caption center-align">
                             <span>Le Bourg Ouest</span>
                             <p>Saint-Denis-en-Val</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LeClosColombier.jpg') }}">
+                        <img src="{{ asset('img/rea/LeClosColombier.jpg') }}" alt="residence Le Clos Colombier">
                         <div class="caption center-align">
                             <span>Le Clos Colombier</span>
                             <p>Orléans</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}">
+                        <img src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}" alt="residence Le Clos de la Cerisaille">
                         <div class="caption center-align">
                             <span>Le Clos de la Cerisaille</span>
                             <p>Saint-Jean-le-Blanc</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LeLievredOr.jpg') }}">
+                        <img src="{{ asset('img/rea/LeLievredOr.jpg') }}" alt="residence Le Lievre d'Or">
                         <div class="caption center-align">
                             <span>Le Lievre d'Or</span>
                             <p>Orléans</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}">
+                        <img src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}" alt="residence Le Parc de l'école normale">
                         <div class="caption center-align">
                             <span>Le Parc de l'école normale</span>
                             <p>Orléans</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LesCascades.jpg') }}">
+                        <img src="{{ asset('img/rea/LesCascades.jpg') }}" alt="residence Les Cascades">
                         <div class="caption center-align">
                             <span>Les Cascades</span>
                             <p>Saint-Jean-de-Braye</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LesJardinsdAndrea.jpg') }}">
+                        <img src="{{ asset('img/rea/LesJardinsdAndrea.jpg') }}" alt="residence Les Jardins d'Andréa">
                         <div class="caption center-align">
                             <span>Les Jardins d'Andréa</span>
                             <p>Saran</p>
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LesVergersdOlivet.jpg') }}">
+                        <img src="{{ asset('img/rea/LesVergersdOlivet.jpg') }}" alt="residence Les Vergers d'Olivet">
                         <div class="caption center-align">
                             <span>Les Vergers d'Olivet</span>
                             <p>Olivet</p>
@@ -216,7 +222,7 @@
                                     <p>{{ evenement.description }}</p>
                                     {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
                                     <img class="responsive-img"
-                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}">
+                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}" alt="illustration {{ evenement.nom }}">
                                     {#{% endfor %}#}
                                     {#<a class="waves-effect waves-light btn white" data-toggle="modal"#}
                                     {#data-id="{{ evenement.id }}"#}
@@ -237,7 +243,7 @@
                                     <p>{{ evenement.description }}</p>
                                     {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
                                     <img class="responsive-img"
-                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}">
+                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}" alt="illustration {{ evenement.nom }}">
                                     {#{% endfor %}#}
                                     <a class="button-collapse greenMyO btn" data-activates="slide-out">JE
                                         M'INSCRIS</a>
@@ -289,7 +295,7 @@
             {% for partenaire in partenaires %}
                 <div class="col s2 l1 partenaire">
                     <a {% if partenaire.url != null %}href="{{ partenaire.url }}" target="_blank"{% endif %}>
-                        <img class="responsive-img" src="{{ asset('uploads/'~partenaire.media.mediaName) }}">
+                        <img class="responsive-img" src="{{ asset('uploads/'~partenaire.media.mediaName) }}" alt="logo {{ partenaire.nom }}">
                     </a>
                 </div>
             {% endfor %}

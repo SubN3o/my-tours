@@ -213,7 +213,7 @@ nav ul {
     margin-top: 100px;
 }
 
-footer h5 {
+footer .titreFooter {
     color: white;
     font-family: Montserrat;
     font-weight: 500;
@@ -1066,7 +1066,7 @@ video {
     display: none;
 }
 
-.search h4 {
+.search .titreSearch {
     font-family: Montserrat;
     font-weight: 400;
     letter-spacing: .55pt;
@@ -1198,6 +1198,7 @@ video {
 
 .infoWindow {
     font-family: Montserrat;
+    font-size: 9pt;
     font-weight: 400;
     letter-spacing: .55pt;
     text-transform: uppercase;
@@ -1208,7 +1209,7 @@ video {
     width: 200px;
 }
 
-.bandeau > h4 {
+.bandeau .titreSuggest {
     font-size: 14pt;
     text-transform: uppercase;
     color: #1D1D1B;
@@ -1229,7 +1230,7 @@ video {
         font-size: 12pt;
     }
 
-    .bandeau > h4 {
+    .bandeau .titreSuggest {
         font-size: 9pt;
     }
 }

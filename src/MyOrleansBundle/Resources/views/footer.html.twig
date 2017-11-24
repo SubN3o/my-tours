@@ -3,7 +3,7 @@
         <div class="row">
             <!--colonne gauche-->
             <div class="col s12 l4">
-                <h5 class="center">CONTACTEZ-NOUS</h5>
+                <p class="titreFooter center">CONTACTEZ-NOUS</p>
                 <div class="row contact">
                     <div class="col offset-l1 l11">
                         <p class="linkFooter"><i class="small material-icons align-icon">phone</i><a
@@ -17,7 +17,7 @@
                         </p>
                     </div>
                 </div>
-                <h5 class="center h5Footer">SUIVEZ-NOUS</h5>
+                <p class="titreFooter center h5Footer">SUIVEZ-NOUS</p>
                 <div class="row center">
                     <div class="col offset-l2 l2 s4">
                         <a href="https://www.facebook.com/myorleans/?ref=page_internal" target="_blank">
@@ -44,7 +44,7 @@
             </div>
             <!--colonne milieu-->
             <div class="col s12 l4 bordureFooter">
-                <h5 class="center"><a href="{{ path("nosresidences") }}">NOTRE SELECTION</a></h5>
+                <p class="titreFooter center"><a href="{{ path("nosresidences") }}">NOTRE SELECTION</a></p>
                 <div class="row">
                     {% for programme in programmes %}
                         <div class="col s12 l6">
@@ -54,7 +54,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                {#<h5 class="center h5Footer"><a href="{{ path("expertise")~'#service' }}">SAVOIR-FAIRE</a></h5>#}
+                {#<p class="titreFooter center h5Footer"><a href="{{ path("expertise")~'#service' }}">SAVOIR-FAIRE</a></p>#}
                 {#<div class="row">#}
                     {#<div class="col s12">#}
                         {#{% for service in services %}#}
@@ -62,7 +62,7 @@
                         {#{% endfor %}#}
                     {#</div>#}
                 {#</div>#}
-                {#<h5 class="center h5Footer"><a href="{{ path("expertise")~'#pack' }}">NOS PACKS</a></h5>#}
+                {#<p class="titreFooter center h5Footer"><a href="{{ path("expertise")~'#pack' }}">NOS PACKS</a></p>#}
                 {#<div class="row">#}
                     {#<div class="col s12">#}
                         {#{% for pack in packs %}#}
@@ -73,7 +73,7 @@
             </div>
             <!--colonne droite-->
             <div class="col s12 l4">
-                <h5 class="center"><a href="{{ path("my-orleans") }}">MY ORLÉANS</a></h5>
+                <p class="titreFooter center"><a href="{{ path("my-orleans") }}">MY ORLÉANS</a></p>
                 <div class="row">
                     <div class="offset-l1 col l11">
                         <p class="linkFooter"><a href="{{ path("my-orleans")~'#presentation' }}">Présentation</a></p>
@@ -83,7 +83,7 @@
                         <p class="linkFooter"><a href="{{ path("my-orleans")~'#partenaires' }}">Nos partenaires</a></p>
                     </div>
                 </div>
-                {#<h5 class="center h5Footer"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></h5>#}
+                {#<p class="titreFooter center h5Footer"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></p>#}
                 {#<div class="row">#}
                 {#<div class="offset-l1 col l11">#}
                 {#{% for article in articles %}#}

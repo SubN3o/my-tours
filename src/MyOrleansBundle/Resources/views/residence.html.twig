@@ -3,7 +3,7 @@
 {% block title %}My-Orléans.com | Résidence {{ residence.nom }} - {{ residence.ville.nom }}{% endblock %}
 
 {% block description %}
-    <meta name="description" content="{{ residence.description | truncate(160, true, '...') }}"/>
+    <meta name="description" content="{{ residence.description | truncate(150, true, '...') }}"/>
 {% endblock %}
 
 {% block stylesheets %}
@@ -27,7 +27,7 @@
                 <ul class="slides">
                     <li>
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img id="image" src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                            <img id="image" src="{{ asset('uploads/'~media.mediaName) }}" alt="photo principale résidence {{ residence.nom }}">
                         {% endfor %}
                         {% if residence.lienYoutube != null %}
                             <a href="#modalYtp"><i class="material-icons white-text">play_circle_outline</i></a>
@@ -41,7 +41,7 @@
                     </li>
                     {% for media in residence.medias if media.typeMedia.nom == 'image' %}
                         <li>
-                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="photo {{ loop.index }} résidence {{ residence.nom }}">
                             {% if residence.lienYoutube != null %}
                                 <a href="#modalYtp"><i class="material-icons white-text">play_circle_outline</i></a>
                             {% endif %}
@@ -168,14 +168,14 @@
             <div class="col offset-l1 l2 normeLabel">
                 {% if residence.eligibilitePinel == 1 %}
                     <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/pinel.png') }}"
-                         alt="rt2012">
+                         alt="logo dispositif Pinel">
                 {% endif %}
                 {% if residence.normeThermique == 'RT2012' %}
                     <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/rt2012.png') }}"
-                         alt="rt2012">
+                         alt="logo rt2012">
                 {% elseif residence.normeThermique == 'BBC' %}
                     <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/bbc.png') }}"
-                         alt="rt2012">
+                         alt="logo BBC">
                 {% endif %}
             </div>
         </div>
@@ -186,9 +186,9 @@
         <div class="parallax">
             {% for media in residence.medias %}
                 {% if media.typeMedia.nom == "image-header" %}
-                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_photo_residence') }}">
+                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_photo_residence') }}" alt="illustration {{ residence.nom }}">
                 {% else %}
-                    <img src="{{ asset('img/apt-neuf.jpg') }}" alt="orleans">
+                    <img src="{{ asset('img/apt-neuf.jpg') }}" alt="interieur appartement">
                 {% endif %}
             {% endfor %}
         </div>
@@ -701,12 +701,12 @@
                                 <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
                                     {% if residence.medias is not empty %}
                                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                                            <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}">
+                                            <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}" alt="residence {{ residence.nom }}">
                                         {% endfor %}
                                     {% endif %}
                                     <div class="card-title">
                                         <div class="card-content bandeau">
-                                            <h4>{{ residence.nom }}</h4>
+                                            <span class="titreSuggest">{{ residence.nom }}</span>
                                         </div>
                                     </div>
                                 </a>
@@ -936,17 +936,17 @@
 
             $.each(commerce, function (index, value) {
                 var name = value.replace(/_/g, " ");
-                htmlCommerce += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png"/></label></span>';
+                htmlCommerce += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
             });
 
             $.each(service, function (index, value) {
                 var name = value.replace(/_/g, " ");
-                htmlService += '<span class="col s3"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png"/></label></span>';
+                htmlService += '<span class="col s3"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
             });
 
             $.each(transport, function (index, value) {
                 var name = value.replace(/_/g, " ");
-                htmlTransport += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png"/></label></span>';
+                htmlTransport += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
             });
 
             $('#commerce').html(htmlCommerce);

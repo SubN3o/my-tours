@@ -1,7 +1,7 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block description %}
-    <meta name="description" content="description de la page home" />
+    <meta name="description" content="description de la page home"/>
 {% endblock %}
 
 {% block video %}
@@ -15,10 +15,10 @@
                     <source src="{{ asset('uploads/'~media.mediaName) }}" type="video/webm">
                 </video>
             {% elseif media.typeMedia.nom == 'image-cover' %}
-                <img class="imageAccueil" src="{{ asset('uploads/'~media.mediaName) }}" alt="accueil">
+                <img class="imageAccueil" src="{{ asset('uploads/'~media.mediaName) }}" alt="Agence">
             {% endif %}
         {% endfor %}
-        <img class="logoAccueil" src="{{ asset('img/logo_myorleans_accueil.png') }}" alt="logo">
+        <img class="logoAccueil" src="{{ asset('img/logo_myorleans_accueil.png') }}" alt="logo My-Orléans">
     </div>
 {% endblock video %}
 
@@ -32,7 +32,7 @@
                 {% for residence in residenceCol1 %}
                     <div class="zone">
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
                         {% endfor %}
                         <div class="contenu col offset-l1 l10">
                             <h2>{{ residence.nom }}</h2>
@@ -47,7 +47,7 @@
                 {% for residence in residenceCol2 %}
                     <div class="zone">
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
                         {% endfor %}
                         <div class="contenu col offset-l1 l10">
                             <h2>{{ residence.nom }}</h2>
@@ -65,7 +65,7 @@
                 {% for residence in residenceCol3 %}
                     <div class="zone">
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence">
+                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
                         {% endfor %}
                         <div class="contenu col offset-l1 l10">
                             <h2>{{ residence.nom }}</h2>
@@ -90,14 +90,20 @@
                     <ul class="circle-container">
                         {% for collaborateur in collaborateurs %}
                             {% if loop.index == 1 %}
-                                <li class="item"><a class="active" href="#"><img
-                                                class="collaborateurBarillet circle"
-                                                src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
-                                                alt="{{ collaborateur.nom }}"></a>
+                                <li class="item">
+                                    <a class="active" href="#">
+                                        <img class="collaborateurBarillet circle"
+                                             src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
+                                             alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
+                                    </a>
                                 </li>
                             {% else %}
-                                <li class="item"><a href="#"><img class="collaborateurBarillet circle"
-                                                                  src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"></a>
+                                <li class="item">
+                                    <a href="#">
+                                        <img class="collaborateurBarillet circle"
+                                             src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
+                                             alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
+                                    </a>
                                 </li>
                             {% endif %}
                         {% endfor %}
@@ -147,7 +153,7 @@
                         {% for temoignage in temoignages %}
                             <li>
                                 <img class="imageTemoignage" src="{{ asset('uploads/'~temoignage.media.mediaName) }}"
-                                     alt="témoin">
+                                     alt="photo du témoin {{ temoignage.auteur }}">
                                 <div class="caption center-align">
                                     <p>{{ temoignage.message }}</p>
                                     <p class="right">{{ temoignage.auteur }}</p>
