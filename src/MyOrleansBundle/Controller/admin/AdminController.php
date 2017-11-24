@@ -8,6 +8,8 @@
 
 namespace MyOrleansBundle\Controller\admin;
 
+use MyOrleansBundle\Entity\Flat;
+use MyOrleansBundle\Entity\Residence;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MyOrleansBundle\Repository\ResidenceRepository;
@@ -29,5 +31,20 @@ class AdminController extends Controller
         return $this->render('index_admin.html.twig', array(
             'residences' => $residences,
         ));
+    }
+
+    public function navBarAdminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $sumResidences = count($em->getRepository(Residence::class)->findAll());
+        $sumFlats = count($em->getRepository(Flat::class)->findAll());
+        $sumFlatsDispo = count($em->getRepository(Flat::class)->findByStatut(true));
+
+        return $this->render('compteur.html.twig', [
+            'sumResidences' => $sumResidences,
+            'sumFlats' => $sumFlats,
+            'sumFlatsDispo' => $sumFlatsDispo
+        ]);
     }
 }

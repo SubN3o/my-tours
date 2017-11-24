@@ -16,7 +16,7 @@
         <div class="wrapper">
 
             {% block navbar %}
-            <div class="sidebar" data-color="green" data-image="{{ asset('img/unnamed3.jpg') }}">
+            <div class="sidebar">
 
                 <div class="logo">
                     <a href="{{ path('home') }}" target="_blank" class="simple-text">
@@ -26,7 +26,16 @@
                 </div>
 
                 <div class="sidebar-wrapper">
-                    <ul class="nav collapsible collapsible-accordion" data-collapsible="accordion">
+                    <ul class="nav collapsible collapsible-accordion" data-collapsible="expandable">
+                        <hr>
+                        <li>
+                            <div class="active collapsible-header">
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    <i class="material-icons">power_settings_new</i>
+                                    <p>Déconnexion</p>
+                                </a>
+                            </div>
+                        </li>
                         <li>
                             <div class="active collapsible-header"><a href="{{ path("admin_home") }}">
                                     <i class="material-icons">dashboard</i>
@@ -35,9 +44,10 @@
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header">Administration du stock <i
+                            <div class="collapsible-header active">Administration du stock <i
                                         class="material-icons">settings</i></div>
                             <div class="collapsible-body">
+                                {{ render(controller('MyOrleansBundle:admin/Admin:navBarAdmin')) }}
                                 <a href="{{ path("admin_residence_index") }}">
                                     <p>Résidences</p>
                                 </a>
@@ -47,62 +57,44 @@
                                 <a href="{{ path("admin_ville_index") }}">
                                     <p>Villes</p>
                                 </a>
-                                {#<a href="{{ path("admin_prestation_index") }}">#}
-                                    {#<p>Prestations</p>#}
-                                {#</a>#}
-                                {#<a href="{{ path("admin_categorie-presta_index") }}">#}
-                                    {#<p>Catégorie prestation</p>#}
-                                {#</a>#}
-                                {#<a href="{{ path("admin_typepresta_index") }}">#}
-                                    {#<p>Types de prestation</p>#}
-                                {#</a>#}
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header">Administration du site <i class="material-icons">lock</i>
+                            <div class="collapsible-header active">Administration du site <i class="material-icons">lock</i>
                             </div>
                             <div class="collapsible-body">
                                 <a href="{{ path('admin_accueil_edit', {id : 1} )}}">
                                     <p>Accueil du site</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_chiffre_index") }}">
                                     <p>Nos chiffres</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_article_index") }}">
                                     <p>Articles</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_evenement_index") }}">
                                     <p>Événements</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_service_index") }}">
                                     <p>Services</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_pack_index") }}">
                                     <p>Packs</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_client_index") }}">
                                     <p>Clients</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_temoignage_index") }}">
                                     <p>Témoignages</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_collaborateur_index") }}">
                                     <p>Membres de l'agence</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_partenaire_index") }}">
                                     <p>Partenaires</p>
-                                </a><br>
+                                </a>
                                 <a href="{{ path("admin_plaquette_index") }}">
                                     <p>Plaquettes</p>
-                                </a><br>
-                            </div>
-                        </li>
-                        <hr>
-                        <li>
-                            <div class="active collapsible-header">
-                                <a href="{{ path('fos_user_security_logout') }}">
-                                    <i class="material-icons">power_settings_new</i>
-                                    <p>Déconnexion</p>
                                 </a>
                             </div>
                         </li>
