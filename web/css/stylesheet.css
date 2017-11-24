@@ -1423,7 +1423,7 @@ video {
 }
 
 .normeLabel {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .normeLabel img {
@@ -1589,7 +1589,7 @@ video {
     }
 
     .normeLabel {
-        margin-top: 0;
+        margin-top: 10px;
     }
 
     .normeLabel img {
@@ -1650,7 +1650,7 @@ video {
 /* --------------------------------------------------------------------*/
 
 .infoFlat {
-    margin-bottom: 40px;
+    /*margin-bottom: 10px;*/
     font-family: Montserrat;
     letter-spacing: .55pt;
 
@@ -1713,7 +1713,7 @@ video {
 
 
 .infoFlat2 {
-    margin-top: 70px;
+    margin-top: 20px;
     font-family: Montserrat;
     letter-spacing: .55pt;
     text-transform: uppercase;
@@ -1724,6 +1724,7 @@ video {
 }
 
 .prixFlat {
+    text-align: right;
     font-size: 26pt;
     color: #B5CC17;
 }
@@ -1884,6 +1885,7 @@ video {
     }
 
     .prixFlat {
+        text-align: left;
         font-size: 14pt;
     }
 
@@ -1914,7 +1916,7 @@ video {
     }
 
     .retourFlat {
-        font-size: 8pt;
+        font-size: 7pt;
     }
 }
 

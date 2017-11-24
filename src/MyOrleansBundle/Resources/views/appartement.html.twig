@@ -3,7 +3,7 @@
 {% block title %}{{ flat.typeBien.nom }} {{ flat.typeLogement.nom }} {{ residence.ville.nom }} {{ residence.nom }} | My-Orléans.com{% endblock %}
 
 {% block description %}
-    <meta name="description" content="{{ residence.description | truncate(160, true, '...') }}"/>
+    <meta name="description" content="{{ flat.typeBien.nom }} de Type {{ flat.typeLogement.id }} à {{ residence.ville.nom }} - Résidence {{ residence.nom }} - Surface Habitable : {{ flat.surface }} m² {% if residence.eligibilitePinel == 1 %}- Dispositif Pinel {% endif %}{% if residence.normeThermique == 'RT2012' %}- Norme Thermique : RT2012 {% elseif residence.normeThermique == 'BBC' %}- Norme Thermique : BBC {% endif %}- {% if residence.affichagePrix %}{{ flat.prix|number_format(0, '.', ' ') }} €{% else %}Prix : nous contacter{% endif %}"/>
 {% endblock %}
 
 {% block content %}
@@ -50,17 +50,27 @@
             </div>
         {% endif %}
     </div>
-
-    <div class="row infoFlat2">
-        <div class="col offset-l1 l5 s8 typeFlat">
-            {{ flat.typeBien.nom }} de type {{ flat.typeLogement.id }}
+    <div class="row hide-on-med-and-down">
+        <div class="col offset-s1 s10">
+            <a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}"><img class="pdfIcon"
+                                                                                                          src="{{ asset('img/PDF.png') }}"></a>
         </div>
-        <div class="col l5 s4 right-align prixFlat">
-            {% if residence.affichagePrix %}
-                {{ flat.prix|number_format(0, '.', ' ') }} €
-            {% else %}
-                Prix : nous contacter
-            {% endif %}
+    </div>
+    <div class="row infoFlat2 valign-wrapper">
+        <div class="col offset-l1 l10 s10">
+            <div class="col l6 s12 typeFlat">
+                {{ flat.typeBien.nom }} de type {{ flat.typeLogement.id }}
+            </div>
+            <div class="col l6 s12 prixFlat">
+                {% if residence.affichagePrix %}
+                    {{ flat.prix|number_format(0, '.', ' ') }} €
+                {% else %}
+                    Prix : nous contacter
+                {% endif %}
+            </div>
+        </div>
+        <div class="col s2 hide-on-large-only">
+            <a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}"><img class="responsive-img" src="{{ asset('img/PDF.png') }}"></a>
         </div>
     </div>
     <div class="row planFlat">
@@ -72,13 +82,6 @@
             {% endfor %}
         </div>
 
-    </div>
-    <div class="row">
-        <div class="col offset-s1 s10">
-            <a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}"><img class="pdfIcon"
-                                                                          src="{{ asset('img/PDF.png') }}"></a>
-
-        </div>
     </div>
     <h1>Descriptif du Logement</h1>
     <div class="row">
@@ -210,25 +213,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col s12 accrocheResidence">
-            <div class="col offset-l2 l6">
-                <h2 class="center accroche">{{ residence.accroche }}</h2>
-                <div class="description">{{ residence.description | raw }}</div>
-            </div>
-
-            <div class="col offset-l1 l2 normeLabel">
-                {% if residence.eligibilitePinel == 1 %}
-                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/pinel.png') }}"
-                         alt="logo pinel">
-                {% endif %}
-                {% if residence.normeThermique == 'RT2012' %}
-                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/rt2012.png') }}"
-                         alt="logo rt2012">
-                {% elseif residence.normeThermique == 'BBC' %}
-                    <img class="responsive-img col offset-l2 l7 offset-s2 s3" src="{{ asset('img/bbc.png') }}"
-                         alt="logo bbc">
-                {% endif %}
-            </div>
+        <div class="col offset-s1 s10 normeLabel">
+            {% if residence.eligibilitePinel == 1 %}
+                <img class="responsive-img col offset-l4 l1 offset-s2 s3" src="{{ asset('img/pinel.png') }}"
+                     alt="logo pinel">
+            {% endif %}
+            {% if residence.normeThermique == 'RT2012' %}
+                <img class="responsive-img col offset-l2 l1 offset-s2 s3" src="{{ asset('img/rt2012.png') }}"
+                     alt="logo rt2012">
+            {% elseif residence.normeThermique == 'BBC' %}
+                <img class="responsive-img col offset-l2 l1 offset-s2 s3" src="{{ asset('img/bbc.png') }}"
+                     alt="logo bbc">
+            {% endif %}
         </div>
     </div>
     <div class="row">
