@@ -23,7 +23,7 @@
 {% endblock video %}
 
 {% block content %}
-    <h1>DÉCOUVREZ NOTRE SELECTION DE PROGRAMMES</h1>
+    <h1>NOTRE SELECTION DE PROGRAMMES NEUFS</h1>
     <!-- Mosaïque Résidences -->
     <div class="row">
         <div class="col offset-l1 s12 l10 mosaic">
@@ -31,14 +31,15 @@
             <div class='colonne'>
                 {% for residence in residenceCol1 %}
                     <div class="zone">
-                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
-                        {% endfor %}
-                        <div class="contenu col offset-l1 l10">
-                            <h2>{{ residence.nom }}</h2>
-                            <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">VOIR
-                                PLUS</a>
-                        </div>
+                        <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
+                            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
+                            {% endfor %}
+                            <div class="contenu col offset-l1 l10">
+                                <p>{{ residence.nom }}</p>
+                                <h2>{{ residence.ville.nom }}</h2>
+                            </div>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
@@ -46,38 +47,44 @@
             <div class='colonne milieu'>
                 {% for residence in residenceCol2 %}
                     <div class="zone">
-                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
-                        {% endfor %}
-                        <div class="contenu col offset-l1 l10">
-                            <h2>{{ residence.nom }}</h2>
-                            <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">VOIR
-                                PLUS</a>
-                        </div>
+                        <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
+                            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
+                            {% endfor %}
+                            <div class="contenu col offset-l1 l10">
+                                <p>{{ residence.nom }}</p>
+                                <h2>{{ residence.ville.nom }}</h2>
+                            </div>
+                        </a>
                     </div>
                 {% endfor %}
-                <div class="voir">
-                    <a href="{{ path('nosresidences') }}"><p>VOIR TOUS NOS PROGRAMMES</p></a>
-                </div>
+                <a href="{{ path('nosresidences') }}">
+                    <div class="voir">
+                        <p>TOUS NOS PROGRAMMES NEUFS</p>
+                    </div>
+                </a>
             </div>
             <!-- Colonne Droite -->
             <div class='colonne'>
                 {% for residence in residenceCol3 %}
                     <div class="zone">
-                        {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
-                        {% endfor %}
-                        <div class="contenu col offset-l1 l10">
-                            <h2>{{ residence.nom }}</h2>
-                            <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">VOIR
-                                PLUS</a>
-                        </div>
+                        <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
+                            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
+                            {% endfor %}
+                            <div class="contenu col offset-l1 l10">
+                                <p>{{ residence.nom }}</p>
+                                <h2>{{ residence.ville.nom }}</h2>
+                            </div>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
-            <div class="voir2">
-                <a href="{{ path('nosresidences') }}"><p>VOIR TOUS NOS PROGRAMMES</p></a>
-            </div>
+            <a href="{{ path('nosresidences') }}">
+                <div class="voir2">
+                    <p>TOUS NOS PROGRAMMES NEUFS</p>
+                </div>
+            </a>
         </div>
     </div>
 

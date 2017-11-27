@@ -1,6 +1,6 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
-{% block title %}My-Orléans.com | Résidence {{ residence.nom }} - {{ residence.ville.nom }}{% endblock %}
+{% block title %}My-Orléans.com | Résidence {{ residence.nom }} - {{ residence.ville.nom }} (45){% endblock %}
 
 {% block description %}
     <meta name="description" content="{{ residence.description | truncate(155, true, '...') }}"/>
@@ -34,8 +34,7 @@
                         {% endif %}
                         <div class="encart center">
                             <h1>{{ residence.nom }}</h1>
-                            <p>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}
-                            </p>
+                            <h2>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}</h2>
                         </div>
 
                     </li>

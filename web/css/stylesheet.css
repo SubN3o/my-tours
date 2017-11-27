@@ -595,7 +595,7 @@ video {
     transition: 500ms;
 }
 
-.zone > img {
+.zone img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -625,7 +625,7 @@ video {
     transition: 500ms;
 }
 
-.zone > .contenu {
+.zone .contenu {
     background-color: rgba(242, 242, 242, .8);
     text-transform: uppercase;
     position: absolute;
@@ -640,14 +640,6 @@ video {
     padding: 5% 0 10% 0;
 }
 
-.contenu > a {
-    text-align: center;
-    color: rgba(242, 242, 242, .8);
-    background-color: #676767;
-    font-size: 15pt;
-    padding: 5px;
-}
-
 .zone:hover .contenu {
     opacity: 1;
     -moz-transition-delay: 500ms;
@@ -656,7 +648,7 @@ video {
     transition-delay: 500ms;
 }
 
-.zone:hover > img {
+.zone:hover img {
     filter: brightness(70%);
     -moz-transition: 500ms;
     -o-transition: 500ms;
@@ -664,8 +656,16 @@ video {
     transition: 500ms;
 }
 
-.contenu > h2 {
+.contenu p {
     font-size: 30pt;
+    margin: 0;
+    line-height: 100%;
+}
+
+.contenu h2 {
+    font-size: 14pt;
+    margin: 20px 0 0 0;
+    line-height: 100%;
 }
 
 .temoignage {
@@ -679,7 +679,6 @@ video {
     font-family: Montserrat;
     font-weight: 400;
     letter-spacing: .55pt;
-    /*font-size: 14pt;*/
 }
 
 .enteteCarousel > h2 {
@@ -731,24 +730,20 @@ video {
         height: auto;
     }
 
-    .zone > img {
+    .zone img {
         height: 250px;
     }
 
-    .contenu h2 {
+    .contenu p {
         font-size: 15pt;
-        float: left;
         margin: 0;
-        padding: 15px 5px;
+        text-align: left;
     }
 
-    .contenu a {
-        font-size: 8pt;
-        float: right;
-        background-color: #B5CC17;
-        margin-right: 5px;
-        margin-top: 10px;
-        padding: 10px;
+    .contenu h2 {
+        font-size: 12pt;
+        margin: 5px 0 0 0;
+        text-align: left;
     }
 
     .voir {
@@ -759,7 +754,7 @@ video {
         display: block;
     }
 
-    .zone > .contenu {
+    .zone  .contenu {
         position: absolute;
         left: 0;
         top: auto;
@@ -767,14 +762,14 @@ video {
         width: 100%;
         opacity: 1;
         font-weight: 300;
-        padding: 0;
+        padding: 5px;
         -webkit-transform: translateY(0%);
         -moz-transform: translateY(0%);
         -ms-transform: translateY(0%);
         transform: translateY(0%);
     }
 
-    .zone:hover > img {
+    .zone:hover  img {
         filter: none;
     }
 
@@ -1156,9 +1151,10 @@ video {
     font-family: Montserrat;
     font-weight: 400;
     letter-spacing: .55pt;
+    line-height: 1.2;
 }
 
-.bandeau > h2 {
+.bandeau > span {
     font-size: 24pt;
     text-transform: uppercase;
     color: #1D1D1B;
@@ -1171,6 +1167,7 @@ video {
     text-transform: capitalize;
     color: #B5CC17;
     letter-spacing: .1pt;
+    margin: 0;
 }
 
 .bandeau > div > .livraison {
@@ -1217,7 +1214,7 @@ video {
 }
 
 @media screen and (max-width: 1200px) {
-    .bandeau > h2 {
+    .bandeau > span {
         font-size: 20pt;
     }
 
@@ -1236,7 +1233,7 @@ video {
 }
 
 @media screen and (max-width: 992px) {
-    .bandeau > h2 {
+    .bandeau > span {
         font-size: 15pt;
     }
 
@@ -1313,7 +1310,7 @@ video {
     font-size: 70pt;
 }
 
-.encart p {
+.encart h2 {
     font-weight: 400;
     margin: 0 0;
     font-size: 24pt;
@@ -1569,7 +1566,7 @@ video {
         font-size: 35pt;
     }
 
-    .encart p {
+    .encart h2 {
         font-weight: 400;
         font-size: 12pt;
         font-style: italic;
@@ -1658,6 +1655,8 @@ video {
 }
 
 .referenceFlat {
+    color: black;
+    margin-top: 0;
     font-size: 20pt;
     text-transform: uppercase;
 }
@@ -1705,7 +1704,7 @@ video {
     color: #B5CC17;
 }
 
-.residenceFlat p {
+.residenceFlat h2 {
     font-weight: 300;
     font-size: 30pt;
     font-style: italic;
@@ -1898,7 +1897,7 @@ video {
         font-size: 25pt;
     }
 
-    .residenceFlat p {
+    .residenceFlat h2 {
         font-size: 20pt;
     }
 
