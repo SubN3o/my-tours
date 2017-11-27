@@ -1962,12 +1962,13 @@ video {
     color: #676767;
 }
 
-.sliderRea .slider .slides li .caption p {
+.sliderRea .slider .slides li .caption h2 {
     font-family: Lato;
     letter-spacing: .1pt;
     font-size: 12pt;
     color: #676767;
     font-style: italic;
+    margin: 0;
 }
 
 
@@ -1999,7 +2000,7 @@ video {
         display: none;
     }
 
-    .sliderRea .slider .slides li .caption p {
+    .sliderRea .slider .slides li .caption h2 {
         font-size: 8pt;
     }
 }
@@ -2015,18 +2016,18 @@ video {
     background-color: #f9f9f4;
 }
 
-.past-event time, .past-event h3, .past-event p, .past-event h4 {
+.past-event time, .past-event h2, .past-event p, .past-event h3 {
     color: #676767;
 }
 
-.past-event h3 {
+.past-event h2 {
     margin-top: 10px;
     font-family: Montserrat;
     letter-spacing: .55pt;
     font-size: 17pt;
 }
 
-.past-event h4 {
+.past-event h3 {
     margin-top: 5px;
     font-family: Montserrat;
     letter-spacing: .55pt;
@@ -2062,7 +2063,7 @@ video {
     color: #c2c2c2;
 }
 
-.future-event h3 {
+.future-event h2 {
     margin-top: 10px;
     margin-bottom: 5px;
     color: #a5ca2a;
@@ -2378,7 +2379,7 @@ video {
     float: right;
 }
 
-#timeline .timeline-item .timeline-content h3 {
+#timeline .timeline-item .timeline-content h2 {
     color: #676767;
     margin: 0;
     font-size: 22pt;
@@ -2408,7 +2409,7 @@ video {
 }
 
 @media screen and (max-width: 992px) {
-    #timeline .timeline-item .timeline-content h3 {
+    #timeline .timeline-item .timeline-content h2 {
         font-size: 12pt;
     }
 
