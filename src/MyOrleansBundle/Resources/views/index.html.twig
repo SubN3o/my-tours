@@ -31,7 +31,7 @@
             <div class='colonne'>
                 {% for residence in residenceCol1 %}
                     <div class="zone">
-                        <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
+                        <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.slug }) }}">
                             {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                                 <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
                             {% endfor %}
@@ -47,7 +47,7 @@
             <div class='colonne milieu'>
                 {% for residence in residenceCol2 %}
                     <div class="zone">
-                        <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
+                        <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.slug }) }}">
                             {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                                 <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
                             {% endfor %}
@@ -68,7 +68,7 @@
             <div class='colonne'>
                 {% for residence in residenceCol3 %}
                     <div class="zone">
-                        <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
+                        <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.slug }) }}">
                             {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                                 <img src="{{ asset('uploads/'~media.mediaName) }}" alt="résidence {{ residence.nom }}">
                             {% endfor %}

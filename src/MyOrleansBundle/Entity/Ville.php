@@ -4,6 +4,8 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * Ville
@@ -77,6 +79,31 @@ class Ville
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * @var string
+     * @Gedmo\Slug(fields={"nom"})
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     * @return Ville
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
     }
 
     // getter setter $residences
