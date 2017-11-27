@@ -10,7 +10,7 @@
     <div class="row infoFlat">
         <div class="col offset-l1 l2 s12">
             <div class="retourZone col s3 l12">
-                <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
+                <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.slug }) }}">
                     {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                         <img class="responsive-img"
                              src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
@@ -229,7 +229,7 @@
     <div class="row">
         <div class="col offset-l1 s3 l2">
             <div class="retourZone">
-                <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.nom }) }}">
+                <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.slug }) }}">
                     {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                         <img class="responsive-img"
                              src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"

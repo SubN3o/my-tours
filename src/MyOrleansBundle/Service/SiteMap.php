@@ -50,7 +50,7 @@ class SiteMap
 
         foreach ($residences as $residence) {
             $urls[] = array(
-                'loc' => $this->router->generate('residences', array('Ville' => $residence->getVille()->getNom(),'slug' => $residence->getSlug()),true)
+                'loc' => $this->router->generate('residences', array('Ville' => $residence->getVille()->getSlug(),'slug' => $residence->getSlug()),true)
             );
         }
 
