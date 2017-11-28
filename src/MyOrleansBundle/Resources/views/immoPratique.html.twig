@@ -9,9 +9,21 @@
 {% block content %}
     <h1>Actualités et dossiers thematiques</h1>
     <div class="row">
-        {{ form(articlesSearch) }}
+        <div class="col offset-l1 l10 s12 center">
+        {{ form_start(articlesSearch) }}
+            <div class="input-field">
+                {{ form_widget(articlesSearch.keyword) }}
+                {{ form_errors(articlesSearch.keyword) }}
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+            </div>
+            {{ form_end(articlesSearch) }}
+        </div>
     </div>
     <div class="row">
+        {% if articlesNoResult == 1 %}
+            <div class="center noResult">Désolé, aucun article ne correspond à votre recherche</div>
+            {% endif %}
         {% for article in articles %}
             <a href="#">
                 <div class="col offset-l1 l10 s12 article">
@@ -22,6 +34,7 @@
                         <div class="article-date">édité le : {{ article.date|date('d/m/Y') }}</div>
                         <h2>{{ article.titre }}</h2>
                         <div>{{ article.texte | truncate(200, true, '...') | raw }}</div>
+                        <div class="article-type">Type : {{ article.typeArticle.nom }}</div>
                         {% for tag in article.tags %}
                             <p class="chip greenMyO">{{ tag.nom }}</p>
                         {% endfor %}

@@ -37,6 +37,8 @@ class ImmoPratiqueController extends Controller
 
         $articles = $em->getRepository(Article::class)->findAll();
 
+        $articlesNoResult = 0;
+
         $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -73,6 +75,7 @@ class ImmoPratiqueController extends Controller
             'telephone_number' =>$telephoneNumber,
             'form' => $formulaire->createView(),
             'articlesSearch' => $articlesSearch->createView(),
+            'articlesNoResult' => $articlesNoResult
         ]);
     }
 
@@ -89,6 +92,8 @@ class ImmoPratiqueController extends Controller
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
+        $articlesNoResult = 0;
+
 
         $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
         $articlesSearch->handleRequest($request);
@@ -98,6 +103,11 @@ class ImmoPratiqueController extends Controller
             $data = $articlesSearch->getData();
 
             $articles = $em->getRepository(Article::class)->articleByTag($data);
+
+            if ($articles == null){
+                $articles = $em->getRepository(Article::class)->findAll();
+                $articlesNoResult = 1;
+            }
         }
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -134,6 +144,7 @@ class ImmoPratiqueController extends Controller
             'telephone_number' =>$telephoneNumber,
             'form' => $formulaire->createView(),
             'articlesSearch' => $articlesSearch->createView(),
+            'articlesNoResult' => $articlesNoResult
         ]);
     }
 

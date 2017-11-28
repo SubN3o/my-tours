@@ -2465,3 +2465,14 @@ video {
 .article .chip {
     margin-top: 10px;
 }
+
+.article-type {
+    color: grey;
+    font-style: italic;
+}
+
+.noResult {
+    font-size: 20pt;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+}

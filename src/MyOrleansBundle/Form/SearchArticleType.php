@@ -22,7 +22,7 @@ class SearchArticleType extends AbstractType
             ->add('keyword', SearchType::class, [
                 'required'=>false,
                 'attr'=>[
-                    'Chercher un article',
+                    'placeholder'=>'Veuillez saisir un mot-clé',
                     'autocomplete'=>'off'
                 ]
             ])

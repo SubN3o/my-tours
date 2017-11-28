@@ -28,11 +28,13 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('a');
 
         $qb
-            ->where('a.titre LIKE :tag ')
-            ->orWhere('ta.nom LIKE :tag')
-            ->orWhere('a.texte LIKE :tag')
-            ->setParameter('tag', '%'.$data['keyword'].'%')
-            ->join('a.tags','ta');
+            ->where('a.titre LIKE :keyword ')
+            ->orWhere('ta.nom LIKE :keyword')
+            ->orWhere('ty.nom LIKE :keyword')
+            ->orWhere('a.texte LIKE :keyword')
+            ->setParameter('keyword', '%'.$data['keyword'].'%')
+            ->join('a.tags','ta')
+            ->join('a.typeArticle','ty');
 
         return $qb->getQuery()->getResult();
     }
