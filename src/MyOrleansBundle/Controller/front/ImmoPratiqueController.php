@@ -23,28 +23,28 @@ class ImmoPratiqueController extends Controller
 {
 
     /**
-     * @Route("/immo_pratique", name="immo_pratique")
+     * @Route("/immo-pratique", name="immo_pratique")
      */
     public function immoPratiqueAction(SessionInterface $session, Request $request)
     {
-
-        $parcours = null;
-        if ($session->has('parcours')) {
-            $parcours = $session->get('parcours');
-        }
 
         $telephoneNumber = $this->getParameter('telephone_number');
 
         $em = $this->getDoctrine()->getManager();
         $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-//        $formulaire->get('sujet')->setData(Client::SUJET_AUTRES);
         $formulaire->handleRequest($request);
 
-        $articlesActu = $em->getRepository(Article::class)->ArticleByType("Actualités immobilières", 2);
-        $articlesConseils = $em->getRepository(Article::class)->ArticleByType("Fiches conseils", 2);
-        $articlesDossier = $em->getRepository(Article::class)->ArticleByType("Dossier thématiques", 2);
+        $articles = $em->getRepository(Article::class)->findAll();
 
+        $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType');
+        $articlesSearch->handleRequest($request);
+
+        if ($articlesSearch->isSubmitted() && $articlesSearch->isValid()) {
+            $data = $articlesSearch->getData();
+
+            $articles = $em->getRepository(Article::class)->findByTitre($data);
+        }
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -76,13 +76,14 @@ class ImmoPratiqueController extends Controller
         }
 
         return $this->render('MyOrleansBundle::immoPratique.html.twig', [
-
-            'articlesActu' => $articlesActu,
-            'articlesConseils' => $articlesConseils,
-            'articlesDossier' => $articlesDossier,
-            'parcours' => $parcours,
+            'articles' => $articles,
+//            'articlesActu' => $articlesActu,
+//            'articlesConseils' => $articlesConseils,
+//            'articlesDossier' => $articlesDossier,
+//            'parcours' => $parcours,
             'telephone_number' =>$telephoneNumber,
-            'form' => $formulaire->createView()
+            'form' => $formulaire->createView(),
+            'articlesSearch' => $articlesSearch->createView(),
         ]);
     }
 

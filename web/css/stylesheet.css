@@ -2416,3 +2416,52 @@ video {
         font-size: 9pt;
     }
 }
+
+/* --------------------------------------------------------------------*/
+/* ------------------------ IMMO PRATIQUE -----------------------------*/
+/* --------------------------------------------------------------------*/
+
+.article {
+    margin: 20px 0;
+    /*border: solid 1px;*/
+    border-radius: 5px;
+    position: relative;
+    background-color: #f9f9f4;
+}
+
+.article .article-date {
+    margin-top: 10px;
+    font-style: italic;
+    font-family: Lato;
+}
+
+.article h2{
+    margin: 5px;
+    font-family: Montserrat;
+    font-size: 25pt;
+    letter-spacing: 0.55pt;
+    font-weight: 400;
+}
+
+.article-content {
+    border: solid 1px;
+    border-radius: 3px;
+    font-family: Cantarell;
+    font-size: 17pt;
+}
+
+.article .chip {
+    color: white;
+}
+
+.article img {
+    width: 200px;
+    height: 200px;
+    float: left;
+    object-fit: cover;
+    padding: 10px 10px 10px 0;
+}
+
+.article .chip {
+    margin-top: 10px;
+}
