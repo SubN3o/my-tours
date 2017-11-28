@@ -1,6 +1,6 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
-{% block title %}{{ flat.typeBien.nom }} {{ flat.typeLogement.nom }} {{ residence.ville.nom }} (45) {{ residence.nom }} | My-Orléans.com{% endblock %}
+{% block title %}{{ flat.typeBien.nom }} {{ flat.typeLogement.nom }} {{ residence.ville.nom }} (45) {{ residence.nom }} | My-Orléans{% endblock %}
 
 {% block description %}
     <meta name="description" content="{{ flat.typeBien.nom }} de Type {{ flat.typeLogement.id }} à {{ residence.ville.nom }} - Résidence {{ residence.nom }} - Surface Habitable : {{ flat.surface }} m² {% if residence.eligibilitePinel == 1 %}- Dispositif Pinel {% endif %}{% if residence.normeThermique == 'RT2012' %}- Norme Thermique : RT2012 {% elseif residence.normeThermique == 'BBC' %}- Norme Thermique : BBC {% endif %}- {% if residence.affichagePrix %}{{ flat.prix|number_format(0, '.', ' ') }} €{% else %}Prix : nous contacter{% endif %}"/>
