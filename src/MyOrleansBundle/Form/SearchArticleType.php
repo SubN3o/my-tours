@@ -19,7 +19,7 @@ class SearchArticleType extends AbstractType
     {
         $builder
             ->setMethod('GET')
-            ->add('tag', SearchType::class, [
+            ->add('keyword', SearchType::class, [
                 'required'=>false,
                 'attr'=>[
                     'Chercher un article',

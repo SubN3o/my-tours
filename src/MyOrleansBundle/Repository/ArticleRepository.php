@@ -23,17 +23,16 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
-    public function articleByTag($tag, $nbArticles)
+    public function articleByTag($data)
     {
         $qb = $this->createQueryBuilder('a');
 
-        $qb->select('a')
-            ->leftJoin('a.tags', 't')
-            ->addSelect('t')
-            ->where('t.nom = :tag')
-            ->setParameter('tag', $tag)
-            ->orderBy('a.id', 'DESC')
-            ->setMaxResults($nbArticles);
+        $qb
+            ->where('a.titre LIKE :tag ')
+            ->orWhere('ta.nom LIKE :tag')
+            ->orWhere('a.texte LIKE :tag')
+            ->setParameter('tag', '%'.$data['keyword'].'%')
+            ->join('a.tags','ta');
 
         return $qb->getQuery()->getResult();
     }

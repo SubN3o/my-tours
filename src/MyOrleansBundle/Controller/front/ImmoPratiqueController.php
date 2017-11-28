@@ -37,13 +37,67 @@ class ImmoPratiqueController extends Controller
 
         $articles = $em->getRepository(Article::class)->findAll();
 
-        $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType');
+        $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setFrom($client->getEmail())
+                ->setTo($this->getParameter('mailer_user'))
+
+
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
+
+            return $this->redirectToRoute('immo_pratique');
+        }
+
+        return $this->render('MyOrleansBundle::immoPratique.html.twig', [
+            'articles' => $articles,
+            'telephone_number' =>$telephoneNumber,
+            'form' => $formulaire->createView(),
+            'articlesSearch' => $articlesSearch->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/immo-pratique/resultat", name="immo_pratique_resultat")
+     */
+    public function immoPratiqueResultatAction(SessionInterface $session, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $telephoneNumber = $this->getParameter('telephone_number');
+
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
+
+
+        $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
         $articlesSearch->handleRequest($request);
 
         if ($articlesSearch->isSubmitted() && $articlesSearch->isValid()) {
+
             $data = $articlesSearch->getData();
 
-            $articles = $em->getRepository(Article::class)->findByTitre($data);
+            $articles = $em->getRepository(Article::class)->articleByTag($data);
         }
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
@@ -77,10 +131,6 @@ class ImmoPratiqueController extends Controller
 
         return $this->render('MyOrleansBundle::immoPratique.html.twig', [
             'articles' => $articles,
-//            'articlesActu' => $articlesActu,
-//            'articlesConseils' => $articlesConseils,
-//            'articlesDossier' => $articlesDossier,
-//            'parcours' => $parcours,
             'telephone_number' =>$telephoneNumber,
             'form' => $formulaire->createView(),
             'articlesSearch' => $articlesSearch->createView(),
