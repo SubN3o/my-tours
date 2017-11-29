@@ -215,5 +215,5 @@ vich_uploader:
             media:
                 uri_prefix: /uploads/
                 upload_destination: '%kernel.root_dir%/../web/uploads/'
-                namer: vich_uploader.namer_uniqid
+                namer: vich_uploader.namer_origname
                 delete_on_update: true
