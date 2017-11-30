@@ -16,7 +16,7 @@
         <div class="wrapper">
 
             {% block navbar %}
-            <div class="sidebar">
+            <div class="sidebar" data-color="green" data-image="{{ asset('img/unnamed3.jpg') }}">
 
                 <div class="logo">
                     <a href="{{ path('home') }}" target="_blank" class="simple-text">
@@ -135,6 +135,8 @@
 
         {% block javascripts %}
             {{ parent() }}
+            <script type="text/javascript" src="{{ asset('assets-admin/js/material.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets-admin/js/material-dashboard.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
 
             <script>CKEDITOR.replace(textarea)</script>
