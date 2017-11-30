@@ -66,10 +66,10 @@ class CalculateurCaracteristiquesResidence
 
         $minMaxType[0] = $sizes[0];
 
-        if ((count($sizes) - 1) <= 1) {
+        if (count($sizes) <= 1) {
             $minMaxType[1] = $sizes[0];
         } else {
-            $minMaxType[1] = $sizes[count($sizes) - 1];
+            $minMaxType[1] = array_pop($sizes);
         }
 
         return $minMaxType;
