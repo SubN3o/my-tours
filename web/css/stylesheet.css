@@ -63,13 +63,6 @@ h1 {
     background-color: #B5CC17;
 }
 
-
-.align-icon {
-    display: inline-flex;
-    vertical-align: middle;
-    padding-right: 10px;
-}
-
 @media screen and (max-width: 992px) {
     h1 {
         margin-top: 20px;
@@ -301,6 +294,11 @@ footer p {
 .fb-social {
     margin-top: 11px;
     color: #C8CACC;
+}
+
+.contact .align-icon {
+    padding-right: 0;
+    margin: 6px 0 0 0;
 }
 
 .linkFooter a {
