@@ -20,8 +20,7 @@
                                         <th>Etage {{ knp_pagination_sortable(flats, '↑↓', 'flat.etage') }}</th>
                                         <th>Type de logement</th>
                                         <th>Exposition Sejour</th>
-                                        <th>Stationnement</th>
-                                        <th>Statut</th>
+                                        <th>Statut {{ knp_pagination_sortable(flats, '↑↓', 'flat.statut') }}</th>
                                         <th>Aperçu</th>
                                         <th>Éditer</th>
                                         <th>Cloner</th>
@@ -38,7 +37,6 @@
                                             <td>{{ flat.etage }}</td>
                                             <td>{{ flat.typeLogement.nom}}</td>
                                             <td>{{ flat.expositionSejour }}</td>
-                                            <td>{{ flat.stationnement }}</td>
                                             {% if flat.statut %}
                                             <td>Disponible</td>
                                             {% else %}
