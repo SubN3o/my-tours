@@ -52,7 +52,7 @@
 .residence {
     font-size: 30pt;
     text-transform: uppercase;
-    padding: 20px;
+    padding: 0 20px;
     background-color: white;
 }
 
@@ -65,12 +65,12 @@
 .reference {
     background-color: #B5CC17;
     color: white;
-    font-size: 20pt;
+    font-size: 17pt;
     padding: 5px 10px;
 }
 
 .plan {
-    height: 550px;
+    height: 540px;
     position: relative;
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -80,8 +80,8 @@
 }
 
 .icone {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
 }
 
 .info {
@@ -108,7 +108,7 @@
 }
 
 .cartouche p {
-    font-size: 21pt;
+    font-size: 20pt;
     font-weight: bold;
     padding: 5px;
 }
@@ -125,4 +125,17 @@
     -moz-transform: translateY(-20%);
     -ms-transform: translateY(-20%);
     transform: translateY(-20%);
+}
+
+.message {
+    border: solid 2px #B5CC17;
+    margin-top: -20px;
+}
+
+.mail{
+    font-size: 17pt;
+}
+
+.message p {
+    font-size: 12pt;
 }
