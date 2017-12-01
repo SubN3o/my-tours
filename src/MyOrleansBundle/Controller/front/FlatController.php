@@ -45,19 +45,12 @@ class FlatController extends Controller
      * @ParamConverter("appartement", class="MyOrleansBundle:Flat", options={"reference" = "reference"})
      * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
      */
-    public function flat(Flat $flat, SessionInterface $session, Request $request)
+    public function flat(Flat $flat, Request $request)
     {
-        $client = new  Client();
-        $parcours = null;
-        if ($session->has('parcours')) {
-            $parcours = $session->get('parcours');
-        }
-
-
-
-        $em = $this->getDoctrine()->getManager();
+        //récupération de la résidence
         $residence = $flat->getResidence();
 
+        //récupération des images
         $medias = $flat->getMedias();
         $mediaDefine = [];
         foreach ($medias as $media) {
@@ -68,6 +61,7 @@ class FlatController extends Controller
             }
         }
         // Formulaire de contact
+        $client = new  Client();
 
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $telephoneNumber = $this->getParameter('telephone_number');
@@ -99,11 +93,8 @@ class FlatController extends Controller
             return $this->redirectToRoute('appartement',['id'=>$flat->getId()]);
         }
 
-
-
             return $this->render('MyOrleansBundle::appartement.html.twig',[
                 'flat'=>$flat,
-                'parcours'=>$parcours,
                 'residence'=>$residence,
                 'media' => $mediaDefine,
                 'telephone_number' => $telephoneNumber,
