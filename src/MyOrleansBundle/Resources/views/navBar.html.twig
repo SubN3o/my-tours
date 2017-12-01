@@ -1,12 +1,15 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper" id="nav">
+            <!-- logo my-orleans.com -->
             <a href="{{ path("home") }}" class="brand-logo">
                 <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo"/>
             </a>
+
+            <!-- bouton menu mobile -->
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i
                         class="material-icons">menu</i></a>
-
+            <!-- menu desktop -->
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{{ path("nosresidences") }}">NOS RÉSIDENCES</a></li>
                 <li><a href="{{ path("my-orleans") }}">MY ORLÉANS</a></li>
@@ -14,6 +17,7 @@
                 {#<li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>#}
                 <li onclick="simpleSearch()"><a><i class="material-icons">search</i></a></li>
             </ul>
+            <!-- recherche simple desktop -->
             <ul id="simpleSearch" class="right hide-on-med-and-down">
                 {{ form_start(simpleSearch) }}
                 <li>{{ form_label(simpleSearch.ville, 'Localisation') }}</li>
@@ -25,12 +29,14 @@
                 {{ form_end(simpleSearch) }}
             </ul>
 
+            <!-- menu mobile -->
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="{{ path("nosresidences") }}">NOS RÉSIDENCES</a></li>
                 <li><a href="{{ path("my-orleans") }}">MY ORLÉANS</a></li>
                 <li><a href="{{ path("expertise") }}">SAVOIR-FAIRE</a></li>
                 {#<li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>#}
                 <li class="divider"></li>
+                <!-- recherche simple mobile -->
                 {{ form_start(simpleSearchMobile) }}
                 <li>{{ form_label(simpleSearchMobile.ville, 'Localisation') }}</li>
                 <li>{{ form_widget(simpleSearchMobile.ville) }}</li>

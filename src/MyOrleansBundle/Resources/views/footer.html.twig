@@ -1,8 +1,10 @@
 <footer>
+    <!-- footer partie 1 -->
     <div class="footer1">
         <div class="row">
             <!--colonne gauche-->
             <div class="col s12 l4">
+                <!-- information My ORLEANS -->
                 <p class="titreFooter center">CONTACTEZ-NOUS</p>
                 <div class="row contact">
                     <div class="col offset-l1 l11">
@@ -14,6 +16,7 @@
                         <div class="col s11"><p class="linkFooter"><a href="mailto:contact@my-orleans.fr">contact@my-orleans.fr</a></p></div>
                     </div>
                 </div>
+                <!-- réseaux sociaux -->
                 <p class="titreFooter center h5Footer">SUIVEZ-NOUS</p>
                 <div class="row center">
                     <div class="col offset-l2 l2 s4">
@@ -42,6 +45,7 @@
             <!--colonne milieu-->
             <div class="col s12 l4 bordureFooter">
                 <p class="titreFooter center"><a href="{{ path("nosresidences") }}">NOTRE SELECTION</a></p>
+                <!-- affichage des 7 résidences -->
                 <div class="row">
                     {% for programme in programmes %}
                         <div class="col s12 l6">
@@ -70,6 +74,7 @@
             </div>
             <!--colonne droite-->
             <div class="col s12 l4">
+                <!-- liens internes vers MY-ORLEANS -->
                 <p class="titreFooter center"><a href="{{ path("my-orleans") }}">MY ORLÉANS</a></p>
                 <div class="row">
                     <div class="offset-l1 col l11">
@@ -91,17 +96,22 @@
             </div>
         </div>
     </div>
+    <!-- footer partie 2 -->
     <div class="footer2">
         <div class="row">
+            <!-- copyright -->
             <div class="col offset-l1 s12 l3">
                 <p class="copyrightMyO">© 2017 My ORLEANS</p>
             </div>
+            <!-- informations légales -->
             <div class="col s12 l2">
                 <p class="linkFooter mentions"><a href="#modalMention">Informations légales</a></p>
             </div>
+            <!-- frais et honoraires -->
             <div class="col s12 l2">
                 <p class="linkFooter honoraires"><a href="#modalHonoraire">Frais et honoraires de gestion</a></p>
             </div>
+            <!-- labels FNAIM ET Gallian -->
             <div class="col s12 l3">
                 <div class="labels">
                     <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}"

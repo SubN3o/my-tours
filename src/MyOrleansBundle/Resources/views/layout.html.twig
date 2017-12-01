@@ -47,6 +47,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
+        //autocompletion de la recherche simple
         $(document).ready(function () {
 
             $('#simple_search_ville').autocomplete({
@@ -82,10 +83,13 @@
             });
 
         });
+
+        //affichage de la recherche simple desktop à la place du menu
         function simpleSearch() {
             document.getElementById('nav-mobile').style.display = 'none';
             document.getElementById('simpleSearch').style.display = 'block';
         }
+        //reaffichage du menu desktop à la place de la recherche simple
         function navClassique() {
             document.getElementById('nav-mobile').style.display = 'block';
             document.getElementById('simpleSearch').style.display = 'none';
