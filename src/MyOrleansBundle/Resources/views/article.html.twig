@@ -49,24 +49,28 @@
     </div>
     <div class="row">
         <div class="col offset-l3 l2 offset-s1 s4 articleByType">
-            <a href="#">
-                <span>{{ article.titre }}</span>
-                {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
+            <p>article du même type :</p>
+            <a href="{{ path('article', { 'slug': articleByType.slug }) }}">
+                <span>{{ articleByType.titre }}</span>
+                {% for media in articleByType.medias if media.typeMedia.nom == "image-cover" %}
                     <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"
-                         alt="illustration article {{ article.titre }}">
+                         alt="illustration article {{ articleByType.titre }}">
                 {% endfor %}
-                <p>{{ article.texte | truncate(60, true, '...') | raw }}</p>
+                <p>{{ articleByType.texte | truncate(60, true, '...') | raw }}</p>
             </a>
         </div>
         <div class="col offset-l2 l2 offset-s2 s4 article-last">
-            <a href="#">
-                <span>{{ article.titre }}</span>
-                {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
-                    <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"
-                         alt="illustration article {{ article.titre }}">
-                {% endfor %}
-                <p>{{ article.texte | truncate(60, true, '...') | raw }}</p>
-            </a>
+            <p>article récent :</p>
+            {% for article in lastArticle %}
+                <a href="{{ path('article', { 'slug': article.slug }) }}">
+                    <span>{{ article.titre }}</span>
+                    {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
+                        <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"
+                             alt="illustration article {{ article.titre }}">
+                    {% endfor %}
+                    <p>{{ article.texte | truncate(60, true, '...') | raw }}</p>
+                </a>
+            {% endfor %}
         </div>
     </div>
     <!-- début formulaire de contact -->

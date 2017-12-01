@@ -156,15 +156,40 @@ class ImmoPratiqueController extends Controller
      */
     public function afficherArticleAction(Request $request, Article $article)
     {
-//        $residence = $article->getResidence();
-
-        //Recuperation des tags de l'article et selection du premier tag
-//        $tags = $article->getTags();
-//        $tag = $tags[0]->getNom();
-
-        //Fin recuperation du tag
         $em = $this->getDoctrine()->getManager();
-//        $articlesAssocies = $em->getRepository(Article::class)->articleByTag($tag);
+
+        //On récupère le type de l'article
+        $type = $article->getTypeArticle()->getId();
+
+        //On récupère l'Id de l'article
+        $idArticle = $article->getId();
+
+        //On récupère un tableau d'objet Article des autres articles du même Type
+        $articlesByType = $em->getRepository(Article::class)->articleByType($idArticle, $type);
+
+        //On créé un tableau avec les Id des autres articles
+        $articlesId = [];
+
+        foreach ($articlesByType as $articleId){
+            $articlesId[] = $articleId->getId();
+        }
+
+        //On compte le tableau d'Id
+        $countArticlesId = count($articlesId);
+
+        //On récupère un chiffre aléatoire entre 0 et le dernier index du tableau d'Id
+        $random = rand(0,$countArticlesId - 1);
+
+        //On récupère un Id tiré aléatoirement dans le tableau
+        $idRandom = $articlesId[$random];
+
+        $articleByType = $em->getRepository(Article::class)->find($idRandom);
+
+        //On créé un tableau d'Id des articles à exclurent
+        $articleExclu = [$idArticle,$idRandom];
+
+        //On récupère le dernier article créé en excluant les articles précédents pour eviter une redondance
+        $lastArticle = $em->getRepository(Article::class)->lastArticle($articleExclu);
 
         $telephoneNumber = $this->getParameter('telephone_number');
 
@@ -202,9 +227,10 @@ class ImmoPratiqueController extends Controller
 
         return $this->render('MyOrleansBundle::article.html.twig',[
             'article' => $article,
-//            'residence' => $residence,
             'telephone_number' => $telephoneNumber,
-            'articlesAssocies' => $articlesAssocies,
+            'articleByType' => $articleByType,
+            'random' => $random,
+            'lastArticle'=>$lastArticle,
             'form' => $formulaire->createView()
         ]);
     }
