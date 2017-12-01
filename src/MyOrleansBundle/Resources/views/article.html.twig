@@ -49,7 +49,7 @@
     </div>
     <div class="row">
         <div class="col offset-l3 l2 offset-s1 s4 articleByType">
-            <p>article du même type :</p>
+            <p>Article pouvant vous interesser:</p>
             <a href="{{ path('article', { 'slug': articleByType.slug }) }}">
                 <span>{{ articleByType.titre }}</span>
                 {% for media in articleByType.medias if media.typeMedia.nom == "image-cover" %}
@@ -60,7 +60,7 @@
             </a>
         </div>
         <div class="col offset-l2 l2 offset-s2 s4 article-last">
-            <p>article récent :</p>
+            <p>Dernière actualité :</p>
             {% for article in lastArticle %}
                 <a href="{{ path('article', { 'slug': article.slug }) }}">
                     <span>{{ article.titre }}</span>
