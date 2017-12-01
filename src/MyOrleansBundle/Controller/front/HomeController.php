@@ -35,24 +35,30 @@ class HomeController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function indexAction(SessionInterface $session, Request $request)
+    public function indexAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
 
+        //récupération des collaborateurs dans la limite de 5 pour le barrillet
+        //prévoir de modifier les angles dans le CSS si besoin de changer le nb de collaborateur
         $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],5,0);
 
+        //récupération de l'id1 de Accueil où sont stocké la video d'intro, les mentions légales et les honoraires
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
+        //récupération des résidences par colonne pour la mosaïque
         $residenceCol1 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],3,2);
         $residenceCol2 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],2,0);
         $residenceCol3 = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC'],2,5);
 
+        //récupération des temoignages
         $temoignages = $em->getRepository(Temoignage::class)->findAll();
 
-        $telephoneNumber = $this->getParameter('telephone_number');
 
         // Formulaire de contact
+
+        $telephoneNumber = $this->getParameter('telephone_number');
         $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
@@ -85,14 +91,11 @@ class HomeController extends Controller
         }
 
         // Recuperation de la liste des villes dans lesquelles se trouvent les residences
-        $residences = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
-        $villes = [];
-        foreach ($residences as $residence) {
-            $villes[] = $residence->getVille();
-        }
-
-
-                
+//        $residences = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
+//        $villes = [];
+//        foreach ($residences as $residence) {
+//            $villes[] = $residence->getVille();
+//        }
 
         return $this->render('MyOrleansBundle::index.html.twig', [
             'telephone_number' => $telephoneNumber,

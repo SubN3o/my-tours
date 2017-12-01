@@ -1,7 +1,8 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
 {% block description %}
-    <meta name="description" content="My ORLEANS vous accompagne tout au long de votre projet immobilier et vous fait bénéficier de son expertise pour l'acquisition d'un bien neuf à Orléans et agglo"/>
+    <meta name="description"
+          content="My ORLEANS vous accompagne tout au long de votre projet immobilier et vous fait bénéficier de son expertise pour l'acquisition d'un bien neuf à Orléans et agglo"/>
 {% endblock %}
 
 {% block video %}
@@ -58,6 +59,7 @@
                         </a>
                     </div>
                 {% endfor %}
+                <!-- lien vers NOS RESIDENCES desktop -->
                 <a href="{{ path('nosresidences') }}">
                     <div class="voir">
                         <p>TOUS NOS PROGRAMMES NEUFS</p>
@@ -80,6 +82,7 @@
                     </div>
                 {% endfor %}
             </div>
+            <!-- lien vers NOS RESIDENCES mobile -->
             <a href="{{ path('nosresidences') }}">
                 <div class="voir2">
                     <p>TOUS NOS PROGRAMMES NEUFS</p>
@@ -95,33 +98,26 @@
             <div class="barillet">
                 <div class="colBarillet">
                     <ul class="circle-container">
+                        <!-- photos des collaborateurs -->
                         {% for collaborateur in collaborateurs %}
-                            {% if loop.index == 1 %}
-                                <li class="item">
-                                    <a class="active" href="#">
-                                        <img class="collaborateurBarillet circle"
-                                             src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
-                                             alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li class="item">
-                                    <a href="#">
-                                        <img class="collaborateurBarillet circle"
-                                             src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
-                                             alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
-                                    </a>
-                                </li>
-                            {% endif %}
+                            <li class="item">
+                                <!-- attribution de la classs "active" au 1er collaborateur -->
+                                <a{% if loop.index == 1 %} class="active"{% endif %} href="#">
+                                    <img class="collaborateurBarillet circle"
+                                         src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
+                                         alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
+                                </a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
                 <div class="colBarillet">
                     <ul class="bioCollaborateur">
+                        <!-- bio des collaborateurs -->
                         {% for collaborateur in collaborateurs %}
-                            {% if loop.index == 1 %}
                                 <li>
-                                    <a class="active" href="#">
+                                    <!-- attribution de la classe "active" au 1er collaborateur -->
+                                    <a{% if loop.index == 1 %} class="active"{% endif %} href="#">
                                         <div class="bio center circle">
                                             <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
                                             <p>{{ collaborateur.fonction }}</p>
@@ -131,19 +127,6 @@
                                         </div>
                                     </a>
                                 </li>
-                            {% else %}
-                                <li>
-                                    <a>
-                                        <div class="bio center circle">
-                                            <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
-                                            <p>{{ collaborateur.fonction }}</p>
-                                            <p>E-mail : {{ collaborateur.email }}</p>
-                                            <p class="vision">Sa vision :</p>
-                                            <p>"{{ collaborateur.bio }}"</p>
-                                        </div>
-                                    </a>
-                                </li>
-                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
@@ -275,10 +258,13 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            //positionnement de la navBar en bas de la fenêtre du navigateur
             $('.navbar-fixed').removeAttr('class').css({bottom: '0'});
 
+            //recupération de la hauteur de la fenêtre
             var height = (window.innerHeight - document.getElementById("nav").offsetHeight) + 'px';
 
+            //hauteur de la div intro définit par la hauteur de la fenêtre du navigateur
             document.getElementById('intro').style.height = height;
 
             // Slider temoignage
