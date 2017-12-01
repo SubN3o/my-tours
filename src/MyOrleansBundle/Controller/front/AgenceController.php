@@ -27,13 +27,7 @@ class AgenceController extends Controller
      */
     public function agencyAction(SessionInterface $session, Request $request)
     {
-        $client = new Client();
-
-        $parcours = null;
-        if ($session->has('parcours')) {
-            $parcours = $session->get('parcours');
-        }
-
+        //tableaux des mois en français
         $mois = [
             '01' => 'janvier',
             '02' => 'février',
@@ -51,19 +45,25 @@ class AgenceController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $chiffres = $em->getRepository(Chiffre::class)->findBy([], ['tri'=>'ASC'], 3);
-
-
-        $telephone_number = $this->getParameter('telephone_number');
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-
-        $formulaire->handleRequest($request);
-
+        //récupération des partenaires
         $partenaires = $em->getRepository(Partenaire::class)->findBy([], ['tri'=>'ASC']);
+
+        //récupération des collaborateurs dans la limite de 5 pour le barrillet
+        //prévoir de modifier les angles dans le CSS si besoin de changer le nb de collaborateur
         $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],5,0);
+
+        //récupération des evenements et de leurs images
         $evenements = $em->getRepository(Evenement::class)->findBy([], ['dateDebut'=>'ASC']);
         $cover = $em->getRepository(Media::class)->findAll();
+
+        //récupération de l'id1 de Accueil où sont stocké la video d'intro et le texte de présentation
         $accueil = $em->getRepository(Accueil::class)->find(1);
+
+        //Formulaire de contact
+        $client = new Client();
+        $telephone_number = $this->getParameter('telephone_number');
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
@@ -96,12 +96,10 @@ class AgenceController extends Controller
             [
                 'telephone_number' => $telephone_number,
                 'mois' => $mois,
-                'parcours' => $parcours,
                 'partenaires' => $partenaires,
                 'collaborateurs' => $collaborateurs,
                 'evenements' => $evenements,
                 'cover' => $cover,
-                'chiffres' => $chiffres,
                 'accueil' => $accueil,
                 'form' => $formulaire->createView()
 

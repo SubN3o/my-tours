@@ -3,16 +3,20 @@
 {% block title %}My ORLEANS | Présentation{% endblock %}
 
 {% block description %}
-    <meta name="description" content="En tant qu'expert de l'immobilier neuf à Orléans et agglo depuis 2006, My ORLEANS vous conseille et vous accompagne dans votre acquisition d'un logement neuf."/>
+    <meta name="description"
+          content="En tant qu'expert de l'immobilier neuf à Orléans et agglo depuis 2006, My ORLEANS vous conseille et vous accompagne dans votre acquisition d'un logement neuf."/>
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col offset-l1 l5 s12">
+
             <div id="presentation"></div>
             <h1>My Orléans</h1>
             <div class="col s12 presentation">
+                <!-- présentation de My ORLEANS -->
                 <p>{{ accueil.presentation | raw }}</p>
+                <!-- video My ORLEANS -->
                 <a href="#modalEquipe" class="btn greenMyO col push-l7 push-xl9 push-s4"><i class="material-icons left">play_circle_outline</i>Voir
                     video</a>
             </div>
@@ -23,6 +27,7 @@
                     </video>
                 </div>
             </div>
+            <!-- Slider de l'équipe My ORLEANS -->
             <div class="sliderEquipe">
                 <div class="slider col s12">
                     <ul class="slides">
@@ -45,57 +50,39 @@
         <div class="col s12 l5">
             <div id="equipe"></div>
             <h1>Notre équipe</h1>
+            <!-- Barillet Equipe -->
             <div class="barillet">
                 <div class="colBarillet">
                     <ul class="circle-container">
+                        <!-- photos des collaborateurs -->
                         {% for collaborateur in collaborateurs %}
-                            {% if loop.index == 1 %}
-                                <li class="item">
-                                    <a class="active" href="#">
-                                        <img class="collaborateurBarillet circle"
-                                             src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
-                                             alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li class="item"><a href="#">
-                                        <img class="collaborateurBarillet circle"
-                                             src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
-                                             alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
-                                    </a>
-                                </li>
-                            {% endif %}
+                            <li class="item">
+                                <!-- attribution de la classe "active" pour le 1er collaborateur -->
+                                <a{% if loop.index == 1 %} class="active"{% endif %} href="#">
+                                    <img class="collaborateurBarillet circle"
+                                         src="{{ asset('uploads/'~collaborateur.media.mediaName) | imagine_filter('thumb_collaborateur') }}"
+                                         alt="photo de {{ collaborateur.prenom }} {{ collaborateur.nom }}">
+                                </a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
                 <div class="colBarillet">
                     <ul class="bioCollaborateur">
+                        <!-- bio des collaborateurs -->
                         {% for collaborateur in collaborateurs %}
-                            {% if loop.index == 1 %}
-                                <li>
-                                    <a class="active" href="#">
-                                        <div class="bio center circle">
-                                            <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
-                                            <p>{{ collaborateur.fonction }}</p>
-                                            <p>E-mail : {{ collaborateur.email }}</p>
-                                            <p class="vision">Sa vision :</p>
-                                            <p>"{{ collaborateur.bio }}"</p>
-                                        </div>
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li>
-                                    <a>
-                                        <div class="bio center circle">
-                                            <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
-                                            <p>{{ collaborateur.fonction }}</p>
-                                            <p>E-mail : {{ collaborateur.email }}</p>
-                                            <p class="vision">Sa vision :</p>
-                                            <p>"{{ collaborateur.bio }}"</p>
-                                        </div>
-                                    </a>
-                                </li>
-                            {% endif %}
+                            <li>
+                                <!-- attribution de la classe "active" pour le 1er collaborateur -->
+                                <a{% if loop.index == 1 %} class="active"{% endif %} href="#">
+                                    <div class="bio center circle">
+                                        <span>{{ collaborateur.prenom }} {{ collaborateur.nom }}</span>
+                                        <p>{{ collaborateur.fonction }}</p>
+                                        <p>E-mail : {{ collaborateur.email }}</p>
+                                        <p class="vision">Sa vision :</p>
+                                        <p>"{{ collaborateur.bio }}"</p>
+                                    </div>
+                                </a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -105,6 +92,7 @@
     <div id="realisations"></div>
     <h1>Nos réalisations commerciales</h1>
     <div class="row">
+        <!-- slider des réalitions commerciales -->
         <div class="sliderRea">
             <div class="slider col offset-l3 l6 s12">
                 <ul class="slides">
@@ -123,7 +111,8 @@
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}" alt="residence La Résidence des Charmes">
+                        <img src="{{ asset('img/rea/LaResidencedesCharmes.jpg') }}"
+                             alt="residence La Résidence des Charmes">
                         <div class="caption center-align">
                             <span>La Résidence des Charmes</span>
                             <h2>Olivet</h2>
@@ -158,7 +147,8 @@
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}" alt="residence Le Clos de la Cerisaille">
+                        <img src="{{ asset('img/rea/LeClosdelaCerisaille.jpg') }}"
+                             alt="residence Le Clos de la Cerisaille">
                         <div class="caption center-align">
                             <span>Le Clos de la Cerisaille</span>
                             <h2>Saint-Jean-le-Blanc</h2>
@@ -172,7 +162,8 @@
                         </div>
                     </li>
                     <li>
-                        <img src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}" alt="residence Le Parc de l'école normale">
+                        <img src="{{ asset('img/rea/LeParcdelecolenormale.jpg') }}"
+                             alt="residence Le Parc de l'école normale">
                         <div class="caption center-align">
                             <span>Le Parc de l'école normale</span>
                             <h2>Orléans</h2>
@@ -206,6 +197,7 @@
     <div id="actualite"></div>
     <h1 class="hide-on-med-and-down">Consultez notre actualité</h1>
     <div class="row hide-on-med-and-down">
+        <!-- timeline horizontale des evenements en desktop seulement -->
         <div class="col l10 offset-l1 offset-s1 s11">
             <section class="timeline">
                 <ol>
@@ -221,7 +213,8 @@
                                     <p>{{ evenement.description }}</p>
                                     {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
                                     <img class="responsive-img"
-                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}" alt="illustration {{ evenement.nom }}">
+                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}"
+                                         alt="illustration {{ evenement.nom }}">
                                     {#{% endfor %}#}
                                     {#<a class="waves-effect waves-light btn white" data-toggle="modal"#}
                                     {#data-id="{{ evenement.id }}"#}
@@ -242,7 +235,8 @@
                                     <p>{{ evenement.description }}</p>
                                     {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
                                     <img class="responsive-img"
-                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}" alt="illustration {{ evenement.nom }}">
+                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}"
+                                         alt="illustration {{ evenement.nom }}">
                                     {#{% endfor %}#}
                                     <a class="button-collapse greenMyO btn" data-activates="slide-out">JE
                                         M'INSCRIS</a>
@@ -274,7 +268,6 @@
                     {% endif %}
                 {% endfor %}
 
-
                 <div class="arrows">
                     <button class="arrow arrow__prev disabled btn-floating btn-large greenMyO"
                             disabled>
@@ -290,11 +283,13 @@
     <div id="partenaires"></div>
     <h1>Nos partenaires</h1>
     <div class="row">
+        <!-- affichage des partenaires -->
         <div class="col s12 offset-l1 l10">
             {% for partenaire in partenaires %}
                 <div class="col s2 l1 partenaire">
                     <a {% if partenaire.url != null %}href="{{ partenaire.url }}" target="_blank"{% endif %}>
-                        <img class="responsive-img" src="{{ asset('uploads/'~partenaire.media.mediaName) }}" alt="logo {{ partenaire.nom }}">
+                        <img class="responsive-img" src="{{ asset('uploads/'~partenaire.media.mediaName) }}"
+                             alt="logo {{ partenaire.nom }}">
                     </a>
                 </div>
             {% endfor %}
@@ -402,6 +397,7 @@
     <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
     <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
     <script type="text/javascript">
+        //paramétrage des sliders
         $(document).ready(function () {
             $('.slider').slider({
                 interval: 4000
@@ -409,6 +405,7 @@
         });
     </script>
     <script type="text/javascript">
+        //coupure de la video à la fermeture de la modal
         $(document).ready(function () {
             // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
             $('#modalEquipe').modal(
