@@ -9,6 +9,7 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Client;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MyOrleansBundle\Entity\Temoignage;
@@ -145,6 +146,66 @@ class ImmoPratiqueController extends Controller
             'form' => $formulaire->createView(),
             'articlesSearch' => $articlesSearch->createView(),
             'articlesNoResult' => $articlesNoResult
+        ]);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/immo-pratique/{slug}", name="article")
+     * @ParamConverter("article", class="MyOrleansBundle:Article", options={"slug" = "slug"})
+     */
+    public function afficherArticleAction(Request $request, Article $article)
+    {
+//        $residence = $article->getResidence();
+
+        //Recuperation des tags de l'article et selection du premier tag
+//        $tags = $article->getTags();
+//        $tag = $tags[0]->getNom();
+
+        //Fin recuperation du tag
+        $em = $this->getDoctrine()->getManager();
+//        $articlesAssocies = $em->getRepository(Article::class)->articleByTag($tag);
+
+        $telephoneNumber = $this->getParameter('telephone_number');
+
+        // Formulaire de contact
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $mailer = $this->get('mailer');
+
+            $message = new \Swift_Message('Nouveau message de my-orleans.com');
+            $message
+                ->setTo($this->getParameter('mailer_user'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'MyOrleansBundle::receptionForm.html.twig',
+                        array('client' => $client)
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+
+            $em->persist($client);
+            $em->flush();
+
+            $this->addFlash('success', 'votre message a bien été envoyé');
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('MyOrleansBundle::article.html.twig',[
+            'article' => $article,
+//            'residence' => $residence,
+            'telephone_number' => $telephoneNumber,
+            'articlesAssocies' => $articlesAssocies,
+            'form' => $formulaire->createView()
         ]);
     }
 

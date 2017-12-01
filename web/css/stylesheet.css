@@ -2476,3 +2476,30 @@ video {
     font-family: Montserrat;
     letter-spacing: .55pt;
 }
+
+.article-titre {
+    margin-bottom: 40px;
+}
+
+.article-titre h1{
+    text-align: left;
+    color: black;
+    margin: 40px 0 10px 0;
+}
+
+.article-titre h2 {
+    font-size: 12pt;
+    margin: 0;
+}
+
+.article-texte {
+    margin-top: 20px;
+}
+
+.article-tag {
+    margin-bottom: 10px;
+}
+
+.articleByType, .article-last {
+    margin-top: 40px;
+}

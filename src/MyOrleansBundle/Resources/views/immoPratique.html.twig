@@ -25,7 +25,7 @@
             <div class="center noResult">Désolé, aucun article ne correspond à votre recherche</div>
             {% endif %}
         {% for article in articles %}
-            <a href="#">
+            <a href="{{ path('article', { 'slug': article.slug }) }}">
                 <div class="col offset-l1 l10 s12 article">
                         {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
                             <img src="{{ asset('uploads/'~media.mediaName) }}"
@@ -137,6 +137,7 @@
             {{ form_end(form) }}
         </div>
     </div>
+</form>
 {% endblock %}
 
 {% block javascripts %}
