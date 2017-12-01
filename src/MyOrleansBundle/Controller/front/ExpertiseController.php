@@ -31,14 +31,18 @@ class ExpertiseController extends Controller
      * @Route("/savoir-faire", name="expertise")
      */
 
-    public function expertiseAction(SessionInterface $session, Request $request)
+    public function expertiseAction( Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
+
+        //récupération des services
         $services = $em->getRepository(Service::class)->findBy([], ['tri'=>'ASC']);
-        $telephoneNumber = $this->getParameter('telephone_number');
+
+        //récupération des packs
         $packs = $em->getRepository(Pack::class)->findBy([], ['tri'=>'ASC']);
 
+        //Formulaire de contact
+        $telephoneNumber = $this->getParameter('telephone_number');
         $client = new Client();
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
