@@ -43,8 +43,6 @@ class NosResidencesController extends Controller
         // Generation du manager
         $em = $this->getDoctrine()->getManager();
 
-        $chiffres = $em->getRepository(Chiffre::class)->findBy([], ['tri'=>'ASC'], 3);
-
         // Recuperation de la liste des villes et des quartiers dans lesqulles se trouvent les residences
         $villes = $em->getRepository(Ville::class)->findAll();
         $quartiers = $em->getRepository(Quartier::class)->findAll();
@@ -82,6 +80,7 @@ class NosResidencesController extends Controller
                 }
             }
 
+            //récupération des résidences à suggerer
             if ($selectedVille != null || $selectedType != null) {
                 $residencesSuggerees = $em->getRepository(Residence::class)->suggestResidence($idResidences);
             }
@@ -134,7 +133,6 @@ class NosResidencesController extends Controller
         return $this->render('MyOrleansBundle::nosResidences.html.twig', [
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView(),
-            'chiffres' => $chiffres,
             'residencesSuggerees' => $residencesSuggerees,
             'residences' => $residences,
             'completeSearch' => $completeSearch->createView(),
@@ -152,8 +150,7 @@ class NosResidencesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $chiffres = $em->getRepository(Chiffre::class)->findBy([], ['tri'=>'ASC'], 3);
-
+        //Génération du moteur de recherche
         $completeSearch = $this->createForm('MyOrleansBundle\Form\CompleteSearchType');
         $completeSearch->handleRequest($request);
 
@@ -164,17 +161,21 @@ class NosResidencesController extends Controller
         // Traitement de la requete
         if ($completeSearch->isSubmitted()) {
 
+            //Initialisation de la variable à 0 pour afficher la totalité des résidences
             $resultatRecherche = 0;
 
+            //Récupération des résultats de recherche
             $data = $completeSearch->getData();
 
-
+            //si aucun type de logement selectionné la variable est initialisé à null
             if ($data['typeLogement']->isEmpty()){
                 $data['typeLogement'] = null;
             }
 
+            //récupération des residences selon les choix pris en compte dans le moteur de recherche
             $residences = $em->getRepository(Residence::class)->completeSearch($data);
 
+            //si des résidences sont trouveés, initialisation de la variable à 2 pur afficher des residences à suggerer
             if (!empty($residences)){
                 $resultatRecherche = 2;
             }
@@ -185,8 +186,6 @@ class NosResidencesController extends Controller
                 $resultatRecherche = 1;
             }
 
-
-            // Fin contenu associe
 
             // recherche des residences à exclure de la liste des residences à suggerer
             if (!empty($residences)) {

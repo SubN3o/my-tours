@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Search Complete -->
+    <!-- Moteur de recherche -->
     <div class="row completeSearch">
         <div class="col offset-m2 offset-l1 s12 m8 l4">
 
@@ -15,6 +15,7 @@
                 {{ form_start(completeSearch) }}
                 <div class="card-tabs">
                     <ul class="onglet tabs tabs-fixed-width">
+                        <!-- onglet du moteur de recherche -->
                         <li class="tab"><a class="active" href="#localisation"><i class="material-icons medium">location_on</i><br>Localisation</a>
                         </li>
                         <li class="tab"><a href="#type"><i class="material-icons medium">dashboard</i><br>Type</a></li>
@@ -23,6 +24,7 @@
                     </ul>
                 </div>
                 <div class="search card-content">
+                    <!-- onglet lieu -->
                     <div id="localisation">
                         <div class="titreSearch">Où souhaitez-vous acheter ?</div>
                         <div class="row no-margin-bottom">
@@ -35,6 +37,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- onglet type de logement -->
                     <div id="type">
                         <div class="titreSearch">Sélectionnez le type souhaité</div>
                         <div class="row no-margin-bottom">
@@ -44,6 +47,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- onglet budget -->
                     <div id="budget">
                         <div class="titreSearch">Votre budget</div>
                         <div class="row no-margin-bottom">
@@ -64,6 +68,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- boutton de validation -->
                 <div class="rechercher center">
                     {{ form_widget(completeSearch.submit) }}
                 </div>
@@ -84,6 +89,7 @@
         <div class="col offset-l1 s12 l10 liste-biens">
 
             <div class="row center no-margin-bottom">
+                <!-- affichage du titre selon les resultats de recherche -->
                 {% set nb_res = residences|length %}
                 {% if  resultatRecherche == 0 %}
                     <h1>
@@ -250,7 +256,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-
+            //autocompletion des villes du moteur de recherche
             $('#complete_search_ville').autocomplete({
                 data: {
                     {% for ville in villes %}
@@ -268,9 +274,11 @@
         });
     </script>
     <script>
+        //affichage de la googleMap
         function initMap() {
 
 //                    var count = 0;
+            //récupération des residences
             var locations = [
                 {% for residence in residences %}
                 [
@@ -287,6 +295,7 @@
 
             ];
 
+            //centrage de la map
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 12,
                 center: {lat: 47.902964, lng: 1.909251},
@@ -298,7 +307,7 @@
 
             for (i = 0; i < locations.length; i++) {
 
-
+                //remplacement du marker google par celui de My ORLEANS
                 marker = new google.maps.Marker({
                     position: {lat: locations[i][1], lng: locations[i][2]},
                     map: map,
@@ -307,6 +316,7 @@
                 });
 
 
+                //affichage de vignette personalisé sur chaque résidence
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
 
