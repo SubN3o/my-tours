@@ -15,22 +15,22 @@
                                 {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                                     <a class="copy_button" href="{{ absolute_url(asset('uploads/'~media.mediaName)) }}"><i
                                                 class="material-icons">crop_original</i></a>
+                                    Image
                                 {% endfor %}
-                                Image
                             </span>
                             <span>
                                 {% for plaquette in plaquettes %}
                                     <a class="copy_button" href="{{ absolute_url(asset('uploads/'~plaquette.media.mediaName)) }}"><i
                                     class="material-icons">picture_as_pdf</i></a>
+                                    Plaquette
                                 {% endfor %}
-                                Plaquette
                             </span>
                             <span>
                                 {% for media in residence.medias if media.typeMedia.nom == 'pdf' %}
                                     <a class="copy_button" href="{{ absolute_url(asset('uploads/'~media.mediaName)) }}"><i
                                                 class="material-icons">picture_as_pdf</i></a>
+                                    Notice
                                 {% endfor %}
-                                Notice
                             </span>
                         </div>
                         <div class="card-content table-responsive">
