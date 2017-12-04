@@ -13,6 +13,7 @@
 
 {% block content %}
     <div id="residence">
+        <!-- bouton retour Nos Résidences -->
         <div class="row">
             <div class="col offset-s1 retourSearch1">
                 <a class="waves-effect waves-light btn"
@@ -25,23 +26,29 @@
         <div class="sliderResidence">
             <div class="slider">
                 <ul class="slides">
+                    <!-- 1ere slide -->
                     <li>
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                            <!-- affichage de la photo principale -->
                             <img id="image" src="{{ asset('uploads/'~media.mediaName) }}" alt="photo principale résidence {{ residence.nom }}">
                         {% endfor %}
                         {% if residence.lienYoutube != null %}
+                            <!-- bouton play pour le lien youtube -->
                             <a href="#modalYtp"><i class="material-icons white-text">play_circle_outline</i></a>
                         {% endif %}
+                        <!-- affchage du nom et du lieu de la résidence -->
                         <div class="encart center">
                             <h1>{{ residence.nom }}</h1>
                             <h2>{{ residence.ville.nom }}{% if residence.quartier != null %} - {{ residence.quartier.nom }}{% endif %}</h2>
                         </div>
 
                     </li>
+                    <!-- affichage des slides restantes -->
                     {% for media in residence.medias if media.typeMedia.nom == 'image' %}
                         <li>
                             <img src="{{ asset('uploads/'~media.mediaName) }}" alt="photo {{ loop.index }} résidence {{ residence.nom }}">
                             {% if residence.lienYoutube != null %}
+                                <!-- bouton play pour le lien youtube -->
                                 <a href="#modalYtp"><i class="material-icons white-text">play_circle_outline</i></a>
                             {% endif %}
                         </li>
@@ -61,7 +68,7 @@
         </div>
     </div>
 
-    <!-- 2nde Navbar -->
+    <!-- 2nde Navbar pour acceder au contenu de la page -->
     <div class="row">
         <div class="col offset-l2 s12 l8 hide-on-med-and-down" id="menuResidence">
             <nav>
@@ -77,6 +84,7 @@
     </div>
 
     <div class="row">
+        <!-- affichage des infos de la résidence -->
         <div class="col offset-xl1 s12 l5 xl4 cartouche">
             <span class="col s12 center">À partir de {{ prixMin|number_format(0, '.', ' ') }}€</span>
             <div class="cartoucheInfo">
@@ -144,13 +152,13 @@
                             </div>
                         </div>
                     </li>
-                    <!-- pour les notes, on les rentre de BAS EN HAUT. celle du bas est donc transport, celle du haut esthétisme  -->
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="col s12 center hide-on-large-only offreSmall">
+        <!-- affichage offre mobile -->
         <p>{{ residence.offre }}</p>
     </div>
 
@@ -159,6 +167,7 @@
     <!-- Description Résidence -->
     <div class="row">
         <div class="col s12 accrocheResidence">
+            <!-- description de la résidence -->
             <div class="col offset-l2 l6">
                 <h3 class="center accroche">{{ residence.accroche }}</h3>
                 <div class="description">{{ residence.description | raw }}</div>
@@ -241,6 +250,7 @@
     <div class="row">
         <div class="col offset-l1 offset-xl2 s12 l10 xl8">
             <div class="accordeon-residence center">
+                <!-- entête du tableau -->
                 <div class="row accordeon-entete">
                     <div class="col s1 colRef">Réf</div>
                     <div class="col s2 colType">Type</div>
@@ -250,7 +260,9 @@
                 </div>
                 <ul class="collapsible" data-collapsible="accordion">
                     {% if flatsT1 != null %}
+                        <!-- tableau des T1 -->
                         <li>
+                            <!-- entête des T1 -->
                             <div class="collapsible-header">
                                 <div class="row">
                                     <div class="col offset-s1 s2">1 pièce</div>
@@ -300,6 +312,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- corps des T1 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT1 %}
                                     <div class="row">
@@ -336,7 +349,9 @@
                         </li>
                     {% endif %}
                     {% if flatsT2 != null %}
+                        <!-- tableau des T2 -->
                         <li>
+                            <!-- entête des T2 -->
                             <div class="collapsible-header">
                                 <div class="row">
                                     <div class="col offset-s1 s2">2 pièces</div>
@@ -386,6 +401,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- corps des T2 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT2 %}
                                     <div class="row">
@@ -421,7 +437,9 @@
                         </li>
                     {% endif %}
                     {% if flatsT3 != null %}
+                        <!-- tableau des T3 -->
                         <li>
+                            <!-- entête des T3 -->
                             <div class="collapsible-header">
                                 <div class="row">
                                     <div class="col offset-s1 s2">3 pièces</div>
@@ -471,6 +489,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- corps des T3 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT3 %}
                                     <div class="row">
@@ -506,7 +525,9 @@
                         </li>
                     {% endif %}
                     {% if flatsT4 != null %}
+                        <!-- tableau des T4 -->
                         <li>
+                            <!-- entête des T4 -->
                             <div class="collapsible-header">
                                 <div class="row">
                                     <div class="col offset-s1 s2">4 pièces</div>
@@ -556,6 +577,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- corps des T4 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT4 %}
                                     <div class="row">
@@ -591,7 +613,9 @@
                         </li>
                     {% endif %}
                     {% if flatsT5 != null %}
+                        <!-- tableau des T5 -->
                         <li>
+                            <!-- entête des T5 -->
                             <div class="collapsible-header">
                                 <div class="row">
                                     <div class="col offset-s1 s2">5 pièces et plus</div>
@@ -641,6 +665,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- corps des T5 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT5 %}
                                     <div class="row">
@@ -680,6 +705,7 @@
         </div>
     </div>
     <div class="row">
+        <!-- bouton retour à Nos Résidences -->
         <div class="col offset-s1 retourSearch2">
             <a class="waves-effect waves-light btn"
                href="{{ path("nosresidences") }}">
@@ -817,6 +843,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
+        //effet sticky de la 2nde NavBar
         jQuery(document).ready(function ($) {
             $(window).scroll(function () {
 
@@ -841,6 +868,7 @@
         });
     </script>
     <script type="text/javascript">
+        //ajout-suppression de la classe "active" dans la 2nde NavBar selon la position de la page
         jQuery(document).ready(function ($) {
             $(window).scroll(function () {
 
@@ -879,7 +907,7 @@
     <script src="{{ asset('js/testcompteur.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            // Slider residence
+            // Paramètre du Slider residence
             if (window.innerWidth > 992) {
                 $('.slider').slider({
                     indicators: true,
@@ -900,6 +928,7 @@
         });
     </script>
     <script>
+        //effet smoothScroll
         $(document).ready(function () {
             $('a[href*="anchor-"]').click(function () { // Au clic sur un élément
                 var page = $(this).attr('href'); // Page cible
@@ -910,6 +939,7 @@
         });
     </script>
     <script type="text/javascript">
+        //arrêt de la video à la fermeture de la modal youtube
         $(document).ready(function () {
             // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
             $('#modalYtp').modal(
@@ -924,8 +954,10 @@
     </script>
 
     <script>
+        //googleMap de la résidence
         $(document).ready(function () {
 
+            //choix des mots-clés pour les filtres
             var commerce = ['boulangerie', 'epicerie', 'supermarche'];
             var service = ['banque', 'school', 'parc', 'pharmacie'];
             var transport = ['train_station', 'arret de tram', 'station de velos'];
@@ -933,6 +965,7 @@
             var htmlService = '';
             var htmlTransport = '';
 
+            //génération des boutons des filtres
             $.each(commerce, function (index, value) {
                 var name = value.replace(/_/g, " ");
                 htmlCommerce += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
@@ -955,6 +988,7 @@
             $('#transport').html(htmlTransport);
         });
 
+        //formatage des noms des filtres
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
@@ -965,6 +999,7 @@
 
         function initialize() {
 
+            //centrage de la googleMap sur la résidence
             var residence = {lat: {{ residence.latitude }} , lng: {{ residence.longitude }} };
 
             map = new google.maps.Map(document.getElementById('map'), {
@@ -973,6 +1008,7 @@
 
             });
 
+            //remplacement du marker google par celui de My ORLEANS
             var marker = new google.maps.Marker({
                 position: residence,
                 icon: '../../img/marker.png'
@@ -1084,6 +1120,7 @@
 //                });
 //            });
 
+            //affichage des résultat du filtre
             var marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location,
@@ -1094,6 +1131,7 @@
                 }
             });
 
+            //affichage des informations des resultats du filtre
             google.maps.event.addListener(marker, 'click', function () {
                 infowindow.setContent(place.name + '<br>' + place.vicinity);
                 infowindow.open(map, this);

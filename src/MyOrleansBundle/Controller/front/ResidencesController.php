@@ -31,27 +31,37 @@ class ResidencesController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
+        //récupération des appartements par type
         $flatsT1 = $em->getRepository(Flat::class)->flatByType($residence, 'T1');
         $flatsT2 = $em->getRepository(Flat::class)->flatByType($residence, 'T2');
         $flatsT3 = $em->getRepository(Flat::class)->flatByType($residence, 'T3');
         $flatsT4 = $em->getRepository(Flat::class)->flatByType($residence, 'T4');
         $flatsT5 = $em->getRepository(Flat::class)->flatByType($residence, 'T5+');
 
+        //récupération des tpes de logement
         $typelogment = $em->getRepository(TypeLogement::class)->findAll();
+
+        //récupération du 1er prix
         $prixMin = $calculator->calculPrix($residence);
+
+        //récupération des appartements disponibles
         $flatsDispo = $calculator->calculFlatDispo($residence);
+
+        //récupération du type min et max disponible
         $typeMinMax = $calculator->calculSizes($residence);
+
+        //récupération des medias de la résidence
         $medias = $residence->getMedias();
 
+        //récupération des appartements disponibles par type
         $T1Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T1');
         $T2Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T2');
         $T3Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T3');
         $T4Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T4');
         $T5Dispo = $em->getRepository(Flat::class)->flatDispoByType($residence, 'T5+');
 
-
+        //récupération de l'id de la résidence pour suggerer d'autre résidence
         $idResidence [] = $residence->getId();
-
         $residencesSuggerees = $em->getRepository(Residence::class)->suggestResidence($idResidence);
 
 
