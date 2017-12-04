@@ -34,28 +34,34 @@ class SiteMap
     {
         $urls = array();
 
+        //recupération des routes des pages principales du site
         $menu = [
             'my-orleans',
             'expertise',
             'nosresidences'
             ];
 
+        //géneration des url
         foreach ($menu as $page) {
             $urls[] = array(
                 'loc' => $this->router->generate($page)
             );
         }
 
+        //récupérations des routes de chaque résidence
         $residences = $this->em->getRepository(Residence::class)->findAll();
 
+        //génération des url
         foreach ($residences as $residence) {
             $urls[] = array(
                 'loc' => $this->router->generate('residences', array('Ville' => $residence->getVille()->getSlug(),'slug' => $residence->getSlug()),true)
             );
         }
 
+        //récupération des routes de chaque appartement
         $flats = $this->em->getRepository(Flat::class)->findAll();
 
+        //génération des url
         foreach ($flats as $flat) {
             $urls[] = array(
                 'loc' => $this->router->generate('appartement', array('slug' => $flat->getResidence()->getSlug(),'reference' => $flat->getReference()),true)
