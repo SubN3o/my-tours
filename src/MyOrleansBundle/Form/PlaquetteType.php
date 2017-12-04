@@ -2,6 +2,8 @@
 
 namespace MyOrleansBundle\Form;
 
+use MyOrleansBundle\Entity\Residence;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,6 +19,10 @@ class PlaquetteType extends AbstractType
             ->add('nom')
             ->add('media', MediaType::class,[
                 'required' => false
+            ])
+            ->add('residence', EntityType::class, [
+                'class' => Residence::class,
+                'choice_label' => 'nom'
             ])
         ;
     }

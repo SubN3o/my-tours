@@ -19,6 +19,10 @@
                                     <td>{{ plaquette.nom }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Résidence</th>
+                                    <td>{{ plaquette.residence.nom }}</td>
+                                </tr>
+                                <tr>
                                     <th>Lien</th>
                                     <td>{{ absolute_url(asset('uploads/'~plaquette.media.mediaName)) }}</td>
                                 </tr>

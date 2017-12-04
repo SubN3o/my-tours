@@ -15,10 +15,11 @@
                                 <thead>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>lien</th>
+                                    <th>Résidence</th>
+                                    <th>Lien</th>
                                     <th>Aperçu</th>
                                     <th>Éditer</th>
-                                    <th>Lien Pdf</th>
+                                    <th>Pdf</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -26,6 +27,7 @@
                                     <tr>
 
                                         <td>{{ plaquette.nom }}</td>
+                                        <td>{{ plaquette.residence.nom }}</td>
                                         <td>{{ absolute_url(asset('uploads/'~plaquette.media.mediaName)) }}</td>
                                         <td>
                                             <a href="{{ path('admin_plaquette_show', { 'id': plaquette.id }) }}"><i
@@ -36,7 +38,7 @@
                                                         class="material-icons">build</i></a>
                                         </td>
                                         <td>
-                                            <a class="copy_button" href="{{ absolute_url(asset('uploads/'~plaquette.media.mediaName)) }}"><i
+                                            <a href="{{ absolute_url(asset('uploads/'~plaquette.media.mediaName)) }}"><i
                                                         class="material-icons">picture_as_pdf</i></a>
 
 

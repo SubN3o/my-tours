@@ -14,14 +14,19 @@
 
                             {{ form_start(edit_form) }}
                             <div class="row">
-                                <div class="col s12">
+                                <div class="col s12 l6">
                                     {{ form_label(edit_form.nom, 'Nom :') }}
                                     {{ form_widget(edit_form.nom) }}
                                     {{ form_errors(edit_form.nom) }}
                                 </div>
+                                <div class="col s12 l6">
+                                    {{ form_label(edit_form.residence, 'Résidence :') }}
+                                    {{ form_widget(edit_form.residence) }}
+                                    {{ form_errors(edit_form.residence) }}
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="col s12">
+                                <div class="col s12 l6">
                                     {% if plaquette.media.mediaName is defined %}
                                         {% if plaquette.media.typeMedia.nom == "pdf" %}
                                             <div class="imgUploader">

@@ -153,12 +153,23 @@
                                     {% for media in residence.medias %}
                                         {% if media.id != null %}
                                             {{ loop.index0 }}
-                                            <p class="imgUploader"><img class="responsive-img"
-                                                                        src="{{ asset('uploads/'~media.mediaName) }}"/>
-                                                {% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}
-                                                    <a href="{{ path('residence_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
-                                                {% endif %}
-                                            </p>
+                                            {% if media.typeMedia.nom == "pdf" %}
+                                                <div class="imgUploader">
+                                                    <a href="{{ asset('uploads/'~media.mediaName) }}">
+                                                        <img class="responsive-img"
+                                                             src="{{ asset('uploads/pdf.jpg') }}"/>
+                                                    </a>
+                                                </div>
+                                            {% else %}
+                                                <div class="imgUploader"><img class="responsive-img"
+                                                                              src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                                </div>
+                                            {% endif %}
+                                            {% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}
+                                                <a href="{{ path('article_media_delete', {"id" : residence.id, "media_id" : media.id}) }}">Supprimer</a>
+                                                <br>
+                                            {% endif %}
+
                                         {% endif %}
                                     {% endfor %}
                                     <h3>Ajouter une nouvelle image.</h3>
@@ -169,6 +180,7 @@
                                     <p>Utilisez le type de média "<b>image-header</b>" pour personnaliser le parallax.
                                     </p>
                                     <p>Utilisez le type de média "<b>icone</b>" pour illustrer une offre.
+                                    <p>Utilisez le type de média "<b>pdf</b>" pour associer une notice au format Pdf.
                                     </p> {{ form_widget(edit_form.medias) }}
                                     {{ form_errors(edit_form.medias) }}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"

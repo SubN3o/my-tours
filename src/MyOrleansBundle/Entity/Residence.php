@@ -298,6 +298,7 @@ class Residence
      */
     private $lienYoutube;
 
+
     /**
      * @return int
      */

@@ -9,6 +9,30 @@
                         <div class="card-header light-green">
                             <h4 class="title">Liste des biens pour la résidence {{ residence.nom }}</h4>
                         </div>
+                        <div class="col s12 document center">
+                            <span>Liens :</span>
+                            <span>
+                                {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                    <a class="copy_button" href="{{ absolute_url(asset('uploads/'~media.mediaName)) }}"><i
+                                                class="material-icons">crop_original</i></a>
+                                {% endfor %}
+                                Image
+                            </span>
+                            <span>
+                                {% for plaquette in plaquettes %}
+                                    <a class="copy_button" href="{{ absolute_url(asset('uploads/'~plaquette.media.mediaName)) }}"><i
+                                    class="material-icons">picture_as_pdf</i></a>
+                                {% endfor %}
+                                Plaquette
+                            </span>
+                            <span>
+                                {% for media in residence.medias if media.typeMedia.nom == 'pdf' %}
+                                    <a class="copy_button" href="{{ absolute_url(asset('uploads/'~media.mediaName)) }}"><i
+                                                class="material-icons">picture_as_pdf</i></a>
+                                {% endfor %}
+                                Notice
+                            </span>
+                        </div>
                         <div class="card-content table-responsive">
                             {% if flats is not empty %}
                                 <table class="table">
@@ -23,7 +47,7 @@
                                         <th>Aperçu</th>
                                         <th>Éditer</th>
                                         <th>Cloner</th>
-                                        <th>Pdf</th>
+                                        <th>Lien fiche</th>
                                     </tr>
                                     </thead>
                                     <tbody>

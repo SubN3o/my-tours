@@ -103,10 +103,19 @@
                             <hr>
                             <div class="row">
                                 {% for media in residence.medias %}
-                                    <div class="col s4">
-                                        <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
-                                        <p>{{ media.typeMedia.nom }}</p>
-                                    </div>
+                                    {% if media.typeMedia.nom == "pdf" %}
+                                        <div class="col s3">
+                                            <a href="{{ asset('uploads/'~media.mediaName) }}">
+                                                <img class="responsive-img" src="{{ asset('uploads/pdf.jpg') }}"/>
+                                            </a>
+                                            <p>{{ media.typeMedia.nom }}</p>
+                                        </div>
+                                    {% else %}
+                                        <div class="col s3">
+                                            <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                            <p>{{ media.typeMedia.nom }}</p>
+                                        </div>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                             <ul>

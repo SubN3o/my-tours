@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Media;
+use MyOrleansBundle\Entity\Plaquette;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\FlatType;
@@ -38,6 +39,8 @@ class FlatController extends Controller
 
         $flats = $em->getRepository('MyOrleansBundle:Flat')->findByResidence($residence, ['reference'=>'ASC']);
 
+        $plaquettes = $em->getRepository(Plaquette::class)->findByResidence($residence->getId());
+
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"
          * */
@@ -51,6 +54,7 @@ class FlatController extends Controller
         return $this->render('flat/index.html.twig', array(
             'flats' => $results,
             'residence' => $residence,
+            'plaquettes' => $plaquettes
         ));
     }
 

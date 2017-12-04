@@ -93,3 +93,11 @@ textarea.materialize-textarea {
     padding-left: 25px;
     padding-right: 30px;
 }
+
+.document {
+    margin-top: 20px;
+}
+
+.document span {
+    margin-right: 20px;
+}

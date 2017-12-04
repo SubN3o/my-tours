@@ -133,7 +133,7 @@ class PlaquetteController extends Controller
 //                $media->setUpdatedAt($date);
 //            }
 
-            $this->addFlash('success', 'Votre témoignage a bien été mis à jour');
+            $this->addFlash('success', 'Votre plaquette a bien été mis à jour');
             return $this->redirectToRoute('admin_plaquette_index', array('id' => $plaquette->getId()));
         }
 
@@ -161,7 +161,7 @@ class PlaquetteController extends Controller
             $em->flush();
         }
 
-        $this->addFlash('danger', 'Votre témoignage a bien été supprimé');
+        $this->addFlash('danger', 'Votre plaquette a bien été supprimé');
         return $this->redirectToRoute('admin_plaquette_index');
     }
 

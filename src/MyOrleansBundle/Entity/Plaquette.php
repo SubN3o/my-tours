@@ -37,6 +37,30 @@ class Plaquette
     private $media;
 
     /**
+     * @ORM\OneToOne(targetEntity="Residence",cascade={"persist"}, fetch="EAGER")
+     * @Assert\NotNull()
+     */
+    private $residence;
+
+    /**
+     * @return mixed
+     */
+    public function getResidence()
+    {
+        return $this->residence;
+    }
+
+    /**
+     * @param mixed $residence
+     * @return Plaquette
+     */
+    public function setResidence($residence)
+    {
+        $this->residence = $residence;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getMedia()

@@ -25,7 +25,6 @@
                                     <th>Aperçu</th>
                                     <th>Éditer</th>
                                     <th>Biens</th>
-                                    <th>Image</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -59,12 +58,6 @@
                                                 <span data-badge-caption=""
                                                       class="new badge">{{ residence.flats|length }}</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                                                <a class="copy_button" href="{{ absolute_url(asset('uploads/'~media.mediaName)) }}"><i
-                                                            class="material-icons">crop_original</i></a>
-                                            {% endfor %}
                                         </td>
                                     </tr>
 
