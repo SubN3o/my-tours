@@ -15,9 +15,10 @@
                                 <thead>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Lien</th>
+                                    <th>lien</th>
                                     <th>Aperçu</th>
                                     <th>Éditer</th>
+                                    <th>Lien Pdf</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -33,6 +34,12 @@
                                         <td>
                                             <a href="{{ path('admin_plaquette_edit', { 'id': plaquette.id }) }}"><i
                                                         class="material-icons">build</i></a>
+                                        </td>
+                                        <td>
+                                            <a class="copy_button" href="{{ absolute_url(asset('uploads/'~plaquette.media.mediaName)) }}"><i
+                                                        class="material-icons">picture_as_pdf</i></a>
+
+
                                         </td>
                                     </tr>
 
@@ -58,4 +65,7 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}

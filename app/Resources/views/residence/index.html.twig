@@ -19,17 +19,13 @@
                                     <th>Adresse</th>
                                     <th>Code postal</th>
                                     <th>Ville</th>
-                                    <th>Quartier</th>
-                                    <th>Latitude</th>
-                                    <th>Longitude</th>
                                     <th>Datelivraison</th>
                                     <th>Favoris</th>
-                                    <th>Accroche</th>
-                                    <th>Accroche 2</th>
                                     <th>Offre</th>
                                     <th>Aperçu</th>
                                     <th>Éditer</th>
                                     <th>Biens</th>
+                                    <th>Image</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -46,17 +42,8 @@
                                         {% else %}
                                             <td></td>
                                         {% endif %}
-                                        {% if residence.quartier.nom is defined %}
-                                            <td>{{ residence.quartier.nom }}</td>
-                                        {% else %}
-                                            <td></td>
-                                        {% endif %}
-                                        <td>{{ residence.latitude }}</td>
-                                        <td>{{ residence.longitude }}</td>
                                         <td>{{ residence.dateLivraison }}</td>
                                         <td>{{ residence.favoris }}</td>
-                                        <td>{{ residence.accroche }}</td>
-                                        <td>{{ residence.accroche2 }}</td>
                                         <td>{{ residence.offre }}</td>
                                         <td>
                                             <a href="{{ path('admin_residence_show', { 'id': residence.id }) }}"><i
@@ -72,6 +59,12 @@
                                                 <span data-badge-caption=""
                                                       class="new badge">{{ residence.flats|length }}</span>
                                             </a>
+                                        </td>
+                                        <td>
+                                            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                                <a class="copy_button" href="{{ absolute_url(asset('uploads/'~media.mediaName)) }}"><i
+                                                            class="material-icons">crop_original</i></a>
+                                            {% endfor %}
                                         </td>
                                     </tr>
 
@@ -98,4 +91,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
 {% endblock %}
