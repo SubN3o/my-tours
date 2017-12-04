@@ -19,6 +19,8 @@ class TypeMedia
     const PLAN = 5;
     const PDF = 6;
     const ICONE = 7;
+    const PLAQUETTE = 8;
+    const NOTICE = 9;
 
     /**
      * @var int

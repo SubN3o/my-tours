@@ -19,14 +19,14 @@
                                 {% endfor %}
                             </span>
                             <span>
-                                {% for plaquette in plaquettes %}
-                                    <a class="copy_button" href="{{ absolute_url(asset('uploads/'~plaquette.media.mediaName)) }}"><i
-                                    class="material-icons">picture_as_pdf</i></a>
+                                {% for media in residence.medias if media.typeMedia.nom == 'plaquette' %}
+                                    <a class="copy_button" href="{{ absolute_url(asset('uploads/'~media.mediaName)) }}"><i
+                                                class="material-icons">picture_as_pdf</i></a>
                                     Plaquette
                                 {% endfor %}
                             </span>
                             <span>
-                                {% for media in residence.medias if media.typeMedia.nom == 'pdf' %}
+                                {% for media in residence.medias if media.typeMedia.nom == 'notice' %}
                                     <a class="copy_button" href="{{ absolute_url(asset('uploads/'~media.mediaName)) }}"><i
                                                 class="material-icons">picture_as_pdf</i></a>
                                     Notice
