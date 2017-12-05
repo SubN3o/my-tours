@@ -112,6 +112,37 @@ class Article
     private $slug;
 
     /**
+     * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 1,
+     *      minMessage = "Saisissez une valeur supérieure ou égale à 1",
+     *)
+     * @ORM\Column(name="tri", type="integer", nullable=true)
+     */private $tri;
+
+    /**
+     * @return int
+     */
+    public function getTri()
+    {
+        return $this->tri;
+    }
+
+    /**
+     * @param int $tri
+     * @return Article
+     */
+    public function setTri($tri)
+    {
+        $this->tri = $tri;
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return int

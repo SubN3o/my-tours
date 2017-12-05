@@ -23,7 +23,7 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
-    public function articleByTag($data)
+    public function articleByKeyword($data)
     {
         $qb = $this->createQueryBuilder('a');
 
@@ -34,7 +34,9 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
             ->orWhere('a.texte LIKE :keyword')
             ->setParameter('keyword', '%'.$data['keyword'].'%')
             ->join('a.tags','ta')
-            ->join('a.typeArticle','ty');
+            ->join('a.typeArticle','ty')
+            ->orderBy('a.date','DESC')
+        ;
 
         return $qb->getQuery()->getResult();
     }

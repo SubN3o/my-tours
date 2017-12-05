@@ -24,23 +24,25 @@ class ImmoPratiqueController extends Controller
 {
 
     /**
-     * @Route("/immo-pratique", name="immo_pratique")
+     * @Route("/info-pratique", name="immo_pratique")
      */
     public function immoPratiqueAction(SessionInterface $session, Request $request)
     {
-
-        $telephoneNumber = $this->getParameter('telephone_number');
-
         $em = $this->getDoctrine()->getManager();
-        $client = new Client();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->handleRequest($request);
 
-        $articles = $em->getRepository(Article::class)->findAll();
+        $articles = $em->getRepository(Article::class)->findBy([],['date'=>'DESC']);
 
         $articlesNoResult = 0;
 
         $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
+
+        $essentiel = $em->getRepository(Article::class)->findBy([],['tri'=>'ASC'],4);
+
+        $telephoneNumber = $this->getParameter('telephone_number');
+
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -76,25 +78,19 @@ class ImmoPratiqueController extends Controller
             'telephone_number' =>$telephoneNumber,
             'form' => $formulaire->createView(),
             'articlesSearch' => $articlesSearch->createView(),
-            'articlesNoResult' => $articlesNoResult
+            'articlesNoResult' => $articlesNoResult,
+            'essentiel'=>$essentiel
         ]);
     }
 
     /**
-     * @Route("/immo-pratique/resultat", name="immo_pratique_resultat")
+     * @Route("/info-pratique/resultat", name="immo_pratique_resultat")
      */
     public function immoPratiqueResultatAction(SessionInterface $session, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $telephoneNumber = $this->getParameter('telephone_number');
-
-        $client = new Client();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->handleRequest($request);
-
         $articlesNoResult = 0;
-
 
         $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
         $articlesSearch->handleRequest($request);
@@ -103,13 +99,21 @@ class ImmoPratiqueController extends Controller
 
             $data = $articlesSearch->getData();
 
-            $articles = $em->getRepository(Article::class)->articleByTag($data);
+            $articles = $em->getRepository(Article::class)->articleByKeyword($data);
 
             if ($articles == null){
-                $articles = $em->getRepository(Article::class)->findAll();
+                $articles = $em->getRepository(Article::class)->findBy([],['date'=>'DESC']);
                 $articlesNoResult = 1;
             }
         }
+
+        $essentiel = $em->getRepository(Article::class)->findBy([],['tri'=>'ASC'],4);
+
+        $telephoneNumber = $this->getParameter('telephone_number');
+
+        $client = new Client();
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+        $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -145,13 +149,14 @@ class ImmoPratiqueController extends Controller
             'telephone_number' =>$telephoneNumber,
             'form' => $formulaire->createView(),
             'articlesSearch' => $articlesSearch->createView(),
-            'articlesNoResult' => $articlesNoResult
+            'articlesNoResult' => $articlesNoResult,
+            'essentiel'=>$essentiel
         ]);
     }
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/immo-pratique/{slug}", name="article")
+     * @Route("/info-pratique/{slug}", name="article")
      * @ParamConverter("article", class="MyOrleansBundle:Article", options={"slug" = "slug"})
      */
     public function afficherArticleAction(Request $request, Article $article)

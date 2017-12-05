@@ -13,6 +13,13 @@
                         <div class="card-content table-responsive">
                             {{ form_start(form) }}
                             <div class="row">
+                                <div class="col s1">
+                                    {{ form_label(form.tri, "Tri:") }}
+                                    {{ form_widget(form.tri) }}
+                                    {{ form_errors(form.tri) }}
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s6">
                                     {{ form_label(form.titre, "Titre de l'article:") }}
                                     {{ form_widget(form.titre) }}
