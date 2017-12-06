@@ -1859,7 +1859,7 @@ video {
 }
 
 .partage p {
-    padding: 0 20px;
+    padding-right: 20px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -2537,6 +2537,10 @@ video {
 }
 
 .article-titre h1{
+    font-family: Montserrat;
+    font-size: 25pt;
+    letter-spacing: 0.55pt;
+    font-weight: 400;
     text-align: left;
     color: black;
     margin: 40px 0 10px 0;
@@ -2547,14 +2551,67 @@ video {
     margin: 0;
 }
 
+.article-tag .chip {
+    color: white;
+    font-size: 8pt;
+    height: 24px;
+    line-height: 24px;
+}
+
 .article-texte {
     margin-top: 20px;
+    font-family: "Cantarell";
+}
+
+.article-texte .illustration {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    float: left;
+    padding: 5px;
 }
 
 .article-tag {
     margin-bottom: 10px;
 }
 
+/*.article-partage .partage {*/
+    /*margin-left: 20%;*/
+/*}*/
+
 .articleByType, .article-last {
     margin-top: 40px;
+}
+
+.articleByType .small, .article-last .small {
+    box-shadow: none;
+    border: solid 1px #676767;
+} {
+    box-shadow: none;
+    border: solid 1px #676767;
+}
+
+.articleByType img , .article-last img {
+    height: 130px;
+    object-fit: cover;
+}
+.articleByType span, .article-last span {
+    font-family: Montserrat;
+    font-size: 17pt;
+    letter-spacing: 0.55pt;
+    font-weight: 400;
+    margin: 10px 5px;
+}
+
+.articleByType .card .card-content, .articleByType .card .card-action, .article-last .card .card-content, .article-last .card .card-action {
+    padding: 5px;
+    font-family: Cantarell;
+    font-size: 12pt;
+}
+
+@media screen and (max-width: 992px) {
+    .article-texte .illustration {
+        width: 150px;
+        height: 100px;
+    }
 }
