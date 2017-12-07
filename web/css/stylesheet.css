@@ -2663,4 +2663,16 @@ video {
         font-size: 9pt;
         line-height: 1.1;
     }
+
+    .articleByType img , .article-last img {
+        height: 70px;
+    }
+
+    .articleByType .small, .article-last .small {
+        height: 180px;
+    }
+
+    .articleByType .essentiel, .article-last .essentiel {
+        font-size: 9pt;
+    }
 }
