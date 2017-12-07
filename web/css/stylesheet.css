@@ -2455,7 +2455,7 @@ video {
 .articles .card .card-content, .articles .card .card-action {
     padding: 5px;
     font-family: Cantarell;
-    font-size: 12pt;
+    font-size: 11pt;
 }
 
 .article-type {
@@ -2509,7 +2509,7 @@ video {
 .articles-fixes .card .card-content, .articles-fixes .card .card-action {
     padding: 5px;
     font-family: Cantarell;
-    font-size: 12pt;
+    font-size: 11pt;
 }
 
 @media screen and (max-width: 1200px) {
