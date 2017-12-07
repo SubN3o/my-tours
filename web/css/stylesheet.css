@@ -2538,7 +2538,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 
 .article-texte {
     margin-top: 20px;
-    font-family: "Cantarell";
+    /*font-family: "Cantarell";*/
 }
 
 .article-texte .illustration {
