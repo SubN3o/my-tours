@@ -2342,8 +2342,17 @@ video {
 }
 
 .articles {
-    height: 600px;
+    height: 628px;
     overflow: scroll;
+}
+
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+    margin: 0 0 9px 0;
+    height: 2.7rem;
+}
+
+.article-search {
+    margin-bottom: 0;
 }
 
 .article-date {

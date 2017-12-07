@@ -15,19 +15,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col offset-l3 l6 s12 article-titre">
+        <div class="col offset-l1 l10 s12 article-titre">
             <h1>{{ article.titre }}</h1>
             <p class="left article-date">édité le : {{ article.date|date('d/m/Y') }}</p>
             <h2 class="right article-type">{{ article.typeArticle.nom }}</h2>
         </div>
-        <div class="col offset-l3 l6 s12 article-tag">
+        <div class="col offset-l1 l10 s12 article-tag">
             {% for tag in article.tags %}
                 <p class="chip greenMyO">{{ tag.nom }}</p>
             {% endfor %}
         </div>
     </div>
     <div class="row">
-        <div class="col offset-l3 l6 s12 article-texte">
+        <div class="col offset-l1 l10 s12 article-texte">
             {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
                 <img class="illustration" src="{{ asset('uploads/'~media.mediaName) }}"
                      alt="illustration article {{ article.titre }}">
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col offset-l3 l6 s12 center">
+        <div class="col offset-l1 l10 s12 center">
             <div class="partage valign-wrapper">
                 <p><i class="material-icons align-icon">share</i>Partager l'article</p>
                 <div class="partageIcone">
