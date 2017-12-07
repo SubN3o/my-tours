@@ -1629,7 +1629,6 @@ video {
 /* --------------------------------------------------------------------*/
 
 .infoFlat {
-    /*margin-bottom: 10px;*/
     font-family: Montserrat;
     letter-spacing: .55pt;
 
@@ -2197,77 +2196,6 @@ video {
     height: 45px;
 }
 
-
-/*!* GENERAL MEDIA QUERIES*/
-/*–––––––––––––––––––––––––––––––––––––––––––––––––– *!*/
-/*@media screen and (max-width: 992px) {*/
-    /*.timeline ol,*/
-    /*.timeline ol li {*/
-        /*width: auto;*/
-    /*}*/
-
-    /*.timeline ol {*/
-        /*padding: 0;*/
-        /*transform: none !important;*/
-    /*}*/
-
-    /*.timeline ol li {*/
-        /*display: block;*/
-        /*height: auto;*/
-        /*background: transparent;*/
-    /*}*/
-
-    /*.timeline ol li:first-child {*/
-        /*margin-top: 25px;*/
-        /*width: 100%;*/
-    /*}*/
-
-    /*.timeline ol li:not(:first-child) {*/
-        /*margin-left: auto;*/
-    /*}*/
-
-    /*.timeline ol li div {*/
-        /*width: 94%;*/
-        /*height: auto !important;*/
-        /*margin: 0 auto 25px;*/
-    /*}*/
-
-    /*.timeline ol li div {*/
-        /*position: static;*/
-    /*}*/
-
-    /*.timeline ol li:nth-child(odd) div {*/
-        /*transform: none;*/
-    /*}*/
-
-    /*.timeline ol li:nth-child(odd) div::before,*/
-    /*.timeline ol li:nth-child(even) div::before {*/
-        /*left: 50%;*/
-        /*top: 100%;*/
-        /*transform: translateX(-50%);*/
-        /*border: none;*/
-        /*border-left: 1px solid white;*/
-        /*height: 25px;*/
-    /*}*/
-
-    /*.timeline ol li:last-child,*/
-    /*.timeline ol li:nth-last-child(2) div::before,*/
-    /*.timeline ol li:not(:last-child)::after,*/
-    /*.timeline .arrows {*/
-        /*display: none;*/
-    /*}*/
-/*}*/
-
-
-/*.fnaimRow div img{*/
-    /*width: 40%;*/
-    /*height: 30%;*/
-    /*display: inline;*/
-/*}*/
-/*.fnaimRow div img:last-child{*/
-    /*margin: auto;*/
-/*}*/
-
 /* ------------------------------------------------------------------*/
 /* -------------------------- NOS SERVICES --------------------------*/
 /* ------------------------------------------------------------------*/
@@ -2644,6 +2572,16 @@ video {
 }
 
 @media screen and (max-width: 992px) {
+
+    .article-titre {
+        margin-bottom: 10px;
+    }
+
+    .article-titre h1{
+        font-size: 20pt;
+        margin: 10px 0 10px 0;
+    }
+
     .article-texte .illustration {
         width: 150px;
         height: 100px;

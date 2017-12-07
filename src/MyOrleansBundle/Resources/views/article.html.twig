@@ -8,6 +8,13 @@
 
 {% block content %}
     <div class="row">
+        <div class="col offset-s1 retourSearch1">
+            <a class="waves-effect waves-light btn"
+               href="{{ path("immo_pratique") }}">
+                <i class="fa fa-caret-left white-text"></i> RETOUR AUX INFOS PRATIQUES</a>
+        </div>
+    </div>
+    <div class="row">
         <div class="col offset-l3 l6 s12 article-titre">
             <h1>{{ article.titre }}</h1>
             <p class="left article-date">édité le : {{ article.date|date('d/m/Y') }}</p>
@@ -98,6 +105,14 @@
                     </div>
                 </a>
             {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <!-- bouton retour à Nos Résidences -->
+        <div class="col offset-s1 retourSearch1">
+            <a class="waves-effect waves-light btn"
+               href="{{ path("immo_pratique") }}">
+                <i class="fa fa-caret-left white-text"></i> RETOUR AUX INFOS PRATIQUES</a>
         </div>
     </div>
     <!-- début formulaire de contact -->
