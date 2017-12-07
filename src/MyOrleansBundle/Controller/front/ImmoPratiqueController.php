@@ -24,7 +24,7 @@ class ImmoPratiqueController extends Controller
 {
 
     /**
-     * @Route("/infos-pratique", name="immo_pratique")
+     * @Route("/infos-pratiques", name="immo_pratique")
      */
     public function immoPratiqueAction(SessionInterface $session, Request $request)
     {
@@ -84,7 +84,7 @@ class ImmoPratiqueController extends Controller
     }
 
     /**
-     * @Route("/infos-pratique/resultat", name="immo_pratique_resultat")
+     * @Route("/infos-pratiques/resultat", name="immo_pratique_resultat")
      */
     public function immoPratiqueResultatAction(SessionInterface $session, Request $request)
     {
@@ -156,7 +156,7 @@ class ImmoPratiqueController extends Controller
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/infos-pratique/{slug}", name="article")
+     * @Route("/infos-pratiques/{slug}", name="article")
      * @ParamConverter("article", class="MyOrleansBundle:Article", options={"slug" = "slug"})
      */
     public function afficherArticleAction(Request $request, Article $article)
