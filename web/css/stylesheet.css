@@ -2512,6 +2512,17 @@ video {
     font-size: 12pt;
 }
 
+@media screen and (max-width: 1200px) {
+    .articles h2, .articles-fixes h2 {
+        font-size: 14pt;
+        margin: 4px 0;
+    }
+
+    .articles-fixes .card .card-content, .articles-fixes .card .card-action, .articles .card .card-content, .articles .card .card-action {
+        font-size: 10pt;
+    }
+}
+
 @media screen and (max-width: 992px) {
     .immo-description {
         font-size: 10pt;

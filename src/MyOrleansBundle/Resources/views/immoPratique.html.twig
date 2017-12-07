@@ -66,12 +66,12 @@
                                 </div>
                                 <div class="card-stacked">
                                     <div class="card-content">
-                                        <span class="article-type right hide-on-med-and-down">{{ article.typeArticle.nom }}</span>
                                         <h2>{{ article.titre }}</h2>
                                         <p>{{ article.texte | truncate(110, true, '...') | raw }}</p>
                                     </div>
                                     <div class="card-action hide-on-med-and-down">
                                         <span class="article-date">édité le : {{ article.date|date('d/m/Y') }}</span>
+                                        <span class="article-type right">{{ article.typeArticle.nom }}</span>
                                     </div>
                                 </div>
                             </div>
