@@ -2542,11 +2542,13 @@ video {
 
     .articles h2, .articles-fixes h2 {
         font-size: 11pt;
-        margin: 4px 0;
+        margin: 0 0 3px 0;
+        letter-spacing: 0.1pt;
     }
 
     .articles-fixes .card .card-content, .articles-fixes .card .card-action, .articles .card .card-content, .articles .card .card-action {
         font-size: 10pt;
+        line-height: 1.1;
     }
 
     .articles .card.horizontal .card-image img {
