@@ -163,6 +163,8 @@ class ImmoPratiqueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $articleByType = '';
+
         //On récupère le type de l'article
         $type = $article->getTypeArticle()->getId();
 
@@ -172,26 +174,31 @@ class ImmoPratiqueController extends Controller
         //On récupère un tableau d'objet Article des autres articles du même Type
         $articlesByType = $em->getRepository(Article::class)->articleByType($idArticle, $type);
 
-        //On créé un tableau avec les Id des autres articles
-        $articlesId = [];
-
-        foreach ($articlesByType as $articleId){
-            $articlesId[] = $articleId->getId();
-        }
-
-        //On compte le tableau d'Id
-        $countArticlesId = count($articlesId);
-
-        //On récupère un chiffre aléatoire entre 0 et le dernier index du tableau d'Id
-        $random = rand(0,$countArticlesId - 1);
-
-        //On récupère un Id tiré aléatoirement dans le tableau
-        $idRandom = $articlesId[$random];
-
-        $articleByType = $em->getRepository(Article::class)->find($idRandom);
-
         //On créé un tableau d'Id des articles à exclurent
-        $articleExclu = [$idArticle,$idRandom];
+        $articleExclu = [$idArticle];
+
+        if ($articlesByType != null) {
+            //On créé un tableau avec les Id des autres articles
+            $articlesId = [];
+
+            foreach ($articlesByType as $articleId) {
+                $articlesId[] = $articleId->getId();
+            }
+
+            //On compte le tableau d'Id
+            $countArticlesId = count($articlesId);
+
+            //On récupère un chiffre aléatoire entre 0 et le dernier index du tableau d'Id
+            $random = rand(0, $countArticlesId - 1);
+
+            //On récupère un Id tiré aléatoirement dans le tableau
+            $idRandom = $articlesId[$random];
+
+            $articleByType = $em->getRepository(Article::class)->find($idRandom);
+
+            //On ajoute au tableau des articles à exclurent l'id Random
+            $articleExclu = [$idArticle,$idRandom];
+        }
 
         //On récupère le dernier article créé en excluant les articles précédents pour eviter une redondance
         $lastArticle = $em->getRepository(Article::class)->lastArticle($articleExclu);
@@ -234,7 +241,7 @@ class ImmoPratiqueController extends Controller
             'article' => $article,
             'telephone_number' => $telephoneNumber,
             'articleByType' => $articleByType,
-            'random' => $random,
+//            'random' => $random,
             'lastArticle'=>$lastArticle,
             'form' => $formulaire->createView()
         ]);

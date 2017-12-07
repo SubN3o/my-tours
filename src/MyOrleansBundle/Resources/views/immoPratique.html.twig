@@ -10,73 +10,79 @@
 {% block content %}
     <h1>Actualités et dossiers thematiques</h1>
     <div class="row">
-        <p class="immo-description col offset-l1 l10 s12">Découvrez nos articles et actualités : immobilier neuf, investissement locatif et défiscalisation, financements, conseils placements, location, gestion locative.</p>
+        <div class="col offset-l1 l10 s12">
+            <p class="immo-description">Découvrez nos articles et actualités : immobilier neuf,
+                investissement locatif et défiscalisation, financements, conseils placements, location, gestion
+                locative.</p>
+        </div>
     </div>
     <div class="row">
-        <div class="col offset-l1 l6 s12">
-            {{ form_start(articlesSearch) }}
-            <div class="input-field col l5 s12">
-                {{ form_widget(articlesSearch.keyword) }}
-                {{ form_errors(articlesSearch.keyword) }}
-                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-            </div>
-            {{ form_end(articlesSearch) }}
-            {% if articlesNoResult == 1 %}
-                <div class="center noResult col l12">Désolé, aucun article ne correspond à votre recherche</div>
-            {% endif %}
-
-            <div class="articles col l12">
-                {% for article in articles %}
-                    <a href="{{ path('article', { 'slug': article.slug }) }}">
-                        <div class="card horizontal">
-                            <div class="card-image hide-on-med-and-down">
-                                {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
-                                    <img src="{{ asset('uploads/'~media.mediaName) }}"
-                                         alt="illustration article {{ article.titre }}">
-                                {% endfor %}
-                            </div>
-                            <div class="card-stacked">
-                                <div class="card-content">
-                                    <span class="article-type right">{{ article.typeArticle.nom }}</span>
-                                    <h2>{{ article.titre }}</h2>
-                                    <p>{{ article.texte | truncate(100, true, '...') | raw }}</p>
-                                </div>
-                                <div class="card-action">
-                                    <span class="article-date">édité le : {{ article.date|date('d/m/Y') }}</span>
-                                    <span> | </span>
-                                    {% for tag in article.tags %}
-                                        <span class="chip greenMyO">{{ tag.nom }}</span>
+        <div class="col offset-l1 l10">
+            <div class="col l5 s12 articles-fixes push-l7">
+                <p class="essentiel center">Les essentiels</p>
+                {% for article in essentiel %}
+                    <div class="col s6">
+                        <a href="{{ path('article', { 'slug': article.slug }) }}">
+                            <div class="card small">
+                                <div class="card-image">
+                                    {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
+                                        <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                             alt="illustration article {{ article.titre }}">
                                     {% endfor %}
                                 </div>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col l4 articles-fixes">
-            <p class="essentiel center">L'essentiel</p>
-            {% for article in essentiel %}
-                <div class="col s6">
-                    <a href="{{ path('article', { 'slug': article.slug }) }}">
-                        <div class="card small">
-                            <div class="card-image">
-                                {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
-                                    <img src="{{ asset('uploads/'~media.mediaName) }}"
-                                         alt="illustration article {{ article.titre }}">
-                                {% endfor %}
-                            </div>
-                            <div class="card-stacked">
-                                <div class="card-content">
-                                    <h2>{{ article.titre }}</h2>
-                                    <p>{{ article.texte | truncate(70, true, '...') | raw }}</p>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <h2>{{ article.titre }}</h2>
+                                        <p>{{ article.texte | truncate(70, true, '...') | raw }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col l7 s12 pull-l5">
+                {{ form_start(articlesSearch) }}
+                <div class="input-field col l5 s12">
+                    {{ form_widget(articlesSearch.keyword) }}
+                    {{ form_errors(articlesSearch.keyword) }}
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
                 </div>
-            {% endfor %}
+                {{ form_end(articlesSearch) }}
+                {% if articlesNoResult == 1 %}
+                    <div class="center noResult col l12">Désolé, aucun article ne correspond à votre recherche</div>
+                {% endif %}
+
+                <div class="articles col l12">
+                    {% for article in articles %}
+                        <a href="{{ path('article', { 'slug': article.slug }) }}">
+                            <div class="card horizontal">
+                                <div class="card-image">
+                                    {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
+                                        <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                             alt="illustration article {{ article.titre }}">
+                                    {% endfor %}
+                                </div>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <span class="article-type right hide-on-med-and-down">{{ article.typeArticle.nom }}</span>
+                                        <h2>{{ article.titre }}</h2>
+                                        <p>{{ article.texte | truncate(110, true, '...') | raw }}</p>
+                                    </div>
+                                    <div class="card-action hide-on-med-and-down">
+                                        <span class="article-date">édité le : {{ article.date|date('d/m/Y') }}</span>
+                                        <span> | </span>
+                                        {% for tag in article.tags %}
+                                            <span class="chip greenMyO">{{ tag.nom }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
     <!-- début formulaire de contact -->

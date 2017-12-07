@@ -1,6 +1,6 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
-{% block title %}{{ article.titre }} | My-Orléans{% endblock %}
+{% block title %}{{ article.titre }} | My ORLEANS{% endblock %}
 
 {% block description %}
     <meta name="description" content="{{ article.texte | truncate(140, true, '...') | raw }}"/>
@@ -50,26 +50,36 @@
     </div>
     <div class="row">
         <div class="col offset-l3 l2 offset-s1 s5 articleByType">
-            <p>Article pouvant vous interesser:</p>
-            <a href="{{ path('article', { 'slug': articleByType.slug }) }}">
-                <div class="card small">
-                    <div class="card-image">
-                        {% for media in articleByType.medias if media.typeMedia.nom == "image-cover" %}
-                            <img src="{{ asset('uploads/'~media.mediaName) }}"
-                                 alt="illustration article {{ articleByType.titre }}">
-                        {% endfor %}
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <span>{{ articleByType.titre }}</span>
-                            <p>{{ articleByType.texte | truncate(70, true, '...') | raw }}</p>
+            {% if articleByType %}
+                <p>Autre
+                    {% if articleByType.typeArticle.nom == 'Dossier thématiques' %}
+                        dossier
+                    {% elseif articleByType.typeArticle.nom == 'Actualités immobilières' %}
+                        actualité
+                    {% elseif articleByType.typeArticle.nom == 'Fiches conseils' %}
+                        fiche
+                    {% endif %}
+                </p>
+                <a href="{{ path('article', { 'slug': articleByType.slug }) }}">
+                    <div class="card small">
+                        <div class="card-image">
+                            {% for media in articleByType.medias if media.typeMedia.nom == "image-cover" %}
+                                <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                     alt="illustration article {{ articleByType.titre }}">
+                            {% endfor %}
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <span>{{ articleByType.titre }}</span>
+                                <p>{{ articleByType.texte | truncate(70, true, '...') | raw }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            {% endif %}
         </div>
         <div class="col offset-l2 l2 s5 article-last">
-            <p>Dernière actualité :</p>
+            <p>Dernier article :</p>
             {% for article in lastArticle %}
                 <a href="{{ path('article', { 'slug': article.slug }) }}">
                     <div class="card small">
