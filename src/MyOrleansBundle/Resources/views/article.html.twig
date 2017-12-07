@@ -51,13 +51,13 @@
     <div class="row">
         <div class="col offset-l3 l2 offset-s1 s5 articleByType">
             {% if articleByType %}
-                <p>Autre
+                <p class="essentiel">Autre
                     {% if articleByType.typeArticle.nom == 'Dossier thématiques' %}
-                        dossier :
+                        dossier
                     {% elseif articleByType.typeArticle.nom == 'Actualités immobilières' %}
-                        actualité :
+                        actualité
                     {% elseif articleByType.typeArticle.nom == 'Fiches conseils' %}
-                        fiche :
+                        fiche
                     {% endif %}
                 </p>
                 <a href="{{ path('article', { 'slug': articleByType.slug }) }}">
@@ -79,7 +79,7 @@
             {% endif %}
         </div>
         <div class="col offset-l2 l2 s5 article-last">
-            <p>Dernier article :</p>
+            <p class="essentiel">Dernier article</p>
             {% for article in lastArticle %}
                 <a href="{{ path('article', { 'slug': article.slug }) }}">
                     <div class="card small">
