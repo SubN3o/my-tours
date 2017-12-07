@@ -53,11 +53,11 @@
             {% if articleByType %}
                 <p>Autre
                     {% if articleByType.typeArticle.nom == 'Dossier thématiques' %}
-                        dossier
+                        dossier :
                     {% elseif articleByType.typeArticle.nom == 'Actualités immobilières' %}
-                        actualité
+                        actualité :
                     {% elseif articleByType.typeArticle.nom == 'Fiches conseils' %}
-                        fiche
+                        fiche :
                     {% endif %}
                 </p>
                 <a href="{{ path('article', { 'slug': articleByType.slug }) }}">
