@@ -2527,7 +2527,7 @@ video {
     }
 
     .essentiel {
-        font-size: 12pt;
+        font-size: 10pt;
     }
 
     .articles-fixes {
@@ -2652,5 +2652,15 @@ video {
 
     .noResult{
         font-size: 12pt;
+    }
+
+    .articleByType span, .article-last span {
+        font-size: 11pt;
+        letter-spacing: 0.1pt;
+    }
+
+    .articleByType .card .card-content, .articleByType .card .card-action, .article-last .card .card-content, .article-last .card .card-action {
+        font-size: 9pt;
+        line-height: 1.1;
     }
 }
