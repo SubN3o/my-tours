@@ -2621,9 +2621,6 @@ video {
 .articleByType .small, .article-last .small {
     box-shadow: none;
     border: solid 1px #676767;
-} {
-    box-shadow: none;
-    border: solid 1px #676767;
 }
 
 .articleByType img , .article-last img {
