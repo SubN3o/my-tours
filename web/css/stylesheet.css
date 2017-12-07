@@ -2426,7 +2426,7 @@ video {
 .articles h2{
     margin: 5px;
     font-family: Montserrat;
-    font-size: 14pt;
+    font-size: 13pt;
     letter-spacing: 0.55pt;
     font-weight: 400;
     margin: 8px 0;
@@ -2476,7 +2476,7 @@ video {
 
 .essentiel {
     font-family: Montserrat;
-    font-size: 14pt;
+    font-size: 13pt;
     letter-spacing: 0.55pt;
     font-weight: 400;
     color: #676767;
@@ -2500,7 +2500,7 @@ video {
 
 .articles-fixes h2 {
     font-family: Montserrat;
-    font-size: 14pt;
+    font-size: 13pt;
     letter-spacing: 0.55pt;
     font-weight: 400;
     margin: 8px 0;
@@ -2513,10 +2513,6 @@ video {
 }
 
 @media screen and (max-width: 1200px) {
-    .articles h2, .articles-fixes h2 {
-        font-size: 13pt;
-        margin: 4px 0;
-    }
 
     .articles-fixes .card .card-content, .articles-fixes .card .card-action, .articles .card .card-content, .articles .card .card-action {
         font-size: 10pt;
