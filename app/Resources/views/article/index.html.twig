@@ -16,6 +16,7 @@
                                 <tr>
                                     <th>Essentiel</th>
                                     <th>Titre</th>
+                                    <th>Type</th>
                                     <th>Date</th>
                                     <th>Aperçu</th>
                                     <th>Éditer</th>
@@ -28,6 +29,7 @@
                                     <tr>
                                         <td>{{ article.tri }}</td>
                                         <td>{{ article.titre }}</td>
+                                        <td>{{ article.typeArticle.nom }}</td>
                                         <td>{% if article.date %}{{ article.date|date('j-m-Y') }}{% endif %}</td>
                                         <td>
                                             <a href="{{ path('admin_article_show', { 'id': article.id }) }}"><i

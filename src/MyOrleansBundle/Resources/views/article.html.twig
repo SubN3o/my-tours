@@ -30,9 +30,13 @@
         <div class="col offset-l1 l10 s12 article-texte">
             {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
                 <img class="illustration" src="{{ asset('uploads/'~media.mediaName) }}"
-                     alt="illustration article {{ article.titre }}">
+                     alt="illustration principale article {{ article.titre }}">
             {% endfor %}
             <div>{{ article.texte | raw }}</div>
+            {% for media in article.medias if media.typeMedia.nom == "image" %}
+                    <img class="responsive-img illustration2" src="{{ asset('uploads/'~media.mediaName) }}"
+                         alt="illustration secondaire article {{ article.titre }}">
+            {% endfor %}
         </div>
     </div>
     <div class="row">
