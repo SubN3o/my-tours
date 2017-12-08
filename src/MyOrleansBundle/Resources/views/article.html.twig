@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+    <!-- bouton retour à Infos Pratiques -->
     <div class="row">
         <div class="col offset-s1 retourSearch1">
             <a class="waves-effect waves-light btn"
@@ -15,6 +16,7 @@
         </div>
     </div>
     <div class="row">
+        <!-- entête article -->
         <div class="col offset-l1 l10 s12 article-titre">
             <h1>{{ article.titre }}</h1>
             <p class="left article-date">édité le : {{ article.date|date('d/m/Y') }}</p>
@@ -27,6 +29,7 @@
         </div>
     </div>
     <div class="row">
+        <!-- contenu article -->
         <div class="col offset-l1 l10 s12 article-texte">
             {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
                 <img class="illustration" src="{{ asset('uploads/'~media.mediaName) }}"
@@ -40,6 +43,7 @@
         </div>
     </div>
     <div class="row">
+        <!-- partage de l'article -->
         <div class="col offset-l1 l10 s12 center">
             <div class="partage valign-wrapper">
                 <p><i class="material-icons align-icon">share</i>Partager l'article</p>
@@ -60,6 +64,7 @@
         </div>
     </div>
     <div class="row">
+        <!-- article du même type -->
         <div class="col offset-l3 l2 offset-s1 s5 articleByType">
             {% if articleByType %}
                 <p class="essentiel">Autre
@@ -89,6 +94,7 @@
                 </a>
             {% endif %}
         </div>
+        <!-- dernier article -->
         <div class="col offset-l2 l2 s5 article-last">
             <p class="essentiel">Dernier article</p>
             {% for article in lastArticle %}
@@ -112,7 +118,7 @@
         </div>
     </div>
     <div class="row">
-        <!-- bouton retour à Nos Résidences -->
+        <!-- bouton retour à Infos Pratiques -->
         <div class="col offset-s1 retourSearch1">
             <a class="waves-effect waves-light btn"
                href="{{ path("immo_pratique") }}">
