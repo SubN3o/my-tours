@@ -10,6 +10,7 @@
 {% block content %}
     <h1>Actualités et dossiers thematiques</h1>
     <div class="row">
+        <!-- description de la page -->
         <div class="col offset-l1 l10 s12">
             <p class="immo-description">Découvrez nos articles et actualités : immobilier neuf,
                 investissement locatif et défiscalisation, financements, conseils placements, location, gestion
@@ -17,6 +18,7 @@
         </div>
     </div>
     <div class="row">
+        <!-- les articles essentiels -->
         <div class="col offset-l1 l10">
             <div class="col l5 s12 articles-fixes push-l7">
                 <p class="essentiel center">Les essentiels</p>
@@ -42,6 +44,7 @@
                 {% endfor %}
             </div>
             <div class="col l7 s12 pull-l5">
+                <!-- formulaire de recherche d'article -->
                 {{ form_start(articlesSearch) }}
                 <div class="input-field col l5 s12">
                     {{ form_widget(articlesSearch.keyword) }}
@@ -53,6 +56,7 @@
                     <div class="center noResult col l12">Désolé, aucun article ne correspond à votre recherche</div>
                 {% endif %}
 
+                <!-- liste des articles -->
                 <div class="articles col l12">
                     {% for article in articles %}
                         <a href="{{ path('article', { 'slug': article.slug }) }}">

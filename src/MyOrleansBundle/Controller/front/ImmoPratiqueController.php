@@ -30,14 +30,19 @@ class ImmoPratiqueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        // on récupere tous les articles trier par date en ordre décroissant
         $articles = $em->getRepository(Article::class)->findBy([],['date'=>'DESC']);
 
+        // initialisation de la variable pour gérer le message de recherche
         $articlesNoResult = 0;
 
+        // on redirige vers une autre url apres une recherche d'article
         $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
 
+        // on récupere les 4 premiers article qui ont le champ tri de renseigné
         $essentiel = $em->getRepository(Article::class)->findBy([],['tri'=>'ASC'],4);
 
+        // Formulaire de contact
         $telephoneNumber = $this->getParameter('telephone_number');
 
         $client = new Client();
@@ -90,25 +95,34 @@ class ImmoPratiqueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        // initialisation de la variable pour gérer le message de recherche
         $articlesNoResult = 0;
 
+        // on redirige vers une autre url apres une recherche d'article
         $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
         $articlesSearch->handleRequest($request);
 
         if ($articlesSearch->isSubmitted() && $articlesSearch->isValid()) {
 
+            // on récupere la donné de recherche
             $data = $articlesSearch->getData();
 
+            // on récupère les articles qui contiennent le mot-clé
             $articles = $em->getRepository(Article::class)->articleByKeyword($data);
 
+            //si aucun article n'est trouvé, on récupère la totalité des articles
             if ($articles == null){
                 $articles = $em->getRepository(Article::class)->findBy([],['date'=>'DESC']);
+
+                //on modifie la variable pour afficher un message
                 $articlesNoResult = 1;
             }
         }
 
+        // on récupere les 4 premiers article qui ont le champ tri de renseigné
         $essentiel = $em->getRepository(Article::class)->findBy([],['tri'=>'ASC'],4);
 
+        // Formulaire de contact
         $telephoneNumber = $this->getParameter('telephone_number');
 
         $client = new Client();
@@ -241,7 +255,6 @@ class ImmoPratiqueController extends Controller
             'article' => $article,
             'telephone_number' => $telephoneNumber,
             'articleByType' => $articleByType,
-//            'random' => $random,
             'lastArticle'=>$lastArticle,
             'form' => $formulaire->createView()
         ]);
