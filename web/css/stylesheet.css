@@ -2538,8 +2538,6 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 
 .article-texte {
     margin-top: 20px;
-    /*font-family: "Cantarell";*/
-    position: relative;
 }
 
 .article-texte .illustration {
@@ -2582,7 +2580,14 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 }
 
 .illustration2 {
+    position: relative;
     margin-top: 20px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 
 @media screen and (max-width: 992px) {
