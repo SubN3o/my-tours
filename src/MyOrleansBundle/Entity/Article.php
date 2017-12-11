@@ -76,7 +76,6 @@ class Article
     /**
      * @ORM\ManyToOne(targetEntity="Residence",cascade={"persist"})
      * @JoinTable(name="article_media")
-     * @Assert\NotNull()
      */
     private $residence;
 

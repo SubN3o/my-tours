@@ -36,10 +36,6 @@ class ArticleType extends AbstractType
                 ]
             ])
             ->add('date', DateType::class)
-            ->add('residence', EntityType::class, [
-                'class' => Residence::class,
-                'choice_label' => 'nom'
-            ])
             ->add('tags', CollectionType::class, [
                 'entry_type' => TagType::class,
                 'allow_add' => true,

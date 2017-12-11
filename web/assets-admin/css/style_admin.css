@@ -103,7 +103,7 @@ textarea.materialize-textarea {
 }
 
 .vich-image a img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
 }

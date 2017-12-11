@@ -31,14 +31,16 @@ class MediaType extends AbstractType
             ->add('mediaFile', VichImageType::class,[
                 'required' => false,
                 'label' => 'Fichier média',
-                'allow_delete' => true,
+                'allow_delete' => false,
+                'download_uri' => false
 
             ])
             ->add('typemedia', EntityType::class, [
                 'class' => TypeMedia::class,
                 'choice_label' => 'nom',
                 'label' => 'Type de média'
-            ]);
+            ])
+        ;
     }
 
     /**

@@ -56,7 +56,7 @@ class ArticleController extends Controller
      * @Route("/new", name="admin_article_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
         $article = new Article();
         $media = new Media();
@@ -70,32 +70,8 @@ class ArticleController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-//            // Si l'administrateur n'upload pas de photo pour l'article, une photo est chargée par défaut
-//            $medias = $article->getMedias();
-//            foreach ($medias as $media) {
-//                if (is_null($media->getMediaName())) {
-//                    /* @var $media Media */
-//                    $media->setMediaName('default.jpg');
-//                    $date = new \DateTimeImmutable();
-//                    $media->setUpdatedAt($date);
-//                }
-//            }
-
             $em->persist($article);
             $em->flush();
-
-//            if ($file = $form['fichierAssocie']->getData()) {
-//
-//                $fileArticle = new FileArticle();
-//                $fileArticle->setFile($file);
-//                $fileArticle->setArticle($article);
-//                $fileArticle->setName($file);
-//                $fileArticle->setPath($fileArticle->getWebPath() . $fileArticle->getName());
-//                $fileArticle->upload();
-//
-//                $em->persist($fileArticle);
-//                $em->flush();
-//            }
 
             $this->addFlash('success', 'Votre article a bien été ajoutée');
             return $this->redirectToRoute('admin_article_index', array('id' => $article->getId()));
@@ -129,7 +105,7 @@ class ArticleController extends Controller
      * @Route("/{id}/edit", name="admin_article_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Article $article, FileUploader $fileUploader)
+    public function editAction(Request $request, Article $article)
     {
         $deleteForm = $this->createDeleteForm($article);
         if (!empty($article->getMedias()->isEmpty())) {
@@ -146,21 +122,6 @@ class ArticleController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-//            $em = $this->getDoctrine()->getManager();
-//
-//            // Si l'administrateur n'upload pas de photo pour l'article, une photo est chargée par défaut
-//            $medias = $article->getMedias();
-//            foreach ($medias as $media) {
-//                if (is_null($media->getMediaName())) {
-//                    /* @var $media Media */
-//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-//                    $media->setTypeMedia($typeMediaImgCover);
-//                    $media->setMediaName('default.jpg');
-//                    $date = new \DateTimeImmutable();
-//                    $media->setUpdatedAt($date);
-//                }
-//            }
 
             $this->getDoctrine()->getManager()->flush();
 

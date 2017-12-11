@@ -26,11 +26,6 @@
                                     {{ form_widget(edit_form.titre) }}
                                     {{ form_errors(edit_form.titre) }}
                                 </div>
-                                <div class="col s6">
-                                    {{ form_label(edit_form.residence, 'Résidence lié: ') }}
-                                    {{ form_widget(edit_form.residence) }}
-                                    {{ form_errors(edit_form.residence) }}
-                                </div>
                             </div>
                             <div class="row">
 
@@ -75,29 +70,6 @@
                                 </div>
                                 <div class="col s6">
                                     <h4>Les medias actuellement reliés à votre article</h4>
-                                    {#{% for media in article.medias %}#}
-                                        {#{% if media.id != null %}#}
-                                            {#{{ loop.index0 }}#}
-                                            {#{% if media.typeMedia.nom == "pdf" %}#}
-                                                {#<div class="imgUploader">#}
-                                                    {#<a href="{{ asset('uploads/'~media.mediaName) }}">#}
-                                                        {#<img class="responsive-img"#}
-                                                             {#src="{{ asset('uploads/pdf.jpg') }}"/>#}
-                                                    {#</a>#}
-                                                {#</div>#}
-                                            {#{% else %}#}
-                                                {#<div class="imgUploader"><img class="responsive-img"#}
-                                                                              {#src="{{ asset('uploads/'~media.mediaName) }}"/>#}
-                                                {#</div>#}
-                                            {#{% endif %}#}
-                                            {#{% if asset('uploads/'~media.mediaName) !=  asset('uploads/default.jpg') %}#}
-                                                {#<a href="{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}">Supprimer</a>#}
-                                                {#<br>#}
-                                            {#{% endif %}#}
-
-                                        {#{% endif %}#}
-                                    {#{% endfor %}#}
-
 
                                     <p>Utilisez le type de média "<b>pdf</b>" pour un fichier .pdf dans une
                                         fiche conseil.</p>
@@ -106,11 +78,8 @@
                                     <p>Utilisez le type de média "<b>image</b>" pour afficher une image
                                         en bas de l'article.</p>
 
-                                    {#<div class="col s7">#}
-                                    {{ form_label(edit_form.medias) }}
                                     {{ form_widget(edit_form.medias) }}
-                                    {{ form_errors(edit_form.medias) }}
-                                    {#</div>#}
+                                    {{ form_widget(edit_form.medias) }}
 
                                     <h4>Veuillez charger un nouveau média.</h4>
 
@@ -121,29 +90,28 @@
                                 </div>
                             </div>
 
-                                <input class="waves-effect waves-light btn-large light-green" type="submit"
-                                       value="Modifier"/>
-                                {{ form_widget(edit_form._token) }}
-                                {{ form_end(edit_form) }}
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('admin_article_index') }}"><i class="material-icons">keyboard_return</i>Retour
-                                            à la liste des articles</a>
-                                    </li>
-                                    <li>
-                                        {{ form_start(delete_form) }}
-                                        <input type="submit" value="Supprimer"
-                                               class="waves-effect waves-light btn-large red pull-right">
-                                        {{ form_end(delete_form) }}
-                                    </li>
-                                </ul>
+                            <input class="waves-effect waves-light btn-large light-green" type="submit"
+                                   value="Modifier"/>
+                            {{ form_widget(edit_form._token) }}
+                            {{ form_end(edit_form) }}
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_article_index') }}"><i class="material-icons">keyboard_return</i>Retour
+                                        à la liste des articles</a>
+                                </li>
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Supprimer"
+                                           class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascripts %}
@@ -165,6 +133,20 @@
                 newLi.appendTo(mediaList);
                 $('select').material_select();
             });
+
+            var media = [
+                {% for media in article.medias if media.id != null %}
+                [
+                    '{{ path('article_media_delete', {"id" : article.id, "media_id" : media.id}) }}'
+                ],
+                {% endfor %}
+            ];
+
+            for (i = 0; i < media.length; i++) {
+                if (media.length > 1) {
+                    jQuery('#myorleansbundle_article_medias_' + i).append('<a href="' + media[i][0] + '">Supprimer le média ' + i + '</a>');
+                }
+            }
         });
 
         var tagCount = '{{ edit_form.tags|length }}';
