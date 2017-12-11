@@ -22,6 +22,18 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function articleByTri()
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb
+            ->where('a.tri IS NOT NULL')
+            ->orderBy('a.tri', 'ASC')
+            ->setMaxResults(4);
+
+        return $qb->getQuery()->getResult();
+    }
+
 
     public function articleByKeyword($data)
     {

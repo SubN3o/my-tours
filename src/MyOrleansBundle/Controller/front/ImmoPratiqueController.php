@@ -40,7 +40,7 @@ class ImmoPratiqueController extends Controller
         $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
 
         // on récupere les 4 premiers article qui ont le champ tri de renseigné
-        $essentiel = $em->getRepository(Article::class)->findBy([],['tri'=>'ASC'],4);
+        $essentiel = $em->getRepository(Article::class)->articleByTri();
 
         // Formulaire de contact
         $telephoneNumber = $this->getParameter('telephone_number');
