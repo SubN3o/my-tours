@@ -4,6 +4,8 @@ namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\JoinTable;
+
 
 
 /**
@@ -111,11 +113,27 @@ class Evenement
     private $description;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="evenement", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"},fetch="EAGER")
+     * @JoinTable(name="evenement_media")
      * @Assert\Valid()
      */
-    private $media;
+    private $medias;
 
+    /**
+     * @return mixed
+     */
+    public function getMedias()
+    {
+        return $this->medias;
+    }
+
+    /**
+     * @param mixed $medias
+     */
+    public function setMedias($medias)
+    {
+        $this->medias = $medias;
+    }
 
     /**
      * Get id
@@ -329,28 +347,27 @@ class Evenement
         return $this->description;
     }
 
-
     /**
-     * Set media
+     * Add media
      *
      * @param \MyOrleansBundle\Entity\Media $media
      *
      * @return Evenement
      */
-    public function setMedia(\MyOrleansBundle\Entity\Media $media = null)
+    public function addMedia(\MyOrleansBundle\Entity\Media $media)
     {
-        $this->media = $media;
-
+        $this->medias[] = $media;
+        $media->setEvenements($this);
         return $this;
     }
 
     /**
-     * Get media
+     * Remove media
      *
-     * @return \MyOrleansBundle\Entity\Media
+     * @param \MyOrleansBundle\Entity\Media $media
      */
-    public function getMedia()
+    public function removeMedia(\MyOrleansBundle\Entity\Media $media)
     {
-        return $this->media;
+        $this->medias->removeElement($media);
     }
 }

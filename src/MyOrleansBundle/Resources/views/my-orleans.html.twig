@@ -211,11 +211,11 @@
                                     <h3>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
                                         {{ evenement.dateDebut|date('Y') }}</h3>
                                     <p>{{ evenement.description }}</p>
-                                    {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
+                                    {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
                                     <img class="responsive-img"
-                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}"
+                                         src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline') }}"
                                          alt="illustration {{ evenement.nom }}">
-                                    {#{% endfor %}#}
+                                    {% endfor %}
                                     {#<a class="waves-effect waves-light btn white" data-toggle="modal"#}
                                     {#data-id="{{ evenement.id }}"#}
                                     {#href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>#}
@@ -233,11 +233,11 @@
                                         </span>
                                     </time>
                                     <p>{{ evenement.description }}</p>
-                                    {#{% for media in evenement.media if media.typeMedia.nom == "image-cover" %}#}
+                                    {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
                                     <img class="responsive-img"
-                                         src="{{ asset('uploads/'~evenement.media.mediaName) | imagine_filter('thumb_timeline') }}"
+                                         src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline') }}"
                                          alt="illustration {{ evenement.nom }}">
-                                    {#{% endfor %}#}
+                                    {% endfor %}
                                     <a class="button-collapse greenMyO btn" data-activates="slide-out">JE
                                         M'INSCRIS</a>
                                 </div>

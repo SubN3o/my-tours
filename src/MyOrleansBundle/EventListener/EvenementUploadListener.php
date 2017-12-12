@@ -42,7 +42,7 @@ class EvenementUploadListener
         if (!$entity instanceof Media) {
             return;
         }
-        if ($entity->getEvenement()) {
+        if ($entity->getEvenements()) {
             $this->uploadFile($entity);
 
             if ($this->oldMedia) {
@@ -57,7 +57,7 @@ class EvenementUploadListener
         if (!$entity instanceof Media) {
             return;
         }
-        if ($entity->getEvenement()) {
+        if ($entity->getEvenements()) {
             if (is_file($entity->getLien())) {
                 unlink($entity->getLien());
             }
@@ -72,7 +72,7 @@ class EvenementUploadListener
         }
 
 
-        if ($entity->getEvenement()) {
+        if ($entity->getEvenements()) {
             $file = $entity->getLien();
 
             // only upload new files
@@ -93,7 +93,7 @@ class EvenementUploadListener
         $masterRequest = $this->requestStack->getMasterRequest()->get('_route');
         if ($masterRequest == 'admin_evenement_edit') {
 
-            if ($entity->getEvenement()) {
+            if ($entity->getEvenements()) {
 
                 $this->oldMedia = $entity->getLien();
 

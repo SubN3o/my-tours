@@ -6,6 +6,7 @@ use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Service\FileUploader;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -53,23 +54,17 @@ class EvenementController extends Controller
      * @Route("/new", name="admin_evenement_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
         $evenement = new Evenement();
+        $media = new Media();
+        $evenement->getMedias()->add($media);
+
         $form = $this->createForm('MyOrleansBundle\Form\EvenementType', $evenement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-//            // Si l'administrateur n'upload pas de photo pour l'evenement, une photo est chargée par défaut
-//            $media = $evenement->getMedia();
-//            if (is_null($media->getMediaName())) {
-//                /* @var $media Media */
-//                $media->setMediaName('default.jpg');
-//                $date = new \DateTimeImmutable();
-//                $media->setUpdatedAt($date);
-//            }
 
             $em->persist($evenement);
             $em->flush();
@@ -106,26 +101,17 @@ class EvenementController extends Controller
      * @Route("/{id}/edit", name="admin_evenement_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Evenement $evenement, FileUploader $fileUploader)
+    public function editAction(Request $request, Evenement $evenement)
     {
         $deleteForm = $this->createDeleteForm($evenement);
+        if (!empty($evenement->getMedias()->isEmpty())) {
+            $media = new Media();
+            $evenement->getMedias()->add($media);
+        }
         $editForm = $this->createForm('MyOrleansBundle\Form\EvenementType', $evenement);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-//            $em = $this->getDoctrine()->getManager();
-//
-//            // Si l'administrateur n'upload pas de photo pour l'evenement, une photo est chargée par défaut
-//            $media = $evenement->getMedia();
-//                if (is_null($media->getMediaName())) {
-//                    /* @var $media Media */
-//                    $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-//                    $media->setTypeMedia($typeMediaImgCover);
-//                    $media->setMediaName('default.jpg');
-//                    $date = new \DateTimeImmutable();
-//                    $media->setUpdatedAt($date);
-//                }
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -163,16 +149,21 @@ class EvenementController extends Controller
     /**
      * Deletes a evenement media.
      *
-     * @Route("/{id}/delete_media", name="evenement_media_delete")
+     * @Route("/{id}/delete_media/{media_id}", name="evenement_media_delete")
+     * @ParamConverter("evenement", class="MyOrleansBundle:Evenement", options={"id" = "id"})
+     * @ParamConverter("media", class="MyOrleansBundle:Media", options={"id" = "media_id"})
      * @Method({"GET", "POST"})
      */
-    public function deleteMedia(Evenement $evenement)
+    public function deleteMedia(Evenement $evenement, Media $media)
     {
-        $path = $evenement->getMedia()->getMediaName();
         $em = $this->getDoctrine()->getManager();
-        $evenement->setMedia(null);
-        $em->flush();
+
+        $path = $media->getmediaName();
         unlink($this->getParameter('upload_directory') . '/' . $path);
+        $evenement->removeMedia($media);
+        $em->remove($media);
+
+        $em->flush();
         return $this->redirectToRoute('admin_evenement_edit', array('id' => $evenement->getId()));
     }
     /**

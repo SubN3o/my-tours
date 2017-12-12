@@ -47,10 +47,9 @@ class Media
     private $residences;
 
     /**
-     * @ORM\OneToOne(targetEntity="Evenement", mappedBy="media")
+     * @ORM\ManyToMany(targetEntity="Evenement", cascade={"persist"})
      */
-    private $evenement;
-
+    private $evenements;
 
     /**
      * @ORM\OneToOne(targetEntity="Partenaire", mappedBy="media")
@@ -244,32 +243,7 @@ class Media
         $this->flats = new ArrayCollection();
         $this->articles = new ArrayCollection();
     }
-
-
-    /**
-     * Set evenement
-     *
-     * @param \MyOrleansBundle\Entity\Evenement $evenement
-     *
-     * @return Media
-     */
-    public function setEvenement(\MyOrleansBundle\Entity\Evenement $evenement = null)
-    {
-        $this->evenement = $evenement;
-
-        return $this;
-    }
-
-    /**
-     * Get evenement
-     *
-     * @return \MyOrleansBundle\Entity\Evenement
-     */
-    public function getEvenement()
-    {
-        return $this->evenement;
-    }
-
+    
     /**
      * Set partenaire
      *
@@ -356,6 +330,22 @@ class Media
     public function setFlats($flats)
     {
         $this->flats = $flats;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEvenements()
+    {
+        return $this->evenements;
+    }
+
+    /**
+     * @param mixed $evenements
+     */
+    public function setEvenements($evenements)
+    {
+        $this->evenements = $evenements;
     }
 
     /**
@@ -478,7 +468,6 @@ class Media
     {
         $this->articles->removeElement($article);
     }
-
 
     /**
      * @return mixed
