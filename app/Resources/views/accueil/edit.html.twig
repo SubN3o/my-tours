@@ -45,24 +45,5 @@
     </div>
 
 {% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            var media = [
-                {% for media in accueil.medias if media.id != null %}
-                [
-                    '{{ path('article_media_delete', {"id" : accueil.id, "media_id" : media.id}) }}'
-                ],
-                {% endfor %}
-            ];
 
-            for (i = 0; i < media.length; i++) {
-                if (media.length > 1) {
-                    jQuery('#myorleansbundle_accueil_medias_' + i).append('<a href="' + media[i][0] + '">Supprimer le média ' + i + '</a>');
-                }
-            }
-        });
-    </script>
-{% endblock %}
 
