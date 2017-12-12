@@ -2,6 +2,7 @@
 
 namespace MyOrleansBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use MyOrleansBundle\Entity\Article;
 use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\Media;
@@ -39,7 +40,7 @@ class MediaType extends AbstractType
             ->add('typemedia', EntityType::class, [
                 'class' => TypeMedia::class,
                 'choice_label' => 'nom',
-                'label' => 'Type de média'
+                'label' => 'Type de média',
             ])
         ;
     }
