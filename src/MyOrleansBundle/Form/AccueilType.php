@@ -33,13 +33,6 @@ class AccueilType extends AbstractType
                         'prototype' => true,
                      'by_reference' => false
                     ])
-                ->add('medias', CollectionType::class,
-                [
-                    'entry_type' => MediaType::class,
-                    'allow_add' => true,
-                    'prototype' => true,
-                    'by_reference' => false
-                ])
         ;
     }
     
