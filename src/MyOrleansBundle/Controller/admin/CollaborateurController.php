@@ -45,7 +45,7 @@ class CollaborateurController extends Controller
      * @Route("/new", name="admin_collaborateur_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
         $collaborateur = new Collaborateur();
         $form = $this->createForm(CollaborateurType::class, $collaborateur);
@@ -53,15 +53,6 @@ class CollaborateurController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-//            // Si l'administrateur n'upload pas de photo pour le collaborateur, une photo est chargée par défaut
-//            $media = $collaborateur->getMedia();
-//            if (is_null($media->getMediaName())) {
-//                /* @var $media Media */
-//                $media->setMediaName('default.jpg');
-//                $date = new \DateTimeImmutable();
-//                $media->setUpdatedAt($date);
-//            }
 
             $em->persist($collaborateur);
             $em->flush();
@@ -98,7 +89,7 @@ class CollaborateurController extends Controller
      * @Route("/{id}/edit", name="admin_collaborateur_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Collaborateur $collaborateur, FileUploader $fileUploader)
+    public function editAction(Request $request, Collaborateur $collaborateur)
     {
         $deleteForm = $this->createDeleteForm($collaborateur);
 
@@ -106,19 +97,6 @@ class CollaborateurController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-//            $em = $this->getDoctrine()->getManager();
-//
-//            // Si l'administrateur n'upload pas de photo pour le collaborateur, une photo est chargée par défaut
-//            $media = $collaborateur->getMedia();
-//            if (is_null($media->getMediaName())) {
-//                /* @var $media Media */
-//                $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-//                $media->setTypeMedia($typeMediaImgCover);
-//                $media->setMediaName('default.jpg');
-//                $date = new \DateTimeImmutable();
-//                $media->setUpdatedAt($date);
-//            }
 
             $this->getDoctrine()->getManager()->flush();
 
