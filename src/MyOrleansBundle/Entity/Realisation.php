@@ -3,16 +3,16 @@
 namespace MyOrleansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
- * Partenaire
+ * Realisation
  *
- * @ORM\Table(name="partenaire")
- * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\PartenaireRepository")
+ * @ORM\Table(name="realisation")
+ * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\RealisationRepository")
  */
-class Partenaire
+class Realisation
 {
     /**
      * @var int
@@ -24,6 +24,13 @@ class Partenaire
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="tri", type="integer", nullable=true)
+     */
+    private $tri;
+
+    /**
      * @var string
      * @Assert\NotBlank()
      * @Assert\Type(
@@ -32,61 +39,36 @@ class Partenaire
      * )
      * @Assert\Length(
      *      min = 2,
-     *      max = 45,
+     *      max = 255,
      *      minMessage = "Le nom saisi est court.",
      *      maxMessage = "Le nom saisi est long."
      * )
-     * @ORM\Column(name="nom", type="string", length=45)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
     /**
      * @var string
-     * @Assert\Url(
-     *     message = "L'URL saisie n'est pas correcte",
-     *     protocols = {"http", "https", "ftp"}
+     * @Assert\NotBlank()
+     * @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
      * )
-     * @ORM\Column(name="url", type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Le nom saisi est court.",
+     *      maxMessage = "Le nom saisi est long."
+     * )
+     * @ORM\Column(name="ville", type="string", length=255)
      */
-    private $url;
+    private $ville;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="partenaire", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="realisation", cascade={"persist"})
      * @Assert\Valid()
      */
     private $media;
-
-    /**
-     * @var int
-     * @Assert\Type(
-     *     type="integer",
-     *     message="La saisie n'est pas correcte."
-     * )
-     * @Assert\Range(
-     *      min = 1,
-     *      minMessage = "Saisissez une valeur supérieure ou égale à 1",
-     * )
-     * @ORM\Column(name="tri", type="integer", nullable=true)
-     */
-    private $tri;
-
-    /**
-     * @return int
-     */
-    public function getTri()
-    {
-        return $this->tri;
-    }
-
-    /**
-     * @param int $tri
-     * @return Partenaire
-     */
-    public function setTri($tri)
-    {
-        $this->tri = $tri;
-        return $this;
-    }
 
     /**
      * Get id
@@ -99,11 +81,35 @@ class Partenaire
     }
 
     /**
+     * Set tri
+     *
+     * @param integer $tri
+     *
+     * @return Realisation
+     */
+    public function setTri($tri)
+    {
+        $this->tri = $tri;
+
+        return $this;
+    }
+
+    /**
+     * Get tri
+     *
+     * @return int
+     */
+    public function getTri()
+    {
+        return $this->tri;
+    }
+
+    /**
      * Set nom
      *
      * @param string $nom
      *
-     * @return Partenaire
+     * @return Realisation
      */
     public function setNom($nom)
     {
@@ -123,27 +129,27 @@ class Partenaire
     }
 
     /**
-     * Set url
+     * Set ville
      *
-     * @param string $url
+     * @param string $ville
      *
-     * @return Partenaire
+     * @return Realisation
      */
-    public function setUrl($url)
+    public function setVille($ville)
     {
-        $this->url = $url;
+        $this->ville = $ville;
 
         return $this;
     }
 
     /**
-     * Get url
+     * Get ville
      *
      * @return string
      */
-    public function getUrl()
+    public function getVille()
     {
-        return $this->url;
+        return $this->ville;
     }
 
     /**
@@ -151,7 +157,7 @@ class Partenaire
      *
      * @param \MyOrleansBundle\Entity\Media $media
      *
-     * @return Partenaire
+     * @return Realisation
      */
     public function setMedia(\MyOrleansBundle\Entity\Media $media = null)
     {
@@ -170,3 +176,4 @@ class Partenaire
         return $this->media;
     }
 }
+

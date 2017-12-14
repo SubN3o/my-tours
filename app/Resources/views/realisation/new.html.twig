@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title"> Créer un nouveau partenaire</h4>
+                            <h4 class="title"> Créer un nouveau realisation</h4>
                         </div>
                         <div class="card-content table-responsive">
 
@@ -22,20 +22,20 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    {{ form_label(form.nom, 'Nom du partenaire:') }}
+                                    {{ form_label(form.nom, 'Nom de la réalisation:') }}
                                     {{ form_widget(form.nom) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    {{ form_label(form.url, 'Url du site web:') }}
-                                    {{ form_widget(form.url) }}
+                                    {{ form_label(form.ville, 'Ville') }}
+                                    {{ form_widget(form.ville) }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">
                                     <h3>Ajouter un nouveau média.</h3>
-                                    <p>Utilisez le type de média "<b>image-cover</b>" pour afficher l'image d'un partenaire.</p>
+                                    <p>Utilisez le type de média "<b>image-cover</b>" pour afficher l'image d'une réalisation.</p>
                                     {{ form_row(form.media) }}
                                 </div>
                             </div>
@@ -45,8 +45,8 @@
 
                             <ul>
                                 <li>
-                                    <a href="{{ path('admin_partenaire_index') }}"><i class="material-icons">keyboard_return</i>Retour
-                                        à la liste des partenaires</a>
+                                    <a href="{{ path('admin_realisation_index') }}"><i class="material-icons">keyboard_return</i>Retour
+                                        à la liste des réalisations</a>
                                 </li>
                             </ul>
 

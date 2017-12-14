@@ -137,6 +137,11 @@ class Media
     private $plaquette;
 
     /**
+     * @ORM\OneToOne(targetEntity="Realisation", mappedBy="media")
+     */
+    private $realisation;
+
+    /**
      * @return mixed
      */
     public function getPlaquette()
@@ -244,6 +249,16 @@ class Media
         $this->articles = new ArrayCollection();
         $this->evenements = new ArrayCollection();
     }
+
+    /**
+     * Get partenaire
+     *
+     * @return \MyOrleansBundle\Entity\Partenaire
+     */
+    public function getPartenaire()
+    {
+        return $this->partenaire;
+    }
     
     /**
      * Set partenaire
@@ -260,13 +275,27 @@ class Media
     }
 
     /**
-     * Get partenaire
+     * Get realisation
      *
-     * @return \MyOrleansBundle\Entity\Partenaire
+     * @return \MyOrleansBundle\Entity\Realisation
      */
-    public function getPartenaire()
+    public function getRealisation()
     {
-        return $this->partenaire;
+        return $this->realisation;
+    }
+
+    /**
+     * Set realisation
+     *
+     * @param \MyOrleansBundle\Entity\Realisation $realisation
+     *
+     * @return Media
+     */
+    public function setRealisation(\MyOrleansBundle\Entity\Realisation $realisation = null)
+    {
+        $this->realisation = $realisation;
+
+        return $this;
     }
 
     /**
