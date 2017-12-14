@@ -16,7 +16,7 @@
                                     <th>Nom</th>
                                     <th>Email</th>
                                     <th>Telephone</th>
-                                    <th>Codepostal</th>
+                                    <th>Date</th>
                                     <th>Newsletter</th>
                                     <th>Sujet</th>
                                     <th>Projet</th>
@@ -31,7 +31,7 @@
                                         <td>{{ client.nom }}</td>
                                         <td>{{ client.email }}</td>
                                         <td>{{ client.telephone }}</td>
-                                        <td>{{ client.codePostal }}</td>
+                                        <td>{% if client.date != null %}{{ client.date|date('d/m/Y') }}{% endif %}</td>
                                         <td>{{ client.newsletter }}</td>
                                         <td>{{ client.sujet }}</td>
                                         <td>{{ client.projet }}</td>

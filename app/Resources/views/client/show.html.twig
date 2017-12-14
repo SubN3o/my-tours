@@ -23,6 +23,10 @@
                                     <td>{{ client.email }}</td>
                                 </tr>
                                 <tr>
+                                    <th>date</th>
+                                    <td>{% if client.date != null %}{{ client.date|date('d/m/Y') }}{% endif %}</td>
+                                </tr>
+                                <tr>
                                     <th>Telephone</th>
                                     <td>{{ client.telephone }}</td>
                                 </tr>

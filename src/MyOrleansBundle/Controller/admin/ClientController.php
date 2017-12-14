@@ -28,7 +28,7 @@ class ClientController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $clients = $em->getRepository('MyOrleansBundle:Client')->findAll();
+        $clients = $em->getRepository('MyOrleansBundle:Client')->findBy([],['date'=>'DESC']);
 
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"

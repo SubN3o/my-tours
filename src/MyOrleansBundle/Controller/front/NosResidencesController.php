@@ -123,6 +123,8 @@ class NosResidencesController extends Controller
 
             $mailer->send($message);
 
+            $client->setDate(new \Datetime());
+
             $em->persist($client);
             $em->flush();
 
@@ -225,6 +227,8 @@ class NosResidencesController extends Controller
                 );
 
             $mailer->send($message);
+
+            $client->setDate(new \Datetime());
 
             $em->persist($client);
             $em->flush();

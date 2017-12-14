@@ -4,6 +4,7 @@ namespace MyOrleansBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -67,6 +68,7 @@ class ClientType extends AbstractType
                 'required' => false
             ])
             ->add('sujet', TextType::class)
+            ->add('date', DateType::class)
             ->add('message', TextareaType::class, [
                 'attr' =>['class' => 'materialize-textarea'],
                 'required' => false

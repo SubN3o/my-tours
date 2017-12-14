@@ -88,6 +88,8 @@ class FlatController extends Controller
 
             $mailer->send($message);
 
+            $client->setDate(new \Datetime());
+
             $em->persist($client);
             $em->flush();
             return $this->redirectToRoute('appartement',['id'=>$flat->getId()]);

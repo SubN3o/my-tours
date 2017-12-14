@@ -92,6 +92,8 @@ class ResidencesController extends Controller
 
             $mailer->send($message);
 
+            $client->setDate(new \Datetime());
+
             $em->persist($client);
             $em->flush();
 
