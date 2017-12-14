@@ -60,15 +60,6 @@ class TemoignageController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-//            // Si l'administrateur n'upload pas de photo pour le temoignage, une photo est chargée par défaut
-//            $media = $temoignage->getMedia();
-//            if (is_null($media->getMediaName())) {
-//                /* @var $media Media */
-//                $media->setMediaName('default.jpg');
-//                $date = new \DateTimeImmutable();
-//                $media->setUpdatedAt($date);
-//            }
-
             $em->persist($temoignage);
             $em->flush();
 
@@ -112,19 +103,6 @@ class TemoignageController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-//            $em = $this->getDoctrine()->getManager();
-//
-//            // Si l'administrateur n'upload pas de photo pour le temoignage, une photo est chargée par défaut
-//            $media = $temoignage->getMedia();
-//            if (is_null($media->getMediaName())) {
-//                /* @var $media Media */
-//                $typeMediaImgCover = $em->getRepository(TypeMedia::class)->find(TypeMedia::IMAGE_COVER);
-//                $media->setTypeMedia($typeMediaImgCover);
-//                $media->setMediaName('default.jpg');
-//                $date = new \DateTimeImmutable();
-//                $media->setUpdatedAt($date);
-//            }
 
             $this->addFlash('success', 'Votre témoignage a bien été mis à jour');
             return $this->redirectToRoute('admin_temoignage_index', array('id' => $temoignage->getId()));
