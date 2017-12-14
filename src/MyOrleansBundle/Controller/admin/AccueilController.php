@@ -41,7 +41,7 @@ class AccueilController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Votre accueil a bien été modifiée');
+            $this->addFlash('success', 'Vos infos générales ont bien été modifié');
 
             return $this->redirectToRoute('admin_accueil_edit', array('id' => $accueil->getId()));
         }
