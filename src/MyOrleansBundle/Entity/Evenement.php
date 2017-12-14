@@ -120,6 +120,14 @@ class Evenement
     private $medias;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * @return mixed
      */
     public function getMedias()

@@ -33,11 +33,13 @@ class EvenementType extends AbstractType
             ->add('heureDebut', TimeType::class)
             ->add('heureFin', TimeType::class)
             ->add('description', TextareaType::class)
-            ->add('medias', CollectionType::class, [
-                'entry_type' => MediaType::class,
-                'allow_add' => true,
-                'prototype' => true,
-            ]);
+            ->add('medias', CollectionType::class,
+                [
+                    'entry_type' => MediaType::class,
+                    'allow_add' => true,
+                    'prototype' => true,
+                    'by_reference' => false]
+            );
     }
     
     /**

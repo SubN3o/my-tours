@@ -46,36 +46,29 @@
                             <div class="row">
                                 {% for media in article.medias %}
                                     <div class="col s4">
-                                        {% if media.typeMedia.nom == "pdf" %}
-                                            <div class="imgUploader">
-                                                <a href="{{ asset('uploads/'~media.mediaName) }}">
-                                                    <img class="responsive-img" src="{{ asset('uploads/pdf.jpg') }}"/>
-                                                </a>
-                                            </div>
-                                        {% else %}
-                                            <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
-                                        {% endif %}
+                                        <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                        <p>{{ media.typeMedia.nom }}</p>
                                     </div>
                                 {% endfor %}
                             </div>
 
-                        <ul>
-                            <li>
-                                <a href="{{ path('admin_article_index') }}"><i
-                                            class="material-icons">keyboard_return</i>Retour à la liste des articles</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('admin_article_edit', { 'id': article.id }) }}"><i
-                                            class="material-icons">build</i>Éditer cet article</a>
-                            </li>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_article_index') }}"><i
+                                                class="material-icons">keyboard_return</i>Retour à la liste des articles</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_article_edit', { 'id': article.id }) }}"><i
+                                                class="material-icons">build</i>Éditer cet article</a>
+                                </li>
 
-                            <li>
-                                {{ form_start(delete_form) }}
-                                <input type="submit" value="Supprimer"
-                                       class="waves-effect waves-light btn-large red pull-right">
-                                {{ form_end(delete_form) }}
-                            </li>
-                        </ul>
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Supprimer"
+                                           class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

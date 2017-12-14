@@ -242,6 +242,7 @@ class Media
         $this->residences = new ArrayCollection();
         $this->flats = new ArrayCollection();
         $this->articles = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
     }
     
     /**
