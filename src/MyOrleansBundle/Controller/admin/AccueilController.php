@@ -4,8 +4,8 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Accueil;
 use MyOrleansBundle\Entity\Media;
-use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\AccueilType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -50,5 +50,26 @@ class AccueilController extends Controller
             'accueil' => $accueil,
             'edit_form' => $editForm->createView(),
         ));
+    }
+    
+    /**
+     * Deletes a accueil media.
+     *
+     * @Route("/{id}/delete_media/{media_id}", name="accueil_media_delete")
+     * @ParamConverter("accueil", class="MyOrleansBundle:Accueil", options={"id" = "id"})
+     * @ParamConverter("media", class="MyOrleansBundle:Media", options={"id" = "media_id"})
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMedia(Accueil $accueil, Media $media)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $path = $media->getMediaName();
+        unlink($this->getParameter('upload_directory') . '/' . $path);
+        $accueil->removeMedia($media);
+        $em->remove($media);
+
+        $em->flush();
+        return $this->redirectToRoute('admin_accueil_edit', array('id' => $accueil->getId()));
     }
 }
