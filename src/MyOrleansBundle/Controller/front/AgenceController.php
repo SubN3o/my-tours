@@ -15,6 +15,7 @@ use MyOrleansBundle\Entity\Collaborateur;
 use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Partenaire;
+use MyOrleansBundle\Entity\Realisation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,8 +57,11 @@ class AgenceController extends Controller
         $evenements = $em->getRepository(Evenement::class)->findBy([], ['dateDebut'=>'ASC']);
         $cover = $em->getRepository(Media::class)->findAll();
 
-        //récupération de l'id1 de Accueil où sont stocké la video d'intro et le texte de présentation
+        //récupération de l'id1 de Accueil où sont stocké la video d'intro, le texte de présentation et les images pour le slider My Orléans
         $accueil = $em->getRepository(Accueil::class)->find(1);
+
+        //récupération des realisations
+        $realisations = $em->getRepository(Realisation::class)->findBy([], ['tri' => 'ASC']);
 
         //Formulaire de contact
         $client = new Client();
@@ -94,6 +98,7 @@ class AgenceController extends Controller
 
         return $this->render('MyOrleansBundle::my-orleans.html.twig',
             [
+                'realisations' => $realisations,
                 'telephone_number' => $telephone_number,
                 'mois' => $mois,
                 'partenaires' => $partenaires,
