@@ -41,17 +41,7 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    {% if pack.media.mediaName is defined %}
-
-                                        <p class="imgUploader"><img class="responsive-img"
-                                                                    src="{{ asset('uploads/'~pack.media.mediaName) }}"
-                                                                    alt="{{ pack.nom }}"/>
-                                            {% if asset('uploads/'~pack.media.mediaName) !=  asset('uploads/default.jpg') %}
-                                                <a href="{{ path('pack_media_delete', {"id" : pack .id}) }}">Supprimer</a>
-                                            {% endif %}
-                                        </p>
-                                    {% endif %}
-                                    <h3>Ajouter une nouvelle image.</h3>
+                                    <h3>Ajouter un nouveau média.</h3>
                                     <p>Utilisez le type de média "<b>image-cover</b>" pour afficher une image en couverture du
                                         pack et de l'illustrer.</p>
                                     {{ form_widget(edit_form.media) }}
