@@ -44,8 +44,8 @@
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header active">Administration du stock <i
-                                        class="material-icons">settings</i></div>
+                            <div class="collapsible-header">Administration du stock <i
+                                        class="material-icons">business</i></div>
                             <div class="collapsible-body">
                                 {{ render(controller('MyOrleansBundle:admin/Admin:navBarAdmin')) }}
                                 <a href="{{ path("admin_residence_index") }}">
@@ -60,41 +60,56 @@
                             </div>
                         </li>
                         <li>
-                            <div class="collapsible-header active">Administration du site <i class="material-icons">lock</i>
+
+                            <div class="collapsible-header">My-Orléans <i class="material-icons">store_mall_directory</i>
                             </div>
                             <div class="collapsible-body">
-                                <a href="{{ path('admin_accueil_edit', {id : 1} )}}">
-                                    <p>My Orléans</p>
+                                <a href="{{ path('admin_accueil_edit', {id : 1} ) }}">
+                                    <p>Généralité</p>
                                 </a>
-                                <a href="{{ path("admin_chiffre_index") }}">
-                                    <p>Nos chiffres</p>
+                                <a href="{{ path("admin_collaborateur_index") }}">
+                                    <p>Membres de l'agence</p>
                                 </a>
-                                <a href="{{ path("admin_article_index") }}">
-                                    <p>Articles</p>
+                                <a href="{{ path("admin_realisation_index") }}">
+                                    <p>Réalisations</p>
                                 </a>
                                 <a href="{{ path("admin_evenement_index") }}">
                                     <p>Événements</p>
                                 </a>
+                                <a href="{{ path("admin_partenaire_index") }}">
+                                    <p>Partenaires</p>
+                                </a>
+                                <a href="{{ path("admin_temoignage_index") }}">
+                                    <p>Témoignages</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header">Savoir-Faire <i class="material-icons">list</i>
+                            </div>
+                            <div class="collapsible-body">
                                 <a href="{{ path("admin_service_index") }}">
                                     <p>Services</p>
                                 </a>
                                 <a href="{{ path("admin_pack_index") }}">
                                     <p>Packs</p>
                                 </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header">Infos Pratiques <i class="material-icons">border_color</i>
+                            </div>
+                            <div class="collapsible-body">
+                                <a href="{{ path("admin_article_index") }}">
+                                    <p>Articles</p>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="active collapsible-header">
                                 <a href="{{ path("admin_client_index") }}">
+                                    <i class="material-icons">contact_mail</i>
                                     <p>Clients</p>
-                                </a>
-                                <a href="{{ path("admin_temoignage_index") }}">
-                                    <p>Témoignages</p>
-                                </a>
-                                <a href="{{ path("admin_collaborateur_index") }}">
-                                    <p>Membres de l'agence</p>
-                                </a>
-                                <a href="{{ path("admin_partenaire_index") }}">
-                                    <p>Partenaires</p>
-                                </a>
-                                <a href="{{ path("admin_realisation_index") }}">
-                                    <p>Réalisations</p>
                                 </a>
                             </div>
                         </li>
@@ -153,9 +168,9 @@
                 });
             </script>
             <script type="text/javascript">
-                $('.copy_button').on( 'click', function(e){
+                $('.copy_button').on('click', function (e) {
                     e.preventDefault();
-                    copyToClipboard( $(this).attr('href') );
+                    copyToClipboard($(this).attr('href'));
                 });
 
                 function copyToClipboard(text) {
