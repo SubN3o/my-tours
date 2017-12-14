@@ -42,7 +42,7 @@ class ServiceUploadListener
         if (!$entity instanceof Media) {
             return;
         }
-        if ($entity->getService()) {
+        if ($entity->getServices()) {
             $this->uploadFile($entity);
 
             if ($this->oldMedia) {
@@ -57,7 +57,7 @@ class ServiceUploadListener
         if (!$entity instanceof Media) {
             return;
         }
-        if ($entity->getService()) {
+        if ($entity->getServices()) {
             if (is_file($entity->getLien())) {
                 unlink($entity->getLien());
             }
@@ -72,7 +72,7 @@ class ServiceUploadListener
         }
 
 
-        if ($entity->getService()) {
+        if ($entity->getServices()) {
             $file = $entity->getLien();
 
             // only upload new files
@@ -93,7 +93,7 @@ class ServiceUploadListener
         $masterRequest = $this->requestStack->getMasterRequest()->get('_route');
         if ($masterRequest == 'admin_service_edit') {
 
-            if ($entity->getService()) {
+            if ($entity->getServices()) {
 
                 $this->oldMedia = $entity->getLien();
 

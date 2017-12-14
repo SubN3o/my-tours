@@ -5,6 +5,8 @@ namespace MyOrleansBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\JoinTable;
+
 
 /**
  * Service
@@ -54,10 +56,11 @@ class Service
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="service", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"},fetch="EAGER")
+     * @JoinTable(name="service_media")
      * @Assert\Valid()
      */
-    private $media;
+    private $medias;
 
     /**
      * @var int
@@ -178,28 +181,21 @@ class Service
     }
 
     /**
-     * Set media
-     *
-     * @param \MyOrleansBundle\Entity\Media $media
-     *
-     * @return Service
+     * @return mixed
      */
-    public function setMedia(\MyOrleansBundle\Entity\Media $media = null)
+    public function getMedias()
     {
-        $this->media = $media;
-
-        return $this;
+        return $this->medias;
     }
 
     /**
-     * Get media
-     *
-     * @return \MyOrleansBundle\Entity\Media
+     * @param mixed $medias
      */
-    public function getMedia()
+    public function setMedias($medias)
     {
-        return $this->media;
+        $this->medias = $medias;
     }
+
     /**
      * Constructor
      */

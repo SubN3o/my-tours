@@ -43,10 +43,17 @@
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    <h3>Le média actuellement relié à votre service</h3>
+                                    <h3>Les médias actuellement reliés à votre service</h3>
                                     <p>Utilisez le type de média "<b>image-cover</b>" pour afficher une image en couverture du
                                         service et de l'illustrer.</p>
-                                    {{ form_row(edit_form.media) }}
+                                    <p>Utilisez le type de média "<b>icone</b>" pour afficher une icone pour le service.</p>
+                                    {{ form_row(edit_form.medias) }}
+
+                                    <h3>Ajouter un nouveau média.</h3>
+
+                                    <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
+                                       id="add-another-media"><i
+                                                class="material-icons">add</i></a>
                                 </div>
                             </div>
                             <input class="waves-effect waves-light btn-large light-green" type="submit" value="Modifier"/>
@@ -71,4 +78,41 @@
         </div>
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        // keep track of how many email fields have been rendered
+        var mediaCount = '{{ edit_form.medias|length }}';
+        jQuery(document).ready(function () {
+            jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
+                e.preventDefault();
+                var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
+
+                var newWidget = mediaList.attr('data-prototype');
+                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
+                newWidget = newWidget.replace(/__name__label__/g, mediaCount);
+                mediaCount++;
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(mediaList);
+                $('select').material_select();
+            });
+
+            var media = [
+                {% for media in service.medias if media.id != null %}
+                [
+                    '{{ path('service_media_delete', {"id" : service.id, "media_id" : media.id}) }}'
+                ],
+                {% endfor %}
+            ];
+
+            for (i = 0; i < media.length; i++) {
+                if (media.length > 1) {
+                    jQuery('#myorleansbundle_service_medias_' + i).append('<a href="' + media[i][0] + '">Supprimer le média ' + i + '</a>');
+                }
+            }
+        });
+
+    </script>
 {% endblock %}

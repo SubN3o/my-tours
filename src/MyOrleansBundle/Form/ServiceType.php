@@ -3,6 +3,7 @@
 namespace MyOrleansBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +24,13 @@ class ServiceType extends AbstractType
                     "class" => "materialize ckeditor"
                 ]
             ])
-            ->add('media', MediaType::class)
+            ->add('medias', CollectionType::class,
+                [
+                    'entry_type' => MediaType::class,
+                    'allow_add' => true,
+                    'prototype' => true,
+                    'by_reference' => false]
+            )
             ->add('tri', IntegerType::class, [
                 'required' => false
             ])

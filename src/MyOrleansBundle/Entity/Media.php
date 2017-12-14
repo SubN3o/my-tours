@@ -62,9 +62,9 @@ class Media
     private $categorie_presta;
 
     /**
-     * @ORM\OneToOne(targetEntity="Service", mappedBy="media")
+     * @ORM\ManyToMany(targetEntity="Service", cascade={"persist"})
      */
-    private $service;
+    private $services;
 
     /**
      * @ORM\OneToOne(targetEntity="Collaborateur", mappedBy="media")
@@ -248,6 +248,7 @@ class Media
         $this->flats = new ArrayCollection();
         $this->articles = new ArrayCollection();
         $this->evenements = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     /**
@@ -299,27 +300,19 @@ class Media
     }
 
     /**
-     * Set service
-     *
-     * @param \MyOrleansBundle\Entity\Service $service
-     *
-     * @return Media
+     * @return mixed
      */
-    public function setService(\MyOrleansBundle\Entity\Service $service = null)
+    public function getServices()
     {
-        $this->service = $service;
-
-        return $this;
+        return $this->services;
     }
 
     /**
-     * Get service
-     *
-     * @return \MyOrleansBundle\Entity\Service
+     * @param mixed $services
      */
-    public function getService()
+    public function setServices($services)
     {
-        return $this->service;
+        $this->services = $services;
     }
 
     /**

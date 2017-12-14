@@ -34,12 +34,12 @@
                             </table>
                             <hr>
                             <div class="row">
-                                <div class="col s4">
-                                    <img class="responsive-img"
-                                         src="{{ asset('uploads/'~service.media.mediaName) }}"
-                                         alt="{{ service.type }}"/>
-                                    <p>{{ service.media.typeMedia.nom }}</p>
-                                </div>
+                                {% for media in service.medias %}
+                                    <div class="col s4">
+                                        <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                        <p>{{ media.typeMedia.nom }}</p>
+                                    </div>
+                                {% endfor %}
                             </div>
                             <ul>
                                 <li>

@@ -6,6 +6,7 @@ use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Service;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Service\FileUploader;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -43,9 +44,12 @@ class ServiceController extends Controller
      * @Route("/new", name="admin_service_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
         $service = new Service();
+        $media = new Media();
+        $service->getMedias()->add($media);
+
         $form = $this->createForm('MyOrleansBundle\Form\ServiceType', $service);
         $form->handleRequest($request);
 
@@ -87,9 +91,13 @@ class ServiceController extends Controller
      * @Route("/{id}/edit", name="admin_service_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Service $service, FileUploader $fileUploader)
+    public function editAction(Request $request, Service $service)
     {
         $deleteForm = $this->createDeleteForm($service);
+        if (!empty($service->getMedias()->isEmpty())) {
+            $media = new Media();
+            $service->getMedias()->add($media);
+        }
         $editForm = $this->createForm('MyOrleansBundle\Form\ServiceType', $service);
         $editForm->handleRequest($request);
 
@@ -131,16 +139,21 @@ class ServiceController extends Controller
     /**
      * Deletes a service media.
      *
-     * @Route("/{id}/delete_media", name="service_media_delete")
+     * @Route("/{id}/delete_media/{media_id}", name="service_media_delete")
+     * @ParamConverter("service", class="MyOrleansBundle:Service", options={"id" = "id"})
+     * @ParamConverter("media", class="MyOrleansBundle:Media", options={"id" = "media_id"})
      * @Method({"GET", "POST"})
      */
-    public function deleteMedia(Service $service)
+    public function deleteMedia(Service $service, Media $media)
     {
-        $path = $service->getMedia()->getMediaName();
         $em = $this->getDoctrine()->getManager();
-        $service->setMedia(null);
-        $em->flush();
+
+        $path = $media->getmediaName();
         unlink($this->getParameter('upload_directory') . '/' . $path);
+        $service->removeMedia($media);
+        $em->remove($media);
+
+        $em->flush();
         return $this->redirectToRoute('admin_service_edit', array('id' => $service->getId()));
     }
     /**
