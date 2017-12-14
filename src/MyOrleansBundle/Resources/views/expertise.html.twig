@@ -3,7 +3,8 @@
 {% block title %}My ORLEANS | Savoir-Faire{% endblock %}
 
 {% block description %}
-    <meta name="description" content="My ORLEANS est présent à toutes les étapes de votre projet immobilier : de la recherche à la livraison / location et gestion locative pour votre investissement immobilier."/>
+    <meta name="description"
+          content="My ORLEANS est présent à toutes les étapes de votre projet immobilier : de la recherche à la livraison / location et gestion locative pour votre investissement immobilier."/>
 {% endblock %}
 
 {% block content %}
@@ -15,16 +16,20 @@
                 {% for service in services %}
                     <div class="timeline-item">
                         <div class="timeline-icon">
-                            <p class="center">{{ service.tri }}</p>
-                            {#<img src="{{ asset('img/logoMyOrleansBlanc.png') }}">#}
+                    {% for media in service.medias if media.typeMedia.nom == "icone" %}
+                        <img src="{{ asset('uploads/'~media.mediaName) }}" alt="icone {{ service.type }}">
+                    {% endfor %}
                         </div>
                         <ul class="collapsible timeline-content" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header">
                                     <div class="valign-wrapper">
                                         <h2 class="col s8 center">{{ service.type }}</h2>
-                                        <img class="col s4 responsive-img"
-                                             src="{{ asset('uploads/'~service.media.mediaName) }}" alt="illustration {{ service.type }}">
+                                        {% for media in service.medias if media.typeMedia.nom == "image-cover" %}
+                                            <img class="col s4 responsive-img"
+                                                 src="{{ asset('uploads/'~media.mediaName) }}"
+                                                 alt="illustration {{ service.type }}">
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <div class="collapsible-body"><span>{{ service.description | raw }}</span></div>
