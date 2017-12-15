@@ -241,7 +241,6 @@ class NosResidencesController extends Controller
             return $this->render('MyOrleansBundle::nosResidences.html.twig',[
                 'telephone_number' => $telephoneNumber,
                 'form' => $formulaire->createView(),
-                'chiffres' => $chiffres,
                 'completeSearch' => $completeSearch->createView(),
                 'residencesSuggerees' => $residencesSuggerees,
                 'residences' => $residences,

@@ -27,7 +27,7 @@ class CompleteSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->setMethod('GET')
+            ->setMethod('POST')
             ->add('ville', SearchType::class, [
                 'required'=>false,
                 'attr'=> [

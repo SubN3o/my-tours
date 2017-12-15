@@ -210,7 +210,7 @@ footer p {
     -moz-border-radius: 50px;
     border-radius: 50px;
     background-color: white;
-    margin: 15px 50px 0 0;
+    margin: 0 0 20px 0;
     -webkit-transition: background-color 500ms ease-out 10ms;
     -moz-transition: background-color 500ms ease-out 10ms;
     -o-transition: background-color 500ms ease-out 10ms;
@@ -221,19 +221,9 @@ footer p {
     background-color: #1D1D1B;
 }
 
-.ytb-social {
-    margin-top: 10px;
+.ytb-social, .gplus-social, .fb-social {
     color: #C8CACC;
-}
-
-.gplus-social {
-    margin-top: 10px;
-    color: #C8CACC;
-}
-
-.fb-social {
-    margin-top: 11px;
-    color: #C8CACC;
+    padding-top: 10px;
 }
 
 .contact .align-icon {
@@ -1192,6 +1182,12 @@ video {
     text-transform: uppercase;
     color: #1D1D1B;
     margin: 0 10px;
+}
+
+@media screen and (max-width: 1370px) {
+    .budget p {
+        font-size: 8pt;
+    }
 }
 
 @media screen and (max-width: 1200px) {
