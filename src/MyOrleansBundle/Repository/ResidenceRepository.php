@@ -14,23 +14,21 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('r');
 
+        $qb->andWhere('f.statut = true')
+            ->orderBy('r.tri', 'ASC')
+            ->join('r.flats', 'f');
+
         if (!empty($ville)) {
             $qb->andWhere('v.nom LIKE :ville')
-                ->andWhere('fl.statut = true')
-                ->setParameter('ville', '%'.$ville.'%')
-                ->join('r.flats', 'fl')
-                ->join('r.ville', 'v')
-                ->orderBy('r.tri', 'ASC');
+                ->setParameter('ville', '%' . $ville . '%')
+                ->join('r.ville', 'v');
         }
 
         if (!empty($type)) {
             $qb->andWhere('t.nom = :type')
-                ->andWhere('f.statut = true')
                 ->setParameter('type', $type)
-                ->join('r.flats', 'f')
-                ->join('f.typeLogement', 't')
-                ->orderBy('r.tri', 'ASC');
-        }
+                ->join('f.typeLogement', 't');
+       }
 
         return $qb->getQuery()->getResult();
     }
@@ -40,40 +38,33 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('r');
 
+        $qb->andWhere('f.statut = true')
+            ->orderBy('r.tri', 'ASC')
+            ->join('r.flats', 'f');
+
+
         if (!empty($data['ville'])) {
             $qb->andWhere('v.nom LIKE :ville')
-                ->andWhere('flt.statut = true')
-                ->setParameter('ville', '%'.$data['ville'].'%')
-                ->join('r.ville', 'v')
-                ->join('r.flats', 'flt')
-                ->orderBy('r.tri', 'ASC');
+                ->setParameter('ville', '%' . $data['ville'] . '%')
+                ->join('r.ville', 'v');
         }
 
 
         if (!empty($data['typeLogement'])) {
             $qb->andWhere('t.id IN(:type)')
-                ->andWhere('f.statut = true')
                 ->setParameter('type', $data['typeLogement'])
-                ->join('r.flats', 'f')
-                ->join('f.typeLogement', 't')
-                ->orderBy('r.tri', 'ASC');
+                ->join('f.typeLogement', 't');
         }
 
 
         if (!empty($data['budgetMin'])) {
-            $qb->andWhere('ft.prix >= :budgetMin')
-                ->andWhere('ft.statut = true')
-                ->setParameter('budgetMin', $data['budgetMin'])
-                ->join('r.flats', 'ft')
-                ->orderBy('r.tri', 'ASC');
+            $qb->andWhere('f.prix >= :budgetMin')
+                ->setParameter('budgetMin', $data['budgetMin']);
         }
 
         if (!empty($data['budgetMax'])) {
-            $qb->andWhere('fts.prix <= :budgetMax ')
-                ->andWhere('fts.statut = true')
-                ->setParameter('budgetMax', $data['budgetMax'])
-                ->join('r.flats', 'fts')
-                ->orderBy('r.tri', 'ASC');
+            $qb->andWhere('f.prix <= :budgetMax ')
+                ->setParameter('budgetMax', $data['budgetMax']);
         }
 
         return $qb->getQuery()->getResult();
@@ -82,20 +73,20 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
 
     public function suggestResidence($idResidence)
     {
-            $qb = $this->createQueryBuilder('r')
-                ->where('r.id NOT IN(:idResidence)')
-                ->setParameter('idResidence', $idResidence)
-                ->andWhere('r.favoris = true')
-                ->orderBy('r.tri', 'ASC')
-                ->setMaxResults(4);
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.id NOT IN(:idResidence)')
+            ->setParameter('idResidence', $idResidence)
+            ->andWhere('r.favoris = true')
+            ->orderBy('r.tri', 'ASC')
+            ->setMaxResults(4);
 
-            return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
     }
 
     public function findAllLimit()
     {
         $qb = $this->createQueryBuilder('r')
-            ->orderBy('r.id','DESC')
+            ->orderBy('r.id', 'DESC')
             ->setMaxResults(6);
         return $qb->getQuery()->getResult();
 
@@ -107,7 +98,7 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
             ->where('r.favoris = 1')
             ->orderBy('r.tri', 'ASC')
             ->setMaxResults(1);
-         return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
     }
 
     public function findTwoFav()
