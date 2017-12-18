@@ -28,7 +28,7 @@ class ExpertiseController extends Controller
 {
 
     /**
-     * @Route("/savoir-faire", name="expertise")
+     * @Route("/nos-competences", name="expertise")
      */
 
     public function expertiseAction( Request $request)
@@ -75,7 +75,7 @@ class ExpertiseController extends Controller
 
 
 
-            return $this->redirectToRoute('epertise');
+            return $this->redirectToRoute('expertise');
         }
 
 

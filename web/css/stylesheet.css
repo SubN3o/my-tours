@@ -2213,15 +2213,6 @@ video {
     -ms-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
-#timeline:before {
-    content: "";
-    width: 3px;
-    height: 100%;
-    background: #B5CC17;
-    left: 0;
-    top: 0;
-    position: absolute;
-}
 
 #timeline:after {
     content: "";
@@ -2231,8 +2222,13 @@ video {
 }
 
 #timeline .timeline-item {
-    margin-bottom: 50px;
+    padding-bottom: 50px;
     position: relative;
+    border-left: solid 3px #B5CC17;
+}
+
+#timeline .timeline-item:last-child {
+    border-left: solid 3px transparent;
 }
 
 #timeline .timeline-item .timeline-icon {
@@ -2243,7 +2239,7 @@ video {
     top: 0;
     left: 0;
     overflow: hidden;
-    margin-left: -23px;
+    margin-left: -27px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
