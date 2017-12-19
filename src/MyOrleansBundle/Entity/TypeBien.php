@@ -34,6 +34,29 @@ class TypeBien
     private $flats;
 
     /**
+     * @ORM\OneToMany(targetEntity="Ancien", mappedBy="typeBien")
+     */
+    private $anciens;
+
+    /**
+     * @return mixed
+     */
+    public function getAnciens()
+    {
+        return $this->anciens;
+    }
+
+    /**
+     * @param mixed $anciens
+     * @return TypeBien
+     */
+    public function setAnciens($anciens)
+    {
+        $this->anciens = $anciens;
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return int

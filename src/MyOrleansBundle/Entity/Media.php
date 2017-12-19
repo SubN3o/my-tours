@@ -142,6 +142,29 @@ class Media
     private $realisation;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Ancien", cascade={"persist"})
+     */
+    private $anciens;
+
+    /**
+     * @return mixed
+     */
+    public function getAnciens()
+    {
+        return $this->anciens;
+    }
+
+    /**
+     * @param mixed $anciens
+     * @return Media
+     */
+    public function setAnciens($anciens)
+    {
+        $this->anciens = $anciens;
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getPlaquette()
@@ -249,6 +272,7 @@ class Media
         $this->articles = new ArrayCollection();
         $this->evenements = new ArrayCollection();
         $this->services = new ArrayCollection();
+        $this->anciens = new ArrayCollection();
     }
 
     /**
@@ -466,6 +490,30 @@ class Media
     public function removeResidence(\MyOrleansBundle\Entity\Residence $residence)
     {
         $this->residences->removeElement($residence);
+    }
+
+    /**
+     * Add ancien
+     *
+     * @param \MyOrleansBundle\Entity\Ancien $ancien
+     *
+     * @return Media
+     */
+    public function addAncien(\MyOrleansBundle\Entity\Ancien $ancien)
+    {
+        $this->anciens[] = $ancien;
+
+        return $this;
+    }
+
+    /**
+     * Remove ancien
+     *
+     * @param \MyOrleansBundle\Entity\Ancien $ancien
+     */
+    public function removeAncien(\MyOrleansBundle\Entity\Ancien $ancien)
+    {
+        $this->anciens->removeElement($ancien);
     }
 
     /**

@@ -46,6 +46,28 @@ class Ville
      */
     private $residences;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Ancien", mappedBy="ville", cascade={"all"}, fetch="EAGER")
+     */
+    private $anciens;
+
+    /**
+     * @return mixed
+     */
+    public function getAnciens()
+    {
+        return $this->anciens;
+    }
+
+    /**
+     * @param mixed $anciens
+     * @return Ville
+     */
+    public function setAnciens($anciens)
+    {
+        $this->anciens = $anciens;
+        return $this;
+    }
 
     /**
      * Get id

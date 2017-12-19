@@ -1,0 +1,80 @@
+{% extends '::layout_admin.html.twig' %}
+
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Liste de vos anciens</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Objet</th>
+                                    <th>Etat</th>
+                                    <th>Statut</th>
+                                    <th>Prix</th>
+                                    <th>Surface</th>
+                                    <th>Reference</th>
+                                    <th>Ges</th>
+                                    <th>Energie</th>
+                                    <th>Description</th>
+                                    <th>Residence</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for ancien in anciens %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ path('admin_ancien_show', { 'id': ancien.id }) }}">{{ ancien.id }}</a>
+                                        </td>
+                                        <td>{{ ancien.objet }}</td>
+                                        <td>{{ ancien.etat }}</td>
+                                        <td>{{ ancien.statut }}</td>
+                                        <td>{{ ancien.prix }}</td>
+                                        <td>{{ ancien.surface }}</td>
+                                        <td>{{ ancien.reference }}</td>
+                                        <td>{{ ancien.ges }}</td>
+                                        <td>{{ ancien.energie }}</td>
+                                        <td>{{ ancien.description }}</td>
+                                        <td>{{ ancien.residence }}</td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('admin_ancien_show', { 'id': ancien.id }) }}">show</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('admin_ancien_edit', { 'id': ancien.id }) }}">edit</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr>
+                            <div class="navigation center">
+                                {{ knp_pagination_render(anciens, 'MyOrleansBundle::pagination.html.twig') }}
+                            </div>
+                            <ul>
+                                <li>
+
+                                    <a href="{{ path('admin_ancien_new') }}"
+                                       class="btn-floating btn-large waves-effect waves-light light-green"><i
+                                                class="material-icons">add</i>Ajouter un
+                                        ancien</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

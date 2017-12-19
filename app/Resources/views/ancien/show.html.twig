@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ancien</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ancien.id }}</td>
+            </tr>
+            <tr>
+                <th>Objet</th>
+                <td>{{ ancien.objet }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ ancien.etat }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ ancien.statut }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ ancien.prix }}</td>
+            </tr>
+            <tr>
+                <th>Surface</th>
+                <td>{{ ancien.surface }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ ancien.reference }}</td>
+            </tr>
+            <tr>
+                <th>Ges</th>
+                <td>{{ ancien.ges }}</td>
+            </tr>
+            <tr>
+                <th>Energie</th>
+                <td>{{ ancien.energie }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ ancien.description }}</td>
+            </tr>
+            <tr>
+                <th>Residence</th>
+                <td>{{ ancien.residence }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_ancien_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_ancien_edit', { 'id': ancien.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

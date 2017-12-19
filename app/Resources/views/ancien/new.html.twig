@@ -1,0 +1,156 @@
+{% extends '::layout_admin.html.twig' %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title"> Créer un nouvel ancien</h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.reference, "Référence :") }}
+                                    {{ form_widget(form.reference) }}
+                                    {{ form_errors(form.reference) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.objet, "Objet :") }}
+                                    {{ form_widget(form.objet) }}
+                                    {{ form_errors(form.objet) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.statut, "Statut :") }}
+                                    {{ form_widget(form.statut) }}
+                                    {{ form_errors(form.statut) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.prix, "Prix :") }}
+                                    {{ form_widget(form.prix) }}
+                                    {{ form_errors(form.prix) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.surface, 'Surface : ') }}
+                                    {{ form_widget(form.surface) }}
+                                    {{ form_errors(form.surface) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(form.typeBien, 'Type de bien :') }}
+                                    {{ form_widget(form.typeBien) }}
+                                    {{ form_errors(form.typeBien) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.typeLogement, 'Type de logement :') }}
+                                    {{ form_widget(form.typeLogement) }}
+                                    {{ form_errors(form.typeLogement) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.etat, "Etat :") }}
+                                    {{ form_widget(form.etat) }}
+                                    {{ form_errors(form.etat) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.ville, 'Ville :') }}
+                                    {{ form_widget(form.ville) }}
+                                    {{ form_errors(form.ville) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.quartier, 'Quartier :') }}
+                                    {{ form_widget(form.quartier) }}
+                                    {{ form_errors(form.quartier) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s3">
+                                    {{ form_label(form.energie, 'Classe énergitique :') }}
+                                    {{ form_widget(form.energie) }}
+                                    {{ form_errors(form.energie) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(form.ges, 'Gaz à effet de serre :') }}
+                                    {{ form_widget(form.ges) }}
+                                    {{ form_errors(form.ges) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.residence, 'Résidence :') }}
+                                    {{ form_widget(form.residence) }}
+                                    {{ form_errors(form.residence) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                {{ form_label(form.description, 'Description : ') }}
+                                {{ form_widget(form.description) }}
+                                {{ form_errors(form.description) }}
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <h3>Ajoutez des médias</h3>
+                                    <p>Utilisez le type de média "<b>image-cover</b>" pour afficher une image en
+                                        couverture de l'ancien</p>
+                                    <p>Utilisez le type de média "<b>image</b>" pour illustrer un ancien</p>
+                                    {{ form_row(form.medias) }}
+                                    <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
+                                       id="add-another-media"><i
+                                                class="material-icons">add</i></a>
+                                </div>
+                            </div>
+
+                            <input class="waves-effect waves-light btn-large light-green" type="submit"
+                                   value="Ajouter"/>
+                            {{ form_end(form) }}
+
+                        </div>
+
+
+                        <ul>
+                            <li>
+                                <a href="{{ path('admin_ancien_index') }}"><i
+                                            class="material-icons">keyboard_return</i>Retour
+                                    à la liste des anciens</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        // keep track of how many email fields have been rendered
+        var mediaCount = '{{ form.medias|length }}';
+
+        jQuery(document).ready(function () {
+            jQuery('#add-another-media').click(function (e) { // appbundle_products_add-product
+                e.preventDefault();
+                var mediaList = jQuery('#{{ form.medias.vars.id }}');
+
+                var newWidget = mediaList.attr('data-prototype');
+                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
+                newWidget = newWidget.replace(/__name__label__/g, mediaCount);
+                mediaCount++;
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(mediaList);
+                $('select').material_select();
+
+            });
+        });
+    </script>
+{% endblock %}
