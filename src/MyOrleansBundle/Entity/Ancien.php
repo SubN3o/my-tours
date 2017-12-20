@@ -141,6 +141,13 @@ class Ancien
     private $medias;
 
     /**
+     * @var \DateTime
+     * @Assert\DateTime()
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -486,6 +493,30 @@ class Ancien
     {
         $this->medias = $medias;
         return $this;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Ancien
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 
     /**

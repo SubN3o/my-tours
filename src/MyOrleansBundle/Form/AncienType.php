@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -94,8 +95,7 @@ class AncienType extends AbstractType
             ->add('description', TextareaType::class, [
                 "attr" => [
                     "class" => "materialize-textarea"
-                ],
-                'required' => false,
+                ]
             ])
             ->add('residence', TextType::class, [
                 'required' => false
@@ -126,6 +126,11 @@ class AncienType extends AbstractType
                 'class' => TypeBien::class,
                 'choice_label' => 'nom',
                 'required' => true
+            ])
+            ->add('date', DateType::class,[
+                'placeholder' => [
+                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'],
+                'required' => false
             ])
         ;
     }

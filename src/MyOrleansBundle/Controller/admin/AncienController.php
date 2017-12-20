@@ -69,7 +69,7 @@ class AncienController extends Controller
             $em->persist($ancien);
             $em->flush();
 
-            $this->addFlash('success', 'Votre ancien a bien été ajoutée');
+            $this->addFlash('success', 'Votre bien ancien a bien été ajoutée');
             return $this->redirectToRoute('admin_ancien_index', array('id' => $ancien->getId()));
         }
 
@@ -116,7 +116,7 @@ class AncienController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Votre résidence a bien été mis à jour');
+            $this->addFlash('success', 'Votre bien ancien a bien été mis à jour');
             return $this->redirectToRoute('admin_ancien_index', array('id' => $ancien->getId()));
         }
 
@@ -143,7 +143,7 @@ class AncienController extends Controller
             $em->remove($ancien);
             $em->flush();
         }
-        $this->addFlash('danger', 'Votre ancien a bien été supprimée');
+        $this->addFlash('danger', 'Votre bien ancien a bien été supprimée');
 
         return $this->redirectToRoute('admin_ancien_index');
     }

@@ -4,55 +4,49 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">Liste de vos anciens</h4>
+                            <h4 class="title">Liste de vos biens anciens</h4>
                         </div>
                         <div class="card-content table-responsive">
-                            <table>
+                            <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Référence</th>
                                     <th>Objet</th>
+                                    <th>Type de bien</th>
+                                    <th>Type de logement</th>
                                     <th>Etat</th>
-                                    <th>Statut</th>
-                                    <th>Prix</th>
+                                    <th>Statut {{ knp_pagination_sortable(anciens, '↑↓', 'ancien.statut') }}</th>
+                                    <th>Prix {{ knp_pagination_sortable(anciens, '↑↓', 'ancien.prix') }}</th>
                                     <th>Surface</th>
-                                    <th>Reference</th>
-                                    <th>Ges</th>
-                                    <th>Energie</th>
-                                    <th>Description</th>
-                                    <th>Residence</th>
-                                    <th>Actions</th>
+                                    <th>Ville</th>
+                                    <th>Disponibilité</th>
+                                    <th>Aperçu</th>
+                                    <th>Éditer</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for ancien in anciens %}
                                     <tr>
-                                        <td>
-                                            <a href="{{ path('admin_ancien_show', { 'id': ancien.id }) }}">{{ ancien.id }}</a>
-                                        </td>
+                                        <td>{{ ancien.reference }}</td>
                                         <td>{{ ancien.objet }}</td>
+                                        <td>{{ ancien.typeBien.nom }}</td>
+                                        <td>{{ ancien.typeLogement.nom }}</td>
                                         <td>{{ ancien.etat }}</td>
                                         <td>{{ ancien.statut }}</td>
-                                        <td>{{ ancien.prix }}</td>
-                                        <td>{{ ancien.surface }}</td>
-                                        <td>{{ ancien.reference }}</td>
-                                        <td>{{ ancien.ges }}</td>
-                                        <td>{{ ancien.energie }}</td>
-                                        <td>{{ ancien.description }}</td>
-                                        <td>{{ ancien.residence }}</td>
+                                        <td>{{ ancien.prix|number_format(0, '.', ' ') }}{% if ancien.prix != null %} €{% endif %}</td>
+                                        <td>{{ ancien.surface }} m²</td>
+                                        <td>{{ ancien.ville.nom }}</td>
+                                        <td>{% if ancien.date %}{{ ancien.date|date('j-m-Y') }}{% endif %}</td>
                                         <td>
-                                            <ul>
-                                                <li>
-                                                    <a href="{{ path('admin_ancien_show', { 'id': ancien.id }) }}">show</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ path('admin_ancien_edit', { 'id': ancien.id }) }}">edit</a>
-                                                </li>
-                                            </ul>
+                                            <a href="{{ path('admin_ancien_show', { 'id': ancien.id }) }}"><i
+                                                        class="material-icons">remove_red_eye</i></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('admin_ancien_edit', { 'id': ancien.id }) }}"><i
+                                                        class="material-icons">build</i></a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -67,8 +61,7 @@
 
                                     <a href="{{ path('admin_ancien_new') }}"
                                        class="btn-floating btn-large waves-effect waves-light light-green"><i
-                                                class="material-icons">add</i>Ajouter un
-                                        ancien</a>
+                                                class="material-icons">add</i>Ajouter un bien ancien</a>
                                 </li>
                             </ul>
                         </div>

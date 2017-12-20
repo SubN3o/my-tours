@@ -1,68 +1,111 @@
-{% extends 'base.html.twig' %}
+{% extends '::layout_admin.html.twig' %}
 
-{% block body %}
-    <h1>Ancien</h1>
+{% block content %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ancien.id }}</td>
-            </tr>
-            <tr>
-                <th>Objet</th>
-                <td>{{ ancien.objet }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ ancien.etat }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ ancien.statut }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ ancien.prix }}</td>
-            </tr>
-            <tr>
-                <th>Surface</th>
-                <td>{{ ancien.surface }}</td>
-            </tr>
-            <tr>
-                <th>Reference</th>
-                <td>{{ ancien.reference }}</td>
-            </tr>
-            <tr>
-                <th>Ges</th>
-                <td>{{ ancien.ges }}</td>
-            </tr>
-            <tr>
-                <th>Energie</th>
-                <td>{{ ancien.energie }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ ancien.description }}</td>
-            </tr>
-            <tr>
-                <th>Residence</th>
-                <td>{{ ancien.residence }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_ancien_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_ancien_edit', { 'id': ancien.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header light-green">
+                            <h4 class="title">Ancien bien ref. : {{ ancien.reference }} </h4>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Référence</th>
+                                    <td>{{ ancien.reference }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Objet</th>
+                                    <td>{{ ancien.objet }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Type de Bien</th>
+                                    <td>{{ ancien.typeBien.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Type de Logement</th>
+                                    <td>{{ ancien.typeLogement.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Etat</th>
+                                    <td>{{ ancien.etat }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Disponibilité</th>
+                                    <td>{% if ancien.date %}{{ ancien.date|date('j-m-Y') }}{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix</th>
+                                    <td>{{ ancien.prix|number_format(0, '.', ' ') }} €</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface</th>
+                                    <td>{{ ancien.surface }} m²</td>
+                                </tr>
+                                <tr>
+                                    <th>Ville</th>
+                                    <td>{{ ancien.ville.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Quartier</th>
+                                    <td>{% if ancien.quartier != null %}{{ ancien.quartier.nom }}{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ges</th>
+                                    <td>{{ ancien.ges }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Energie</th>
+                                    <td>{{ ancien.energie }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ ancien.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Residence</th>
+                                    <td>{{ ancien.residence }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <div class="row">
+                                {% for media in ancien.medias %}
+                                    <div class="col s4">
+                                        <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
+                                        <p>{{ media.typeMedia.nom }}</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_ancien_index', {'id': ancien.id }) }}"><i
+                                                class="material-icons">keyboard_return</i>Retour à la liste des anciens biens</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_ancien_edit', { 'id': ancien.id }) }}"><i
+                                                class="material-icons">build</i>Éditer cet ancien bien</a>
+                                </li>
+
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Supprimer"
+                                           class="waves-effect waves-light btn-large red pull-right">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
+

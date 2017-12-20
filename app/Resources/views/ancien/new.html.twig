@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title"> Créer un nouvel ancien</h4>
+                            <h4 class="title"> Créer un nouveau bien ancien</h4>
                         </div>
                         <div class="card-content table-responsive">
                             {{ form_start(form) }}
@@ -17,6 +17,15 @@
                                     {{ form_label(form.reference, "Référence :") }}
                                     {{ form_widget(form.reference) }}
                                     {{ form_errors(form.reference) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.date, 'Disponibilité: ') }}
+                                    <div class="row">
+                                        <div class="col s3">{{ form_widget(form.date.day) }}</div>
+                                        <div class="col s3">{{ form_widget(form.date.month) }}</div>
+                                        <div class="col s3">{{ form_widget(form.date.year) }}</div>
+                                    </div>
+                                    {{ form_errors(form.date) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -98,8 +107,8 @@
                                 <div class="col s12">
                                     <h3>Ajoutez des médias</h3>
                                     <p>Utilisez le type de média "<b>image-cover</b>" pour afficher une image en
-                                        couverture de l'ancien</p>
-                                    <p>Utilisez le type de média "<b>image</b>" pour illustrer un ancien</p>
+                                        couverture du bien ancien</p>
+                                    <p>Utilisez le type de média "<b>image</b>" pour illustrer un bien ancien</p>
                                     {{ form_row(form.medias) }}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
@@ -118,7 +127,7 @@
                             <li>
                                 <a href="{{ path('admin_ancien_index') }}"><i
                                             class="material-icons">keyboard_return</i>Retour
-                                    à la liste des anciens</a>
+                                    à la liste des biens anciens</a>
                             </li>
                         </ul>
 
