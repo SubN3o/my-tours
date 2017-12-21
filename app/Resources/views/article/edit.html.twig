@@ -122,8 +122,8 @@
                 var mediaList = jQuery('#{{ edit_form.medias.vars.id }}');
 
                 var newWidget = mediaList.attr('data-prototype');
-                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                newWidget = newWidget.replace(/__name__label__/g, mediaCount);
+                newWidget = newWidget.replace(/label__/g, '');
+                newWidget = newWidget.replace(/__name__/g, mediaCount);
                 mediaCount++;
                 // create a new list element and add it to the list
                 var newLi = jQuery('<li></li>').html(newWidget);
@@ -154,8 +154,8 @@
                 var tagList = jQuery('#{{ edit_form.tags.vars.id }}');
 
                 var newWidget = tagList.attr('data-prototype');
-                newWidget = newWidget.replace(/<label class="control-label required">__name__label__<\/label>/g, '');
-                newWidget = newWidget.replace(/__name__label__/g, tagCount);
+                newWidget = newWidget.replace(/label__/g, '');
+                newWidget = newWidget.replace(/__name__/g, tagCount);
                 tagCount++;
                 // create a new list element and add it to the list
                 var newLi = jQuery('<li></li>').html(newWidget);
