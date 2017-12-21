@@ -107,3 +107,7 @@ textarea.materialize-textarea {
     height: 150px;
     object-fit: cover;
 }
+
+li {
+    list-style: none;
+}
