@@ -90,13 +90,14 @@
             <div class="slider col offset-l3 l6 s12">
                 <ul class="slides">
                     {% for realisation in realisations %}
-                    <li>
-                        <img src="{{ asset('uploads/'~realisation.media.mediaName) }}" alt="residence {{ realisation.nom }}">
-                        <div class="caption center-align">
-                            <span>{{ realisation.nom }}</span>
-                            <h2>{{ realisation.ville }}</h2>
-                        </div>
-                    </li>
+                        <li>
+                            <img src="{{ asset('uploads/'~realisation.media.mediaName) }}"
+                                 alt="residence {{ realisation.nom }}">
+                            <div class="caption center-align">
+                                <span>{{ realisation.nom }}</span>
+                                <h2>{{ realisation.ville }}</h2>
+                            </div>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -110,26 +111,30 @@
             <section class="timeline">
                 <ol>
                     {% for evenement in evenements %}
-
                         {% if evenement.dateDebut|date("Ymd") < "now"|date("Ymd") %}
-
                             <li>
                                 <div class="event past-event center">
                                     <h2>{{ evenement.nom }}</h2>
                                     <h3>{{ evenement.dateDebut|date('j') }} {{ mois[evenement.dateDebut|date('m')] }}
                                         {{ evenement.dateDebut|date('Y') }}</h3>
                                     <p>{{ evenement.description }}</p>
-                                    {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
-                                    <img class="responsive-img"
-                                         src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline') }}"
-                                         alt="illustration {{ evenement.nom }}">
+                                    {% for media in evenement.medias if media.typeMedia.nom == "image" %}
+                                        {% if loop.first %}
+                                        <a data-toggle="modal" data-id="{{ evenement.id }}" href="#modal-{{ evenement.id }}">
+                                        {% endif %}
                                     {% endfor %}
-                                    {#<a class="waves-effect waves-light btn white" data-toggle="modal"#}
-                                    {#data-id="{{ evenement.id }}"#}
-                                    {#href="#modal-{{ evenement.id }}">VOIR LES PHOTOS</a>#}
+                                    {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
+                                        <img class="responsive-img"
+                                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline') }}"
+                                             alt="illustration {{ evenement.nom }}">
+                                    {% endfor %}
+                                    {% for media in evenement.medias if media.typeMedia.nom == "image" %}
+                                        {% if loop.first %}
+                                        </a>
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                             </li>
-
                         {% else %}
                             <li>
                                 <div class="event future-event center">
@@ -142,19 +147,16 @@
                                     </time>
                                     <p>{{ evenement.description }}</p>
                                     {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
-                                    <img class="responsive-img"
-                                         src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline') }}"
-                                         alt="illustration {{ evenement.nom }}">
+                                        <img class="responsive-img"
+                                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline') }}"
+                                             alt="illustration {{ evenement.nom }}">
                                     {% endfor %}
                                     <a class="button-collapse greenMyO btn" data-activates="slide-out">JE
                                         M'INSCRIS</a>
                                 </div>
                             </li>
-
                         {% endif %}
-
                     {% endfor %}
-                    <li></li>
                 </ol>
 
                 {# On place les modals dans une boucle a part, sinon cela compromet le css de la timeline  #}
@@ -164,13 +166,18 @@
                         <!-- Modal Structure -->
                         <div id="modal-{{ evenement.id }}" class="modal">
                             <div class="modal-content center">
-                                <h2>Photos de l'événement {{ evenement.nom }}</h2>
-                                {{ render(controller('MyOrleansBundle:Carrousel:affichageCarrousel',
-                                {'id': evenement.id })) }}
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!"
-                                   class="modal-action modal-close waves-effect waves-light grey lighten-2 btn-flat">Fermer</a>
+                                <a href="#" class="modal-action modal-close right"><i class="material-icons">close</i></a>
+                                <span>{{ evenement.nom }}</span>
+                                <div class="slider">
+                                    <ul class="slides">
+                                        {% for media in evenement.medias if media.typeMedia.nom == "image" %}
+                                            <li>
+                                                <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                                     alt="photo {{ evenement.nom }} {{ loop.index }}">
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     {% endif %}
@@ -300,30 +307,30 @@
         </div>
     </form>
 {% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
-    <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
-    <script type="text/javascript">
-        //paramétrage des sliders
-        $(document).ready(function () {
-            $('.slider').slider({
-                interval: 4000
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        //coupure de la video à la fermeture de la modal
-        $(document).ready(function () {
-            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-            $('#modalEquipe').modal(
-                {
-                    dismissible: true,
-                    complete: function () {
-                        $("#modalEquipe video").attr("src", $("#modalEquipe video").attr("src"))
-                    }
-
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
+        <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
+        <script type="text/javascript">
+            //paramétrage des sliders
+            $(document).ready(function () {
+                $('.slider').slider({
+                    interval: 4000
                 });
-        });
-    </script>
-{% endblock %}
+            });
+        </script>
+        <script type="text/javascript">
+            //coupure de la video à la fermeture de la modal
+            $(document).ready(function () {
+                // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+                $('#modalEquipe').modal(
+                    {
+                        dismissible: true,
+                        complete: function () {
+                            $("#modalEquipe video").attr("src", $("#modalEquipe video").attr("src"))
+                        }
+
+                    });
+            });
+        </script>
+    {% endblock %}

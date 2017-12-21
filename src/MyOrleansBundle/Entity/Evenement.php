@@ -365,7 +365,6 @@ class Evenement
     public function addMedia(\MyOrleansBundle\Entity\Media $media)
     {
         $this->medias[] = $media;
-        $media->setEvenements($this);
         return $this;
     }
 

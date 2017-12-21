@@ -1980,6 +1980,25 @@ video {
         font-size: 8pt;
     }
 }
+
+.timeline .modal .modal-content{
+    padding: 10px;
+}
+
+.timeline .modal .modal-content span {
+    font-size: 24pt;
+    font-family: Montserrat;
+    letter-spacing: .55pt;
+    color: #B5CC17;
+}
+
+.timeline .slider .indicators {
+    bottom: 50px;
+    z-index: 10;
+}
+.timeline .slider .indicators .indicator-item.active {
+    background-color: #B5CC17;
+}
 /**************************   TIMELINE   **************************/
 
 /* TIMELINE */
