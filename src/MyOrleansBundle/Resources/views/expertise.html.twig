@@ -1,6 +1,6 @@
 {% extends 'MyOrleansBundle::layout.html.twig' %}
 
-{% block title %}My ORLEANS | Savoir-Faire{% endblock %}
+{% block title %}My ORLEANS | Nos compétences{% endblock %}
 
 {% block description %}
     <meta name="description"
@@ -21,7 +21,7 @@
                     {% endfor %}
                         </div>
                         <ul class="collapsible timeline-content" data-collapsible="accordion">
-                            <li>
+                            <li id="anchor-{{ service.type }}">
                                 <div class="collapsible-header">
                                     <div class="valign-wrapper">
                                         <h2 class="col s8 center">{{ service.type }}</h2>

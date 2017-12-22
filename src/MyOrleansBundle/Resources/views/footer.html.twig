@@ -55,14 +55,14 @@
                         </div>
                     {% endfor %}
                 </div>
-                {#<p class="titreFooter center h5Footer"><a href="{{ path("expertise")~'#service' }}">SAVOIR-FAIRE</a></p>#}
-                {#<div class="row">#}
-                    {#<div class="col s12">#}
-                        {#{% for service in services %}#}
-                            {#<p class="linkFooter"><a href="{{ path("expertise")~'#'~service.type }}">{{ service.type }}</a></p>#}
-                        {#{% endfor %}#}
-                    {#</div>#}
-                {#</div>#}
+                <p class="titreFooter center h5Footer"><a href="{{ path("expertise") }}">NOS COMPETENCES</a></p>
+                <div class="row">
+                    <div class="col s12">
+                        {% for service in services %}
+                            <p class="linkFooter"><a href="{{ path("expertise")~'#anchor-'~service.type }}">{{ service.type }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
                 {#<p class="titreFooter center h5Footer"><a href="{{ path("expertise")~'#pack' }}">NOS PACKS</a></p>#}
                 {#<div class="row">#}
                     {#<div class="col s12">#}
@@ -85,14 +85,14 @@
                         <p class="linkFooter"><a href="{{ path("my-orleans")~'#partenaires' }}">Nos partenaires</a></p>
                     </div>
                 </div>
-                {#<p class="titreFooter center h5Footer"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></p>#}
-                {#<div class="row">#}
-                {#<div class="offset-l1 col l11">#}
-                {#{% for article in articles %}#}
-                {#<p class="linkFooter"><a href="{{ path("immo_pratique") }}">{{ article.titre }}</a></p>#}
-                {#{% endfor %}#}
-                {#</div>#}
-                {#</div>#}
+                <p class="titreFooter center h5Footer"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></p>
+                <div class="row">
+                    <div class="offset-l1 col l11">
+                        {% for article in articles %}
+                            <p class="linkFooter"><a href="{{ path('article', { 'slug': article.slug }) }}">{{ article.titre }}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

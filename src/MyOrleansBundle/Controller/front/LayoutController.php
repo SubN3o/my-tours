@@ -48,7 +48,7 @@ class LayoutController extends Controller
 
         $packs = $em->getRepository(Pack::class)->findBy([], ['tri' => 'ASC']);
 
-        $articles = $em->getRepository(Article::class)->findBy([], ['date' => 'DESC'], 3, 0);
+        $articles = $em->getRepository(Article::class)->articleByTri();
 
         $accueil = $em->getRepository(Accueil::class)->find(1);
 
