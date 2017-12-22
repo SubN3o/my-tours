@@ -19,7 +19,7 @@ class SimpleSearchMobileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->setMethod('POST')
+            ->setMethod('GET')
             ->add('ville', SearchType::class, [
                 'required'=>false,
                 'attr'=> [
