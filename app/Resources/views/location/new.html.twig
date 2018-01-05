@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title"> Créer un nouveau bien ancien</h4>
+                            <h4 class="title"> Créer une nouvelle location</h4>
                         </div>
                         <div class="card-content table-responsive">
                             {{ form_start(form) }}
@@ -38,6 +38,11 @@
                                     {{ form_label(form.statut, "Statut :") }}
                                     {{ form_widget(form.statut) }}
                                     {{ form_errors(form.statut) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.equipement, "Equipement :") }}
+                                    {{ form_widget(form.equipement) }}
+                                    {{ form_errors(form.equipement) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -107,8 +112,8 @@
                                 <div class="col s12">
                                     <h3>Ajoutez des médias</h3>
                                     <p>Utilisez le type de média "<b>image-cover</b>" pour afficher une image en
-                                        couverture du bien ancien</p>
-                                    <p>Utilisez le type de média "<b>image</b>" pour illustrer un bien ancien</p>
+                                        couverture d'une location</p>
+                                    <p>Utilisez le type de média "<b>image</b>" pour illustrer une location</p>
                                     {{ form_row(form.medias) }}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
@@ -125,9 +130,9 @@
 
                         <ul>
                             <li>
-                                <a href="{{ path('admin_ancien_index') }}"><i
+                                <a href="{{ path('admin_location_index') }}"><i
                                             class="material-icons">keyboard_return</i>Retour
-                                    à la liste des biens anciens</a>
+                                    à la liste des locations</a>
                             </li>
                         </ul>
 

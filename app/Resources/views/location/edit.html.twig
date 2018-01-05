@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title"> Editer un bien ancien</h4>
+                            <h4 class="title"> Editer une location</h4>
                         </div>
                         <div class="card-content table-responsive">
                             {{ form_start(edit_form) }}
@@ -38,6 +38,11 @@
                                     {{ form_label(edit_form.statut, "Statut :") }}
                                     {{ form_widget(edit_form.statut) }}
                                     {{ form_errors(edit_form.statut) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.equipement, "Equipement :") }}
+                                    {{ form_widget(edit_form.equipement) }}
+                                    {{ form_errors(edit_form.equipement) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -107,8 +112,8 @@
                                 <div class="col s12">
                                     <h3>Ajoutez des médias</h3>
                                     <p>Utilisez le type de média "<b>image-cover</b>" pour afficher une image en
-                                        couverture du bien ancien</p>
-                                    <p>Utilisez le type de média "<b>image</b>" pour illustrer un bien ancien</p>
+                                        couverture d'une location</p>
+                                    <p>Utilisez le type de média "<b>image</b>" pour illustrer une location</p>
                                     {{ form_row(edit_form.medias) }}
                                     <a class="btn-floating btn-large waves-effect waves-light teal lighten-4"
                                        id="add-another-media"><i
@@ -119,11 +124,12 @@
                             <input class="waves-effect waves-light btn-large light-green" type="submit"
                                    value="Modifier"/>
                             {{ form_end(edit_form) }}
+
                             <ul>
                                 <li>
-                                    <a href="{{ path('admin_ancien_index') }}"><i
+                                    <a href="{{ path('admin_location_index') }}"><i
                                                 class="material-icons">keyboard_return</i>Retour
-                                        à la liste des biens anciens</a>
+                                        à la liste des locations</a>
                                 </li>
                                 <li>
                                     {{ form_start(delete_form) }}
@@ -163,16 +169,16 @@
 
             });
             var media = [
-                {% for media in ancien.medias if media.id != null %}
+                {% for media in location.medias if media.id != null %}
                 [
-                    '{{ path('ancien_media_delete', {"id" : ancien.id, "media_id" : media.id}) }}'
+                    '{{ path('location_media_delete', {"id" : location.id, "media_id" : media.id}) }}'
                 ],
                 {% endfor %}
             ];
 
             for (i = 0; i < media.length; i++) {
                 if (media.length > 1) {
-                    jQuery('#myorleansbundle_ancien_medias_' + i).append('<a href="' + media[i][0] + '">Supprimer le média ' + i + '</a>');
+                    jQuery('#myorleansbundle_location_medias_' + i).append('<a href="' + media[i][0] + '">Supprimer le média ' + i + '</a>');
                 }
             }
         });

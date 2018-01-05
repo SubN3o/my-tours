@@ -18,7 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AncienType extends AbstractType
+class LocationType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -35,19 +35,27 @@ class AncienType extends AbstractType
 //                'expanded' => false,
 //                'multiple' => false,
 //            ])
+            ->add('equipement', ChoiceType::class,[
+                'choices' => [
+                    'Meublé' => 'Meublé',
+                    'Non meublé' => 'Non meublé'
+                ],
+                'expanded' => false,
+                'multiple' => false,
+            ])
             ->add('etat', ChoiceType::class,[
                 'choices'=>[
                     'Neuf' => 'Neuf',
                     'Récent (1-5ans)' => 'Récent',
-                    'Ancien (>5ans)' => 'Ancien'
+                    'Location (>5ans)' => 'Location'
                 ],
                 'expanded' => false,
                 'multiple' => false,
             ])
             ->add('statut', ChoiceType::class, [
                 'choices' => [
-                    'A vendre' => true,
-                    'Vendu' => false,
+                    'A louer' => true,
+                    'Louer' => false,
                 ]
             ])
             ->add('prix', IntegerType::class, [
@@ -95,7 +103,7 @@ class AncienType extends AbstractType
             ])
             ->add('residence', TextType::class, [
                 'required' => false
-                ])
+            ])
             ->add('medias', CollectionType::class, [
                 'entry_type' => MediaType::class,
                 'allow_add' => true,
@@ -130,14 +138,14 @@ class AncienType extends AbstractType
             ])
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MyOrleansBundle\Entity\Ancien'
+            'data_class' => 'MyOrleansBundle\Entity\Location'
         ));
     }
 
@@ -146,7 +154,7 @@ class AncienType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'myorleansbundle_ancien';
+        return 'myorleansbundle_location';
     }
 
 

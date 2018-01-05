@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">Liste de vos biens anciens</h4>
+                            <h4 class="title">Liste de vos locations</h4>
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
@@ -17,9 +17,10 @@
                                     {#<th>Objet</th>#}
                                     <th>Type de bien</th>
                                     <th>Type de logement</th>
+                                    <th>Equipement</th>
                                     <th>Etat</th>
-                                    <th>Statut {{ knp_pagination_sortable(anciens, '↑↓', 'ancien.statut') }}</th>
-                                    <th>Prix {{ knp_pagination_sortable(anciens, '↑↓', 'ancien.prix') }}</th>
+                                    <th>Statut {{ knp_pagination_sortable(locations, '↑↓', 'location.statut') }}</th>
+                                    <th>Prix {{ knp_pagination_sortable(locations, '↑↓', 'location.prix') }}</th>
                                     <th>Surface</th>
                                     <th>Ville</th>
                                     <th>Disponibilité</th>
@@ -28,24 +29,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for ancien in anciens %}
+                                {% for location in locations %}
                                     <tr>
-                                        <td>{{ ancien.reference }}</td>
-                                        {#<td>{{ ancien.objet }}</td>#}
-                                        <td>{{ ancien.typeBien.nom }}</td>
-                                        <td>{{ ancien.typeLogement.nom }}</td>
-                                        <td>{{ ancien.etat }}</td>
-                                        <td>{{ ancien.statut }}</td>
-                                        <td>{{ ancien.prix|number_format(0, '.', ' ') }}{% if ancien.prix != null %} €{% endif %}</td>
-                                        <td>{{ ancien.surface }} m²</td>
-                                        <td>{{ ancien.ville.nom }}</td>
-                                        <td>{% if ancien.date %}{{ ancien.date|date('j-m-Y') }}{% endif %}</td>
+                                        <td>{{ location.reference }}</td>
+                                        {#<td>{{ location.objet }}</td>#}
+                                        <td>{{ location.typeBien.nom }}</td>
+                                        <td>{{ location.typeLogement.nom }}</td>
+                                        <td>{{ location.equipement }}</td>
+                                        <td>{{ location.etat }}</td>
+                                        <td>{{ location.statut }}</td>
+                                        <td>{{ location.prix|number_format(0, '.', ' ') }}{% if location.prix != null %} €{% endif %}</td>
+                                        <td>{{ location.surface }} m²</td>
+                                        <td>{{ location.ville.nom }}</td>
+                                        <td>{% if location.date %}{{ location.date|date('j-m-Y') }}{% endif %}</td>
                                         <td>
-                                            <a href="{{ path('admin_ancien_show', { 'id': ancien.id }) }}"><i
+                                            <a href="{{ path('admin_location_show', { 'id': location.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ path('admin_ancien_edit', { 'id': ancien.id }) }}"><i
+                                            <a href="{{ path('admin_location_edit', { 'id': location.id }) }}"><i
                                                         class="material-icons">build</i></a>
                                         </td>
                                     </tr>
@@ -54,14 +56,14 @@
                             </table>
                             <hr>
                             <div class="navigation center">
-                                {{ knp_pagination_render(anciens, 'MyOrleansBundle::pagination.html.twig') }}
+                                {{ knp_pagination_render(locations, 'MyOrleansBundle::pagination.html.twig') }}
                             </div>
                             <ul>
                                 <li>
 
-                                    <a href="{{ path('admin_ancien_new') }}"
+                                    <a href="{{ path('admin_location_new') }}"
                                        class="btn-floating btn-large waves-effect waves-light light-green"><i
-                                                class="material-icons">add</i>Ajouter un bien ancien</a>
+                                                class="material-icons">add</i>Ajouter une location</a>
                                 </li>
                             </ul>
                         </div>

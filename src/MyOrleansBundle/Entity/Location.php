@@ -9,13 +9,13 @@ use Doctrine\ORM\Mapping\JoinTable;
 
 
 /**
- * Ancien
+ * Location
  *
- * @ORM\Table(name="ancien")
- * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\AncienRepository")
+ * @ORM\Table(name="location")
+ * @ORM\Entity(repositoryClass="MyOrleansBundle\Repository\LocationRepository")
  * @UniqueEntity(fields="reference", message="Une reference existe déjà avec ce nom.")
  */
-class Ancien
+class Location
 {
     /**
      * @var int
@@ -114,28 +114,28 @@ class Ancien
     private $residence;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="anciens", cascade={"persist"}, fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Ville", inversedBy="locations", cascade={"persist"}, fetch="EAGER")
      */
     private $ville;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Quartier", inversedBy="anciens", cascade={"persist"}, fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Quartier", inversedBy="locations", cascade={"persist"}, fetch="EAGER")
      */
     private $quartier;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypeBien", inversedBy="anciens")
+     * @ORM\ManyToOne(targetEntity="TypeBien", inversedBy="locations")
      */
     private $typeBien;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypeLogement", inversedBy="anciens")
+     * @ORM\ManyToOne(targetEntity="TypeLogement", inversedBy="locations")
      */
     private $typeLogement;
 
     /**
      * @ORM\ManyToMany(targetEntity="Media", cascade={"persist"})
-     * @JoinTable(name="ancien_media")
+     * @JoinTable(name="location_media")
      * @Assert\Valid()
      */
     private $medias;
@@ -146,6 +146,31 @@ class Ancien
      * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="equipeme$", type="string", length=255, nullable=true)
+     */
+    private $equipement;
+
+    /**
+     * @return string
+     */
+    public function getEquipement()
+    {
+        return $this->equipement;
+    }
+
+    /**
+     * @param string $equipement
+     * @return Location
+     */
+    public function setEquipement($equipement)
+    {
+        $this->equipement = $equipement;
+        return $this;
+    }
 
     /**
      * Constructor
@@ -170,7 +195,7 @@ class Ancien
 //     *
 //     * @param string $objet
 //     *
-//     * @return Ancien
+//     * @return Location
 //     */
 //    public function setObjet($objet)
 //    {
@@ -194,7 +219,7 @@ class Ancien
      *
      * @param string $etat
      *
-     * @return Ancien
+     * @return Location
      */
     public function setEtat($etat)
     {
@@ -234,7 +259,7 @@ class Ancien
      *
      * @param integer $prix
      *
-     * @return Ancien
+     * @return Location
      */
     public function setPrix($prix)
     {
@@ -258,7 +283,7 @@ class Ancien
      *
      * @param integer $surface
      *
-     * @return Ancien
+     * @return Location
      */
     public function setSurface($surface)
     {
@@ -282,7 +307,7 @@ class Ancien
      *
      * @param string $reference
      *
-     * @return Ancien
+     * @return Location
      */
     public function setReference($reference)
     {
@@ -306,7 +331,7 @@ class Ancien
      *
      * @param string $ges
      *
-     * @return Ancien
+     * @return Location
      */
     public function setGes($ges)
     {
@@ -330,7 +355,7 @@ class Ancien
      *
      * @param string $energie
      *
-     * @return Ancien
+     * @return Location
      */
     public function setEnergie($energie)
     {
@@ -354,7 +379,7 @@ class Ancien
      *
      * @param string $description
      *
-     * @return Ancien
+     * @return Location
      */
     public function setDescription($description)
     {
@@ -378,7 +403,7 @@ class Ancien
      *
      * @param string $residence
      *
-     * @return Ancien
+     * @return Location
      */
     public function setResidence($residence)
     {
@@ -407,7 +432,7 @@ class Ancien
 
     /**
      * @param mixed $ville
-     * @return Ancien
+     * @return Location
      */
     public function setVille($ville)
     {
@@ -425,7 +450,7 @@ class Ancien
 
     /**
      * @param mixed $quartier
-     * @return Ancien
+     * @return Location
      */
     public function setQuartier($quartier)
     {
@@ -443,7 +468,7 @@ class Ancien
 
     /**
      * @param mixed $typeBien
-     * @return Ancien
+     * @return Location
      */
     public function setTypeBien($typeBien)
     {
@@ -461,7 +486,7 @@ class Ancien
 
     /**
      * @param mixed $typeLogement
-     * @return Ancien
+     * @return Location
      */
     public function setTypeLogement($typeLogement)
     {
@@ -479,7 +504,7 @@ class Ancien
 
     /**
      * @param mixed $medias
-     * @return Ancien
+     * @return Location
      */
     public function setMedias($medias)
     {
@@ -492,7 +517,7 @@ class Ancien
      *
      * @param \DateTime $date
      *
-     * @return Ancien
+     * @return Location
      */
     public function setDate($date)
     {
@@ -516,7 +541,7 @@ class Ancien
      *
      * @param \MyOrleansBundle\Entity\Media $media
      *
-     * @return Ancien
+     * @return Location
      */
     public function addMedia(\MyOrleansBundle\Entity\Media $media)
     {

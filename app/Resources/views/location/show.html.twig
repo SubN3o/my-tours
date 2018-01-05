@@ -9,72 +9,76 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header light-green">
-                            <h4 class="title">Ancien bien ref. : {{ ancien.reference }} </h4>
+                            <h4 class="title">Location ref. : {{ location.reference }} </h4>
                         </div>
                         <div class="card-content table-responsive">
                             <table class="table">
                                 <tbody>
                                 <tr>
                                     <th>Référence</th>
-                                    <td>{{ ancien.reference }}</td>
+                                    <td>{{ location.reference }}</td>
                                 </tr>
                                 {#<tr>#}
                                     {#<th>Objet</th>#}
-                                    {#<td>{{ ancien.objet }}</td>#}
+                                    {#<td>{{ location.objet }}</td>#}
                                 {#</tr>#}
                                 <tr>
                                     <th>Type de Bien</th>
-                                    <td>{{ ancien.typeBien.nom }}</td>
+                                    <td>{{ location.typeBien.nom }}</td>
                                 </tr>
                                 <tr>
                                     <th>Type de Logement</th>
-                                    <td>{{ ancien.typeLogement.nom }}</td>
+                                    <td>{{ location.typeLogement.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Equipement</th>
+                                    <td>{{ location.equipement }}</td>
                                 </tr>
                                 <tr>
                                     <th>Etat</th>
-                                    <td>{{ ancien.etat }}</td>
+                                    <td>{{ location.etat }}</td>
                                 </tr>
                                 <tr>
                                     <th>Disponibilité</th>
-                                    <td>{% if ancien.date %}{{ ancien.date|date('j-m-Y') }}{% endif %}</td>
+                                    <td>{% if location.date %}{{ location.date|date('j-m-Y') }}{% endif %}</td>
                                 </tr>
                                 <tr>
                                     <th>Prix</th>
-                                    <td>{{ ancien.prix|number_format(0, '.', ' ') }} €</td>
+                                    <td>{{ location.prix|number_format(0, '.', ' ') }} €</td>
                                 </tr>
                                 <tr>
                                     <th>Surface</th>
-                                    <td>{{ ancien.surface }} m²</td>
+                                    <td>{{ location.surface }} m²</td>
                                 </tr>
                                 <tr>
                                     <th>Ville</th>
-                                    <td>{{ ancien.ville.nom }}</td>
+                                    <td>{{ location.ville.nom }}</td>
                                 </tr>
                                 <tr>
                                     <th>Quartier</th>
-                                    <td>{% if ancien.quartier != null %}{{ ancien.quartier.nom }}{% endif %}</td>
+                                    <td>{% if location.quartier != null %}{{ location.quartier.nom }}{% endif %}</td>
                                 </tr>
                                 <tr>
                                     <th>Ges</th>
-                                    <td>{{ ancien.ges }}</td>
+                                    <td>{{ location.ges }}</td>
                                 </tr>
                                 <tr>
                                     <th>Energie</th>
-                                    <td>{{ ancien.energie }}</td>
+                                    <td>{{ location.energie }}</td>
                                 </tr>
                                 <tr>
                                     <th>Description</th>
-                                    <td>{{ ancien.description }}</td>
+                                    <td>{{ location.description }}</td>
                                 </tr>
                                 <tr>
                                     <th>Residence</th>
-                                    <td>{{ ancien.residence }}</td>
+                                    <td>{{ location.residence }}</td>
                                 </tr>
                                 </tbody>
                             </table>
                             <hr>
                             <div class="row">
-                                {% for media in ancien.medias %}
+                                {% for media in location.medias %}
                                     <div class="col s4">
                                         <img class="responsive-img" src="{{ asset('uploads/'~media.mediaName) }}"/>
                                         <p>{{ media.typeMedia.nom }}</p>
@@ -83,12 +87,12 @@
                             </div>
                             <ul>
                                 <li>
-                                    <a href="{{ path('admin_ancien_index', {'id': ancien.id }) }}"><i
-                                                class="material-icons">keyboard_return</i>Retour à la liste des anciens biens</a>
+                                    <a href="{{ path('admin_location_index', {'id': location.id }) }}"><i
+                                                class="material-icons">keyboard_return</i>Retour à la liste des locations</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('admin_ancien_edit', { 'id': ancien.id }) }}"><i
-                                                class="material-icons">build</i>Éditer cet ancien bien</a>
+                                    <a href="{{ path('admin_location_edit', { 'id': location.id }) }}"><i
+                                                class="material-icons">build</i>Éditer cette location</a>
                                 </li>
 
                                 <li>

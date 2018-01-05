@@ -39,6 +39,11 @@ class TypeBien
     private $anciens;
 
     /**
+     * @ORM\OneToMany(targetEntity="Location", mappedBy="typeBien")
+     */
+    private $locations;
+
+    /**
      * @return mixed
      */
     public function getAnciens()
@@ -53,6 +58,24 @@ class TypeBien
     public function setAnciens($anciens)
     {
         $this->anciens = $anciens;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    /**
+     * @param mixed $locations
+     * @return TypeBien
+     */
+    public function setLocations($locations)
+    {
+        $this->locations = $locations;
         return $this;
     }
 

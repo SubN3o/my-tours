@@ -49,6 +49,11 @@ class Quartier
     private $anciens;
 
     /**
+     * @ORM\OneToMany(targetEntity="Location", mappedBy="quartier", cascade={"all"}, fetch="EAGER")
+     */
+    private $locations;
+
+    /**
      * @return mixed
      */
     public function getAnciens()
@@ -63,6 +68,24 @@ class Quartier
     public function setAnciens($anciens)
     {
         $this->anciens = $anciens;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    /**
+     * @param mixed $locations
+     * @return Quartier
+     */
+    public function setLocations($locations)
+    {
+        $this->locations = $locations;
         return $this;
     }
 
