@@ -41,9 +41,9 @@ class Ancien
     private $etat;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(name="statut", type="string", length=60)
+     * @ORM\Column(name="statut", type="boolean", length=10, nullable=true)
      */
     private $statut;
 
@@ -214,27 +214,19 @@ class Ancien
     }
 
     /**
-     * Set statut
-     *
-     * @param string $statut
-     *
-     * @return Ancien
-     */
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return string
+     * @return bool
      */
     public function getStatut()
     {
         return $this->statut;
+    }
+
+    /**
+     * @param bool $statut
+     */
+    public function setStatut(bool $statut)
+    {
+        $this->statut = $statut;
     }
 
     /**

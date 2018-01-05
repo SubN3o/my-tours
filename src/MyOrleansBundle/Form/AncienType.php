@@ -44,15 +44,11 @@ class AncienType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
             ])
-            ->add('statut', ChoiceType::class,[
-                'choices'=>[
-                    'Disponible à la location' => 'Disponible à la location',
-                    'Disponible à la vente' => 'Disponible à la vente',
-                    'Loué' => 'Loué',
-                    'Vendu' => 'Vendu'
-                ],
-                'expanded' => false,
-                'multiple' => false,
+            ->add('statut', ChoiceType::class, [
+                'choices' => [
+                    'A vendre' => true,
+                    'Vendu' => false,
+                ]
             ])
             ->add('prix', IntegerType::class, [
                 'attr' => ['min' => '0'],
