@@ -26,20 +26,6 @@ class Location
      */
     private $id;
 
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="objet", type="string", length=60)
-//     */
-//    private $objet;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="etat", type="string", length=10)
-     */
-    private $etat;
-
     /**
      * @var bool
      *
@@ -51,15 +37,43 @@ class Location
      * @var int
      * @Assert\Type(
      *     type="integer",
-     *     message="Le prix saisi n'est pas correcte."
+     *     message="Le loyer saisi n'est pas correcte."
      * )
      * @Assert\Range(
      *      min = 0,
-     *      minMessage = "Le prix ne peut pas être inférieur à 0€",
+     *      minMessage = "Le loyer ne peut pas être inférieur à 0€",
      * )
-     * @ORM\Column(name="prix", type="integer")
+     * @ORM\Column(name="loyer", type="integer")
      */
-    private $prix;
+    private $loyer;
+
+    /**
+     * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La provision saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La provision ne peut pas être inférieur à 0€",
+     * )
+     * @ORM\Column(name="provision", type="integer")
+     */
+    private $provision;
+
+    /**
+     * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Le dépot saisi n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "Le dépot ne peut pas être inférieur à 0€",
+     * )
+     * @ORM\Column(name="depot", type="integer")
+     */
+    private $depot;
 
     /**
      * @var float
@@ -75,6 +89,66 @@ class Location
      */
     private $surface;
 
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_balcon", type="float", nullable=true)
+     */
+    private $surfaceBalcon;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_terrasse", type="float", nullable=true)
+     */
+    private $surfaceTerrasse;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_jardin", type="float", nullable=true)
+     */
+    private $surfaceJardin;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_terrain", type="float", nullable=true)
+     */
+    private $surfaceTerrain;
+    
     /**
      * @var string
      * @Assert\Type(
@@ -107,21 +181,9 @@ class Location
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="residence", type="string", length=255, nullable=true)
-     */
-    private $residence;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Ville", inversedBy="locations", cascade={"persist"}, fetch="EAGER")
      */
     private $ville;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Quartier", inversedBy="locations", cascade={"persist"}, fetch="EAGER")
-     */
-    private $quartier;
 
     /**
      * @ORM\ManyToOne(targetEntity="TypeBien", inversedBy="locations")
@@ -149,28 +211,20 @@ class Location
 
     /**
      * @var string
+     * @Assert\Type(
+     *    type="string",
+     *    message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="stationnement", type="text", nullable=true)
+     */
+    private $stationnement;
+
+    /**
+     * @var string
      *
-     * @ORM\Column(name="equipeme$", type="string", length=255, nullable=true)
+     * @ORM\Column(name="chauffage", type="text", nullable=true)
      */
-    private $equipement;
-
-    /**
-     * @return string
-     */
-    public function getEquipement()
-    {
-        return $this->equipement;
-    }
-
-    /**
-     * @param string $equipement
-     * @return Location
-     */
-    public function setEquipement($equipement)
-    {
-        $this->equipement = $equipement;
-        return $this;
-    }
+    private $chauffage;
 
     /**
      * Constructor
@@ -190,54 +244,6 @@ class Location
         return $this->id;
     }
 
-//    /**
-//     * Set objet
-//     *
-//     * @param string $objet
-//     *
-//     * @return Location
-//     */
-//    public function setObjet($objet)
-//    {
-//        $this->objet = $objet;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get objet
-//     *
-//     * @return string
-//     */
-//    public function getObjet()
-//    {
-//        return $this->objet;
-//    }
-
-    /**
-     * Set etat
-     *
-     * @param string $etat
-     *
-     * @return Location
-     */
-    public function setEtat($etat)
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
-
-    /**
-     * Get etat
-     *
-     * @return string
-     */
-    public function getEtat()
-    {
-        return $this->etat;
-    }
-
     /**
      * @return bool
      */
@@ -255,27 +261,75 @@ class Location
     }
 
     /**
-     * Set prix
+     * Set loyer
      *
-     * @param integer $prix
+     * @param integer $loyer
      *
      * @return Location
      */
-    public function setPrix($prix)
+    public function setLoyer($loyer)
     {
-        $this->prix = $prix;
+        $this->loyer = $loyer;
 
         return $this;
     }
 
     /**
-     * Get prix
+     * Get loyer
      *
      * @return int
      */
-    public function getPrix()
+    public function getLoyer()
     {
-        return $this->prix;
+        return $this->loyer;
+    }
+
+    /**
+     * Set provision
+     *
+     * @param integer $provision
+     *
+     * @return Location
+     */
+    public function setProvision($provision)
+    {
+        $this->provision = $provision;
+
+        return $this;
+    }
+
+    /**
+     * Get provision
+     *
+     * @return int
+     */
+    public function getProvision()
+    {
+        return $this->provision;
+    }
+
+    /**
+     * Set depot
+     *
+     * @param integer $depot
+     *
+     * @return Location
+     */
+    public function setDepot($depot)
+    {
+        $this->depot = $depot;
+
+        return $this;
+    }
+
+    /**
+     * Get depot
+     *
+     * @return int
+     */
+    public function getDepot()
+    {
+        return $this->depot;
     }
 
     /**
@@ -302,6 +356,78 @@ class Location
         return $this->surface;
     }
 
+    /**
+     * @return float
+     */
+    public function getSurfaceBalcon()
+    {
+        return $this->surfaceBalcon;
+    }
+
+    /**
+     * @param float $surfaceBalcon
+     * @return Location
+     */
+    public function setSurfaceBalcon($surfaceBalcon)
+    {
+        $this->surfaceBalcon = $surfaceBalcon;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceTerrasse()
+    {
+        return $this->surfaceTerrasse;
+    }
+
+    /**
+     * @param float $surfaceTerrasse
+     * @return Location
+     */
+    public function setSurfaceTerrasse($surfaceTerrasse)
+    {
+        $this->surfaceTerrasse = $surfaceTerrasse;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceJardin()
+    {
+        return $this->surfaceJardin;
+    }
+
+    /**
+     * @param float $surfaceJardin
+     * @return Location
+     */
+    public function setSurfaceJardin($surfaceJardin)
+    {
+        $this->surfaceJardin = $surfaceJardin;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceTerrain()
+    {
+        return $this->surfaceTerrain;
+    }
+
+    /**
+     * @param float $surfaceTerrain
+     * @return Location
+     */
+    public function setSurfaceTerrain($surfaceTerrain)
+    {
+        $this->surfaceTerrain = $surfaceTerrain;
+        return $this;
+    }
+    
     /**
      * Set reference
      *
@@ -399,30 +525,6 @@ class Location
     }
 
     /**
-     * Set residence
-     *
-     * @param string $residence
-     *
-     * @return Location
-     */
-    public function setResidence($residence)
-    {
-        $this->residence = $residence;
-
-        return $this;
-    }
-
-    /**
-     * Get residence
-     *
-     * @return string
-     */
-    public function getResidence()
-    {
-        return $this->residence;
-    }
-
-    /**
      * @return mixed
      */
     public function getVille()
@@ -437,24 +539,6 @@ class Location
     public function setVille($ville)
     {
         $this->ville = $ville;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQuartier()
-    {
-        return $this->quartier;
-    }
-
-    /**
-     * @param mixed $quartier
-     * @return Location
-     */
-    public function setQuartier($quartier)
-    {
-        $this->quartier = $quartier;
         return $this;
     }
 
@@ -534,6 +618,48 @@ class Location
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set stationnement
+     *
+     * @param string $stationnement
+     *
+     * @return Location
+     */
+    public function setStationnement($stationnement)
+    {
+        $this->stationnement = $stationnement;
+
+        return $this;
+    }
+
+    /**
+     * Get stationnement
+     *
+     * @return string
+     */
+    public function getStationnement()
+    {
+        return $this->stationnement;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChauffage()
+    {
+        return $this->chauffage;
+    }
+
+    /**
+     * @param string $chauffage
+     * @return Location
+     */
+    public function setChauffage($chauffage)
+    {
+        $this->chauffage = $chauffage;
+        return $this;
     }
 
     /**

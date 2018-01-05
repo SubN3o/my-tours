@@ -14,13 +14,10 @@
                                 <thead>
                                 <tr>
                                     <th>Référence</th>
-                                    {#<th>Objet</th>#}
                                     <th>Type de bien</th>
                                     <th>Type de logement</th>
-                                    <th>Equipement</th>
-                                    <th>Etat</th>
                                     <th>Statut {{ knp_pagination_sortable(locations, '↑↓', 'location.statut') }}</th>
-                                    <th>Prix {{ knp_pagination_sortable(locations, '↑↓', 'location.prix') }}</th>
+                                    <th>Loyer {{ knp_pagination_sortable(locations, '↑↓', 'location.prix') }}</th>
                                     <th>Surface</th>
                                     <th>Ville</th>
                                     <th>Disponibilité</th>
@@ -32,13 +29,10 @@
                                 {% for location in locations %}
                                     <tr>
                                         <td>{{ location.reference }}</td>
-                                        {#<td>{{ location.objet }}</td>#}
                                         <td>{{ location.typeBien.nom }}</td>
                                         <td>{{ location.typeLogement.nom }}</td>
-                                        <td>{{ location.equipement }}</td>
-                                        <td>{{ location.etat }}</td>
                                         <td>{{ location.statut }}</td>
-                                        <td>{{ location.prix|number_format(0, '.', ' ') }}{% if location.prix != null %} €{% endif %}</td>
+                                        <td>{{ location.loyer|number_format(0, '.', ' ') }}{% if location.loyer != null %} €{% endif %}</td>
                                         <td>{{ location.surface }} m²</td>
                                         <td>{{ location.ville.nom }}</td>
                                         <td>{% if location.date %}{{ location.date|date('j-m-Y') }}{% endif %}</td>

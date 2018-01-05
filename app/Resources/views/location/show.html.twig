@@ -18,10 +18,6 @@
                                     <th>Référence</th>
                                     <td>{{ location.reference }}</td>
                                 </tr>
-                                {#<tr>#}
-                                    {#<th>Objet</th>#}
-                                    {#<td>{{ location.objet }}</td>#}
-                                {#</tr>#}
                                 <tr>
                                     <th>Type de Bien</th>
                                     <td>{{ location.typeBien.nom }}</td>
@@ -31,20 +27,12 @@
                                     <td>{{ location.typeLogement.nom }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Equipement</th>
-                                    <td>{{ location.equipement }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Etat</th>
-                                    <td>{{ location.etat }}</td>
-                                </tr>
-                                <tr>
                                     <th>Disponibilité</th>
                                     <td>{% if location.date %}{{ location.date|date('j-m-Y') }}{% endif %}</td>
                                 </tr>
                                 <tr>
-                                    <th>Prix</th>
-                                    <td>{{ location.prix|number_format(0, '.', ' ') }} €</td>
+                                    <th>Loyer</th>
+                                    <td>{{ location.loyer|number_format(0, '.', ' ') }} €</td>
                                 </tr>
                                 <tr>
                                     <th>Surface</th>
@@ -53,10 +41,6 @@
                                 <tr>
                                     <th>Ville</th>
                                     <td>{{ location.ville.nom }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Quartier</th>
-                                    <td>{% if location.quartier != null %}{{ location.quartier.nom }}{% endif %}</td>
                                 </tr>
                                 <tr>
                                     <th>Ges</th>
@@ -69,10 +53,6 @@
                                 <tr>
                                     <th>Description</th>
                                     <td>{{ location.description }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Residence</th>
-                                    <td>{{ location.residence }}</td>
                                 </tr>
                                 </tbody>
                             </table>

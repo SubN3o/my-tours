@@ -26,44 +26,38 @@ class LocationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('objet', ChoiceType::class,[
-//                'choices'=>[
-//                    'Location meublé' => 'Location meublé',
-//                    'Location non meublé' => 'Location non meublé',
-//                    'Vente' => 'Vente'
-//                ],
-//                'expanded' => false,
-//                'multiple' => false,
-//            ])
-            ->add('equipement', ChoiceType::class,[
-                'choices' => [
-                    'Meublé' => 'Meublé',
-                    'Non meublé' => 'Non meublé'
-                ],
-                'expanded' => false,
-                'multiple' => false,
-            ])
-            ->add('etat', ChoiceType::class,[
-                'choices'=>[
-                    'Neuf' => 'Neuf',
-                    'Récent (1-5ans)' => 'Récent',
-                    'Location (>5ans)' => 'Location'
-                ],
-                'expanded' => false,
-                'multiple' => false,
-            ])
             ->add('statut', ChoiceType::class, [
                 'choices' => [
-                    'A louer' => true,
-                    'Louer' => false,
+                    'Disponible' => true,
+                    'Loué' => false,
                 ]
             ])
-            ->add('prix', IntegerType::class, [
+            ->add('loyer', IntegerType::class, [
+                'attr' => ['min' => '0'],
+                'required' => true
+            ])
+            ->add('provision', IntegerType::class, [
+                'attr' => ['min' => '0'],
+                'required' => true
+            ])
+            ->add('depot', IntegerType::class, [
                 'attr' => ['min' => '0'],
                 'required' => true
             ])
             ->add('surface', NumberType::class, [
                 'required' => true
+            ])
+            ->add('surfaceBalcon', NumberType::class, [
+                'required' => false
+            ])
+            ->add('surfaceTerrasse', NumberType::class, [
+                'required' => false
+            ])
+            ->add('surfaceJardin', NumberType::class, [
+                'required' => false
+            ])
+            ->add('surfaceTerrain', NumberType::class, [
+                'required' => false
             ])
             ->add('reference', TextType::class, [
                 'required' => true
@@ -101,7 +95,26 @@ class LocationType extends AbstractType
                     "class" => "materialize-textarea"
                 ]
             ])
-            ->add('residence', TextType::class, [
+            ->add('stationnement', ChoiceType::class, [
+                'choices' =>[
+                    'Choisir...' => null,
+                    'Sans' => 'Sans',
+                    '1 parking extérieur' => '1 parking extérieur',
+                    '1 parking en sous sol' => '1 parking en sous sol',
+                    '1 box' => '1 box',
+                    '1 garage' => '1 garage',
+                    '1 parking couvert' => '1 parking couvert',
+                    '2 garages' => '2 garages',
+                    '2 parkings extérieurs' => '2 parkings extérieurs',
+                    '2 parkings en sous sol' => '2 parkings en sous sol',
+                    '1 parking double en sous sol' => '1 parking double en sous sol',
+                    '1 parking ext. & 1 parking en s/sol' => '1 parking ext. & 1 parking en s/sol',
+                    '1 box & 1 parking couvert' => '1 box & 1 parking couvert',
+                    '1 parking' => '1 parking',
+                    '2 parkings' => '2 parkings',
+                    '3 parkings' => '3 parkings'],
+                'expanded' => false,
+                'multiple' => false,
                 'required' => false
             ])
             ->add('medias', CollectionType::class, [
@@ -114,12 +127,6 @@ class LocationType extends AbstractType
                 'choice_label' => 'nom',
                 'required' => true
 
-            ])
-            ->add('quartier',  EntityType::class, [
-                'class' => Quartier::class,
-                'choice_label' => 'nom',
-                'placeholder' => 'Choisir...',
-                'required' => false
             ])
             ->add('typeLogement', EntityType::class, [
                 'class' => TypeLogement::class,
@@ -134,6 +141,20 @@ class LocationType extends AbstractType
             ->add('date', DateType::class,[
                 'placeholder' => [
                     'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'],
+                'required' => false
+            ])
+            ->add('chauffage', ChoiceType::class, [
+                'choices' =>[
+                    'Choisir...' => null,
+                    'Chaudière Gaz individuel' => 'Chaudière Gaz individuel',
+                    'Chaudière Gaz collectif' => 'Chaudière Gaz collectif',
+                    'Electrique individuel' => 'Electrique individuel',
+                    'Electrique Gaz' => 'Electrique Gaz',
+                    'Pompe à chaleur' => 'Pompe à chaleur',
+                    'Chauffage Urbain' => 'Chauffage Urbain',
+                ],
+                'expanded' => false,
+                'multiple' => false,
                 'required' => false
             ])
         ;
