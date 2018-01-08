@@ -6,6 +6,7 @@ use MyOrleansBundle\Entity\Location;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\LocationType;
+use MyOrleansBundle\Service\CalculateurHonoraires;
 use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -85,13 +86,17 @@ class LocationController extends Controller
      * @Route("/{id}", name="admin_location_show")
      * @Method("GET")
      */
-    public function showAction(Location $location)
+    public function showAction(Location $location, CalculateurHonoraires $calculateurHonoraires)
     {
         $deleteForm = $this->createDeleteForm($location);
+
+        //calcul des honoraires selon la surface
+        $honoraires = $calculateurHonoraires->calculHonoraires($location->getSurface());
 
         return $this->render('location/show.html.twig', array(
             'location' => $location,
             'delete_form' => $deleteForm->createView(),
+            'honoraires' => $honoraires
         ));
     }
 

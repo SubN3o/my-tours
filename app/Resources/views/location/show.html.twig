@@ -79,12 +79,16 @@
                                     <td>{{ location.loyer|number_format(0, '.', ' ') }}{% if location.loyer != null %} €{% endif %}</td>
                                 </tr>
                                 <tr>
-                                    <th>Provision</th>
+                                    <th>Provisions</th>
                                     <td>{{ location.provision|number_format(0, '.', ' ') }}{% if location.provision != null %} €{% endif %}</td>
                                 </tr>
                                 <tr>
                                     <th>Dépot</th>
                                     <td>{{ location.depot|number_format(0, '.', ' ') }}{% if location.depot != null %} €{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Honoraires (état des lieux inclus)</th>
+                                    <td>{{ honoraires|number_format(0, '.', ' ') }}{% if honoraires != null %} €{% endif %}</td>
                                 </tr>
                                 </tbody>
                             </table>
