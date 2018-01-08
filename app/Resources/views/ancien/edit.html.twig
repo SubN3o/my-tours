@@ -19,54 +19,63 @@
                                     {{ form_errors(edit_form.reference) }}
                                 </div>
                                 <div class="col s6">
-                                    {{ form_label(edit_form.date, 'Disponibilité: ') }}
-                                    <div class="row">
-                                        <div class="col s3">{{ form_widget(edit_form.date.day) }}</div>
-                                        <div class="col s3">{{ form_widget(edit_form.date.month) }}</div>
-                                        <div class="col s3">{{ form_widget(edit_form.date.year) }}</div>
-                                    </div>
-                                    {{ form_errors(edit_form.date) }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                {#<div class="col s6">#}
-                                {#{{ form_label(edit_form.objet, "Objet :") }}#}
-                                {#{{ form_widget(edit_form.objet) }}#}
-                                {#{{ form_errors(edit_form.objet) }}#}
-                                {#</div>#}
-                                <div class="col s6">
                                     {{ form_label(edit_form.statut, "Statut :") }}
                                     {{ form_widget(edit_form.statut) }}
                                     {{ form_errors(edit_form.statut) }}
                                 </div>
+
                             </div>
                             <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(edit_form.prix, "Prix :") }}
-                                    {{ form_widget(edit_form.prix) }}
-                                    {{ form_errors(edit_form.prix) }}
-                                </div>
-                                <div class="col s6">
-                                    {{ form_label(edit_form.surface, 'Surface : ') }}
-                                    {{ form_widget(edit_form.surface) }}
-                                    {{ form_errors(edit_form.surface) }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s4">
                                     {{ form_label(edit_form.typeBien, 'Type de bien :') }}
                                     {{ form_widget(edit_form.typeBien) }}
                                     {{ form_errors(edit_form.typeBien) }}
                                 </div>
-                                <div class="col s4">
+                                <div class="col s6">
                                     {{ form_label(edit_form.typeLogement, 'Type de logement :') }}
                                     {{ form_widget(edit_form.typeLogement) }}
                                     {{ form_errors(edit_form.typeLogement) }}
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s4">
-                                    {{ form_label(edit_form.etat, "Etat :") }}
-                                    {{ form_widget(edit_form.etat) }}
-                                    {{ form_errors(edit_form.etat) }}
+                                    {{ form_label(edit_form.surface, 'Surface Habitable :') }}
+                                    {{ form_widget(edit_form.surface) }}
+                                    {{ form_errors(edit_form.surface) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surfaceBalcon, 'Surface Balcon :') }}
+                                    {{ form_widget(edit_form.surfaceBalcon) }}
+                                    {{ form_errors(edit_form.surfaceBalcon) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surfaceTerrasse, 'Surface Terrasse :') }}
+                                    {{ form_widget(edit_form.surfaceTerrasse) }}
+                                    {{ form_errors(edit_form.surfaceTerrasse) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surfaceJardin, 'Surface Jardin :') }}
+                                    {{ form_widget(edit_form.surfaceJardin) }}
+                                    {{ form_errors(edit_form.surfaceJardin) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(edit_form.surfaceTerrain, 'Surface Terrain :') }}
+                                    {{ form_widget(edit_form.surfaceTerrain) }}
+                                    {{ form_errors(edit_form.surfaceTerrain) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(edit_form.stationnement, 'Stationnement: ') }}
+                                    {{ form_widget(edit_form.stationnement) }}
+                                    {{ form_errors(edit_form.stationnement) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(edit_form.chauffage, 'Chauffage :') }}
+                                    {{ form_widget(edit_form.chauffage) }}
+                                    {{ form_errors(edit_form.chauffage) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -75,11 +84,11 @@
                                     {{ form_widget(edit_form.ville) }}
                                     {{ form_errors(edit_form.ville) }}
                                 </div>
-                                <div class="col s6">
-                                    {{ form_label(edit_form.quartier, 'Quartier :') }}
-                                    {{ form_widget(edit_form.quartier) }}
-                                    {{ form_errors(edit_form.quartier) }}
-                                </div>
+                            </div>
+                            <div class="row">
+                                {{ form_label(edit_form.description, 'Description : ') }}
+                                {{ form_widget(edit_form.description) }}
+                                {{ form_errors(edit_form.description) }}
                             </div>
                             <div class="row">
                                 <div class="col s3">
@@ -92,16 +101,40 @@
                                     {{ form_widget(edit_form.ges) }}
                                     {{ form_errors(edit_form.ges) }}
                                 </div>
-                                <div class="col s6">
-                                    {{ form_label(edit_form.residence, 'Résidence :') }}
-                                    {{ form_widget(edit_form.residence) }}
-                                    {{ form_errors(edit_form.residence) }}
+                            </div>
+                            <div class="row">
+                                <div class="col s3">
+                                    {{ form_label(edit_form.copropriete, "Copropriété :") }}
+                                    {{ form_widget(edit_form.copropriete) }}
+                                    {{ form_errors(edit_form.copropriete) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(edit_form.nbLots, "Nombre de lots :") }}
+                                    {{ form_widget(edit_form.nbLots) }}
+                                    {{ form_errors(edit_form.nbLots) }}
                                 </div>
                             </div>
                             <div class="row">
-                                {{ form_label(edit_form.description, 'Description : ') }}
-                                {{ form_widget(edit_form.description) }}
-                                {{ form_errors(edit_form.description) }}
+                                <div class="col s3">
+                                    {{ form_label(edit_form.prix, "Prix de vente :") }}
+                                    {{ form_widget(edit_form.prix) }}
+                                    {{ form_errors(edit_form.prix) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(edit_form.fraisAgence, "Frais d'agence :") }}
+                                    {{ form_widget(edit_form.fraisAgence) }}
+                                    {{ form_errors(edit_form.fraisAgence) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(edit_form.chargesAnnuelles, "Charges Annuelles :") }}
+                                    {{ form_widget(edit_form.chargesAnnuelles) }}
+                                    {{ form_errors(edit_form.chargesAnnuelles) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(edit_form.taxeFonciere, "Taxe Foncière :") }}
+                                    {{ form_widget(edit_form.taxeFonciere) }}
+                                    {{ form_errors(edit_form.taxeFonciere) }}
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">

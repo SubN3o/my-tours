@@ -19,54 +19,63 @@
                                     {{ form_errors(form.reference) }}
                                 </div>
                                 <div class="col s6">
-                                    {{ form_label(form.date, 'Disponibilité: ') }}
-                                    <div class="row">
-                                        <div class="col s3">{{ form_widget(form.date.day) }}</div>
-                                        <div class="col s3">{{ form_widget(form.date.month) }}</div>
-                                        <div class="col s3">{{ form_widget(form.date.year) }}</div>
-                                    </div>
-                                    {{ form_errors(form.date) }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                {#<div class="col s6">#}
-                                    {#{{ form_label(form.objet, "Objet :") }}#}
-                                    {#{{ form_widget(form.objet) }}#}
-                                    {#{{ form_errors(form.objet) }}#}
-                                {#</div>#}
-                                <div class="col s6">
                                     {{ form_label(form.statut, "Statut :") }}
                                     {{ form_widget(form.statut) }}
                                     {{ form_errors(form.statut) }}
                                 </div>
+
                             </div>
                             <div class="row">
                                 <div class="col s6">
-                                    {{ form_label(form.prix, "Prix :") }}
-                                    {{ form_widget(form.prix) }}
-                                    {{ form_errors(form.prix) }}
-                                </div>
-                                <div class="col s6">
-                                    {{ form_label(form.surface, 'Surface : ') }}
-                                    {{ form_widget(form.surface) }}
-                                    {{ form_errors(form.surface) }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s4">
                                     {{ form_label(form.typeBien, 'Type de bien :') }}
                                     {{ form_widget(form.typeBien) }}
                                     {{ form_errors(form.typeBien) }}
                                 </div>
-                                <div class="col s4">
+                                <div class="col s6">
                                     {{ form_label(form.typeLogement, 'Type de logement :') }}
                                     {{ form_widget(form.typeLogement) }}
                                     {{ form_errors(form.typeLogement) }}
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s4">
-                                    {{ form_label(form.etat, "Etat :") }}
-                                    {{ form_widget(form.etat) }}
-                                    {{ form_errors(form.etat) }}
+                                    {{ form_label(form.surface, 'Surface Habitable :') }}
+                                    {{ form_widget(form.surface) }}
+                                    {{ form_errors(form.surface) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.surfaceBalcon, 'Surface Balcon :') }}
+                                    {{ form_widget(form.surfaceBalcon) }}
+                                    {{ form_errors(form.surfaceBalcon) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4">
+                                    {{ form_label(form.surfaceTerrasse, 'Surface Terrasse :') }}
+                                    {{ form_widget(form.surfaceTerrasse) }}
+                                    {{ form_errors(form.surfaceTerrasse) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.surfaceJardin, 'Surface Jardin :') }}
+                                    {{ form_widget(form.surfaceJardin) }}
+                                    {{ form_errors(form.surfaceJardin) }}
+                                </div>
+                                <div class="col s4">
+                                    {{ form_label(form.surfaceTerrain, 'Surface Terrain :') }}
+                                    {{ form_widget(form.surfaceTerrain) }}
+                                    {{ form_errors(form.surfaceTerrain) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    {{ form_label(form.stationnement, 'Stationnement: ') }}
+                                    {{ form_widget(form.stationnement) }}
+                                    {{ form_errors(form.stationnement) }}
+                                </div>
+                                <div class="col s6">
+                                    {{ form_label(form.chauffage, 'Chauffage :') }}
+                                    {{ form_widget(form.chauffage) }}
+                                    {{ form_errors(form.chauffage) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -75,11 +84,11 @@
                                     {{ form_widget(form.ville) }}
                                     {{ form_errors(form.ville) }}
                                 </div>
-                                <div class="col s6">
-                                    {{ form_label(form.quartier, 'Quartier :') }}
-                                    {{ form_widget(form.quartier) }}
-                                    {{ form_errors(form.quartier) }}
-                                </div>
+                            </div>
+                            <div class="row">
+                                {{ form_label(form.description, 'Description : ') }}
+                                {{ form_widget(form.description) }}
+                                {{ form_errors(form.description) }}
                             </div>
                             <div class="row">
                                 <div class="col s3">
@@ -92,16 +101,40 @@
                                     {{ form_widget(form.ges) }}
                                     {{ form_errors(form.ges) }}
                                 </div>
-                                <div class="col s6">
-                                    {{ form_label(form.residence, 'Résidence :') }}
-                                    {{ form_widget(form.residence) }}
-                                    {{ form_errors(form.residence) }}
+                            </div>
+                            <div class="row">
+                                <div class="col s3">
+                                    {{ form_label(form.copropriete, "Copropriété :") }}
+                                    {{ form_widget(form.copropriete) }}
+                                    {{ form_errors(form.copropriete) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(form.nbLots, "Nombre de lots :") }}
+                                    {{ form_widget(form.nbLots) }}
+                                    {{ form_errors(form.nbLots) }}
                                 </div>
                             </div>
                             <div class="row">
-                                {{ form_label(form.description, 'Description : ') }}
-                                {{ form_widget(form.description) }}
-                                {{ form_errors(form.description) }}
+                                <div class="col s3">
+                                    {{ form_label(form.prix, "Prix de vente :") }}
+                                    {{ form_widget(form.prix) }}
+                                    {{ form_errors(form.prix) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(form.fraisAgence, "Frais d'agence :") }}
+                                    {{ form_widget(form.fraisAgence) }}
+                                    {{ form_errors(form.fraisAgence) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(form.chargesAnnuelles, "Charges Annuelles :") }}
+                                    {{ form_widget(form.chargesAnnuelles) }}
+                                    {{ form_errors(form.chargesAnnuelles) }}
+                                </div>
+                                <div class="col s3">
+                                    {{ form_label(form.taxeFonciere, "Taxe Foncière :") }}
+                                    {{ form_widget(form.taxeFonciere) }}
+                                    {{ form_errors(form.taxeFonciere) }}
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">

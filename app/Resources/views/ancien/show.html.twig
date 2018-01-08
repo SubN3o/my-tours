@@ -18,10 +18,10 @@
                                     <th>Référence</th>
                                     <td>{{ ancien.reference }}</td>
                                 </tr>
-                                {#<tr>#}
-                                    {#<th>Objet</th>#}
-                                    {#<td>{{ ancien.objet }}</td>#}
-                                {#</tr>#}
+                                <tr>
+                                    <th>Statut</th>
+                                    <td>{% if ancien.statut %}Disponible{% else %}Vendu{% endif %}</td>
+                                </tr>
                                 <tr>
                                     <th>Type de Bien</th>
                                     <td>{{ ancien.typeBien.nom }}</td>
@@ -31,28 +31,36 @@
                                     <td>{{ ancien.typeLogement.nom }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Etat</th>
-                                    <td>{{ ancien.etat }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Disponibilité</th>
-                                    <td>{% if ancien.date %}{{ ancien.date|date('j-m-Y') }}{% endif %}</td>
-                                </tr>
-                                <tr>
-                                    <th>Prix</th>
-                                    <td>{{ ancien.prix|number_format(0, '.', ' ') }} €</td>
-                                </tr>
-                                <tr>
                                     <th>Surface</th>
-                                    <td>{{ ancien.surface }} m²</td>
+                                    <td>{{ ancien.surface }}{% if ancien.surface != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Balcon</th>
+                                    <td>{{ ancien.surfaceBalcon }}{% if ancien.surfaceBalcon != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Terrasse</th>
+                                    <td>{{ ancien.surfaceTerrasse }}{% if ancien.surfaceTerrasse != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Jardin</th>
+                                    <td>{{ ancien.surfaceJardin }}{% if ancien.surfaceJardin != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Terrain</th>
+                                    <td>{{ ancien.surfaceTerrain }}{% if ancien.surfaceTerrain != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Stationnement</th>
+                                    <td>{{ ancien.stationnement }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Chauffage</th>
+                                    <td>{{ ancien.chauffage }}</td>
                                 </tr>
                                 <tr>
                                     <th>Ville</th>
                                     <td>{{ ancien.ville.nom }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Quartier</th>
-                                    <td>{% if ancien.quartier != null %}{{ ancien.quartier.nom }}{% endif %}</td>
                                 </tr>
                                 <tr>
                                     <th>Ges</th>
@@ -67,8 +75,28 @@
                                     <td>{{ ancien.description }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Residence</th>
-                                    <td>{{ ancien.residence }}</td>
+                                    <th>Copropriété</th>
+                                    <td>{% if ancien.copropriete %}oui{% else %}non{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nombre de lots</th>
+                                    <td>{{ ancien.nbLots }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prix de vente</th>
+                                    <td>{{ ancien.prix|number_format(0, '.', ' ') }}{% if ancien.prix != null %} €{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Frais d'agence</th>
+                                    <td>{{ ancien.fraisAgence|number_format(0, '.', ' ') }}{% if ancien.fraisAgence != null %} €{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Charges annuelles</th>
+                                    <td>{{ ancien.chargesAnnuelles|number_format(0, '.', ' ') }}{% if ancien.chargesAnnuelles != null %} €{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Taxe Foncière</th>
+                                    <td>{{ ancien.taxeFonciere|number_format(0, '.', ' ') }}{% if ancien.taxeFonciere != null %} €{% endif %}</td>
                                 </tr>
                                 </tbody>
                             </table>

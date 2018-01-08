@@ -26,20 +26,6 @@ class Ancien
      */
     private $id;
 
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="objet", type="string", length=60)
-//     */
-//    private $objet;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="etat", type="string", length=10)
-     */
-    private $etat;
-
     /**
      * @var bool
      *
@@ -62,6 +48,48 @@ class Ancien
     private $prix;
 
     /**
+     * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Les frais d'agence saisis ne sont pas correctes."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "Les frais d'agence ne peuvent pas être inférieurs à 0€",
+     * )
+     * @ORM\Column(name="fraisAgence", type="integer")
+     */
+    private $fraisAgence;
+
+    /**
+     * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Les charges annuelles saisies ne sont pas correctes."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "Les charges annuelles ne peuvent pas être inférieures à 0€",
+     * )
+     * @ORM\Column(name="chargesAnnuelles", type="integer")
+     */
+    private $chargesAnnuelles;
+
+    /**
+     * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La taxe foncière saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La taxe foncière ne peut pas être inférieur à 0€",
+     * )
+     * @ORM\Column(name="taxeFonciere", type="integer")
+     */
+    private $taxeFonciere;
+
+    /**
      * @var float
      * @Assert\Type(
      *     type="float",
@@ -74,6 +102,66 @@ class Ancien
      * @ORM\Column(name="surface", type="float")
      */
     private $surface;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_balcon", type="float", nullable=true)
+     */
+    private $surfaceBalcon;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_terrasse", type="float", nullable=true)
+     */
+    private $surfaceTerrasse;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_jardin", type="float", nullable=true)
+     */
+    private $surfaceJardin;
+
+    /**
+     * @var float
+     * @Assert\Type(
+     *     type="float",
+     *     message="La surface saisie n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "La surface saisie ne peut pas être inférieur à 0",
+     * )
+     *
+     * @ORM\Column(name="surface_terrain", type="float", nullable=true)
+     */
+    private $surfaceTerrain;
 
     /**
      * @var string
@@ -106,22 +194,10 @@ class Ancien
      */
     private $description;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="residence", type="string", length=255, nullable=true)
-     */
-    private $residence;
-
-    /**
+       /**
      * @ORM\ManyToOne(targetEntity="Ville", inversedBy="anciens", cascade={"persist"}, fetch="EAGER")
      */
     private $ville;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Quartier", inversedBy="anciens", cascade={"persist"}, fetch="EAGER")
-     */
-    private $quartier;
 
     /**
      * @ORM\ManyToOne(targetEntity="TypeBien", inversedBy="anciens")
@@ -141,11 +217,42 @@ class Ancien
     private $medias;
 
     /**
-     * @var \DateTime
-     * @Assert\DateTime()
-     * @ORM\Column(name="date", type="datetime", nullable=true)
+     * @var string
+     * @Assert\Type(
+     *    type="string",
+     *    message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="stationnement", type="text", nullable=true)
      */
-    private $date;
+    private $stationnement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chauffage", type="text", nullable=true)
+     */
+    private $chauffage;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="copropriete", type="boolean", length=10, nullable=true)
+     */
+    private $copropriete;
+
+    /**
+     * @var int
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Le nombre de lots saisi n'est pas correcte."
+     * )
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "Le nombre de lots ne peut pas être inférieur à 0",
+     * )
+     * @ORM\Column(name="nbLots", type="integer", nullable=true)
+     */
+    private $nbLots;
 
     /**
      * Constructor
@@ -165,54 +272,6 @@ class Ancien
         return $this->id;
     }
 
-//    /**
-//     * Set objet
-//     *
-//     * @param string $objet
-//     *
-//     * @return Ancien
-//     */
-//    public function setObjet($objet)
-//    {
-//        $this->objet = $objet;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get objet
-//     *
-//     * @return string
-//     */
-//    public function getObjet()
-//    {
-//        return $this->objet;
-//    }
-
-    /**
-     * Set etat
-     *
-     * @param string $etat
-     *
-     * @return Ancien
-     */
-    public function setEtat($etat)
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
-
-    /**
-     * Get etat
-     *
-     * @return string
-     */
-    public function getEtat()
-    {
-        return $this->etat;
-    }
-
     /**
      * @return bool
      */
@@ -227,6 +286,40 @@ class Ancien
     public function setStatut(bool $statut)
     {
         $this->statut = $statut;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCopropriete()
+    {
+        return $this->copropriete;
+    }
+
+    /**
+     * @param bool $copropriete
+     */
+    public function setCopropriete(bool $copropriete)
+    {
+        $this->copropriete = $copropriete;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbLots()
+    {
+        return $this->nbLots;
+    }
+
+    /**
+     * @param int $nbLots
+     * @return Ancien
+     */
+    public function setNbLots($nbLots)
+    {
+        $this->nbLots = $nbLots;
+        return $this;
     }
 
     /**
@@ -251,6 +344,168 @@ class Ancien
     public function getPrix()
     {
         return $this->prix;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFraisAgence()
+    {
+        return $this->fraisAgence;
+    }
+
+    /**
+     * @param int $fraisAgence
+     * @return Ancien
+     */
+    public function setFraisAgence($fraisAgence)
+    {
+        $this->fraisAgence = $fraisAgence;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getChargesAnnuelles()
+    {
+        return $this->chargesAnnuelles;
+    }
+
+    /**
+     * @param int $chargesAnnuelles
+     * @return Ancien
+     */
+    public function setChargesAnnuelles($chargesAnnuelles)
+    {
+        $this->chargesAnnuelles = $chargesAnnuelles;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTaxeFonciere()
+    {
+        return $this->taxeFonciere;
+    }
+
+    /**
+     * @param int $taxeFonciere
+     * @return Ancien
+     */
+    public function setTaxeFonciere($taxeFonciere)
+    {
+        $this->taxeFonciere = $taxeFonciere;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceBalcon()
+    {
+        return $this->surfaceBalcon;
+    }
+
+    /**
+     * @param float $surfaceBalcon
+     * @return Ancien
+     */
+    public function setSurfaceBalcon($surfaceBalcon)
+    {
+        $this->surfaceBalcon = $surfaceBalcon;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceTerrasse()
+    {
+        return $this->surfaceTerrasse;
+    }
+
+    /**
+     * @param float $surfaceTerrasse
+     * @return Ancien
+     */
+    public function setSurfaceTerrasse($surfaceTerrasse)
+    {
+        $this->surfaceTerrasse = $surfaceTerrasse;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceJardin()
+    {
+        return $this->surfaceJardin;
+    }
+
+    /**
+     * @param float $surfaceJardin
+     * @return Ancien
+     */
+    public function setSurfaceJardin($surfaceJardin)
+    {
+        $this->surfaceJardin = $surfaceJardin;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSurfaceTerrain()
+    {
+        return $this->surfaceTerrain;
+    }
+
+    /**
+     * @param float $surfaceTerrain
+     * @return Ancien
+     */
+    public function setSurfaceTerrain($surfaceTerrain)
+    {
+        $this->surfaceTerrain = $surfaceTerrain;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStationnement()
+    {
+        return $this->stationnement;
+    }
+
+    /**
+     * @param string $stationnement
+     * @return Ancien
+     */
+    public function setStationnement($stationnement)
+    {
+        $this->stationnement = $stationnement;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChauffage()
+    {
+        return $this->chauffage;
+    }
+
+    /**
+     * @param string $chauffage
+     * @return Ancien
+     */
+    public function setChauffage($chauffage)
+    {
+        $this->chauffage = $chauffage;
+        return $this;
     }
 
     /**
@@ -374,30 +629,6 @@ class Ancien
     }
 
     /**
-     * Set residence
-     *
-     * @param string $residence
-     *
-     * @return Ancien
-     */
-    public function setResidence($residence)
-    {
-        $this->residence = $residence;
-
-        return $this;
-    }
-
-    /**
-     * Get residence
-     *
-     * @return string
-     */
-    public function getResidence()
-    {
-        return $this->residence;
-    }
-
-    /**
      * @return mixed
      */
     public function getVille()
@@ -412,24 +643,6 @@ class Ancien
     public function setVille($ville)
     {
         $this->ville = $ville;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQuartier()
-    {
-        return $this->quartier;
-    }
-
-    /**
-     * @param mixed $quartier
-     * @return Ancien
-     */
-    public function setQuartier($quartier)
-    {
-        $this->quartier = $quartier;
         return $this;
     }
 
@@ -485,30 +698,6 @@ class Ancien
     {
         $this->medias = $medias;
         return $this;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Ancien
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 
     /**

@@ -31,7 +31,11 @@
                                         <td>{{ location.reference }}</td>
                                         <td>{{ location.typeBien.nom }}</td>
                                         <td>{{ location.typeLogement.nom }}</td>
-                                        <td>{{ location.statut }}</td>
+                                        {% if location.statut %}
+                                            <td>Disponible</td>
+                                        {% else %}
+                                            <td>Vendu</td>
+                                        {% endif %}
                                         <td>{{ location.loyer|number_format(0, '.', ' ') }}{% if location.loyer != null %} €{% endif %}</td>
                                         <td>{{ location.surface }} m²</td>
                                         <td>{{ location.ville.nom }}</td>

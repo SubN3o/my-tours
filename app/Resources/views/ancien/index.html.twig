@@ -14,15 +14,12 @@
                                 <thead>
                                 <tr>
                                     <th>Référence</th>
-                                    {#<th>Objet</th>#}
                                     <th>Type de bien</th>
                                     <th>Type de logement</th>
-                                    <th>Etat</th>
                                     <th>Statut {{ knp_pagination_sortable(anciens, '↑↓', 'ancien.statut') }}</th>
                                     <th>Prix {{ knp_pagination_sortable(anciens, '↑↓', 'ancien.prix') }}</th>
                                     <th>Surface</th>
                                     <th>Ville</th>
-                                    <th>Disponibilité</th>
                                     <th>Aperçu</th>
                                     <th>Éditer</th>
                                 </tr>
@@ -31,15 +28,16 @@
                                 {% for ancien in anciens %}
                                     <tr>
                                         <td>{{ ancien.reference }}</td>
-                                        {#<td>{{ ancien.objet }}</td>#}
                                         <td>{{ ancien.typeBien.nom }}</td>
                                         <td>{{ ancien.typeLogement.nom }}</td>
-                                        <td>{{ ancien.etat }}</td>
-                                        <td>{{ ancien.statut }}</td>
+                                        {% if ancien.statut %}
+                                            <td>Disponible</td>
+                                        {% else %}
+                                            <td>Vendu</td>
+                                        {% endif %}
                                         <td>{{ ancien.prix|number_format(0, '.', ' ') }}{% if ancien.prix != null %} €{% endif %}</td>
                                         <td>{{ ancien.surface }} m²</td>
                                         <td>{{ ancien.ville.nom }}</td>
-                                        <td>{% if ancien.date %}{{ ancien.date|date('j-m-Y') }}{% endif %}</td>
                                         <td>
                                             <a href="{{ path('admin_ancien_show', { 'id': ancien.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>

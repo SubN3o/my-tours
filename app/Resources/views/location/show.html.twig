@@ -19,6 +19,10 @@
                                     <td>{{ location.reference }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Statut</th>
+                                    <td>{% if location.statut %}Disponible{% else %}Vendu{% endif %}</td>
+                                </tr>
+                                <tr>
                                     <th>Type de Bien</th>
                                     <td>{{ location.typeBien.nom }}</td>
                                 </tr>

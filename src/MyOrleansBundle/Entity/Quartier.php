@@ -44,29 +44,6 @@ class Quartier
     private $residences;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ancien", mappedBy="quartier", cascade={"all"}, fetch="EAGER")
-     */
-    private $anciens;
-
-    /**
-     * @return mixed
-     */
-    public function getAnciens()
-    {
-        return $this->anciens;
-    }
-
-    /**
-     * @param mixed $anciens
-     * @return Quartier
-     */
-    public function setAnciens($anciens)
-    {
-        $this->anciens = $anciens;
-        return $this;
-    }
-
-    /**
      * Get id
      *
      * @return int
