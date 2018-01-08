@@ -16,7 +16,6 @@
                                     <th>Référence</th>
                                     <th>Type de bien</th>
                                     <th>Type de logement</th>
-                                    <th>Statut {{ knp_pagination_sortable(anciens, '↑↓', 'ancien.statut') }}</th>
                                     <th>Prix {{ knp_pagination_sortable(anciens, '↑↓', 'ancien.prix') }}</th>
                                     <th>Surface</th>
                                     <th>Ville</th>
@@ -30,11 +29,6 @@
                                         <td>{{ ancien.reference }}</td>
                                         <td>{{ ancien.typeBien.nom }}</td>
                                         <td>{{ ancien.typeLogement.nom }}</td>
-                                        {% if ancien.statut %}
-                                            <td>Disponible</td>
-                                        {% else %}
-                                            <td>Vendu</td>
-                                        {% endif %}
                                         <td>{{ ancien.prix|number_format(0, '.', ' ') }}{% if ancien.prix != null %} €{% endif %}</td>
                                         <td>{{ ancien.surface }} m²</td>
                                         <td>{{ ancien.ville.nom }}</td>

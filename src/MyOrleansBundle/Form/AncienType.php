@@ -26,12 +26,6 @@ class AncienType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('statut', ChoiceType::class, [
-                'choices' => [
-                    'Disponible' => true,
-                    'Vendu' => false,
-                ]
-            ])
             ->add('prix', IntegerType::class, [
                 'attr' => ['min' => '0'],
                 'required' => true

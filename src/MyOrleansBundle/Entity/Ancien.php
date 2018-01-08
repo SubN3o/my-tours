@@ -27,13 +27,6 @@ class Ancien
     private $id;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="statut", type="boolean", length=10, nullable=true)
-     */
-    private $statut;
-
-    /**
      * @var int
      * @Assert\Type(
      *     type="integer",
