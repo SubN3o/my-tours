@@ -11,11 +11,15 @@ namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Location;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class LocationController extends Controller
 {
+    /**
+     * @Route("/locations", name="locations")
+     */
     public function locationAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
