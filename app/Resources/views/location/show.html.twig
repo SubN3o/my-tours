@@ -31,12 +31,32 @@
                                     <td>{% if location.date %}{{ location.date|date('j-m-Y') }}{% endif %}</td>
                                 </tr>
                                 <tr>
-                                    <th>Loyer</th>
-                                    <td>{{ location.loyer|number_format(0, '.', ' ') }} €</td>
+                                    <th>Surface</th>
+                                    <td>{{ location.surface }}{% if location.surface != null %} m²{% endif %}</td>
                                 </tr>
                                 <tr>
-                                    <th>Surface</th>
-                                    <td>{{ location.surface }} m²</td>
+                                    <th>Surface Balcon</th>
+                                    <td>{{ location.surfaceBalcon }}{% if location.surfaceBalcon != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Terrasse</th>
+                                    <td>{{ location.surfaceTerrasse }}{% if location.surfaceTerrasse != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Jardin</th>
+                                    <td>{{ location.surfaceJardin }}{% if location.surfaceJardin != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surface Terrain</th>
+                                    <td>{{ location.surfaceTerrain }}{% if location.surfaceTerrain != null %} m²{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Stationnement</th>
+                                    <td>{{ location.stationnement }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Chauffage</th>
+                                    <td>{{ location.chauffage }}</td>
                                 </tr>
                                 <tr>
                                     <th>Ville</th>
@@ -53,6 +73,18 @@
                                 <tr>
                                     <th>Description</th>
                                     <td>{{ location.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Loyer</th>
+                                    <td>{{ location.loyer|number_format(0, '.', ' ') }}{% if location.loyer != null %} €{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Provision</th>
+                                    <td>{{ location.provision|number_format(0, '.', ' ') }}{% if location.provision != null %} €{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dépot</th>
+                                    <td>{{ location.depot|number_format(0, '.', ' ') }}{% if location.depot != null %} €{% endif %}</td>
                                 </tr>
                                 </tbody>
                             </table>
