@@ -2648,3 +2648,27 @@ video {
         font-size: 9pt;
     }
 }
+
+/* --------------------------------------------------------------------*/
+/* --------------------------- LOCATION -------------------------------*/
+/* --------------------------------------------------------------------*/
+
+.rented {
+    filter: grayscale(100%);
+}
+
+.loue {
+    color: #B5CC17;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-family: Montserrat;
+    font-size: 13pt;
+    letter-spacing: 0.55pt;
+    font-weight: 400;
+    text-transform: uppercase;
+}
