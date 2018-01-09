@@ -25,6 +25,7 @@ class FiltreLocationType extends AbstractType
                 'choices' => array(
                     'Loyer' => 'loyer',
                     'Surface' => 'surface',
+                    'Type' => 'typeLogement',
                 ),
                 'expanded' => true,
                 'multiple' => false,
