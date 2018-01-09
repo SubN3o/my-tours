@@ -15,10 +15,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class LocationController extends Controller
+class NosLocationsController extends Controller
 {
     /**
-     * @Route("/locations", name="locations")
+     * @Route("/locations", name="noslocations")
      */
     public function locationAction(Request $request)
     {
@@ -73,10 +73,10 @@ class LocationController extends Controller
 
             $this->addFlash('success', 'votre message a bien été envoyé');
 
-            return $this->redirectToRoute('immo_pratique');
+            return $this->redirectToRoute('noslocations');
         }
 
-        return $this->render('MyOrleansBundle::locations.html.twig', [
+        return $this->render('MyOrleansBundle::nosLocations.html.twig', [
             'locations' => $locations,
             'telephone_number' =>$telephoneNumber,
             'form' => $formulaire->createView(),
