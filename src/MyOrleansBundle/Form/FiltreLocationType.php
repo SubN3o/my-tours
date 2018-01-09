@@ -19,19 +19,20 @@ class FiltreLocationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->setMethod('GET')
+            ->setMethod('POST')
             ->add('filter', ChoiceType::class, [
-//                'required' => false,
                 'choices' => array(
-                    'Loyer' => 'loyer',
-                    'Surface' => 'surface',
-                    'Type' => 'typeLogement',
+                    'Prix croissant' => 1,
+                    'Prix décroissant' => 2,
+                    'Surface croissante' => 3,
+                    'Surface décroissante' => 4
                 ),
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => false,
+                'placeholder' => 'Trier par ...',
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Filtrer',
+                'label' => 'Trier',
                 'attr' => ['class' => 'waves-effect waves-light btn greenMyO']
             ])
             ->getForm();

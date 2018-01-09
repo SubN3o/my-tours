@@ -35,7 +35,16 @@ class NosLocationsController extends Controller
 
             $selectedFilter = $data['filter'];
 
-            $locations = $em->getRepository(Location::class)->findByStatut(1,[$selectedFilter=>'ASC']);
+            if ($selectedFilter === 1){
+                $locations = $em->getRepository(Location::class)->findByStatut(1,['loyer'=>'ASC']);
+            } elseif ($selectedFilter === 2) {
+                $locations = $em->getRepository(Location::class)->findByStatut(1,['loyer'=>'DESC']);
+            } elseif ($selectedFilter === 3) {
+                $locations = $em->getRepository(Location::class)->findByStatut(1,['surface'=>'ASC']);
+            } elseif ($selectedFilter === 4) {
+                $locations = $em->getRepository(Location::class)->findByStatut(1,['surface'=>'DESC']);
+            }
+
         }
 
         // Formulaire de contact

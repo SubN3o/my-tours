@@ -12,9 +12,13 @@
         <div class="col offset-l1 l10">
             {{ form_start(locationFiltre) }}
             <div class="valign-wrapper">
-                {{ form_widget(locationFiltre.filter) }}
-                {{ form_errors(locationFiltre.filter) }}
-                {{ form_widget(locationFiltre.submit) }}
+                <div class="filtreLoc">
+                    {{ form_widget(locationFiltre.filter) }}
+                    {{ form_errors(locationFiltre.filter) }}
+                </div>
+                <div>
+                    {{ form_widget(locationFiltre.submit) }}
+                </div>
             </div>
             {{ form_end(locationFiltre) }}
         </div>
@@ -26,10 +30,11 @@
                     <div class="card">
                         <div class="card-image">
                             {% if location.statut == 1 %}
-                                <a href="#">
+                                <a href="{{ path('location', { 'reference': location.reference }) }}">
                                     {% for media in location.medias if media.typeMedia.nom == 'image-cover' %}
                                         <img src="{{ asset('uploads/'~media.mediaName) }}"
-                                             alt="location {{ location.reference }}">
+                                             alt="location {{ location.reference }}"
+                                             class="vignetteLoc">
                                     {% endfor %}
                                     <div class="card-title">
                                         <div class="card-content bandeau">
@@ -48,7 +53,7 @@
                                 {% for media in location.medias if media.typeMedia.nom == 'image-cover' %}
                                     <img src="{{ asset('uploads/'~media.mediaName) }}"
                                          alt="location {{ location.reference }}"
-                                         class="rented">
+                                         class="rented vignetteLoc">
                                     <span class="loue">Loué</span>
                                 {% endfor %}
                                 <div class="card-title">

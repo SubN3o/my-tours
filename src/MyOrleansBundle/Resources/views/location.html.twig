@@ -1,0 +1,327 @@
+{% extends 'MyOrleansBundle::layout.html.twig' %}
+
+{% block title %}{{ location.typeBien.nom }} {{ location.typeLogement.nom }} {{ location.ville.nom }} (45) | My ORLEANS{% endblock %}
+
+{% block description %}
+    <meta name="description"
+          content="{{ location.typeBien.nom }} de Type {{ location.typeLogement.id }} à {{ location.ville.nom }} - Surface Habitable : {{ location.surface }} m² - {{ location.loyer|number_format(0, '.', ' ') }} €"/>
+{% endblock %}
+
+{% block content %}
+    <div class="row infoFlat">
+        <div class="col offset-l1 l2 s12">
+            <!-- vignette Retour à la résidence -->
+            <div class="retourZone col s3 l12">
+                <a href="{{ path('noslocations') }}">
+                    {% for media in location.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img class="responsive-img"
+                             src="{{ asset('uploads/'~media.mediaName) }}"
+                             alt="location {{ location.reference }}">
+                    {% endfor %}
+                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR AUX LOCATIONS</span>
+                </a>
+            </div>
+
+            <!-- affichage de la référence -->
+            <div class="col l12 offset-s1 s4 center">
+                <h1 class="referenceFlat">{{ location.reference }}</h1>
+            </div>
+        </div>
+        <div class="col offset-l1 l4 s12">
+            <!-- affichage du nom de la résidence et sa ville -->
+            <div class="residenceFlat center">
+                {#<span>{{ residence.nom }}</span>#}
+                <h2>{{ location.ville.nom }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row hide-on-med-and-down">
+        <!-- téléchargement PDF sur desktop -->
+        <div class="col offset-s1 s10">
+            {#<a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}">#}
+            <img class="pdfIcon" src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf">
+            {#</a>#}
+        </div>
+    </div>
+    <div class="row infoFlat2 valign-wrapper">
+        <!-- information sur le logement -->
+        <div class="col offset-l1 l10 s10">
+            <!-- type de logement -->
+            <div class="col l6 s12 typeFlat">
+                {{ location.typeBien.nom }} de type {{ location.typeLogement.id }}
+            </div>
+            <!-- prix du logement si disponible -->
+            <div class="col l6 s12 prixFlat">
+                {{ location.loyer|number_format(0, '.', ' ') }} €
+            </div>
+        </div>
+        <div class="col s2 hide-on-large-only">
+            <!-- téléchargement PDF sur mobile -->
+            {#<a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}">#}
+            <img class="responsive-img" src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf">
+            {#</a>#}
+        </div>
+    </div>
+    <div class="row planFlat">
+        <!-- affichage du plan -->
+        <div class="col offset-l1 s12 l10">
+            {% for media in location.medias if media.typeMedia.nom == 'image-cover' %}
+                <img class="responsive-img materialboxed"
+                     src="{{ asset('uploads/'~media.mediaName) }}"
+                     alt="image {{ location.typeBien.nom }} {{ location.reference }}">
+            {% endfor %}
+        </div>
+    </div>
+    <!-- description du logement -->
+    <h1>Descriptif du Logement</h1>
+    <div class="row">
+        <div class="col offset-l1 l5">
+            <!-- surfaces -->
+            <div class="col s12 descriptif">
+
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/room.png') }}" alt="plan">
+                </div>
+                {% if location.surface != null %}
+                    <div class="col s12">
+                        <p>Surface Habitable</p>
+                        <span>{{ location.surface }} m²</span>
+                    </div>
+                {% endif %}
+                {% if location.surfaceBalcon != null %}
+                    <div class="col s12">
+                        <p>Surface Balcon</p>
+                        <span>{{ location.surfaceBalcon }} m²</span>
+                    </div>
+                {% endif %}
+                {% if location.surfaceTerrasse != null %}
+                    <div class="col s12">
+                        <p>Surface Terrasse</p>
+                        <span>{{ location.surfaceTerrasse }} m²</span>
+                    </div>
+                {% endif %}
+                {% if location.surfaceJardin != null %}
+                    <div class="col s12">
+                        <p>Surface Jardin</p>
+                        <span>{{ location.surfaceJardin }} m²</span>
+                    </div>
+                {% endif %}
+                {% if location.surfaceTerrain != null %}
+                    <div class="col s12">
+                        <p>Surface Terrain</p>
+                        <span>{{ location.surfaceTerrain }} m²</span>
+                    </div>
+                {% endif %}
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <!-- Dépenses -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/euro.png') }}" alt="euro">
+                </div>
+                <div class="col s12">
+                    <p>Loyer Mensuel</p>
+                    <span>{{ location.loyer|number_format(0, '.', ' ') }} €</span>
+                </div>
+                <div class="col s12">
+                    <p>Provisions sur charges</p>
+                    <span>{{ location.provision|number_format(0, '.', ' ') }} €</span>
+                </div>
+                <div class="col s12">
+                    <p>Dépôt de garantie</p>
+                    <span>{{ location.depot|number_format(0, '.', ' ') }} €</span>
+                </div>
+                <div class="col s12">
+                    <p>Honoraires (état des lieux inclus)</p>
+                    <span>{{ honoraires|number_format(0, '.', ' ') }} €</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+        </div>
+        <div class="col l5">
+            <!-- Bilan énergitique -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/bilan.png') }}" alt="bareme">
+                </div>
+                <div class="col s12">
+                    <p>Performance énergétique</p>
+                    <span>{{ location.energie }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Gaz à effet de serre</p>
+                    <span>{{ location.ges }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <!-- chauffage -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/chauffage.png') }}" alt="chauffage">
+                </div>
+                <div class="col s12">
+                    <p>Chauffage</p>
+                    <span>
+                    {% if location.chauffage %}
+                        {{ location.chauffage }}
+                    {% else %}
+                        <i>non communiqué</i>
+                    {% endif %}
+                    </span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <!-- stationnement -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/Parking.png') }}" alt="voiture">
+                </div>
+                <div class="col s12">
+                    <p>Stationnement</p>
+                    <span>
+                    {% if location.stationnement %}
+                        {{ location.stationnement }}
+                    {% else %}
+                        <i>non communiqué</i>
+                    {% endif %}
+                    </span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- vignette Retour à la résidence -->
+        <div class="col offset-l1 s3 l2">
+            <div class="retourZone">
+                <a href="{{ path('noslocations') }}">
+                    {% for media in location.medias if media.typeMedia.nom == 'image-cover' %}
+                        <img class="responsive-img"
+                             src="{{ asset('uploads/'~media.mediaName) }}"
+                             alt="location {{ location.reference }}">
+                    {% endfor %}
+                    <span class="retourFlat center"><i class="fa fa-chevron-left"></i> RETOUR AUX LOCATIONS</span>
+                </a>
+            </div>
+        </div>
+        <!-- partage du logement -->
+        <div class="col offset-l1 l7 s12 partage valign-wrapper">
+            <p><i class="material-icons align-icon">share</i>Partager l'annonce</p>
+            <div class="partageIcone">
+                <!-- facebook -->
+                <div id="fb-root"></div>
+                <div class="fb-share-button"
+                     data-href="{{ absolute_url(path('location', { 'reference': location.reference })) }}"
+                     data-layout="button"
+                     data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+                                                                    href="{{ absolute_url( path('location', { 'reference': location.reference }))|url_encode }}">Partager</a>
+                </div>
+                <!-- Email -->
+                <a class="waves-effect waves-light btn greenMyO"
+                   href="mailto:?to= &subject={{ location.reference }}%20-%20{{ location.typeBien.nom }}%20{{ location.typeLogement.nom }}%20-%20My%20Orleans&body=Bonjour,%0A%0AJ'ai trouvé un logement qui devrait vous intéresser sur {{ absolute_url( path('home'))|url_encode }}%0A%0AVoici le lien vers l'annonce:%0A{{ absolute_url( path('location', { 'reference': location.reference }))|url_encode }}%0A%0ADans certains cas, le lien est inactif. Veuillez alors le copier dans la barre d'adresse de votre navigateur.">
+                    <i class="material-icons">mail</i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
+
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est votre projet ?</p>
+                <div class="row">
+                    <div class="col s12 center">
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est l'objet de votre message?</p>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_label(form.sujet) }}
+                        {{ form_widget(form.sujet, {'attr': {'value':'Documentation - '~location.reference}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                <div class="row center">
+                    <div class="col s12 center">
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
+                </div>
+
+                <div class="col l12 newsletter">
+                    {{ form_row(form.envoyer) }}
+                </div>
+                <p class="newsletter"><i>* Champs requis</i></p>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
+{% endblock %}
