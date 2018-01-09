@@ -2650,7 +2650,7 @@ video {
 }
 
 /* --------------------------------------------------------------------*/
-/* --------------------------- LOCATION -------------------------------*/
+/* -------------------------- NOS LOCATIONS ---------------------------*/
 /* --------------------------------------------------------------------*/
 
 .filtreLoc{
@@ -2690,4 +2690,46 @@ video {
     text-transform: capitalize;
     color: #1D1D1B;
     margin: 0 10px;
+}
+
+.vignetteLoc .card .card-image img {
+    height: 250px;
+    object-fit: cover;
+}
+
+/* --------------------------------------------------------------------*/
+/* ------------------------------- LOCATION ---------------------------*/
+/* --------------------------------------------------------------------*/
+
+.sliderLocation {
+    height: 600px;
+}
+
+.sliderLocation a > i {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-size: 64px;
+}
+
+.sliderLocation .slider .indicators {
+    bottom: 50px;
+    z-index: 10;
+}
+
+.sliderLocation .slider .indicators .indicator-item.active {
+    background-color: #B5CC17;
+}
+
+.sliderLocation .slider .slides{
+    background-color: transparent;
+}
+
+.sliderLocation .slider .slides li img{
+    background-size: contain;
+    background-repeat: no-repeat;
 }
