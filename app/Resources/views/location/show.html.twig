@@ -75,11 +75,15 @@
                                     <td>{{ location.energie }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Accroche</th>
+                                    <td>{{ location.accroche }}</td>
+                                </tr>
+                                <tr>
                                     <th>Description</th>
                                     <td>{{ location.description }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Loyer</th>
+                                    <th>Loyer (hors charges)</th>
                                     <td>{{ location.loyer|number_format(0, '.', ' ') }}{% if location.loyer != null %} €{% endif %}</td>
                                 </tr>
                                 <tr>

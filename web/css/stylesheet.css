@@ -2701,6 +2701,39 @@ video {
 /* ------------------------------- LOCATION ---------------------------*/
 /* --------------------------------------------------------------------*/
 
+.locationFlat span {
+    font-weight: 300;
+    font-size: 40pt;
+    color: #B5CC17;
+}
+
+.locationFlat p {
+    font-weight: 300;
+    font-size: 30pt;
+    font-style: italic;
+    color: #676767;
+}
+
+.refLocation {
+    color: black;
+    margin-top: 0;
+    font-size: 20pt;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.prixLoc {
+    text-align: right;
+    font-size: 26pt;
+    color: #B5CC17;
+    text-transform: capitalize;
+}
+
+.prixLoc span {
+    font-size: 11pt;
+    color: #1D1D1B;
+}
+
 .sliderLocation {
     height: 600px;
 }
@@ -2732,4 +2765,8 @@ video {
 .sliderLocation .slider .slides li img{
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.infoHonoraire {
+    font-size: 8pt !important;
 }

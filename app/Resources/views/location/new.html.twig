@@ -86,6 +86,11 @@
                                 </div>
                             </div>
                             <div class="row">
+                                {{ form_label(form.accroche, 'Accroche : ') }}
+                                {{ form_widget(form.accroche) }}
+                                {{ form_errors(form.accroche) }}
+                            </div>
+                            <div class="row">
                                 {{ form_label(form.description, 'Description : ') }}
                                 {{ form_widget(form.description) }}
                                 {{ form_errors(form.description) }}
@@ -115,7 +120,7 @@
                             </div>
                             <div class="row">
                                 <div class="col s4">
-                                    {{ form_label(form.loyer, "Loyer :") }}
+                                    {{ form_label(form.loyer, "Loyer (hors charges) :") }}
                                     {{ form_widget(form.loyer) }}
                                     {{ form_errors(form.loyer) }}
                                 </div>

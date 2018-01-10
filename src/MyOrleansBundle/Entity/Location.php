@@ -57,7 +57,7 @@ class Location
      *      min = 0,
      *      minMessage = "La provision ne peut pas être inférieur à 0€",
      * )
-     * @ORM\Column(name="provision", type="integer")
+     * @ORM\Column(name="provision", type="integer", nullable=true)
      */
     private $provision;
 
@@ -172,6 +172,16 @@ class Location
      * @ORM\Column(name="energie", type="string", length=6)
      */
     private $energie;
+
+    /**
+     * @var string
+     *  @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="accroche", type="string", nullable=true)
+     */
+    private $accroche;
 
     /**
      * @var string
@@ -498,6 +508,24 @@ class Location
     public function getEnergie()
     {
         return $this->energie;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccroche()
+    {
+        return $this->accroche;
+    }
+
+    /**
+     * @param string $accroche
+     * @return Location
+     */
+    public function setAccroche($accroche)
+    {
+        $this->accroche = $accroche;
+        return $this;
     }
 
     /**

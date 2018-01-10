@@ -18,9 +18,9 @@
     <div class="row infoFlat">
         <div class="col s12">
             <!-- affichage du nom de la résidence et sa ville -->
-            <div class="residenceFlat center">
-                <span>{{ location.typeBien.nom }} de type {{ location.typeLogement.id }}</span>
-                <h2>{{ location.ville.nom }}</h2>
+            <div class="locationFlat center">
+                <span>{{ location.ville.nom }}</span>
+                <p>{{ location.typeBien.nom }} de type {{ location.typeLogement.id }}</p>
             </div>
         </div>
     </div>
@@ -36,12 +36,17 @@
         <!-- information sur le logement -->
         <div class="col offset-l1 l10 s10">
             <!-- type de logement -->
-            <div class="col l6 s12 typeFlat">
-                {{ location.reference }}
+            <div class="col l6 s12 refLocation">
+                Référence : {{ location.reference }}
             </div>
             <!-- prix du logement si disponible -->
-            <div class="col l6 s12 prixFlat">
-                {{ location.loyer|number_format(0, '.', ' ') }} €
+            <div class="col l6 s12 prixLoc">
+                {% if location.provision %}
+                    <div>Loyer : {{ location.loyer + location.provision|number_format(0, '.', ' ') }} € <span>Charges comprises</span>
+                    </div>
+                {% else %}
+                    <div>Loyer : {{ location.loyer|number_format(0, '.', ' ') }} €</div>
+                {% endif %}
             </div>
         </div>
         <div class="col s2 hide-on-large-only">
@@ -61,17 +66,29 @@
                         <li>
                             {% for media in location.medias if media.typeMedia.nom == 'image-cover' %}
                                 <!-- affichage de la photo principale -->
-                                <img id="image" src="{{ asset('uploads/'~media.mediaName) }}" alt="photo principale location {{ location.reference }}">
+                                <img id="image" src="{{ asset('uploads/'~media.mediaName) }}"
+                                     alt="photo principale location {{ location.reference }}">
                             {% endfor %}
                         </li>
                         <!-- affichage des slides restantes -->
                         {% for media in location.medias if media.typeMedia.nom == 'image' %}
                             <li>
-                                <img src="{{ asset('uploads/'~media.mediaName) }}" alt="photo {{ loop.index }} location {{ location.reference }}">
+                                <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                     alt="photo {{ loop.index }} location {{ location.reference }}">
                             </li>
                         {% endfor %}
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Description Location -->
+    <div class="row">
+        <div class="col s12 accrocheResidence">
+            <!-- description de la location -->
+            <div class="col offset-l2 l8">
+                <h1 class="center accroche">{{ location.accroche }}</h1>
+                <div class="description">{{ location.description | raw }}</div>
             </div>
         </div>
     </div>
@@ -123,23 +140,42 @@
                     <img class="icon-apt" src="{{ asset('img/euro.png') }}" alt="euro">
                 </div>
                 <div class="col s12">
-                    <p>Loyer Mensuel</p>
-                    <span>{{ location.loyer|number_format(0, '.', ' ') }} €</span>
+                    {% if location.provision %}
+                        <p>Loyer mensuel</p>
+                        <span>{{ location.loyer + location.provision|number_format(0, '.', ' ') }} €</span>
+                    {% else %}
+                        <p>Loyer mensuel</p>
+                        <span>{{ location.loyer|number_format(0, '.', ' ') }} €</span>
+                    {% endif %}
                 </div>
-                <div class="col s12">
-                    <p>Provisions sur charges</p>
-                    <span>{{ location.provision|number_format(0, '.', ' ') }} €</span>
-                </div>
+                {% if location.provision %}
+                    <div class="col s12">
+                        <p>Dont provisions sur charges</p>
+                        <span>{{ location.provision|number_format(0, '.', ' ') }} €</span>
+                    </div>
+                {% endif %}
                 <div class="col s12">
                     <p>Dépôt de garantie</p>
                     <span>{{ location.depot|number_format(0, '.', ' ') }} €</span>
                 </div>
                 <div class="col s12">
-                    <p>Honoraires (état des lieux inclus)</p>
+                    <p>Honoraires*<br/><span class="infoHonoraire">*Honoraires de mise en location + honoraires de l'état des lieux</span></p>
                     <span>{{ honoraires|number_format(0, '.', ' ') }} €</span>
                 </div>
                 <span class="col s12 descriptifLine"></span>
             </div>
+            {% if location.date %}
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/calendrier.png') }}" alt="calendrier">
+                </div>
+                <div class="col s12">
+                    <p>Disponible</p>
+                    <span>{{ location.date|date('j-m-Y') }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            {% endif %}
         </div>
         <div class="col l5">
             <!-- Bilan énergitique -->

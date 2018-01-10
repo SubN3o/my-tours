@@ -38,7 +38,7 @@ class LocationType extends AbstractType
             ])
             ->add('provision', IntegerType::class, [
                 'attr' => ['min' => '0'],
-                'required' => true
+                'required' => false
             ])
             ->add('depot', IntegerType::class, [
                 'attr' => ['min' => '0'],
@@ -89,6 +89,12 @@ class LocationType extends AbstractType
                 ],
                 'expanded' => false,
                 'multiple' => false,
+            ])
+            ->add('accroche', TextareaType::class, [
+                "attr" => [
+                    "class" => "materialize-textarea"
+                ],
+                'required' => false
             ])
             ->add('description', TextareaType::class, [
                 "attr" => [
