@@ -139,3 +139,43 @@
 .message p {
     font-size: 12pt;
 }
+
+.infoSup {
+    font-size: 10pt !important;
+}
+
+.cartoucheLoc {
+    border: solid 2px #B5CC17;
+    padding: 5px 0;
+}
+
+.cartoucheLoc p {
+    font-size: 20pt;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.messageLoc {
+    border: solid 2px #B5CC17;
+    margin-top: 20px;
+}
+
+.infoContact{
+    font-size: 13pt;
+
+}
+
+.imageLoc{
+    height: 530px;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    /*margin-top: 20px;*/
+}
+
+.descriptionLoc{
+    padding: 15px;
+}
