@@ -27,9 +27,9 @@
     <div class="row hide-on-med-and-down">
         <!-- téléchargement PDF sur desktop -->
         <div class="col offset-s1 s10">
-            {#<a href="{{ path('ancien_pdf', { 'reference': ancien.reference }) }}">#}
+            <a href="{{ path('ancien_pdf', { 'reference': ancien.reference }) }}">
                 <img class="pdfIcon" src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf">
-            {#</a>#}
+            </a>
         </div>
     </div>
     <div class="row infoFlat2 valign-wrapper">
@@ -46,9 +46,9 @@
         </div>
         <div class="col s2 hide-on-large-only">
             <!-- téléchargement PDF sur mobile -->
-            {#<a href="{{ path('ancien_pdf', { 'reference': ancien.reference }) }}">#}
+            <a href="{{ path('ancien_pdf', { 'reference': ancien.reference }) }}">
                 <img class="responsive-img" src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf">
-            {#</a>#}
+            </a>
         </div>
     </div>
     <div class="row planFlat">

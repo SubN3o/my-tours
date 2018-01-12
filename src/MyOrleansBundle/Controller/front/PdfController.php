@@ -9,6 +9,7 @@
 namespace MyOrleansBundle\Controller\front;
 
 
+use MyOrleansBundle\Entity\Ancien;
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Location;
 use MyOrleansBundle\Entity\Media;
@@ -144,6 +145,45 @@ class PdfController extends Controller
         ));
 
         $filename = $location->getTypeBien()->getNom()."-".$location->getReference().".pdf";
+
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+            ]);
+
+    }
+
+    /**
+     * Retrun a pdf file from a ancien.
+     * @return Response
+     * @Route("/pdf/ancien/{reference}.pdf", name="ancien_pdf")
+     * @ParamConverter("ancien", class="MyOrleansBundle:Ancien", options={"reference" = "reference"})
+     * @Method("GET")
+     */
+    public function pdfAncienAction(Ancien $ancien, Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $mailagence = $this->getParameter('mail_agence');
+        $telephoneNumber = $this->getParameter('telephone_number');
+        $snappy = $this->get("knp_snappy.pdf");
+        $medias = $ancien->getMedias();
+
+
+        $html = $this->renderView('MyOrleansBundle::pdf_ancien.html.twig', array(
+            'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath(),
+            'ancien'=>$ancien,
+            'medias' => $medias,
+            'telephone_number' => $telephoneNumber,
+            'mail_agence'=>$mailagence,
+
+        ));
+
+        $filename = $ancien->getTypeBien()->getNom()."-".$ancien->getReference().".pdf";
 
         return new Response(
             $snappy->getOutputFromHtml($html),
