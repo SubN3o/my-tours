@@ -88,6 +88,12 @@ class AncienType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
             ])
+            ->add('accroche', TextareaType::class, [
+                "attr" => [
+                    "class" => "materialize-textarea"
+                ],
+                'required' => false
+            ])
             ->add('description', TextareaType::class, [
                 "attr" => [
                     "class" => "materialize-textarea"

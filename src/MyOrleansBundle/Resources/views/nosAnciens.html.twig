@@ -1,0 +1,177 @@
+{% extends 'MyOrleansBundle::layout.html.twig' %}
+
+{% block title %}My ORLEANS | Anciens{% endblock %}
+
+{% block description %}
+    <meta name="description" content="description anciens"/>
+{% endblock %}
+
+{% block content %}
+    <h1>Nos anciens</h1>
+    <div class="row">
+        <div class="col offset-l1 l10">
+            {{ form_start(ancienFiltre) }}
+            <div class="valign-wrapper">
+                <div class="filtreLoc">
+                    {{ form_widget(ancienFiltre.filter) }}
+                    {{ form_errors(ancienFiltre.filter) }}
+                </div>
+                <div>
+                    {{ form_widget(ancienFiltre.submit) }}
+                </div>
+            </div>
+            {{ form_end(ancienFiltre) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col offset-l1 l10">
+            {% for ancien in anciens %}
+                <div class="col s12 m6 l4 vignetteLoc">
+                    <div class="card">
+                        <div class="card-image">
+                            {#{% if location.statut == 1 %}#}
+                                <a href="{{ path('ancien', { 'reference': ancien.reference }) }}">
+                                    {% for media in ancien.medias if media.typeMedia.nom == 'image-cover' %}
+                                        <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                             alt="location {{ ancien.reference }}">
+                                    {% endfor %}
+                                    <div class="card-title">
+                                        <div class="card-content bandeau">
+                                            <div class="locationTitre">
+                                                <span>{{ ancien.ville.nom }}</span>
+                                            </div>
+                                            <div class="locationInfo">
+                                                <span>{{ ancien.typeBien.nom }} {{ ancien.typeLogement.nom }} {{ ancien.surface }}
+                                                    m²</span>
+                                                <span class="right">{{ ancien.prix }} €</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            {#{% else %}#}
+                                {#{% for media in location.medias if media.typeMedia.nom == 'image-cover' %}#}
+                                    {#<img src="{{ asset('uploads/'~media.mediaName) }}"#}
+                                         {#alt="location {{ location.reference }}"#}
+                                         {#class="rented">#}
+                                    {#<span class="loue">Loué</span>#}
+                                {#{% endfor %}#}
+                                {#<div class="card-title">#}
+                                    {#<div class="card-content bandeau">#}
+                                        {#<div class="locationTitre">#}
+                                            {#<span>{{ location.ville.nom }}</span>#}
+                                        {#</div>#}
+                                        {#<div class="locationInfo">#}
+                                                {#<span>{{ location.typeBien.nom }} {{ location.typeLogement.nom }} {{ location.surface }}#}
+                                                    {#m²</span>#}
+                                            {#<span class="right">{{ location.loyer }} €</span>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#{% endif %}#}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
+
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est votre projet ?</p>
+                <div class="row">
+                    <div class="col s12 center">
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est l'objet de votre message?</p>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_label(form.sujet) }}
+                        {{ form_widget(form.sujet, {'attr': {'value':'Demande de documentation'}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                <div class="row center">
+                    <div class="col s12 center">
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
+                </div>
+
+                <div class="col l12 newsletter">
+                    {{ form_row(form.envoyer) }}
+                </div>
+                <p class="newsletter"><i>* Champs requis</i></p>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

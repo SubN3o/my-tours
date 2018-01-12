@@ -182,6 +182,16 @@ class Ancien
 
     /**
      * @var string
+     *  @Assert\Type(
+     *     type="string",
+     *     message="La saisie n'est pas correcte."
+     * )
+     * @ORM\Column(name="accroche", type="string", nullable=true)
+     */
+    private $accroche;
+
+    /**
+     * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
@@ -595,6 +605,24 @@ class Ancien
     public function getEnergie()
     {
         return $this->energie;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccroche()
+    {
+        return $this->accroche;
+    }
+
+    /**
+     * @param string $accroche
+     * @return Ancien
+     */
+    public function setAccroche($accroche)
+    {
+        $this->accroche = $accroche;
+        return $this;
     }
 
     /**
