@@ -3,7 +3,8 @@
 {% block title %}{{ flat.typeBien.nom }} {{ flat.typeLogement.nom }} {{ residence.ville.nom }} (45) {{ residence.nom }} | My ORLEANS{% endblock %}
 
 {% block description %}
-    <meta name="description" content="{{ flat.typeBien.nom }} de Type {{ flat.typeLogement.id }} à {{ residence.ville.nom }} - Résidence {{ residence.nom }} - Surface Habitable : {{ flat.surface }} m² {% if residence.eligibilitePinel == 1 %}- Dispositif Pinel {% endif %}{% if residence.normeThermique == 'RT2012' %}- Norme Thermique : RT2012 {% elseif residence.normeThermique == 'BBC' %}- Norme Thermique : BBC {% endif %}- {% if residence.affichagePrix %}{{ flat.prix|number_format(0, '.', ' ') }} €{% else %}Prix : nous contacter{% endif %}"/>
+    <meta name="description"
+          content="{{ flat.typeBien.nom }} de Type {{ flat.typeLogement.id }} à {{ residence.ville.nom }} - Résidence {{ residence.nom }} - Surface Habitable : {{ flat.surface }} m² {% if residence.eligibilitePinel == 1 %}- Dispositif Pinel {% endif %}{% if residence.normeThermique == 'RT2012' %}- Norme Thermique : RT2012 {% elseif residence.normeThermique == 'BBC' %}- Norme Thermique : BBC {% endif %}- {% if residence.affichagePrix %}{{ flat.prix|number_format(0, '.', ' ') }} €{% else %}Prix : nous contacter{% endif %}"/>
 {% endblock %}
 
 {% block content %}
@@ -59,8 +60,9 @@
     <div class="row hide-on-med-and-down">
         <!-- téléchargement PDF sur desktop -->
         <div class="col offset-s1 s10">
-            <a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}"><img class="pdfIcon"
-                                                                                                          src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf"></a>
+            <a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}"><img
+                        class="pdfIcon"
+                        src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf"></a>
         </div>
     </div>
     <div class="row infoFlat2 valign-wrapper">
@@ -81,7 +83,8 @@
         </div>
         <div class="col s2 hide-on-large-only">
             <!-- téléchargement PDF sur mobile -->
-            <a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}"><img class="responsive-img" src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf"></a>
+            <a href="{{ path('flat_pdf', { 'slug': residence.slug,'reference': flat.reference }) }}"><img
+                        class="responsive-img" src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf"></a>
         </div>
     </div>
     <div class="row planFlat">
@@ -267,7 +270,8 @@
             <div class="partageIcone">
                 <!-- facebook -->
                 <div id="fb-root"></div>
-                <div class="fb-share-button" data-href="{{ absolute_url(path('appartement', { 'slug': residence.slug, 'reference': flat.reference })) }}"
+                <div class="fb-share-button"
+                     data-href="{{ absolute_url(path('appartement', { 'slug': residence.slug, 'reference': flat.reference })) }}"
                      data-layout="button"
                      data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
                                                                     href="{{ absolute_url( path('appartement', { 'slug': residence.slug, 'reference': flat.reference }))|url_encode }}">Partager</a>
@@ -382,9 +386,7 @@
     <script type="text/javascript">
         //ajout de la classe "active" dans la NavBar
         jQuery(document).ready(function ($) {
-            $(window).scroll(function () {
-                $(document.getElementById("nosResidences")).addClass('active');
-            })
+            $(document.getElementById("nosResidences")).addClass('active');
         });
     </script>
     <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>

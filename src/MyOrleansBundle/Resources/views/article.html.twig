@@ -37,8 +37,8 @@
             {% endfor %}
             <div>{{ article.texte | raw }}</div>
             {% for media in article.medias if media.typeMedia.nom == "image" %}
-                    <img class="responsive-img illustration2" src="{{ asset('uploads/'~media.mediaName) }}"
-                         alt="illustration secondaire article {{ article.titre }}">
+                <img class="responsive-img illustration2" src="{{ asset('uploads/'~media.mediaName) }}"
+                     alt="illustration secondaire article {{ article.titre }}">
             {% endfor %}
         </div>
     </div>
@@ -227,9 +227,7 @@
     <script type="text/javascript">
         //ajout de la classe "active" dans la NavBar
         jQuery(document).ready(function ($) {
-            $(window).scroll(function () {
-                $(document.getElementById("immoPratique")).addClass('active');
-            })
+            $(document.getElementById("immoPratique")).addClass('active');
         });
     </script>
 {% endblock %}
