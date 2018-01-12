@@ -8,6 +8,7 @@
 
 {% block content %}
     <h1>Nos locations</h1>
+    <!-- Filtre location -->
     <div class="row">
         <div class="col offset-l1 l10">
             {{ form_start(locationFiltre) }}
@@ -25,11 +26,13 @@
     </div>
     <div class="row">
         <div class="col offset-l1 l10">
+            <!-- Vignettes des locations -->
             {% for location in locations %}
                 <div class="col s12 m6 l4 vignetteLoc">
                     <div class="card">
                         <div class="card-image">
                             {% if location.statut == 1 %}
+                                <!-- Location Disponible -->
                                 <a href="{{ path('location', { 'reference': location.reference }) }}">
                                     {% for media in location.medias if media.typeMedia.nom == 'image-cover' %}
                                         <img src="{{ asset('uploads/'~media.mediaName) }}"
@@ -49,6 +52,7 @@
                                     </div>
                                 </a>
                             {% else %}
+                                <!-- Location loué -->
                                 {% for media in location.medias if media.typeMedia.nom == 'image-cover' %}
                                     <img src="{{ asset('uploads/'~media.mediaName) }}"
                                          alt="location {{ location.reference }}"

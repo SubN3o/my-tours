@@ -17,7 +17,7 @@
     </div>
     <div class="row infoFlat">
         <div class="col s12">
-            <!-- affichage du nom de la résidence et sa ville -->
+            <!-- affichage du type du logement et sa ville -->
             <div class="locationFlat center">
                 <span>{{ location.ville.nom }}</span>
                 <p>{{ location.typeBien.nom }} de type {{ location.typeLogement.id }}</p>
@@ -35,11 +35,11 @@
     <div class="row infoFlat2 valign-wrapper">
         <!-- information sur le logement -->
         <div class="col offset-l1 l10 s10">
-            <!-- type de logement -->
+            <!-- référence du logement -->
             <div class="col l6 s12 refLocation">
                 Référence : {{ location.reference }}
             </div>
-            <!-- prix du logement si disponible -->
+            <!-- prix du loyer du logement hors charges ou charges comprises -->
             <div class="col l6 s12 prixLoc">
                 {% if location.provision %}
                     <div>Loyer mensuel : {{ location.loyer + location.provision|number_format(0, '.', ' ') }} € CC</div>
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="row planFlat">
-        <!-- affichage du plan -->
+        <!-- slider de la location -->
         <div class="col offset-l1 s12 l10">
             <div class="sliderLocation">
                 <div class="slider">

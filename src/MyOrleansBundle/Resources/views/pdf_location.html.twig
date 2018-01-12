@@ -44,7 +44,6 @@
                     Réf : {{ location.reference }} - Loyer mensuel :
                     {% if location.provision %}
                         {{ location.loyer + location.provision|number_format(0, '.', ' ') }} € CC
-                        {#<span class="infoSup">CC</span>#}
                     {% else %}
                         {{ location.loyer|number_format(0, '.', ' ') }} €
                     {% endif %}
@@ -112,46 +111,6 @@
                     </p>
                 </div>
             </div>
-            {#{% if location.surfaceBalcon %}#}
-                {#<div class="col s12">#}
-                    {#<div class="col s1">#}
-                        {#<img class="icone" src="{{ base_dir ~ asset('img/room.png') }}" alt="plan">#}
-                    {#</div>#}
-                    {#<div class="col offset-s1 s10">#}
-                        {#<p class="info">Balcon : {{ location.surfaceBalcon }} m²</p>#}
-                    {#</div>#}
-                {#</div>#}
-            {#{% endif %}#}
-            {#{% if location.surfaceTerrasse %}#}
-                {#<div class="col s12">#}
-                    {#<div class="col s1">#}
-                        {#<img class="icone" src="{{ base_dir ~ asset('img/room.png') }}" alt="plan">#}
-                    {#</div>#}
-                    {#<div class="col offset-s1 s10">#}
-                        {#<p class="info">Terrasse : {{ location.surfaceTerrasse }} m²</p>#}
-                    {#</div>#}
-                {#</div>#}
-            {#{% endif %}#}
-            {#{% if location.surfaceJardin %}#}
-                {#<div class="col s12">#}
-                    {#<div class="col s1">#}
-                        {#<img class="icone" src="{{ base_dir ~ asset('img/room.png') }}" alt="plan">#}
-                    {#</div>#}
-                    {#<div class="col offset-s1 s10">#}
-                        {#<p class="info">Jardin : {{ location.surfaceJardin }} m²</p>#}
-                    {#</div>#}
-                {#</div>#}
-            {#{% endif %}#}
-            {#{% if location.surfaceTerrain %}#}
-                {#<div class="col s12">#}
-                    {#<div class="col s1">#}
-                        {#<img class="icone" src="{{ base_dir ~ asset('img/room.png') }}" alt="plan">#}
-                    {#</div>#}
-                    {#<div class="col offset-s1 s10">#}
-                        {#<p class="info">Terrain : {{ location.surfaceTerrain }} m²</p>#}
-                    {#</div>#}
-                {#</div>#}
-            {#{% endif %}#}
         </div>
         <div class="col s6">
             <div class="col s10 push-s2">
@@ -162,14 +121,14 @@
                         <p>Libre au {{ location.date|date('j/m/Y') }}</p>
                         <div class="divider col s2"></div>
                     {% endif %}
-                    <p>Loyer {% if location.provision %}HC {% endif %}
+                    <p>Loyer {% if location.provision %}hc {% endif %}
                         : {{ location.loyer|number_format(0, '.', ' ') }} €</p>
                     {% if location.provision %}
                         <div class="divider col s2"></div>
                         <p>Charges : {{ location.provision }} €</p>
                     {% endif %}
                     <div class="divider col s2"></div>
-                    <p>Honoraires* : {{ honoraires }} €</p>
+                    <p>Honoraires<span class="infoSup">*</span> : {{ honoraires }} €</p>
                 </div>
             </div>
         </div>

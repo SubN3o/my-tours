@@ -2698,7 +2698,7 @@ video {
 }
 
 /* --------------------------------------------------------------------*/
-/* ------------------------------- LOCATION ---------------------------*/
+/* ------------------------- LOCATION/ANCIEN --------------------------*/
 /* --------------------------------------------------------------------*/
 
 .locationFlat span {
@@ -2770,4 +2770,35 @@ video {
 
 .infoHonoraire {
     font-size: 8pt !important;
+}
+
+@media screen and (max-width: 992px) {
+
+    .prixLoc {
+        text-align: left;
+        font-size: 14pt;
+    }
+
+    .locationFlat span {
+        font-size: 25pt;
+    }
+
+    .locationFlat p {
+        font-size: 20pt;
+    }
+
+
+    .refLocation {
+        font-size: 14pt;
+    }
+
+    .locationFlat {
+        margin-top: 20px;
+    }
+
+
+    .sliderLocation {
+        height: 300px;
+        margin-top: 0;
+    }
 }

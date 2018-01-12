@@ -17,7 +17,7 @@
     </div>
     <div class="row infoFlat">
         <div class="col s12">
-            <!-- affichage du nom de la résidence et sa ville -->
+            <!-- affichage du type du logement et sa ville -->
             <div class="locationFlat center">
                 <span>{{ ancien.ville.nom }}</span>
                 <p>{{ ancien.typeBien.nom }} de type {{ ancien.typeLogement.id }}</p>
@@ -35,13 +35,13 @@
     <div class="row infoFlat2 valign-wrapper">
         <!-- information sur le logement -->
         <div class="col offset-l1 l10 s10">
-            <!-- type de logement -->
+            <!-- référence du logement -->
             <div class="col l6 s12 refLocation">
                 Référence : {{ ancien.reference }}
             </div>
-            <!-- prix du logement si disponible -->
+            <!-- prix du logement -->
             <div class="col l6 s12 prixLoc">
-                    <div>{{ ancien.prix|number_format(0, '.', ' ') }} €</div>
+                <div>{{ ancien.prix|number_format(0, '.', ' ') }} €</div>
             </div>
         </div>
         <div class="col s2 hide-on-large-only">
@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="row planFlat">
-        <!-- affichage du plan -->
+        <!-- slider du bien ancien -->
         <div class="col offset-l1 s12 l10">
             <div class="sliderLocation">
                 <div class="slider">
@@ -80,7 +80,7 @@
     <!-- Description Location -->
     <div class="row">
         <div class="col s12 accrocheResidence">
-            <!-- description de la location -->
+            <!-- description du bien ancien -->
             <div class="col offset-l2 l8">
                 <h1 class="center accroche">{{ ancien.accroche }}</h1>
                 <div class="description">{{ ancien.description | raw }}</div>
@@ -134,10 +134,10 @@
                 <div class="col s1">
                     <img class="icon-apt" src="{{ asset('img/euro.png') }}" alt="euro">
                 </div>
-                    <div class="col s12">
-                        <p>Charges annuelles</p>
-                        <span>{{ ancien.chargesAnnuelles|number_format(0, '.', ' ') }} €</span>
-                    </div>
+                <div class="col s12">
+                    <p>Charges annuelles</p>
+                    <span>{{ ancien.chargesAnnuelles|number_format(0, '.', ' ') }} €</span>
+                </div>
                 <div class="col s12">
                     <p>Taxes Foncière</p>
                     <span>{{ ancien.taxeFonciere|number_format(0, '.', ' ') }} €</span>
@@ -148,26 +148,27 @@
                 </div>
                 <span class="col s12 descriptifLine"></span>
             </div>
-                <div class="col s12 descriptif">
-                    <div class="col s1">
-                        <img class="icon-apt" src="{{ asset('img/copro.png') }}" alt="têtes">
-                    </div>
-                    <div class="col s12">
-                        <p>Copropriété</p>
-                        {% if ancien.copropriete %}
-                        <span>oui</span>
-                        {% else %}
-                        <span>non</span>
-                        {% endif %}
-                    </div>
-                    {% if ancien.copropriete %}
-                        <div class="col s12">
-                            <p>Nombre de logements</p>
-                            <span>{{ ancien.nbLots }}</span>
-                        </div>
-                    {% endif%}
-                    <span class="col s12 descriptifLine"></span>
+            <!-- Coproriété -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/copro.png') }}" alt="têtes">
                 </div>
+                <div class="col s12">
+                    <p>Copropriété</p>
+                    {% if ancien.copropriete %}
+                        <span>oui</span>
+                    {% else %}
+                        <span>non</span>
+                    {% endif %}
+                </div>
+                {% if ancien.copropriete %}
+                    <div class="col s12">
+                        <p>Nombre de logements</p>
+                        <span>{{ ancien.nbLots }}</span>
+                    </div>
+                {% endif %}
+                <span class="col s12 descriptifLine"></span>
+            </div>
         </div>
         <div class="col l5">
             <!-- Bilan énergitique -->
