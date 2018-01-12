@@ -42,10 +42,9 @@
             <!-- prix du logement si disponible -->
             <div class="col l6 s12 prixLoc">
                 {% if location.provision %}
-                    <div>Loyer : {{ location.loyer + location.provision|number_format(0, '.', ' ') }} € <span>Charges comprises</span>
-                    </div>
+                    <div>Loyer mensuel : {{ location.loyer + location.provision|number_format(0, '.', ' ') }} € CC</div>
                 {% else %}
-                    <div>Loyer : {{ location.loyer|number_format(0, '.', ' ') }} €</div>
+                    <div>Loyer mensuel : {{ location.loyer|number_format(0, '.', ' ') }} €</div>
                 {% endif %}
             </div>
         </div>
