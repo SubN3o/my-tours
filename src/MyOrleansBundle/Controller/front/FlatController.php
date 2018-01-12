@@ -86,6 +86,21 @@ class FlatController extends Controller
                     'text/html'
                 );
 
+            //Mail de confirmation
+            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
+            $confirmation
+                ->setTo($client->getEmail())
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+                        'MyOrleansBundle::confirmationForm.html.twig',
+                        ['demande'=>$client->getMessage()]
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($confirmation);
+
             $mailer->send($message);
 
             $client->setDate(new \Datetime());
