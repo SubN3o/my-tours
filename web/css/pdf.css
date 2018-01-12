@@ -173,9 +173,8 @@
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    /*margin-top: 20px;*/
 }
 
 .descriptionLoc{
-    padding: 5 15px;
+    padding: 5px 15px;
 }
