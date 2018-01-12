@@ -184,4 +184,10 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        //ajout de la classe "active" dans la NavBar
+        jQuery(document).ready(function ($) {
+            $(document.getElementById("immoPratique")).addClass('active');
+        });
+    </script>
 {% endblock %}

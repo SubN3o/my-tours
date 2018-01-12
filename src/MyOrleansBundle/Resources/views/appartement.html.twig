@@ -379,5 +379,13 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        //ajout de la classe "active" dans la NavBar
+        jQuery(document).ready(function ($) {
+            $(window).scroll(function () {
+                $(document.getElementById("nosResidences")).addClass('active');
+            })
+        });
+    </script>
     <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
 {% endblock %}

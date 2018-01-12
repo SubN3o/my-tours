@@ -30,7 +30,8 @@
                     <li>
                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
                             <!-- affichage de la photo principale -->
-                            <img id="image" src="{{ asset('uploads/'~media.mediaName) }}" alt="photo principale résidence {{ residence.nom }}">
+                            <img id="image" src="{{ asset('uploads/'~media.mediaName) }}"
+                                 alt="photo principale résidence {{ residence.nom }}">
                         {% endfor %}
                         {% if residence.lienYoutube != null %}
                             <!-- bouton play pour le lien youtube -->
@@ -46,7 +47,8 @@
                     <!-- affichage des slides restantes -->
                     {% for media in residence.medias if media.typeMedia.nom == 'image' %}
                         <li>
-                            <img src="{{ asset('uploads/'~media.mediaName) }}" alt="photo {{ loop.index }} résidence {{ residence.nom }}">
+                            <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                 alt="photo {{ loop.index }} résidence {{ residence.nom }}">
                             {% if residence.lienYoutube != null %}
                                 <!-- bouton play pour le lien youtube -->
                                 <a href="#modalYtp"><i class="material-icons white-text">play_circle_outline</i></a>
@@ -194,7 +196,8 @@
         <div class="parallax">
             {% for media in residence.medias %}
                 {% if media.typeMedia.nom == "image-header" %}
-                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_photo_residence') }}" alt="illustration {{ residence.nom }}">
+                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_photo_residence') }}"
+                         alt="illustration {{ residence.nom }}">
                 {% else %}
                     <img src="{{ asset('img/apt-neuf.jpg') }}" alt="interieur appartement">
                 {% endif %}
@@ -726,7 +729,8 @@
                                 <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.slug }) }}">
                                     {% if residence.medias is not empty %}
                                         {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                                            <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}" alt="residence {{ residence.nom }}">
+                                            <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                                                 alt="residence {{ residence.nom }}">
                                         {% endfor %}
                                     {% endif %}
                                     <div class="card-title">
@@ -842,6 +846,12 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        //ajout de la classe "active" dans la NavBar
+        jQuery(document).ready(function ($) {
+            $(document.getElementById("nosResidences")).addClass('active');
+        });
+    </script>
     <script type="text/javascript">
         //effet sticky de la 2nde NavBar
         jQuery(document).ready(function ($) {

@@ -178,4 +178,10 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        //ajout de la classe "active" dans la NavBar
+        jQuery(document).ready(function ($) {
+            $(document.getElementById("nosLocations")).addClass('active');
+        });
+    </script>
 {% endblock %}

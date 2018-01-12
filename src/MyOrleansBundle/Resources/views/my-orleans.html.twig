@@ -119,19 +119,20 @@
                                         {{ evenement.dateDebut|date('Y') }}</h3>
                                     <p>{{ evenement.description }}</p>
                                     {% for media in evenement.medias if media.typeMedia.nom == "image" %}
-                                        {% if loop.first %}
-                                        <a data-toggle="modal" data-id="{{ evenement.id }}" href="#modal-{{ evenement.id }}">
+                                    {% if loop.first %}
+                                    <a data-toggle="modal" data-id="{{ evenement.id }}"
+                                       href="#modal-{{ evenement.id }}">
                                         {% endif %}
-                                    {% endfor %}
-                                    {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
-                                        <img class="responsive-img"
-                                             src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline') }}"
-                                             alt="illustration {{ evenement.nom }}">
-                                    {% endfor %}
-                                    {% for media in evenement.medias if media.typeMedia.nom == "image" %}
+                                        {% endfor %}
+                                        {% for media in evenement.medias if media.typeMedia.nom == "image-cover" %}
+                                            <img class="responsive-img"
+                                                 src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_timeline') }}"
+                                                 alt="illustration {{ evenement.nom }}">
+                                        {% endfor %}
+                                        {% for media in evenement.medias if media.typeMedia.nom == "image" %}
                                         {% if loop.first %}
-                                        </a>
-                                        {% endif %}
+                                    </a>
+                                    {% endif %}
                                     {% endfor %}
                                 </div>
                             </li>
@@ -166,7 +167,8 @@
                         <!-- Modal Structure -->
                         <div id="modal-{{ evenement.id }}" class="modal">
                             <div class="modal-content center">
-                                <a href="#" class="modal-action modal-close right"><i class="material-icons">close</i></a>
+                                <a href="#" class="modal-action modal-close right"><i
+                                            class="material-icons">close</i></a>
                                 <span>{{ evenement.nom }}</span>
                                 <div class="slider">
                                     <ul class="slides">
@@ -309,6 +311,12 @@
 {% endblock %}
     {% block javascripts %}
         {{ parent() }}
+        <script type="text/javascript">
+            //ajout de la classe "active" dans la NavBar
+            jQuery(document).ready(function ($) {
+                $(document.getElementById("myOrleans")).addClass('active');
+            });
+        </script>
         <script type="text/javascript" src="{{ asset("js/timelineEvent.js") }}"></script>
         <script type="text/javascript" src="{{ asset('js/barillet.js') }}"></script>
         <script type="text/javascript">

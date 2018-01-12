@@ -3,7 +3,8 @@
 {% block title %}My ORLEANS | Nos résidences{% endblock %}
 
 {% block description %}
-    <meta name="description" content="Un large choix de programmes immobiliers et logements neufs à prix promoteur, à Orléans et agglo, pour investir, défiscaliser ou habiter."/>
+    <meta name="description"
+          content="Un large choix de programmes immobiliers et logements neufs à prix promoteur, à Orléans et agglo, pour investir, défiscaliser ou habiter."/>
 {% endblock %}
 
 {% block content %}
@@ -132,7 +133,8 @@
                                     <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.slug }) }}">
                                         {% if residence.medias is not empty %}
                                             {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
-                                                <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}" alt="residence {{ residence.nom }}">
+                                                <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                                                     alt="residence {{ residence.nom }}">
                                             {% endfor %}
                                         {% endif %}
                                         <div class="card-title">
@@ -252,6 +254,12 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        //ajout de la classe "active" dans la NavBar
+        jQuery(document).ready(function ($) {
+            $(document.getElementById("nosResidences")).addClass('active');
+        });
+    </script>
     <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {

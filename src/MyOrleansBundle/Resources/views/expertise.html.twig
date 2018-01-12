@@ -16,9 +16,9 @@
                 {% for service in services %}
                     <div class="timeline-item">
                         <div class="timeline-icon">
-                    {% for media in service.medias if media.typeMedia.nom == "icone" %}
-                        <img src="{{ asset('uploads/'~media.mediaName) }}" alt="icone {{ service.type }}">
-                    {% endfor %}
+                            {% for media in service.medias if media.typeMedia.nom == "icone" %}
+                                <img src="{{ asset('uploads/'~media.mediaName) }}" alt="icone {{ service.type }}">
+                            {% endfor %}
                         </div>
                         <ul class="collapsible timeline-content" data-collapsible="accordion">
                             <li id="anchor-{{ service.type }}">
@@ -142,4 +142,10 @@
 
     {% block javascripts %}
         {{ parent() }}
+        <script type="text/javascript">
+            //ajout de la classe "active" dans la NavBar
+            jQuery(document).ready(function ($) {
+                $(document.getElementById("expertise")).addClass('active');
+            });
+        </script>
     {% endblock %}
