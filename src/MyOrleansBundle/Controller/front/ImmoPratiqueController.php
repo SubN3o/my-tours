@@ -37,71 +37,8 @@ class ImmoPratiqueController extends Controller
         $articlesNoResult = 0;
 
         // on redirige vers une autre url apres une recherche d'article
-        $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
+        $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType');
 
-        // on récupere les 4 premiers article qui ont le champ tri de renseigné
-        $essentiel = $em->getRepository(Article::class)->articleByTri();
-
-        // Formulaire de contact
-        $telephoneNumber = $this->getParameter('telephone_number');
-
-        $client = new Client();
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->handleRequest($request);
-
-        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setFrom($client->getEmail())
-                ->setTo($this->getParameter('mailer_user'))
-
-
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($message);
-
-            $client->setDate(new \Datetime());
-
-            $em->persist($client);
-            $em->flush();
-
-            $this->addFlash('success', 'votre message a bien été envoyé');
-
-            return $this->redirectToRoute('immo_pratique');
-        }
-
-        return $this->render('MyOrleansBundle::immoPratique.html.twig', [
-            'articles' => $articles,
-            'telephone_number' =>$telephoneNumber,
-            'form' => $formulaire->createView(),
-            'articlesSearch' => $articlesSearch->createView(),
-            'articlesNoResult' => $articlesNoResult,
-            'essentiel'=>$essentiel
-        ]);
-    }
-
-    /**
-     * @Route("/infos-pratiques/resultat", name="immo_pratique_resultat")
-     */
-    public function immoPratiqueResultatAction(SessionInterface $session, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        // initialisation de la variable pour gérer le message de recherche
-        $articlesNoResult = 0;
-
-        // on redirige vers une autre url apres une recherche d'article
-        $articlesSearch = $this->createForm('MyOrleansBundle\Form\SearchArticleType', null, ['action' => $this->generateUrl('immo_pratique_resultat')]);
         $articlesSearch->handleRequest($request);
 
         if ($articlesSearch->isSubmitted() && $articlesSearch->isValid()) {
@@ -122,7 +59,7 @@ class ImmoPratiqueController extends Controller
         }
 
         // on récupere les 4 premiers article qui ont le champ tri de renseigné
-        $essentiel = $em->getRepository(Article::class)->findBy([],['tri'=>'ASC'],4);
+        $essentiel = $em->getRepository(Article::class)->articleByTri();
 
         // Formulaire de contact
         $telephoneNumber = $this->getParameter('telephone_number');
