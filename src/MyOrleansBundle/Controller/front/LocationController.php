@@ -75,6 +75,9 @@ class LocationController extends Controller
 
             $em->persist($client);
             $em->flush();
+
+            $this->addFlash('success', 'Votre message a bien été envoyé');
+
             return $this->redirectToRoute('location',['reference'=>$location->getReference()]);
         }
 

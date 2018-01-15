@@ -107,6 +107,9 @@ class FlatController extends Controller
 
             $em->persist($client);
             $em->flush();
+
+            $this->addFlash('success', 'Votre message a bien été envoyé');
+
             return $this->redirectToRoute('appartement',['id'=>$flat->getId()]);
         }
 

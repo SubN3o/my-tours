@@ -109,7 +109,7 @@ class ImmoPratiqueController extends Controller
             $em->persist($client);
             $em->flush();
 
-            $this->addFlash('success', 'votre message a bien été envoyé');
+            $this->addFlash('success', 'Votre message a bien été envoyé');
 
             return $this->redirectToRoute('immo_pratique');
         }
@@ -220,7 +220,7 @@ class ImmoPratiqueController extends Controller
             $em->persist($client);
             $em->flush();
 
-            $this->addFlash('success', 'votre message a bien été envoyé');
+            $this->addFlash('success', 'Votre message a bien été envoyé');
             return $this->redirectToRoute('article',['slug'=>$article->getSlug()]);
         }
 
