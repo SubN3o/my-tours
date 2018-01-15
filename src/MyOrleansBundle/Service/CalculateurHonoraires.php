@@ -28,4 +28,11 @@ class CalculateurHonoraires
 
         return $honoraires;
     }
+
+    public function calculHonoraireEtat($surface)
+    {
+        $etatLieux = $surface * 3;
+
+        return $etatLieux;
+    }
 }

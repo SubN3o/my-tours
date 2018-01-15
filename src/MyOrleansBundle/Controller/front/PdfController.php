@@ -127,6 +127,7 @@ class PdfController extends Controller
 
         //calcul des honoraires selon la surface
         $honoraires = $calculateurHonoraires->calculHonoraires($location->getSurface());
+        $etatLieux = $calculateurHonoraires->calculHonoraireEtat($location->getSurface());
 
         $mailagence = $this->getParameter('mail_agence');
         $telephoneNumber = $this->getParameter('telephone_number');
@@ -138,6 +139,7 @@ class PdfController extends Controller
             'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath(),
             'location'=>$location,
             'honoraires'=>$honoraires,
+            'etatLieux'=>$etatLieux,
             'medias' => $medias,
             'telephone_number' => $telephoneNumber,
             'mail_agence'=>$mailagence,

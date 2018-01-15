@@ -27,6 +27,7 @@ class LocationController extends Controller
     {
         //calcul des honoraires selon la surface
         $honoraires = $calculateurHonoraires->calculHonoraires($location->getSurface());
+        $etatLieux = $calculateurHonoraires->calculHonoraireEtat($location->getSurface());
 
         // Formulaire de contact
         $client = new  Client();
@@ -84,6 +85,7 @@ class LocationController extends Controller
         return $this->render('MyOrleansBundle::location.html.twig', [
            'location'=>$location,
             'honoraires'=>$honoraires,
+            'etatLieux'=>$etatLieux,
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView()
         ]);
