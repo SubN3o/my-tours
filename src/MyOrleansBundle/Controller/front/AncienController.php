@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AncienController extends Controller
 {
     /**
-     * @Route("ancien/{reference}", name="ancien")
+     * @Route("immobilier-anciens/{reference}", name="ancien")
      * @ParamConverter("ancien", class="MyOrleansBundle:Ancien", options={"reference" = "reference"})
      */
     public function location(Ancien $ancien, Request $request)

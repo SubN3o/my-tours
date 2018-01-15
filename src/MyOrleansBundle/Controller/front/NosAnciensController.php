@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 class NosAnciensController extends Controller
 {
     /**
-     * @Route("/anciens", name="nosanciens")
+     * @Route("/immobilier-anciens", name="nosanciens")
      */
     public function locationAction(Request $request)
     {

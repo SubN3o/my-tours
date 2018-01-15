@@ -28,7 +28,7 @@ class ExpertiseController extends Controller
 {
 
     /**
-     * @Route("/nos-competences", name="expertise")
+     * @Route("/expertise", name="expertise")
      */
 
     public function expertiseAction( Request $request)

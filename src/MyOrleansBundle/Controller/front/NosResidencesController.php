@@ -30,7 +30,7 @@ use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 class NosResidencesController extends Controller
 {
     /**
-     * @Route("/nos-residences", name="nosresidences")
+     * @Route("/neufs", name="nosresidences")
      */
     public function nosResidencesAction(Request $request, SessionInterface $session)
     {
@@ -161,7 +161,7 @@ class NosResidencesController extends Controller
     }
 
     /**
-     * @Route("/nos-residences/search", name="nosresidences-search")
+     * @Route("/neufs/search", name="nosresidences-search")
      */
     public function completeSearchAction(Request $request, SessionInterface $session)
     {
