@@ -56,7 +56,8 @@ class FormulaireType extends AbstractType
                 'multiple' => false,
                 'choices' => [
                     'Habiter'=>'Habiter',
-                    'Investir' => 'Investir'
+                    'Investir' => 'Investir',
+                    'Louer' => 'Louer'
                 ],
                 'data' => 'Habiter'
             ])
