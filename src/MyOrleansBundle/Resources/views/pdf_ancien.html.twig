@@ -125,13 +125,13 @@
                 <div class="s12 center cartoucheLoc">
                     <p>{{ ancien.typeLogement.nom }} - {{ ancien.surface }} m²</p>
                     <div class="divider col s2"></div>
-                    <p>{{ ancien.prix|number_format(0, '.', ' ') }} €</p>
+                    <p>{{ ancien.prix|number_format(0, '.', ' ') }} €<sup>*</sup></p>
                     <div class="divider col s2"></div>
+                    {% if ancien.chargesAnnuelles %}
                     <p>Charges : {{ ancien.chargesAnnuelles }} €</p>
                     <div class="divider col s2"></div>
+                    {% endif %}
                     <p>Taxe foncière : {{ ancien.taxeFonciere }} €</p>
-                    <div class="divider col s2"></div>
-                    <p>Frais d'agence : {{ ancien.fraisAgence }} €</p>
                 </div>
             </div>
         </div>
@@ -151,7 +151,7 @@
                 <p class="infoContact right">13 rue Bannier 45000 Orléans</p>
             </div>
         </div>
-        {#<p>*Honoraires de mise en location + honoraires de l'état des lieux</p>#}
+        <p>*FAI - Honoraires charge vendeur</p>
     </div>
 </div>
 

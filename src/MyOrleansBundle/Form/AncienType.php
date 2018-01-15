@@ -30,13 +30,9 @@ class AncienType extends AbstractType
                 'attr' => ['min' => '0'],
                 'required' => true
             ])
-            ->add('fraisAgence', IntegerType::class, [
-                'attr' => ['min' => '0'],
-                'required' => true
-            ])
             ->add('chargesAnnuelles', IntegerType::class, [
                 'attr' => ['min' => '0'],
-                'required' => true
+                'required' => false
             ])
             ->add('taxeFonciere', IntegerType::class, [
                 'attr' => ['min' => '0'],

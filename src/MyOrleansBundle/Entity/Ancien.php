@@ -40,19 +40,6 @@ class Ancien
      */
     private $prix;
 
-    /**
-     * @var int
-     * @Assert\Type(
-     *     type="integer",
-     *     message="Les frais d'agence saisis ne sont pas correctes."
-     * )
-     * @Assert\Range(
-     *      min = 0,
-     *      minMessage = "Les frais d'agence ne peuvent pas être inférieurs à 0€",
-     * )
-     * @ORM\Column(name="fraisAgence", type="integer")
-     */
-    private $fraisAgence;
 
     /**
      * @var int
@@ -64,7 +51,7 @@ class Ancien
      *      min = 0,
      *      minMessage = "Les charges annuelles ne peuvent pas être inférieures à 0€",
      * )
-     * @ORM\Column(name="chargesAnnuelles", type="integer")
+     * @ORM\Column(name="chargesAnnuelles", type="integer", nullable=true)
      */
     private $chargesAnnuelles;
 

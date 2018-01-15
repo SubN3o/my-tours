@@ -41,7 +41,7 @@
             </div>
             <!-- prix du logement -->
             <div class="col l6 s12 prixLoc">
-                <div>{{ ancien.prix|number_format(0, '.', ' ') }} €</div>
+                <div>Prix de vente : {{ ancien.prix|number_format(0, '.', ' ') }} €</div>
             </div>
         </div>
         <div class="col s2 hide-on-large-only">
@@ -134,17 +134,19 @@
                 <div class="col s1">
                     <img class="icon-apt" src="{{ asset('img/euro.png') }}" alt="euro">
                 </div>
+                {% if ancien.chargesAnnuelles %}
                 <div class="col s12">
                     <p>Charges annuelles</p>
                     <span>{{ ancien.chargesAnnuelles|number_format(0, '.', ' ') }} €</span>
                 </div>
+                {% endif %}
                 <div class="col s12">
                     <p>Taxes Foncière</p>
                     <span>{{ ancien.taxeFonciere|number_format(0, '.', ' ') }} €</span>
                 </div>
                 <div class="col s12">
-                    <p>Frais d'agence</p>
-                    <span>{{ ancien.fraisAgence|number_format(0, '.', ' ') }} €</span>
+                    <p>Prix de vente*<br/><span class="infoHonoraire">*FAI - Honoraires charge vendeur</span></p>
+                    <span>{{ ancien.prix|number_format(0, '.', ' ') }} €</span>
                 </div>
                 <span class="col s12 descriptifLine"></span>
             </div>
