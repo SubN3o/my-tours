@@ -22,7 +22,6 @@
     <div class="container-fluid">
 
         <!--Formulaire-->
-        {#{{ render(controller('MyOrleansBundle:front/Layout:formulaire')) }}#}
         <div class="breadcrumb formulaireBouton">
             <a href="#" data-activates="slide-out" class="button-collapse pulse-button"><i
                         class="material-icons">message</i></a>
@@ -33,6 +32,7 @@
 
         <!--Navbar-->
         {{ render(controller('MyOrleansBundle:front/Layout:navBar')) }}
+
 
         {% block content %}
             <!--Contenu des pages-->
@@ -87,6 +87,17 @@
             });
 
         });
+
+        //confirmation envoie formulaire
+        $(document).ready(function () {
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    var $toastContent = $('<span>{{ message }}</span>');
+                    Materialize.toast($toastContent, 10000);
+                {% endfor %}
+            {% endfor %}
+        });
+
 
         //affichage de la recherche simple desktop à la place du menu
         function simpleSearch() {

@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 class LocationController extends Controller
 {
     /**
-     * @Route("location/{reference}", name="location")
+     * @Route("locations/{reference}", name="location")
      * @ParamConverter("location", class="MyOrleansBundle:Location", options={"reference" = "reference"})
      */
     public function location(Location $location, Request $request, CalculateurHonoraires $calculateurHonoraires)
@@ -54,12 +54,30 @@ class LocationController extends Controller
                     'text/html'
                 );
 
+            //Mail de confirmation
+            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
+            $confirmation
+                ->setTo($client->getEmail())
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+                        'MyOrleansBundle::confirmationForm.html.twig',
+                        ['demande'=>$client->getMessage()]
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($confirmation);
+
             $mailer->send($message);
 
             $client->setDate(new \Datetime());
 
             $em->persist($client);
             $em->flush();
+
+            $this->addFlash('success', 'Votre message a bien été envoyé');
+
             return $this->redirectToRoute('location',['reference'=>$location->getReference()]);
         }
 

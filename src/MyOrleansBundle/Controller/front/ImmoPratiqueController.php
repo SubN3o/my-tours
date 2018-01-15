@@ -87,6 +87,21 @@ class ImmoPratiqueController extends Controller
                     'text/html'
                 );
 
+            //Mail de confirmation
+            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
+            $confirmation
+                ->setTo($client->getEmail())
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+                        'MyOrleansBundle::confirmationForm.html.twig',
+                        ['demande'=>$client->getMessage()]
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($confirmation);
+
             $mailer->send($message);
 
             $client->setDate(new \Datetime());
@@ -94,7 +109,7 @@ class ImmoPratiqueController extends Controller
             $em->persist($client);
             $em->flush();
 
-            $this->addFlash('success', 'votre message a bien été envoyé');
+            $this->addFlash('success', 'Votre message a bien été envoyé');
 
             return $this->redirectToRoute('immo_pratique');
         }
@@ -183,6 +198,21 @@ class ImmoPratiqueController extends Controller
                     'text/html'
                 );
 
+            //Mail de confirmation
+            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
+            $confirmation
+                ->setTo($client->getEmail())
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+                        'MyOrleansBundle::confirmationForm.html.twig',
+                        ['demande'=>$client->getMessage()]
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($confirmation);
+
             $mailer->send($message);
 
             $client->setDate(new \Datetime());
@@ -190,8 +220,8 @@ class ImmoPratiqueController extends Controller
             $em->persist($client);
             $em->flush();
 
-            $this->addFlash('success', 'votre message a bien été envoyé');
-            return $this->redirectToRoute('home');
+            $this->addFlash('success', 'Votre message a bien été envoyé');
+            return $this->redirectToRoute('article',['slug'=>$article->getSlug()]);
         }
 
         return $this->render('MyOrleansBundle::article.html.twig',[

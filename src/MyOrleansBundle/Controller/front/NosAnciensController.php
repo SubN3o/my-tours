@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 class NosAnciensController extends Controller
 {
     /**
-     * @Route("/anciens", name="nosanciens")
+     * @Route("/immobilier-anciens", name="nosanciens")
      */
     public function locationAction(Request $request)
     {
@@ -73,6 +73,21 @@ class NosAnciensController extends Controller
                     'text/html'
                 );
 
+            //Mail de confirmation
+            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
+            $confirmation
+                ->setTo($client->getEmail())
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+                        'MyOrleansBundle::confirmationForm.html.twig',
+                        ['demande'=>$client->getMessage()]
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($confirmation);
+
             $mailer->send($message);
 
             $client->setDate(new \Datetime());
@@ -80,7 +95,7 @@ class NosAnciensController extends Controller
             $em->persist($client);
             $em->flush();
 
-            $this->addFlash('success', 'votre message a bien été envoyé');
+            $this->addFlash('success', 'Votre message a bien été envoyé');
 
             return $this->redirectToRoute('nosanciens');
         }

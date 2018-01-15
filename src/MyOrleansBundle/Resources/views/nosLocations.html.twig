@@ -44,7 +44,7 @@
                                                 <span>{{ location.ville.nom }}</span>
                                             </div>
                                             <div class="locationInfo">
-                                                <span>{{ location.typeBien.nom }} {{ location.typeLogement.nom }} {{ location.surface }}
+                                                <span>{{ location.typeBien.nom }} {{ location.typeLogement.nom }} - {{ location.surface }}
                                                     m²</span>
                                                 {% if location.provision %}
                                                 <span class="right">{{ location.loyer + location.provision }} € CC</span>
@@ -69,7 +69,7 @@
                                             <span>{{ location.ville.nom }}</span>
                                         </div>
                                         <div class="locationInfo">
-                                                <span>{{ location.typeBien.nom }} {{ location.typeLogement.nom }} {{ location.surface }}
+                                                <span>{{ location.typeBien.nom }} {{ location.typeLogement.nom }} - {{ location.surface }}
                                                     m²</span>
                                             <span class="right">{{ location.loyer }} €</span>
                                         </div>

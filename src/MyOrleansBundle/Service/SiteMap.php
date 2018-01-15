@@ -40,7 +40,9 @@ class SiteMap
             'my-orleans',
             'expertise',
             'nosresidences',
-            'immo_pratique'
+            'immo_pratique',
+            'nosanciens',
+            'noslocations'
             ];
 
         //géneration des url
@@ -81,13 +83,13 @@ class SiteMap
         }
 
         $requete = [
-            '/nos-residences/search?complete_search%5Bville%5D=Olivet&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/nos-residences/search?complete_search%5Bville%5D=Saint-Pryvé-Saint-Mesmin&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/nos-residences/search?complete_search%5Bville%5D=Orléans&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/nos-residences/search?complete_search%5Bville%5D=Saint-Jean-de-Braye&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/nos-residences/search?complete_search%5Bville%5D=Saint-Jean-le-Blanc&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/nos-residences/search?complete_search%5Bville%5D=Ormes&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/nos-residences/search?complete_search%5Bville%5D=Ingré&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
+            '/neufs/search?complete_search%5Bville%5D=Olivet&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
+            '/neufs/search?complete_search%5Bville%5D=Saint-Pryvé-Saint-Mesmin&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
+            '/neufs/search?complete_search%5Bville%5D=Orléans&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
+            '/neufs/search?complete_search%5Bville%5D=Saint-Jean-de-Braye&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
+            '/neufs/search?complete_search%5Bville%5D=Saint-Jean-le-Blanc&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
+            '/neufs/search?complete_search%5Bville%5D=Ormes&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
+            '/neufs/search?complete_search%5Bville%5D=Ingré&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
         ];
         //géneration des url
         foreach ($requete as $resultat) {
