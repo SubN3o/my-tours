@@ -346,6 +346,22 @@ footer p {
     }
 }
 
+.faqBouton a {
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+    background-color: #B5CC17;
+    overflow: hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    bottom: 20px;
+    position: fixed;
+    right: 20px;
+    padding: 15px 15px 10px 15px;
+    z-index: 200;
+}
+
 .formulaireVolet {
     width: 400px;
     z-index: 1100;
@@ -449,8 +465,8 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 
 #back-top a {
     position: fixed;
-    right: 20px;
-    bottom: 15px;
+    right: 55px;
+    bottom: 20px;
     width: 108px;
     display: block;
     text-align: center;
