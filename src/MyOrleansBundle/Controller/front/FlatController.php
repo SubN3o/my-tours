@@ -110,7 +110,7 @@ class FlatController extends Controller
 
             $this->addFlash('success', 'Votre message a bien été envoyé');
 
-            return $this->redirectToRoute('appartement',['id'=>$flat->getId()]);
+            return $this->redirectToRoute('appartement',['slug'=>$residence->getSlug(),'reference'=>$flat->getReference()]);
         }
 
             return $this->render('MyOrleansBundle::appartement.html.twig',[

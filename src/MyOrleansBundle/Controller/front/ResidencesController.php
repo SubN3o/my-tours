@@ -113,7 +113,7 @@ class ResidencesController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Votre message a bien été envoyé');
-            return $this->redirectToRoute('residences',['slug'=>$residence->getSlug()]);
+            return $this->redirectToRoute('residences',['slug'=>$residence->getSlug(),'Ville'=>$residence->getVille()->getSlug()]);
         }
 
 
