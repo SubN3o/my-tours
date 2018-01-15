@@ -1,10 +1,16 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <!-- formulaire de reception d'un contact -->
-    <h1>Confirmation de votre demande sur www.my-orléans.com</h1>
+    <!-- message de confirmation d'un contact -->
+    <img src="http://www.my-orleans.com/img/logo_myorleans.png">
+    <h1>Confirmation de votre demande sur www.my-orleans.com</h1>
 
     <div>
-        <p><strong>Message :</strong> {{ demande }}</p>
+        <p>Bonjour. Nous avons bien reçu votre message et vous remercions pour l'intérêt que vous portez aux biens et
+            services proposés par My ORLEANS. Nous revenons vers vous prochainement avec les éléments demandés. Vous
+            souhaitant une excellente journée. Bien cordialement. L'équipe de My ORLEANS</p>
+    </div>
+    <div>
+        <p><strong>Votre demande :</strong> {{ demande }}</p>
     </div>
 {% endblock %}
