@@ -4,7 +4,7 @@
 
 {% block description %}
     <meta name="description"
-          content="{{ location.typeBien.nom }} de Type {{ location.typeLogement.id }} à {{ location.ville.nom }} - Surface Habitable : {{ location.surface }} m² - {{ location.loyer|number_format(0, '.', ' ') }} €"/>
+          content="{{ location.description | truncate(155, true, '...') }}"/>
 {% endblock %}
 
 {% block content %}
