@@ -3,12 +3,10 @@
 namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Article;
-use MyOrleansBundle\Entity\FileArticle;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Tag;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\ArticleType;
-use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

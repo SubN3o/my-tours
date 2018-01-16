@@ -5,7 +5,6 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\TypeMedia;
-use MyOrleansBundle\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;

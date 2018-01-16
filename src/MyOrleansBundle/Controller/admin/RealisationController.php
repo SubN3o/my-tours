@@ -5,7 +5,6 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Realisation;
 use MyOrleansBundle\Entity\TypeMedia;
-use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -52,7 +51,7 @@ class RealisationController extends Controller
      * @Route("/new", name="admin_realisation_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
         $realisation = new Realisation();
         $form = $this->createForm('MyOrleansBundle\Form\RealisationType', $realisation);
@@ -96,7 +95,7 @@ class RealisationController extends Controller
      * @Route("/{id}/edit", name="admin_realisation_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Realisation $realisation, FileUploader $fileUploader)
+    public function editAction(Request $request, Realisation $realisation)
     {
         $deleteForm = $this->createDeleteForm($realisation);
         $editForm = $this->createForm('MyOrleansBundle\Form\RealisationType', $realisation);
