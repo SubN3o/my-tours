@@ -2823,7 +2823,6 @@ video {
     text-decoration: none;
     color: white;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
-    /*background-color: #EF562D;*/
     background-color: #F57F17;
     overflow: hidden;
     -webkit-border-radius: 5px;
@@ -2837,11 +2836,12 @@ video {
 }
 
 .question {
-    margin-top: 0;
+    margin-top: 30px;
 }
 
 .question i {
     color: #676767;
+    line-height: 1.5rem;
 }
 
 .question .collapsible-body{
@@ -2851,8 +2851,13 @@ video {
 
 .question .collapsible-header{
     background-color: #f9f9f4;
-    /*color: #EF562D;*/
     color: #F57F17;
+    line-height: 1.5rem;
+    padding: 1rem;
+}
+
+.imgFaq {
+    margin-top: 30px;
 }
 
 @media screen and (max-width: 992px) {
