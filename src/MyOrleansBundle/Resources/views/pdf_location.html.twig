@@ -125,10 +125,10 @@
                         : {{ location.loyer|number_format(0, '.', ' ') }} €</p>
                     {% if location.provision %}
                         <div class="divider col s2"></div>
-                        <p>Charges : {{ location.provision }} €</p>
+                        <p>Charges : {{ location.provision|number_format(0, '.', ' ') }} €</p>
                     {% endif %}
                     <div class="divider col s2"></div>
-                    <p>Honoraires<sup>*</sup> : {{ honoraires }} €</p>
+                    <p>Honoraires<sup>*</sup> : {{ honoraires|number_format(0, '.', ' ') }} €</p>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
                 <p class="infoContact right">13 rue Bannier 45000 Orléans</p>
             </div>
         </div>
-        <p>*Honoraires de mise en location dont {{ etatLieux }} € pour état des lieux</p>
+        <p>*Honoraires de mise en location dont {{ etatLieux|number_format(0, '.', ' ') }} € pour état des lieux</p>
     </div>
 </div>
 

@@ -49,7 +49,7 @@
                                                 {% if location.provision %}
                                                 <span class="right">{{ location.loyer + location.provision }} € CC</span>
                                                 {% else %}
-                                                <span class="right">{{ location.loyer }} €</span>
+                                                <span class="right">{{ location.loyer|number_format(0, '.', ' ') }} €</span>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                         <div class="locationInfo">
                                                 <span>{{ location.typeBien.nom }} {{ location.typeLogement.nom }} - {{ location.surface }}
                                                     m²</span>
-                                            <span class="right">{{ location.loyer }} €</span>
+                                            <span class="right">{{ location.loyer|number_format(0, '.', ' ') }} €</span>
                                         </div>
                                     </div>
                                 </div>

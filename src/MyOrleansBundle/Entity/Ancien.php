@@ -65,7 +65,7 @@ class Ancien
      *      min = 0,
      *      minMessage = "La taxe foncière ne peut pas être inférieur à 0€",
      * )
-     * @ORM\Column(name="taxeFonciere", type="integer")
+     * @ORM\Column(name="taxeFonciere", type="integer", nullable=true)
      */
     private $taxeFonciere;
 

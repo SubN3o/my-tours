@@ -36,7 +36,7 @@ class AncienType extends AbstractType
             ])
             ->add('taxeFonciere', IntegerType::class, [
                 'attr' => ['min' => '0'],
-                'required' => true
+                'required' => false
             ])
             ->add('surface', NumberType::class, [
                 'required' => true

@@ -126,12 +126,14 @@
                     <p>{{ ancien.typeLogement.nom }} - {{ ancien.surface }} m²</p>
                     <div class="divider col s2"></div>
                     <p>{{ ancien.prix|number_format(0, '.', ' ') }} €<sup>*</sup></p>
-                    <div class="divider col s2"></div>
                     {% if ancien.chargesAnnuelles %}
-                    <p>Charges : {{ ancien.chargesAnnuelles }} €</p>
-                    <div class="divider col s2"></div>
+                        <div class="divider col s2"></div>
+                        <p>Charges : {{ ancien.chargesAnnuelles|number_format(0, '.', ' ') }} €</p>
                     {% endif %}
-                    <p>Taxe foncière : {{ ancien.taxeFonciere }} €</p>
+                    {% if ancien.taxeFonciere %}
+                        <div class="divider col s2"></div>
+                        <p>Taxe foncière : {{ ancien.taxeFonciere|number_format(0, '.', ' ') }} €</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

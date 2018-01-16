@@ -44,7 +44,7 @@
                                         <div class="locationInfo">
                                                 <span>{{ ancien.typeBien.nom }} {{ ancien.typeLogement.nom }} - {{ ancien.surface }}
                                                     m²</span>
-                                            <span class="right">{{ ancien.prix }} €</span>
+                                            <span class="right">{{ ancien.prix|number_format(0, '.', ' ') }} €</span>
                                         </div>
                                     </div>
                                 </div>

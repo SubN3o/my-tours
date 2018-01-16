@@ -12,7 +12,7 @@
         <div class="col offset-s1 retourSearch1">
             <a class="waves-effect waves-light btn"
                href="{{ path("nosanciens") }}">
-                <i class="fa fa-caret-left white-text"></i> RETOUR AUX ANCIENS</a>
+                <i class="fa fa-caret-left white-text"></i> RETOUR A IMMOBILIER ANCIEN</a>
         </div>
     </div>
     <div class="row infoFlat">
@@ -140,10 +140,12 @@
                     <span>{{ ancien.chargesAnnuelles|number_format(0, '.', ' ') }} €</span>
                 </div>
                 {% endif %}
+                {% if ancien.taxeFonciere %}
                 <div class="col s12">
                     <p>Taxes Foncière</p>
                     <span>{{ ancien.taxeFonciere|number_format(0, '.', ' ') }} €</span>
                 </div>
+                {% endif %}
                 <div class="col s12">
                     <p>Prix de vente*<br/><span class="infoHonoraire">*FAI - Honoraires charge vendeur</span></p>
                     <span>{{ ancien.prix|number_format(0, '.', ' ') }} €</span>
@@ -252,7 +254,7 @@
         <div class="col offset-s1 retourSearch1">
             <a class="waves-effect waves-light btn"
                href="{{ path("nosanciens") }}">
-                <i class="fa fa-caret-left white-text"></i> RETOUR AUX ANCIENS</a>
+                <i class="fa fa-caret-left white-text"></i> RETOUR A IMMOBILIER ANCIEN</a>
         </div>
     </div>
     <!-- début formulaire de contact -->
