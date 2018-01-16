@@ -6,7 +6,6 @@ use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\ResidenceType;
-use MyOrleansBundle\Service\FileUploader;
 use MyOrleansBundle\Service\Geoloc;
 use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

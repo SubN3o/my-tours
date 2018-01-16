@@ -6,7 +6,6 @@ use MyOrleansBundle\Entity\Collaborateur;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\TypeMedia;
 use MyOrleansBundle\Form\CollaborateurType;
-use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

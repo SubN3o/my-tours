@@ -5,7 +5,6 @@ namespace MyOrleansBundle\Controller\admin;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\TypeMedia;
-use MyOrleansBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -43,7 +42,7 @@ class PackController extends Controller
      * @Route("/new", name="admin_pack_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
         $pack = new Pack();
         $form = $this->createForm('MyOrleansBundle\Form\PackType', $pack);
@@ -87,7 +86,7 @@ class PackController extends Controller
      * @Route("/{id}/edit", name="admin_pack_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Pack $pack, FileUploader $fileUploader)
+    public function editAction(Request $request, Pack $pack)
     {
         $deleteForm = $this->createDeleteForm($pack);
         $editForm = $this->createForm('MyOrleansBundle\Form\PackType', $pack);
