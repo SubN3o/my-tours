@@ -8,10 +8,21 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Foire aux questions</h1>
+    <h1>Les questions les plus fréquentes</h1>
     <div class="row">
-        <!-- timeline verticale des services -->
-
+        <div class="col s12 offset-l1 l6">
+            <ul class="collapsible popout question" data-collapsible="accordion">
+                {% for faq in faqs %}
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">question_answer</i>{{ faq.question }}</div>
+                        <div class="collapsible-body"><span>{{ faq.reponse }}</span></div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col l4 hide-on-med-and-down">
+            <img src="{{ asset('img/unnamed3.jpg') }}" class="responsive-img">
+        </div>
     </div>
 
     <!-- début formulaire de contact -->

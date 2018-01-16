@@ -2831,3 +2831,25 @@ video {
         margin-top: 0;
     }
 }
+
+/* --------------------------------------------------------------------*/
+/* ------------------------------- FAQ --------------------------------*/
+/* --------------------------------------------------------------------*/
+
+.question {
+    margin-top: 0;
+}
+
+.question .collapsible-body, .question .collapsible-header{
+    background-color: #f9f9f4;
+}
+
+.question.collapsible.popout>li {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 992px) {
+    .question {
+        font-size: 9pt;
+    }
+}
