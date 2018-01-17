@@ -42,7 +42,8 @@ class SiteMap
             'nosresidences',
             'immo_pratique',
             'nosanciens',
-            'noslocations'
+            'noslocations',
+            'faq'
             ];
 
         //géneration des url
