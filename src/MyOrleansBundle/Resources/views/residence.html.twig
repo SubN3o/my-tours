@@ -318,7 +318,7 @@
                             <!-- corps des T1 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT1 %}
-                                    <div class="row">
+                                    <div class="row" data-info="programme neuf {{ residence.nom }}">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}">
                                                 <div class="col s1">{{ flat.reference }}</div>
@@ -407,7 +407,7 @@
                             <!-- corps des T2 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT2 %}
-                                    <div class="row">
+                                    <div class="row" data-info="programme neuf {{ residence.nom }}">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}">
                                                 <div class="col s1">{{ flat.reference }}</div>
@@ -495,7 +495,7 @@
                             <!-- corps des T3 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT3 %}
-                                    <div class="row">
+                                    <div class="row" data-info="programme neuf {{ residence.nom }}">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}">
                                                 <div class="col s1">{{ flat.reference }}</div>
@@ -583,7 +583,7 @@
                             <!-- corps des T4 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT4 %}
-                                    <div class="row">
+                                    <div class="row" data-info="programme neuf {{ residence.nom }}">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}">
                                                 <div class="col s1">{{ flat.reference }}</div>
@@ -671,7 +671,7 @@
                             <!-- corps des T5 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT5 %}
-                                    <div class="row">
+                                    <div class="row" data-info="programme neuf {{ residence.nom }}">
                                         {% if flat.statut %}
                                             <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}">
                                                 <div class="col s1">{{ flat.reference }}</div>
