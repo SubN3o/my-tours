@@ -17,7 +17,7 @@
                     <li>
                         <div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i>{{ faq.question }}
                         </div>
-                        <div class="collapsible-body"><span>{{ faq.reponse }}</span></div>
+                        <div class="collapsible-body"><span>{{ faq.reponse | raw }}</span></div>
                     </li>
                 </ul>
             {% endfor %}

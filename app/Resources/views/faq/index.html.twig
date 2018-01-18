@@ -25,7 +25,7 @@
                                     <tr>
                                         <td>{{ faq.tri }}</td>
                                         <td>{{ faq.question }}</td>
-                                        <td>{{ faq.reponse }}</td>
+                                        <td>{{ faq.reponse | raw }}</td>
                                         <td>
                                             <a href="{{ path('admin_faq_show', { 'id': faq.id }) }}"><i
                                                         class="material-icons">remove_red_eye</i></a>
