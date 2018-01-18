@@ -25,7 +25,7 @@ class FaqType extends AbstractType
             ])
             ->add('reponse', TextareaType::class, [
                 "attr" => [
-                    "class" => "materialize-textarea"
+                    "class" => "materialize ckeditor"
                 ]
             ]);
     }
