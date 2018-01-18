@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 class LocationController extends Controller
 {
     /**
-     * @Route("locations/{reference}", name="location")
+     * @Route("location/{reference}", name="location")
      * @ParamConverter("location", class="MyOrleansBundle:Location", options={"reference" = "reference"})
      */
     public function location(Location $location, Request $request, CalculateurHonoraires $calculateurHonoraires)

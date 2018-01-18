@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 class NosLocationsController extends Controller
 {
     /**
-     * @Route("/locations", name="noslocations")
+     * @Route("/location", name="noslocations")
      */
     public function locationAction(Request $request)
     {
