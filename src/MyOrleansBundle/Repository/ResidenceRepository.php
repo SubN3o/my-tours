@@ -109,5 +109,13 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
             ->setMaxResults(2);
         return $qb->getQuery()->getResult();
     }
+
+    public function allCity()
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->select('v.nom')->distinct()
+            ->join('r.ville', 'v');
+        return $qb->getQuery()->getResult();
+    }
 }
 
