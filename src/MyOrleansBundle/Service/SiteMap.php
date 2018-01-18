@@ -83,20 +83,16 @@ class SiteMap
             );
         }
 
-        $requete = [
-            '/neufs/search?complete_search%5Bville%5D=Olivet&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/neufs/search?complete_search%5Bville%5D=Saint-Pryvé-Saint-Mesmin&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/neufs/search?complete_search%5Bville%5D=Orléans&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/neufs/search?complete_search%5Bville%5D=Saint-Jean-de-Braye&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/neufs/search?complete_search%5Bville%5D=Saint-Jean-le-Blanc&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/neufs/search?complete_search%5Bville%5D=Ormes&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-            '/neufs/search?complete_search%5Bville%5D=Ingré&complete_search%5BbudgetMin%5D=&complete_search%5BbudgetMax%5D=&complete_search%5Bsubmit%5D=&complete_search%5B',
-        ];
-        //géneration des url
-        foreach ($requete as $resultat) {
-            $urls[] = array(
-                'loc' => $resultat
-            );
+        //récupération des villes où les programmes sont construits
+        $villes = $this->em->getRepository(Residence::class)->allCity();
+
+        //génération des url pour les résultats de recherche
+        foreach ($villes as $ville) {
+            foreach ($ville as $nom) {
+                $urls[] = array(
+                    'loc' => $this->router->generate('nosresidences-search') . '?complete_search%5Bville%5D=' . $nom
+                );
+            }
         }
 
         return $urls;
