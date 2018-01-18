@@ -107,13 +107,6 @@ class HomeController extends Controller
             return $this->redirectToRoute('home');
         }
 
-        // Recuperation de la liste des villes dans lesquelles se trouvent les residences
-//        $residences = $em->getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
-//        $villes = [];
-//        foreach ($residences as $residence) {
-//            $villes[] = $residence->getVille();
-//        }
-
         return $this->render('MyOrleansBundle::index.html.twig', [
             'telephone_number' => $telephoneNumber,
             'form' => $formulaire->createView(),

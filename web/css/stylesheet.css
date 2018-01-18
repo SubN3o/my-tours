@@ -195,15 +195,8 @@ footer p {
 }
 
 .mentions {
-    float: right;
-    font-size: 10pt;
-    margin-top: 15px;
-}
-
-.honoraires {
-    font-size: 10pt;
-    float: left;
-    margin-top: 15px;
+    text-align: center;
+    margin-top: 14px;
 }
 
 .labels {
@@ -212,11 +205,6 @@ footer p {
 
 .h5Footer {
     margin-top: 20px;
-}
-
-.bordureFooter {
-    border-left: 1px solid white;
-    border-right: 1px solid white;
 }
 
 .contact p {
@@ -284,9 +272,9 @@ footer p {
         width: 90%;
     }
 
-    .mentions, .honoraires {
-        float: none;
-        margin-top: 0;
+    .mentions {
+    text-align: left;
+    margin-top: 4px;
     }
 
     .labels {

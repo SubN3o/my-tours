@@ -21,69 +21,44 @@
                 <div class="row center">
                     <div class="col offset-l2 l2 s4">
                         <a href="https://www.facebook.com/myorleans/?ref=page_internal" target="_blank">
-                            {#<div class="">#}
                                 <i class="fa fa-facebook fa-3x fb-social social-btn"></i>
-                            {#</div>#}
                         </a>
                     </div>
                     <div class="col offset-l1 l2 s4">
                         <a href="https://plus.google.com/+MYORLEANSOrl%C3%A9ans" target="_blank">
-                            {#<div class="social-btn">#}
                                 <i class="fa fa-google-plus fa-3x gplus-social social-btn"></i>
-                            {#</div>#}
                         </a>
                     </div>
                     <div class="col offset-l1 l2 s4">
                         <a href="https://www.youtube.com/channel/UCFATFRMEwROsER_aiGX2OfQ/videos" target="_blank">
-                            {#<div class="social-btn">#}
                                 <i class="fa fa-youtube fa-3x ytb-social social-btn"></i>
-                            {#</div>#}
                         </a>
                     </div>
                 </div>
             </div>
             <!--colonne milieu-->
-            <div class="col s12 l4 bordureFooter">
-                <p class="titreFooter center"><a href="{{ path("nosresidences") }}">NOTRE SÉLECTION</a></p>
+            <div class="col s12 l4">
+                <p class="titreFooter center"><a href="{{ path("nosresidences") }}">NOS PROGRAMMES</a></p>
                 <!-- affichage des 7 résidences -->
                 <div class="row">
                     {% for programme in programmes %}
-                        <div class="col s12 l6">
+                        <div class="col s12">
                             <p class="linkFooter">
-                                {{ programme.nom }}
-                                {#<a href="{{ path('residences', { 'slug': programme.slug, 'Ville': programme.ville.slug }) }}">{{ programme.nom }}</a>#}
+                                <a href="{{ path('nosresidences-search') }}?complete_search%5Bville%5D={{ programme.nom }}">{{ programme.nom }}</a>
                             </p>
                         </div>
                     {% endfor %}
                 </div>
-                <p class="titreFooter center h5Footer"><a href="{{ path("expertise") }}">NOS COMPÉTENCES</a></p>
-                <div class="row">
-                    <div class="col s12">
-                        {% for service in services %}
-                            <p class="linkFooter"><a href="{{ path("expertise")~'#anchor-'~service.type }}">{{ service.type }}</a></p>
-                        {% endfor %}
-                    </div>
-                </div>
-                {#<p class="titreFooter center h5Footer"><a href="{{ path("expertise")~'#pack' }}">NOS PACKS</a></p>#}
-                {#<div class="row">#}
-                    {#<div class="col s12">#}
-                        {#{% for pack in packs %}#}
-                            {#<p class="linkFooter"><a href="{{ path("expertise")~'#'~pack.nom }}">{{ pack.nom }}</a></p>#}
-                        {#{% endfor %}#}
-                    {#</div>#}
-                {#</div>#}
             </div>
             <!--colonne droite-->
             <div class="col s12 l4">
                 <!-- liens internes vers MY-ORLEANS -->
-                <p class="titreFooter center"><a href="{{ path("my-orleans") }}">MY ORLÉANS</a></p>
+                <p class="titreFooter center"><a href="{{ path("expertise") }}">EXPERTISE</a></p>
                 <div class="row">
                     <div class="offset-l1 col l11">
-                        <p class="linkFooter"><a href="{{ path("my-orleans")~'#presentation' }}">Présentation</a></p>
-                        <p class="linkFooter"><a href="{{ path("my-orleans")~'#equipe' }}">Notre équipe</a></p>
-                        <p class="linkFooter"><a href="{{ path("my-orleans")~'#realisations' }}">Nos réalisations</a></p>
-                        <p class="linkFooter hide-on-med-and-down"><a href="{{ path("my-orleans")~'#actualite' }}">Notre actualité</a></p>
-                        <p class="linkFooter"><a href="{{ path("my-orleans")~'#partenaires' }}">Nos partenaires</a></p>
+                        {% for service in services %}
+                            <p class="linkFooter"><a href="{{ path("expertise")~'#anchor-'~service.type }}">{{ service.type }}</a></p>
+                        {% endfor %}
                     </div>
                 </div>
                 <p class="titreFooter center h5Footer"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></p>
@@ -104,15 +79,15 @@
             <div class="col offset-l1 s12 l3">
                 <p class="copyrightMyO">© 2017 My ORLEANS</p>
             </div>
-            <!-- informations légales -->
-            <div class="col s12 l2">
-                <p class="linkFooter mentions"><a href="#modalMention">Informations légales</a></p>
+            <div class="col s12 l4">
+                <!-- Foire aux questions -->
+                <span class="linkFooter col s12 l1 mentions"><a href="{{ path("faq") }}">Faq</a></span>
+                <!-- informations légales -->
+                <span class="linkFooter col s12 l5 mentions"><a href="#modalMention">Informations légales</a></span>
+                <!-- frais et honoraires -->
+                <span class="linkFooter col s12 l6 mentions"><a href="#modalHonoraire">Frais et honoraires de gestion</a></span>
             </div>
-            <!-- frais et honoraires -->
-            <div class="col s12 l2">
-                <p class="linkFooter honoraires"><a href="#modalHonoraire">Frais et honoraires de gestion</a></p>
-            </div>
-            <!-- labels FNAIM ET Gallian -->
+            <!-- labels FNAIM et Gallian -->
             <div class="col s12 l3">
                 <div class="labels">
                     <a href="http://www.fnaim.fr/" target="_blank"><img src="{{ asset('img/logo-fnaim.png') }}"

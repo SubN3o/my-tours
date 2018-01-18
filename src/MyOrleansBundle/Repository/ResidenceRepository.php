@@ -114,7 +114,9 @@ class ResidenceRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('r')
             ->select('v.nom')->distinct()
-            ->join('r.ville', 'v');
+	    ->andWhere('f.statut = true')
+            ->join('r.ville', 'v')
+	    ->join('r.flats', 'f');
         return $qb->getQuery()->getResult();
     }
 }
