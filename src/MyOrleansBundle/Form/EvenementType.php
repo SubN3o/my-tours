@@ -24,11 +24,11 @@ class EvenementType extends AbstractType
             ->add('adresse', TextType::class)
             ->add('codePostal', NumberType::class)
             ->add('ville', TextType::class)
-            ->add('dateDebut', DateType::class,[
-                'years' => range(date('Y')-7, date('Y')+7),
+            ->add('dateDebut', DateType::class, [
+                'years' => range(date('Y') - 7, date('Y') + 7),
             ])
-            ->add('dateFin',DateType::class,[
-                'years' => range(date('Y')-7, date('Y')+7),
+            ->add('dateFin', DateType::class, [
+                'years' => range(date('Y') - 7, date('Y') + 7),
             ])
             ->add('heureDebut', TimeType::class)
             ->add('heureFin', TimeType::class)
@@ -38,10 +38,14 @@ class EvenementType extends AbstractType
                     'entry_type' => MediaType::class,
                     'allow_add' => true,
                     'prototype' => true,
-                    'by_reference' => false]
+                    'by_reference' => false,
+                    "attr" => [
+                        "class" => "multiUpload"
+                    ]
+                ]
             );
     }
-    
+
     /**
      * {@inheritdoc}
      */

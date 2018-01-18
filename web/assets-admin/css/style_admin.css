@@ -111,3 +111,15 @@ textarea.materialize-textarea {
 li {
     list-style: none;
 }
+
+.upload {
+    background-color: #f9f9f4;
+    padding: 10px;
+}
+
+.multiUpload>div {
+    margin-top: 20px;
+    background-color: #f9f9f4;
+    padding: 10px;
+}
+

@@ -5,6 +5,7 @@ namespace MyOrleansBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,9 +20,16 @@ class TemoignageType extends AbstractType
             ->add('theme')
             ->add('auteur')
             ->add('date', DateType::class)
-            ->add('message')
+            ->add('message', TextareaType::class,[
+                "attr" => [
+                    "class" => "materialize-textarea"
+                ]
+            ])
             ->add('media', MediaType::class,[
-                'required' => false
+                'required' => false,
+                "attr" => [
+                    "class" => "upload"
+                ]
                 ])
             ->add('tri', IntegerType::class, [
                 'required' => false

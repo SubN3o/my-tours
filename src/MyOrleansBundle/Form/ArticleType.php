@@ -40,7 +40,10 @@ class ArticleType extends AbstractType
                 'entry_type' => TagType::class,
                 'allow_add' => true,
                 'prototype' => true,
-                'required' => true
+                'required' => true,
+                "attr" => [
+                    "class" => "multiUpload"
+                ]
             ])
             ->add('typeArticle', EntityType::class, [
                 'class' => TypeArticle::class,
@@ -50,6 +53,9 @@ class ArticleType extends AbstractType
                 'entry_type' => MediaType::class,
                 'allow_add' => true,
                 'prototype' => true,
+                "attr" => [
+                    "class" => "multiUpload"
+                ]
             ]);
     }
 

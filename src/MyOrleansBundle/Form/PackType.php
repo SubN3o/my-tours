@@ -28,7 +28,11 @@ class PackType extends AbstractType
                 'required'  =>
                     false
             ))
-            ->add('media', MediaType::class)
+            ->add('media', MediaType::class,[
+                "attr" => [
+                    "class" => "upload"
+                ]
+            ])
             ->add('tri', IntegerType::class, [
                 'required' => false
             ])

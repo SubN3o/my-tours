@@ -121,6 +121,9 @@ class AncienType extends AbstractType
                 'entry_type' => MediaType::class,
                 'allow_add' => true,
                 'prototype' => true,
+                "attr" => [
+                    "class" => "multiUpload"
+                ]
             ])
             ->add('ville', EntityType::class, [
                 'class' => Ville::class,

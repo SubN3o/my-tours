@@ -17,25 +17,26 @@ class AccueilType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('presentation', TextareaType::class, [
-                    "attr" => [
-                        "class" => "materialize ckeditor"
-                    ]
-                ])
-                ->add('mentions', TextareaType::class, [
-                    "attr" => [
-                        "class" => "materialize ckeditor"
-                    ]
-                ])
-                ->add('medias', CollectionType::class,
-                    [
-                      'entry_type' => MediaType::class,
-                       'allow_add' => true,
-                        'prototype' => true,
-                     'by_reference' => false
-                    ])
-        ;
+            "attr" => [
+                "class" => "materialize ckeditor"
+            ]
+        ])
+            ->add('mentions', TextareaType::class, [
+                "attr" => [
+                    "class" => "materialize ckeditor"
+                ]
+            ])
+            ->add('medias', CollectionType::class, [
+                'entry_type' => MediaType::class,
+                'allow_add' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                "attr" => [
+                    "class" => "multiUpload"
+                ]
+            ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */

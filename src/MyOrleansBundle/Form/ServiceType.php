@@ -29,7 +29,11 @@ class ServiceType extends AbstractType
                     'entry_type' => MediaType::class,
                     'allow_add' => true,
                     'prototype' => true,
-                    'by_reference' => false]
+                    'by_reference' => false,
+                    "attr" => [
+                        "class" => "multiUpload"
+                    ]
+                    ]
             )
             ->add('tri', IntegerType::class, [
                 'required' => false

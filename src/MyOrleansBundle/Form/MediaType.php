@@ -34,7 +34,7 @@ class MediaType extends AbstractType
                 'label' => 'Fichier média',
                 'allow_delete' => false,
                 'download_uri' => true,
-                'download_label' => 'aperçu'
+                'download_label' => 'aperçu',
 
             ])
             ->add('typemedia', EntityType::class, [

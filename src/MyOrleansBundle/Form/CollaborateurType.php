@@ -32,7 +32,11 @@ class CollaborateurType extends AbstractType
             ->add('lienLinkedin', UrlType::class, [
                 'required'=>false])
             ->add('email', EmailType::class)
-            ->add('media', MediaType::class)
+            ->add('media', MediaType::class,[
+                "attr" => [
+                    "class" => "upload"
+                ]
+            ])
             ->add('tri', IntegerType::class, [
                 'required' => false
             ])

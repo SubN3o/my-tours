@@ -21,7 +21,11 @@ class RealisationType extends AbstractType
             ])
             ->add('nom',TextType::class)
             ->add('ville', TextType::class)
-            ->add('media', MediaType::class)
+            ->add('media', MediaType::class,[
+                "attr" => [
+                    "class" => "upload"
+                ]
+            ])
         ;
     }
     
