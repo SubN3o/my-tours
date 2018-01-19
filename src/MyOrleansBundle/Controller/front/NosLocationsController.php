@@ -11,6 +11,7 @@ namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Location;
+use MyOrleansBundle\Service\FormulaireContact;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,7 @@ class NosLocationsController extends Controller
     /**
      * @Route("/location", name="noslocations")
      */
-    public function locationAction(Request $request)
+    public function locationAction(Request $request, FormulaireContact $formulaireContact)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -51,44 +52,13 @@ class NosLocationsController extends Controller
         $telephoneNumber = $this->getParameter('telephone_number');
 
         $client = new Client();
+
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $mailer = $this->get('mailer');
 
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setFrom($client->getEmail())
-                ->setTo($this->getParameter('mailer_user'))
-
-
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            //Mail de confirmation
-            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
-            $confirmation
-                ->setTo($client->getEmail())
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                        'MyOrleansBundle::confirmationForm.html.twig',
-                        ['demande'=>$client->getMessage()]
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($confirmation);
-
-            $mailer->send($message);
+            $formulaireContact->formulaireContact($client);
 
             $client->setDate(new \Datetime());
 
