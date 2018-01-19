@@ -525,7 +525,7 @@ video {
     -moz-transform: translateX(-50%) translateY(-50%);
     -ms-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    width: 60px;
+    width: 50px;
 }
 
 .accueil .imageAccueil {
