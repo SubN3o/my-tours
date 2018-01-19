@@ -34,7 +34,7 @@
                                         {% if location.statut %}
                                             <td>Disponible</td>
                                         {% else %}
-                                            <td>Vendu</td>
+                                            <td>Loué</td>
                                         {% endif %}
                                         <td>{{ location.loyer|number_format(0, '.', ' ') }}{% if location.loyer != null %} €{% endif %}</td>
                                         <td>{{ location.surface }} m²</td>
