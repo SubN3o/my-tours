@@ -27,9 +27,9 @@ class HomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        //récupération des collaborateurs dans la limite de 5 pour le barrillet
+        //récupération des collaborateurs dans la limite de 4 pour le barrillet
         //prévoir de modifier les angles dans le CSS si besoin de changer le nb de collaborateur
-        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],5,0);
+        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],4,0);
 
         //récupération de l'id1 de Accueil où sont stocké la video d'intro, les mentions légales et les honoraires
         $accueil = $em->getRepository(Accueil::class)->find(1);
