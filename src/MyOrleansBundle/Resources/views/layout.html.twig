@@ -37,17 +37,14 @@
         <!--Navbar-->
         {{ render(controller('MyOrleansBundle:front/Layout:navBar')) }}
 
-
         {% block content %}
             <!--Contenu des pages-->
         {% endblock content %}
 
-        <!--Retour haut de page-->
-
         <!--Footer-->
         {{ render(controller('MyOrleansBundle:front/Layout:footer')) }}
 
-        <p id="back-top"><a href="#"><img src="{{ asset('img/backTop.png') }}" alt="souris"></a></p>
+        {#<p id="back-top"><a href="#"><img src="{{ asset('img/backTop.png') }}" alt="souris"></a></p>#}
 
     </div>
 {% endblock body %}

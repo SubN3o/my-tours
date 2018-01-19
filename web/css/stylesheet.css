@@ -425,68 +425,68 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     }
 }
 
-/* --------------------------------------------------------------------*/
-/* ------------------------ BACK TO TOP --------------------------*/
-/* --------------------------------------------------------------------*/
+/*!* --------------------------------------------------------------------*!*/
+/*!* ------------------------ BACK TO TOP --------------------------*!*/
+/*!* --------------------------------------------------------------------*!*/
 
-#back-top {
-    position: fixed;
-    bottom: 30px;
-    z-index: 99;
-}
+/*#back-top {*/
+    /*position: fixed;*/
+    /*bottom: 30px;*/
+    /*z-index: 99;*/
+/*}*/
 
-#back-top a {
-    position: fixed;
-    right: 55px;
-    bottom: 20px;
-    width: 108px;
-    display: block;
-    text-align: center;
-    font: 11px/100% Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #bbb;
+/*#back-top a {*/
+    /*position: fixed;*/
+    /*right: 55px;*/
+    /*bottom: 20px;*/
+    /*width: 108px;*/
+    /*display: block;*/
+    /*text-align: center;*/
+    /*font: 11px/100% Arial, Helvetica, sans-serif;*/
+    /*text-transform: uppercase;*/
+    /*text-decoration: none;*/
+    /*color: #bbb;*/
 
-    /* transition */
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    -o-transition: 1s;
-    transition: 1s;
-}
+    /*!* transition *!*/
+    /*-webkit-transition: 1s;*/
+    /*-moz-transition: 1s;*/
+    /*-o-transition: 1s;*/
+    /*transition: 1s;*/
+/*}*/
 
-#back-top a:hover {
-    color: #000;
-}
+/*#back-top a:hover {*/
+    /*color: #000;*/
+/*}*/
 
-/* arrow icon (span tag) */
-#back-top span {
-    width: 108px;
-    height: 108px;
-    display: block;
-    margin-bottom: 7px;
-    /*background: #ddd url(img/up-arrow.png) no-repeat center center;*/
+/*!* arrow icon (span tag) *!*/
+/*#back-top span {*/
+    /*width: 108px;*/
+    /*height: 108px;*/
+    /*display: block;*/
+    /*margin-bottom: 7px;*/
+    /*!*background: #ddd url(img/up-arrow.png) no-repeat center center;*!*/
 
-    /* rounded corners */
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+    /*!* rounded corners *!*/
+    /*-webkit-border-radius: 15px;*/
+    /*-moz-border-radius: 15px;*/
+    /*border-radius: 15px;*/
 
-    /* transition */
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    -o-transition: 1s;
-    transition: 1s;
-}
+    /*!* transition *!*/
+    /*-webkit-transition: 1s;*/
+    /*-moz-transition: 1s;*/
+    /*-o-transition: 1s;*/
+    /*transition: 1s;*/
+/*}*/
 
-#back-top a:hover span {
-    background-color: #777;
-}
+/*#back-top a:hover span {*/
+    /*background-color: #777;*/
+/*}*/
 
-#back-top a img {
-    height: 20%;
-    width: 20%;
+/*#back-top a img {*/
+    /*height: 20%;*/
+    /*width: 20%;*/
 
-}
+/*}*/
 
 /* --------------------------------------------------------------------*/
 /* ------------------------------ INDEX -------------------------------*/
