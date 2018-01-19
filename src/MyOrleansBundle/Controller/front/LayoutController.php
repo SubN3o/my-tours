@@ -11,11 +11,9 @@ namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Accueil;
 use MyOrleansBundle\Entity\Article;
-use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Pack;
 use MyOrleansBundle\Entity\Residence;
 use MyOrleansBundle\Entity\Service;
-use MyOrleansBundle\Entity\Ville;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 

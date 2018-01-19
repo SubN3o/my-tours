@@ -9,10 +9,10 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Client;
+use MyOrleansBundle\Service\FormulaireContact;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use MyOrleansBundle\Entity\Temoignage;
 use MyOrleansBundle\Entity\Article;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -26,7 +26,7 @@ class ImmoPratiqueController extends Controller
     /**
      * @Route("/infos-pratiques", name="immo_pratique")
      */
-    public function immoPratiqueAction(SessionInterface $session, Request $request)
+    public function immoPratiqueAction(FormulaireContact $formulaireContact, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -69,40 +69,7 @@ class ImmoPratiqueController extends Controller
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setFrom($client->getEmail())
-                ->setTo($this->getParameter('mailer_user'))
-
-
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            //Mail de confirmation
-            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
-            $confirmation
-                ->setTo($client->getEmail())
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                        'MyOrleansBundle::confirmationForm.html.twig',
-                        ['demande'=>$client->getMessage()]
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($confirmation);
-
-            $mailer->send($message);
+            $formulaireContact->formulaireContact($client);
 
             $client->setDate(new \Datetime());
 
@@ -129,7 +96,7 @@ class ImmoPratiqueController extends Controller
      * @Route("/infos-pratiques/{slug}", name="article")
      * @ParamConverter("article", class="MyOrleansBundle:Article", options={"slug" = "slug"})
      */
-    public function afficherArticleAction(Request $request, Article $article)
+    public function afficherArticleAction(Request $request, Article $article, FormulaireContact $formulaireContact)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -173,47 +140,17 @@ class ImmoPratiqueController extends Controller
         //On récupère le dernier article créé en excluant les articles précédents pour eviter une redondance
         $lastArticle = $em->getRepository(Article::class)->lastArticle($articleExclu);
 
+        // Formulaire de contact
         $telephoneNumber = $this->getParameter('telephone_number');
 
-        // Formulaire de contact
         $client = new Client();
+
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
 
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            //Mail de confirmation
-            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
-            $confirmation
-                ->setTo($client->getEmail())
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                        'MyOrleansBundle::confirmationForm.html.twig',
-                        ['demande'=>$client->getMessage()]
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($confirmation);
-
-            $mailer->send($message);
+            $formulaireContact->formulaireContact($client);
 
             $client->setDate(new \Datetime());
 
@@ -221,6 +158,7 @@ class ImmoPratiqueController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Votre message a bien été envoyé');
+
             return $this->redirectToRoute('article',['slug'=>$article->getSlug()]);
         }
 

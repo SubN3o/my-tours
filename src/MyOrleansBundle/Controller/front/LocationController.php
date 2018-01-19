@@ -12,6 +12,7 @@ namespace MyOrleansBundle\Controller\front;
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Location;
 use MyOrleansBundle\Service\CalculateurHonoraires;
+use MyOrleansBundle\Service\FormulaireContact;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,8 +24,10 @@ class LocationController extends Controller
      * @Route("location/{reference}", name="location")
      * @ParamConverter("location", class="MyOrleansBundle:Location", options={"reference" = "reference"})
      */
-    public function location(Location $location, Request $request, CalculateurHonoraires $calculateurHonoraires)
+    public function location(Location $location, Request $request, CalculateurHonoraires $calculateurHonoraires, FormulaireContact $formulaireContact)
     {
+        $em = $this->getDoctrine()->getManager();
+
         //calcul des honoraires selon la surface
         $honoraires = $calculateurHonoraires->calculHonoraires($location->getSurface());
         $etatLieux = $calculateurHonoraires->calculHonoraireEtat($location->getSurface());
@@ -32,45 +35,14 @@ class LocationController extends Controller
         // Formulaire de contact
         $client = new  Client();
 
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $telephoneNumber = $this->getParameter('telephone_number');
+
+        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
 
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig', [
-                            'client' => $client
-                        ]
-                    ),
-                    'text/html'
-                );
-
-            //Mail de confirmation
-            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
-            $confirmation
-                ->setTo($client->getEmail())
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                        'MyOrleansBundle::confirmationForm.html.twig',
-                        ['demande'=>$client->getMessage()]
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($confirmation);
-
-            $mailer->send($message);
+            $formulaireContact->formulaireContact($client);
 
             $client->setDate(new \Datetime());
 

@@ -8,21 +8,17 @@
 
 namespace MyOrleansBundle\Controller\front;
 
-use MyOrleansBundle\Entity\Article;
-use MyOrleansBundle\Entity\Chiffre;
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Quartier;
 use MyOrleansBundle\Entity\Ville;
 use MyOrleansBundle\Service\AutocompleteGenerator;
-use MyOrleansBundle\Service\CalculateurCaracteristiquesResidence;
+use MyOrleansBundle\Service\FormulaireContact;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use MyOrleansBundle\Entity\Residence;
-use MyOrleansBundle\Form\SimpleSearchType;
-use MyOrleansBundle\Form\CompleteSearchType;
 use MyOrleansBundle\Repository\ArticleRepository;
 use MyOrleansBundle\Service\MyOrleans_Twig_Extension;
 
@@ -32,11 +28,10 @@ class NosResidencesController extends Controller
     /**
      * @Route("/neuf", name="nosresidences")
      */
-    public function nosResidencesAction(Request $request, SessionInterface $session)
+    public function nosResidencesAction(Request $request, FormulaireContact $formulaireContact)
     {
 
         // Definition des contenus associes par defaut
-
         $residencesSuggerees = '';
         $resultatRecherche = 0;
 
@@ -96,47 +91,17 @@ class NosResidencesController extends Controller
             $residences = $em -> getRepository(Residence::class)->findBy([], ['tri'=>'ASC']);
         }
 
-        $telephoneNumber = $this->getParameter('telephone_number');
-
         // Formulaire de contact
         $client = new Client();
+
+        $telephoneNumber = $this->getParameter('telephone_number');
+
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
 
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            //Mail de confirmation
-            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
-            $confirmation
-                ->setTo($client->getEmail())
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                        'MyOrleansBundle::confirmationForm.html.twig',
-                        ['demande'=>$client->getMessage()]
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($confirmation);
-
-            $mailer->send($message);
+            $formulaireContact->formulaireContact($client);
 
             $client->setDate(new \Datetime());
 
@@ -163,7 +128,7 @@ class NosResidencesController extends Controller
     /**
      * @Route("/neuf/search", name="nosresidences-search")
      */
-    public function completeSearchAction(Request $request, SessionInterface $session)
+    public function completeSearchAction(Request $request, FormulaireContact $formulaireContact)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -216,47 +181,18 @@ class NosResidencesController extends Controller
                 $residencesSuggerees = $em -> getRepository(Residence::class)->suggestResidence($idResidences);
             }
 
-        $telephoneNumber = $this->getParameter('telephone_number');
 
         // Formulaire de contact
         $client = new Client();
+
+        $telephoneNumber = $this->getParameter('telephone_number');
+
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
 
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            //Mail de confirmation
-            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
-            $confirmation
-                ->setTo($client->getEmail())
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                        'MyOrleansBundle::confirmationForm.html.twig',
-                        ['demande'=>$client->getMessage()]
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($confirmation);
-
-            $mailer->send($message);
+            $formulaireContact->formulaireContact($client);
 
             $client->setDate(new \Datetime());
 

@@ -9,13 +9,13 @@
 namespace MyOrleansBundle\Controller\front;
 
 use MyOrleansBundle\Entity\Accueil;
-use MyOrleansBundle\Entity\Chiffre;
 use MyOrleansBundle\Entity\Client;
 use MyOrleansBundle\Entity\Collaborateur;
 use MyOrleansBundle\Entity\Evenement;
 use MyOrleansBundle\Entity\Media;
 use MyOrleansBundle\Entity\Partenaire;
 use MyOrleansBundle\Entity\Realisation;
+use MyOrleansBundle\Service\FormulaireContact;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +26,7 @@ class AgenceController extends Controller
     /**
      * @Route("/my-orleans", name="my-orleans")
      */
-    public function agencyAction(SessionInterface $session, Request $request)
+    public function agencyAction(FormulaireContact $formulaireContact, Request $request)
     {
         //tableaux des mois en français
         $mois = [
@@ -65,43 +65,15 @@ class AgenceController extends Controller
 
         //Formulaire de contact
         $client = new Client();
+
         $telephone_number = $this->getParameter('telephone_number');
+
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig',
-                        array('client' => $client)
-                    ),
-                    'text/html'
-                );
-
-            //Mail de confirmation
-            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
-            $confirmation
-                ->setTo($client->getEmail())
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                        'MyOrleansBundle::confirmationForm.html.twig',
-                        ['demande'=>$client->getMessage()]
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($confirmation);
-
-            $mailer->send($message);
+            $formulaireContact->formulaireContact($client);
 
             $client->setDate(new \Datetime());
 

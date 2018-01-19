@@ -9,24 +9,10 @@
 namespace MyOrleansBundle\Controller\front;
 
 
-use MyOrleansBundle\Entity\Article;
 
-use MyOrleansBundle\Entity\CategoriePresta;
 use MyOrleansBundle\Entity\Flat;
-use MyOrleansBundle\Entity\Media;
-
 use MyOrleansBundle\Entity\Client;
-use MyOrleansBundle\Entity\Collaborateur;
-use MyOrleansBundle\Entity\Evenement;
-
-use MyOrleansBundle\Entity\Pack;
-use MyOrleansBundle\Entity\Service;
-use MyOrleansBundle\Entity\Temoignage;
-use MyOrleansBundle\Entity\Residence;
-use MyOrleansBundle\Entity\TypeLogement;
-use MyOrleansBundle\Entity\TypePresta;
-use MyOrleansBundle\Entity\Ville;
-use MyOrleansBundle\Form\SimpleSearchType;
+use MyOrleansBundle\Service\FormulaireContact;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,63 +31,24 @@ class FlatController extends Controller
      * @ParamConverter("appartement", class="MyOrleansBundle:Flat", options={"reference" = "reference"})
      * @ParamConverter("residence", class="MyOrleansBundle:Residence", options={"slug" = "slug"})
      */
-    public function flat(Flat $flat, Request $request)
+    public function flat(Flat $flat, Request $request, FormulaireContact $formulaireContact)
     {
+        $em = $this->getDoctrine()->getManager();
+
         //récupération de la résidence
         $residence = $flat->getResidence();
 
-        //récupération des images
-        $medias = $flat->getMedias();
-        $mediaDefine = [];
-        foreach ($medias as $media) {
-            if ($media->getTypeMedia()->getNom() == 'image') {
-                $mediaDefine['image'] = $media;
-            }elseif ($media->getTypeMedia()->getNom() == 'plan') {
-                $mediaDefine['plan'] = $media;
-            }
-        }
         // Formulaire de contact
+        $telephoneNumber = $this->getParameter('telephone_number');
+
         $client = new  Client();
 
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $telephoneNumber = $this->getParameter('telephone_number');
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $em = $this->getDoctrine()->getManager();
 
-            $mailer = $this->get('mailer');
-
-            $message = new \Swift_Message('Nouveau message de my-orleans.com');
-            $message
-                ->setTo($this->getParameter('mailer_user'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-
-                        'MyOrleansBundle::receptionForm.html.twig', [
-                            'client' => $client
-                        ]
-                    ),
-                    'text/html'
-                );
-
-            //Mail de confirmation
-            $confirmation = new \Swift_Message('Confirmation de my-orleans.com');
-            $confirmation
-                ->setTo($client->getEmail())
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                        'MyOrleansBundle::confirmationForm.html.twig',
-                        ['demande'=>$client->getMessage()]
-                    ),
-                    'text/html'
-                );
-
-            $mailer->send($confirmation);
-
-            $mailer->send($message);
+            $formulaireContact->formulaireContact($client);
 
             $client->setDate(new \Datetime());
 
@@ -116,7 +63,6 @@ class FlatController extends Controller
             return $this->render('MyOrleansBundle::appartement.html.twig',[
                 'flat'=>$flat,
                 'residence'=>$residence,
-                'media' => $mediaDefine,
                 'telephone_number' => $telephoneNumber,
                 'form' => $formulaire->createView()
             ]);
