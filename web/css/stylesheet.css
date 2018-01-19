@@ -799,31 +799,24 @@ video {
 }
 
 .circle-container > *:nth-of-type(2) {
-    -moz-transform: rotate(702deg) translate(15em) rotate(-702deg);
-    -ms-transform: rotate(702deg) translate(15em) rotate(-702deg);
-    -webkit-transform: rotate(702deg) translate(15em) rotate(-702deg);
-    transform: rotate(702deg) translate(15em) rotate(-702deg);
+    -moz-transform: rotate(720deg) translate(15em) rotate(-720deg);
+    -ms-transform: rotate(720deg) translate(15em) rotate(-720deg);
+    -webkit-transform: rotate(720deg) translate(15em) rotate(-720deg);
+    transform: rotate(720deg) translate(15em) rotate(-720deg);
 }
 
 .circle-container > *:nth-of-type(3) {
-    -moz-transform: rotate(774deg) translate(15em) rotate(-774deg);
-    -ms-transform: rotate(774deg) translate(15em) rotate(-774deg);
-    -webkit-transform: rotate(774deg) translate(15em) rotate(-774deg);
-    transform: rotate(774deg) translate(15em) rotate(-774deg);
+    -moz-transform: rotate(810deg) translate(15em) rotate(-810deg);
+    -ms-transform: rotate(810deg) translate(15em) rotate(-810deg);
+    -webkit-transform: rotate(810deg) translate(15em) rotate(-810deg);
+    transform: rotate(810deg) translate(15em) rotate(-810deg);
 }
 
 .circle-container > *:nth-of-type(4) {
-    -moz-transform: rotate(846deg) translate(15em) rotate(-846deg);
-    -ms-transform: rotate(846deg) translate(15em) rotate(-846deg);
-    -webkit-transform: rotate(846deg) translate(15em) rotate(-846deg);
-    transform: rotate(846deg) translate(15em) rotate(-846deg);
-}
-
-.circle-container > *:nth-of-type(5) {
-    -moz-transform: rotate(918deg) translate(15em) rotate(-918deg);
-    -ms-transform: rotate(918deg) translate(15em) rotate(-918deg);
-    -webkit-transform: rotate(918deg) translate(15em) rotate(-918deg);
-    transform: rotate(918deg) translate(15em) rotate(-918deg);
+    -moz-transform: rotate(900deg) translate(15em) rotate(-900deg);
+    -ms-transform: rotate(900deg) translate(15em) rotate(-900deg);
+    -webkit-transform: rotate(900deg) translate(15em) rotate(-900deg);
+    transform: rotate(900deg) translate(15em) rotate(-900deg);
 }
 
 .circle-container a {
