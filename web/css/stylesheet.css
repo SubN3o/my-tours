@@ -421,7 +421,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 @media only screen and (max-width: 992px) {
     .formulaireBouton a {
         top: 15px;
-        z-index: 998;
+        z-index: 1001;
     }
 }
 
@@ -517,13 +517,24 @@ video {
     width: 50%;
 }
 
+.accueil .scroll {
+    position: absolute;
+    top: 97%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: 60px;
+}
+
 .accueil .imageAccueil {
     filter: brightness(50%);
     width: 100%;
 }
 
 .mosaic {
-    margin-top: 70px;
+    margin-top: 40px;
     display: flex;
 }
 

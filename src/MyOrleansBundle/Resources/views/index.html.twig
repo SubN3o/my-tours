@@ -20,11 +20,17 @@
             {% endif %}
         {% endfor %}
         <img class="logoAccueil" src="{{ asset('img/logo_myorleans_accueil.png') }}" alt="logo My-Orléans">
+        <a href="#anchor-mosaic">
+            <img class="scroll" src="{{ asset('img/scroll.png') }}" alt="logo My-Orléans">
+        </a>
     </div>
 {% endblock video %}
 
 {% block content %}
-    <h1>NOTRE SELECTION DE PROGRAMMES NEUFS</h1>
+    <h1 id="h1Home">NOTRE SELECTION DE PROGRAMMES NEUFS</h1>
+
+    <div id="anchor-mosaic"></div>
+
     <!-- Mosaïque Résidences -->
     <div class="row">
         <div class="col offset-l1 s12 l10 mosaic">
@@ -255,6 +261,21 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        //effet smoothScroll
+        $(document).ready(function () {
+            $('a[href*="anchor-"]').click(function () { // Au clic sur un élément
+                var page = $(this).attr('href'); // Page cible
+                var speed = 750; // Durée de l'animation (en ms)
+                if (window.innerWidth > 992){
+                    $('html, body').animate({scrollTop: $(page).offset().top - 100}, speed); // Go
+                } else {
+                    $('html, body').animate({scrollTop: $(page).offset().top - 16}, speed); // Go
+                }
+                return false;
+            });
+        });
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -266,6 +287,7 @@
 
             //hauteur de la div intro définit par la hauteur de la fenêtre du navigateur
             document.getElementById('intro').style.height = height;
+
 
             // Slider temoignage
             $('.slider').slider({

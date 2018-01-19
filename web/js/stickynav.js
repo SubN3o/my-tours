@@ -13,9 +13,11 @@ jQuery(document).ready(function ($) {
                 position : 'fixed',
                 top : '0'
             });
+            document.getElementById('h1Home').style.marginTop = '140px';
         }
         if($(window).scrollTop() <= scrollTop){
             $('nav').removeAttr('style');
+            document.getElementById('h1Home').style.marginTop = '70px';
         }
     })
 });
