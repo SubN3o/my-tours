@@ -29,9 +29,16 @@
                     <ul class="nav collapsible collapsible-accordion" data-collapsible="expandable">
                         <hr>
                         <li>
-                            <div class="active collapsible-header">
+                            <div class="collapsible-header"><i class="material-icons">account_circle</i>
+                                {{ render(controller('MyOrleansBundle:admin/Admin:profilAdmin')) }}</div>
+                            <div class="collapsible-body">
+                                <a href="{{ path("fos_user_profile_edit") }}">
+                                    <p>Editer profil</p>
+                                </a>
+                                <a href="{{ path("fos_user_change_password") }}">
+                                    <p>Modifier mot de passe</p>
+                                </a>
                                 <a href="{{ path('fos_user_security_logout') }}">
-                                    <i class="material-icons">power_settings_new</i>
                                     <p>Déconnexion</p>
                                 </a>
                             </div>

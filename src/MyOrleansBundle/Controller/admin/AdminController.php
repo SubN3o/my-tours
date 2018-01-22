@@ -10,6 +10,7 @@ namespace MyOrleansBundle\Controller\admin;
 
 use MyOrleansBundle\Entity\Flat;
 use MyOrleansBundle\Entity\Residence;
+use MyOrleansBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MyOrleansBundle\Repository\ResidenceRepository;
@@ -41,10 +42,21 @@ class AdminController extends Controller
         $sumFlats = count($em->getRepository(Flat::class)->findAll());
         $sumFlatsDispo = count($em->getRepository(Flat::class)->findByStatut(true));
 
+        $profil = $this->getUser();
+
         return $this->render('compteur.html.twig', [
             'sumResidences' => $sumResidences,
             'sumFlats' => $sumFlats,
-            'sumFlatsDispo' => $sumFlatsDispo
+            'sumFlatsDispo' => $sumFlatsDispo,
+        ]);
+    }
+
+    public function profilAdminAction()
+    {
+        $profil = $this->getUser();
+
+        return $this->render('profil.html.twig', [
+            'profil' => $profil
         ]);
     }
 }
