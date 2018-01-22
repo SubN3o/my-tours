@@ -62,7 +62,8 @@ class ClientController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('admin_client_show', array('id' => $client->getId()));
+            $this->addFlash('success', 'Un nouveau client a bien été ajouté');
+            return $this->redirectToRoute('admin_client_index', array('id' => $client->getId()));
         }
 
         return $this->render('client/new.html.twig', array(
@@ -102,6 +103,7 @@ class ClientController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Ce client a bien été mis à jour');
             return $this->redirectToRoute('admin_client_index', array('id' => $client->getId()));
         }
 
@@ -128,7 +130,7 @@ class ClientController extends Controller
             $em->remove($client);
             $em->flush();
         }
-
+        $this->addFlash('danger', 'Ce client a bien été supprimé');
         return $this->redirectToRoute('admin_client_index');
     }
 
