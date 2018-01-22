@@ -32,7 +32,11 @@ class EvenementType extends AbstractType
             ])
             ->add('heureDebut', TimeType::class)
             ->add('heureFin', TimeType::class)
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class,[
+                "attr" => [
+                    "class" => "materialize-textarea"
+                ]
+            ])
             ->add('medias', CollectionType::class,
                 [
                     'entry_type' => MediaType::class,
