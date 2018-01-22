@@ -51,7 +51,7 @@ class AgenceController extends Controller
 
         //récupération des collaborateurs dans la limite de 5 pour le barrillet
         //prévoir de modifier les angles dans le CSS si besoin de changer le nb de collaborateur
-        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],5,0);
+        $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],4,0);
 
         //récupération des evenements et de leurs images
         $evenements = $em->getRepository(Evenement::class)->findBy([], ['dateDebut'=>'ASC']);
