@@ -49,7 +49,7 @@ class AgenceController extends Controller
         //récupération des partenaires
         $partenaires = $em->getRepository(Partenaire::class)->findBy([], ['tri'=>'ASC']);
 
-        //récupération des collaborateurs dans la limite de 5 pour le barrillet
+        //récupération des collaborateurs dans la limite de 4 pour le barrillet
         //prévoir de modifier les angles dans le CSS si besoin de changer le nb de collaborateur
         $collaborateurs = $em->getRepository(Collaborateur::class)->findBy([], ['tri'=>'ASC'],4,0);
 

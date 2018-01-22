@@ -48,7 +48,7 @@
                 <div class="colBarillet">
                     <ul class="circle-container">
                         <!-- photos des collaborateurs -->
-                        {% for collaborateur in collaborateurs %}
+                        {% for collaborateur in collaborateurs if collaborateur.tri %}
                             <li class="item">
                                 <!-- attribution de la classe "active" pour le 1er collaborateur -->
                                 <a{% if loop.index == 1 %} class="active"{% endif %} href="#">
@@ -63,7 +63,7 @@
                 <div class="colBarillet">
                     <ul class="bioCollaborateur">
                         <!-- bio des collaborateurs -->
-                        {% for collaborateur in collaborateurs %}
+                        {% for collaborateur in collaborateurs if collaborateur.tri %}
                             <li>
                                 <!-- attribution de la classe "active" pour le 1er collaborateur -->
                                 <a{% if loop.index == 1 %} class="active"{% endif %} href="#">
