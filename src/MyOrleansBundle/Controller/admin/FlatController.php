@@ -38,8 +38,6 @@ class FlatController extends Controller
 
         $flats = $em->getRepository('MyOrleansBundle:Flat')->findByResidence($residence, ['reference'=>'ASC']);
 
-        $plaquettes = $em->getRepository(Plaquette::class)->findByResidence($residence->getId());
-
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"
          * */
@@ -53,7 +51,6 @@ class FlatController extends Controller
         return $this->render('flat/index.html.twig', array(
             'flats' => $results,
             'residence' => $residence,
-            'plaquettes' => $plaquettes
         ));
     }
 

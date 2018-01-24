@@ -125,12 +125,6 @@ class Flat
      */
     private $medias;
 
-
-    /**
-     * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="flat")
-     */
-    private $categoriePrestas;
-
     /**
      * @var float
      * @Assert\Type(
@@ -556,54 +550,6 @@ class Flat
         return $this->surface;
     }
 
-//    /**
-//     * Set description
-//     *
-//     * @param string $description
-//     *
-//     * @return Flat
-//     */
-//    public function setDescription($description)
-//    {
-//        $this->description = $description;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get description
-//     *
-//     * @return string
-//     */
-//    public function getDescription()
-//    {
-//        return $this->description;
-//    }
-//
-//    /**
-//     * Set prestationComplementaire
-//     *
-//     * @param string $prestationComplementaire
-//     *
-//     * @return Flat
-//     */
-//    public function setPrestationComplementaire($prestationComplementaire)
-//    {
-//        $this->prestationComplementaire = $prestationComplementaire;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get prestationComplementaire
-//     *
-//     * @return string
-//     */
-//    public function getPrestationComplementaire()
-//    {
-//        return $this->prestationComplementaire;
-//    }
-
     /**
      * @return bool
      */
@@ -702,24 +648,6 @@ class Flat
     }
 
     /**
-     * @return mixed
-     */
-    public function getCategoriePrestas()
-    {
-        return $this->categoriePrestas;
-    }
-
-    /**
-     * @param mixed $categoriePrestas
-     */
-    public function setCategoriePrestas($categoriePrestas)
-    {
-        $this->categoriePrestas = $categoriePrestas;
-    }
-
-
-
-    /**
      * Add media
      *
      * @param \MyOrleansBundle\Entity\Media $media
@@ -742,31 +670,6 @@ class Flat
     {
         $this->medias->removeElement($media);
     }
-
-    /**
-     * Add categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     *
-     * @return Flat
-     */
-    public function addCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categoriePrestas[] = $categoriePresta;
-
-        return $this;
-    }
-
-    /**
-     * Remove categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     */
-    public function removeCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categoriePrestas->removeElement($categoriePresta);
-    }
-
 
 
     /**

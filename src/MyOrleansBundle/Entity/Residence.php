@@ -263,12 +263,6 @@ class Residence
     private $flats;
 
     /**
-     * @ORM\OneToMany(targetEntity="CategoriePresta", mappedBy="residence", cascade={"all"}, fetch="EAGER")
-     */
-    private $categoriePrestas;
-
-
-    /**
      * @var string
      * @Gedmo\Slug(fields={"nom"})
      * @ORM\Column(name="slug", type="string")
@@ -756,22 +750,6 @@ class Residence
     }
 
     /**
-     * @return mixed
-     */
-    public function getCategoriePrestas()
-    {
-        return $this->categoriePrestas;
-    }
-
-    /**
-     * @param mixed $categoriePrestas
-     */
-    public function setCategoriePrestas($categoriePrestas)
-    {
-        $this->categoriePrestas = $categoriePrestas;
-    }
-
-    /**
      * Remove media
      *
      * @param \MyOrleansBundle\Entity\Media $media
@@ -780,31 +758,6 @@ class Residence
     {
         $this->medias->removeElement($media);
     }
-
-    /**
-     * Add categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     *
-     * @return Residence
-     */
-    public function addCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categoriePrestas[] = $categoriePresta;
-
-        return $this;
-    }
-
-    /**
-     * Remove categoriePresta
-     *
-     * @param \MyOrleansBundle\Entity\CategoriePresta $categoriePresta
-     */
-    public function removeCategoriePresta(\MyOrleansBundle\Entity\CategoriePresta $categoriePresta)
-    {
-        $this->categoriePrestas->removeElement($categoriePresta);
-    }
-
 
     /**
      * Set ville

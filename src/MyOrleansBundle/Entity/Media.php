@@ -57,11 +57,6 @@ class Media
     private $partenaire;
 
     /**
-     * @ORM\OneToOne(targetEntity="CategoriePresta", mappedBy="media")
-     */
-    private $categorie_presta;
-
-    /**
      * @ORM\ManyToMany(targetEntity="Service", cascade={"persist"})
      */
     private $services;
@@ -132,11 +127,6 @@ class Media
     private $accueils;
 
     /**
-     * @ORM\OneToOne(targetEntity="Plaquette", mappedBy="media")
-     */
-    private $plaquette;
-
-    /**
      * @ORM\OneToOne(targetEntity="Realisation", mappedBy="media")
      */
     private $realisation;
@@ -184,24 +174,6 @@ class Media
     public function setAnciens($anciens)
     {
         $this->anciens = $anciens;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPlaquette()
-    {
-        return $this->plaquette;
-    }
-
-    /**
-     * @param mixed $plaquette
-     * @return Media
-     */
-    public function setPlaquette($plaquette)
-    {
-        $this->plaquette = $plaquette;
         return $this;
     }
 
@@ -602,22 +574,6 @@ class Media
     public function setCollaborateur($collaborateur)
     {
         $this->collaborateur = $collaborateur;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCategoriePresta()
-    {
-        return $this->categorie_presta;
-    }
-
-    /**
-     * @param mixed $categorie_presta
-     */
-    public function setCategoriePresta($categorie_presta)
-    {
-        $this->categorie_presta = $categorie_presta;
     }
 
     /**
