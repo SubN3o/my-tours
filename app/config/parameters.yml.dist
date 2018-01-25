@@ -31,5 +31,3 @@ parameters:
 
     upload_directory: '%kernel.root_dir%/../web/uploads'
     GoogleApiKey: ~
-    google_analytics_json_key: ~
-    google_analytics_view_id: ~
