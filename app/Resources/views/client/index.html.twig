@@ -32,7 +32,7 @@
                                         <td>{{ client.email }}</td>
                                         <td>{{ client.telephone }}</td>
                                         <td>{% if client.date != null %}{{ client.date|date('d/m/Y') }}{% endif %}</td>
-                                        <td>{{ client.newsletter }}</td>
+                                        <td>{% if client.newsletter %}oui{% else %}non{% endif %}</td>
                                         <td>{{ client.sujet }}</td>
                                         <td>{{ client.projet }}</td>
                                         <td>{{ client.budget }}</td>

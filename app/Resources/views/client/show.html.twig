@@ -36,7 +36,7 @@
                                 </tr>
                                 <tr>
                                     <th>Newsletter</th>
-                                    <td>{{ client.newsletter }}</td>
+                                    <td>{% if client.newsletter %}oui{% else %}non{% endif %}</td>
                                 </tr>
                                 <tr>
                                     <th>type de logement</th>

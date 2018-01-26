@@ -63,23 +63,33 @@ class AgenceController extends Controller
         //récupération des realisations
         $realisations = $em->getRepository(Realisation::class)->findBy([], ['tri' => 'ASC']);
 
-        //Formulaire de contact
-        $client = new Client();
+        // Formulaire de contact
 
+        //Récupération du téléphone de l'agence depuis les paramètres
         $telephone_number = $this->getParameter('telephone_number');
 
+        //Instantacion d'un nouveau client
+        $client = new Client();
+
+        //Création du formulaire
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+
+        //Récupération des infos rentrées du formulaire
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
+            //Utilisation du service FormulaireContact
             $formulaireContact->formulaireContact($client);
 
+            //La date est setter à la création du client
             $client->setDate(new \Datetime());
 
+            //Enregistrement du client dans la BDD
             $em->persist($client);
             $em->flush();
 
+            //Création d'un message de réussite
             $this->addFlash('success', 'Votre message a bien été envoyé');
 
             return $this->redirectToRoute('my-orleans');

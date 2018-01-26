@@ -92,22 +92,32 @@ class NosResidencesController extends Controller
         }
 
         // Formulaire de contact
-        $client = new Client();
 
+        //Récupération du téléphone de l'agence depuis les paramètres
         $telephoneNumber = $this->getParameter('telephone_number');
 
+        //Instantacion d'un nouveau client
+        $client = new Client();
+
+        //Création du formulaire
         $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
+
+        //Récupération des infos rentrées du formulaire
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
+            //Utilisation du service FormulaireContact
             $formulaireContact->formulaireContact($client);
 
+            //La date est setter à la création du client
             $client->setDate(new \Datetime());
 
+            //Enregistrement du client dans la BDD
             $em->persist($client);
             $em->flush();
 
+            //Création d'un message de réussite
             $this->addFlash('success', 'Votre message a bien été envoyé');
             return $this->redirectToRoute('nosresidences');
         }
@@ -182,25 +192,35 @@ class NosResidencesController extends Controller
             }
 
 
-        // Formulaire de contact
-        $client = new Client();
+            // Formulaire de contact
 
-        $telephoneNumber = $this->getParameter('telephone_number');
+            //Récupération du téléphone de l'agence depuis les paramètres
+            $telephoneNumber = $this->getParameter('telephone_number');
 
-        $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
-        $formulaire->handleRequest($request);
+            //Instantacion d'un nouveau client
+            $client = new Client();
 
-        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            //Création du formulaire
+            $formulaire = $this->createForm('MyOrleansBundle\Form\FormulaireType', $client);
 
-            $formulaireContact->formulaireContact($client);
+            //Récupération des infos rentrées du formulaire
+            $formulaire->handleRequest($request);
 
-            $client->setDate(new \Datetime());
+            if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
-            $em->persist($client);
-            $em->flush();
+                //Utilisation du service FormulaireContact
+                $formulaireContact->formulaireContact($client);
 
-            $this->addFlash('success', 'Votre message a bien été envoyé');
-            return $this->redirectToRoute('nosresidences');
+                //La date est setter à la création du client
+                $client->setDate(new \Datetime());
+
+                //Enregistrement du client dans la BDD
+                $em->persist($client);
+                $em->flush();
+
+                //Création d'un message de réussite
+                $this->addFlash('success', 'Votre message a bien été envoyé');
+                return $this->redirectToRoute('nosresidences');
         }
 
 
