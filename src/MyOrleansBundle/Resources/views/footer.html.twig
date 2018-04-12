@@ -44,7 +44,7 @@
                     {% for programme in programmes %}
                         <div class="col s12">
                             <p class="linkFooter">
-                                    <a href="{{ path('nosresidences-search') }}?complete_search%5Bville%5D={{ programme.nom }}">{{ programme.nom }}</a>
+                                <a href="{{ path('nosresidences-search') }}?complete_search%5Bville%5D={{ programme.nom }}">{{ programme.nom }}</a>
                             </p>
                         </div>
                     {% endfor %}
