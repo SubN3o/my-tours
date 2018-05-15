@@ -194,14 +194,18 @@
     <!-- Effet Parallax -->
     <div class="parallax-container hide-on-med-and-down">
         <div class="parallax">
-            {% for media in residence.medias %}
-                {% if media.typeMedia.nom == "image-header" %}
-                    <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_photo_residence') }}"
-                         alt="illustration {{ residence.nom }}">
-                {% else %}
-                    <img src="{{ asset('img/apt-neuf.jpg') }}" alt="interieur appartement">
-                {% endif %}
+            {% set parallax = 0 %}
+            {% for media in residence.medias if media.typeMedia.nom == "image-header" %}
+                {% set parallax = 1 %}
             {% endfor %}
+            {% if parallax == 0 %}
+                <img src="{{ asset('img/apt-neuf.jpg') }}" alt="interieur appartement">
+            {% else %}
+                {% for media in residence.medias if media.typeMedia.nom == "image-header" %}
+                    <img src="{{ asset('uploads/'~media.mediaName) }}"
+                         alt="illustration {{ residence.nom }}">
+                {% endfor %}
+            {% endif %}
         </div>
         <div class="row">
             <span class="accroche2 col offset-l2 l8 center">"{{ residence.accroche2 }}"</span>
@@ -318,9 +322,11 @@
                             <!-- corps des T1 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT1 %}
-                                    <div class="row" data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
+                                    <div class="row"
+                                         data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
                                         {% if flat.statut %}
-                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}" target="_blank">
+                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}"
+                                               target="_blank">
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
@@ -407,9 +413,11 @@
                             <!-- corps des T2 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT2 %}
-                                    <div class="row" data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
+                                    <div class="row"
+                                         data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
                                         {% if flat.statut %}
-                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}" target="_blank">
+                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}"
+                                               target="_blank">
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
@@ -495,9 +503,11 @@
                             <!-- corps des T3 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT3 %}
-                                    <div class="row" data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
+                                    <div class="row"
+                                         data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
                                         {% if flat.statut %}
-                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}" target="_blank">
+                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}"
+                                               target="_blank">
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
@@ -583,9 +593,11 @@
                             <!-- corps des T4 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT4 %}
-                                    <div class="row" data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
+                                    <div class="row"
+                                         data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
                                         {% if flat.statut %}
-                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}" target="_blank">
+                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}"
+                                               target="_blank">
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
@@ -671,9 +683,11 @@
                             <!-- corps des T5 -->
                             <div class="collapsible-body">
                                 {% for flat in flatsT5 %}
-                                    <div class="row" data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
+                                    <div class="row"
+                                         data-info="programme neuf {{ residence.nom }} {{ residence.ville.nom }}">
                                         {% if flat.statut %}
-                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}" target="_blank">
+                                            <a href="{{ path('appartement', { 'slug': residence.slug, 'reference': flat.reference }) }}"
+                                               target="_blank">
                                                 <div class="col s1">{{ flat.reference }}</div>
                                                 <div class="col s2">{{ flat.typeLogement.nom }}</div>
                                                 <div class="col s3">{{ flat.surface }} m<sup>2</sup></div>
@@ -844,261 +858,261 @@
     </form>
 {% endblock content %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript">
-        //ajout de la classe "active" dans la NavBar
-        jQuery(document).ready(function ($) {
-            $(document.getElementById("nosResidences")).addClass('active');
-        });
-    </script>
-    <script type="text/javascript">
-        //effet sticky de la 2nde NavBar
-        jQuery(document).ready(function ($) {
-            $(window).scroll(function () {
-
-                var scrollTop = $(window).scrollTop(),
-
-                    scroll = document.getElementById("residence").offsetHeight,
-
-                    nav = document.getElementById("nav").offsetHeight,
-
-                    menu = $(document.getElementById("menuResidence"));
-
-                if (scrollTop >= scroll) {
-                    menu.css({
-                        position: 'fixed',
-                        top: nav
-                    });
-                }
-                if (scrollTop <= scroll) {
-                    menu.removeAttr('style');
-                }
-            })
-        });
-    </script>
-    <script type="text/javascript">
-        //ajout-suppression de la classe "active" dans la 2nde NavBar selon la position de la page
-        jQuery(document).ready(function ($) {
-            $(window).scroll(function () {
-
-                var scrollTop = $(window).scrollTop(),
-                    nav = 150;
-
-                if (scrollTop >= document.getElementById("anchor-residence").offsetTop - nav) {
-                    $(document.getElementById("residenceNav")).addClass('active');
-//                    $(document.getElementById("offre")).addClass('zoomOffre');
-                }
-
-                if (scrollTop < document.getElementById("anchor-residence").offsetTop - nav) {
-                    $(document.getElementById("residenceNav")).removeClass('active');
-                }
-
-                if (scrollTop >= document.getElementById("anchor-localisation").offsetTop - nav) {
-                    $(document.getElementById("localisationNav")).addClass('active');
-                    $(document.getElementById("residenceNav")).removeClass('active');
-                }
-
-                if (scrollTop < document.getElementById("anchor-localisation").offsetTop - nav) {
-                    $(document.getElementById("localisationNav")).removeClass('active');
-                }
-
-                if (scrollTop >= document.getElementById("anchor-bien").offsetTop - nav) {
-                    $(document.getElementById("bienNav")).addClass('active');
-                    $(document.getElementById("localisationNav")).removeClass('active');
-                }
-
-                if (scrollTop < document.getElementById("anchor-bien").offsetTop - nav) {
-                    $(document.getElementById("bienNav")).removeClass('active');
-                }
-            })
-        });
-    </script>
-    <script src="{{ asset('js/testcompteur.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // Paramètre du Slider residence
-            if (window.innerWidth > 992) {
-                $('.slider').slider({
-                    indicators: true,
-                    interval: 12000,
-                    height: 600
-                });
-            }
-            if (window.innerWidth <= 992) {
-                $('.slider').slider({
-                    indicators: true,
-                    interval: 12000,
-                    height: 300
-                });
-            }
-
-            $('.slider').slider('pause');
-
-        });
-    </script>
-    <script>
-        //effet smoothScroll
-        $(document).ready(function () {
-            $('a[href*="anchor-"]').click(function () { // Au clic sur un élément
-                var page = $(this).attr('href'); // Page cible
-                var speed = 750; // Durée de l'animation (en ms)
-                $('html, body').animate({scrollTop: $(page).offset().top - 40}, speed); // Go
-                return false;
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript">
+            //ajout de la classe "active" dans la NavBar
+            jQuery(document).ready(function ($) {
+                $(document.getElementById("nosResidences")).addClass('active');
             });
-        });
-    </script>
-    <script type="text/javascript">
-        //arrêt de la video à la fermeture de la modal youtube
-        $(document).ready(function () {
-            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-            $('#modalYtp').modal(
-                {
-                    dismissible: true,
-                    complete: function () {
-                        $("#modalYtp iframe").attr("src", $("#modalYtp iframe").attr("src"))
+        </script>
+        <script type="text/javascript">
+            //effet sticky de la 2nde NavBar
+            jQuery(document).ready(function ($) {
+                $(window).scroll(function () {
+
+                    var scrollTop = $(window).scrollTop(),
+
+                        scroll = document.getElementById("residence").offsetHeight,
+
+                        nav = document.getElementById("nav").offsetHeight,
+
+                        menu = $(document.getElementById("menuResidence"));
+
+                    if (scrollTop >= scroll) {
+                        menu.css({
+                            position: 'fixed',
+                            top: nav
+                        });
+                    }
+                    if (scrollTop <= scroll) {
+                        menu.removeAttr('style');
+                    }
+                })
+            });
+        </script>
+        <script type="text/javascript">
+            //ajout-suppression de la classe "active" dans la 2nde NavBar selon la position de la page
+            jQuery(document).ready(function ($) {
+                $(window).scroll(function () {
+
+                    var scrollTop = $(window).scrollTop(),
+                        nav = 150;
+
+                    if (scrollTop >= document.getElementById("anchor-residence").offsetTop - nav) {
+                        $(document.getElementById("residenceNav")).addClass('active');
+//                    $(document.getElementById("offre")).addClass('zoomOffre');
                     }
 
+                    if (scrollTop < document.getElementById("anchor-residence").offsetTop - nav) {
+                        $(document.getElementById("residenceNav")).removeClass('active');
+                    }
+
+                    if (scrollTop >= document.getElementById("anchor-localisation").offsetTop - nav) {
+                        $(document.getElementById("localisationNav")).addClass('active');
+                        $(document.getElementById("residenceNav")).removeClass('active');
+                    }
+
+                    if (scrollTop < document.getElementById("anchor-localisation").offsetTop - nav) {
+                        $(document.getElementById("localisationNav")).removeClass('active');
+                    }
+
+                    if (scrollTop >= document.getElementById("anchor-bien").offsetTop - nav) {
+                        $(document.getElementById("bienNav")).addClass('active');
+                        $(document.getElementById("localisationNav")).removeClass('active');
+                    }
+
+                    if (scrollTop < document.getElementById("anchor-bien").offsetTop - nav) {
+                        $(document.getElementById("bienNav")).removeClass('active');
+                    }
+                })
+            });
+        </script>
+        <script src="{{ asset('js/testcompteur.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // Paramètre du Slider residence
+                if (window.innerWidth > 992) {
+                    $('.slider').slider({
+                        indicators: true,
+                        interval: 12000,
+                        height: 600
+                    });
+                }
+                if (window.innerWidth <= 992) {
+                    $('.slider').slider({
+                        indicators: true,
+                        interval: 12000,
+                        height: 300
+                    });
+                }
+
+                $('.slider').slider('pause');
+
+            });
+        </script>
+        <script>
+            //effet smoothScroll
+            $(document).ready(function () {
+                $('a[href*="anchor-"]').click(function () { // Au clic sur un élément
+                    var page = $(this).attr('href'); // Page cible
+                    var speed = 750; // Durée de l'animation (en ms)
+                    $('html, body').animate({scrollTop: $(page).offset().top - 40}, speed); // Go
+                    return false;
                 });
-        });
-    </script>
-
-    <script>
-        //googleMap de la résidence
-        $(document).ready(function () {
-
-            //choix des mots-clés pour les filtres
-            var commerce = ['boulangerie', 'epicerie', 'supermarche'];
-            var service = ['banque', 'school', 'parc', 'pharmacie'];
-            var transport = ['train_station', 'arret de tram', 'station de velos'];
-            var htmlCommerce = '';
-            var htmlService = '';
-            var htmlTransport = '';
-
-            //génération des boutons des filtres
-            $.each(commerce, function (index, value) {
-                var name = value.replace(/_/g, " ");
-                htmlCommerce += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
             });
+        </script>
+        <script type="text/javascript">
+            //arrêt de la video à la fermeture de la modal youtube
+            $(document).ready(function () {
+                // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+                $('#modalYtp').modal(
+                    {
+                        dismissible: true,
+                        complete: function () {
+                            $("#modalYtp iframe").attr("src", $("#modalYtp iframe").attr("src"))
+                        }
 
-            $.each(service, function (index, value) {
-                var name = value.replace(/_/g, " ");
-                htmlService += '<span class="col s3"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
-            });
-
-            $.each(transport, function (index, value) {
-                var name = value.replace(/_/g, " ");
-                htmlTransport += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
-            });
-
-            $('#commerce').html(htmlCommerce);
-
-            $('#service').html(htmlService);
-
-            $('#transport').html(htmlTransport);
-        });
-
-        //formatage des noms des filtres
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-
-        var map;
-        var infowindow;
-        var selectedTypes = [];
-
-        function initialize() {
-
-            //centrage de la googleMap sur la résidence
-            var residence = {lat: {{ residence.latitude }} , lng: {{ residence.longitude }} };
-
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: residence,
-                zoom: 15
-
-            });
-
-            //remplacement du marker google par celui de My ORLEANS
-            var marker = new google.maps.Marker({
-                position: residence,
-                icon: '../../img/marker.png'
-            });
-
-            // To add the marker to the map, call setMap();
-            marker.setMap(map);
-        }
-
-        function renderMap() {
-            // Get the user defined values
-            var residence = {lat: {{ residence.latitude }} , lng: {{ residence.longitude }} };
-            var radius = 3000;
-
-            // get the selected type
-            selectedTypes = [];
-            $('.type').each(function () {
-                if ($(this).is(':checked')) {
-                    selectedTypes.push($(this).val());
-                }
-            });
-
-            console.log(selectedTypes);
-
-            var geocoder = new google.maps.Geocoder();
-            var selLocLat = 0;
-            var selLocLng = 0;
-
-            geocoder.geocode({'location': residence}, function (results, status) {
-                if (status === 'OK') {
-                    //console.log(results[0].geometry.location.lat() + ' - ' + results[0].geometry.location.lng());
-
-                    selLocLat = results[0].geometry.location.lat();
-                    selLocLng = results[0].geometry.location.lng();
-
-                    var residence = new google.maps.LatLng(selLocLat, selLocLng);
-
-                    map = new google.maps.Map(document.getElementById('map'), {
-                        center: residence,
-                        zoom: 15
                     });
-
-
-                    var marker = new google.maps.Marker({
-                        position: residence,
-                        map: map,
-                        icon: '../../img/marker.png'
-                    });
-
-                    //console.log(selectedTypes);
-
-                    var request = {
-                        location: residence,
-                        radius: radius,
-                        keyword: selectedTypes
-
-
-                    };
-
-                    infowindow = new google.maps.InfoWindow();
-
-                    var service = new google.maps.places.PlacesService(map);
-                    service.nearbySearch(request, callback);
-                }
-                else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
             });
-        }
+        </script>
 
-        function callback(results, status) {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
-                for (var i = 0; i < results.length; i++) {
-                    createMarker(results[i], results[i].icon);
+        <script>
+            //googleMap de la résidence
+            $(document).ready(function () {
+
+                //choix des mots-clés pour les filtres
+                var commerce = ['boulangerie', 'epicerie', 'supermarche'];
+                var service = ['banque', 'school', 'parc', 'pharmacie'];
+                var transport = ['train_station', 'arret de tram', 'station de velos'];
+                var htmlCommerce = '';
+                var htmlService = '';
+                var htmlTransport = '';
+
+                //génération des boutons des filtres
+                $.each(commerce, function (index, value) {
+                    var name = value.replace(/_/g, " ");
+                    htmlCommerce += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
+                });
+
+                $.each(service, function (index, value) {
+                    var name = value.replace(/_/g, " ");
+                    htmlService += '<span class="col s3"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
+                });
+
+                $.each(transport, function (index, value) {
+                    var name = value.replace(/_/g, " ");
+                    htmlTransport += '<span class="col s4"><input onclick="renderMap()" type="radio" class="type" id="' + value + '" value="' + value + '" name="filtre"/><label for="' + value + '"><img class="filtreMap" src="/img/googleMap/' + value + '.png" alt="logo ' + value + '"/></label></span>';
+                });
+
+                $('#commerce').html(htmlCommerce);
+
+                $('#service').html(htmlService);
+
+                $('#transport').html(htmlTransport);
+            });
+
+            //formatage des noms des filtres
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+
+            var map;
+            var infowindow;
+            var selectedTypes = [];
+
+            function initialize() {
+
+                //centrage de la googleMap sur la résidence
+                var residence = {lat: {{ residence.latitude }} , lng: {{ residence.longitude }} };
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: residence,
+                    zoom: 15
+
+                });
+
+                //remplacement du marker google par celui de My ORLEANS
+                var marker = new google.maps.Marker({
+                    position: residence,
+                    icon: '../../img/marker.png'
+                });
+
+                // To add the marker to the map, call setMap();
+                marker.setMap(map);
+            }
+
+            function renderMap() {
+                // Get the user defined values
+                var residence = {lat: {{ residence.latitude }} , lng: {{ residence.longitude }} };
+                var radius = 3000;
+
+                // get the selected type
+                selectedTypes = [];
+                $('.type').each(function () {
+                    if ($(this).is(':checked')) {
+                        selectedTypes.push($(this).val());
+                    }
+                });
+
+                console.log(selectedTypes);
+
+                var geocoder = new google.maps.Geocoder();
+                var selLocLat = 0;
+                var selLocLng = 0;
+
+                geocoder.geocode({'location': residence}, function (results, status) {
+                    if (status === 'OK') {
+                        //console.log(results[0].geometry.location.lat() + ' - ' + results[0].geometry.location.lng());
+
+                        selLocLat = results[0].geometry.location.lat();
+                        selLocLng = results[0].geometry.location.lng();
+
+                        var residence = new google.maps.LatLng(selLocLat, selLocLng);
+
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: residence,
+                            zoom: 15
+                        });
+
+
+                        var marker = new google.maps.Marker({
+                            position: residence,
+                            map: map,
+                            icon: '../../img/marker.png'
+                        });
+
+                        //console.log(selectedTypes);
+
+                        var request = {
+                            location: residence,
+                            radius: radius,
+                            keyword: selectedTypes
+
+
+                        };
+
+                        infowindow = new google.maps.InfoWindow();
+
+                        var service = new google.maps.places.PlacesService(map);
+                        service.nearbySearch(request, callback);
+                    }
+                    else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+
+            function callback(results, status) {
+                if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    for (var i = 0; i < results.length; i++) {
+                        createMarker(results[i], results[i].icon);
+                    }
                 }
             }
-        }
 
-        function createMarker(place, icon) {
-            var placeLoc = place.geometry.location;
+            function createMarker(place, icon) {
+                var placeLoc = place.geometry.location;
 
 //            var icons = {
 //                school: {
@@ -1130,25 +1144,25 @@
 //                });
 //            });
 
-            //affichage des résultat du filtre
-            var marker = new google.maps.Marker({
-                map: map,
-                position: place.geometry.location,
-                icon: {
-                    url: '../../img/marker.png',
-                    scaledSize: new google.maps.Size(30, 36) // pixels
+                //affichage des résultat du filtre
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location,
+                    icon: {
+                        url: '../../img/marker.png',
+                        scaledSize: new google.maps.Size(30, 36) // pixels
 //                animation: google.maps.Animation.DROP
-                }
-            });
+                    }
+                });
 
-            //affichage des informations des resultats du filtre
-            google.maps.event.addListener(marker, 'click', function () {
-                infowindow.setContent(place.name + '<br>' + place.vicinity);
-                infowindow.open(map, this);
-            });
-        }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&libraries=places&callback=initialize"
-            async defer></script>
+                //affichage des informations des resultats du filtre
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.setContent(place.name + '<br>' + place.vicinity);
+                    infowindow.open(map, this);
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&libraries=places&callback=initialize"
+                async defer></script>
 
-{% endblock %}
+    {% endblock %}
