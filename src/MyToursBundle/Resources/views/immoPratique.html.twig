@@ -1,0 +1,193 @@
+{% extends 'MyToursBundle::layout.html.twig' %}
+
+{% block title %}My TOURS | Infos Pratiques{% endblock %}
+
+{% block description %}
+    <meta name="description"
+          content="Découvrez nos articles et actualités : immobilier neuf, investissement locatif et défiscalisation, financement, conseil placement, location, gestion locative"/>
+{% endblock %}
+
+{% block content %}
+    <h1>Actualités et dossiers thematiques</h1>
+    <div class="row">
+        <!-- description de la page -->
+        <div class="col offset-l1 l10 s12">
+            <p class="immo-description">Découvrez nos articles et actualités : immobilier neuf,
+                investissement locatif et défiscalisation, financements, conseils placements, location, gestion
+                locative.</p>
+        </div>
+    </div>
+    <div class="row">
+        <!-- les articles essentiels -->
+        <div class="col offset-l1 l10">
+            <div class="col l5 s12 articles-fixes push-l7">
+                <p class="essentiel center">Les essentiels</p>
+                {% for article in essentiel %}
+                    <div class="col s6">
+                        <a href="{{ path('article', { 'slug': article.slug }) }}">
+                            <div class="card small">
+                                <div class="card-image">
+                                    {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
+                                        <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                             alt="illustration article {{ article.titre }}">
+                                    {% endfor %}
+                                </div>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <h2>{{ article.titre }}</h2>
+                                        <p>{{ article.texte | truncate(70, true, '...') | raw }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col l7 s12 pull-l5">
+                <!-- formulaire de recherche d'article -->
+                {{ form_start(articlesSearch) }}
+                <div class="input-field col l5 s12 article-search">
+                    {{ form_widget(articlesSearch.keyword) }}
+                    {{ form_errors(articlesSearch.keyword) }}
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                </div>
+                {{ form_end(articlesSearch) }}
+                {% if articlesNoResult == 1 %}
+                    <div class="center noResult col l12">Désolé, aucun article ne correspond à votre recherche</div>
+                {% endif %}
+
+                <!-- liste des articles -->
+                <div class="articles col l12">
+                    {% for article in articles %}
+                        <a href="{{ path('article', { 'slug': article.slug }) }}">
+                            <div class="card horizontal">
+                                <div class="card-image">
+                                    {% for media in article.medias if media.typeMedia.nom == "image-cover" %}
+                                        <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                             alt="illustration article {{ article.titre }}">
+                                    {% endfor %}
+                                </div>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <h2>{{ article.titre }}</h2>
+                                        <p>{{ article.texte | truncate(100, true, '...') | raw }}</p>
+                                    </div>
+                                    <div class="card-action hide-on-med-and-down">
+                                        <span class="article-date">édité le : {{ article.date|date('d/m/Y') }}</span>
+                                        <span class="article-type right">{{ article.typeArticle.nom }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
+
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est votre projet ?</p>
+                <div class="row">
+                    <div class="col s12 center">
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est l'objet de votre message?</p>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_label(form.sujet) }}
+                        {{ form_widget(form.sujet, {'attr': {'value':'Demande de documentation'}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                <div class="row center">
+                    <div class="col s12 center">
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
+                </div>
+
+                <div class="col l12 newsletter">
+                    {{ form_row(form.envoyer) }}
+                </div>
+                <p class="newsletter"><i>* Champs requis</i></p>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        //ajout de la classe "active" dans la NavBar
+        jQuery(document).ready(function ($) {
+            $(document.getElementById("immoPratique")).addClass('active');
+        });
+    </script>
+{% endblock %}

@@ -17,7 +17,7 @@
 composer.json
 /app/config/parameters.yml
 /.web-server-pid
-/src/MyOrleansBundle/Entity/*~
+/src/MyToursBundle/Entity/*~
 /Entity/*~
 web/uploads/*
 !web/uploads/default.jpg

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8"/>
+
+
+    {#<link rel="stylesheet" href="{{ absolute_url(asset('css/materialize.css')) }}" media="screen,projection"/>#}
+    <link rel="stylesheet" href="{{ base_dir ~ asset('css/materialize.css') }}" media="screen,projection"/>
+
+
+    {#<link href="{{ absolute_url(asset('css/pdf.css')) }}" rel="stylesheet"/>#}
+    <link href="{{ base_dir ~ asset('css/pdf.css') }}" rel="stylesheet"/>
+
+
+    {#<link href="{{ absolute_url(asset('css/font-awesome.min.css')) }}" rel="stylesheet">#}
+
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col s4 left-align adresse">
+            <p>13 rue Bannier</p>
+            <p class="greenMyO">45000 TOURS</p>
+        </div>
+        <div class="col s4">
+            <img class="responsive-img" src="{{ base_dir ~ asset('img/logo_mytours.png') }}">
+        </div>
+        <div class="col s4 right-align contact">
+            <p>{{ telephone_number }}</p>
+            <p class="greenMyO">{{ mail_agence }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 center">
+            <div class="trait"></div>
+            <div class="situation">
+                <span class="residence">{{ ancien.ville.nom }}</span>
+                <p class="ville">{{ ancien.typeBien.nom }} de type {{ ancien.typeLogement.id }}</p>
+                <span class="reference">
+                    Réf : {{ ancien.reference }} - {{ ancien.prix|number_format(0, '.', ' ') }} €</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            {% for media in ancien.medias if media.typeMedia.nom == 'image-cover' %}
+                <img class="imageLoc"
+                     src="{{ base_dir ~ asset('uploads/'~media.mediaName) }}"
+                     alt="image principale">
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <p class="descriptionLoc">{{ ancien.description | raw }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <div class="col s12">
+                <div class="col s1">
+                    <img class="icone" src="{{ base_dir ~ asset('img/bilan.png') }}" alt="bareme">
+                </div>
+                <div class="col offset-s1 s10">
+                    <p class="info">Performance énergétique : {{ ancien.energie }}</p>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="col s1">
+                    <img class="icone" src="{{ base_dir ~ asset('img/ges.png') }}" alt="ges">
+                </div>
+                <div class="col offset-s1 s10">
+                    <p class="info">Gaz à effet de serre : {{ ancien.ges }}</p>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="col s1">
+                    <img class="icone" src="{{ base_dir ~ asset('img/Parking.png') }}" alt="voiture">
+                </div>
+                <div class="col offset-s1 s10">
+                    <p class="info">
+                        {% if ancien.stationnement %}
+                            {{ ancien.stationnement }}
+                        {% else %}
+                            <i>non communiqué</i>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="col s1">
+                    <img class="icone" src="{{ base_dir ~ asset('img/chauffage.png') }}" alt="chauffage">
+                </div>
+                <div class="col offset-s1 s10">
+                    <p class="info">
+                        {% if ancien.chauffage %}
+                            {{ ancien.chauffage }}
+                        {% else %}
+                            <i>non communiqué</i>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="col s1">
+                    <img class="icone" src="{{ base_dir ~ asset('img/copro.png') }}" alt="têtes">
+                </div>
+                <div class="col offset-s1 s10">
+                    <p class="info">Copropriété :
+                        {% if ancien.copropriete %}
+                            oui ({{ ancien.nbLots }} logements)
+                        {% else %}
+                            non
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col s6">
+            <div class="col s10 push-s2">
+                <div class="s12 center cartoucheLoc">
+                    <p>{{ ancien.typeLogement.nom }} - {{ ancien.surface }} m²</p>
+                    <div class="divider col s2"></div>
+                    <p>{{ ancien.prix|number_format(0, '.', ' ') }} €<sup>*</sup></p>
+                    {% if ancien.chargesAnnuelles %}
+                        <div class="divider col s2"></div>
+                        <p>Charges : {{ ancien.chargesAnnuelles|number_format(0, '.', ' ') }} €</p>
+                    {% endif %}
+                    {% if ancien.taxeFonciere %}
+                        <div class="divider col s2"></div>
+                        <p>Taxe foncière : {{ ancien.taxeFonciere|number_format(0, '.', ' ') }} €</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 messageLoc">
+            <div class="col s12">
+                <div class="greenMyO center mail">Vos contacts My Tours : Fabien Durand & Michaël Lorillou</div>
+            </div>
+            <div class="col s5">
+                <p class="infoContact">{{ mail_agence }}</p>
+            </div>
+            <div class="col s2">
+                <p class="infoContact center">02 38 75 94 47</p>
+            </div>
+            <div class="col s5">
+                <p class="infoContact right">13 rue Bannier 45000 Tours</p>
+            </div>
+        </div>
+        <p>*FAI - Honoraires charge vendeur</p>
+    </div>
+</div>
+
+<!--Import jQuery before materialize.js-->
+
+{#<script type="text/javascript" src="{{ absolute_url(asset('js/jquery-3.1.1.min.js')) }}"></script>#}
+<script type="text/javascript" src="{{ base_dir ~ asset('js/jquery-3.1.1.min.js') }}"></script>
+
+{#<script type="text/javascript" src="{{ absolute_url(asset('js/materialize.js')) }}"></script>#}
+<script type="text/javascript" src="{{ base_dir ~ asset('js/materialize.js') }}"></script>
+
+</body>
+
+</html>
+

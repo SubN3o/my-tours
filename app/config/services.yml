@@ -17,21 +17,21 @@ services:
 
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    MyOrleansBundle\:
-        resource: '../../src/MyOrleansBundle/*'
+    MyToursBundle\:
+        resource: '../../src/MyToursBundle/*'
         # you can exclude directories or files
         # but if a service is unused, it's removed anyway
-        exclude: '../../src/MyOrleansBundle/{Entity,Repository,Tests}'
+        exclude: '../../src/MyToursBundle/{Entity,Repository,Tests}'
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
-    MyOrleansBundle\Controller\:
-        resource: '../../src/MyOrleansBundle/Controller'
+    MyToursBundle\Controller\:
+        resource: '../../src/MyToursBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
 
     # add more services, or override services that need manual wiring
-#     MyOrleansBundle\Service\Calculator:
+#     MyToursBundle\Service\Calculator:
 #         arguments:
 #             $someArgument: 'some_value'
 

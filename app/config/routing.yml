@@ -1,5 +1,5 @@
-my_orleans:
-    resource: "@MyOrleansBundle/Controller/"
+my_tours:
+    resource: "@MyToursBundle/Controller/"
     type:     annotation
     prefix:   /
 

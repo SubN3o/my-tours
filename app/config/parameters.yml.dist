@@ -19,7 +19,7 @@ parameters:
 
     upload_directory: '%kernel.root_dir%/../web/uploads'
 
-    mailer_sender_name: MyOrléans
+    mailer_sender_name: MyTours
     parcours_investisseur: investisseur
     parcours_residence: residence
     GoogleApiKey: ~

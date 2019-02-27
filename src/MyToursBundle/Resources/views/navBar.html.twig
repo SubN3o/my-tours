@@ -1,0 +1,56 @@
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper" id="nav">
+            <!-- logo my-tours.com -->
+            <a href="{{ path("home") }}" class="brand-logo">
+                <img class="logo" src="{{ asset('img/logo_mytours.png') }}" alt="logo"/>
+            </a>
+
+            <!-- bouton menu mobile -->
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i
+                        class="material-icons">menu</i></a>
+            <!-- menu desktop -->
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li id="nosResidences"><a href="{{ path("nosresidences") }}">NEUF</a></li>
+                <li id="nosAnciens"><a href="{{ path("nosanciens") }}">ANCIEN</a></li>
+                <li id="nosLocations"><a href="{{ path("noslocations") }}">LOCATION</a></li>
+                <li id="myTours"><a href="{{ path("my-tours") }}">MY TOURS</a></li>
+                <li id="expertise"><a href="{{ path("expertise") }}">EXPERTISE</a></li>
+                <li id="immoPratique"><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
+                <li onclick="simpleSearch()"><a><i class="material-icons">search</i></a></li>
+            </ul>
+            <!-- recherche simple desktop -->
+            <ul id="simpleSearch" class="right hide-on-med-and-down">
+                {{ form_start(simpleSearch) }}
+                <li>{{ form_label(simpleSearch.ville, 'Localisation') }}</li>
+                <li>{{ form_widget(simpleSearch.ville) }}</li>
+                <li>{{ form_label(simpleSearch.type, 'Type de logement') }}</li>
+                <li>{{ form_widget(simpleSearch.type) }}</li>
+                <li class="go">{{ form_widget(simpleSearch.search) }}</li>
+                <li onclick="navClassique()"><a><i class="material-icons">search</i></a></li>
+                {{ form_end(simpleSearch) }}
+            </ul>
+
+            <!-- menu mobile -->
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="{{ path("nosresidences") }}">NEUF</a></li>
+                <li><a href="{{ path("nosanciens") }}">ANCIEN</a></li>
+                <li><a href="{{ path("noslocations") }}">LOCATION</a></li>
+                <li><a href="{{ path("my-tours") }}">MY TOURS</a></li>
+                <li><a href="{{ path("expertise") }}">EXPERTISE</a></li>
+                <li><a href="{{ path("immo_pratique") }}">INFOS PRATIQUES</a></li>
+                <li class="divider"></li>
+                <!-- recherche simple mobile -->
+                {{ form_start(simpleSearchMobile) }}
+                <li>{{ form_label(simpleSearchMobile.ville, 'Localisation') }}</li>
+                <li>{{ form_widget(simpleSearchMobile.ville) }}</li>
+                <li>{{ form_label(simpleSearchMobile.type, 'Type de logement') }}</li>
+                <li>{{ form_widget(simpleSearchMobile.type) }}</li>
+                <li class="go">{{ form_widget(simpleSearchMobile.search) }}</li>
+                {{ form_end(simpleSearchMobile) }}
+            </ul>
+        </div>
+    </nav>
+</div>
+
+

@@ -1,0 +1,123 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}"/>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21732139-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-21732139-1');
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <!--Formulaire-->
+        <div class="breadcrumb formulaireBouton">
+            <a href="#" data-activates="slide-out" class="button-collapse pulse-button"><i
+                        class="material-icons">message</i></a>
+        </div>
+
+        <div class="faqBouton">
+            <a href="{{ path("faq") }}"><i class="material-icons">help_outline</i></a>
+        </div>
+
+        {% block video %}
+        {% endblock video %}
+
+        <!--Navbar-->
+        {{ render(controller('MyToursBundle:front/Layout:navBar')) }}
+
+        {% block content %}
+            <!--Contenu des pages-->
+        {% endblock content %}
+
+        <!--Footer-->
+        {{ render(controller('MyToursBundle:front/Layout:footer')) }}
+
+        {#<p id="back-top"><a href="#"><img src="{{ asset('img/backTop.png') }}" alt="souris"></a></p>#}
+
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        //autocompletion de la recherche simple
+        $(document).ready(function () {
+
+            $('#simple_search_ville').autocomplete({
+                data: {
+                    "Boigny-sur-Bionne": null,
+                    "Bou": null,
+                    "Chanteau": null,
+                    "Chécy": null,
+                    "Fleury-les-Aubrais": null,
+                    "Ingré": null,
+                    "La Chapelle-Saint-Mesmin": null,
+                    "Mardié": null,
+                    "Marigny-les-Usages": null,
+                    "Olivet": null,
+                    "Tours": null,
+                    "Ormes": null,
+                    "Saint-Cyr-en-Val": null,
+                    "Saint-Denis-en-Val": null,
+                    "Saint-Hilaire-Saint-Mesmin": null,
+                    "Saint-Jean-de-Braye": null,
+                    "Saint-Jean-de-la-Ruelle": null,
+                    "Saint-Jean-le-Blanc": null,
+                    "Saint-Pryvé-Saint-Mesmin": null,
+                    "Saran": null,
+                    "Semoy": null
+                },
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                    // Callback function when value is autcompleted.
+                },
+                minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
+
+            });
+
+        });
+
+        //confirmation envoie formulaire
+        $(document).ready(function () {
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    var $toastContent = $('<span>{{ message }}</span>');
+                    Materialize.toast($toastContent, 10000);
+                {% endfor %}
+            {% endfor %}
+        });
+
+
+        //affichage de la recherche simple desktop à la place du menu
+        function simpleSearch() {
+            document.getElementById('nav-mobile').style.display = 'none';
+            document.getElementById('simpleSearch').style.display = 'block';
+        }
+
+        //reaffichage du menu desktop à la place de la recherche simple
+        function navClassique() {
+            document.getElementById('nav-mobile').style.display = 'block';
+            document.getElementById('simpleSearch').style.display = 'none';
+        }
+    </script>
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" id="cookiebanner" src="http://cookiebanner.eu/js/cookiebanner.min.js"
+            data-position="bottom" data-fg="#676767" data-bg="#ffffff" data-link="#B5CC17"
+            data-moreinfo="http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/que-dit-la-loi/"
+            data-message="Les cookies assurent le bon fonctionnement de notre site Internet. En utilisant ce dernier, vous acceptez leur utilisation."
+            data-linkmsg="En savoir plus"></script>
+{% endblock %}

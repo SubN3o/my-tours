@@ -12,7 +12,7 @@
 
 
     {% block body %}
-        <title>{% block title %}ADMIN | My-Orléans.com{% endblock %}</title>
+        <title>{% block title %}ADMIN | My-Tours.com{% endblock %}</title>
         <div class="wrapper">
 
             {% block navbar %}
@@ -20,7 +20,7 @@
 
                 <div class="logo">
                     <a href="{{ path('home') }}" target="_blank" class="simple-text">
-                        <img class="logo" src="{{ asset('img/logo_myorleans.png') }}" alt="logo de l'entreprise"
+                        <img class="logo" src="{{ asset('img/logo_mytours.png') }}" alt="logo de l'entreprise"
                              height="80px"/><br>
                     </a>
                 </div>
@@ -30,7 +30,7 @@
                         <hr>
                         <li>
                             <div class="collapsible-header"><i class="material-icons">account_circle</i>
-                                {{ render(controller('MyOrleansBundle:admin/Admin:profilAdmin')) }}</div>
+                                {{ render(controller('MyToursBundle:admin/Admin:profilAdmin')) }}</div>
                             <div class="collapsible-body">
                                 <a href="{{ path("fos_user_profile_edit") }}">
                                     <p>Editer profil</p>
@@ -54,7 +54,7 @@
                             <div class="collapsible-header">Administration du stock <i
                                         class="material-icons">business</i></div>
                             <div class="collapsible-body">
-                                {{ render(controller('MyOrleansBundle:admin/Admin:navBarAdmin')) }}
+                                {{ render(controller('MyToursBundle:admin/Admin:navBarAdmin')) }}
                                 <a href="{{ path("admin_residence_index") }}">
                                     <p>Résidences</p>
                                 </a>
@@ -74,7 +74,7 @@
                         </li>
                         <li>
 
-                            <div class="collapsible-header">My-Orléans <i class="material-icons">store_mall_directory</i>
+                            <div class="collapsible-header">My-Tours <i class="material-icons">store_mall_directory</i>
                             </div>
                             <div class="collapsible-body">
                                 <a href="{{ path('admin_accueil_edit', {id : 1} ) }}">

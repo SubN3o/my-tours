@@ -1,0 +1,151 @@
+{% extends 'MyToursBundle::layout.html.twig' %}
+
+{% block title %}My TOURS | Expertise{% endblock %}
+
+{% block description %}
+    <meta name="description"
+          content="My TOURS est présent à toutes les étapes de votre projet immobilier : de la recherche à la livraison / location et gestion locative pour votre investissement immobilier."/>
+{% endblock %}
+
+{% block content %}
+    <h1>Les conseils et l'expertise My Tours</h1>
+    <div class="row">
+        <!-- timeline verticale des services -->
+        <div class="container">
+            <div id="timeline">
+                {% for service in services %}
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            {% for media in service.medias if media.typeMedia.nom == "icone" %}
+                                <img src="{{ asset('uploads/'~media.mediaName) }}" alt="icone {{ service.type }}">
+                            {% endfor %}
+                        </div>
+                        <ul class="collapsible timeline-content" data-collapsible="accordion">
+                            <li id="anchor-{{ service.type }}">
+                                <div class="collapsible-header">
+                                    <div class="valign-wrapper">
+                                        <h2 class="col s8 center">{{ service.type }}</h2>
+                                        {% for media in service.medias if media.typeMedia.nom == "image-cover" %}
+                                            <img class="col s4 responsive-img"
+                                                 src="{{ asset('uploads/'~media.mediaName) }}"
+                                                 alt="illustration {{ service.type }}">
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="collapsible-body"><span>{{ service.description | raw }}</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
+
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est votre projet ?</p>
+                <div class="row">
+                    <div class="col s12 center">
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est l'objet de votre message?</p>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_label(form.sujet) }}
+                        {{ form_widget(form.sujet, {'attr': {'value':'Demande de documentation'}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                <div class="row center">
+                    <div class="col s12 center">
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
+                </div>
+
+                <div class="col l12 newsletter">
+                    {{ form_row(form.envoyer) }}
+                </div>
+                <p class="newsletter"><i>* Champs requis</i></p>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript">
+            //ajout de la classe "active" dans la NavBar
+            jQuery(document).ready(function ($) {
+                $(document.getElementById("expertise")).addClass('active');
+            });
+        </script>
+    {% endblock %}

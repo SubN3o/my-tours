@@ -1,0 +1,388 @@
+{% extends 'MyToursBundle::layout.html.twig' %}
+
+{% block title %}{{ ancien.typeBien.nom }} {{ ancien.typeLogement.nom }} {{ ancien.ville.nom }} (45) | My TOURS{% endblock %}
+
+{% block description %}
+    <meta name="description"
+          content="{{ ancien.description | truncate(155, true, '...') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col offset-s1 retourSearch1">
+            <a class="waves-effect waves-light btn"
+               href="{{ path("nosanciens") }}">
+                <i class="fa fa-caret-left white-text"></i> RETOUR A IMMOBILIER ANCIEN</a>
+        </div>
+    </div>
+    <div class="row infoFlat">
+        <div class="col s12">
+            <!-- affichage du type du logement et sa ville -->
+            <div class="locationFlat center">
+                <span>{{ ancien.ville.nom }}</span>
+                <p>{{ ancien.typeBien.nom }} de type {{ ancien.typeLogement.id }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row hide-on-med-and-down">
+        <!-- téléchargement PDF sur desktop -->
+        <div class="col offset-s1 s10">
+            <a href="{{ path('ancien_pdf', { 'reference': ancien.reference }) }}">
+                <img class="pdfIcon" src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf">
+            </a>
+        </div>
+    </div>
+    <div class="row infoFlat2 valign-wrapper">
+        <!-- information sur le logement -->
+        <div class="col offset-l1 l10 s10">
+            <!-- référence du logement -->
+            <div class="col l6 s12 refLocation">
+                Référence : {{ ancien.reference }}
+            </div>
+            <!-- prix du logement -->
+            <div class="col l6 s12 prixLoc">
+                <div>Prix de vente : {{ ancien.prix|number_format(0, '.', ' ') }} €</div>
+            </div>
+        </div>
+        <div class="col s2 hide-on-large-only">
+            <!-- téléchargement PDF sur mobile -->
+            <a href="{{ path('ancien_pdf', { 'reference': ancien.reference }) }}">
+                <img class="responsive-img" src="{{ asset('img/PDF.png') }}" alt="logo fichier pdf">
+            </a>
+        </div>
+    </div>
+    <div class="row planFlat">
+        <!-- slider du bien ancien -->
+        <div class="col offset-l1 s12 l10">
+            <div class="sliderLocation">
+                <div class="slider">
+                    <ul class="slides">
+                        <!-- 1ere slide -->
+                        <li>
+                            {% for media in ancien.medias if media.typeMedia.nom == 'image-cover' %}
+                                <!-- affichage de la photo principale -->
+                                <img id="image" src="{{ asset('uploads/'~media.mediaName) }}"
+                                     alt="photo principale ancien {{ ancien.reference }}">
+                            {% endfor %}
+                        </li>
+                        <!-- affichage des slides restantes -->
+                        {% for media in ancien.medias if media.typeMedia.nom == 'image' %}
+                            <li>
+                                <img src="{{ asset('uploads/'~media.mediaName) }}"
+                                     alt="photo {{ loop.index }} ancien {{ ancien.reference }}">
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Description Location -->
+    <div class="row">
+        <div class="col s12 accrocheResidence">
+            <!-- description du bien ancien -->
+            <div class="col offset-l2 l8">
+                <h1 class="center accroche">{{ ancien.accroche }}</h1>
+                <div class="description">{{ ancien.description | raw }}</div>
+            </div>
+        </div>
+    </div>
+    <!-- description du logement -->
+    <h1>Descriptif du Logement</h1>
+    <div class="row">
+        <div class="col offset-l1 l5">
+            <!-- surfaces -->
+            <div class="col s12 descriptif">
+
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/room.png') }}" alt="plan">
+                </div>
+                {% if ancien.surface != null %}
+                    <div class="col s12">
+                        <p>Surface Habitable</p>
+                        <span>{{ ancien.surface }} m²</span>
+                    </div>
+                {% endif %}
+                {% if ancien.surfaceBalcon != null %}
+                    <div class="col s12">
+                        <p>Surface Balcon</p>
+                        <span>{{ ancien.surfaceBalcon }} m²</span>
+                    </div>
+                {% endif %}
+                {% if ancien.surfaceTerrasse != null %}
+                    <div class="col s12">
+                        <p>Surface Terrasse</p>
+                        <span>{{ ancien.surfaceTerrasse }} m²</span>
+                    </div>
+                {% endif %}
+                {% if ancien.surfaceJardin != null %}
+                    <div class="col s12">
+                        <p>Surface Jardin</p>
+                        <span>{{ ancien.surfaceJardin }} m²</span>
+                    </div>
+                {% endif %}
+                {% if ancien.surfaceTerrain != null %}
+                    <div class="col s12">
+                        <p>Surface Terrain</p>
+                        <span>{{ ancien.surfaceTerrain }} m²</span>
+                    </div>
+                {% endif %}
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <!-- Dépenses -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/euro.png') }}" alt="euro">
+                </div>
+                {% if ancien.chargesAnnuelles %}
+                <div class="col s12">
+                    <p>Charges annuelles</p>
+                    <span>{{ ancien.chargesAnnuelles|number_format(0, '.', ' ') }} €</span>
+                </div>
+                {% endif %}
+                {% if ancien.taxeFonciere %}
+                <div class="col s12">
+                    <p>Taxes Foncière</p>
+                    <span>{{ ancien.taxeFonciere|number_format(0, '.', ' ') }} €</span>
+                </div>
+                {% endif %}
+                <div class="col s12">
+                    <p>Prix de vente*<br/><span class="infoHonoraire">*FAI - Honoraires charge vendeur</span></p>
+                    <span>{{ ancien.prix|number_format(0, '.', ' ') }} €</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <!-- Coproriété -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/copro.png') }}" alt="têtes">
+                </div>
+                <div class="col s12">
+                    <p>Copropriété</p>
+                    {% if ancien.copropriete %}
+                        <span>oui</span>
+                    {% else %}
+                        <span>non</span>
+                    {% endif %}
+                </div>
+                {% if ancien.copropriete %}
+                    <div class="col s12">
+                        <p>Nombre de logements</p>
+                        <span>{{ ancien.nbLots }}</span>
+                    </div>
+                {% endif %}
+                <span class="col s12 descriptifLine"></span>
+            </div>
+        </div>
+        <div class="col l5">
+            <!-- Bilan énergitique -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/bilan.png') }}" alt="bareme">
+                </div>
+                <div class="col s12">
+                    <p>Performance énergétique</p>
+                    <span>{{ ancien.energie }}</span>
+                </div>
+                <div class="col s12">
+                    <p>Gaz à effet de serre</p>
+                    <span>{{ ancien.ges }}</span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <!-- chauffage -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/chauffage.png') }}" alt="chauffage">
+                </div>
+                <div class="col s12">
+                    <p>Chauffage</p>
+                    <span>
+                    {% if ancien.chauffage %}
+                        {{ ancien.chauffage }}
+                    {% else %}
+                        <i>non communiqué</i>
+                    {% endif %}
+                    </span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+            <!-- stationnement -->
+            <div class="col s12 descriptif">
+                <div class="col s1">
+                    <img class="icon-apt" src="{{ asset('img/Parking.png') }}" alt="voiture">
+                </div>
+                <div class="col s12">
+                    <p>Stationnement</p>
+                    <span>
+                    {% if ancien.stationnement %}
+                        {{ ancien.stationnement }}
+                    {% else %}
+                        <i>non communiqué</i>
+                    {% endif %}
+                    </span>
+                </div>
+                <span class="col s12 descriptifLine"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- partage de l'annonce -->
+        <div class="col offset-l1 l10 s12 center">
+            <div class="partage valign-wrapper">
+                <p><i class="material-icons align-icon">share</i>Partager l'annonce</p>
+                <div class="partageIcone">
+                    <!-- facebook -->
+                    <div id="fb-root"></div>
+                    <div class="fb-share-button"
+                         data-href="{{ absolute_url(path('ancien', { 'reference': ancien.reference })) }}"
+                         data-layout="button"
+                         data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+                                                                        href="{{ absolute_url( path('ancien', { 'reference': ancien.reference }))|url_encode }}">Partager</a>
+                    </div>
+                    <!-- Email -->
+                    <a class="waves-effect waves-light btn greenMyO"
+                       href="mailto:?to= &subject={{ ancien.reference }}%20-%20{{ ancien.typeBien.nom }}%20{{ ancien.typeLogement.nom }}%20-%20My%20Tours&body=Bonjour,%0A%0AJ'ai trouvé un logement qui devrait vous intéresser sur {{ absolute_url( path('home'))|url_encode }}%0A%0AVoici le lien vers l'annonce:%0A{{ absolute_url( path('ancien', { 'reference': ancien.reference }))|url_encode }}%0A%0ADans certains cas, le lien est inactif. Veuillez alors le copier dans la barre d'adresse de votre navigateur.">
+                        <i class="material-icons">mail</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- bouton retour à Infos Pratiques -->
+        <div class="col offset-s1 retourSearch1">
+            <a class="waves-effect waves-light btn"
+               href="{{ path("nosanciens") }}">
+                <i class="fa fa-caret-left white-text"></i> RETOUR A IMMOBILIER ANCIEN</a>
+        </div>
+    </div>
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
+
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est votre projet ?</p>
+                <div class="row">
+                    <div class="col s12 center">
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est l'objet de votre message?</p>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_label(form.sujet) }}
+                        {{ form_widget(form.sujet, {'attr': {'value':'Documentation - '~ancien.reference}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                <div class="row center">
+                    <div class="col s12 center">
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
+                </div>
+
+                <div class="col l12 newsletter">
+                    {{ form_row(form.envoyer) }}
+                </div>
+                <p class="newsletter"><i>* Champs requis</i></p>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        //ajout de la classe "active" dans la NavBar
+        jQuery(document).ready(function ($) {
+            $(document.getElementById("nosAnciens")).addClass('active');
+        });
+    </script>
+    <script type="text/javascript" src="{{ asset('js/socialmedia.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Paramètre du Slider residence
+            if (window.innerWidth > 992) {
+                $('.slider').slider({
+                    indicators: true,
+                    interval: 12000,
+                    height: 600
+                });
+            }
+            if (window.innerWidth <= 992) {
+                $('.slider').slider({
+                    indicators: true,
+                    interval: 12000,
+                    height: 300
+                });
+            }
+
+            $('.slider').slider('pause');
+
+        });
+    </script>
+{% endblock %}

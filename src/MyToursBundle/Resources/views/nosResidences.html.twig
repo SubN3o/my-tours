@@ -1,0 +1,344 @@
+{% extends 'MyToursBundle::layout.html.twig' %}
+
+{% block title %}My TOURS | Neuf{% endblock %}
+
+{% block description %}
+    <meta name="description"
+          content="Un large choix de programmes immobiliers et logements neufs à prix promoteur, à Tours et agglo, pour investir, défiscaliser ou habiter."/>
+{% endblock %}
+
+{% block content %}
+    <!-- Moteur de recherche -->
+    <div class="row completeSearch">
+        <div class="col offset-m2 offset-l1 s12 m8 l4">
+
+            <div class="card">
+                {{ form_start(completeSearch) }}
+                <div class="card-tabs">
+                    <ul class="onglet tabs tabs-fixed-width">
+                        <!-- onglet du moteur de recherche -->
+                        <li class="tab"><a class="active" href="#localisation"><i class="material-icons medium">location_on</i><br>Localisation</a>
+                        </li>
+                        <li class="tab"><a href="#type"><i class="material-icons medium">dashboard</i><br>Type</a></li>
+                        <li class="tab"><a href="#budget"><i class="material-icons medium">euro_symbol</i><br>Budget</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="search card-content">
+                    <!-- onglet lieu -->
+                    <div id="localisation">
+                        <div class="titreSearch">Où souhaitez-vous acheter ?</div>
+                        <div class="row no-margin-bottom">
+                            <div class="col offset-s1 offset-xl1 s10 xl4 localisation">
+                                <p>Localisation</p>
+                            </div>
+                            <div class="col offset-s1 offset-xl1 s10 xl6">
+                                {{ form_widget(completeSearch.ville) }}
+                                {{ form_errors(completeSearch.ville) }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- onglet type de logement -->
+                    <div id="type">
+                        <div class="titreSearch">Sélectionnez le type souhaité</div>
+                        <div class="row no-margin-bottom">
+                            <div class="col s12 center">
+                                {{ form_widget(completeSearch.typeLogement) }}
+                                {{ form_errors(completeSearch.typeLogement) }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- onglet budget -->
+                    <div id="budget">
+                        <div class="titreSearch">Votre budget</div>
+                        <div class="row no-margin-bottom">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="col s5 offset-m1 m4 l5 offset-xl1 xl4 budget">
+                                        <p>Budget min</p>
+                                        <div class="budgetMin">{{ form_widget(completeSearch.budgetMin) }}</div>
+                                        {{ form_errors(completeSearch.budgetMin) }}
+                                    </div>
+                                    <div class="col offset-s2 s5 offset-m2 m4 offset-l2 l5 offset-xl2 xl4 budget">
+                                        <p>Budget max</p>
+                                        <div class="budgetMin">{{ form_widget(completeSearch.budgetMax) }}</div>
+                                        {{ form_errors(completeSearch.budgetMax) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- bouton de validation -->
+                <div class="rechercher center">
+                    {{ form_widget(completeSearch.submit) }}
+                </div>
+                {{ form_end(completeSearch) }}
+            </div>
+        </div>
+
+        <div class="col l6 hide-on-med-and-down">
+            <div class="card" id="map"></div>
+        </div>
+
+    </div>
+
+    <!-- Resultat Recherche -->
+
+    <div class="row carte-liste-articles">
+
+        <div class="col offset-l1 s12 l10 liste-biens">
+
+            <div class="row center no-margin-bottom">
+                <!-- affichage du titre selon les resultats de recherche -->
+                {% set nb_res = residences|length %}
+                {% if  resultatRecherche == 0 %}
+                    <h1>
+                        Nos résidences actuellement disponibles
+                    </h1>
+                {% elseif resultatRecherche == 1 %}
+                    <h1>Aucune résidence ne correspond à votre recherche</h1>
+                    <h1>Découvrez celles actuellement disponibles</h1>
+                {% else %}
+                    <h1 class="section-title">
+                        {% transchoice nb_res %}
+                        {1} 1 résidence correspond à votre recherche|
+                        ]1,Inf[ %count% résidences correspondent à votre recherche
+                        {% endtranschoice %}
+                    </h1>
+                {% endif %}
+            </div>
+
+            <div class="row">
+
+                {% for residence in residences %}
+
+                    {{ render(controller('MyToursBundle:VignetteResidence:affichageResidence', {'slug': residence.slug })) }}
+
+                {% endfor %}
+
+            </div>
+
+            <!-- suggestion residence -->
+
+            {% if resultatRecherche == 2 and residencesSuggerees != null %}
+                <div class="row suggestion-biens">
+                    <h1>La sélection My Tours</h1>
+                </div>
+                <div class="row">
+                    {% for residence in residencesSuggerees %}
+                        <div class="col s6 l3">
+                            <div class="card">
+                                <div class="card-image">
+                                    <a href="{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.slug }) }}">
+                                        {% if residence.medias is not empty %}
+                                            {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                                                <img src="{{ asset('uploads/'~media.mediaName) | imagine_filter('thumb_residence') }}"
+                                                     alt="residence {{ residence.nom }}">
+                                            {% endfor %}
+                                        {% endif %}
+                                        <div class="card-title">
+                                            <div class="card-content bandeau">
+                                                <span class="titreSuggest">{{ residence.nom }}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+
+            {% endif %}
+
+        </div>
+    </div>
+    <!-- début formulaire de contact -->
+    <form method="post" action="">
+        <div id="slide-out" class="side-nav formulaireVolet">
+            <div class="userView">
+                <div class="closeSideNav"><a href="#"><i class="material-icons">close</i></a></div>
+                <div class="contactNous center">Contactez nous !</div>
+                <div class="contactTel center">{{ telephone_number }}</div>
+                {{ form_start(form) }}
+
+                <div class="row center">
+                    <div class="input-field col s12">
+                        {{ form_widget(form.civilite) }}
+                        {{ form_errors(form.civilite) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">my_location</i>
+                        {{ form_label(form.codePostal) }}
+                        {{ form_widget(form.codePostal) }}
+                        {{ form_errors(form.codePostal) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">email</i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        {{ form_label(form.telephone) }}
+                        {{ form_widget(form.telephone) }}
+                        {{ form_errors(form.telephone) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est votre projet ?</p>
+                <div class="row">
+                    <div class="col s12 center">
+                        {{ form_widget(form.projet) }}
+                        {{ form_errors(form.projet) }}
+                    </div>
+
+                    <div class="col s12 center">
+                        {{ form_widget(form.typeLogement) }}
+                        {{ form_errors(form.typeLogement) }}
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">euro_symbol</i>
+                        {{ form_label(form.budget) }}
+                        {{ form_widget(form.budget) }}
+                        {{ form_errors(form.budget) }}
+                    </div>
+                </div>
+                <p class="newsletter">Quel est l'objet de votre message?</p>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">info_outline</i>
+                        {{ form_label(form.sujet) }}
+                        {{ form_widget(form.sujet, {'attr': {'value':'Demande de documentation'}}) }}
+                        {{ form_errors(form.sujet) }}
+                    </div>
+
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message, {'attr': {'placeholder':'Bonjour, je souhaiterais recevoir des informations, merci de me contacter rapidement!'}}) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <p class="newsletter">Je souhaite m'abonner à la newsletter?</p>
+                <div class="row center">
+                    <div class="col s12 center">
+                        {{ form_widget(form.newsletter) }}
+                        {{ form_errors(form.newsletter) }}
+                    </div>
+                </div>
+
+                <div class="col l12 newsletter">
+                    {{ form_row(form.envoyer) }}
+                </div>
+                <p class="newsletter"><i>* Champs requis</i></p>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        //ajout de la classe "active" dans la NavBar
+        jQuery(document).ready(function ($) {
+            $(document.getElementById("nosResidences")).addClass('active');
+        });
+    </script>
+    <script type="text/javascript" src="{{ asset("js/count.js") }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //autocompletion des villes du moteur de recherche
+            $('#complete_search_ville').autocomplete({
+                data: {
+                    {% for ville in villes %}
+                    "{{ ville.nom }}": null,
+                    {% endfor %}
+                },
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                    // Callback function when value is autcompleted.
+                },
+                minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
+
+            });
+
+        });
+    </script>
+    <script>
+        //affichage de la googleMap
+        function initMap() {
+
+//                    var count = 0;
+            //récupération des residences
+            var locations = [
+                {% for residence in residences %}
+                [
+                    '{{ residence.nom }}',
+                    {{ residence.latitude }},
+                    {{ residence.longitude }},
+                    {% for media in residence.medias if media.typeMedia.nom == 'image-cover' %}
+                    '{{ media.mediaName }}'
+                    {% endfor %},
+                    '{{ path('residences', { 'slug': residence.slug, 'Ville': residence.ville.slug }) }}'
+                ],
+
+                {% endfor %}
+
+            ];
+
+            //centrage de la map
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {lat: 47.902964, lng: 1.909251},
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+
+                //remplacement du marker google par celui de My TOURS
+                marker = new google.maps.Marker({
+                    position: {lat: locations[i][1], lng: locations[i][2]},
+                    map: map,
+                    icon: '../img/marker.png'
+
+                });
+
+
+                //affichage de vignette personalisé sur chaque résidence
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+
+                        var vignette = '<a href="' + locations[i][4] + '"><span class="infoWindow">' + locations[i][0] + '</span><br><img class="infoImg" src="../uploads/' + locations[i][3] + '" alt="residence ' + locations[i][0] + '"></a>'
+
+                        infowindow.setContent(vignette);
+
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChaGGAaNFdi508AC8JBUs9rhjAOPNnyBU&callback=initMap">
+    </script>
+{% endblock %}
